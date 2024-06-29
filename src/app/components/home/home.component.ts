@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { MenuNavComponent } from './menu-nav/menu-nav.component';
-import { BackgroundImgsComponent } from './background-imgs/background-imgs.component';
-import { SearchComponent } from './search/search.component';
 import { CardVacancyComponent } from '../card-vacancy/card-vacancy.component';
 import { CommonModule } from '@angular/common';
+import { BackgroundImgsComponent } from './background-imgs/background-imgs.component';
+import { MenuNavComponent } from './menu-nav/menu-nav.component';
+import { SearchComponent } from './search/search.component';
+import { SortetdFilterComponent } from './sortetd-filter/sortetd-filter.component';
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, MenuNavComponent,BackgroundImgsComponent, SearchComponent, CardVacancyComponent],
+  imports: [CommonModule, MenuNavComponent,BackgroundImgsComponent, SearchComponent, CardVacancyComponent, SortetdFilterComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -18,7 +20,7 @@ export class HomeComponent {
     {
         title: 'Backend разработчик',
         context: 'Компания-стартап ищет опытного разработчика backend для создания и поддержки серверной части веб-приложений.',
-        skills: ['Node.js', 'Express.js', 'MongoDB', 'REST API', 'Архитектура микросервисов','Тестирование программного обеспечения'],
+        skills: ['Node.js', 'Express.js', 'MongoDB', 'REST API', 'Архитектура микросервисов','Тестирование программного обеспечения','Node.js', 'Express.js', 'MongoDB', 'REST API', 'Архитектура микросервисов'],
         motivations: ['За долю', 'За оплату', 'Практика'],
         fullName: 'Иванов Павел Сергеевич',
         date: '2024-06-29'

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderComponent } from './header.component';
+import { SortetdFilterComponent } from './sortetd-filter.component';
 
-describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
+describe('SortetdFilterComponent', () => {
+  let component: SortetdFilterComponent;
+  let fixture: ComponentFixture<SortetdFilterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderComponent]
+      imports: [SortetdFilterComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(SortetdFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

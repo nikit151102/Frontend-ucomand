@@ -1,14 +1,17 @@
 <div class="main">
-    <div class="conteiner">
+    <div class="container">
         <app-menu-nav></app-menu-nav>
         <app-background-imgs></app-background-imgs>
+
     </div>
     <div class="search">
-        <div class="conteiner">
+        <div class="container" style="width: 70%;">
             <app-search> </app-search>
         </div>
     </div>
-    <div class="conteiner">
+    <div class="container">
+        <app-sortetd-filter></app-sortetd-filter>
+
         <div class="card-container">
             <ng-container *ngFor="let item of vacanciesData">
                 <app-card-vacancy [cardItem]="item" class="app-card-vacancy"></app-card-vacancy>
