@@ -1,0 +1,20 @@
+<div class="main">
+    <div class="conteiner">
+        <app-menu-nav></app-menu-nav>
+        <app-background-imgs></app-background-imgs>
+    </div>
+    <div class="search">
+        <div class="conteiner">
+            <app-search> </app-search>
+        </div>
+    </div>
+    <div class="conteiner">
+        <div class="card-container">
+            <ng-container *ngFor="let item of vacanciesData">
+                <app-card-vacancy [cardItem]="item" class="app-card-vacancy"></app-card-vacancy>
+            </ng-container>
+        </div>
+
+    </div>
+
+</div>

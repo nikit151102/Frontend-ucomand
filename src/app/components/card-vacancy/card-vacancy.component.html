@@ -1,0 +1,59 @@
+<div class="card">
+    <p class="title">
+        {{cardItem.title}}
+    </p>
+    <div class="chapterCard">
+        <p class="chapterCard-title" style="margin-bottom: 0;">
+            Ищу:
+        </p>
+        <p class="chapterCard-value" style="margin-top: 0.5rem;">
+            {{cardItem.context}}
+        </p>
+    </div>
+    <div class="chapterCard">
+        <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
+            Навыки:
+        </p>
+        <div class="tags">
+            <ng-container *ngFor="let item of cardItem.skills">
+                <div class="tag">
+                    {{item}}
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="chapterCard">
+        <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
+            Мотивация:
+        </p>
+        <div class="motivations">
+            <ng-container *ngFor="let item of cardItem.motivations">
+                <div class="motivation" [ngStyle]="{ 'background': getMotivationColor(item) }">
+                    {{ item }}
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="profile">
+        <div class="leftProfileChapter">
+            <div class="logo">
+                <img src="" alt="logo">
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <p class="fullName">
+                    {{cardItem.fullName}}
+                </p>
+            </div>
+           
+        </div>
+        <div class="rightProfileChapter">
+            <p class="dateVacancy dateTitle">
+                размещено
+            </p>
+            <p class="dateVacancy dateValue">
+                {{cardItem.date}}
+            </p>
+        </div>
+        
+    </div>
+</div>

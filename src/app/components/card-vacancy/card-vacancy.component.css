@@ -1,0 +1,124 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.3rem;
+    padding: 12px;
+    width: 100%;
+    box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 2rem;
+    break-inside: avoid;
+}
+
+.card:hover {
+    background: #5a4bb8;
+}
+
+
+.title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 114%;
+    color: #fff;
+}
+
+.chapterCard {}
+
+.chapterCard-title {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #fff;
+}
+
+.chapterCard-value {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.tag {
+    border: 1px solid #806bff;
+    border-radius: 30px;
+    padding: 3px 8px 5px 8px;
+    background: rgba(243, 243, 243, 0.1);
+
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 120%;
+    color: #fff;
+}
+
+.motivations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.motivation {
+    border-radius: 20px;
+    padding: 8px 10px;
+
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 0.8rem;
+    line-height: 120%;
+    color: #fff;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.leftProfileChapter {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.rightProfileChapter {
+    display: flex;
+    flex-direction: column;
+}
+
+.fullName {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: #fff;
+}
+
+.dateVacancy {
+    font-family: var(--font-family);
+    font-weight: 500;
+    line-height: 120%;
+    color: #fff;
+}
+
+.dateTitle {
+    font-size: 0.7rem;
+    margin: 0;
+}
+
+.dateValue {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    margin: 0;
+    margin-top: 5px;
+}
