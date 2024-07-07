@@ -1,11 +1,24 @@
 .content {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 1rem;
     position: fixed;
     width: 85%;
     margin-top: 1rem;
     z-index: 999;
+}
+
+.first-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.second-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .leftContent {
@@ -24,13 +37,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
-    border-radius: 200px;
-    width: calc(110px - 1rem);
-    height: 66px;
-
-    padding-right: 1rem;
-    background: #806bff;
+    gap: 0.5rem;
 }
 
 :host ::ng-deep .p-sidebar-right {
@@ -157,4 +164,46 @@ a{
 
 .grnBtn:hover {
     background: #806bff;
+}
+
+
+
+.menu-right{
+    display: flex;
+    justify-content: end;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 200px;
+    width: calc(110px - 1rem);
+    height: 66px;
+    padding-right: 1rem;
+    background: #806bff; 
+}
+
+
+.additionalBtn{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    border-radius: 30px;
+    background: #84DD2C;
+    padding: 1rem;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 117%;
+    color: #fff;
+}
+
+.backBtn{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    border-radius: 2rem;
+    padding: 1rem;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 117%;
+    color: #fff;
 }

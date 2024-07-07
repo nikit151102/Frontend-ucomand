@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     gap: 0.8rem;
-    margin-top: 175px;
+    margin-top: 100px;
     margin-bottom: 75px;
 }
 
@@ -45,19 +45,21 @@
     border-radius: 2.5rem;
 }
 
-
 .image-160x160 {
-    aspect-ratio: 1 / 1;
+    width: 160px;
+    height: 160px;
     object-fit: cover;
 }
 
 .image-320x160 {
-    aspect-ratio: 2 / 1;
+    width: 320px;
+    height: 160px;
     object-fit: cover;
 }
 
 .image-160x320 {
-    aspect-ratio: 1 / 2;
+    width: 160px;
+    height: 320px;
     object-fit: cover;
 }
 
@@ -121,7 +123,6 @@ button {
     background: #806bff;
 }
 
-
 .overlay-top-right {
     display: flex;
     flex-wrap: wrap;
@@ -147,4 +148,84 @@ button {
     font-size: 12px;
     line-height: 117%;
     color: #fff;
+}
+
+
+
+/* Media queries for tablets */
+@media (max-width: 768px) {
+    .leftContent,
+    .rightContent {
+        width: 100%;
+    }
+
+    .image-160x160 {
+        width: 80px;
+        height: 80px;
+    }
+
+    .image-320x160 {
+        width: 160px;
+        height: 80px;
+    }
+
+    .image-160x320 {
+        width: 80px;
+        height: 160px;
+    }
+
+    .overlay-block {
+        width: 80%;
+        left: 10%;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .text {
+        font-size: 16px;
+    }
+
+    .btns {
+        justify-content: center;
+    }
+}
+
+/* Media queries for phones */
+@media (max-width: 480px) {
+    .image-160x160 {
+        width: 60px;
+        height: 60px;
+    }
+
+    .image-320x160 {
+        width: 120px;
+        height: 60px;
+    }
+
+    .image-160x320 {
+        width: 60px;
+        height: 120px;
+    }
+
+    .overlay-block {
+        width: 90%;
+        left: 5%;
+        padding: 1.5rem;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .text {
+        font-size: 14px;
+    }
+
+    .btns {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
 }

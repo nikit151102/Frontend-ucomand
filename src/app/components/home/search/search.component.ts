@@ -13,4 +13,8 @@ export class SearchComponent {
   toggle(button: string) {
     this.activeButton = button;
   }
+
+
+
 }
+

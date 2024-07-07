@@ -1,8 +1,6 @@
 <div class="main">
     <div class="container">
-        <app-menu-nav></app-menu-nav>
         <app-background-imgs></app-background-imgs>
-
     </div>
     <div class="search">
         <div class="container" style="width: 70%;">
@@ -14,7 +12,7 @@
 
         <div class="card-container">
             <ng-container *ngFor="let item of vacanciesData">
-                <app-card-vacancy [cardItem]="item" class="app-card-vacancy"></app-card-vacancy>
+                <app-card-vacancy [cardItem]="item" class="app-card-vacancy" (click)="viewCard(item)"></app-card-vacancy>
             </ng-container>
         </div>
 

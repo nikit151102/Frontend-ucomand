@@ -51,32 +51,60 @@
 
 
 
-
-
 .search-container {
     position: relative;
+    width: fit-content;
+    height: fit-content;
+}
+
+.search-box {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
 }
 
 .search-input {
-    width: 100%;
-    padding: 12px 12px;
-    padding-left: 35px;
-    border: 2px solid rgba(226, 226, 226, 0.4);
-    border-radius: 2.5rem;
-    font-size: 16px;
+    width: 50px; /* Initial width */
+    min-width: 50px; /* Ensure a minimum width */
+    height: 50px;
+    border-style: none;
+    padding: 10px;
+    padding-left: 1rem;
+    font-size: 18px;
+    letter-spacing: 2px;
     outline: none;
+    border-radius: 25px;
+    transition: width 0.5s ease-in-out; /* Only specify transition once */
+    background-color: #ffff;
+    padding-right: 40px;
+    color: #000000;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .search-button {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-style: none;
+    font-size: 20px;
+    font-weight: bold;
     outline: none;
-    padding: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    color: #ffffff;
+    background-color: transparent;
+    right: 0;
+}
+
+.search-button:hover + .search-input,
+.search-container:hover .search-input,
+.search-input:focus,
+.search-input:not(:placeholder-shown) { /* Adjust width based on focus and content */
+    width: 350px; /* Expanded width */
+    transition: width 0.5s cubic-bezier(0, 0.110, 0.35, 2); /* Specify transition properties */
 }
 
 .search-button svg {

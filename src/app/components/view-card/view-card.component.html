@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="left-part">
+        <ng-container *ngIf="viewCardService.typeCard == 'vacancy'">
+            <app-vacancy></app-vacancy>
+        </ng-container>
+        <ng-container *ngIf="viewCardService.typeCard == 'resume'">
+            <app-resume></app-resume>
+        </ng-container>
+    </div>
+
+    <div class="right-path">
+        <div class="right-path-content">
+            <div class="ProfileChapter">
+                <div class="logo">
+                    <img src="assets/male_profile.png" alt="logo" style="width: 4vw;">
+                </div>
+                <div style="display: flex; flex-wrap: wrap; align-content: flex-end">
+                    <p class="fullName">
+                        {{viewCardService.selectedCard.fullName}}
+                    </p>
+                </div>
+
+            </div>
+
+
+            <ng-container *ngIf="true">
+                <diV>
+                    <p class="chapterCard-title">
+                        Контакты:
+                    </p>
+
+                </diV>
+            </ng-container>
+
+            <ng-container *ngIf="true">
+                <div>
+                    <p class="titleLogin" style="margin-bottom: 0;">
+                        Контакты доступны только авторизированным пользователям.
+                    </p>
+                    <a href="" class="btnLogin">
+                        Войти
+                    </a>
+                </div>
+
+            </ng-container>
+
+        </div>
+
+        <div>
+            <a href="" class="btnAccount_user">
+                В аккаунт пользователя
+                <p style="margin: 0">
+                    <svg width="39" height="12" viewBox="0 0 39 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M38.495 6.49497C38.7683 6.22161 38.7683 5.77839 38.495 5.50503L34.0402 1.05025C33.7668 0.776886 33.3236 0.776886 33.0503 1.05025C32.7769 1.32362 32.7769 1.76684 33.0503 2.0402L37.0101 6L33.0503 9.9598C32.7769 10.2332 32.7769 10.6764 33.0503 10.9497C33.3236 11.2231 33.7668 11.2231 34.0402 10.9497L38.495 6.49497ZM0 6.7H38V5.3H0L0 6.7Z"
+                            fill="white" />
+                    </svg>
+                </p>
+            </a>
+        </div>
+    </div>
+</div>
