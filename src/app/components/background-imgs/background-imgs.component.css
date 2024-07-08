@@ -70,9 +70,7 @@
     background-color: rgb(255, 255, 255);
     border-radius: 30px;
     padding: 2.3rem;
-    width: 40%;
     z-index: 22;
-    left: 210px;
 }
 
 .textConternt {
@@ -154,78 +152,55 @@ button {
 
 /* Media queries for tablets */
 @media (max-width: 768px) {
-    .leftContent,
-    .rightContent {
-        width: 100%;
-    }
-
-    .image-160x160 {
-        width: 80px;
-        height: 80px;
-    }
-
-    .image-320x160 {
-        width: 160px;
-        height: 80px;
-    }
-
-    .image-160x320 {
-        width: 80px;
-        height: 160px;
+    .content {
+        flex-direction: column;
     }
 
     .overlay-block {
-        width: 80%;
-        left: 10%;
+        height: 175px;
+        top: 30%;
+        padding: 1rem;
+        width: auto;
+        left: 0;
     }
 
-    .title {
-        font-size: 24px;
-    }
-
-    .text {
-        font-size: 16px;
-    }
-
-    .btns {
-        justify-content: center;
-    }
-}
-
-/* Media queries for phones */
-@media (max-width: 480px) {
-    .image-160x160 {
-        width: 60px;
-        height: 60px;
-    }
-
-    .image-320x160 {
-        width: 120px;
-        height: 60px;
-    }
-
-    .image-160x320 {
-        width: 60px;
-        height: 120px;
-    }
-
-    .overlay-block {
-        width: 90%;
-        left: 5%;
-        padding: 1.5rem;
-    }
-
-    .title {
-        font-size: 20px;
-    }
-
-    .text {
-        font-size: 14px;
+    .textConternt {
+        padding: 0px 0.5rem;
     }
 
     .btns {
         flex-direction: column;
-        gap: 0.5rem;
-        align-items: center;
+        position: relative;
+        top: 36px;
+        left: 49px;
+    }
+
+    #image1{
+        display: none;
+    }
+    .image-container{
+        flex: 1;
+    }
+
+    .overlay-top-right{
+        display: none;
+    }
+
+    .bottomColumn{
+        justify-content: center;
+    }
+
+    #image4{
+        display: none;
+    }
+
+    .title{
+        font-size: 16px;
+    }
+    .text{
+        font-size: 14px;
     }
 }
+
+/* Media queries for phones */
+@media (max-width: 480px) {}

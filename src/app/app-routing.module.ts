@@ -12,8 +12,16 @@ const routes: Routes = [
   },
   {
     path: 'user/:id', loadChildren: () => import('./components/user-account/user-account.module').then(m => m.UserAccountModule)
-  }
-
+  },
+  {
+    path: 'myaccount/:id', loadChildren: () => import('./components/personal-account/personal-account.module').then(m => m.PersonalAccountModule)
+  },
+  {
+    path: 'newResume', loadChildren: () => import('./components/form/form.module').then(m => m.FormModule)
+  },
+  {
+    path: 'newVacancy', loadChildren: () => import('./components/form/form.module').then(m => m.FormModule)
+  },
 ];
 
 @NgModule({

@@ -159,4 +159,18 @@
     flex-direction: row;
     align-items: flex-end;
     gap: 2rem;
+ 
+}
+
+
+@media (max-width: 789.98px) {
+    .content-filter{
+        flex-direction: column;
+    }
+
+
+    :host ::ng-deep .p-dialog {
+        max-height: 100%;
+        width: 100% !important;
+    }
 }

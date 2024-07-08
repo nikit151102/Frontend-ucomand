@@ -1,0 +1,155 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.3rem;
+    padding: 12px;
+    width: 100%;
+    box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 2rem;
+    break-inside: avoid;
+}
+
+.card:hover {
+    background: #5a4bb8;
+}
+
+
+.title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 114%;
+    color: #fff;
+}
+
+
+.lookingCard {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.lookingCard-level {
+    padding: 4px 6px;
+    margin: 0;
+    border-radius: 5px;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 120%;
+    color: #fff;
+}
+
+.chapterCard-title {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #fff;
+}
+
+.chapterCard-value {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.tag {
+    border: 1px solid #806bff;
+    border-radius: 10px;
+    padding: 3px 8px 5px 8px;
+    background: rgba(243, 243, 243, 0.1);
+
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 120%;
+    color: #fff;
+}
+
+.motivations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.motivation {
+    border-radius: 10px;
+    padding: 8px 10px;
+
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 0.8rem;
+    line-height: 120%;
+    color: #fff;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+
+.rightProfileChapter {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+
+.dateVacancy {
+    font-family: var(--font-family);
+    font-weight: 500;
+    line-height: 120%;
+    color: #fff;
+}
+
+.dateTitle {
+    font-size: 0.7rem;
+    margin: 0;
+}
+
+.dateValue {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    margin: 0;
+    margin-left: 5px;
+}
+
+.menu_btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.menu_btn a{
+    flex: 1;
+    background: #e2e2e2;
+    border-radius: 300px;
+    padding: 0.7rem 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 120%;
+    color: #101010;
+}

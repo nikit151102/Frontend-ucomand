@@ -1,0 +1,331 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+    box-sizing: border-box;
+    gap: 2rem;
+}
+
+.first-part {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+.information,
+.contacts {
+    flex: 1;
+}
+
+.title {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 140%;
+    color: #fff;
+}
+
+.ProfileChapter {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem 2rem 0px 2rem;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.fullName {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 117%;
+    color: #fff;
+}
+
+.information-user {
+    margin-top: 1rem;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 117%;
+    color: #fff;
+}
+
+.personal-details {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 1rem;
+    color: #fff;
+}
+
+p {
+    margin: 0;
+}
+
+.location,
+.age {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.date_registration {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    font-family: var(--font-family);
+    font-weight: 500;
+    line-height: 117%;
+    color: #fff;
+}
+
+.message-profile {
+    border: 1px solid #fff25f;
+    border-radius: 20px;
+    padding: 24px;
+    background: #FFF25F;
+}
+
+.title-message {
+    margin: 0;
+    margin-bottom: 1rem;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: #101010;
+}
+
+.text-message {
+    width: 75%;
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 117%;
+    color: #101010;
+}
+
+
+/* резюме и вакансии */
+
+.second-path {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.container-resume,
+.container-vacancy {
+    border-radius: 1.5rem;
+    background: #806bff;
+}
+
+.title-cards {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 117%;
+    color: #fff;
+    padding: 2rem 2.2rem;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+}
+
+.archive-resume,
+.archive-vacancy {
+    border-radius: 1.5rem;
+    background: #101010;
+}
+
+
+.message-cards {
+    padding: 0 0 1rem 1.5rem;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+
+
+
+
+.menuProfile{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin: 0 auto;
+    width: 60%;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.menuProfile a{
+    flex: 1;
+    background: #e2e2e2;
+    border-radius: 2rem;
+    padding: 0.8rem 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 120%;
+    color: #101010;
+}
+
+/* Media queries for tablets */
+@media (max-width: 1024px) {
+    .container {
+        width: 90%;
+    }
+
+    .text-message {
+        width: 100%;
+    }
+
+    .title {
+        font-size: 0.8rem;
+    }
+
+    .ProfileChapter {
+        padding: 1rem 1.5rem 0px 1.5rem;
+    }
+
+    .fullName {
+        font-size: 1rem;
+    }
+
+    .information-user {
+        font-size: 0.9rem;
+    }
+
+    .title-cards {
+        font-size: 0.9rem;
+        padding: 1.5rem 1.8rem;
+    }
+
+    .cards {
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+        padding-bottom: 0.8rem;
+    }
+    .menuProfile{
+        width: 100%;
+    }
+}
+
+/* Media queries for phones */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .first-part,
+    .second-path {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .first-part {
+        margin: 1rem;
+    }
+
+    .title {
+        font-size: 0.7rem;
+    }
+
+    .ProfileChapter {
+        padding: 1rem 1rem 0px 1rem;
+    }
+
+    .fullName {
+        font-size: 0.9rem;
+    }
+
+    .information-user {
+        font-size: 0.8rem;
+    }
+
+    .title-cards {
+        font-size: 0.8rem;
+        padding: 1rem 1.5rem;
+    }
+
+    .cards {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .date_registration {
+        justify-content: center;
+        text-align: center;
+    }
+    .menuProfile{
+        flex-direction: column;
+    }
+}
+
+/* Media queries for small phones */
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+    }
+
+    .title {
+        font-size: 0.6rem;
+    }
+
+    .ProfileChapter {
+        padding: 0.5rem 0.5rem 0px 0.5rem;
+    }
+
+    .fullName {
+        font-size: 0.8rem;
+    }
+
+    .information-user {
+        font-size: 0.7rem;
+    }
+
+    .title-cards {
+        font-size: 0.7rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .cards {
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        padding-bottom: 0.3rem;
+    }
+}

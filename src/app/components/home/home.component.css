@@ -26,3 +26,16 @@
     justify-content: center;
     align-items: center
 }
+
+
+@media (max-width: 1199.98px) {
+    .card-container{
+        columns: 2;
+    }
+}
+
+@media (max-width: 789.98px) {
+    .card-container{
+        columns: 1;
+    }
+}

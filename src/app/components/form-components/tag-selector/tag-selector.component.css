@@ -17,7 +17,8 @@
 }
 
 .tag-input:focus {
-    border: 1px solid #e2e2e2;
+    border: 1px solid #e2e2e2  !important; 
+    outline: none;
 }
 
 .tag-block {

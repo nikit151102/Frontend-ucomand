@@ -78,7 +78,21 @@ p {
     flex-direction: column;
 }
 
+.contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
+.date_registration {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    font-family: var(--font-family);
+    font-weight: 500;
+    line-height: 117%;
+    color: #ffff;
+}
 
 
 
@@ -111,7 +125,7 @@ p {
     padding: 2rem 2.2rem;
 }
 
-.cards{
+.cards {
     display: flex;
     flex-direction: column;
     gap: 0.7rem;
@@ -121,8 +135,10 @@ p {
 }
 
 
-@media (max-width : 865px){
-    .first-part, .second-path {
+@media (max-width : 865px) {
+
+    .first-part,
+    .second-path {
         flex-direction: column;
     }
 }

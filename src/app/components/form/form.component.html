@@ -1,0 +1,90 @@
+<div class="container">
+
+    <div class="creation">
+        <p class="creation-title">
+            создание {{formSettingService.typeForm}}
+        </p>
+        <p class="creation-description">
+            описание что это пояснение
+        </p>
+    </div>
+    <div class="content">
+        <ng-container *ngIf="formSettingService.isheading">
+            <div class="firstRow">
+                <div class="stage">
+                    <p class="stage-title">
+                        Заголовок:
+                    </p>
+                    <input type="text">
+                </div>
+            </div>
+        </ng-container>
+        <div class="secondRow">
+            <div class="stage">
+                <p class="stage-title">
+                    Специализация:
+                </p>
+                <app-tag-selector [placeholderValue]="'Выберете специализацию'" [tags]="tags"></app-tag-selector>
+            </div>
+            <div class="stage">
+                <p class="stage-title">
+                    Навыки:
+                </p>
+                <app-tag-selector [placeholderValue]="'Выберете навыки'" [tags]="tags"></app-tag-selector>
+            </div>
+            <div class="stage" class="three-stages" style="flex: 1;">
+                <div class="three-stage">
+                    <p class="stage-title">
+                        Мотивация:
+                    </p>
+                    <app-motivations></app-motivations>
+                </div>
+                <div class="paul">
+                    <div class=" three-stage">
+                        <p class="stage-title">
+                            Пол:
+                        </p>
+                        <p-radioButton name="paul" value="Male" [(ngModel)]="paul" inputId="paul1" />
+                        <label for="paul1" class="ml-2">
+                            Мужской
+                        </label>
+                    </div>
+
+                    <div class="flex align-items-center">
+                        <p-radioButton name="paul" value="Female" [(ngModel)]="paul" inputId="paul2" />
+                        <label for="paul2" class="ml-2">
+                            Женский
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="thirdRow">
+            <div class="stage" style="flex: 2;">
+                <p class="stage-title">
+                    Описание:
+                </p>
+                <textarea placeholder="Поле ввода"></textarea>
+            </div>
+            <div class="stage container-btns">
+                <a class="createBtn">
+                    Опубликовать
+                </a>
+                <div class="secondBtns">
+                    <ng-container *ngIf="formSettingService.isEdit">
+                        <a class="deleteBtn">
+                            В архив
+                        </a>
+                    </ng-container>
+
+                    <a class="deleteBtn">
+                        Удалить
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

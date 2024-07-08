@@ -4,6 +4,7 @@ import { ViewCardService } from './view-card.service';
 import { SettingHeaderService } from '../setting-header.service';
 import { VacancyComponent } from './vacancy/vacancy.component';
 import { ResumeComponent } from './resume/resume.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-vacancy',
@@ -14,7 +15,7 @@ import { ResumeComponent } from './resume/resume.component';
 })
 export class ViewCardComponent implements OnInit {
 
-  constructor(public viewCardService: ViewCardService, private settingHeaderService: SettingHeaderService) {
+  constructor(public viewCardService: ViewCardService, private settingHeaderService: SettingHeaderService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -23,5 +24,9 @@ export class ViewCardComponent implements OnInit {
   }
 
   cardItem: any;
+
+  viewUser() {
+    this.router.navigate([`/user`,'root']);
+  }
 
 }

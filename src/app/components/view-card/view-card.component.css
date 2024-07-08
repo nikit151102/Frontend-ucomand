@@ -48,6 +48,10 @@
     margin-top: 1rem;
 }
 
+.logo {
+    width: 100px;
+}
+
 .fullName {
     font-family: var(--font-family);
     font-weight: 600;
@@ -106,4 +110,16 @@
     color: #ffff;
     justify-content: center;
     text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        flex-direction: column;
+        margin-top: 170px;
+    }
+
+    .ProfileChapter {
+        padding: 1rem 0px 2rem;
+    }
 }

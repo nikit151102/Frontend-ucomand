@@ -1,4 +1,4 @@
-.conteiner{
+.conteiner {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -20,7 +20,7 @@
     text-align: center;
     cursor: pointer;
     border: none;
-   
+
     color: #fff;
     transition: background 0.3s, color 0.3s;
 }
@@ -64,8 +64,10 @@
 }
 
 .search-input {
-    width: 50px; /* Initial width */
-    min-width: 50px; /* Ensure a minimum width */
+    width: 50px;
+    /* Initial width */
+    min-width: 50px;
+    /* Ensure a minimum width */
     height: 50px;
     border-style: none;
     padding: 10px;
@@ -74,7 +76,8 @@
     letter-spacing: 2px;
     outline: none;
     border-radius: 25px;
-    transition: width 0.5s ease-in-out; /* Only specify transition once */
+    transition: width 0.5s ease-in-out;
+    /* Only specify transition once */
     background-color: #ffff;
     padding-right: 40px;
     color: #000000;
@@ -99,14 +102,34 @@
     right: 0;
 }
 
-.search-button:hover + .search-input,
+.search-button:hover+.search-input,
 .search-container:hover .search-input,
 .search-input:focus,
-.search-input:not(:placeholder-shown) { /* Adjust width based on focus and content */
-    width: 350px; /* Expanded width */
-    transition: width 0.5s cubic-bezier(0, 0.110, 0.35, 2); /* Specify transition properties */
+.search-input:not(:placeholder-shown) {
+    /* Adjust width based on focus and content */
+    width: 350px;
+    /* Expanded width */
+    transition: width 0.5s cubic-bezier(0, 0.110, 0.35, 2);
+    /* Specify transition properties */
 }
 
 .search-button svg {
     fill: #000;
+}
+
+
+@media (max-width: 768px) {
+    .conteiner {
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .search-button:hover+.search-input,
+    .search-container:hover .search-input,
+    .search-input:focus,
+    .search-input:not(:placeholder-shown) {
+        width: 100%;
+
+    }
 }

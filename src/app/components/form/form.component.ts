@@ -1,21 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { DialogModule } from 'primeng/dialog';
-import { TagSelectorComponent } from '../../form-components/tag-selector/tag-selector.component';
+import { Component } from '@angular/core';
+import { MotivationsComponent } from '../form-components/motivations/motivations.component';
+import { TagSelectorComponent } from '../form-components/tag-selector/tag-selector.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { FormsModule } from '@angular/forms';
-import { MotivationsComponent } from '../../form-components/motivations/motivations.component';
-import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { FormSettingService } from './form-setting.service';
 
 @Component({
-  selector: 'app-sortetd-filter',
+  selector: 'app-form',
   standalone: true,
-  imports: [CommonModule, DialogModule, TagSelectorComponent, RadioButtonModule, FormsModule, MotivationsComponent, OverlayPanelModule],
-  templateUrl: './sortetd-filter.component.html',
-  styleUrl: './sortetd-filter.component.css'
+  imports: [CommonModule, FormsModule, TagSelectorComponent, MotivationsComponent, RadioButtonModule],
+  templateUrl: './form.component.html',
+  styleUrl: './form.component.css'
 })
-export class SortetdFilterComponent implements OnInit {
+export class FormComponent {
 
+constructor(public formSettingService: FormSettingService){}
 
   visible: boolean = false;
   paul!: string;
