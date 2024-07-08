@@ -2,12 +2,12 @@ version: '3.1'
 services:
   frontend:
     build:
-      context: ./ucomand
+      context: ./Frontend-ucomand
       dockerfile: Dockerfile-frontend
     ports:
       - 80:80
     volumes:
-      - ./ucomand:/app
+      - ./Frontend-ucomand:/app
       - /app/node_modules
 
 
