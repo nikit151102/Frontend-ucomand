@@ -104,9 +104,8 @@
 
 .paul {
     display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    gap: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .ml-2{
@@ -150,7 +149,14 @@
     font-size: 1rem;
     line-height: 117%;
 }
-
+.paul-stage{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 1rem;
+    gap: 2rem;
+}
 .createBtn {
     padding: 16px;
     background: #84dd2c;
@@ -195,6 +201,12 @@
 }
 
 @media (max-width: 768px) {
+    .paul-stage{
+        justify-content: space-around;
+        margin-top: 0;
+        gap: 0;
+    }
+
     .content {
         width: 100%;
         padding: 1rem;

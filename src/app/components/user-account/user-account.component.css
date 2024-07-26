@@ -134,11 +134,26 @@ p {
     padding-bottom: 1rem;
 }
 
-
+.logoImg{
+    width: 5vw;
+}
 @media (max-width : 865px) {
 
     .first-part,
     .second-path {
         flex-direction: column;
     }
+}
+
+@media (max-width: 789.98px) {
+    .container{
+        width: 95%;
+        margin-top: 150px;
+    }
+
+    
+.logoImg{
+    width: 14vw;
+}
+    
 }

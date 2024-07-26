@@ -171,7 +171,9 @@ p {
     color: var(--font-color);
 }
 
-
+.logoImg{
+    width: 5vw;
+}
 
 
 
@@ -249,6 +251,11 @@ p {
 
 /* Media queries for phones */
 @media (max-width: 768px) {
+
+    .logoImg{
+        width: 13vw !important;
+    }
+    
     .container {
         width: 95%;
     }
@@ -331,4 +338,5 @@ p {
         padding-right: 0.3rem;
         padding-bottom: 0.3rem;
     }
+
 }

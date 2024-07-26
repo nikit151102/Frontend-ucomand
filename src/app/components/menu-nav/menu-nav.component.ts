@@ -71,6 +71,7 @@ export class MenuNavComponent {
     this.formSettingService.typeForm = 'вакансии';
     this.settingHeaderService.post = false;
     this.settingHeaderService.shared = false;
+    this.sidebarVisible = false;
     this.router.navigate([`/newVacancy`]);
   }
 
@@ -79,6 +80,7 @@ export class MenuNavComponent {
     this.formSettingService.typeForm = 'резюме';
     this.settingHeaderService.post = false;
     this.settingHeaderService.shared = false;
+    this.sidebarVisible = false;
     this.router.navigate([`/newResume`]);
   }
 }
