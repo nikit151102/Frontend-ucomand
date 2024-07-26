@@ -18,7 +18,6 @@ export class TagSelectorComponent {
   selectedTags: string[] = [];
 
   toggleTagBlock(show: boolean) {
-    // Добавляем небольшой таймаут, чтобы blur не скрывал блок до клика по тегу
     setTimeout(() => {
       this.showTagBlock = show;
     }, 200);
@@ -32,7 +31,6 @@ export class TagSelectorComponent {
   }
 
   deleteTag(tag: string) {
-    // Удаление элемента 'banana'
     let index = this.selectedTags.indexOf(tag);
     if (index !== -1) {
       this.selectedTags.splice(index, 1);

@@ -2,7 +2,11 @@
     border-radius: 20px;
     padding: 0.8rem;
     box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--background-card-account);
+}
+
+.card:hover {
+    background: var(--card-hover-account);
 }
 
 p {

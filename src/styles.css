@@ -4,7 +4,16 @@
 @import "primeng/resources/primeng.css";
 
 :root{
-    --background: #333334;
+    --background: #333334; /* #f2f2f2 */
+    --background-card: rgba(255, 255, 255, 0.1); /* #fff */
+    --card-hover: #5a4bb8; /* #a6eb20 */
+    --background-card-account: #5a4bb8; /* #fff */
+    --card-hover-account: rgba(255, 255, 255, 0.1); /* #a6eb20 */
+    --background-archive: #101010; /* #e2e2e2 */
+    --card-archive: #434242; /* #fff */
+    
+    --font-color: #fff; /* #101010 */
+
     --font-family: "Montserrat", sans-serif;
     --second-family: "Comfortaa", sans-serif;
 }
@@ -13,3 +22,4 @@ body{
     margin: 0;
     background: var(--background);
 }
+

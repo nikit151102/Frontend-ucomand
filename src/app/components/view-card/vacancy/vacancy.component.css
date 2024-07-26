@@ -14,7 +14,7 @@
     font-weight: 700;
     font-size: 1.2rem;
     line-height: 114%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 
@@ -24,7 +24,7 @@
     font-weight: 500;
     font-size: 1rem;
     line-height: 117%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .chapterCard-value {
@@ -33,7 +33,7 @@
     font-size: 1rem;
     line-height: 117%;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .lookingCard {
@@ -50,7 +50,7 @@
     font-weight: 600;
     font-size: 1rem;
     line-height: 120%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .tags {
@@ -69,7 +69,7 @@
     font-weight: 500;
     font-size: 1rem;
     line-height: 120%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .motivations {
@@ -86,7 +86,7 @@
     font-weight: 600;
     font-size: 0.8rem;
     line-height: 120%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .profile {
@@ -109,14 +109,14 @@
     font-weight: 600;
     font-size: 1.2rem;
     line-height: 117%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .dateVacancy {
     font-family: var(--font-family);
     font-weight: 500;
     line-height: 120%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .dateTitle {
@@ -138,6 +138,6 @@
     font-weight: 500;
     font-size: 1rem;
     line-height: 117%;
-    color: #fff;
+    color: var(--font-color);
 }
 

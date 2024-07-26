@@ -1,0 +1,23 @@
+<div class="sorting" (click)="op.toggle($event)">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 5H22M2 12H15.3333M2 19H7.33333" stroke="#806BFF" stroke-width="1.4" stroke-linecap="round"
+            stroke-linejoin="round" />
+    </svg>
+
+    <p class="text">
+        сортировка
+    </p>
+</div>
+
+
+<p-overlayPanel #op>
+    <div class="overlayPanel" style="padding: 0 !important;">
+        <a [class.active]="isActive('Сначала новые')" (click)="setActive('Сначала новые')">
+            Сначала новые
+        </a>
+        <a [class.active]="isActive('Сначала старые')" (click)="setActive('Сначала старые')">
+            Сначала старые
+        </a>
+    </div>
+    
+</p-overlayPanel>

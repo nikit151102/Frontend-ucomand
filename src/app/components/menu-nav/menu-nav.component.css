@@ -175,9 +175,10 @@ a {
     flex-direction: row;
     align-items: center;
     border-radius: 200px;
-    width: calc(110px - 1rem);
     height: 66px;
+    gap: 1rem;
     padding-right: 1rem;
+    padding-left: 1rem;
     background: #806bff;
 }
 

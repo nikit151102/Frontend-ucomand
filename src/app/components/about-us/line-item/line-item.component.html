@@ -1,0 +1,10 @@
+<div class="container-line">
+    <div class="gradient-line" [ngStyle]="{'width': width + '%', 'background': color}"></div>
+
+    <div class="circle-text-container">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="14" r="11" [attr.stroke]="stroke" stroke-width="6" />
+        </svg>
+        <p class="text">{{value}}</p>
+    </div>
+</div>

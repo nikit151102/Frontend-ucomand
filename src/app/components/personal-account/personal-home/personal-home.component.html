@@ -1,0 +1,116 @@
+<div class="container">
+    <div class="first-part">
+        <div class="information">
+            <div class="ProfileChapter">
+                <div class="logo">
+                    <img src="assets/male_profile.png" alt="logo" style="width: 5vw;">
+                </div>
+                <div style="display: flex; flex-wrap: wrap; align-content: flex-end">
+                    <p class="fullName">
+                        <!-- {{viewCardService.selectedCard.fullName}} -->
+                        ngtffn trhtr trht
+                    </p>
+                </div>
+            </div>
+            <div class="information-user">
+                Учился женился потом передумал. Ищу возможность поучаствовать в стартапах разработки мобильных
+                приложений) Мое портфолио jhvjvvkv Работаю в Figma / After Effects. Я очень коммуникабельна, у меня есть
+                интересные идеи, и свободное время для созидания чего-то классного) Открыта к предложениям) Связаться со
+                мной можно в телеграмм https://t.me/kseniya_eliseeva
+            </div>
+            <div class="personal-details">
+                <div class="location">
+                    <p class="title">Город:</p>
+                    <span>Барнаул</span>
+                </div>
+                <div class="age">
+                    <p class="title">Возраст:</p>
+                    <span>99</span>
+                </div>
+            </div>
+        </div>
+        <div class="contacts">
+            <div>
+                <p class="title">Контакты:</p>
+            </div>
+
+            <div class="date_registration">
+                <p class="title">На платформе с </p>
+                <span>12.12.2024</span>
+            </div>
+        </div>
+    </div>
+    <div class="message-profile">
+        <p class="title-message">
+            Заполните свой профиль!
+        </p>
+        <p class="text-message">
+            Опишите себя, укажите ссылку на свои работы, чтобы другие пользователи понимали, с кем имеют дело.
+            Пользователи с заполненным профилем, значительно больше располагают к доверию.
+            Аккаунты с НЕзаполненным профилем - вызывают недоверие.
+        </p>
+
+    </div>
+    <div class="second-path">
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 3rem;">
+            <div class="container-resume">
+                <p class="title-cards">
+                    Активные резюме:
+                </p>
+                <div class="cards">
+                    <app-personal-resume [cardItem]="personalVacanciesData[0]"></app-personal-resume>
+                </div>
+                <div class="message-cards">
+                    нет активных резюме
+                </div>
+            </div>
+            <div class="archive-resume">
+                <p class="title-cards">
+                    Архив резюме:
+                </p>
+                <div class="cards">
+                    <app-archive-resume></app-archive-resume>
+                </div>
+            </div>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 3rem;">
+            <div class="container-vacancy">
+                <p class="title-cards">
+                    Активные вакансии:
+                </p>
+                <div class="cards">
+                    <app-personal-vacancy *ngFor="let item of personalVacanciesData"
+                        [cardItem]="item"></app-personal-vacancy>
+                </div>
+                <div class="message-cards">
+                    нет активных вакансий
+                </div>
+            </div>
+            <div class="archive-vacancy">
+                <p class="title-cards">
+                    Архив вакансий:
+                </p>
+                <div class="cards">
+                    <app-archive-vacancy></app-archive-vacancy>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="menuProfile">
+        <a href="">
+            Удалить профиль
+        </a>
+        <a href="">
+            Выйти из аккаунта
+        </a>
+        <a>
+            <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M8.5 3H3.5C2.96957 3 2.46086 3.21072 2.08579 3.58579C1.71071 3.96086 1.5 4.46957 1.5 5V16C1.5 16.5304 1.71071 17.0391 2.08579 17.4142C2.46086 17.7893 2.96957 18 3.5 18H14.5C15.0304 18 15.5391 17.7893 15.9142 17.4142C16.2893 17.0391 16.5 16.5304 16.5 16V11M15.086 1.586C15.2705 1.39498 15.4912 1.24262 15.7352 1.1378C15.9792 1.03298 16.2416 0.977809 16.5072 0.975501C16.7728 0.973194 17.0361 1.0238 17.2819 1.12436C17.5277 1.22492 17.751 1.37343 17.9388 1.56121C18.1266 1.749 18.2751 1.9723 18.3756 2.21809C18.4762 2.46389 18.5268 2.72725 18.5245 2.9928C18.5222 3.25836 18.467 3.5208 18.3622 3.76481C18.2574 4.00882 18.105 4.22951 17.914 4.414L9.328 13H6.5V10.172L15.086 1.586Z"
+                    stroke="#806BFF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Редактировать
+        </a>
+    </div>
+</div>

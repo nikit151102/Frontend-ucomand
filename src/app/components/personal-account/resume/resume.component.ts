@@ -53,4 +53,9 @@ export class PersonalResumeComponent {
     }
   }
   
+  isSettingActive: boolean = false;
+  
+  Actived() {
+    this.isSettingActive = !this.isSettingActive
+  }
 }

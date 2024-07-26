@@ -27,6 +27,9 @@
     align-items: center
 }
 
+.search-container{
+    width: 65%;
+}
 
 @media (max-width: 1199.98px) {
     .card-container{
@@ -35,7 +38,15 @@
 }
 
 @media (max-width: 789.98px) {
+    .search-container{
+        width: 95%;
+    }
+
     .card-container{
         columns: 1;
+    }
+
+    .container{
+        width: 95%;
     }
 }

@@ -23,7 +23,7 @@
             </div>
 
 
-            <ng-container *ngIf="true">
+            <ng-container *ngIf="tokenService.getToken()">
                 <diV>
                     <p class="chapterCard-title">
                         Контакты:
@@ -32,12 +32,12 @@
                 </diV>
             </ng-container>
 
-            <ng-container *ngIf="true">
+            <ng-container *ngIf="!tokenService.getToken()">
                 <div>
                     <p class="titleLogin" style="margin-bottom: 0;">
                         Контакты доступны только авторизированным пользователям.
                     </p>
-                    <a href="" class="btnLogin">
+                    <a (click)="tokenService.setToken()" class="btnLogin">
                         Войти
                     </a>
                 </div>

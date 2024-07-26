@@ -15,7 +15,7 @@
                     <p class="stage-title">
                         Заголовок:
                     </p>
-                    <input type="text">
+                    <input type="text" placeholder="Поле ввода">
                 </div>
             </div>
         </ng-container>
@@ -24,13 +24,13 @@
                 <p class="stage-title">
                     Специализация:
                 </p>
-                <app-tag-selector [placeholderValue]="'Выберете специализацию'" [tags]="tags"></app-tag-selector>
+                <app-tag-selected-level  [placeholderValue]="'Выберете специализацию'" [tags]="tags" [maxTags]=1></app-tag-selected-level>
             </div>
             <div class="stage">
                 <p class="stage-title">
                     Навыки:
                 </p>
-                <app-tag-selector [placeholderValue]="'Выберете навыки'" [tags]="tags"></app-tag-selector>
+                <app-tag-selected-level  [placeholderValue]="'Выберете навыки'" [tags]="tags"></app-tag-selected-level>
             </div>
             <div class="stage" class="three-stages" style="flex: 1;">
                 <div class="three-stage">
@@ -44,14 +44,14 @@
                         <p class="stage-title">
                             Пол:
                         </p>
-                        <p-radioButton name="paul" value="Male" [(ngModel)]="paul" inputId="paul1" />
-                        <label for="paul1" class="ml-2">
+                        <p-radioButton name="paul" value="Male" [(ngModel)]="paul" inputId="paul1"  class="paulValue"/>
+                        <label for="v" class="ml-2">
                             Мужской
                         </label>
                     </div>
 
                     <div class="flex align-items-center">
-                        <p-radioButton name="paul" value="Female" [(ngModel)]="paul" inputId="paul2" />
+                        <p-radioButton name="paul" value="Female" [(ngModel)]="paul" inputId="paul2" class="paulValue"/>
                         <label for="paul2" class="ml-2">
                             Женский
                         </label>

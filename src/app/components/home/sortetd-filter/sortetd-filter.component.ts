@@ -6,37 +6,30 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { FormsModule } from '@angular/forms';
 import { MotivationsComponent } from '../../form-components/motivations/motivations.component';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { SortingComponent } from './sorting/sorting.component';
 
 @Component({
   selector: 'app-sortetd-filter',
   standalone: true,
-  imports: [CommonModule, DialogModule, TagSelectorComponent, RadioButtonModule, FormsModule, MotivationsComponent, OverlayPanelModule],
+  imports: [CommonModule, SortingComponent, DialogModule, TagSelectorComponent, RadioButtonModule, FormsModule, MotivationsComponent, OverlayPanelModule],
   templateUrl: './sortetd-filter.component.html',
-  styleUrl: './sortetd-filter.component.css'
+  styleUrl: './sortetd-filter.component.css',
 })
 export class SortetdFilterComponent implements OnInit {
 
 
   visible: boolean = false;
-  paul!: string;
+
+  selectedGender: string = '';
 
   ngOnInit(): void {
 
   }
+
   tags: string[] = ['Яндекс Трекер', 'Юзабилити-аудит сайта', 'Установка и обслуживание офисной техники', 'Контекстная реклама', ' САПР', 'Objective-С', '3d анимация', 'XML', 'Webflow', 'Web 3.0', 'Objective-С', 'Android User Interface Guidelines', 'Android User Interface Guidelines', 'Objective-С', 'Objective-С', 'Android User Interface Guidelines', 'Android User Interface Guidelines', 'Objective-С', 'Objective-С'];
   showDialog() {
     this.visible = true;
   }
 
-
-  activeLink: string = 'Сначала новые';
-
-  setActive(link: string) {
-    this.activeLink = link;
-  }
-
-  isActive(link: string): boolean {
-    return this.activeLink === link;
-  }
-
+  
 }

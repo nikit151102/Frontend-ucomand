@@ -1,8 +1,7 @@
 .container{
     margin: 0 auto; 
-    width: 80%;
+    width: 69%;
 }
-
 
 .creation {
     display: flex;
@@ -22,7 +21,7 @@
     font-size: 1rem;
     line-height: 112%;
     text-transform: uppercase;
-    color: #ffffff;
+    color: var(--font-color);
 }
 
 .creation-description {
@@ -30,7 +29,7 @@
     font-weight: 500;
     font-size: 0.8rem;
     line-height: 117%;
-    color: #ffffff;
+    color: var(--font-color);
 }
 
 
@@ -56,7 +55,7 @@
     gap: 1rem;
     border-radius: 20px;
     padding: 2rem;
-    background: #fff;
+    background: var(--background-card);
 }
 
 .firstRow {
@@ -68,6 +67,7 @@
     border-radius: 12px;
     padding: 16px;
     width: 100%;
+    outline: none;
 }
 
 .secondRow {
@@ -93,7 +93,7 @@
     font-weight: 500;
     font-size: 1rem;
     line-height: 117%;
-    color: #101010;
+    color: var(--font-color);
 }
 
 .three-stages {
@@ -107,6 +107,14 @@
     flex-direction: row;
     align-items: flex-end;
     gap: 2rem;
+}
+
+.ml-2{
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 140%;
+    color: var(--font-color);
 }
 
 .thirdRow textarea {
@@ -146,7 +154,11 @@
 .createBtn {
     padding: 16px;
     background: #84dd2c;
-    color: #fff;
+    color: var(--font-color);
+}
+
+.createBtn:hover{
+    background: #806bff;
 }
 
 .secondBtns {
@@ -163,6 +175,9 @@
     padding: 12px;
     background: #e2e2e2;
     color: #101010;
+}
+.deleteBtn:hover {
+    background: #b9aeff;
 }
 
 @media (max-width: 1200px) {

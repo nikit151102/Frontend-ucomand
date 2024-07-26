@@ -1,0 +1,29 @@
+.container-line {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.gradient-line {
+    height: 6px;
+    background: linear-gradient(270deg, #298cf4 0%, rgba(41, 140, 244, 0.3) 100%);
+}
+
+.circle-text-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    margin-left: -10px;
+    padding: 0 10px;
+    width: 600px;
+}
+
+.text {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 114%;
+    color: #fff;
+}

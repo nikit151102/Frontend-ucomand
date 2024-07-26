@@ -52,4 +52,11 @@ export class PersonalVacancyComponent {
         return '';
     }
   }
+
+  isSettingActive: boolean = false;
+  
+  Actived() {
+    this.isSettingActive = !this.isSettingActive
+  }
+  
 }

@@ -1,15 +1,19 @@
 <div class="content">
     <div class="first-container">
-        <div class="leftContent">
-            <img src="assets/logo.svg" alt="logo">
-        </div>
+        <a href="">
+            <div class="leftContent">
+     
+                <img src="assets/logo.svg" alt="logo">
+            </div>
+        </a>
+       
 
         <div class="rightContent">
-            <ng-container *ngIf="settingHeaderService.post" >
-                <a href="" class="additionalBtn additional"> Разместить резюме </a>
-                <a href="" class="additionalBtn additional" > Разместить вакансию </a>
+            <ng-container *ngIf="settingHeaderService.post">
+                <a (click)="newVacancy()" class="additionalBtn additional" > Разместить резюме </a>
+                <a (click)="newResume()" class="additionalBtn additional"> Разместить вакансию </a>
             </ng-container>
-            <ng-container *ngIf="settingHeaderService.shared" >
+            <ng-container *ngIf="settingHeaderService.shared">
                 <a href="" class="additionalBtn additional"> Поделиться
                     <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -19,22 +23,42 @@
                 </a>
             </ng-container>
 
+            <div class="menu-right">
+                <ng-container *ngIf="tokenService.getToken()">
+                    <a (click)="viewUser()">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="22" fill="#84DD2C"/>
+                            <g clip-path="url(#clip0_1326_3370)">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M34.7898 32.28C36.5522 29.9868 37.6 27.1158 37.6 24C37.6 16.4889 31.5111 10.4 24 10.4C16.4889 10.4 10.4 16.4889 10.4 24C10.4 27.1259 11.4546 30.0056 13.2275 32.3025C15.6665 28.77 19.9043 26.9821 24.0612 26.9492C28.2152 26.9164 32.4245 28.6371 34.7898 32.28ZM33.8336 33.3948C31.8324 30.0018 28.0029 28.3182 24.0722 28.3492C20.1469 28.3802 16.2662 30.122 14.1761 33.4049C16.6518 35.9901 20.1379 37.6 24 37.6C27.8671 37.6 31.3573 35.986 33.8336 33.3948ZM24 39C32.2843 39 39 32.2843 39 24C39 15.7157 32.2843 9 24 9C15.7157 9 9 15.7157 9 24C9 32.2843 15.7157 39 24 39ZM24 25.1C26.6786 25.1 28.85 22.9286 28.85 20.25C28.85 17.5714 26.6786 15.4 24 15.4C21.3214 15.4 19.15 17.5714 19.15 20.25C19.15 22.9286 21.3214 25.1 24 25.1ZM24 26.5C27.4518 26.5 30.25 23.7018 30.25 20.25C30.25 16.7982 27.4518 14 24 14C20.5482 14 17.75 16.7982 17.75 20.25C17.75 23.7018 20.5482 26.5 24 26.5Z" fill="white"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_1326_3370">
+                            <rect width="30" height="30" fill="white" transform="translate(9 9)"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                            
 
-            <a (click)="sidebarVisible = true" class="menu-right">
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="24" cy="24" r="22" fill="#84DD2C" />
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M13.1992 15.9992C13.1992 15.5574 13.5574 15.1992 13.9992 15.1992H33.9992C34.441 15.1992 34.7992 15.5574 34.7992 15.9992C34.7992 16.441 34.441 16.7992 33.9992 16.7992H13.9992C13.5574 16.7992 13.1992 16.441 13.1992 15.9992ZM13.1992 23.9992C13.1992 23.5574 13.5574 23.1992 13.9992 23.1992H33.9992C34.441 23.1992 34.7992 23.5574 34.7992 23.9992C34.7992 24.441 34.441 24.7992 33.9992 24.7992H13.9992C13.5574 24.7992 13.1992 24.441 13.1992 23.9992ZM13.9992 31.1992C13.5574 31.1992 13.1992 31.5574 13.1992 31.9992C13.1992 32.441 13.5574 32.7992 13.9992 32.7992H33.9992C34.441 32.7992 34.7992 32.441 34.7992 31.9992C34.7992 31.5574 34.441 31.1992 33.9992 31.1992H13.9992Z"
-                        fill="white" />
-                </svg>
-            </a>
+                    </a>
+                </ng-container>
+
+                <a (click)="sidebarVisible = true">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="22" fill="#84DD2C" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M13.1992 15.9992C13.1992 15.5574 13.5574 15.1992 13.9992 15.1992H33.9992C34.441 15.1992 34.7992 15.5574 34.7992 15.9992C34.7992 16.441 34.441 16.7992 33.9992 16.7992H13.9992C13.5574 16.7992 13.1992 16.441 13.1992 15.9992ZM13.1992 23.9992C13.1992 23.5574 13.5574 23.1992 13.9992 23.1992H33.9992C34.441 23.1992 34.7992 23.5574 34.7992 23.9992C34.7992 24.441 34.441 24.7992 33.9992 24.7992H13.9992C13.5574 24.7992 13.1992 24.441 13.1992 23.9992ZM13.9992 31.1992C13.5574 31.1992 13.1992 31.5574 13.1992 31.9992C13.1992 32.441 13.5574 32.7992 13.9992 32.7992H33.9992C34.441 32.7992 34.7992 32.441 34.7992 31.9992C34.7992 31.5574 34.441 31.1992 33.9992 31.1992H13.9992Z"
+                            fill="white" />
+                    </svg>
+                </a>
+            </div>
+
 
         </div>
     </div>
     <ng-container *ngIf="settingHeaderService.backbtn">
         <div class="second-container">
-            <div class="leftContent" style="background-color: #5a4bb8;">
-                <a href="" class="backBtn"> <svg width="10" height="20" viewBox="0 0 10 20" fill="none"
+            <div class="leftContent" style="background-color: #5a4bb8;" (click)="goBack()">
+                <a class="backBtn"> <svg width="10" height="20" viewBox="0 0 10 20" fill="none" 
                         xmlns="http://www.w3.org/2000/svg">
                         <path d="M9 1L1 10L9 19" stroke="white" stroke-width="1.4" stroke-linecap="round"
                             stroke-linejoin="round" />
@@ -64,8 +88,8 @@
             <li style="display: flex; align-items: center; gap: 0.5rem;">
                 Выберите тему :
                 <div class="toggle-switch">
-                    <button class="toggle-btn" [class.active]="activeButton === 'vacancies'"
-                        (click)="toggle('vacancies')">
+                    <button class="toggle-btn" [class.active]="activeTopic === 'light'"
+                        (click)="toggleTopic('light')">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <mask id="mask0_23_1078" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="1" y="1"
                                 width="22" height="22">
@@ -86,7 +110,7 @@
 
                         light
                     </button>
-                    <button class="toggle-btn" [class.active]="activeButton === 'resumes'" (click)="toggle('resumes')">
+                    <button class="toggle-btn" [class.active]="activeTopic === 'dark'" (click)="toggleTopic('dark')">
                         <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M19.8059 13.1833C19.7204 13.0976 19.6131 13.0367 19.4956 13.0074C19.3782 12.978 19.2549 12.9812 19.1391 13.0165C17.8677 13.401 16.5159 13.4332 15.2276 13.1098C13.9393 12.7864 12.7629 12.1195 11.8237 11.1801C10.8845 10.2407 10.2177 9.06404 9.89438 7.7755C9.57103 6.48697 9.60326 5.13483 9.98762 3.86317C10.0233 3.7473 10.0267 3.62389 9.9975 3.50622C9.96829 3.38855 9.90757 3.28107 9.82185 3.19533C9.73614 3.1096 9.62868 3.04886 9.51103 3.01965C9.39339 2.99044 9.27 2.99385 9.15415 3.02953C7.39639 3.5681 5.85323 4.64746 4.74427 6.114C3.77446 7.40186 3.1829 8.93469 3.03605 10.5403C2.8892 12.1459 3.19288 13.7606 3.91298 15.2031C4.63307 16.6456 5.74105 17.8586 7.11243 18.706C8.48381 19.5534 10.0643 20.0015 11.6762 20C13.5568 20.0057 15.3874 19.3942 16.8871 18.2593C18.3533 17.1501 19.4325 15.6067 19.9709 13.8485C20.0062 13.7331 20.0094 13.6102 19.9804 13.4931C19.9513 13.3759 19.891 13.2688 19.8059 13.1833ZM16.0853 17.1939C14.673 18.2579 12.924 18.7757 11.1603 18.6522C9.39653 18.5287 7.73676 17.7721 6.4865 16.5217C5.23625 15.2713 4.47966 13.6112 4.35602 11.8471C4.23238 10.083 4.75 8.33362 5.81361 6.92097C6.50656 6.00568 7.40242 5.26373 8.4307 4.7535C8.37212 5.16467 8.3426 5.57947 8.34235 5.99479C8.34478 8.29344 9.2588 10.4972 10.8839 12.1226C12.5089 13.748 14.7123 14.6622 17.0104 14.6647C17.4265 14.6645 17.842 14.635 18.254 14.5763C17.7434 15.605 17.001 16.501 16.0853 17.1939Z"
@@ -97,12 +121,12 @@
                 </div>
             </li>
             <li>
-                <a href="">
+                <a (click)="toggle('vacancy')">
                     Список вакансий
                 </a>
             </li>
             <li>
-                <a href="">
+                <a (click)="toggle('resume')">
                     Список резюме
                 </a>
             </li>
@@ -112,7 +136,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="aboutUs">
                     О нас
                 </a>
             </li>

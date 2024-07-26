@@ -4,8 +4,6 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
-    padding-left: 1rem;
-    padding-right: 1rem;
 }
 
 .sorting,
@@ -26,19 +24,18 @@
 
 
 
-
-
-:host ::ng-deep .p-overlaypanel:before {
-    background: rgb(255 255 255 / 0%) !important;
-}
-
-:host ::ng-deep .p-overlaypanel:after {
-    background: rgb(255 255 255 / 0%) !important;
-}
-
-:host ::ng-deep .p-overlaypanel.p-overlaypanel-content {
+:host ::ng-deep .p-overlaypanel-content {
     padding: 0 !important;
 }
+
+:host ::ng-deep .p-overlaypanel .p-overlaypanel-content {
+    padding: 0 !important;
+}
+
+.p-overlaypanel .p-overlaypanel-content {
+    padding: 0 !important;
+}
+
 
 
 .overlayPanel {
@@ -80,6 +77,8 @@
     border-radius: 2rem;
     padding: 24px 16px;
 }
+
+
 
 .dialog-btns {
     display: flex;
@@ -137,7 +136,6 @@
 
 .search-btn:hover {
     background: #806bff;
-    ;
 }
 
 .stage-filter-title {
@@ -163,6 +161,7 @@
 }
 
 
+
 @media (max-width: 789.98px) {
     .content-filter{
         flex-direction: column;
@@ -172,5 +171,12 @@
     :host ::ng-deep .p-dialog {
         max-height: 100%;
         width: 100% !important;
+    }
+
+    :host ::ng-deep .p-dialog .p-dialog-content:last-of-type {
+        border-radius: 0;
+    }
+    :host ::ng-deep .p-dialog-mask{
+        align-items: normal !important;
     }
 }

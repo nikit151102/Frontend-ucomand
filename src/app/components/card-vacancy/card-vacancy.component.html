@@ -37,7 +37,12 @@
     <div class="profile">
         <div class="leftProfileChapter">
             <div class="logo">
-                <img src="" alt="logo">
+                <ng-container *ngIf="cardItem.floor === 'male'">
+                    <img src="../../../assets/male_profile.png" alt="logo">
+                </ng-container>
+                <ng-container *ngIf="cardItem.floor === 'female'">
+                    <img src="../../../assets/famale_profile.jpg" alt="logo">
+                </ng-container>
             </div>
             <div style="display: flex; flex-wrap: wrap;">
                 <p class="fullName">

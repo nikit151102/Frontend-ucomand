@@ -5,13 +5,13 @@
     padding: 12px;
     width: 100%;
     box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--background-card-account);
     margin-bottom: 2rem;
     break-inside: avoid;
 }
 
 .card:hover {
-    background: #5a4bb8;
+    background: var(--card-hover-account);
 }
 
 
@@ -20,7 +20,7 @@
     font-weight: 700;
     font-size: 14px;
     line-height: 114%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 
@@ -39,7 +39,7 @@
     font-weight: 600;
     font-size: 1rem;
     line-height: 120%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .chapterCard-title {
@@ -47,7 +47,7 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 117%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .chapterCard-value {
@@ -56,7 +56,7 @@
     font-size: 12px;
     line-height: 117%;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .tags {
@@ -75,7 +75,7 @@
     font-weight: 500;
     font-size: 0.8rem;
     line-height: 120%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .motivations {
@@ -92,7 +92,7 @@
     font-weight: 600;
     font-size: 0.8rem;
     line-height: 120%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .profile {
@@ -114,7 +114,7 @@
     font-family: var(--font-family);
     font-weight: 500;
     line-height: 120%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .dateTitle {

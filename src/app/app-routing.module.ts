@@ -22,6 +22,9 @@ const routes: Routes = [
   {
     path: 'newVacancy', loadChildren: () => import('./components/form/form.module').then(m => m.FormModule)
   },
+  {
+    path: 'aboutUs', loadChildren: () => import('./components/about-us/about-us.module').then(m => m.AboutUsModule)
+  },
 ];
 
 @NgModule({

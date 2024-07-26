@@ -7,18 +7,20 @@ import { SortetdFilterComponent } from './sortetd-filter/sortetd-filter.componen
 import { ViewCardService } from '../view-card/view-card.service';
 import { Router } from '@angular/router';
 import { SettingHeaderService } from '../setting-header.service';
+import { CardResumeComponent } from '../card-resume/card-resume.component';
+import { HomeService } from './home.service';
 
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [CommonModule, BackgroundImgsComponent, SearchComponent, CardVacancyComponent, SortetdFilterComponent],
+    imports: [CommonModule, BackgroundImgsComponent, SearchComponent, CardVacancyComponent, SortetdFilterComponent, CardResumeComponent],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css'
 })
 export class HomeComponent {
 
-    constructor(private viewCardService: ViewCardService, private settingHeaderService: SettingHeaderService, private router: Router) {
+    constructor(private viewCardService: ViewCardService, private settingHeaderService: SettingHeaderService, private router: Router, public homeService: HomeService) {
         this.settingHeaderService.post = false;
         this.settingHeaderService.shared = false;
         this.settingHeaderService.backbtn = false;
@@ -32,6 +34,7 @@ export class HomeComponent {
             skills: ['Node.js', 'Express.js', 'MongoDB', 'REST API', 'Архитектура микросервисов', 'Тестирование программного обеспечения', 'Node.js', 'Express.js', 'MongoDB', 'REST API', 'Архитектура микросервисов'],
             motivations: ['За долю', 'За оплату', 'Практика'],
             fullName: 'Иванов Павел Сергеевич',
+            floor: 'male',
             date: '2024-06-29'
         },
         {
@@ -41,6 +44,7 @@ export class HomeComponent {
             skills: ['JavaScript', 'React.js', 'Redux', 'HTML5', 'CSS3', 'Адаптивная верстка'],
             motivations: ['За оплату', 'Практика'],
             fullName: 'Петрова Елена Александровна',
+            floor: 'female',
             date: '2024-06-29'
         },
         {
@@ -50,6 +54,7 @@ export class HomeComponent {
             skills: ['Тестирование программного обеспечения', 'Автоматизация тестирования', 'Написание тестовых сценариев'],
             motivations: ['За оплату', 'Практика'],
             fullName: 'Смирнов Игорь Викторович',
+            floor: 'male',
             date: '2024-06-29'
         },
         {
@@ -59,6 +64,7 @@ export class HomeComponent {
             skills: ['Прототипирование', 'Исследование пользовательских потребностей', 'Adobe XD', 'Sketch'],
             motivations: ['За долю', 'За оплату'],
             fullName: 'Козлова Анастасия Дмитриевна',
+            floor: 'female',
             date: '2024-06-29'
         },
         {
@@ -68,6 +74,7 @@ export class HomeComponent {
             skills: ['Docker', 'Kubernetes', 'CI/CD', 'Linux', 'AWS/GCP/Azure'],
             motivations: ['За оплату', 'Практика'],
             fullName: 'Белов Александр Владимирович',
+            floor: 'male',
             date: '2024-06-29'
         },
         {
@@ -77,6 +84,7 @@ export class HomeComponent {
             skills: ['Python', 'Machine Learning', 'Big Data', 'SQL/NoSQL', 'Статистический анализ'],
             motivations: ['За долю', 'За оплату'],
             fullName: 'Григорьева Ольга Игоревна',
+            floor: 'female',
             date: '2024-06-29'
         },
         {
@@ -86,6 +94,7 @@ export class HomeComponent {
             skills: ['Управление проектами', 'Scrum/Kanban', 'Бюджетирование', 'Управление рисками'],
             motivations: ['За оплату', 'Практика'],
             fullName: 'Михайлов Сергей Андреевич',
+            floor: 'male',
             date: '2024-06-29'
         },
         {
@@ -95,6 +104,7 @@ export class HomeComponent {
             skills: ['Linux/Windows Server', 'Сетевые технологии', 'Администрирование Active Directory'],
             motivations: ['За долю', 'За оплату'],
             fullName: 'Никитин Дмитрий Алексеевич',
+            floor: 'male',
             date: '2024-06-29'
         },
         {
@@ -104,6 +114,7 @@ export class HomeComponent {
             skills: ['Java/Kotlin', 'Android SDK', 'REST API', 'Адаптивный дизайн'],
             motivations: ['За оплату', 'Практика'],
             fullName: 'Семенов Иван Петрович',
+            floor: 'male',
             date: '2024-06-29'
         },
         {
@@ -113,6 +124,7 @@ export class HomeComponent {
             skills: ['Swift', 'iOS SDK', 'Xcode', 'Core Data'],
             motivations: ['За долю', 'За оплату'],
             fullName: 'Кузнецова Анна Васильевна',
+            floor: 'male',
             date: '2024-06-29'
         },
         {
@@ -122,6 +134,7 @@ export class HomeComponent {
             skills: ['Adobe Illustrator', 'Photoshop', 'Прототипирование', 'Интерактивный дизайн'],
             motivations: ['За оплату', 'Практика'],
             fullName: 'Иванов Даниил Александрович',
+            floor: 'male',
             date: '2024-06-29'
         },
         {
@@ -131,6 +144,7 @@ export class HomeComponent {
             skills: ['Безопасность информации', 'Сетевые протоколы', 'Угрозы и уязвимости', 'Penetration testing'],
             motivations: ['За долю', 'За оплату'],
             fullName: 'Попова Екатерина Сергеевна',
+            floor: 'female',
             date: '2024-06-29'
         },
         {
@@ -140,8 +154,184 @@ export class HomeComponent {
             skills: ['Node.js', 'React.js', 'MongoDB', 'HTML5', 'CSS3', 'REST API'],
             motivations: ['За оплату', 'Практика'],
             fullName: 'Макаров Артем Владимирович',
+            floor: 'male',
             date: '2024-06-29'
         }]
+
+
+        resumesData = [
+            {
+                id: 1,
+                specialization: 'Backend разработчик',
+                skills: ['Node.js', 'Express.js', 'MongoDB', 'REST API', 'Архитектура микросервисов', 'Тестирование программного обеспечения'],
+                motivations: ['За оплату', 'Практика'],
+                fullName: 'Смирнов Алексей Викторович',
+                floor: 'male',
+                date: '2024-06-29'
+            },
+            {
+                id: 2,
+                specialization: 'Frontend разработчик',
+                skills: ['JavaScript', 'React.js', 'Redux', 'HTML5', 'CSS3', 'Адаптивная верстка'],
+                motivations: ['За оплату', 'Практика'],
+                fullName: 'Иванова Мария Сергеевна',
+                floor: 'female',
+                date: '2024-06-30'
+            },
+            {
+                id: 3,
+                specialization: 'Data Scientist',
+                skills: ['Python', 'Pandas', 'NumPy', 'Machine Learning', 'Data Visualization'],
+                motivations: ['За оплату', 'Интерес к проекту'],
+                fullName: 'Кузнецов Илья Михайлович',
+                floor: 'male',
+                date: '2024-07-01'
+            },
+            {
+                id: 4,
+                specialization: 'Mobile Developer',
+                skills: ['Swift', 'Objective-C', 'iOS Development', 'UI/UX Design'],
+                motivations: ['За оплату', 'Практика'],
+                fullName: 'Алексеева Виктория Ивановна',
+                floor: 'female',
+                date: '2024-07-02'
+            },
+            {
+                id: 5,
+                specialization: 'DevOps Engineer',
+                skills: ['Docker', 'Kubernetes', 'CI/CD', 'AWS', 'Ansible'],
+                motivations: ['За оплату', 'Интерес к проекту'],
+                fullName: 'Соколов Андрей Дмитриевич',
+                floor: 'male',
+                date: '2024-07-03'
+            },
+            {
+                id: 6,
+                specialization: 'UX/UI Designer',
+                skills: ['Figma', 'Sketch', 'Adobe XD', 'User Research', 'Prototyping'],
+                motivations: ['За оплату', 'Творческая работа'],
+                fullName: 'Морозова Ольга Сергеевна',
+                floor: 'female',
+                date: '2024-07-04'
+            },
+            {
+                id: 7,
+                specialization: 'Project Manager',
+                skills: ['Agile', 'Scrum', 'Kanban', 'Project Planning', 'Team Leadership'],
+                motivations: ['За оплату', 'Карьерный рост'],
+                fullName: 'Петров Алексей Иванович',
+                floor: 'male',
+                date: '2024-07-05'
+            },
+            {
+                id: 8,
+                specialization: 'QA Engineer',
+                skills: ['Manual Testing', 'Automated Testing', 'Selenium', 'JIRA', 'Bug Tracking'],
+                motivations: ['За оплату', 'Практика'],
+                fullName: 'Волков Михаил Андреевич',
+                floor: 'male',
+                date: '2024-07-06'
+            },
+            {
+                id: 9,
+                specialization: 'System Administrator',
+                skills: ['Linux', 'Windows Server', 'Network Security', 'Virtualization', 'Backup and Recovery'],
+                motivations: ['За оплату', 'Интерес к проекту'],
+                fullName: 'Новиков Дмитрий Сергеевич',
+                floor: 'male',
+                date: '2024-07-07'
+            },
+            {
+                id: 10,
+                specialization: 'Database Administrator',
+                skills: ['SQL', 'Oracle', 'MySQL', 'Database Design', 'Performance Tuning'],
+                motivations: ['За оплату', 'Карьерный рост'],
+                fullName: 'Фёдоров Сергей Михайлович',
+                floor: 'male',
+                date: '2024-07-08'
+            },
+            {
+                id: 11,
+                specialization: 'Full Stack Developer',
+                skills: ['JavaScript', 'Node.js', 'React.js', 'MongoDB', 'REST API'],
+                motivations: ['За оплату', 'Практика'],
+                fullName: 'Павлова Наталья Александровна',
+                floor: 'female',
+                date: '2024-07-09'
+            },
+            {
+                id: 12,
+                specialization: 'Cybersecurity Specialist',
+                skills: ['Network Security', 'Penetration Testing', 'Encryption', 'Firewalls', 'Incident Response'],
+                motivations: ['За оплату', 'Интерес к проекту'],
+                fullName: 'Михайлов Роман Евгеньевич',
+                floor: 'male',
+                date: '2024-07-10'
+            },
+            {
+                id: 13,
+                specialization: 'Cloud Architect',
+                skills: ['AWS', 'Azure', 'Google Cloud', 'Cloud Security', 'Infrastructure as Code'],
+                motivations: ['За оплату', 'Карьерный рост'],
+                fullName: 'Васильева Анастасия Дмитриевна',
+                floor: 'female',
+                date: '2024-07-11'
+            },
+            {
+                id: 14,
+                specialization: 'Product Manager',
+                skills: ['Product Lifecycle Management', 'Market Research', 'Roadmap Planning', 'User Testing'],
+                motivations: ['За оплату', 'Интерес к проекту'],
+                fullName: 'Семенов Владимир Викторович',
+                floor: 'male',
+                date: '2024-07-12'
+            },
+            {
+                id: 15,
+                specialization: 'Business Analyst',
+                skills: ['Requirements Gathering', 'Process Improvement', 'Data Analysis', 'Stakeholder Management'],
+                motivations: ['За оплату', 'Карьерный рост'],
+                fullName: 'Громова Елена Сергеевна',
+                floor: 'female',
+                date: '2024-07-13'
+            },
+            {
+                id: 16,
+                specialization: 'Network Engineer',
+                skills: ['Cisco', 'Routing and Switching', 'Network Design', 'Wireless Networks', 'Network Security'],
+                motivations: ['За оплату', 'Практика'],
+                fullName: 'Дмитриев Антон Алексеевич',
+                floor: 'male',
+                date: '2024-07-14'
+            },
+            {
+                id: 17,
+                specialization: 'Embedded Systems Engineer',
+                skills: ['C/C++', 'RTOS', 'Microcontrollers', 'Hardware Design', 'Debugging'],
+                motivations: ['За оплату', 'Интерес к проекту'],
+                fullName: 'Гордеева Анна Михайловна',
+                floor: 'female',
+                date: '2024-07-15'
+            },
+            {
+                id: 18,
+                specialization: 'AI/ML Engineer',
+                skills: ['Python', 'TensorFlow', 'Keras', 'Machine Learning', 'Deep Learning'],
+                motivations: ['За оплату', 'Карьерный рост'],
+                fullName: 'Фролов Алексей Дмитриевич',
+                floor: 'male',
+                date: '2024-07-16'
+            },
+            {
+                id: 19,
+                specialization: 'Game Developer',
+                skills: ['Unity', 'C#', 'Game Design', '3D Modeling', 'Animation'],
+                motivations: ['За оплату', 'Творческая работа'],
+                fullName: 'Савельев Николай Владимирович',
+                floor: 'male',
+                date: '2024-07-17'
+            }]
+
 
     viewCard(cardValue: any) {
         this.viewCardService.selectedCard = cardValue;

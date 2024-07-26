@@ -1,0 +1,175 @@
+
+
+.sorting,
+.filter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.text {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 114%;
+    color: #806bff;
+}
+
+
+
+:host ::ng-deep .p-overlaypanel-content {
+    padding: 0 !important;
+}
+
+:host ::ng-deep .p-overlaypanel .p-overlaypanel-content {
+    padding: 0 !important;
+}
+
+.p-overlaypanel .p-overlaypanel-content {
+    padding: 0 !important;
+}
+
+
+
+.overlayPanel {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #bdbdbd;
+    border-radius: 12px;
+    box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
+    background: #e2e2e2;
+    padding: 0;
+}
+
+.overlayPanel a {
+    border-radius: 12px;
+    padding: 16px 24px;
+    background: #e2e2e2;
+    text-decoration: none;
+    color: black;
+}
+
+.overlayPanel a.active {
+    background: #fff;
+    box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
+}
+
+.overlayPanel a:active {
+    background: #fff;
+}
+
+.overlayPanel a:hover {
+    cursor: pointer;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-header {
+    display: none !important;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-content:last-of-type {
+    border-radius: 2rem;
+    padding: 24px 16px;
+}
+
+
+
+.dialog-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.clear {
+    border-radius: 2.5rem;
+    padding: 15px 30px;
+    background: #e2e2e2;
+    border: none;
+    margin: 0;
+
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 120%;
+    color: #101010;
+}
+
+.clear:hover {
+    background: #b9aeff;
+}
+
+.content-filter {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.stage-filter {
+    flex: 1;
+}
+
+.search {
+    display: flex;
+    justify-content: flex-end
+}
+
+.search-btn {
+    border-radius: 2.5rem;
+    padding: 15px 30px;
+    background: #84dd2c;
+    border: none;
+    margin: 0;
+
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 120%;
+    color: #ffff;
+}
+
+.search-btn:hover {
+    background: #806bff;
+}
+
+.stage-filter-title {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 117%;
+    color: #101010;
+}
+
+.three-stages {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.paul {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 2rem;
+ 
+}
+
+
+@media (max-width: 789.98px) {
+    .content-filter{
+        flex-direction: column;
+    }
+
+
+    :host ::ng-deep .p-dialog {
+        max-height: 100%;
+        width: 100% !important;
+    }
+
+    :host ::ng-deep .p-dialog .p-dialog-content:last-of-type {
+        border-radius: 0;
+    }
+    :host ::ng-deep .p-dialog-mask{
+        align-items: normal !important;
+    }
+}

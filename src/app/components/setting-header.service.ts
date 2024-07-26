@@ -7,7 +7,8 @@ export class SettingHeaderService {
 
   constructor() { }
 
-  post:boolean = false;
-  shared:boolean = false;
-  backbtn:boolean = false;
+  post: boolean = false;
+  shared: boolean = false;
+  backbtn: boolean = false;
+
 }
