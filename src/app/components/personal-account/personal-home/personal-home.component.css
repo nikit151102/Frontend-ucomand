@@ -20,7 +20,7 @@
 }
 
 .title {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 0.9rem;
     line-height: 140%;
@@ -42,7 +42,7 @@
 }
 
 .fullName {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 600;
     font-size: 1.2rem;
     line-height: 117%;
@@ -51,7 +51,7 @@
 
 .information-user {
     margin-top: 1rem;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 117%;
@@ -87,7 +87,7 @@ p {
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     line-height: 117%;
     color: var(--font-color);
@@ -103,7 +103,7 @@ p {
 .title-message {
     margin: 0;
     margin-bottom: 1rem;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 600;
     font-size: 1rem;
     line-height: 117%;
@@ -114,7 +114,7 @@ p {
 .text-message {
     width: 75%;
     margin: 0;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 0.9rem;
     line-height: 117%;
@@ -137,7 +137,7 @@ p {
 }
 
 .title-cards {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 117%;
@@ -163,7 +163,7 @@ p {
 
 .message-cards {
     padding: 0 0 1rem 1.5rem;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 600;
     font-size: 1rem;
     line-height: 117%;
@@ -172,7 +172,7 @@ p {
 }
 
 .logoImg{
-    width: 5vw;
+    width: 6vw;
 }
 
 
@@ -198,7 +198,7 @@ p {
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 400;
     font-size: 0.8rem;
     line-height: 120%;

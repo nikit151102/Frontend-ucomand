@@ -14,7 +14,7 @@ p {
 }
 
 .designation {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 700;
     font-size: 1rem;
     line-height: 114%;
@@ -23,7 +23,7 @@ p {
 }
 
 .title {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 0.9rem;
     line-height: 117%;
@@ -41,7 +41,7 @@ p {
 
 
 .value {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 600;
     font-size: 1rem;
     line-height: 117%;
@@ -60,7 +60,7 @@ p {
 .level {
     border-radius: 10px;
     padding: 8px 10px;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 600;
     font-size: 0.8rem;
     line-height: 120%;

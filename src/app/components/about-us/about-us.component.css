@@ -27,7 +27,7 @@
 
 .title p {
     padding: 0px 2rem;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1.2rem;
     line-height: 125%;
@@ -59,7 +59,7 @@
 
 .destiny-title{
     padding: 0 1.5rem;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 700;
     font-size: 1.3rem;
     line-height: 125%;
@@ -91,7 +91,7 @@
 }
 
 .appeal-title {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 700;
     font-size: 0.9rem;
     line-height: 114%;

@@ -9,14 +9,24 @@
 }
 
 .text {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 114%;
     color: #806bff;
 }
 
+.p-overlaypanel:before, .p-overlaypanel.p-overlaypanel-flipped:after, .p-overlaypanel:after{
+display: none;
+}
+.p-overlaypanel{
+    background: none !important;
+    margin: 0;
+}
 
+:host ::ng-deep  .p-overlaypanel{
+    background: none !important;
+}
 
 :host ::ng-deep .p-overlaypanel-content {
     padding: 0 !important;
@@ -88,7 +98,7 @@
     border: none;
     margin: 0;
 
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 400;
     font-size: 1rem;
     line-height: 120%;
@@ -121,7 +131,7 @@
     border: none;
     margin: 0;
 
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 400;
     font-size: 1rem;
     line-height: 120%;
@@ -133,7 +143,7 @@
 }
 
 .stage-filter-title {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 117%;

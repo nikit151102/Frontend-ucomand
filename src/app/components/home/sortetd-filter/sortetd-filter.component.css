@@ -15,7 +15,7 @@
 }
 
 .text {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 114%;
@@ -94,7 +94,7 @@
     border: none;
     margin: 0;
 
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 400;
     font-size: 1rem;
     line-height: 120%;
@@ -127,7 +127,7 @@
     border: none;
     margin: 0;
 
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 400;
     font-size: 1rem;
     line-height: 120%;
@@ -139,7 +139,7 @@
 }
 
 .stage-filter-title {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 117%;
@@ -167,7 +167,12 @@
         flex-direction: column;
     }
 
-
+    .search {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+    }
+    
     :host ::ng-deep .p-dialog {
         max-height: 100%;
         width: 100% !important;

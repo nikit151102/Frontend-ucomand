@@ -20,7 +20,7 @@ p {
 }
 
 .title {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 0.8rem;
     line-height: 117%;
@@ -36,7 +36,7 @@ p {
 
 .value {
     width: 90%;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 600;
     font-size: 1rem;
     line-height: 114%;
@@ -47,7 +47,7 @@ p {
 .level{
     border-radius: 10px;
     padding: 8px 10px;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 600;
     font-size: 0.8rem;
     line-height: 120%;
@@ -67,7 +67,7 @@ p {
 }
 
 .rightProfileChapter p {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     line-height: 120%;
     color: #fff;

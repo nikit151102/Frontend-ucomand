@@ -20,7 +20,7 @@
 }
 
 .title {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 0.9rem;
     line-height: 140%;
@@ -43,7 +43,7 @@
 }
 
 .fullName {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 600;
     font-size: 1.2rem;
     line-height: 117%;
@@ -52,7 +52,7 @@
 
 .information-user {
     margin-top: 1rem;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 117%;
@@ -88,10 +88,11 @@ p {
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     line-height: 117%;
     color: #ffff;
+    gap: 0.5rem;
 }
 
 
@@ -117,7 +118,7 @@ p {
 }
 
 .title-cards {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 117%;
@@ -135,7 +136,7 @@ p {
 }
 
 .logoImg{
-    width: 5vw;
+    width: 6vw;
 }
 @media (max-width : 865px) {
 

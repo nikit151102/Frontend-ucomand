@@ -73,7 +73,7 @@
     padding: 12px 10px;
     background: #f3f3f3;
 
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 120%;
@@ -106,7 +106,7 @@
 .levelTag {
     border-radius: 5px;
     padding: 3px 4px;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 600;
     font-size: 0.8rem;
     line-height: 125%;
@@ -137,7 +137,7 @@
 }
 
 .level div p {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 600;
     font-size: 0.8rem;
     line-height: 125%;

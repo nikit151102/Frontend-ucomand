@@ -70,9 +70,9 @@ ul {
 ul li {
     padding: 14px 16px 14px 0px;
 
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 117%;
     color: #fff;
 }
@@ -114,7 +114,7 @@ a {
     background: #5A4BB8;
 
     white-space: nowrap;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 117%;
@@ -131,7 +131,7 @@ a {
 .toggle-btn:not(.active) {
     background: none;
     white-space: nowrap;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 117%;
@@ -156,7 +156,7 @@ a {
     border: none;
     background: #84dd2c;
 
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 117%;
@@ -190,7 +190,7 @@ a {
     border-radius: 30px;
     background: #84DD2C;
     padding: 1rem;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 117%;
@@ -203,7 +203,7 @@ a {
     gap: 0.5rem;
     border-radius: 2rem;
     padding: 1rem;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 117%;
@@ -232,6 +232,9 @@ a {
         width: 100%;
         border-radius: 0;
         justify-content: space-between;
+    }
+    .backBtnContent{
+        height: 40px;
     }
 
     .additional{

@@ -78,7 +78,7 @@
 }
 
 .title {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 700;
     font-size: 38px;
     line-height: 105%;
@@ -88,7 +88,7 @@
 
 .text {
     width: 75%;
-    font-family: var(--second-family);
+    font-family: var(--second-Monts);
     font-weight: 500;
     font-size: 20px;
     line-height: 100%;
@@ -107,7 +107,7 @@ button {
     padding: 14px 16px;
     border: none;
 
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     line-height: 117%;
     color: #fff;
@@ -148,6 +148,15 @@ button {
     color: var(--font-color);
 }
 
+.mobile-svg {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .mobile-svg {
+        display: inline;
+    }
+}
 
 
 /* Media queries for tablets */

@@ -14,7 +14,7 @@
 
 .page-title p {
     margin: 0;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 700;
     font-size: 1.2rem;
     line-height: 112%;
@@ -64,7 +64,7 @@
 }
 
 .avatar .title p {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 0.8rem;
     line-height: 140%;
@@ -73,7 +73,7 @@
 
 .chapter-title {
     padding: 0px 2.3rem;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 117%;
@@ -88,7 +88,7 @@
 
 .input-group label {
     padding: 0.1rem 2rem;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 140%;
@@ -102,7 +102,7 @@
     width: 100%;
     outline: none;
 
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 140%;
@@ -115,7 +115,7 @@
     min-height: 100px;
     resize: none;
     outline: none;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 140%;
@@ -130,7 +130,7 @@
 }
 
 .domain {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 0.8rem;
     line-height: 140%;
@@ -145,7 +145,7 @@
     background: #fff;
     outline: none;
 
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
     line-height: 140%;
@@ -173,7 +173,7 @@
 }
 
 .approval label {
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 0.9rem;
     line-height: 117%;
@@ -187,7 +187,7 @@
     background: #84dd2c;
     border: none;
 
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 0.9rem;
     line-height: 117%;
