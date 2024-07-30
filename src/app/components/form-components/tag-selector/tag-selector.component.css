@@ -26,8 +26,8 @@
     flex-wrap: wrap;
     gap: 0.5rem;
     padding: 16px 12px;
-    border: 2px solid #e2e2e2;
-    border-radius: 1rem;
+    border: 1px solid #e2e2e2;
+    border-radius: 1rem 0.4rem 0.4rem 1rem;
     top: 100%;
     left: 0;
     background: white;
@@ -66,8 +66,8 @@
     background: #f3f3f3;
 
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.7rem;
     line-height: 120%;
     color: #101010;
 }
@@ -89,8 +89,8 @@
     background: #f3f3f3;
 
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.7rem;
     line-height: 120%;
     color: #101010;
 }

@@ -15,7 +15,8 @@ export class CardVacancyComponent {
     context: string;
     skills: string[]; // Adjust type for skills if needed
     motivations: string[]; // Corrected property name
-    fullName: string;
+    lastName: string;
+    firstName: string;
     floor: string;
     date: string;
   } = {
@@ -23,7 +24,8 @@ export class CardVacancyComponent {
     context: '',
     skills: [],
     motivations: [], // Corrected property name
-    fullName: '',
+    lastName: '',
+    firstName: '',
     floor: '',
     date: ''
   };

@@ -117,7 +117,8 @@
 
 .search {
     display: flex;
-    justify-content: flex-end
+    justify-content: flex-end;
+    margin-top: 3rem;
 }
 
 .search-btn {
@@ -171,8 +172,13 @@
         margin-top: 1rem;
         display: flex;
         justify-content: center;
+        text-align: center;
     }
     
+    .search p{
+        width: 100%;
+    }
+
     :host ::ng-deep .p-dialog {
         max-height: 100%;
         width: 100% !important;

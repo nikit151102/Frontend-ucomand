@@ -11,8 +11,8 @@
 
 .title {
     font-family: var(--font-Monts);
-    font-weight: 700;
-    font-size: 1.2rem;
+    font-weight: 600;
+    font-size: 1rem;
     line-height: 114%;
     color: var(--font-color);
 }
@@ -21,16 +21,16 @@
 
 .chapterCard-title {
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.8rem;
     line-height: 117%;
     color: var(--font-color);
 }
 
 .chapterCard-value {
     font-family: var(--font-Monts);
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.8rem;
     line-height: 117%;
     text-transform: uppercase;
     color: var(--font-color);
@@ -47,8 +47,8 @@
     padding: 4px 6px;
     border-radius: 5px;
     font-family: var(--font-Monts);
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.7rem;
     line-height: 120%;
     color: var(--font-color);
 }
@@ -62,12 +62,12 @@
 .tag {
     border: 1px solid #806bff;
     border-radius: 10px;
-    padding: 3px 8px 5px 8px;
+    padding: 3px 8px 3px 8px;
     background: rgba(243, 243, 243, 0.1);
 
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.7rem;
     line-height: 120%;
     color: var(--font-color);
 }

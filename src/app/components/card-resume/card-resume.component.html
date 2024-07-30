@@ -41,9 +41,13 @@
                     <img src="../../../assets/famale_profile.jpg" alt="logo">
                 </ng-container>
             </div>
-            <div style="display: flex; flex-wrap: wrap;">
-                <p class="fullName">
-                    {{cardItem.fullName}}
+            
+            <div style="display: flex; flex-wrap: wrap; flex-direction: column; justify-content: flex-end">
+                <p class="fullName" style="margin: 0;">
+                    {{cardItem.lastName}}
+                </p>
+                <p class="fullName" style="margin: 0;">
+                    {{cardItem.firstName}}
                 </p>
             </div>
            

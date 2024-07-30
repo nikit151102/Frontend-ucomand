@@ -15,6 +15,12 @@
     padding: 16px;
     height: 46px;
 }
+.tag-input::placeholder {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.8rem; 
+    line-height: 140%;
+}
 
 .tag-input:focus {
     border: 1px solid #e2e2e2 !important;
@@ -27,7 +33,7 @@
     gap: 0.5rem;
     padding: 16px 12px;
     border: 2px solid #e2e2e2;
-    border-radius: 1rem;
+    border-radius: 1rem 0.4rem 0.4rem 1rem;
     top: 100%;
     left: 0;
     background: white;
@@ -74,8 +80,8 @@
     background: #f3f3f3;
 
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.7rem;
     line-height: 120%;
     color: #101010;
 }
@@ -100,15 +106,17 @@
     border-radius: 2.3rem;
     padding: 12px 10px;
     background: #f3f3f3;
-
+    font-weight: 400;
+    font-size: 0.7rem;
+    font-family: var(--font-Monts);
 }
 
 .levelTag {
     border-radius: 5px;
     padding: 3px 4px;
     font-family: var(--font-Monts);
-    font-weight: 600;
-    font-size: 0.8rem;
+    font-weight: 400;
+    font-size: 0.7rem;
     line-height: 125%;
     color: #fff;
 }
@@ -130,7 +138,7 @@
 .level div {
     cursor: pointer;
     border-radius: 5px;
-    padding: 0.8rem 1rem;
+    padding: 0.6rem 0.8rem;
     display: flex;
     align-items: center;
 
@@ -138,8 +146,8 @@
 
 .level div p {
     font-family: var(--font-Monts);
-    font-weight: 600;
-    font-size: 0.8rem;
+    font-weight: 400;
+    font-size: 0.7rem;
     line-height: 125%;
     color: #fff;
     margin: 0;

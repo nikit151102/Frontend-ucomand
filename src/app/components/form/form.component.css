@@ -3,6 +3,13 @@
     width: 69%;
 }
 
+input, textarea{
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 140%;
+}
+
 .creation {
     display: flex;
     flex-direction: column;
@@ -90,8 +97,8 @@
 
 .stage-title {
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.9rem;
     line-height: 117%;
     color: var(--font-color);
 }
@@ -124,10 +131,11 @@
     min-height: 150px;
     resize: none;
     outline: none;
-
+}
+.thirdRow textarea::placeholder {
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.8rem; 
     line-height: 140%;
 }
 

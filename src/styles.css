@@ -14,11 +14,18 @@
     --font-color: #fff; /* #101010 */
 
     --font-Monts: "Montserrat";
-    --second-family: "Comfortaa", sans-serif;
+    --second-family: "Comfortaa";
 }
 
 body{
     margin: 0;
     background: var(--background);
-}
 
+    
+}
+html, body {
+    overflow-x: hidden; /* Отключает горизонтальную прокрутку */
+}
+p, h1,h2,h3,div{
+    font-family: var(--font-Monts);
+}

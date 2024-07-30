@@ -63,16 +63,16 @@
 .chapterCard-title {
     margin-bottom: 0.5rem;
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.9rem;
     line-height: 117%;
     color: var(--font-color);
 }
 
 .titleLogin {
     font-family: var(--font-Monts);
-    font-weight: 600;
-    font-size: 1.2rem;
+    font-weight: 400;
+    font-size: 0.9rem;
     line-height: 117%;
     text-transform: uppercase;
     color: var(--font-color);
@@ -87,7 +87,7 @@
     background: #e2e2e2;
     font-family: var(--font-Monts);
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     line-height: 120%;
     color: #101010;
     justify-content: center;
@@ -105,7 +105,7 @@
     background: #b9aeff;
     font-family: var(--font-Monts);
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     line-height: 120%;
     color: #fff;
     justify-content: center;

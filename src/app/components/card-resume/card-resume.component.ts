@@ -14,14 +14,16 @@ export class CardResumeComponent {
     specialization: string;
     skills: string[]; 
     motivations: string[]; 
-    fullName: string;
+    lastName: string;
+    firstName: string;
     floor: string;
     date: string;
   } = {
     specialization: '',
     skills: [],
     motivations: [], 
-    fullName: '',
+    lastName: '',
+    firstName: '',
     floor: '',
     date: ''
   };

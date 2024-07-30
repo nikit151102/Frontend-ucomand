@@ -8,6 +8,10 @@
     gap: 2rem;
 }
 
+.contacts{
+    padding-top: 1rem;
+}
+
 .first-part {
     display: flex;
     flex-direction: row;

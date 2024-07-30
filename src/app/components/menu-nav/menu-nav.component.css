@@ -71,8 +71,8 @@ ul li {
     padding: 14px 16px 14px 0px;
 
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 0.9rem;
+    font-weight: 400;
+    font-size: 0.8rem;
     line-height: 117%;
     color: #fff;
 }
@@ -81,6 +81,7 @@ a {
     text-decoration: none;
     color: #fff;
 }
+
 
 .toggle-switch {
     display: flex;
@@ -138,10 +139,22 @@ a {
     color: rgba(255, 255, 255, 0.5);
 }
 
+.toggle-btn.active svg {
+    fill: #fff; /* Белый цвет для активной кнопки */
+}
+
 .toggle-btn:not(.active) svg {
     fill: rgba(255, 255, 255, 0.5);
     /* Полупрозрачный белый цвет для SVG иконки */
 }
+.toggle-btn.active path {
+    fill: #fff /* Белый цвет для активной кнопки */
+}
+
+.toggle-btn:not(.active) path {
+    fill: rgba(255, 255, 255, 0.5); /* Полупрозрачный белый цвет для неактивной кнопки */
+}
+
 
 .btns {
     display: flex;
@@ -164,7 +177,7 @@ a {
 }
 
 .grnBtn:hover {
-    background: #806bff;
+    background: #5A4BB8;
 }
 
 
@@ -186,6 +199,7 @@ a {
 .additionalBtn {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 0.5rem;
     border-radius: 30px;
     background: #84DD2C;
@@ -195,6 +209,10 @@ a {
     font-size: 1rem;
     line-height: 117%;
     color: #fff;
+}
+
+.additionalBtn:hover {
+    background: #5A4BB8;
 }
 
 .backBtn {
@@ -233,11 +251,12 @@ a {
         border-radius: 0;
         justify-content: space-between;
     }
-    .backBtnContent{
+
+    .backBtnContent {
         height: 40px;
     }
 
-    .additional{
-        display: none ;
+    .additional {
+        display: none;
     }
 }

@@ -17,7 +17,7 @@
 
 .title {
     font-family: var(--font-Monts);
-    font-weight: 700;
+    font-weight: 500;
     font-size: 14px;
     line-height: 114%;
     color: var(--font-color);
@@ -51,12 +51,12 @@
 .tag {
     border: 1px solid #806bff;
     border-radius: 10px;
-    padding: 3px 8px 5px 8px;
+    padding: 3px 8px 3px 8px;
     background: rgba(243, 243, 243, 0.1);
 
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 0.8rem;
+    font-weight: 300;
+    font-size: 0.7rem;
     line-height: 120%;
     color: var(--font-color);
 }
@@ -68,14 +68,13 @@
 }
 
 .motivation {
-    border-radius: 10px;
+    border-radius: 50px;
     padding: 8px 10px;
-
     font-family: var(--font-Monts);
-    font-weight: 600;
-    font-size: 0.8rem;
+    font-weight: 400;
+    font-size: 0.7rem;
     line-height: 120%;
-    color: var(--font-color);
+    color: #fff;
 }
 
 .profile {
@@ -83,6 +82,7 @@
     flex-direction: row;
     justify-content: space-between;
     margin-top: 1rem;
+    align-items: flex-end;
 }
 
 
