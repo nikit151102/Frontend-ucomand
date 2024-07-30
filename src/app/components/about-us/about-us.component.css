@@ -48,10 +48,10 @@
     content: "";
     position: absolute;
     top: 0;
-    left: 0;
-    width: 96%;
+    right: 125px;
+    width: 110%;
     height: 125%;
-    background: url('../../../assets/lighting.svg');
+    background: url('../../../assets/lighting.png');
     background-size: cover;
     z-index: -1;
     /* Фон должен быть позади контента */
@@ -101,4 +101,34 @@
 .logo{
 display: flex;
 flex-direction: row;
+}
+
+
+
+.overlay-top-right {
+    display: flex;
+    float: right;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    top: 0;
+    right: 50px;
+    width: 60%;
+    color: var(--font-color);
+    padding: 10px;
+    z-index: 1;
+    justify-content: flex-start;
+}
+
+.tag {
+    background: none;
+    border: 1px solid var(--font-color);
+    border-radius: 1.3rem;
+    padding: 8px 10px;
+    margin: 0;
+
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: var(--font-color);
 }

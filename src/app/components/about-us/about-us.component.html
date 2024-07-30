@@ -1,3 +1,4 @@
+<app-background-imgs style=" width: 100%; z-index: -1; position: absolute; top: -120px;"></app-background-imgs>
 <div class="container">
     <div class="title">
         <P>
@@ -6,6 +7,15 @@
             а в дальнейшем и успешных стартапов.
         </P>
     </div>
+</div>
+<div class="overlay-top-right">
+    <ng-container *ngFor="let item of tagsList">
+        <p class="tag">
+            {{item}}
+        </p>
+    </ng-container>
+</div>
+<div class="container" style="margin-top: 100px;">
     <div class="chapter">
         <div class="chapter-content">
             <div class="destiny">
@@ -61,5 +71,6 @@
 
 </div>
 <div style="display: flex; flex-direction: column; gap:1rem; margin-bottom: 3rem;">
-    <app-line-item *ngFor="let item of itemLineList" [value]="item.value" [width]="item.width" [color]="item.color" [stroke]="item.stroke"></app-line-item>
+    <app-line-item *ngFor="let item of itemLineList" [value]="item.value" [width]="item.width" [color]="item.color"
+        [stroke]="item.stroke"></app-line-item>
 </div>

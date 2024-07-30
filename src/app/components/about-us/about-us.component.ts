@@ -2,16 +2,20 @@ import { Component } from '@angular/core';
 import { DestinyItemComponent } from './destiny-item/destiny-item.component';
 import { CommonModule } from '@angular/common';
 import { LineItemComponent } from './line-item/line-item.component';
+import { BackgroundImgsAboutUsComponent } from './background-imgs/background-imgs.component';
 
 @Component({
   selector: 'app-about-us',
   standalone: true,
-  imports: [CommonModule, DestinyItemComponent, LineItemComponent],
+  imports: [CommonModule, DestinyItemComponent, LineItemComponent, BackgroundImgsAboutUsComponent],
   templateUrl: './about-us.component.html',
   styleUrl: './about-us.component.css'
 })
 export class AboutUsComponent {
 
+  tagsList = ['Веб дизайнер', '3d моделлер', 'Архитектор баз данных', 'Арт директор', 'Архитектор баз данных',
+    'Системный аналитик', 'Арт директор', 'Арт директор', 'Арт директор', 'Арт директор']
+    
   destinyList=[
     'владельцев IT-компаний/HR-менеджеров, которым нужны специалисты в штат',
     'людей с идеей, но нехваткой специалистов, которые смогут это реализовать',
@@ -21,7 +25,7 @@ export class AboutUsComponent {
   ];
 
   itemLineList=[
-    {stroke: '#298cf4', color: 'linear-gradient(270deg, #298cf4 0%, rgba(41, 140, 244, 0.3) 100%)', width: 25, value: '1. Разработка и запуск Web-версии платформы UTeam.top с начальным функционалом (поиск/размещение резюме и вакансий)'},
+    {stroke: '#298cf4', color: 'linear-gradient(270deg, #298cf4 0%, rgba(41, 140, 244, 0.3) 100%)', width: 25, value: '1. Разработка и запуск Web-версии платформы UTeam.top с начальным функционалом (поиск/размещение резюме и вакансий) '},
     {stroke: '#23b9b0', color: 'linear-gradient(270deg, #23b9b0 0%, rgba(35, 185, 176, 0.3) 100%)', width: 28, value: '2. Мобильная версия Android/IOS'},
     {stroke: '#50b229', color: 'linear-gradient(270deg, #50b229 0%, rgba(80, 178, 41, 0.3) 100%)', width: 31, value: '3. Обновление, добавление разделов и функционала'},
     {stroke: '#806bff', color: 'linear-gradient(270deg, #806bff 0%, rgba(128, 107, 255, 0.3) 100%)', width: 33, value: '4. Создание Crypto-token.'},

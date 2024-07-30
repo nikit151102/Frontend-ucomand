@@ -19,6 +19,10 @@
     padding: 0 10px;
     width: 600px;
 }
+.circle-text-container svg{
+    flex-shrink: 0; 
+}
+
 
 .text {
     font-family: var(--font-Monts);

@@ -12,6 +12,7 @@ import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
 @NgModule({
   declarations: [
     AppComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -20,7 +21,8 @@ import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    MenuNavComponent
+    MenuNavComponent,
+    
     
   ],
   bootstrap: [AppComponent]
