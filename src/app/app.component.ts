@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SettingHeaderService } from './components/setting-header.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ucomand';
+
+  constructor(public settingHeaderService: SettingHeaderService){
+
+  }
+  
 }

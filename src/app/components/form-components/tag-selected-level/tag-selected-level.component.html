@@ -1,54 +1,43 @@
 <div class="container">
     <div class="selectedTags-block">
-        <div class="tagItem" *ngFor="let tag of selectedTags">
-            <div class="tag">
-                <div>
-                    {{ tag.name }}
-                </div>
-                <ng-container *ngIf="tag.level !== 'None'">
-                    <div class="levelTag" [ngStyle]="{ 'background': tag.color }">
-                        {{tag.type}}
-                    </div>
-                    
-                </ng-container>
-                
+      <div class="tagItem" *ngFor="let tag of selectedTags">
+        <div class="tag">
+          <div>{{ tag.name }}</div>
+          <ng-container *ngIf="tag.level !== 'None'">
+            <div class="levelTag" [ngStyle]="{ 'background': tag.color }">
+              {{tag.level}}
             </div>
-            <a (click)="deleteTag(tag)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 5L18 18M5.0002 18L18 5" stroke="#806BFF" stroke-width="1.4" stroke-linecap="round" />
-                </svg>
-            </a>
+          </ng-container>
         </div>
+        <a (click)="deleteTag(tag)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 5L18 18M5.0002 18L18 5" stroke="#806BFF" stroke-width="1.4" stroke-linecap="round" />
+          </svg>
+        </a>
+      </div>
     </div>
-
+  
     <div class="tag-selector">
-        <input type="text" (focus)="toggleTagBlock(true)" class="tag-input" [placeholder]="placeholderValue">
-        <div *ngIf="showTagBlock" class="tag-block" (click)="onClickInside($event)">
-            <div *ngFor="let tag of tags" (click)="selectTag(tag)" class="selectTag">
-                {{ tag }}
-                <div *ngIf="selectedTag && selectedTag.name === tag" class="level">
-                    <div (click)="selectLevel('Junior', 'Jun', '#50b229' )" style="background: #50b229;">
-                        <p>
-                            Junior
-                        </p>
-                    </div>
-                    <div (click)="selectLevel('Middle', 'Mdl', '#fad305')" style="background: #fad305;">
-                        <p>
-                            Middle
-                        </p>
-                    </div>
-                    <div (click)="selectLevel('Senior', 'Snr', '#ee5354')" style="background: #ee5354;">
-                        <p>
-                            Senior
-                        </p>
-                    </div>
-                    <div (click)="selectLevel('None')" style="background: #bdbdbd;">
-                        <p>
-                            Не указывать
-                        </p>
-                    </div>
-                </div>
+      <input type="text" (focus)="toggleTagBlock(true)" class="tag-input" [placeholder]="placeholderValue">
+      <div *ngIf="showTagBlock" class="tag-block" (click)="onClickInside($event)">
+        <div *ngFor="let tag of tags" (click)="selectTag(tag.name, tag.id)" class="selectTag">
+          {{ tag.name }}
+          <div *ngIf="selectedTag && selectedTag.name === tag.name" class="level">
+            <div (click)="selectLevel('Junior', tag.id, '#50b229')" style="background: #50b229;">
+              <p>Junior</p>
             </div>
+            <div (click)="selectLevel('Middle', tag.id, '#fad305')" style="background: #fad305;">
+              <p>Middle</p>
+            </div>
+            <div (click)="selectLevel('Senior', tag.id, '#ee5354')" style="background: #ee5354;">
+              <p>Senior</p>
+            </div>
+            <div (click)="selectLevel('None', tag.id)" style="background: #bdbdbd;">
+              <p>Не указывать</p>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  

@@ -8,7 +8,7 @@ const routes: Routes = [
     loadChildren: () => import('./components/home/home.module').then(m => m.HomeModule)
   },
   {
-    path: 'vacancy/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule)
+    path: 'card/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule)
   },
   {
     path: 'user/:id', loadChildren: () => import('./components/user-account/user-account.module').then(m => m.UserAccountModule)
@@ -24,6 +24,9 @@ const routes: Routes = [
   },
   {
     path: 'aboutUs', loadChildren: () => import('./components/about-us/about-us.module').then(m => m.AboutUsModule)
+  },
+  {
+    path: 'adminAccount', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
   },
 ];
 

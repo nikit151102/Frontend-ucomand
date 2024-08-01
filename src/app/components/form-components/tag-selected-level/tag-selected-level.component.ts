@@ -1,22 +1,33 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, Input } from '@angular/core';
+import { Component, forwardRef, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-tag-selected-level',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './tag-selected-level.component.html',
-  styleUrl: './tag-selected-level.component.css'
+  styleUrls: ['./tag-selected-level.component.css'],
+  imports: [ CommonModule ],
+  standalone: true,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TagSelectedLevelComponent),
+      multi: true
+    }
+  ]
 })
-export class TagSelectedLevelComponent {
-
-  @Input() tags: string[] = [];
+export class TagSelectedLevelComponent implements ControlValueAccessor {
+  @Input() tags: { name: string, id: number }[] = [];
   @Input() placeholderValue: string = '';
-  @Input() maxTags:number = 3;
+  @Input() maxTags: number = 3;
+  @Output() tagsChanged = new EventEmitter<{ name: string, id: number, level: string, color: string }[]>();
 
   showTagBlock = false;
-  selectedTags: { name: string, level?: string, type: string, color: string }[] = [];
-  selectedTag: { name: string } | null = null;
+  selectedTags: { name: string, id: number, level: string, color: string }[] = [];
+  selectedTag: { name: string, id: number, level: string, color: string } | null = null;
+
+  private onChange: (value: any) => void = () => {};
+  private onTouched: () => void = () => {};
 
   toggleTagBlock(show: boolean) {
     setTimeout(() => {
@@ -24,41 +35,61 @@ export class TagSelectedLevelComponent {
     }, 200);
   }
 
-  selectTag(name: string ) {
+  selectTag(name: string, id: number) {
     if (this.selectedTag && this.selectedTag.name === name) {
-      this.selectedTag = null; 
+      this.selectedTag = null;
     } else {
-      this.selectedTag = {name: name};
+      this.selectedTag = { name: name, id: id, level: '', color: ''  };
     }
     this.showTagBlock = true;
   }
 
-  selectLevel(level: string, type: string = '', color: string = '') {
+  selectLevel(level: string, id: number , color: string = '') {
     if (this.selectedTag) {
       if (this.selectedTags.length < this.maxTags || this.selectedTags.some(t => t.name === this.selectedTag!.name)) {
         let existingTag = this.selectedTags.find(t => t.name === this.selectedTag!.name);
         if (existingTag) {
-          existingTag.level = level;
-          existingTag.type = type;
-          existingTag.color = color;
+           existingTag.level = level;
+           existingTag.color = color;
         } else {
-          this.selectedTags.push({ name: this.selectedTag.name, level: level, type: type, color: color });
+          this.selectedTags.push({ name: this.selectedTag.name, id: this.selectedTag.id, level: level, color: color});
         }
         this.selectedTag = null;
         this.showTagBlock = false;
+        this.onChange(this.selectedTags); // Сообщаем Angular формам о новом значении
+        this.tagsChanged.emit(this.selectedTags); // Emit event with updated tags
       } else {
-        // alert(`You can select up to ${this.maxTags} tags only.`);
-        
+        // alert(You can select up to ${this.maxTags} tags only.);
       }
     }
   }
-
-  deleteTag(tag: { name: string, level?: string }) {
-    this.selectedTags = this.selectedTags.filter(t => t !== tag);
+  
+  deleteTag(tag: { name: string, id: number, level: string }) {
+    this.selectedTags = this.selectedTags.filter(t => t.id !== tag.id);
+    this.onChange(this.selectedTags); // Сообщаем Angular формам о новом значении
+    this.tagsChanged.emit(this.selectedTags); // Вызываем событие с обновленными тегами
   }
 
-  
-  isInsideTagBlock = false;
+  // Реализация ControlValueAccessor
+  writeValue(value: any): void {
+    if (value) {
+      this.selectedTags = value;
+    } else {
+      this.selectedTags = [];
+    }
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    // Обработка состояния disabled, если необходимо
+  }
 
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
@@ -68,10 +99,8 @@ export class TagSelectedLevelComponent {
     }
   }
 
-
   @HostListener('click', ['$event'])
   onClickInside(event: MouseEvent) {
-    this.isInsideTagBlock = true;
     event.stopPropagation();
   }
 }

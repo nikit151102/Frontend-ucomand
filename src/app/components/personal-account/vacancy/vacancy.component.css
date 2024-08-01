@@ -52,8 +52,8 @@
 
 .chapterCard-value {
     font-family: var(--font-Monts);
-    font-weight: 600;
-    font-size: 12px;
+    font-weight: 400;
+    font-size: 0.8rem;
     line-height: 117%;
     text-transform: uppercase;
     color: var(--font-color);

@@ -24,14 +24,18 @@
 
 
             <ng-container *ngIf="tokenService.getToken()">
-                <diV>
+                <diV style=" display: flex;  flex-direction: column; align-items: flex-start;">
                     <p class="chapterCard-title">
                         Контакты:
                     </p>
-
+                    <div class="contacts-item">
+                        <img [src]="imagePath" alt="logo" width="24px">
+                        <p>Telegram</p>
+                    </div>
                 </diV>
             </ng-container>
-
+          
+          
             <ng-container *ngIf="!tokenService.getToken()">
                 <div>
                     <p class="titleLogin" style="margin-bottom: 0;">

@@ -1,0 +1,8 @@
+<div class="toggle-switch">
+    <button class="toggle-btn" [class.active]="homeService.typeToggle === 'vacancy'" (click)="toggle('vacancy')">
+        Смотреть вакансии
+    </button>
+    <button class="toggle-btn" [class.active]="homeService.typeToggle === 'resume'" (click)="toggle('resume')">
+        Смотреть резюме
+    </button>
+</div>

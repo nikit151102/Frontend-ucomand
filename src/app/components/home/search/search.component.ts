@@ -1,25 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home.service'
+import { ToggleSwitchComponent } from '../toggle-switch/toggle-switch.component';
+import { SettingHeaderService } from '../../setting-header.service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, ToggleSwitchComponent],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
 export class SearchComponent implements OnInit {
 
-  activeButton: string = '';
-
-  constructor(public homeService: HomeService){ }
-
+  constructor(public settingHeaderService: SettingHeaderService){}
   ngOnInit(): void {
-    this.activeButton = this.homeService.typeToggle;
-  }
 
-  toggle(button: string) {
-    this.activeButton = button;
-    this.homeService.typeToggle = button;
   }
 
 }

@@ -1,0 +1,37 @@
+<h3>{{Title}}</h3>
+<div class="createStatus">
+    <div style="display: flex; flex-direction: row; gap: 0.5rem;">
+        <span class="p-float-label">
+            <input pInputText id="username" [(ngModel)]="newStatus"  style="width: 100%;"/>
+            <label for="username">Название</label>
+        </span>
+            <p-button icon="pi pi-save" (click)="createStatus()"></p-button>
+    </div>
+   
+        <app-excel-reader style="display: flex; flex-direction: row; gap: 0.5rem;"></app-excel-reader>
+</div>
+
+<p-orderList [value]="products" [listStyle]="{ 'max-height': '30rem' }" filterBy="name" filterPlaceholder="Название">
+    <ng-template let-product pTemplate="item" style="border-bottom: 1px solid red;">
+        <div class="flex flex-wrap p-2 align-items-center gap-3">
+            <div class="horiz">
+                <div class="valueItem">
+                    <p>
+                        {{product.id}}
+                    </p>
+                    <p>
+                        {{product.name}}
+                    </p>
+                </div>
+                <p-button (click)="op.toggle($event)" icon="pi pi-ellipsis-v" [rounded]="true" [text]="true" />
+                <p-overlayPanel #op>
+                    <div class="btnsSetting">
+                        <p-button icon="pi pi-pencil" label="Изменить" [rounded]="true" [text]="true" (onClick)="onRowEditInit(product)" />
+                        <p-button icon="pi pi-times" label="Удалить" [rounded]="true" [text]="true" severity="danger"
+                            (click)="onRowDelete(product)" />
+                    </div>
+                </p-overlayPanel>
+            </div>
+        </div>
+    </ng-template>
+</p-orderList>

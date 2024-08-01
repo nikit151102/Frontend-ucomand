@@ -6,50 +6,6 @@
 }
 
 
-.toggle-switch {
-    display: flex;
-    border-radius: 2.5rem;
-    overflow: hidden;
-    box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
-    background: rgba(51, 51, 52, 0.3);
-}
-
-.toggle-btn {
-    flex: 1;
-    padding: 12px 20px;
-    text-align: center;
-    cursor: pointer;
-    border: none;
-
-    color: #fff;
-    transition: background 0.3s, color 0.3s;
-}
-
-.toggle-btn.active {
-    border-radius: 30px;
-    padding: 16px 65px;
-    box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
-    background: #fff;
-
-    white-space: nowrap;
-    font-family: var(--font-Monts);
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 117%;
-    color: #101010;
-}
-
-.toggle-btn:not(.active) {
-    background: none;
-    white-space: nowrap;
-    font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 1rem;
-    line-height: 117%;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-
 
 .search-container {
     position: relative;
@@ -127,18 +83,15 @@
 
 @media (max-width: 768px) {
 
-    .toggle-btn {
-        font-size: 0.8rem;
-        padding: 0.8rem 0.5rem 0.8rem 0.5rem;
+    .toggleSwitch{
+        background: #806BFF;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        padding-bottom: 0.5rem;
     }
-    
-    .toggle-btn.active {
-        font-size: 0.8rem;
-        padding: 0.8rem 0.5rem 0.8rem 0.5rem;
-    }
-    .toggle-btn:not(.active){
-        font-size: 0.8rem;
-        padding: 0.8rem 0.5rem 0.8rem 0.5rem;
+    .toggleSwitch-component{
+        width: 94%;
     }
 
     .conteiner {
@@ -151,11 +104,13 @@
     .search-container:hover .search-input,
     .search-input:focus,
     .search-input:not(:placeholder-shown) {
-        width: 100%;
+        width: 98%;
 
     }
 
     .search-container, .search-box, .search-input{
-        width: 100%;
+        width: 98%;
+        display: flex;
+        justify-content: center;
     }
 }

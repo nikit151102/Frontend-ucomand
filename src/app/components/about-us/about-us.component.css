@@ -57,7 +57,7 @@
     /* Фон должен быть позади контента */
 }
 
-.destiny-title{
+.destiny-title {
     padding: 0 1.5rem;
     font-family: var(--font-Monts);
     font-weight: 700;
@@ -85,7 +85,7 @@
     background: #5a4bb8;
 }
 
-.appeal-title-content{
+.appeal-title-content {
     display: flex;
     flex-direction: column;
 }
@@ -98,9 +98,9 @@
     color: #fff;
 }
 
-.logo{
-display: flex;
-flex-direction: row;
+.logo {
+    display: flex;
+    flex-direction: row;
 }
 
 
@@ -131,4 +131,57 @@ flex-direction: row;
     font-size: 12px;
     line-height: 117%;
     color: var(--font-color);
+}
+
+
+
+@media (max-width: 789px) {
+    .container {
+        width: 95%;
+        margin-top: 100px;
+    }
+
+    .backgroundImgs,
+    .overlay-top-right {
+        display: none;
+    }
+
+    .title {
+        padding: 0.5rem;
+    }
+
+    .title p {
+        font-family: var(--font-Monts);
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 125%;
+        color: #101010;
+        padding: 1rem;
+        margin: 0;
+    }
+
+    .container_chapter {
+        margin-top: 1rem !important;
+    }
+
+    .destiny-chapter {
+        flex-direction: column;
+    }
+
+    .destiny::before {
+        display: none;
+    }
+
+    .destinyItem {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+    }
+
+    .appeal {
+        width: 100%;
+    }
+
+    .destiny-title {
+        padding: 1rem 0px 0px 0 !important;
+    }
 }

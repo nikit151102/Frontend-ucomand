@@ -52,6 +52,8 @@ export class MenuNavComponent {
       document.documentElement.style.setProperty('--card-archive', '#272727');
       document.documentElement.style.setProperty('--background-card-account', '#5a4bb8');
       document.documentElement.style.setProperty('--card-hover-account', 'rgba(255, 255, 255, 0.1)');
+      document.documentElement.style.setProperty('--line-item', 'rgba(255, 255, 255, 0.1)');
+      
     }else{
       document.documentElement.style.setProperty('--background', '#f2f2f2');
       document.documentElement.style.setProperty('--background-card', '#fff');
@@ -61,6 +63,7 @@ export class MenuNavComponent {
       document.documentElement.style.setProperty('--card-archive', '#fff');
       document.documentElement.style.setProperty('--background-card-account', '#fff');
       document.documentElement.style.setProperty('--card-hover-account', '#a6eb20');
+      document.documentElement.style.setProperty('--line-item', 'rgba(0, 0, 0, 0.1)');
     }
     
   }  

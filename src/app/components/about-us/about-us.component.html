@@ -1,4 +1,4 @@
-<app-background-imgs style=" width: 100%; z-index: -1; position: absolute; top: -120px;"></app-background-imgs>
+<app-background-imgs style=" width: 100%; z-index: -1; position: absolute; top: -120px;" class="backgroundImgs"></app-background-imgs>
 <div class="container">
     <div class="title">
         <P>
@@ -15,7 +15,7 @@
         </p>
     </ng-container>
 </div>
-<div class="container" style="margin-top: 100px;">
+<div class="container container_chapter" style="margin-top: 100px;">
     <div class="chapter">
         <div class="chapter-content">
             <div class="destiny">
@@ -24,7 +24,7 @@
                 </p>
                 <div class="destiny-chapter">
                     <div class="destiny-content" style="flex: 6;">
-                        <app-destiny-item *ngFor="let item of destinyList" [value]="item"></app-destiny-item>
+                        <app-destiny-item *ngFor="let item of destinyList" [value]="item" class="destinyItem"></app-destiny-item>
                     </div>
                     <div class="destiny-content" style="flex: 4;">
                         <div class="appeal">

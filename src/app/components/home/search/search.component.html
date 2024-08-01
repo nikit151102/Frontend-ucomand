@@ -1,23 +1,22 @@
 <div class="conteiner">
-
-    <div class="toggle-switch">
-        <button class="toggle-btn" [class.active]="homeService.typeToggle === 'vacancy'" (click)="toggle('vacancy')">
-            Смотреть вакансии
-        </button>
-        <button class="toggle-btn" [class.active]="homeService.typeToggle === 'resume'" (click)="toggle('resume')">
-            Смотреть резюме
-        </button>
+    <div class="toggleSwitch">
+        <app-toggle-switch class="toggleSwitch-component"></app-toggle-switch>
     </div>
-    <div class="search-container">
-        <div class="search-box">
-            <input type="text" class="search-input" placeholder="Строка поиска">
-            <button class="search-button">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M19.6 11C19.6 15.7496 15.7496 19.6 11 19.6C6.25035 19.6 2.4 15.7496 2.4 11C2.4 6.25035 6.25035 2.4 11 2.4C15.7496 2.4 19.6 6.25035 19.6 11ZM16.9995 19.0011C15.3282 20.2563 13.251 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11C21 13.767 19.8762 16.2714 18.0602 18.0819L21.9891 22.0109C22.2625 22.2843 22.2625 22.7275 21.9891 23.0008C21.7157 23.2742 21.2725 23.2742 20.9992 23.0008L16.9995 19.0011Z" fill="#806BFF"/>
-                </svg>
-            </button>
+
+    <div>
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Строка поиска">
+                <button class="search-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M19.6 11C19.6 15.7496 15.7496 19.6 11 19.6C6.25035 19.6 2.4 15.7496 2.4 11C2.4 6.25035 6.25035 2.4 11 2.4C15.7496 2.4 19.6 6.25035 19.6 11ZM16.9995 19.0011C15.3282 20.2563 13.251 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11C21 13.767 19.8762 16.2714 18.0602 18.0819L21.9891 22.0109C22.2625 22.2843 22.2625 22.7275 21.9891 23.0008C21.7157 23.2742 21.2725 23.2742 20.9992 23.0008L16.9995 19.0011Z"
+                            fill="#806BFF" />
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
-    
-    
+
+
 </div>

@@ -47,8 +47,8 @@
 
 .fullName {
     font-family: var(--font-Monts);
-    font-weight: 600;
-    font-size: 1.2rem;
+    font-weight: 500;
+    font-size: 1rem;
     line-height: 117%;
     color: var(--font-color);
 }
@@ -56,8 +56,8 @@
 .information-user {
     margin-top: 1rem;
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.85rem;
     line-height: 117%;
     color: var(--font-color);
 }
@@ -90,13 +90,21 @@ p {
 .date_registration {
     display: flex;
     justify-content: flex-end;
+    gap: 0.5rem;
     flex-wrap: wrap;
     font-family: var(--font-Monts);
     font-weight: 500;
+    font-size: 0.8rem;
     line-height: 117%;
     color: var(--font-color);
 }
-
+.date_registration .title{
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: var(--font-color);
+}
 .message-profile {
     border: 1px solid #fff25f;
     border-radius: 20px;
@@ -168,8 +176,8 @@ p {
 .message-cards {
     padding: 0 0 1rem 1.5rem;
     font-family: var(--font-Monts);
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: 500;
+    font-size: 0.9rem;
     line-height: 117%;
     text-transform: uppercase;
     color: var(--font-color);

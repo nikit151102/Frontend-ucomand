@@ -8,13 +8,13 @@
             <ng-container *ngIf="homeService.typeToggle === 'vacancy'">
                 <ng-container *ngFor="let item of vacanciesData">
                     <app-card-vacancy [cardItem]="item" class="app-card-vacancy"
-                        (click)="viewCard(item)"></app-card-vacancy>
+                        (click)="viewCard(item, 'vacancy')"></app-card-vacancy>
                 </ng-container>
             </ng-container>
             <ng-container *ngIf="homeService.typeToggle === 'resume'">
                 <ng-container *ngFor="let item of resumesData">
                     <app-card-resume [cardItem]="item" class="app-card-vacancy"
-                        (click)="viewCard(item)"></app-card-resume>
+                        (click)="viewCard(item, 'resume')"></app-card-resume>
                 </ng-container>
             </ng-container>
         </div>

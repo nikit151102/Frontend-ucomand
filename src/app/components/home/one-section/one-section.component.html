@@ -1,21 +1,17 @@
-
 <div class="content">
-    <app-background-imgs style=" width: 100%; z-index: -1; position: absolute; top: -120px;"></app-background-imgs>
-<div class="overlay-top-right">
-  <div class="tag-container">
-    <!-- Первый набор тегов -->
-    <ng-container *ngFor="let item of tagsList">
-      <p class="tag">{{ item }}</p>
-    </ng-container>
-    <!-- Второй набор тегов -->
-    <ng-container *ngFor="let item of tagsList">
-      <p class="tag">{{ item }}</p>
-    </ng-container>
-  </div>
-</div>
-
-      
-      
+    <app-background-imgs style=" width: 100%; z-index: -1; position: absolute; top: -120px;" class="background-imgs"></app-background-imgs>
+    <div class="overlay-top-right">
+        <div class="tag-container">
+            <!-- Первый набор тегов -->
+            <ng-container *ngFor="let item of tagsList">
+                <p class="tag">{{ item }}</p>
+            </ng-container>
+            <!-- Второй набор тегов -->
+            <ng-container *ngFor="let item of tagsList">
+                <p class="tag">{{ item }}</p>
+            </ng-container>
+        </div>
+    </div>
 
     <div class="main">
 
@@ -28,13 +24,12 @@
                     Площадка для поиска единомышленников и команды.
                 </p>
             </div>
-    
+
             <div class="btns">
                 <button class="btnVacancy" (click)="newVacancy()">
                     Разместить вакансии
                     <span class="mobile-svg">
-                        <svg width="27" height="12" viewBox="0 0 27 12" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
+                        <svg width="27" height="12" viewBox="0 0 27 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M26.495 6.49497C26.7683 6.22161 26.7683 5.77839 26.495 5.50503L22.0402 1.05025C21.7668 0.776886 21.3236 0.776886 21.0503 1.05025C20.7769 1.32362 20.7769 1.76684 21.0503 2.0402L25.01 6L21.0503 9.9598C20.7769 10.2332 20.7769 10.6764 21.0503 10.9497C21.3236 11.2231 21.7668 11.2231 22.0402 10.9497L26.495 6.49497ZM0 6.7H26V5.3H0V6.7Z"
                                 fill="white" />
@@ -44,8 +39,7 @@
                 <button class="btnResume" (click)="newResume()">
                     Разместить резюме
                     <span class="mobile-svg">
-                        <svg width="27" height="12" viewBox="0 0 27 12" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
+                        <svg width="27" height="12" viewBox="0 0 27 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M26.495 6.49497C26.7683 6.22161 26.7683 5.77839 26.495 5.50503L22.0402 1.05025C21.7668 0.776886 21.3236 0.776886 21.0503 1.05025C20.7769 1.32362 20.7769 1.76684 21.0503 2.0402L25.01 6L21.0503 9.9598C20.7769 10.2332 20.7769 10.6764 21.0503 10.9497C21.3236 11.2231 21.7668 11.2231 22.0402 10.9497L26.495 6.49497ZM0 6.7H26V5.3H0V6.7Z"
                                 fill="white" />
@@ -53,13 +47,13 @@
                     </span>
                 </button>
             </div>
-    
+
         </div>
     </div>
-    
+
     <div class="search">
         <div class="search-container">
-            <app-search > </app-search>
+            <app-search> </app-search>
         </div>
     </div>
 </div>

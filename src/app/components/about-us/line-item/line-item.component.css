@@ -13,7 +13,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--line-item);
     border-radius: 50px;
     margin-left: -10px;
     padding: 0 10px;
@@ -29,5 +29,5 @@
     font-weight: 400;
     font-size: 0.8rem;
     line-height: 114%;
-    color: #fff;
+    color: var(--font-color);
 }

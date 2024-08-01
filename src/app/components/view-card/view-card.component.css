@@ -54,8 +54,8 @@
 
 .fullName {
     font-family: var(--font-Monts);
-    font-weight: 600;
-    font-size: 1.2rem;
+    font-weight: 400;
+    font-size: 1rem;
     line-height: 117%;
     color: var(--font-color);
 }
@@ -68,6 +68,33 @@
     line-height: 117%;
     color: var(--font-color);
 }
+
+.contacts-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 20px;
+    padding: 6px 12px 6px 8px;
+    background: #e2e2e2;
+}
+
+.contacts-item img {
+    object-fit: contain;
+}
+
+.contacts-item p {
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 120%;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: #101010;
+}
+
+
 
 .titleLogin {
     font-family: var(--font-Monts);

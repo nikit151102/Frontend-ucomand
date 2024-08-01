@@ -72,7 +72,7 @@
 }
 
 .chapter-title {
-    padding: 0px 2.3rem;
+    padding: 0px 2.3rem 0.5rem  2.3rem ;
     font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
@@ -89,8 +89,8 @@
 .input-group label {
     padding: 0.1rem 2rem;
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.9rem;
     line-height: 140%;
     color: #101010;
 }
@@ -107,6 +107,12 @@
     font-size: 1rem;
     line-height: 140%;
 }
+.input-group input::placeholder {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.8rem; 
+    line-height: 140%;
+}
 
 .input-group textarea {
     border: 1px solid #e2e2e2;
@@ -120,7 +126,14 @@
     font-size: 1rem;
     line-height: 140%;
 }
-
+.gender_title {
+    padding: 0.1rem 2rem;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 140%;
+    color: #101010;
+}
 
 .chapter-domain {
     display: flex;
@@ -174,8 +187,8 @@
 
 .approval label {
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 0.9rem;
+    font-weight: 400;
+    font-size: 0.7rem;
     line-height: 117%;
     color: var(--font-color);
 }
@@ -212,6 +225,7 @@
     .content-column {
         width: 100%;
     }
+
 
 
     .icon {
