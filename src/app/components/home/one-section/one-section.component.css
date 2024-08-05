@@ -26,14 +26,12 @@
 }
 
 
-
-
 .overlay-top-right {
     display: flex;
     overflow: hidden;
     position: relative;
     white-space: nowrap;
-    width: 100%;
+    width: 200%;
     background-color: transparent;
 }
 
@@ -46,10 +44,19 @@
     background-color: transparent;
 }
 
+.tag-container-toleft {
+    display: flex;
+    white-space: nowrap;
+    gap: 0.5rem;
+    width: 250%;
+    animation: slidetoleft 20s linear infinite;
+    background-color: transparent;
+}
+
 .tag {
     display: inline-block;
     background: none;
-    border: 1px solid var(--font-color);
+    border: 0.5px solid var(--font-color);
     border-radius: 1.3rem;
     padding: 8px 10px;
     margin: 0;
@@ -67,14 +74,19 @@
     }
 
     100% {
-        transform: translateX(-50%);
+        transform: translateX(50%);
     }
 }
 
+@keyframes slidetoleft {
+    0% {
+        transform: translateX(0);
+    }
 
-
-
-
+    100% {
+        transform: translateX(-50%);
+    }
+}
 
 
 
@@ -148,9 +160,15 @@ button {
 }
 
 
+.mobile-svg{
+    display: none;
+}
 
 
 @media (max-width: 789.98px) {
+    .mobile-svg{
+        display: block;
+    }
     .main {
         display: none;
     }

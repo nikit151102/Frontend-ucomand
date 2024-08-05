@@ -12,6 +12,19 @@
             </ng-container>
         </div>
     </div>
+    <div class="overlay-top-right">
+        <div class="tag-container-toleft">
+            <!-- Первый набор тегов -->
+            <ng-container *ngFor="let item of tagsList">
+                <p class="tag">{{ item }}</p>
+            </ng-container>
+            <!-- Второй набор тегов -->
+            <ng-container *ngFor="let item of tagsList">
+                <p class="tag">{{ item }}</p>
+            </ng-container>
+        </div>
+    </div>
+    
 
     <div class="main">
 
@@ -52,8 +65,8 @@
     </div>
 
     <div class="search">
-        <div class="search-container">
-            <app-search> </app-search>
+        <div class="search-container ">
+            <app-search > </app-search>
         </div>
     </div>
 </div>

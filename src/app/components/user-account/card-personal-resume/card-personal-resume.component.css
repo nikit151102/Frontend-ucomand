@@ -24,7 +24,7 @@ p {
     font-weight: 500;
     font-size: 0.8rem;
     line-height: 117%;
-    color: #fff;
+    color: var(--font-color);
     margin-bottom: 0.3rem;
 }
 
@@ -37,21 +37,21 @@ p {
 .value {
     width: 90%;
     font-family: var(--font-Monts);
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: 500;
+    font-size: 14px;
     line-height: 114%;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .level{
-    border-radius: 10px;
-    padding: 8px 10px;
+    border-radius: 5px;
+    padding: 4px 6px;
     font-family: var(--font-Monts);
-    font-weight: 600;
-    font-size: 0.8rem;
+    font-weight: 400;
+    font-size: 0.7rem;
     line-height: 120%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .container-date {
@@ -70,7 +70,7 @@ p {
     font-family: var(--font-Monts);
     font-weight: 500;
     line-height: 120%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .dateTitle {

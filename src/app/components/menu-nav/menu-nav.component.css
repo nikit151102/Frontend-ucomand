@@ -188,10 +188,11 @@ a {
     flex-direction: row;
     align-items: center;
     border-radius: 200px;
+    min-width: 110px;
     height: 66px;
     gap: 0.5rem;
     padding-right: 0.5rem;
-    padding-left: 0.5rem;
+    padding-left: 1rem;
     background: #806bff;
 }
 
@@ -206,7 +207,7 @@ a {
     padding: 1rem;
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     line-height: 117%;
     color: #fff;
 }
@@ -226,6 +227,14 @@ a {
     font-size: 1rem;
     line-height: 117%;
     color: #fff;
+}
+
+.navBTN .nav-circle {
+    fill: #84DD2C; /* Новый цвет при наведении */
+}
+
+.navBTN:hover .nav-circle {
+    fill: #5A4BB8; /* Новый цвет при наведении */
 }
 
 @media (max-width: 768px) {

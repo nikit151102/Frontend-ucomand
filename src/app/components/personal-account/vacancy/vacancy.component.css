@@ -15,10 +15,11 @@
 }
 
 
+
 .title {
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 14px;
+    font-size: 0.8;
     line-height: 114%;
     color: var(--font-color);
 }
@@ -31,7 +32,7 @@
     justify-content: space-between;
 }
 
-.lookingCard-level {
+.lookingCard_level {
     padding: 4px 6px;
     margin: 0;
     border-radius: 5px;
@@ -42,7 +43,7 @@
     color: var(--font-color);
 }
 
-.chapterCard-title {
+.chapterCard_title {
     font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 12px;
@@ -50,7 +51,7 @@
     color: var(--font-color);
 }
 
-.chapterCard-value {
+.chapterCard_value {
     font-family: var(--font-Monts);
     font-weight: 400;
     font-size: 0.8rem;
@@ -157,3 +158,4 @@
 .menu_btn a:hover {
     background: #B9AEFF;
 }
+

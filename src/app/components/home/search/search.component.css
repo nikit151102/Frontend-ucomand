@@ -1,8 +1,10 @@
-.conteiner {
+ .conteiner {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 1rem;
+    position: relative;
+    z-index: 999;
 }
 
 
@@ -35,7 +37,6 @@
     transition: width 0.5s ease-in-out;
     /* Only specify transition once */
     background-color: #ffff;
-    padding-right: 40px;
     color: #000000;
 }
 
@@ -63,9 +64,8 @@
 .search-input:focus,
 .search-input:not(:placeholder-shown) {
     /* Adjust width based on focus and content */
-    width: 350px;
+    width: 400px;
     /* Expanded width */
-    transition: width 0.5s cubic-bezier(0, 0.110, 0.35, 2);
     /* Specify transition properties */
 }
 

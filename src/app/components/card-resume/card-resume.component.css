@@ -6,7 +6,7 @@
     width: 100%;
     box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
     background: var(--background-card);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     break-inside: avoid;
 }
 
@@ -18,9 +18,11 @@
 .title {
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     line-height: 114%;
     color: var(--font-color);
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .chapterCard {}
@@ -35,8 +37,8 @@
 
 .chapterCard-value {
     font-family: var(--font-Monts);
-    font-weight: 600;
-    font-size: 12px;
+    font-weight: 500;
+    font-size: 14px;
     line-height: 117%;
     text-transform: uppercase;
     color: var(--font-color);

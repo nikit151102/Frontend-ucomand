@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 69%;
+    width: 65%;
     margin: 0 auto;
     margin-top: 100px;
     box-sizing: border-box;
@@ -37,7 +37,8 @@
 .ProfileChapter {
     display: flex;
     flex-direction: row;
-    gap: 2rem;
+    align-items: flex-end;
+    gap: 1rem;
     padding: 1rem 2rem 0px 2rem;
 }
 
@@ -53,6 +54,7 @@
 }
 
 .fullName {
+    margin: 0;
     font-family: var(--font-Monts);
     font-weight: 400;
     font-size: 1rem;
@@ -85,9 +87,9 @@
 
 .contacts-item p {
     margin: 0;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     line-height: 120%;
     text-decoration: underline;
     text-decoration-skip-ink: none;
@@ -137,6 +139,10 @@
     color: #fff;
     justify-content: center;
     text-decoration: none;
+}
+
+.btnAccount_user:hover {
+    background: #806BFF;
 }
 
 @media (max-width: 768px) {

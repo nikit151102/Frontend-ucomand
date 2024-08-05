@@ -1,20 +1,18 @@
 <div class="card">
-    <p class="title">
-        {{viewCardService.selectedCard.title}}
-    </p>
     <div class="chapterCard">
         <p class="chapterCard-title" style="margin-bottom: 0;">
-            Ищу:
+            Специальность:
         </p>
         <div class="lookingCard">
             <p class="chapterCard-value" style="margin-top: 0.5rem; width: 90%;">
-                {{viewCardService.selectedCard.context}}
+                {{viewCardService.selectedCard.specialization}}
             </p>
-            <p [ngStyle]="{ 'background': getSkillsColor(viewCardService.selectedCard.contextLevel) }">
+            <p [ngStyle]="{ 'background': getSkillsColor(viewCardService.selectedCard.contextLevel) }" class="level">
                 {{viewCardService.selectedCard.contextLevel}}
             </p>
         </div>
     </div>
+    
     <div class="chapterCard">
         <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
             Навыки:

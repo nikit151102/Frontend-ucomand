@@ -6,6 +6,8 @@ import { PersonalResumeComponent } from '../resume/resume.component';
 import { PersonalVacancyComponent } from '../vacancy/vacancy.component';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, ActivatedRoute} from '@angular/router';
+import { DomainService } from '../../domain.service';
+import { ViewCardService } from '../../view-card/view-card.service';
 
 @Component({
   selector: 'app-personal-home',
@@ -16,12 +18,24 @@ import { Router, RouterLink, ActivatedRoute} from '@angular/router';
 })
 export class PersonalHomeComponent implements OnInit {
 
-  constructor(private settingHeaderService: SettingHeaderService, private router: Router, private route: ActivatedRoute) { }
-
+  constructor(private settingHeaderService: SettingHeaderService, private router: Router, 
+    private route: ActivatedRoute, private domainService: DomainService, 
+    public viewCardService: ViewCardService) { }
+    imagePath: string = '';
+    domainName: string = '';
   ngOnInit(): void {
     this.settingHeaderService.shared = true;
     this.settingHeaderService.post = true;
     this.settingHeaderService.backbtn = false;
+
+    this.settingHeaderService.shared = true;
+      this.settingHeaderService.backbtn = true;
+      const urlString = this.viewCardService.selectedUser.url;
+      this.domainName = this.domainService.setDomain(urlString);
+      console.log("property", this.domainName)
+      this.domainService.checkImageExists(this.domainName).then((path) => {
+        this.imagePath = path;
+      });
   }
   getRouting() {
     this.router.navigate(['../personalData'], { relativeTo: this.route });

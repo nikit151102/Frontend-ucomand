@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    width: 69%;
+    width: 65%;
     margin: 0 auto;
     margin-top: 100px;
     box-sizing: border-box;
@@ -22,10 +22,9 @@
 .title {
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     line-height: 140%;
-    color: #fff;
-
+    color: var(--font-color);
 }
 
 .ProfileChapter {
@@ -35,28 +34,15 @@
     padding: 1rem 2rem 0px 2rem;
 }
 
-.profile {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    margin-top: 1rem;
-}
 
-.fullName {
-    font-family: var(--font-Monts);
-    font-weight: 600;
-    font-size: 1.2rem;
-    line-height: 117%;
-    color: #fff;
-}
 
 .information-user {
     margin-top: 1rem;
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.85rem;
     line-height: 117%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .personal-details {
@@ -64,11 +50,12 @@
     flex-direction: row;
     width: 100%;
     margin-top: 1rem;
-    color: #fff;
+    color: var(--font-color);
 }
 
 p {
     margin: 0;
+
 }
 
 .location,
@@ -76,6 +63,11 @@ p {
     flex: 1;
     display: flex;
     flex-direction: column;
+
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.85rem;
+    line-height: 117%;
 }
 
 .contacts {
@@ -88,15 +80,76 @@ p {
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
+    align-items: flex-end;
     font-family: var(--font-Monts);
     font-weight: 500;
+    font-size: 0.8rem;
     line-height: 117%;
-    color: #ffff;
+    color: var(--font-color);
     gap: 0.5rem;
 }
 
+.ProfileChapter {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 1rem;
+    padding: 1rem 2rem 0px 2rem;
+}
 
+.profile {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
 
+.logo {
+    width: 100px;
+}
+
+.fullName {
+    margin: 0;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 117%;
+    color: var(--font-color);
+}
+
+.chapterCard-title {
+    margin-bottom: 0.5rem;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 117%;
+    color: var(--font-color);
+}
+
+.contacts-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 20px;
+    padding: 6px 12px 6px 8px;
+    background: #e2e2e2;
+}
+
+.contacts-item img {
+    object-fit: contain;
+}
+
+.contacts-item p {
+    margin: 0;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 120%;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: #101010;
+}
 
 
 
@@ -135,9 +188,10 @@ p {
     padding-bottom: 1rem;
 }
 
-.logoImg{
+.logoImg {
     width: 6vw;
 }
+
 @media (max-width : 865px) {
 
     .first-part,
@@ -147,14 +201,14 @@ p {
 }
 
 @media (max-width: 789.98px) {
-    .container{
+    .container {
         width: 95%;
         margin-top: 150px;
     }
 
-    
-.logoImg{
-    width: 14vw;
-}
-    
+
+    .logoImg {
+        width: 14vw;
+    }
+
 }

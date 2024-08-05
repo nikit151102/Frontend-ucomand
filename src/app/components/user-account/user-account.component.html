@@ -29,9 +29,23 @@
                 </div>
             </div>
         </div>
-        <div class="contacts">
+        <div class="contacts" style=" padding-top: 1rem;">
             <div>
-                <p class="title">Контакты:</p>
+                 <p class="chapterCard-title">
+                    Контакты:
+                </p>
+                <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
+       
+                    <div class="contacts-item">
+                        <img src="assets/domains/t.png" alt="logo" width="24px">
+                        <p>Telegram</p>
+                    </div>
+                    <div class="contacts-item">
+                        <img [src]="imagePath" alt="logo" width="24px">
+                        <p>{{domainName}}</p>
+                    </div>
+                    
+                </diV>
             </div>
            
             <div class="date_registration">

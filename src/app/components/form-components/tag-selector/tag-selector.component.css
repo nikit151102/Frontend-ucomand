@@ -20,7 +20,12 @@
     border: 1px solid #e2e2e2  !important; 
     outline: none;
 }
-
+.tag-input::placeholder {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.8rem; 
+    line-height: 140%;
+}
 .tag-block {
     display: flex;
     flex-wrap: wrap;
