@@ -25,7 +25,7 @@ p {
 .title {
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 12px;
     line-height: 117%;
     color: var(--font-color);
     margin-bottom: 0.3rem;
@@ -43,8 +43,8 @@ p {
 
 .value {
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 14px;
+    font-weight: 400;
+    font-size: 0.8rem;
     line-height: 117%;
     text-transform: uppercase;
     color: var(--font-color);
