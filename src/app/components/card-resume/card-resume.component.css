@@ -17,15 +17,14 @@
 
 .title {
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 0.9rem;
+    font-weight: 400;
+    font-size: 0.8rem;
     line-height: 114%;
     color: var(--font-color);
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.chapterCard {}
 
 .chapterCard-title {
     font-family: var(--font-Monts);
@@ -53,7 +52,7 @@
 .tag {
     border: 1px solid #806bff;
     border-radius: 10px;
-    padding: 3px 8px 3px 8px;
+    padding: 4px 8px 4px 8px;
     background: rgba(243, 243, 243, 0.1);
 
     font-family: var(--font-Monts);

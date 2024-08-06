@@ -10,7 +10,8 @@
                 <div class="firstRow">
                     <div class="stage">
                         <p class="stage-title">Заголовок:</p>
-                        <input type="text" formControlName="title" placeholder="Поле ввода">
+                        <textarea formControlName="title" placeholder="Поле ввода" (input)="adjustHeight($event)"></textarea>
+
                     </div>
                 </div>
             </ng-container>

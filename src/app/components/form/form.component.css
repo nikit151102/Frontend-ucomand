@@ -1,6 +1,6 @@
 .container{
     margin: 0 auto; 
-    width: 65%;
+    width: 75%;
 }
 
 input, textarea{
@@ -8,6 +8,19 @@ input, textarea{
     font-weight: 500;
     font-size: 0.9rem;
     line-height: 140%;
+}
+
+textarea{
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    padding: 16px;
+    width: 100%;
+    height: 46px;
+    outline: none;
+    box-sizing: border-box; /* Убедитесь, что padding не увеличивает размер */
+    overflow: hidden;
+    resize: none; /* Запретить изменение размера пользователем */
+    transition: height 0.2s ease; 
 }
 
 .creation {

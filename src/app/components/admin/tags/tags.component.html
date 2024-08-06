@@ -7,8 +7,8 @@
         </span>
             <p-button icon="pi pi-save" (click)="createStatus()"></p-button>
     </div>
-   
-        <app-excel-reader style="display: flex; flex-direction: row; gap: 0.5rem;"></app-excel-reader>
+
+        <app-excel-reader style="display: flex; flex-direction: row; gap: 0.5rem;" [nameFile]="'sample'"></app-excel-reader>
 </div>
 
 <p-orderList [value]="products" [listStyle]="{ 'max-height': '30rem' }" filterBy="name" filterPlaceholder="Название">

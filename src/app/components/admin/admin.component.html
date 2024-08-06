@@ -20,5 +20,8 @@
         <ng-container *ngIf="TypeSetting === 'skills'">
             <app-tags [Service]="skillsService" [Title]="'Навыки'" [IsDropList]="false" class="viewData"></app-tags>
         </ng-container>
+        <ng-container *ngIf="TypeSetting === 'notifications'">
+            <app-notifications  class="viewData"></app-notifications>
+        </ng-container>
     </div>
 </ng-container>

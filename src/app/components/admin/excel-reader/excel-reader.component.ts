@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { FileUpload, FileUploadModule } from 'primeng/fileupload';
 import { CommonModule } from '@angular/common';
@@ -14,6 +14,8 @@ import { ButtonModule } from 'primeng/button';
 export class ExcelReaderComponent {
   data: any[] = [];
   fileUploaded: boolean = false;
+
+  @Input() nameFile:string = '';
 
   constructor() { }
 
@@ -59,12 +61,12 @@ export class ExcelReaderComponent {
 
   downloadFile() {
     // Путь к файлу в папке assets
-    const fileUrl = 'assets/sample.xlsx';
+    const fileUrl = `assets/${this.nameFile}.xlsx`
     
     // Создание временной ссылки
     const link = document.createElement('a');
     link.href = fileUrl;
-    link.download = 'sample.xlsx';  // Имя файла, как он будет сохраняться
+    link.download = `${this.nameFile}.xlsx`;  // Имя файла, как он будет сохраняться
     
     // Имитация клика на ссылку для начала загрузки
     link.click();

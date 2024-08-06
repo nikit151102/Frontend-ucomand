@@ -63,7 +63,11 @@ export class FormComponent implements OnInit {
 
     console.log(formData);
   }
-
+  adjustHeight(event: Event): void {
+    const textarea = event.target as HTMLTextAreaElement;
+    textarea.style.height = '46px'; // Сбросить высоту
+    textarea.style.height = `${textarea.scrollHeight}px`; // Установить новую высоту
+  }
 
   visible: boolean = false;
   paul!: string;

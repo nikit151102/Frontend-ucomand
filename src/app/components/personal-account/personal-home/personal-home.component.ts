@@ -59,4 +59,6 @@ export class PersonalHomeComponent implements OnInit {
       fullName: 'Петрова Елена Александровна',
       date: '2024-06-29'
     }]
+
+    
 }
