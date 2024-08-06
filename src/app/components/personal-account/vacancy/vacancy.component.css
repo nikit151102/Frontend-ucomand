@@ -42,7 +42,13 @@
     line-height: 120%;
     color: var(--font-color);
 }
-
+.chapterCard-title{
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: var(--font-color);
+}
 .chapterCard_title {
     font-family: var(--font-Monts);
     font-weight: 500;
