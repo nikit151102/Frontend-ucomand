@@ -26,6 +26,9 @@ const routes: Routes = [
     path: 'aboutUs', loadChildren: () => import('./components/about-us/about-us.module').then(m => m.AboutUsModule)
   },
   {
+    path: 'notifications', loadChildren: () => import('./components/notification/notification.module').then(m => m.NotificationModule)
+  },
+  {
     path: 'adminAccount', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
   },
 ];
