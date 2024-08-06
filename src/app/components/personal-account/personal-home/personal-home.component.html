@@ -72,13 +72,13 @@
     <div class="second-path">
         <div style="flex: 1; display: flex; flex-direction: column; gap: 3rem;">
             <div class="container-resume">
-                <p class="title-cards">
+                <p class="title-cards titleActive ">
                     Активные резюме:
                 </p>
                 <div class="cards">
                     <app-personal-resume [cardItem]="personalVacanciesData[0]"></app-personal-resume>
                 </div>
-                <div class="message-cards">
+                <div class="message-cards titleActive">
                     нет активных резюме
                 </div>
             </div>
@@ -93,14 +93,14 @@
         </div>
         <div style="flex: 1; display: flex; flex-direction: column; gap: 3rem;">
             <div class="container-vacancy">
-                <p class="title-cards">
+                <p class="title-cards titleActive">
                     Активные вакансии:
                 </p>
                 <div class="cards">
                     <app-personal-vacancy *ngFor="let item of personalVacanciesData"
                         [cardItem]="item"></app-personal-vacancy>
                 </div>
-                <div class="message-cards">
+                <div class="message-cards titleActive">
                     нет активных вакансий
                 </div>
             </div>

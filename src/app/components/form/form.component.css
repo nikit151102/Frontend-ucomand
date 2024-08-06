@@ -201,10 +201,22 @@ textarea{
 .deleteBtn {
     padding: 12px;
     background: #e2e2e2;
-    color: #101010;
+    color: var(--font-color);
 }
 .deleteBtn:hover {
     background: #b9aeff;
+}
+
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover{
+    
+    border-color: #806BFF !important;
+    background: #806BFF !important;
+}
+
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight{
+    
+    border-color: #806BFF !important;
+    background: #806BFF !important;
 }
 
 @media (max-width: 1200px) {

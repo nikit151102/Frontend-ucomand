@@ -58,6 +58,8 @@ display: none;
     background: #e2e2e2;
     text-decoration: none;
     color: black;
+    font-weight: 500;
+    font-size: 0.8rem;
 }
 
 .overlayPanel a.active {

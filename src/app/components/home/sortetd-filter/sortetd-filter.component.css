@@ -95,7 +95,7 @@
     margin: 0;
 
     font-family: var(--font-Monts);
-    font-weight: 400;
+    font-weight: 500;
     font-size: 0.8rem;
     line-height: 120%;
     color: #101010;
@@ -129,8 +129,8 @@
     margin: 0;
 
     font-family: var(--font-Monts);
-    font-weight: 400;
-    font-size: 0.9rem;
+    font-weight: 500;
+    font-size: 0.8rem;
     line-height: 120%;
     color: #ffff;
 }
@@ -162,7 +162,17 @@
 }
 
 
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover{
+    
+    border-color: #806BFF !important;
+    background: #806BFF !important;
+}
 
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight{
+    
+    border-color: #806BFF !important;
+    background: #806BFF !important;
+}
 
 @media (max-width: 789.98px) {
     .content-filter{

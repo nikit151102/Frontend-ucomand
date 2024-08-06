@@ -30,6 +30,9 @@
     line-height: 140%;
     color: var(--font-color);
 }
+.titleActive{
+color: #fff !important;
+}
 
 .ProfileChapter {
     display: flex;
@@ -259,7 +262,7 @@ p {
     align-items: center;
     text-decoration: none;
     font-family: var(--font-Monts);
-    font-weight: 400;
+    font-weight: 500;
     font-size: 0.8rem;
     line-height: 120%;
     color: #101010;

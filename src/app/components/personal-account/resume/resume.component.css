@@ -37,11 +37,16 @@
     border-radius: 5px;
     font-family: var(--font-Monts);
     font-weight: 400;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     line-height: 120%;
-    color: var(--font-color);
+    color: #fff;
 }
 
+@media (max-width: 798px) {
+    .lookingCard-level {
+        font-size: 0.7rem;
+    }
+}
 .chapterCard-title {
     font-family: var(--font-Monts);
     font-weight: 500;
@@ -52,7 +57,7 @@
 
 .chapterCard-value {
     font-family: var(--font-Monts);
-    font-weight: 600;
+    font-weight: 500;
     font-size: 12px;
     line-height: 117%;
     text-transform: uppercase;
@@ -92,8 +97,9 @@
     font-weight: 400;
     font-size: 0.7rem;
     line-height: 120%;
-    color: var(--font-color);
+    color: #fff;
 }
+
 
 .profile {
     margin-top: 0.4rem;
@@ -150,7 +156,7 @@
     align-items: center;
     text-decoration: none;
     font-family: var(--font-Monts);
-    font-weight: 400;
+    font-weight: 500;
     font-size: 0.8rem;
     line-height: 120%;
     color: #101010;

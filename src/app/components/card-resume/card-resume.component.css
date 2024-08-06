@@ -57,7 +57,7 @@
 
     font-family: var(--font-Monts);
     font-weight: 300;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     line-height: 120%;
     color: var(--font-color);
 }
@@ -130,3 +130,4 @@
     width: 52px;
     height: 52px;
 }
+

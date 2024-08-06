@@ -5,7 +5,7 @@
         </p>
         <div class="lookingCard">
             <p class="title" style="margin-top: 0.5rem; width: 90%;">
-                {{cardItem.context}}
+                {{cardItem.context | uppercase }}
             </p>
             <p class="lookingCard-level" [ngStyle]="{ 'background': getSkillsColor('Middle') }">
                 Middle

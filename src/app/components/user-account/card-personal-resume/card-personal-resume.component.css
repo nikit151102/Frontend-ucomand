@@ -37,23 +37,29 @@ p {
 .value {
     width: 90%;
     font-family: var(--font-Monts);
-    font-weight: 400;
-    font-size: 14px;
+    font-weight: 500;
+    font-size: 0.8rem;
     line-height: 114%;
     text-transform: uppercase;
     color: var(--font-color);
 }
 
-.level{
-    border-radius: 5px;
+.level {
+    margin: 0;
     padding: 4px 6px;
+    border-radius: 5px;
     font-family: var(--font-Monts);
     font-weight: 400;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     line-height: 120%;
-    color: var(--font-color);
+    color: #fff;
 }
 
+@media (max-width: 798px) {
+    .level {
+        font-size: 0.7rem;
+    }
+}
 .container-date {
     display: flex;
     flex-direction: row-reverse;
@@ -69,6 +75,7 @@ p {
 .rightProfileChapter p {
     font-family: var(--font-Monts);
     font-weight: 500;
+    font-size: 0.8rem;
     line-height: 120%;
     color: var(--font-color);
 }

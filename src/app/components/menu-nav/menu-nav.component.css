@@ -175,7 +175,7 @@ a {
 
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.8rem;
     line-height: 117%;
     color: #fff;
 }
@@ -205,7 +205,7 @@ a {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 66px;
+    height: 44px;
     gap: 0.5rem;
     border-radius: 30px;
     background: #84DD2C;
@@ -229,9 +229,10 @@ a {
     padding: 1rem;
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.8rem;
     line-height: 117%;
     color: #fff;
+    align-items: center;
 }
 
 .navBTN .nav-circle {
