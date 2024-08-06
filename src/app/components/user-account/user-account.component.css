@@ -202,13 +202,67 @@ p {
 
 @media (max-width: 789.98px) {
     .container {
-        width: 95%;
-        margin-top: 150px;
+        width: 100%;
+        margin-top: 100px;
     }
 
+    .first-part{
+        margin: 1rem;
+    }
+
+    .ProfileChapter {
+        padding: 0 1rem 0px 1rem;
+    }
 
     .logoImg {
-        width: 14vw;
+        width: 100%;
+    }
+
+    .contacts {
+        padding-top: 0 !important;
+    }
+
+    .date_registration {
+        margin-top: 1rem;
+    }
+    .date_registration span{
+        font-size: 0.7rem;
+    }
+    .cards {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-bottom: 0.5rem
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .title {
+        font-size: 0.7rem;
+    }
+
+    .ProfileChapter {
+        padding: 0.5rem 0.5rem 0px 0.5rem;
+    }
+
+    .fullName {
+        font-size: 0.8rem;
+    }
+
+    .information-user {
+        font-size: 0.7rem;
+    }
+
+    .title-cards {
+        font-size: 0.7rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .cards {
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        padding-bottom: 0.3rem;
     }
 
 }

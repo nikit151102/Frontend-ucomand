@@ -295,21 +295,26 @@ p {
     }
 
     .cards {
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
-        padding-bottom: 0.8rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-bottom: 0.5rem;
     }
 
     .menuProfile {
         width: 100%;
     }
+
 }
 
 /* Media queries for phones */
 @media (max-width: 768px) {
 
+    .logo{
+        width: 100px;
+    }
+
     .logoImg {
-        width: 13vw !important;
+        width: 100% !important;
     }
 
     .container {
@@ -326,12 +331,9 @@ p {
         margin: 1rem;
     }
 
-    .title {
-        font-size: 0.7rem;
-    }
 
     .ProfileChapter {
-        padding: 1rem 1rem 0px 1rem;
+        padding: 0 1rem 0px 1rem;
     }
 
     .fullName {
@@ -354,8 +356,16 @@ p {
     }
 
     .date_registration {
-        justify-content: center;
+        margin-top: 1rem;
+        justify-content: end;
         text-align: center;
+    }
+    
+    .title {
+        font-size: 0.7rem;
+    }
+    .date_registration span{
+        font-size: 0.7rem;
     }
 
     .menuProfile {

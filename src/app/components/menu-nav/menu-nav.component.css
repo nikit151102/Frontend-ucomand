@@ -140,19 +140,23 @@ a {
 }
 
 .toggle-btn.active svg {
-    fill: #fff; /* Белый цвет для активной кнопки */
+    fill: #fff;
+    /* Белый цвет для активной кнопки */
 }
 
 .toggle-btn:not(.active) svg {
     fill: rgba(255, 255, 255, 0.5);
     /* Полупрозрачный белый цвет для SVG иконки */
 }
+
 .toggle-btn.active path {
-    fill: #fff /* Белый цвет для активной кнопки */
+    fill: #fff
+        /* Белый цвет для активной кнопки */
 }
 
 .toggle-btn:not(.active) path {
-    fill: rgba(255, 255, 255, 0.5); /* Полупрозрачный белый цвет для неактивной кнопки */
+    fill: rgba(255, 255, 255, 0.5);
+    /* Полупрозрачный белый цвет для неактивной кнопки */
 }
 
 
@@ -230,11 +234,13 @@ a {
 }
 
 .navBTN .nav-circle {
-    fill: #84DD2C; /* Новый цвет при наведении */
+    fill: #84DD2C;
+    /* Новый цвет при наведении */
 }
 
 .navBTN:hover .nav-circle {
-    fill: #5A4BB8; /* Новый цвет при наведении */
+    fill: #5A4BB8;
+    /* Новый цвет при наведении */
 }
 
 @media (max-width: 768px) {
@@ -270,4 +276,13 @@ a {
     .additional {
         display: none;
     }
+    
+
+}
+
+
+@media (max-width: 380px) {
+    .toggle-btn svg {
+        display: none !important;        /* Белый цвет для активной кнопки */
+            }
 }

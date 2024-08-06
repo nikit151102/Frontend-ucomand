@@ -149,11 +149,11 @@
     .container {
         width: 100%;
         flex-direction: column;
-        margin-top: 170px;
+        margin-top: 130px;
     }
 
     .ProfileChapter {
-        padding: 1rem 0px 2rem;
+        padding: 0rem 0px 1rem;
     }
 
     .btnAccount_user {
