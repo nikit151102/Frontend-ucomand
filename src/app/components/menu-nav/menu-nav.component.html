@@ -27,8 +27,8 @@
 
         <div class="rightContent">
             <ng-container *ngIf="settingHeaderService.post">
-                <a (click)="newVacancy()" class="additionalBtn additional"> Разместить резюме </a>
-                <a (click)="newResume()" class="additionalBtn additional"> Разместить вакансию </a>
+                <a (click)="handlePostVacancy()" class="additionalBtn additional"> Разместить резюме </a>
+                <a (click)="handlePostResume()" class="additionalBtn additional"> Разместить вакансию </a>
             </ng-container>
             <ng-container *ngIf="settingHeaderService.shared">
                 <a href="" class="additionalBtn additional"> Поделиться
@@ -58,7 +58,7 @@
                         </svg>
                     </a>
                 </ng-container>
-
+ 
                 <a (click)="sidebarVisible = true" class="navBTN">
                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="24" cy="24" r="22" class="nav-circle" />
@@ -149,8 +149,8 @@
                     Список резюме
                 </a>
             </li>
-            <li>
-                <a (click)="viewUser()">
+            <li *ngIf="isAuthenticated">
+                <a (click)="tokenService.getToken()">
                     Мой аккаунт
                 </a>
             </li>
@@ -164,20 +164,19 @@
                     Пригласить друзей
                 </a>
             </li>
-            <li>
+            <li *ngIf="tokenService.getToken()">
                 <a href="notifications">
                     Уведомление
                 </a>
             </li>
             <li>
                 <div class="btns">
-                    <button class="grnBtn" (click)="newResume()">
-                        Разместить резюме
-                    </button>
-                    <button class="grnBtn" (click)="newVacancy()">
-                        Разместить вакансию
-                    </button>
-                </div>
+                    <ng-container *ngFor="let btn of buttonsConfig">
+                      <button class="grnBtn" (click)="btn.action()">
+                        {{ btn.label }}
+                      </button>
+                    </ng-container>
+                  </div>
             </li>
         </ul>
 

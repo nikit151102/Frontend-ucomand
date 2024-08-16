@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { SidebarModule } from 'primeng/sidebar';
 import { SettingHeaderService } from '../setting-header.service';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { TokenService } from '../token.service';
 import { HomeService } from '../home/home.service';
 import { FormSettingService } from '../form/form-setting.service';
 import { Location } from '@angular/common';
+import { PopUpEntryService } from '../pop-up-entry/pop-up-entry.service';
 
 @Component({
   selector: 'app-menu-nav',
@@ -15,13 +16,73 @@ import { Location } from '@angular/common';
   templateUrl: './menu-nav.component.html',
   styleUrl: './menu-nav.component.css'
 })
-export class MenuNavComponent {
+export class MenuNavComponent implements OnInit {
 
-  constructor(private location: Location, public settingHeaderService: SettingHeaderService, private router: Router, public tokenService: TokenService, private homeService: HomeService, private formSettingService: FormSettingService) { }
-  
   sidebarVisible: boolean = false;
   activeTopic: string = 'dark';
   activeButton: string = 'vacancy';
+  isAuthenticated!: boolean;
+
+  buttonsConfig: { label: string, action: () => void }[] = [];
+  constructor(private location: Location, public settingHeaderService: SettingHeaderService, 
+    private router: Router, public tokenService: TokenService, private homeService: HomeService, 
+    private formSettingService: FormSettingService, private cdr: ChangeDetectorRef,
+    private popUpEntryService: PopUpEntryService) {
+  }
+
+  ngOnInit(): void {
+    this.tokenService.isAuthenticated$.subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+      this.setButtons();
+    });
+  }
+
+
+  setButtons(): void {
+    if (this.isAuthenticated) {
+      this.buttonsConfig = [
+        { label: 'Разместить резюме', action: () => this.handlePostResume() },
+        { label: 'Разместить вакансию', action: () => this.handlePostVacancy() }
+      ];
+    } else {
+      this.buttonsConfig = [
+        { label: 'Войти в аккаунт', action: () => this.handleLogin() },
+        { label: 'Регистрация', action: () => this.handleRegistration() }
+      ];
+    }
+    this.cdr.detectChanges(); // Обновляем изменения вручную
+  }
+
+  handlePostResume(): void {
+    // Логика для размещения резюме
+    this.formSettingService.isheading = false;
+    this.formSettingService.typeForm = 'резюме';
+    this.settingHeaderService.post = false;
+    this.settingHeaderService.shared = false;
+    this.sidebarVisible = false;
+    this.router.navigate([`/newResume`]);
+  }
+
+  handlePostVacancy(): void {
+    // Логика для размещения вакансии
+    this.formSettingService.isheading = true;
+    this.formSettingService.typeForm = 'вакансии';
+    this.settingHeaderService.post = false;
+    this.settingHeaderService.shared = false;
+    this.sidebarVisible = false;
+    this.router.navigate([`/newVacancy`]);
+  }
+
+  handleLogin(): void {
+    // Логика для входа в аккаунт
+    this.sidebarVisible = false;
+    this.popUpEntryService.showDialog();
+  }
+
+  handleRegistration(): void {
+    this.sidebarVisible = false;
+    // Логика для регистрации
+  }
 
   goBack(): void {
     this.location.back();
@@ -43,7 +104,7 @@ export class MenuNavComponent {
   toggleTopic(type: string) {
     this.activeTopic = type;
     this.sidebarVisible = false;
-    if(type === 'dark'){
+    if (type === 'dark') {
       document.documentElement.style.setProperty('--background', '#333334');
       document.documentElement.style.setProperty('--background-card', 'rgba(255, 255, 255, 0.1)');
       document.documentElement.style.setProperty('--card-hover', '#5a4bb8');
@@ -53,8 +114,8 @@ export class MenuNavComponent {
       document.documentElement.style.setProperty('--background-card-account', '#5a4bb8');
       document.documentElement.style.setProperty('--card-hover-account', 'rgba(255, 255, 255, 0.1)');
       document.documentElement.style.setProperty('--line-item', 'rgba(255, 255, 255, 0.1)');
-      
-    }else{
+
+    } else {
       document.documentElement.style.setProperty('--background', '#f2f2f2');
       document.documentElement.style.setProperty('--background-card', '#fff');
       document.documentElement.style.setProperty('--card-hover', '#a6eb20');
@@ -65,25 +126,7 @@ export class MenuNavComponent {
       document.documentElement.style.setProperty('--card-hover-account', '#a6eb20');
       document.documentElement.style.setProperty('--line-item', 'rgba(0, 0, 0, 0.1)');
     }
-    
-  }  
 
-
-  newVacancy() {
-    this.formSettingService.isheading = true;
-    this.formSettingService.typeForm = 'вакансии';
-    this.settingHeaderService.post = false;
-    this.settingHeaderService.shared = false;
-    this.sidebarVisible = false;
-    this.router.navigate([`/newVacancy`]);
   }
 
-  newResume() {
-    this.formSettingService.isheading = false;
-    this.formSettingService.typeForm = 'резюме';
-    this.settingHeaderService.post = false;
-    this.settingHeaderService.shared = false;
-    this.sidebarVisible = false;
-    this.router.navigate([`/newResume`]);
-  }
 }

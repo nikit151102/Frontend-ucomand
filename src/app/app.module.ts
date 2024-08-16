@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
+import { PopUpEntryComponent } from './components/pop-up-entry/pop-up-entry.component';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
     ReactiveFormsModule,
     FormsModule,
     MenuNavComponent,
-    
+    PopUpEntryComponent
     
   ],
   bootstrap: [AppComponent]

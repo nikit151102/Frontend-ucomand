@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { BackgroundImgsAboutUsComponent } from '../../about-us/background-imgs/background-imgs.component';
 import { SearchComponent } from '../search/search.component';
 import { Router } from '@angular/router';
 import { FormSettingService } from '../../form/form-setting.service';
 import { CommonModule } from '@angular/common';
+import { BackgroundImgsComponent } from '../../background-imgs/background-imgs.component';
 
 @Component({
   selector: 'app-one-section',
   standalone: true,
-  imports: [CommonModule, BackgroundImgsAboutUsComponent,SearchComponent],
+  imports: [CommonModule,BackgroundImgsComponent ,SearchComponent],
   templateUrl: './one-section.component.html',
   styleUrl: './one-section.component.css'
 })

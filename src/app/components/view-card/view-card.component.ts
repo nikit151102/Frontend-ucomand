@@ -7,6 +7,7 @@ import { ResumeComponent } from './resume/resume.component';
 import { Router } from '@angular/router';
 import { TokenService } from '../token.service';
 import { DomainService } from '../domain.service';
+import { PopUpEntryService } from '../pop-up-entry/pop-up-entry.service';
 
 @Component({
   selector: 'app-view-vacancy',
@@ -17,14 +18,17 @@ import { DomainService } from '../domain.service';
 })
 export class ViewCardComponent implements OnInit {
 
-  constructor(public viewCardService: ViewCardService, 
-    private settingHeaderService: SettingHeaderService, 
-    private router: Router, 
-    public tokenService: TokenService, 
-    private domainService: DomainService) {
+  constructor(public viewCardService: ViewCardService,
+    private settingHeaderService: SettingHeaderService,
+    private router: Router,
+    public tokenService: TokenService,
+    private domainService: DomainService,
+    private popUpEntryService: PopUpEntryService) {
   }
+
   imagePath: string = '';
   domainName: string = '';
+
   ngOnInit(): void {
     this.settingHeaderService.shared = true;
     this.settingHeaderService.backbtn = true;
@@ -36,12 +40,15 @@ export class ViewCardComponent implements OnInit {
     });
   }
 
-  cardItem: any; 
+  cardItem: any;
 
   viewUser() {
-    this.router.navigate([`/user`,'root']);
+    this.router.navigate([`/user`, 'root']);
   }
 
-  
+  enter() {
+    this.popUpEntryService.showDialog();
+  }
+
 
 }
