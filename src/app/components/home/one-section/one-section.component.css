@@ -8,78 +8,87 @@
     height: 100vh;
 }
 
-.main {
-    width: 85%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.main div {
-    display: flex;
-    width: 70%;
-    justify-content: flex-start;
-}
-
-.logo-container{
-   margin-bottom: 0.5rem; 
-}
-
-.info-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.info-text,
-.info-subtext {
-    margin: 0;
-}
-
-.info-text {
-    font-family: "Raleway", sans-serif;
-    font-weight: 500;
-    font-size: 2rem;
-    line-height: 106%;
-    letter-spacing: -0.01em;
-    color: #fff;
-}
-
-.info-subtext {
-font-family: "Raleway", sans-serif;
-font-weight: 600;
-font-size: 3.5rem;
-line-height: 103%;
-letter-spacing: 0em;
-color: #fff;
-
-}
 
 .search {
     width: 100%;
-    height: 115px;
+    padding: 2rem 0;
     background: #b9aeff;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative; /* Начальное положение */
+    transition: position 0.5s; /* Плавный переход */
+    z-index: 10;
+}
+
+.search.sticky {
+    position: fixed; /* Фиксированное положение */
+    top: 0px; /* Отступ от верхней части экрана */
+    
+}
+
+.search:not(.sticky) {
+    background: #b9aeff; /* Цвет, когда не приклеен */
 }
 
 .search-container {
     width: 65%;
 }
 
-@media (max-width: 789.98px) {
-    .mobile-svg {
+/* styles.css */
+.desktop-only {
+    display: none;
+}
+
+.phone-only {
+    display: block;
+}
+
+
+/* Когда отсутствует app-desktop-type и app-phone-type */
+.no-type .search {
+    background: #806BFF;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+    position: fixed;
+    top: 60px;
+    padding: 1.5rem 0;
+    z-index: 50;
+}
+
+/* Когда присутствует app-desktop-type или app-phone-type */
+.has-type .search {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #b9aeff;
+    z-index: 10; /* Чтобы элемент был выше других */
+}
+
+
+
+
+/* Медиазапрос для ПК */
+@media (min-width: 1024px) {
+    .desktop-only {
         display: block;
     }
 
-    .main {
+    .phone-only {
         display: none;
     }
+}
 
-    .background-imgs {
-        display: none;
+
+@media (max-width: 789.98px) {
+    .search.sticky {
+        top: 60px; /* Отступ от верхней части экрана */
+        background: #806BFF; /* Цвет при приклеивании */
+        padding: 0;
+        z-index: 50;
     }
 
     .content {
@@ -94,5 +103,7 @@ color: #fff;
     .search {
         background: none;
         align-items: start;
+        padding: 0.5rem 0;
     }
+
 }

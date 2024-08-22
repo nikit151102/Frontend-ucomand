@@ -1,0 +1,39 @@
+.input-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(51, 51, 52, 0.3);
+    z-index: 1000;
+    border-radius: 30px 30px 0 0;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+  }
+  
+  input {
+    border: 1px solid #e2e2e2;
+    border-radius: 30px;
+    padding: 12px 16px;
+    width: 100%;
+    padding-right: 40px; /* Add padding to the right to make room for the icon */
+  }
+  
+  input:focus,
+  input:hover,
+  input:active {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+  
+  .icon {
+    position: absolute;
+    right: 30px; /* Adjust the right position based on the input padding */
+    width: 20px;
+    height: 20px;
+    pointer-events: none; /* Make sure the icon doesn't interfere with input interaction */
+    color: #999;
+  }
+  
+  

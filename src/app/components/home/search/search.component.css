@@ -4,6 +4,7 @@
      justify-content: space-between;
      gap: 1rem;
      position: relative;
+
  }
 
 
@@ -74,6 +75,18 @@
      fill: #000;
  }
 
+
+ .search-btn-phone {
+     border-radius: 30px;
+     width: 40px;
+     height: 40px;
+     background: rgba(51, 51, 52, 0.3);
+     border-style: none;
+     outline: none;
+     cursor: pointer;
+ }
+
+
  @media (max-width: 1198px) {
      .toggle-btn {
          padding: 1rem 1.2rem;
@@ -84,29 +97,43 @@
      }
  }
 
+ @media (min-width: 1024px) {
+     .desktop-only {
+         display: block !important;
+     }
+
+     .phone-only {
+         display: none !important;
+     }
+ }
+
+ @media (max-width: 1023.9px) {
+     .desktop-only {
+         display: none !important;
+     }
+
+     .phone-only {
+         display: flex !important;
+     }
+ }
+
  @media (max-width: 768px) {
 
      .toggleSwitch {
-         background: #806BFF;
          display: flex;
          width: 100%;
          justify-content: center;
          padding-bottom: 0.5rem;
-         position: fixed;
-         top: 66px;
          z-index: 99;
+         padding-top: 0.5rem;
      }
 
      .toggleSwitch-component {
          width: 94%;
      }
 
-     .search-container {
-         margin-top: 55px;
-     }
-
      .conteiner {
-         flex-direction: column;
+         flex-direction: row;
          justify-content: center;
          gap: 0.5rem;
      }
@@ -119,7 +146,6 @@
 
      }
 
-     .search-container,
      .search-box,
      .search-input {
          width: 98%;
