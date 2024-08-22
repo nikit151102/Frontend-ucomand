@@ -17,7 +17,7 @@
 
     <div class="listTags">
         <ng-container *ngFor="let tag of tagsList">
-            <div class="motivationTag" [style.background]="tag.color" (click)="selectTag(tag)">
+            <div class="motivationTag" [style.background]="#E2E2E2" (click)="selectTag(tag)">
                 {{ tag.name }}
             </div>
         </ng-container>
