@@ -11,6 +11,14 @@
     font-weight: 400;
     font-size: 0.7rem;
     line-height: 120%;
+
+}
+
+.notSelectedTag{
+    color: #000000;
+}
+
+.selectTag {
     color: #fff;
 }
 

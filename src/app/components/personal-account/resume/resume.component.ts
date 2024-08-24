@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ViewCardService } from '../../view-card/view-card.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-personal-resume',
@@ -8,36 +11,41 @@ import { Component, Input } from '@angular/core';
   templateUrl: './resume.component.html',
   styleUrl: './resume.component.css'
 })
-export class PersonalResumeComponent {
+export class PersonalResumeComponent implements OnInit {
 
-  @Input() cardItem: {
-    title: string;
-    context: string;
-    skills: string[]; // Adjust type for skills if needed
-    motivations: string[]; // Corrected property name
-    fullName: string;
-    date: string;
-  } = {
-    title: '',
-    context: '',
-    skills: [],
-    motivations: [], // Corrected property name
-    fullName: '',
-    date: ''
-  };
+  @Input() cardItem: any;
   
-  getSkillsColor(item: string): string {
+  constructor(private router: Router, private viewCardService:ViewCardService){}
+  ngOnInit(): void {
+    console.log("cardItem",this.cardItem)
+  }
+
+  getSkillsColor(item: number): string {
     switch (item) {
-      case 'Junior':
+      case 1:
         return '#50B229';
-      case 'Middle':
+      case 2:
         return '#FAD305';
-      case 'Senior':
+      case 3:
         return '#EE5354';
       default:
         return '';
     }
   }
+  getSkills(item: number): string {
+    console.log("item", item)
+    switch (item) {
+      case 1:
+        return 'Junior';
+      case 2:
+        return 'Middle';
+      case 3:
+        return 'Senior';
+      default:
+        return '';
+    }
+  }
+  
   getMotivationColor(item: string): string {
     switch (item) {
       case 'Без оплаты':
@@ -58,4 +66,13 @@ export class PersonalResumeComponent {
   Actived() {
     this.isSettingActive = !this.isSettingActive
   }
+
+  viewCard(type: string, route: string) {
+    this.viewCardService.selectedCard = this.cardItem.id;
+    this.viewCardService.typeCard = type;
+    localStorage.setItem('routeTypeCard', type);
+    this.router.navigate([`/${route}`, this.cardItem.id]);
+
+}
+  
 }

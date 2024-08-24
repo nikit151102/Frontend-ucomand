@@ -19,14 +19,14 @@
             <div class="secondRow">
                 <div class="stage">
                     <p class="stage-title">Специализация:</p>
-                    <app-tag-selected-level [placeholderValue]="'Выберете специализацию'" [tags]="tagss" [maxTags]="1"
+                    <app-tag-selected-level [placeholderValue]="'Выберете специализацию'" [tags]="professions" [maxTags]="1"
                         formControlName="specialization"
                         (tagsChanged)="onTagsChanged($event, 'specialization')"></app-tag-selected-level>
                 </div>
 
                 <div class="stage">
                     <p class="stage-title">Навыки:</p>
-                    <app-tag-selected-level [placeholderValue]="'Выберете навыки'" [tags]="tagss"
+                    <app-tag-selected-level [placeholderValue]="'Выберете навыки'" [tags]="skills"
                         formControlName="skills"
                         (tagsChanged)="onTagsChanged($event, 'skills' )"></app-tag-selected-level>
                 </div>

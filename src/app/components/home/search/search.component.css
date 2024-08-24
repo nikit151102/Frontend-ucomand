@@ -114,6 +114,7 @@
 
      .phone-only {
          display: flex !important;
+         margin-right: 11px;
      }
  }
 

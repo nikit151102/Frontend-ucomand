@@ -31,25 +31,19 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy {
   }
 
   loadTelegramWidget() {
-    this.http.get('http://5.181.253.239:8080/users/auth/telegram', { responseType: 'text' }).subscribe(scriptContent => {
-      console.log("scriptContent", scriptContent);
-  
-      // Создаем элемент <script> с атрибутом src
-      const script = document.createElement('script');
-      script.id = 'telegram-widget-script';
-      script.async = true;
-      script.src = 'https://telegram.org/js/telegram-widget.js?22'; // Устанавливаем src из содержимого
-      script.setAttribute('data-telegram-login', 'uteamtestbot');
-      script.setAttribute('data-size', 'large');
-      script.setAttribute('data-onauth', 'onTelegramAuth(user)');
-      script.setAttribute('data-request-access', 'write');
-  
-      // Вставляем скрипт в DOM
-      document.getElementById('telegram-login')?.appendChild(script);
-  
-      // Убедитесь, что onTelegramAuth доступен глобально
-      (window as any).onTelegramAuth = this.onTelegramAuth.bind(this);
-    });
+    const script = document.createElement('script');
+    script.id = 'telegram-widget-script';
+    script.async = true;
+    script.src = 'https://telegram.org/js/telegram-widget.js?22';
+    script.setAttribute('data-telegram-login', 'Trireibot'); // Use your actual bot username here
+    script.setAttribute('data-size', 'large');
+    script.setAttribute('data-onauth', 'onTelegramAuth(user)');
+    script.setAttribute('data-request-access', 'write');
+
+    document.getElementById('telegram-login')?.appendChild(script);
+
+    // Ensure onTelegramAuth is available globally
+    (window as any).onTelegramAuth = this.onTelegramAuth.bind(this);
   }
   
   
@@ -69,14 +63,25 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy {
       username: user.username
     }).subscribe((response: any) => {
       console.log("response.token", response.token);
-      this.tokenService.setToken(); // Передайте токен в метод setToken
+      // this.tokenService.setToken(); // Передайте токен в метод setToken
       this.popUpEntryService.visible = false;
     });
   }
 
   login_enter() {
     this.popUpEntryService.visible = false;
-    this.tokenService.setToken();
+
+    this.popUpEntryService.getUser().subscribe(
+      (data) => {
+        this.tokenService.setToken(data.token);
+        console.log('User data:', data.token);
+        this.popUpEntryService.userVisible = true;
+      },
+      (error) => {
+        console.error('Error fetching user data:', error);
+      }
+    );
+
     // this.loadTelegramWidget();
   }
 

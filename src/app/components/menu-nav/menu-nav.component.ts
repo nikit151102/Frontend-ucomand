@@ -114,6 +114,8 @@ export class MenuNavComponent implements OnInit {
       document.documentElement.style.setProperty('--background-card-account', '#5a4bb8');
       document.documentElement.style.setProperty('--card-hover-account', 'rgba(255, 255, 255, 0.1)');
       document.documentElement.style.setProperty('--line-item', 'rgba(255, 255, 255, 0.1)');
+      document.documentElement.style.setProperty('--logo-text-color', '#fff');
+
 
     } else {
       document.documentElement.style.setProperty('--background', '#f2f2f2');
@@ -125,6 +127,7 @@ export class MenuNavComponent implements OnInit {
       document.documentElement.style.setProperty('--background-card-account', '#fff');
       document.documentElement.style.setProperty('--card-hover-account', '#a6eb20');
       document.documentElement.style.setProperty('--line-item', 'rgba(0, 0, 0, 0.1)');
+      document.documentElement.style.setProperty('--logo-text-color', '#101010');
     }
 
   }

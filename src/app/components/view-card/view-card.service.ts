@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export interface Vacancy {
   title: string;
@@ -31,10 +33,10 @@ export interface User {
 })
 export class ViewCardService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   selectedCard: any;
-  selectedUser: User ={
+  selectedUser: User = {
     name: "Иван",
     surname: "Иванов",
     age: 30,
@@ -51,5 +53,12 @@ export class ViewCardService {
 
   typeCard: string = '';
 
+  private domain = 'http://5.181.253.239:8080';
+
+  getCardData(id: number): Observable<any> {
+    console.log("id",id)
+    const type = localStorage.getItem('routeTypeCard');
+    return this.http.get(`${this.domain}/${type}/${id}`);
+  }
 
 }

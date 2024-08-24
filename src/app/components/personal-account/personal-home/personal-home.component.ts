@@ -5,9 +5,13 @@ import { ArchiveVacancyComponent } from '../archive-vacancy/archive-vacancy.comp
 import { PersonalResumeComponent } from '../resume/resume.component';
 import { PersonalVacancyComponent } from '../vacancy/vacancy.component';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, ActivatedRoute} from '@angular/router';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { DomainService } from '../../domain.service';
+import { PersonalDataService } from '../personal-data/personal-data.service';
 import { ViewCardService } from '../../view-card/view-card.service';
+import { User } from '../personal-data/user-interface';
+import { PersonalHomeService } from './personal-home.service';
+import { catchError, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-personal-home',
@@ -18,25 +22,77 @@ import { ViewCardService } from '../../view-card/view-card.service';
 })
 export class PersonalHomeComponent implements OnInit {
 
-  constructor(private settingHeaderService: SettingHeaderService, private router: Router, 
-    private route: ActivatedRoute, private domainService: DomainService, 
-    public viewCardService: ViewCardService) { }
-    imagePath: string = '';
-    domainName: string = '';
+  constructor(private settingHeaderService: SettingHeaderService, private router: Router,
+    private route: ActivatedRoute, private domainService: DomainService,
+    public viewCardService: ViewCardService, private personalDataService: PersonalDataService,
+    private personalHomeService: PersonalHomeService) { }
+
+  imagePath: string = '';
+  domainName: string = '';
+  dataCurrentUser!: User;
+  isDataComplete: boolean = true;
+  visiblePage: boolean = false;
+  vacanciesData: any;
+  resumesData: any;
+
   ngOnInit(): void {
     this.settingHeaderService.shared = true;
     this.settingHeaderService.post = true;
     this.settingHeaderService.backbtn = false;
 
     this.settingHeaderService.shared = true;
-      this.settingHeaderService.backbtn = true;
-      const urlString = this.viewCardService.selectedUser.url;
-      this.domainName = this.domainService.setDomain(urlString);
-      console.log("property", this.domainName)
-      this.domainService.checkImageExists(this.domainName).then((path) => {
-        this.imagePath = path;
-      });
+    this.settingHeaderService.backbtn = true;
+    const urlString = this.viewCardService.selectedUser.url;
+    this.domainName = this.domainService.setDomain(urlString);
+    console.log("property", this.domainName)
+    this.domainService.checkImageExists(this.domainName).then((path) => {
+      this.imagePath = path;
+    });
+
+    // Параллельное выполнение запросов
+    forkJoin({
+      user: this.personalDataService.getCurrentUser().pipe(
+        catchError(error => {
+          console.error('Ошибка при загрузке пользователя:', error);
+          return [];
+        })
+      ),
+      vacancies: this.personalHomeService.getCardsData("vacancies").pipe(
+        catchError(error => {
+          console.error('Ошибка при загрузке вакансий:', error);
+          return [];
+        })
+      ),
+      resumes: this.personalHomeService.getCardsData("resumes").pipe(
+        catchError(error => {
+          console.error('Ошибка при загрузке резюме:', error);
+          return [];
+        })
+      )
+    }).subscribe(
+      ({ user, vacancies, resumes }) => {
+        this.dataCurrentUser = user;
+        this.vacanciesData = vacancies;
+        this.resumesData = resumes;
+        this.checkUserData();
+        console.log("resumes", resumes)
+        console.log("vacancies", vacancies)
+        this.visiblePage = true;
+      },
+      (error) => {
+        console.error('Ошибка при загрузке данных:', error);
+      }
+    );
+
   }
+
+  checkUserData(): void {
+    const { firstName, lastName, gender, age, freeLink, ownLink, aboutMe, cityOfResidence } = this.dataCurrentUser;
+
+    // Check if any field is missing or empty
+    this.isDataComplete = !!(firstName && lastName && gender && age != null && freeLink && ownLink && aboutMe && cityOfResidence && cityOfResidence.name);
+  }
+
   getRouting() {
     this.router.navigate(['../personalData'], { relativeTo: this.route });
   }
@@ -60,5 +116,5 @@ export class PersonalHomeComponent implements OnInit {
       date: '2024-06-29'
     }]
 
-    
+
 }

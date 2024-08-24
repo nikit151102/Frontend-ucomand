@@ -1,6 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
+interface tag {
+  id: number;
+  name: string;
+  competenceLevel: null;
+  type: string;
+}
+
+
 @Component({
   selector: 'app-tag-selector',
   standalone: true,
@@ -10,12 +18,13 @@ import { Component, Input } from '@angular/core';
 })
 export class TagSelectorComponent {
 
-  @Input() tags: string[] = [];
+  @Input() tags: tag[] = [];
+
   @Input() placeholderValue: string = '';
 
   showTagBlock = false;
 
-  selectedTags: string[] = [];
+  selectedTags: tag[] = [];
 
   toggleTagBlock(show: boolean) {
     setTimeout(() => {
@@ -23,14 +32,14 @@ export class TagSelectorComponent {
     }, 200);
   }
 
-  selectTag(tag: string) {
+  selectTag(tag: tag) {
     if (!this.selectedTags.includes(tag)) {
       this.selectedTags.push(tag);
     }
     this.showTagBlock = false;
   }
 
-  deleteTag(tag: string) {
+  deleteTag(tag: tag) {
     let index = this.selectedTags.indexOf(tag);
     if (index !== -1) {
       this.selectedTags.splice(index, 1);

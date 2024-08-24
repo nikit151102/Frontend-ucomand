@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { FormSettingService } from './form-setting.service';
 import { TagSelectedLevelComponent } from '../form-components/tag-selected-level/tag-selected-level.component';
 import { SettingHeaderService } from '../setting-header.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -32,7 +33,34 @@ export class FormComponent implements OnInit {
 
   selectedTags: {id:number, name: string, color: string }[] = [];
 
+  motivations: any[] = [];
+  professions: any[] = [];
+  skills: any[] = [];
+
+
+
   ngOnInit(): void {
+    // Выполняем все запросы параллельно
+    forkJoin({
+      motivations: this.formSettingService.getTags('MOTIVATION'),
+      professions: this.formSettingService.getTags('PROFESSION'),
+      skills: this.formSettingService.getTags('SKILL')
+    }).subscribe({
+      next: (results) => {
+        this.motivations = results.motivations;
+        this.professions = results.professions;
+        this.skills = results.skills;
+        
+        console.log('Теги (MOTIVATION):', this.motivations);
+        // console.log('Теги (PROFESSION):', this.professions);
+        // console.log('Теги (SKILL):', this.skills);
+        this.form.get('motivations')?.setValue(this.motivations.filter(tag => this.selectedTags.some(st => st.name === tag.name)));
+      },
+      error: (error: any) => {
+        console.error('Ошибка при загрузке тегов:', error);
+      }
+    });
+    
     this.settingHeaderService.backbtn = true;
     this.form = this.fb.group({
       title: [''],
@@ -52,17 +80,7 @@ export class FormComponent implements OnInit {
     this.form.get('motivations')?.setValue(tags);
   }
 
-  submit() {
-    const formData = { ...this.form.value };
 
-    const removeColorProperty = (array: any[]) => array.map(({ color, ...rest }) => rest);
-
-    formData.motivations = removeColorProperty(formData.motivations);
-    formData.specialization = removeColorProperty(formData.specialization);
-    formData.skills = removeColorProperty(formData.skills);
-
-    console.log(formData);
-  }
   adjustHeight(event: Event): void {
     const textarea = event.target as HTMLTextAreaElement;
     textarea.style.height = '46px'; // Сбросить высоту
@@ -90,4 +108,27 @@ export class FormComponent implements OnInit {
     this.form.get(`${formElement}`)?.setValue(tags);
   }
 
+
+  submit() {
+    const formData = { ...this.form.value };
+  
+    // Функция для поиска оригинального тега по имени
+    const getOriginalTag = (name: string) => this.motivations.find(tag => tag.name === name);
+  
+    const removeColorProperty = (array: any[]) => array.map(({ color, ...rest }) => rest);
+  
+    // Преобразуем выбранные теги в формат, соответствующий данным с сервера
+    formData.motivations = removeColorProperty(
+      formData.motivations.map((tag: any) => getOriginalTag(tag.name) || tag)
+    );
+    formData.specialization = removeColorProperty(
+      formData.specialization.map((tag: any) => getOriginalTag(tag.name) || tag)
+    );
+    formData.skills = removeColorProperty(
+      formData.skills.map((tag: any) => getOriginalTag(tag.name) || tag)
+    );
+  
+    console.log(formData);
+  }
+  
 }

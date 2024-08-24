@@ -1,13 +1,12 @@
-<div class="container">
+<div class="container" *ngIf="visibleCard">
     <div class="left-part">
-        <ng-container *ngIf="viewCardService.typeCard == 'vacancy'">
-            <app-vacancy></app-vacancy>
+        <ng-container *ngIf="typeCard == 'vacancies'">
+            <app-vacancy [data]="dataCard"></app-vacancy>
         </ng-container>
-        <ng-container *ngIf="viewCardService.typeCard == 'resume'">
-            <app-resume></app-resume>
+        <ng-container *ngIf="typeCard == 'resumes'">
+            <app-resume [data]="dataCard"></app-resume>
         </ng-container>
     </div>
-
     <div class="right-path">
         <div class="right-path-content">
             <div class="ProfileChapter">

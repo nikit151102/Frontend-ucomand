@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { MotivationsComponent } from '../../form-components/motivations/motivations.component';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { SortingComponent } from './sorting/sorting.component';
+import { SortetdFilterService } from './sortetd-filter.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-sortetd-filter',
@@ -18,18 +20,41 @@ import { SortingComponent } from './sorting/sorting.component';
 export class SortetdFilterComponent implements OnInit {
 
 
+  constructor(private sortetdFilterService: SortetdFilterService) { }
+
   visible: boolean = false;
 
   selectedGender: string = '';
 
-  ngOnInit(): void {
+  motivations: any[] = [];
+  professions: any[] = [];
+  skills: any[] = [];
 
+  ngOnInit(): void {
+    // Выполняем все запросы параллельно
+    forkJoin({
+      motivations: this.sortetdFilterService.getTags('MOTIVATION'),
+      professions: this.sortetdFilterService.getTags('PROFESSION'),
+      skills: this.sortetdFilterService.getTags('SKILL')
+    }).subscribe({
+      next: (results) => {
+        this.motivations = results.motivations;
+        this.professions = results.professions;
+        this.skills = results.skills;
+        
+        // console.log('Теги (MOTIVATION):', this.motivations);
+        // console.log('Теги (PROFESSION):', this.professions);
+        // console.log('Теги (SKILL):', this.skills);
+      },
+      error: (error: any) => {
+        console.error('Ошибка при загрузке тегов:', error);
+      }
+    });
   }
 
-  tags: string[] = ['Яндекс Трекер', 'Юзабилити-аудит сайта', 'Установка и обслуживание офисной техники', 'Контекстная реклама', ' САПР', 'Objective-С', '3d анимация', 'XML', 'Webflow', 'Web 3.0', 'Objective-С', 'Android User Interface Guidelines', 'Android User Interface Guidelines', 'Objective-С', 'Objective-С', 'Android User Interface Guidelines', 'Android User Interface Guidelines', 'Objective-С', 'Objective-С'];
   showDialog() {
     this.visible = true;
   }
 
-  
+
 }

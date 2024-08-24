@@ -5,15 +5,9 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class FormSettingService {
+export class SortetdFilterService {
 
   constructor(private http: HttpClient) { }
-
-  typeForm: string = '';
-  title: string = '';
-
-  isEdit: boolean = false;
-  isheading: boolean = false;
 
   visible: boolean = false;
 
@@ -22,4 +16,6 @@ export class FormSettingService {
   getTags(type: string): Observable<any> {
     return this.http.get(`${this.domain}/tags?types=${type}`);
   }
+
+
 }

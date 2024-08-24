@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { ViewCardService } from '../view-card.service';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -7,29 +6,52 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './resume.component.html',
-  styleUrl: './resume.component.css'
+  styleUrls: ['./resume.component.css']
 })
 export class ResumeComponent {
 
-  constructor(public viewCardService: ViewCardService){
-    
+  @Input() data: any;
+
+  getSpecialization(): string {
+    return this.data.profession && this.data.profession.name
+      ? this.data.profession.name.toUpperCase()
+      : 'Не указана';
   }
 
-  getSkillsColor(item: string): string {
+  getCompetenceLevel(): string {
+    return this.data.profession && this.data.profession.competenceLevel
+      ? this.data.profession.competenceLevel
+      : '';
+  }
+
+  getSkillsColor(item: number): string {
     switch (item) {
-      case 'Junior':
+      case 1:
         return '#50B229';
-      case 'Middle':
+      case 2:
         return '#FAD305';
-      case 'Senior':
+      case 3:
         return '#EE5354';
       default:
         return '';
     }
   }
-
-  getMotivationColor(item: string): string {
+  getSkills(item: number): string {
+    console.log("item", item)
     switch (item) {
+      case 1:
+        return 'Junior';
+      case 2:
+        return 'Middle';
+      case 3:
+        return 'Senior';
+      default:
+        return '';
+    }
+  }
+
+  getMotivationColor(motivation: string): string {
+    switch (motivation) {
       case 'Без оплаты':
         return '#ffab00';
       case 'Практика':
@@ -42,5 +64,4 @@ export class ResumeComponent {
         return '';
     }
   }
-  
 }

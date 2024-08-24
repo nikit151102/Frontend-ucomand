@@ -1,6 +1,6 @@
 <div class="content">
-    <app-desktop-type class="desktop-only"></app-desktop-type>
-    <app-phone-type class="phone-only"></app-phone-type>
+    <app-desktop-type class="desktop-only" *ngIf="!popUpEntryService.userVisible"></app-desktop-type>
+    <app-phone-type class="phone-only" *ngIf="!popUpEntryService.userVisible"></app-phone-type>
 
     <div class="search" [ngClass]="{'no-type': !hasType, 'has-type': hasType}">
         <div class="search-container">

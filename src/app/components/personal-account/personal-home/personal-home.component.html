@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="visiblePage">
     <div class="first-part">
         <div class="information">
             <div class="ProfileChapter">
@@ -7,33 +7,29 @@
                 </div>
                 <div style="display: flex; flex-wrap: wrap; align-content: flex-end; flex-direction: column; justify-content: flex-end">
                     <p class="fullName">
-                        <!-- {{viewCardService.selectedCard.fullName}} -->
-                       Иванов
+                      {{dataCurrentUser.lastName}} 
+              
                     </p>
                     <p class="fullName">
-                        <!-- {{viewCardService.selectedCard.fullName}} -->
-                       Иван
+                        {{dataCurrentUser.firstName}} 
                     </p>
                 </div>
             </div>
-            <div class="information-user">
-                Учился женился потом передумал. Ищу возможность поучаствовать в стартапах разработки мобильных
-                приложений) Мое портфолио jhvjvvkv Работаю в Figma / After Effects. Я очень коммуникабельна, у меня есть
-                интересные идеи, и свободное время для созидания чего-то классного) Открыта к предложениям) Связаться со
-                мной можно в телеграмм https://t.me/kseniya_eliseeva
+            <div class="information-user" *ngIf="isDataComplete">
+                {{dataCurrentUser.aboutMe}}
             </div>
-            <div class="personal-details">
+            <div class="personal-details" *ngIf="isDataComplete">
                 <div class="location">
                     <p class="title">Город:</p>
-                    <span>Барнаул</span>
+                    <span>{{dataCurrentUser.cityOfResidence.name}}</span>
                 </div>
                 <div class="age">
                     <p class="title">Возраст:</p>
-                    <span>99</span>
+                    <span>{{dataCurrentUser.age}}</span>
                 </div>
             </div>
         </div>
-        <div class="contacts">
+        <div class="contacts" *ngIf="isDataComplete">
             <div>
                 <p class="chapterCard-title">
                    Контакты:
@@ -44,21 +40,28 @@
                        <img src="assets/domains/t.png" alt="logo" width="24px">
                        <p>Telegram</p>
                    </div>
-                   <div class="contacts-item">
-                       <img [src]="imagePath" alt="logo" width="24px">
-                       <p>{{domainName}}</p>
-                   </div>
-                   
                </diV>
            </div>
-
+           <div>
+            <p class="chapterCard-title">
+                Портфолио:
+           </p>
+           <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
+  
+               <div class="contacts-item">
+                   <img [src]="imagePath" alt="logo" width="24px">
+                   <p>{{domainName}}</p>
+               </div>
+               
+           </diV>
+       </div>
             <div class="date_registration">
                 <p class="title">На платформе с </p>
-                <span>12.12.2024</span>
+                <span>{{dataCurrentUser.dateOfRegistration}}</span>
             </div>
         </div>
     </div>
-    <div class="message-profile">
+    <div class="message-profile" *ngIf="!isDataComplete">
         <p class="title-message">
             Заполните свой профиль!
         </p>
@@ -76,7 +79,9 @@
                     Активные резюме:
                 </p>
                 <div class="cards">
-                    <app-personal-resume [cardItem]="personalVacanciesData[0]"></app-personal-resume>
+                        <app-personal-resume *ngFor="let itemResume of resumesData"
+                        [cardItem]="itemResume"></app-personal-resume>
+                    
                 </div>
                 <div class="message-cards titleActive">
                     нет активных резюме
@@ -97,8 +102,7 @@
                     Активные вакансии:
                 </p>
                 <div class="cards">
-                    <app-personal-vacancy *ngFor="let item of personalVacanciesData"
-                        [cardItem]="item"></app-personal-vacancy>
+                    <app-personal-vacancy [item]="itemVacancy" *ngFor="let itemVacancy of vacanciesData"></app-personal-vacancy>
                 </div>
                 <div class="message-cards titleActive">
                     нет активных вакансий

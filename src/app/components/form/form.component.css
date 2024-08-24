@@ -145,7 +145,7 @@ textarea{
     resize: none;
     outline: none;
 }
-.thirdRow textarea::placeholder {
+.thirdRow textarea::placeholder, .firstRow textarea::placeholder{
     font-family: var(--font-Monts);
     font-weight: 400;
     font-size: 0.8rem; 

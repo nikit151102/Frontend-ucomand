@@ -36,7 +36,7 @@
                 <div style="display: flex; gap: 1rem;">
                   <p-radioButton
                     name="gender"
-                    value="male"
+                    value="MALE"
                     formControlName="gender"
                     inputId="male"
                   ></p-radioButton>
@@ -45,7 +45,7 @@
                 <div style="display: flex; gap: 1rem;">
                   <p-radioButton
                     name="gender"
-                    value="female"
+                    value="FEMALE"
                     formControlName="gender"
                     inputId="female"
                   ></p-radioButton>
@@ -54,7 +54,15 @@
               </div>
               <div class="input-group">
                 <label for="city">Город:</label>
-                <input type="text" id="city" formControlName="city" placeholder="Введите город">
+                <p-autoComplete 
+                id="city"
+                formControlName="city"
+                [suggestions]="filteredCities" 
+                (completeMethod)="filterCities($event)" 
+                (onSelect)="onCitySelect($event)"
+                field="name" 
+                placeholder="Введите город"
+                [emptyMessage]="'Города не найдены'"/>
               </div>
             </div>
           </div>

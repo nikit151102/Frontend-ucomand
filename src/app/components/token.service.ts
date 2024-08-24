@@ -18,8 +18,8 @@ export class TokenService {
     return this.authTokenSubject.value;
   }
 
-  setToken(): void {
-    localStorage.setItem('authToken', 'ваш_токен');
+  setToken(token:string): void {
+    localStorage.setItem('authToken', token);
     this.authTokenSubject.next(true);
   }
 

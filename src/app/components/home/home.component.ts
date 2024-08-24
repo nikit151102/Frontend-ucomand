@@ -459,10 +459,12 @@ export class HomeComponent {
     
 
 
-    viewCard(cardValue: any, type: string) {
+    viewCard(cardValue: any, type: string, route: string) {
         this.viewCardService.selectedCard = cardValue;
         this.viewCardService.typeCard = type;
-        this.router.navigate([`/card`, cardValue.id]);
+        localStorage.setItem('routeTypeCard', type);
+        this.router.navigate([`/${route}`, cardValue]);
+    
     }
 
 

@@ -72,7 +72,7 @@
 }
 
 .chapter-title {
-    padding: 0px 2.3rem 0.5rem  2.3rem ;
+    padding: 0px 2.3rem 0.5rem 2.3rem;
     font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
@@ -107,10 +107,13 @@
     font-size: 1rem;
     line-height: 140%;
 }
-.input-group input::placeholder , .input-group textarea::placeholder, #domain::placeholder {
+
+.input-group input::placeholder,
+.input-group textarea::placeholder,
+#domain::placeholder {
     font-family: var(--font-Monts);
     font-weight: 400;
-    font-size: 0.8rem; 
+    font-size: 0.8rem;
     line-height: 140%;
 }
 
@@ -126,6 +129,7 @@
     font-size: 1rem;
     line-height: 140%;
 }
+
 .gender_title {
     padding: 0.1rem 2rem;
     font-family: var(--font-Monts);
@@ -174,6 +178,57 @@
     background: #e2e2e2;
 }
 
+:host ::ng-deep .p-autocomplete {
+    width: 100% !important;
+    
+}
+
+:host ::ng-deep .p-autocomplete .p-autocomplete-input {
+    width: 100% !important;
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    padding: 1rem;
+    width: 100%;
+    outline: none;
+
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 140%;
+}
+
+:host ::ng-deep .p-inputtext:enabled:focus{
+    border-color: #ffffff00;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-inputtext:enabled:hover{
+    border-color: #ffffff00;
+    box-shadow: none;
+}
+
+:host ::ng-deep .p-autocomplete .p-autocomplete-input::placeholder {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 140%;
+}
+
+:host ::ng-deep  .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item{
+    padding: 0.5rem 0.75rem;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 140%;
+}
+
+:host ::ng-deep  .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-empty-message{
+    padding: 0.5rem 0.75rem;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 140%;
+}
 
 .approval {
     display: flex;

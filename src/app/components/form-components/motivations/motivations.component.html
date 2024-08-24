@@ -2,7 +2,7 @@
     <div class="listTags">
         <ng-container *ngFor="let tag of selectedTags">
             <div class="tag">
-                <div class="motivationTag" [style.background]="tag.color">
+                <div class="motivationTag selectTag" [style.background]="tag.color">
                     {{ tag.name }}
                 </div>
                 <a (click)="deleteTag(tag)">
@@ -17,7 +17,7 @@
 
     <div class="listTags">
         <ng-container *ngFor="let tag of tagsList">
-            <div class="motivationTag" [style.background]="'#E2E2E2'" (click)="selectTag(tag)">
+            <div class="motivationTag notSelectedTag" [style.background]="'#E2E2E2'" (click)="selectTag(tag)">
                 {{ tag.name }}
             </div>
         </ng-container>

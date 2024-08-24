@@ -7,6 +7,7 @@ import { BackgroundImgsComponent } from '../../background-imgs/background-imgs.c
 import { DesktopTypeComponent } from './desktop-type/desktop-type.component';
 import { PhoneTypeComponent } from './phone-type/phone-type.component';
 import { ToggleSwitchComponent } from '../toggle-switch/toggle-switch.component';
+import { PopUpEntryService } from '../../pop-up-entry/pop-up-entry.service';
 
 @Component({
   selector: 'app-one-section',
@@ -22,7 +23,7 @@ export class OneSectionComponent implements AfterViewInit {
 
   private stickyOffset: number = 60; // Значение отступа для приклеивания
   private searchElement: HTMLElement | null = null;
-private fixedPixel: number = 0;
+  private fixedPixel: number = 0;
 
   ngAfterViewInit() {
     this.hasType = !!document.querySelector('app-desktop-type') || !!document.querySelector('app-phone-type');
@@ -36,7 +37,7 @@ private fixedPixel: number = 0;
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const elementRect = this.searchElement.getBoundingClientRect();
       const elementTop = scrollTop + elementRect.top;
-  
+
       if (scrollTop >= (elementTop - this.stickyOffset) && (scrollTop > this.fixedPixel)) {
         if (!this.searchElement.classList.contains('sticky')) {
           this.searchElement.classList.add('sticky');
@@ -52,10 +53,10 @@ private fixedPixel: number = 0;
       }
     }
   }
-  
 
 
-  constructor(private formSettingService: FormSettingService, private router: Router) { }
+
+  constructor(private formSettingService: FormSettingService, private router: Router, public popUpEntryService: PopUpEntryService) { }
 
   tagsList = ['Веб дизайнер', '3d моделлер', 'Архитектор баз данных', 'Арт директор', 'Архитектор баз данных',
     'Системный аналитик', 'Арт директор', 'Арт директор', 'Арт директор', 'Арт директор', 'Веб дизайнер', '3d моделлер', 'Архитектор баз данных', 'Арт директор',
