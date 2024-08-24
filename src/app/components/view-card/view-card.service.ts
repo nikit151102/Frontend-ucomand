@@ -53,7 +53,7 @@ export class ViewCardService {
 
   typeCard: string = '';
 
-  private domain = 'http://5.181.253.239:8080';
+  private domain = 'https://vm-194172a0.na4u.ru/api'; 
 
   getCardData(id: number): Observable<any> {
     console.log("id",id)

@@ -17,7 +17,7 @@ export class FormSettingService {
 
   visible: boolean = false;
 
-  private domain = 'http://5.181.253.239:8080'; 
+  private domain = 'https://vm-194172a0.na4u.ru/api'; 
    
   getTags(type: string): Observable<any> {
     return this.http.get(`${this.domain}/tags?types=${type}`);

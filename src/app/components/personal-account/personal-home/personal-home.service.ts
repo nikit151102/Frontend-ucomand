@@ -9,7 +9,7 @@ export class PersonalHomeService {
 
   constructor(private http: HttpClient) { }
   
-  private domain = 'http://5.181.253.239:8080';
+  private domain = 'https://vm-194172a0.na4u.ru/api'; 
 
   getCardsData(typeCard: string): Observable<any> {
     const token = localStorage.getItem('authToken');
