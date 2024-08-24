@@ -23,7 +23,7 @@ services:
 
   ucomand-backend:
     build:
-      context: ./ucomand-backend
+      context: ./
       dockerfile: Dockerfile
     ports:
       - '8080:8080'
