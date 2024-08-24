@@ -16,7 +16,7 @@ services:
       context: ./Frontend-ucomand
       dockerfile: Dockerfile-frontend
     ports:
-      - 80:80
+      - 8081:80
     volumes:
       - ./Frontend-ucomand:/app
       - /app/node_modules
