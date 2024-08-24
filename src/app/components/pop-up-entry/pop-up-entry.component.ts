@@ -57,11 +57,12 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy {
   }
 
   onTelegramAuth(user: any) {
-    this.http.post('http://5.181.253.239:8080/auth/byTelegram', {
+    this.http.post('https://vm-194172a0.na4u.ru/api/auth/byTelegram', {
       id: user.id,
       hash: user.hash,
       username: user.username
     }).subscribe((response: any) => {
+      console.log("response", response);
       console.log("response.token", response.token);
       // this.tokenService.setToken(); // Передайте токен в метод setToken
       this.popUpEntryService.visible = false;
