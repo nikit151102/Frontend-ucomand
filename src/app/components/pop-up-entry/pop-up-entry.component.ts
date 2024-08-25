@@ -35,7 +35,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy {
     script.id = 'telegram-widget-script';
     script.async = true;
     script.src = 'https://telegram.org/js/telegram-widget.js?22';
-    script.setAttribute('data-telegram-login', 'Trireibot'); // Use your actual bot username here
+    script.setAttribute('data-telegram-login', 'Trireibot');
     script.setAttribute('data-size', 'large');
     script.setAttribute('data-onauth', 'onTelegramAuth(user)');
     script.setAttribute('data-request-access', 'write');
@@ -57,6 +57,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy {
   }
 
   onTelegramAuth(user: any) {
+    console.log("Telegram User Data:", user);
     this.http.post('https://vm-194172a0.na4u.ru/api/users/auth/byTelegram', {
       id: user.id,
       hash: user.hash,

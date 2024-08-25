@@ -31,6 +31,9 @@ export class MenuNavComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    this.toggleTopic(savedTheme);
+    
     this.tokenService.isAuthenticated$.subscribe(isAuthenticated => {
       this.isAuthenticated = isAuthenticated;
       this.setButtons();
@@ -104,6 +107,10 @@ export class MenuNavComponent implements OnInit {
   toggleTopic(type: string) {
     this.activeTopic = type;
     this.sidebarVisible = false;
+  
+    // Сохраняем тему в localStorage
+    localStorage.setItem('theme', type);
+  
     if (type === 'dark') {
       document.documentElement.style.setProperty('--background', '#333334');
       document.documentElement.style.setProperty('--background-card', 'rgba(255, 255, 255, 0.1)');
@@ -115,8 +122,6 @@ export class MenuNavComponent implements OnInit {
       document.documentElement.style.setProperty('--card-hover-account', 'rgba(255, 255, 255, 0.1)');
       document.documentElement.style.setProperty('--line-item', 'rgba(255, 255, 255, 0.1)');
       document.documentElement.style.setProperty('--logo-text-color', '#fff');
-
-
     } else {
       document.documentElement.style.setProperty('--background', '#f2f2f2');
       document.documentElement.style.setProperty('--background-card', '#fff');
@@ -129,7 +134,6 @@ export class MenuNavComponent implements OnInit {
       document.documentElement.style.setProperty('--line-item', 'rgba(0, 0, 0, 0.1)');
       document.documentElement.style.setProperty('--logo-text-color', '#101010');
     }
-
   }
 
 }

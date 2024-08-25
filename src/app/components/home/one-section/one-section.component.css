@@ -74,7 +74,7 @@
 
 
 /* Медиазапрос для ПК */
-@media (min-width: 1024px) {
+@media (min-width: 790px) {
     .desktop-only {
         display: block;
     }

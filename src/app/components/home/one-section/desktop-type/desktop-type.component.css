@@ -43,7 +43,7 @@
     font-size: 2rem;
     line-height: 106%;
     letter-spacing: 0.023em;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .info-subtext {
@@ -52,6 +52,11 @@
     font-size: 3.5rem;
     line-height: 103%;
     letter-spacing: 0.033em;
-    color: #fff;
+    color: var(--font-color);
 
+}
+
+
+.textLogo{
+    fill: var(--font-color);
 }
