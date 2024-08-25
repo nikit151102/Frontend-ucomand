@@ -11,7 +11,7 @@
 
 .search {
     width: 100%;
-    padding: 2rem 0;
+    padding: 1.5rem 0;
     background: #b9aeff;
     display: flex;
     justify-content: center;
@@ -21,13 +21,22 @@
     z-index: 10;
 }
 
-.search.sticky {
-    position: fixed; /* Фиксированное положение */
-    top: 0px; /* Отступ от верхней части экрана */
-    
+.sticky-background {
+    background: none;
 }
 
-.search:not(.sticky) {
+app-search{
+    position: relative; /* Начальное положение */
+    transition: position 0.5s; /* Плавный переход */
+}
+app-search.sticky {
+    width: 65.5%;
+    position: fixed;
+    top: 0px;
+    padding: 1rem 0;
+}
+
+app-search:not(.sticky) {
     background: #b9aeff; /* Цвет, когда не приклеен */
 }
 
@@ -86,14 +95,15 @@
 
 
 @media (max-width: 789.98px) {
-    .search.sticky {
+    app-search.sticky {
+        width: 100%;
         top: 60px; /* Отступ от верхней части экрана */
         background: #806BFF; /* Цвет при приклеивании */
         padding: 0;
         z-index: 50;
-        transition: top 0.2s ease, background-color 0.2s ease;
+        transition: top 0.2s ease, background-color 0.1s ease;
     }
-
+    
     .content {
         padding-top: 66px;
         height: auto;

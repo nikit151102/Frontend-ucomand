@@ -8,6 +8,7 @@ import { DesktopTypeComponent } from './desktop-type/desktop-type.component';
 import { PhoneTypeComponent } from './phone-type/phone-type.component';
 import { ToggleSwitchComponent } from '../toggle-switch/toggle-switch.component';
 import { PopUpEntryService } from '../../pop-up-entry/pop-up-entry.service';
+import { SettingHeaderService } from '../../setting-header.service';
 
 @Component({
   selector: 'app-one-section',
@@ -27,7 +28,7 @@ export class OneSectionComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.hasType = !!document.querySelector('app-desktop-type') || !!document.querySelector('app-phone-type');
-    this.searchElement = document.querySelector('.search');
+    this.searchElement = document.querySelector('app-search');
     this.onWindowScroll(); // Инициализируем состояние при загрузке
   }
 
@@ -42,13 +43,13 @@ export class OneSectionComponent implements AfterViewInit {
         if (!this.searchElement.classList.contains('sticky')) {
           this.searchElement.classList.add('sticky');
           this.fixedPixel = scrollTop;
-          console.log('Adding sticky class');
+          this.settingHeaderService.isSticky = true;
         }
       } else {
         if (this.searchElement.classList.contains('sticky')) {
           this.searchElement.classList.remove('sticky');
-          console.log('Removing sticky class');
           this.fixedPixel = 0;
+          this.settingHeaderService.isSticky = false;
         }
       }
     }
@@ -56,7 +57,7 @@ export class OneSectionComponent implements AfterViewInit {
 
 
 
-  constructor(private formSettingService: FormSettingService, private router: Router, public popUpEntryService: PopUpEntryService) { }
+  constructor(public settingHeaderService: SettingHeaderService, private formSettingService: FormSettingService, private router: Router, public popUpEntryService: PopUpEntryService) { }
 
   tagsList = ['Веб дизайнер', '3d моделлер', 'Архитектор баз данных', 'Арт директор', 'Архитектор баз данных',
     'Системный аналитик', 'Арт директор', 'Арт директор', 'Арт директор', 'Арт директор', 'Веб дизайнер', '3d моделлер', 'Архитектор баз данных', 'Арт директор',

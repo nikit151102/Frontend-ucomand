@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" [ngClass]="{'sticky': settingHeaderService.isSticky}">
     <div class="first-container">
         <a href="">
             <div class="leftContent navBTN">
@@ -139,33 +139,33 @@
                     </button>
                 </div>
             </li>
-            <li>
+            <li (click)="toggle('vacancy')">
                 <a (click)="toggle('vacancy')">
                     Список вакансий
                 </a>
             </li>
-            <li>
-                <a (click)="toggle('resume')">
+            <li (click)="toggle('resume')">
+                <a>
                     Список резюме
                 </a>
             </li>
-            <li *ngIf="isAuthenticated">
-                <a (click)="viewUser()">
+            <li *ngIf="isAuthenticated" (click)="viewUser()">
+                <a>
                     Мой аккаунт
                 </a>
             </li>
-            <li>
-                <a href="aboutUs">
+            <li (click)="navigateTo('aboutUs')">
+                <a >
                     О нас
                 </a>
             </li>
-            <li>
-                <a href="">
+            <li  (click)="navigateTo('')">
+                <a >
                     Пригласить друзей
                 </a>
             </li>
-            <li *ngIf="tokenService.getToken()">
-                <a href="notifications">
+            <li *ngIf="tokenService.getToken()" (click)="navigateTo('notifications')" >
+                <a>
                     Уведомление
                 </a>
             </li>

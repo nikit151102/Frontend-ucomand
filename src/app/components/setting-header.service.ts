@@ -12,7 +12,8 @@ export class SettingHeaderService {
   toggleSwitch: boolean = false;
   isheader: boolean = true;
   searchinputVisible: boolean = false;
-  
+  isSticky: boolean = false;
+
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {

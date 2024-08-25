@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { SidebarModule } from 'primeng/sidebar';
 import { SettingHeaderService } from '../setting-header.service';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { TokenService } from '../token.service';
 import { HomeService } from '../home/home.service';
 import { FormSettingService } from '../form/form-setting.service';
@@ -24,22 +24,34 @@ export class MenuNavComponent implements OnInit {
   isAuthenticated!: boolean;
 
   buttonsConfig: { label: string, action: () => void }[] = [];
-  constructor(private location: Location, public settingHeaderService: SettingHeaderService, 
-    private router: Router, public tokenService: TokenService, private homeService: HomeService, 
+  constructor(private location: Location, public settingHeaderService: SettingHeaderService,
+    private router: Router, public tokenService: TokenService, private homeService: HomeService,
     private formSettingService: FormSettingService, private cdr: ChangeDetectorRef,
     private popUpEntryService: PopUpEntryService) {
   }
 
   ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        if (event.url !== '/') {
+          this.settingHeaderService.isSticky = false;
+        }
+      }
+    });
     const savedTheme = localStorage.getItem('theme') || 'light';
     this.toggleTopic(savedTheme);
-    
+
     this.tokenService.isAuthenticated$.subscribe(isAuthenticated => {
       this.isAuthenticated = isAuthenticated;
       this.setButtons();
     });
   }
 
+  
+  navigateTo(path: string) {
+    this.router.navigate([path]);
+    this.sidebarVisible = false;
+  }
 
   setButtons(): void {
     if (this.isAuthenticated) {
@@ -107,10 +119,10 @@ export class MenuNavComponent implements OnInit {
   toggleTopic(type: string) {
     this.activeTopic = type;
     this.sidebarVisible = false;
-  
+
     // Сохраняем тему в localStorage
     localStorage.setItem('theme', type);
-  
+
     if (type === 'dark') {
       document.documentElement.style.setProperty('--background', '#333334');
       document.documentElement.style.setProperty('--background-card', 'rgba(255, 255, 255, 0.1)');

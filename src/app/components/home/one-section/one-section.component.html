@@ -2,9 +2,9 @@
     <app-desktop-type class="desktop-only" *ngIf="!popUpEntryService.userVisible"></app-desktop-type>
     <app-phone-type class="phone-only" *ngIf="!popUpEntryService.userVisible"></app-phone-type>
 
-    <div class="search" [ngClass]="{'no-type': !hasType, 'has-type': hasType}">
+    <div class="search" [ngClass]="{'sticky-background': settingHeaderService.isSticky}">
         <div class="search-container">
-            <app-search></app-search>
+            <app-search [ngClass]="{'no-type': !hasType, 'has-type': hasType}"></app-search>
         </div>
     </div>
 </div>
