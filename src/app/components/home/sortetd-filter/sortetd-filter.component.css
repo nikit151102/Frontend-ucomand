@@ -22,7 +22,10 @@
     color: #806bff;
 }
 
-
+.sticky-filter {
+    width: 76%;
+    margin: 0 auto;
+}
 
 :host ::ng-deep .p-overlaypanel-content {
     padding: 0 !important;
@@ -158,24 +161,68 @@
     flex-direction: row;
     align-items: flex-end;
     gap: 2rem;
- 
+
 }
 
 
-:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover{
-    
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover {
+
     border-color: #806BFF !important;
     background: #806BFF !important;
 }
 
-:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight{
-    
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight {
+
     border-color: #806BFF !important;
     background: #806BFF !important;
+}
+
+
+.dialog-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.dialog {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 75vw;
+    z-index: 1001;
+}
+
+.dialog-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.clear {
+    cursor: pointer;
+    color: #806BFF;
+}
+
+.stage-filter-title {
+    font-weight: bold;
+}
+
+.gender-selection {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
 @media (max-width: 789.98px) {
-    .content-filter{
+    .content-filter {
         flex-direction: column;
     }
 
@@ -185,9 +232,13 @@
         justify-content: center;
         text-align: center;
     }
-    
-    .search p{
+
+    .search p {
         width: 100%;
+    }
+
+    .sticky-filter {
+        width: 95%;
     }
 
     :host ::ng-deep .p-dialog {
@@ -198,7 +249,8 @@
     :host ::ng-deep .p-dialog .p-dialog-content:last-of-type {
         border-radius: 0;
     }
-    :host ::ng-deep .p-dialog-mask{
+
+    :host ::ng-deep .p-dialog-mask {
         align-items: normal !important;
     }
 }

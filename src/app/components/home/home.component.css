@@ -27,26 +27,38 @@
     align-items: center
 }
 
-.search-container{
+.search-container {
     width: 65%;
 }
 
+.sticky-filter{
+    position: fixed;
+    top: 77px;
+    width: 100%;
+    background: var(--background);
+    left: 0;
+}
+
+
 @media (max-width: 1199.98px) {
-    .card-container{
+    .card-container {
         columns: 2;
     }
 }
 
 @media (max-width: 789.98px) {
-    .search-container{
+    .search-container {
         width: 95%;
     }
 
-    .card-container{
+    .card-container {
         columns: 1;
     }
 
-    .container{
+    .container {
         width: 95%;
+    }
+    .sticky-filter{
+        top: 110px;
     }
 }

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [ngClass]="{'sticky-filter': settingHeaderService.isSticky}">
    <app-sorting></app-sorting>
     <div class="filter">
 
@@ -17,69 +17,71 @@
     </div>
 </div>
 
-<p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '75vw' }" >
-    <div class="dialog-btns">
-        <p class="clear">
-            Сбросить фильтры
-        </p>
-        <a (click)="visible = false">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 5L18 18M5.0002 18L18 5" stroke="#806BFF" stroke-width="1.4" stroke-linecap="round" />
-            </svg>
-        </a>
-    </div>
-    <div class="content-filter">
-        <div class="stage-filter">
-            <p class="stage-filter-title">
-                Специализация:
+<div *ngIf="visible" class="dialog-backdrop" (click)="closeDialog($event)">
+    <div class="dialog" (click)="$event.stopPropagation()">
+        <div class="dialog-btns">
+            <p class="clear">
+                Сбросить фильтры
             </p>
-            <app-tag-selector [placeholderValue]="'Выберете специализацию'" [tags]="professions"></app-tag-selector>
+            <a (click)="visible = false">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 5L18 18M5.0002 18L18 5" stroke="#806BFF" stroke-width="1.4" stroke-linecap="round" />
+                </svg>
+            </a>
         </div>
-        <div class="stage-filter">
-            <p class="stage-filter-title">
-                Навыки:
-            </p>
-            <app-tag-selector [placeholderValue]="'Выберете навыки'" [tags]="skills"></app-tag-selector>
-        </div>
-        <div class="stage-filter" class="three-stages" style="flex: 1;">
-            <div class="three-stage">
+        <div class="content-filter">
+            <div class="stage-filter">
                 <p class="stage-filter-title">
-                    Мотивация:
+                    Специализация:
                 </p>
-                <app-motivations></app-motivations>
+                <app-tag-selector [placeholderValue]="'Выберете специализацию'" [tags]="professions"></app-tag-selector>
             </div>
-            <div class="paul">
-                <div class="three-stage" style="width: 100%;">
+            <div class="stage-filter">
+                <p class="stage-filter-title">
+                    Навыки:
+                </p>
+                <app-tag-selector [placeholderValue]="'Выберете навыки'" [tags]="skills"></app-tag-selector>
+            </div>
+            <div class="stage-filter" class="three-stages" style="flex: 1;">
+                <div class="three-stage">
                     <p class="stage-filter-title">
-                        Пол:
+                        Мотивация:
                     </p>
-                    <div style="    display: flex;
-                    justify-content: flex-start;
-                    align-items: center;
-                    gap: 3rem">
-                        <div style="display: flex; gap: 1rem; align-items: center;">
-                            <p-radioButton name="paul" value="Male" [(ngModel)]="selectedGender" inputId="paul1"></p-radioButton>
-                            <label for="paul1" class="ml-2" style="font-size: 0.8rem;">Мужской</label>
-                        </div>
-                        <div style="display: flex; gap: 1rem; align-items: center;">
-                            <p-radioButton name="paul" value="Female" [(ngModel)]="selectedGender" inputId="paul2"></p-radioButton>
-                        <label for="paul2" class="ml-2" style="font-size: 0.8rem;">Женский</label>
-                        </div>
-                    </div>
-                    
-                   
-                
-                    
+                    <app-motivations></app-motivations>
                 </div>
+                <div class="paul">
+                    <div class="three-stage" style="width: 100%;">
+                        <p class="stage-filter-title">
+                            Пол:
+                        </p>
+                        <div style="    display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        gap: 3rem">
+                            <div style="display: flex; gap: 1rem; align-items: center;">
+                                <p-radioButton name="paul" value="Male" [(ngModel)]="selectedGender" inputId="paul1"></p-radioButton>
+                                <label for="paul1" class="ml-2" style="font-size: 0.8rem;">Мужской</label>
+                            </div>
+                            <div style="display: flex; gap: 1rem; align-items: center;">
+                                <p-radioButton name="paul" value="Female" [(ngModel)]="selectedGender" inputId="paul2"></p-radioButton>
+                            <label for="paul2" class="ml-2" style="font-size: 0.8rem;">Женский</label>
+                            </div>
+                        </div>
+                        
+                       
+                    
+                        
+                    </div>
+                </div>
+    
             </div>
-
+        </div>
+    
+        <div class="search">
+            <p class="search-btn">
+                Найти
+            </p>
         </div>
     </div>
+</div>
 
-    <div class="search">
-        <p class="search-btn">
-            Найти
-        </p>
-    </div>
-
-</p-dialog>

@@ -2,7 +2,7 @@
     <app-one-section></app-one-section>
 
     <div class="container">
-            <app-sortetd-filter></app-sortetd-filter>
+            <app-sortetd-filter [ngClass]="{'sticky-filter': settingHeaderService.isSticky}"></app-sortetd-filter>
 
         <div class="card-container">
             <ng-container *ngIf="homeService.typeToggle === 'vacancy'">

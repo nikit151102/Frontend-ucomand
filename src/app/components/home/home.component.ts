@@ -47,7 +47,7 @@ interface Resume {
 })
 export class HomeComponent {
 
-    constructor(private viewCardService: ViewCardService, private settingHeaderService: SettingHeaderService, private router: Router, public homeService: HomeService) {
+    constructor(private viewCardService: ViewCardService, public settingHeaderService: SettingHeaderService, private router: Router, public homeService: HomeService) {
         this.settingHeaderService.post = false;
         this.settingHeaderService.shared = false;
         this.settingHeaderService.backbtn = false;

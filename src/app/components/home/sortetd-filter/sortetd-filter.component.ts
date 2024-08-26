@@ -9,6 +9,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { SortingComponent } from './sorting/sorting.component';
 import { SortetdFilterService } from './sortetd-filter.service';
 import { forkJoin } from 'rxjs';
+import { SettingHeaderService } from '../../setting-header.service';
 
 @Component({
   selector: 'app-sortetd-filter',
@@ -20,7 +21,7 @@ import { forkJoin } from 'rxjs';
 export class SortetdFilterComponent implements OnInit {
 
 
-  constructor(private sortetdFilterService: SortetdFilterService) { }
+  constructor(private sortetdFilterService: SortetdFilterService, public settingHeaderService: SettingHeaderService) { }
 
   visible: boolean = false;
 
@@ -56,5 +57,18 @@ export class SortetdFilterComponent implements OnInit {
     this.visible = true;
   }
 
+  closeDialog(event: Event) {
+    event.stopPropagation();
+    this.visible = false;
+  }
+
+  clearFilters() {
+    // Логика сброса фильтров
+  }
+
+  applyFilters() {
+    // Логика применения фильтров
+    this.visible = false;
+  }
 
 }

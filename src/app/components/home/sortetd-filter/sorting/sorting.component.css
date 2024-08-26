@@ -15,31 +15,28 @@
     line-height: 114%;
     color: #806bff;
 }
-
-.p-overlaypanel:before, .p-overlaypanel.p-overlaypanel-flipped:after, .p-overlaypanel:after{
-display: none;
-}
-.p-overlaypanel{
-    background: none !important;
-    margin: 0;
+.sorting {
+    position: relative; /* Относительное позиционирование для базового контейнера */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
-:host ::ng-deep  .p-overlaypanel{
-    background: none !important;
+.dropdown {
+    position: absolute;
+    z-index: 1000; /* Устанавливаем z-index, чтобы блок был поверх других элементов */
 }
 
-:host ::ng-deep .p-overlaypanel-content {
-    padding: 0 !important;
+.overlayPanel a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #000;
 }
 
-:host ::ng-deep .p-overlaypanel .p-overlaypanel-content {
-    padding: 0 !important;
+.overlayPanel a.active {
+    background-color: #e0e0e0; /* Подсветка активного элемента */
 }
-
-.p-overlaypanel .p-overlaypanel-content {
-    padding: 0 !important;
-}
-
 
 
 .overlayPanel {
