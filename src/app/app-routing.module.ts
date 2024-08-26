@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageErrorComponent } from './components/page-error/page-error.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'adminAccount', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
   },
+  {
+    path: 'error', component:PageErrorComponent
+  },
+  
 ];
 
 @NgModule({
