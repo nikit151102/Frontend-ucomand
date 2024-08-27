@@ -11,7 +11,7 @@ export class PopUpEntryService {
 
   visible: boolean = false;
   userVisible: boolean = false;
-  private domain = 'https://vm-7c43f39f.na4u.ru/api'; 
+  private domain = 'http://80.87.108.138:8080'; 
 
   getUser(): Observable<any> {
     return this.http.get(`${this.domain}/admins/rootToken`);
