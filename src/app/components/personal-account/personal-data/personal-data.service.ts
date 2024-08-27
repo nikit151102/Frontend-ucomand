@@ -12,7 +12,7 @@ export class PersonalDataService {
 
   visible: boolean = false;
 
-  private domain = 'https://vm-194172a0.na4u.ru/api'; 
+  private domain = 'https://vm-490413a4.na4u.ru/api';
    
   getCities(): Observable<any> {
     return this.http.get(`${this.domain}/cities`);
