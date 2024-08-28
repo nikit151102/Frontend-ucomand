@@ -54,20 +54,21 @@ export class PersonalDataComponent implements OnInit {
    
   }
 
-  userData(){
+  userData() {
     this.personalDataService.getCurrentUser().subscribe(
       (user: User) => {
+        console.log("user", user);
         this.dataCurrentUser = user;
-        this.cityOfResidence = user.cityOfResidence;
-         // Заполнение формы данными пользователя
-         this.personalDataForm.patchValue({
-          name: user.firstName,
-          surname: user.lastName,
-          age: user.age,
-          gender: user.gender,
-          city: user.cityOfResidence.name,
-          portfolio: user.freeLink,  // Если `portfolio` это ссылка, укажите правильное соответствие
-          aboutMe: user.aboutMe,
+        this.cityOfResidence = user.cityOfResidence || {}; // Защита от null
+        // Заполнение формы данными пользователя
+        this.personalDataForm.patchValue({
+          name: user.firstName || '',  // Защита от null
+          surname: user.lastName || '', // Защита от null
+          age: user.age || '',         // Защита от null
+          gender: user.gender || '',   // Защита от null
+          city: user.cityOfResidence?.name || '', // Защита от null
+          portfolio: user.freeLink || '', // Защита от null
+          aboutMe: user.aboutMe || '', // Защита от null
           email: '',  // Если email не указан в данных, оставьте пустым или используйте значение по умолчанию
           telegram: '',  // Аналогично, если telegram не указан
           domain: '',  // Аналогично, если domain не указан
@@ -75,10 +76,11 @@ export class PersonalDataComponent implements OnInit {
         });
       },
       (error) => {
-        console.error('Ошибка при загрузке тегов:', error);
+        console.error('Ошибка при загрузке данных пользователя:', error);
       }
     );
   }
+  
 
   filterCities(event: AutoCompleteCompleteEvent) {
     let filtered: any[] = [];
