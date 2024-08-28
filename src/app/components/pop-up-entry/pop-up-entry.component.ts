@@ -55,10 +55,10 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy {
     }
     (window as any).onTelegramAuth = undefined;
   }
-  private domain = 'http://80.87.108.138:8080';
+
   onTelegramAuth(user: any) {
     console.log("Telegram User Data:", user);
-    this.http.post('http://80.87.108.138:8080/users/auth/byTelegram', {
+    this.http.post('https://vm-7c43f39f.na4u.ru/api/users/auth/byTelegram', {
       id: user.id,
       hash: user.hash,
       username: user.username,
