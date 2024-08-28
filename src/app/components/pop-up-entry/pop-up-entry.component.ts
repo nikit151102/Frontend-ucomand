@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
 import { PopUpEntryService } from './pop-up-entry.service';
 import { TokenService } from '../token.service';
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +14,7 @@ import { InputTextModule } from 'primeng/inputtext';
   templateUrl: './pop-up-entry.component.html',
   styleUrls: ['./pop-up-entry.component.css']
 })
-export class PopUpEntryComponent implements AfterViewInit, OnDestroy {
+export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
   constructor(
     public popUpEntryService: PopUpEntryService,
@@ -22,8 +22,15 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy {
     private http: HttpClient
   ) { }
 
+
   ngAfterViewInit() {
-    this.loadTelegramWidget();
+    if (this.popUpEntryService.visible) {
+      this.loadTelegramWidget();
+    }
+  }
+
+  ngOnInit() {
+   
   }
 
   ngOnDestroy() {
@@ -40,13 +47,16 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy {
     script.setAttribute('data-onauth', 'onTelegramAuth(user)');
     script.setAttribute('data-request-access', 'write');
 
-    document.getElementById('telegram-login')?.appendChild(script);
+    const telegramLoginContainer = document.getElementById('telegram-login');
+    if (telegramLoginContainer) {
+      telegramLoginContainer.innerHTML = ''; // Очистка контейнера перед добавлением скрипта
+      telegramLoginContainer.appendChild(script);
+    }
 
-    // Ensure onTelegramAuth is available globally
     (window as any).onTelegramAuth = this.onTelegramAuth.bind(this);
   }
-  
-  
+
+
 
   removeTelegramWidget() {
     const script = document.getElementById('telegram-widget-script');
@@ -58,17 +68,10 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy {
 
   onTelegramAuth(user: any) {
     console.log("Telegram User Data:", user);
-    this.http.post('https://vm-7c43f39f.na4u.ru/api/users/auth/byTelegram', {
-      id: user.id,
-      hash: user.hash,
-      username: user.username,
-      auth_date: user.auth_date,
-      first_name: user.first_name
-    }).subscribe((response: any) => {
+    this.http.post('https://vm-7c43f39f.na4u.ru/api/users/auth/byTelegram', JSON.stringify(user)).subscribe((response: any) => {
       console.log("response", response);
       console.log("response.token", response.token);
       this.tokenService.setToken(response.token);
-      // this.tokenService.setToken(); // Передайте токен в метод setToken
       this.popUpEntryService.visible = false;
     });
   }

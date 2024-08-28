@@ -18,11 +18,11 @@
     align-items: center;
     position: relative; /* Начальное положение */
     transition: position 0.5s; /* Плавный переход */
-    z-index: 10;
 }
 
 .sticky-background {
     background: none;
+    z-index: 10;
 }
 
 app-search{
@@ -119,4 +119,6 @@ app-search:not(.sticky) {
         padding: 0.5rem 0;
     }
 
+
+    
 }

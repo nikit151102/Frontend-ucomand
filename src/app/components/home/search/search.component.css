@@ -137,6 +137,7 @@
          flex-direction: row;
          justify-content: center;
          gap: 0.5rem;
+         background-color: #806BFF;
      }
 
      .search-button:hover+.search-input,
