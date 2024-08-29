@@ -94,6 +94,7 @@ export class PersonalHomeComponent implements OnInit {
         this.vacanciesData = vacancies;
         this.resumesData = resumes;
         this.checkUserData();
+        console.log("dataCurrentUser",this.dataCurrentUser)
         console.log("resumes", resumes)
         console.log("vacancies", vacancies)
         this.visiblePage = true;
