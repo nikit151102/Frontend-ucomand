@@ -69,8 +69,8 @@ export class PersonalDataComponent implements OnInit {
           city: user.cityOfResidence?.name || '', // Защита от null
           portfolio: user.freeLink || '', // Защита от null
           aboutMe: user.aboutMe || '', // Защита от null
-          email: '',  // Если email не указан в данных, оставьте пустым или используйте значение по умолчанию
-          telegram: '',  // Аналогично, если telegram не указан
+          email: user.email,  // Если email не указан в данных, оставьте пустым или используйте значение по умолчанию
+          telegram: user.telegram,  // Аналогично, если telegram не указан
           domain: '',  // Аналогично, если domain не указан
           approval: false  // Если approval изначально false, можете оставить так
         });
@@ -119,6 +119,8 @@ export class PersonalDataComponent implements OnInit {
         freeLink: formValues.portfolio,
         ownLink: '',  // Пустое значение по умолчанию, если требуется, можно заменить на реальное значение
         aboutMe: formValues.aboutMe,
+        telegram: formValues.telegram,
+        email: formValues.email,
         dateOfRegistration: new Date().toISOString(),  // Установите текущую дату или другое значение
         cityOfResidence: this.cityOfResidence,
         role: this.dataCurrentUser.role,  // Установите роль по умолчанию или в соответствии с вашими требованиями

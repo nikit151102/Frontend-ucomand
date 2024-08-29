@@ -24,6 +24,8 @@ export interface User {
     freeLink: string;
     ownLink: string;
     aboutMe: string;
+    email: string;
+    telegram: string;
     dateOfRegistration: string; // Можно использовать Date, если требуется работа с датой
     cityOfResidence: CityOfResidence;
     role: 'ROOT' | 'USER' | 'ADMIN'; // Укажите возможные значения для роли

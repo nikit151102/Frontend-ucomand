@@ -5,13 +5,14 @@
                 <div class="logo">
                     <img src="assets/male_profile.png" alt="logo" class="logoImg">
                 </div>
-                <div style="display: flex; flex-wrap: wrap; align-content: flex-end; flex-direction: column; justify-content: flex-end">
+                <div
+                    style="display: flex; flex-wrap: wrap; align-content: flex-end; flex-direction: column; justify-content: flex-end">
                     <p class="fullName">
-                      {{dataCurrentUser.lastName}} 
-              
+                        {{dataCurrentUser.lastName}}
+
                     </p>
                     <p class="fullName">
-                        {{dataCurrentUser.firstName}} 
+                        {{dataCurrentUser.firstName}}
                     </p>
                 </div>
             </div>
@@ -29,32 +30,32 @@
                 </div>
             </div>
         </div>
-        <div class="contacts" *ngIf="isDataComplete">
+        <div class="contacts">
             <div>
                 <p class="chapterCard-title">
-                   Контакты:
-               </p>
-               <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
-      
-                   <div class="contacts-item">
-                       <img src="assets/domains/t.png" alt="logo" width="24px">
-                       <p>Telegram</p>
-                   </div>
-               </diV>
-           </div>
-           <div>
-            <p class="chapterCard-title">
-                Портфолио:
-           </p>
-           <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
-  
-               <div class="contacts-item">
-                   <img [src]="imagePath" alt="logo" width="24px">
-                   <p>{{domainName}}</p>
-               </div>
-               
-           </diV>
-       </div>
+                    Контакты:
+                </p>
+                <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
+
+                    <div class="contacts-item">
+                        <img src="assets/domains/t.png" alt="logo" width="24px">
+                        <p>Telegram</p>
+                    </div>
+                </diV>
+            </div>
+            <div>
+                <p class="chapterCard-title">
+                    Портфолио:
+                </p>
+                <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
+
+                    <div class="contacts-item">
+                        <img [src]="imagePath" alt="logo" width="24px">
+                        <p>{{domainName}}</p>
+                    </div>
+
+                </diV>
+            </div>
             <div class="date_registration">
                 <p class="title">На платформе с </p>
                 <span>{{dataCurrentUser.dateOfRegistration}}</span>
@@ -79,9 +80,9 @@
                     Активные резюме:
                 </p>
                 <div class="cards">
-                        <app-personal-resume *ngFor="let itemResume of resumesData"
+                    <app-personal-resume *ngFor="let itemResume of resumesData"
                         [cardItem]="itemResume"></app-personal-resume>
-                    
+
                 </div>
                 <div class="message-cards titleActive">
                     нет активных резюме
@@ -102,7 +103,8 @@
                     Активные вакансии:
                 </p>
                 <div class="cards">
-                    <app-personal-vacancy [item]="itemVacancy" *ngFor="let itemVacancy of vacanciesData"></app-personal-vacancy>
+                    <app-personal-vacancy [item]="itemVacancy"
+                        *ngFor="let itemVacancy of vacanciesData"></app-personal-vacancy>
                 </div>
                 <div class="message-cards titleActive">
                     нет активных вакансий
