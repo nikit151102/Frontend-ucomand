@@ -16,8 +16,8 @@
 
 .text {
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.9rem;
     line-height: 114%;
     color: #806bff;
 }
@@ -252,5 +252,9 @@
 
     :host ::ng-deep .p-dialog-mask {
         align-items: normal !important;
+    }
+
+    .text{
+        font-size: 0.8rem;
     }
 }

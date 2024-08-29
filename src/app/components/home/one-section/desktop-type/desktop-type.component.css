@@ -53,10 +53,13 @@
     line-height: 103%;
     letter-spacing: 0.033em;
     color: var(--font-color);
-
 }
 
 
+.backgroundFonn{
+    fill: var(--logo-background-color);
+}
+
 .textLogo{
-    fill: var(--font-color);
+    fill: var(--logo-text-color);
 }

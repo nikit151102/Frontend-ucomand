@@ -1,4 +1,3 @@
-<!-- pop-up-entry.component.html -->
 <div class="popup-overlay" *ngIf="popUpEntryService.visible">
   <div class="popup" (click)="$event.stopPropagation()">
     <ng-content>
@@ -6,6 +5,8 @@
       <p class="popup-telegram-auth">Авторизация через Telegram</p>
       
       <a class="popup-login-link" (click)="loadTelegramWidget()">Войти</a>
+      <a  (click)="login_enter()">Войти</a>
+      
       <!-- Контейнер для виджета Telegram -->
       <div id="telegram-login"></div>
     </ng-content>          

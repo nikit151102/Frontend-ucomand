@@ -2,14 +2,12 @@
     <div class="container_header" *ngIf="settingHeaderService.isheader">
         <app-menu-nav></app-menu-nav>
     </div>
-    <div class="container">
+    <div class="container content">
         <router-outlet></router-outlet>
     </div>
-    
-    <div class="container">
-    <app-footer></app-footer>
-</div>
-
+    <div class="footer-container">
+        <app-footer></app-footer>
+    </div>
 </div>
 
 <app-pop-up-entry></app-pop-up-entry>

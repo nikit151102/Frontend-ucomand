@@ -1,0 +1,11 @@
+<div class="popup-overlay">
+    <div class="popup" (click)="$event.stopPropagation()">
+        <p class="popup-title">Вы действительно хотите удалить свой аккаунт?</p>
+        <p class="popup-subtitle">При удалении, вы безвозвратно потеряете всю информацию: ваши резюме и вакансии, а
+            также не сможете получать доступ к контактам других пользователей.</p>
+        <div class="btns">
+            <a class="popup-btn-delete">Удалить профиль</a>
+            <a class="popup-cancel" (click)="cancel()">Отменить</a>
+        </div>
+
+    </div>

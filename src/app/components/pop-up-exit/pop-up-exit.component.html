@@ -1,0 +1,10 @@
+<div class="popup-overlay">
+    <div class="popup" (click)="$event.stopPropagation()">
+        <p class="popup-title">выйти из аккаунта</p>
+        <p class="popup-subtitle">Вы уверенны, что хотите выйти из аккаунта?</p>
+        <div class="btns">
+            <a class="popup-btn-exit">Выйти из аккаунта</a>
+            <a class="popup-cancel" (click)="cancel()">Отменить</a>
+        </div>
+
+    </div>

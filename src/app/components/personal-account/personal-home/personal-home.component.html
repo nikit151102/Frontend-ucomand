@@ -120,10 +120,10 @@
     </div>
 
     <div class="menuProfile">
-        <a href="">
+        <a (click)="deleteUser()">
             Удалить профиль
         </a>
-        <a href="">
+        <a (click)="exitAccount()">
             Выйти из аккаунта
         </a>
         <a (click)="getRouting()">
@@ -136,3 +136,7 @@
         </a>
     </div>
 </div>
+
+
+<app-pop-up-delete *ngIf="isPopupVisible"></app-pop-up-delete>
+<app-pop-up-exit *ngIf="isExitPopupVisible"></app-pop-up-exit>

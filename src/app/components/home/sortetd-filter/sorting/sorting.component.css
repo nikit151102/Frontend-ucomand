@@ -10,8 +10,8 @@
 
 .text {
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.9rem;
     line-height: 114%;
     color: #806bff;
 }
@@ -169,6 +169,9 @@
         flex-direction: column;
     }
 
+    .text{
+        font-size: 0.8rem;
+    }
 
     :host ::ng-deep .p-dialog {
         max-height: 100%;

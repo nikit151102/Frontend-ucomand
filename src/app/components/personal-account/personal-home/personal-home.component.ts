@@ -11,21 +11,30 @@ import { PersonalDataService } from '../personal-data/personal-data.service';
 import { ViewCardService } from '../../view-card/view-card.service';
 import { User } from '../personal-data/user-interface';
 import { PersonalHomeService } from './personal-home.service';
-import { catchError, forkJoin } from 'rxjs';
+import { catchError, forkJoin, Subscription } from 'rxjs';
+import { PopUpDeleteComponent } from '../../pop-up-delete/pop-up-delete.component';
+import { PopUpDeleteService } from '../../pop-up-delete/pop-up-delete.service';
+import { PopUpExitService } from '../../pop-up-exit/pop-up-exit.service';
+import { PopUpExitComponent } from '../../pop-up-exit/pop-up-exit.component';
 
 @Component({
   selector: 'app-personal-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, PersonalVacancyComponent, PersonalResumeComponent, ArchiveResumeComponent, ArchiveVacancyComponent],
+  imports: [CommonModule, RouterLink, PersonalVacancyComponent, PersonalResumeComponent, ArchiveResumeComponent, ArchiveVacancyComponent, PopUpDeleteComponent, PopUpExitComponent],
   templateUrl: './personal-home.component.html',
   styleUrl: './personal-home.component.css'
 })
 export class PersonalHomeComponent implements OnInit {
 
+  private subscription: Subscription = new Subscription();
+  private subscriptionExit: Subscription = new Subscription();
+  isPopupVisible: boolean = false;
+  isExitPopupVisible: boolean = false;
+
   constructor(private settingHeaderService: SettingHeaderService, private router: Router,
     private route: ActivatedRoute, private domainService: DomainService,
     public viewCardService: ViewCardService, private personalDataService: PersonalDataService,
-    private personalHomeService: PersonalHomeService) { }
+    private personalHomeService: PersonalHomeService, private popUpDeleteService: PopUpDeleteService, public popUpExitService: PopUpExitService) { }
 
   imagePath: string = '';
   domainName: string = '';
@@ -48,7 +57,17 @@ export class PersonalHomeComponent implements OnInit {
     this.domainService.checkImageExists(this.domainName).then((path) => {
       this.imagePath = path;
     });
-
+    this.subscription.add(
+      this.popUpDeleteService.visible$.subscribe(visible => {
+        this.isPopupVisible = visible;
+      })
+    );
+    this.subscriptionExit.add(
+      this.popUpExitService.visible$.subscribe(visible => {
+        this.isExitPopupVisible = visible;
+      })
+    );
+    
     // Параллельное выполнение запросов
     forkJoin({
       user: this.personalDataService.getCurrentUser().pipe(
@@ -116,5 +135,16 @@ export class PersonalHomeComponent implements OnInit {
       date: '2024-06-29'
     }]
 
+
+  deleteUser(): void {
+    this.popUpDeleteService.showPopup();
+  }
+  exitAccount() {
+    this.popUpExitService.showPopup();
+  }
+  ngOnDestroy(): void {
+
+    this.subscription.unsubscribe();
+  }
 
 }
