@@ -133,7 +133,7 @@ export class PersonalHomeComponent implements OnInit {
   }
 
   filterResumes(type: string): any[] {
-    return this.vacanciesData.filter((vacancy: any) => vacancy.visibility == type);
+    return this.resumesData.filter((resume: any) => resume.visibility == type);
   }
 
 }
