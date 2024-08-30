@@ -93,7 +93,8 @@
                     Архив резюме:
                 </p>
                 <div class="cards">
-                    <app-archive-resume></app-archive-resume>
+                    <app-archive-resume *ngFor="let itemResume of filterResumes('EVERYBODY')"
+                    [cardItem]="itemResume"></app-archive-resume>
                 </div>
             </div>
         </div>
@@ -114,7 +115,7 @@
                     Архив вакансий:
                 </p>
                 <div class="cards">
-                    <app-archive-vacancy></app-archive-vacancy>
+                    <app-archive-vacancy [cardItem]="itemVacancy" *ngFor="let itemVacancy of filterVacancies('EVERYBODY')"></app-archive-vacancy>
                 </div>
             </div>
         </div>

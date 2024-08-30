@@ -10,15 +10,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ArchiveResumeComponent {
   
-  @Input() cardItem: {
-    title: string;
-    context: string;
-    date: string;
-  } = {
-    title: 'title',
-    context: 'context',
-    date: '08.07.2024'
-  };
+  @Input() cardItem: any;
 
   getSkillsColor(item: string): string {
     switch (item) {
