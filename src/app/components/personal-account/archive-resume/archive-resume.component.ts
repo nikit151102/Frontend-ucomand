@@ -35,16 +35,8 @@ export class ArchiveResumeComponent {
 
   refund() {
     if (this.cardItem) {
-      { }
-      this.cardItem.visibility = 'CREATOR_ONLY';
-      this.resumeService.setArchive(this.cardItem.id, this.cardItem).subscribe(
-        (response: any) => {
-          console.log("user", response);
+     
           this.resumeService.toggleResumeArchive(this.cardItem); 
-        });
-    }
-    (error: any) => {
-      console.error('Ошибка при загрузке данных пользователя:', error);
     }
   }
 
