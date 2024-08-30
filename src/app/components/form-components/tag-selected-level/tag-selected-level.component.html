@@ -5,7 +5,7 @@
           <div>{{ tag.name }}</div>
           <ng-container *ngIf="tag.competenceLevel !== 0">
             <div class="levelTag" [ngStyle]="{ 'background': tag.color }">
-              {{tag.competenceLevel}}
+              {{ getCompetenceLevel(tag.competenceLevel) }}
             </div>
           </ng-container>
         </div>

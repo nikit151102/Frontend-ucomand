@@ -90,7 +90,18 @@ export class TagSelectedLevelComponent implements ControlValueAccessor {
   setDisabledState?(isDisabled: boolean): void {
     // Обработка состояния disabled, если необходимо
   }
-
+  getCompetenceLevel(level: number): string {
+    switch (level) {
+      case 1:
+        return 'junior';
+      case 2:
+        return 'middle';
+      case 3:
+        return 'senior';
+      default:
+        return ''; // Если 0 или другое значение, вернет пустую строку
+    }
+  }
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
