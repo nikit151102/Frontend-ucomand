@@ -28,7 +28,7 @@
                         (tagsChanged)="onTagsChanged($event, 'specialization')"></app-tag-selected-level>
                     <div *ngIf="form.get('profession')?.invalid && form.get('profession')?.touched"
                         class="error-message">
-                        Необходимо выбрать специализацию.
+                        Необходимо выбрать специализацию
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@
                         formControlName="skills"
                         (tagsChanged)="onTagsChanged($event, 'skills' )"></app-tag-selected-level>
                     <div *ngIf="form.get('skills')?.invalid && form.get('skills')?.touched" class="error-message">
-                        Необходимо выбрать от 1 до 3 навыков.
+                        Необходимо выбрать от 1 до 3 навыков
                     </div>
                 </div>
 
@@ -48,7 +48,7 @@
                         <app-motivations (tagsChanged)="onMotivationsChanged($event)"></app-motivations>
                         <div *ngIf="form.get('motivations')?.invalid && form.get('motivations')?.touched"
                             class="error-message">
-                            Необходимо выбрать от одной до трех мотиваций. При желании можно выбрать все четыре.
+                            Необходимо выбрать один или несколько вариантов
                         </div>
                     </div>
                     <ng-container *ngIf="formSettingService.isheading">
@@ -78,7 +78,7 @@
                     <textarea formControlName="details" placeholder="Поле ввода"></textarea>
                     <div *ngIf="form.get('details')?.invalid && form.get('details')?.touched">
                         <div *ngIf="form.get('details')?.errors?.['required']" class="error-message">
-                            Необходимо заполнить поле.
+                            Необходимо заполнить поле
                         </div>
                         <div *ngIf="form.get('details')?.errors?.['maxlength']" class="error-message">
                             Описание не должно превышать 700 символов

@@ -110,7 +110,7 @@ export class PersonalHomeComponent implements OnInit {
     const { firstName, lastName, gender, age, freeLink, ownLink, aboutMe, cityOfResidence } = this.dataCurrentUser;
 
     // Check if any field is missing or empty
-    this.isDataComplete = !!(firstName && lastName && gender && age != null && freeLink && ownLink && aboutMe && cityOfResidence && cityOfResidence.name);
+    this.isDataComplete = !!(firstName && lastName );
   }
 
   getRouting() {

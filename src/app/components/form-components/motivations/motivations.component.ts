@@ -31,5 +31,9 @@ export class MotivationsComponent {
     this.tagsList.push(tag);
     this.tagsChanged.emit(this.selectedTags);
   }
-
+  
+  reset() {
+    this.selectedTags = [];
+    this.tagsChanged.emit(this.selectedTags);
+  }
 }

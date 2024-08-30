@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MotivationsComponent } from '../form-components/motivations/motivations.component';
 import { TagSelectorComponent } from '../form-components/tag-selector/tag-selector.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
@@ -18,10 +18,8 @@ import { forkJoin } from 'rxjs';
 })
 export class FormComponent implements OnInit {
 
-  tagss: { name: string, id: number }[] = [
-    { name: 'Яндекс Трекер', id: 1 },
-    { name: 'Юзабилити-аудит сайта', id: 2 },
-  ];
+  @ViewChild(MotivationsComponent) motivationsComponent!: MotivationsComponent;
+  @ViewChild(TagSelectedLevelComponent) tagSelectedLevelComponent!: TagSelectedLevelComponent;
 
   constructor(
     public formSettingService: FormSettingService,
@@ -190,13 +188,14 @@ export class FormComponent implements OnInit {
         this.form.reset({
           title: '',
           profession: [],
-          skills: [[]],
+          skills: [],
           motivations: [],
           gender: '',
           details: ''
         });
+        this.motivationsComponent.reset();
+        this.tagSelectedLevelComponent.reset();
 
-       
       },
       (error) => {
         console.error('Ошибка при загрузке тегов:', error);

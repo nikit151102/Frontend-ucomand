@@ -70,6 +70,11 @@ export class TagSelectedLevelComponent implements ControlValueAccessor {
     this.tagsChanged.emit(this.selectedTags); // Вызываем событие с обновленными тегами
   }
 
+  reset() {
+    this.selectedTags = [];
+    this.tagsChanged.emit(this.selectedTags);
+  }
+
   // Реализация ControlValueAccessor
   writeValue(value: any): void {
     if (value) {
