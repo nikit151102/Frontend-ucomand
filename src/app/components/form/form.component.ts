@@ -169,11 +169,11 @@ export class FormComponent implements OnInit {
 
     // Добавляем недостающие поля со значениями по умолчанию
     formData.visibility = "CREATOR_ONLY";
-    formData.freeLink = formData.freeLink || null;
-    formData.ownLink = formData.ownLink || null;
-    formData.contacts = formData.contacts || null;
-    formData.details = formData.details || null;
-    formData.title = formData.title || null;
+    formData.freeLink = formData.freeLink || '';
+    formData.ownLink = formData.ownLink || '';
+    formData.contacts = formData.contacts || '';
+    formData.details = formData.details || '';
+    formData.title = formData.title || '';
 
     delete formData.gender; // Удаляем ненужное поле
 
