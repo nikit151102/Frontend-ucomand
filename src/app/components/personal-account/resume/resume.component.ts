@@ -77,6 +77,7 @@ export class PersonalResumeComponent implements OnInit {
   }
 
   setArchive(event: Event) {
+    event.stopPropagation();
     if (this.cardItem) {
       this.resumeService.toggleResumeArchive(this.cardItem);
     }
