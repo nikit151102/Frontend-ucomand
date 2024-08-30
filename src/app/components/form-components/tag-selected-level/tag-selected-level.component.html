@@ -3,9 +3,9 @@
       <div class="tagItem" *ngFor="let tag of selectedTags">
         <div class="tag">
           <div>{{ tag.name }}</div>
-          <ng-container *ngIf="tag.level !== 'None'">
+          <ng-container *ngIf="tag.competenceLevel !== 0">
             <div class="levelTag" [ngStyle]="{ 'background': tag.color }">
-              {{tag.level}}
+              {{tag.competenceLevel}}
             </div>
           </ng-container>
         </div>
@@ -23,16 +23,16 @@
         <div *ngFor="let tag of tags" (click)="selectTag(tag.name, tag.id)" class="selectTag">
           {{ tag.name }}
           <div *ngIf="selectedTag && selectedTag.name === tag.name" class="level">
-            <div (click)="selectLevel('Junior', tag.id, '#50b229')" style="background: #50b229;">
+            <div (click)="selectLevel(1, tag.id, '#50b229')" style="background: #50b229;">
               <p>Junior</p>
             </div>
-            <div (click)="selectLevel('Middle', tag.id, '#fad305')" style="background: #fad305;">
+            <div (click)="selectLevel(2, tag.id, '#fad305')" style="background: #fad305;">
               <p>Middle</p>
             </div>
-            <div (click)="selectLevel('Senior', tag.id, '#ee5354')" style="background: #ee5354;">
+            <div (click)="selectLevel(3, tag.id, '#ee5354')" style="background: #ee5354;">
               <p>Senior</p>
             </div>
-            <div (click)="selectLevel('None', tag.id)" style="background: #bdbdbd;">
+            <div (click)="selectLevel(0, tag.id)" style="background: #bdbdbd;">
               <p>Не указывать</p>
             </div>
           </div>

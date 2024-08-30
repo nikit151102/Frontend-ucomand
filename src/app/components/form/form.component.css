@@ -1,26 +1,29 @@
-.container{
-    margin: 0 auto; 
+.container {
+    margin: 0 auto;
     width: 75%;
 }
 
-input, textarea{
+input,
+textarea {
     font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 0.9rem;
     line-height: 140%;
 }
 
-textarea{
+textarea {
     border: 1px solid #e2e2e2;
     border-radius: 12px;
     padding: 16px;
     width: 100%;
     height: 46px;
     outline: none;
-    box-sizing: border-box; /* Убедитесь, что padding не увеличивает размер */
+    box-sizing: border-box;
+    /* Убедитесь, что padding не увеличивает размер */
     overflow: hidden;
-    resize: none; /* Запретить изменение размера пользователем */
-    transition: height 0.2s ease; 
+    resize: none;
+    /* Запретить изменение размера пользователем */
+    transition: height 0.2s ease;
 }
 
 .creation {
@@ -32,9 +35,10 @@ textarea{
     margin-left: 3rem;
 }
 
-.creation p{
+.creation p {
     margin: 0;
 }
+
 .creation-title {
     font-family: var(--font-Monts);
     font-weight: 700;
@@ -128,7 +132,7 @@ textarea{
     align-items: flex-start;
 }
 
-.ml-2{
+.ml-2 {
     font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 1rem;
@@ -145,10 +149,12 @@ textarea{
     resize: none;
     outline: none;
 }
-.thirdRow textarea::placeholder, .firstRow textarea::placeholder{
+
+.thirdRow textarea::placeholder,
+.firstRow textarea::placeholder {
     font-family: var(--font-Monts);
     font-weight: 400;
-    font-size: 0.8rem; 
+    font-size: 0.8rem;
     line-height: 140%;
 }
 
@@ -170,7 +176,8 @@ textarea{
     font-size: 1rem;
     line-height: 117%;
 }
-.paul-stage{
+
+.paul-stage {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -178,13 +185,14 @@ textarea{
     margin-top: 1rem;
     gap: 2rem;
 }
+
 .createBtn {
     padding: 16px;
     background: #84dd2c;
     color: var(--font-color);
 }
 
-.createBtn:hover{
+.createBtn:hover {
     background: #806bff;
 }
 
@@ -203,21 +211,28 @@ textarea{
     background: #e2e2e2;
     color: var(--font-color);
 }
+
 .deleteBtn:hover {
     background: #b9aeff;
 }
 
-:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover{
-    
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover {
+
     border-color: #806BFF !important;
     background: #806BFF !important;
 }
 
-:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight{
-    
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight {
+
     border-color: #806BFF !important;
     background: #806BFF !important;
 }
+
+.error-message {
+    color: red;
+    font-size: 0.7rem;
+}
+
 
 @media (max-width: 1200px) {
     .content {
@@ -234,7 +249,7 @@ textarea{
 }
 
 @media (max-width: 768px) {
-    .paul-stage{
+    .paul-stage {
         justify-content: space-around;
         margin-top: 0;
         gap: 0;
@@ -279,10 +294,12 @@ textarea{
         align-items: flex-start;
         gap: 1rem;
     }
-    .creation{
+
+    .creation {
         margin-top: 75px;
     }
-    .container{
+
+    .container {
         width: 100%;
     }
 }

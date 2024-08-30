@@ -22,6 +22,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     private http: HttpClient
   ) { }
 
+  telegramWidgetLoaded: boolean = false;
   
   ngAfterViewInit() {
     if (this.popUpEntryService.visible) {
@@ -51,6 +52,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
       // Ensure onTelegramAuth is available globally
       (window as any).onTelegramAuth = this.onTelegramAuth.bind(this);
+      this.telegramWidgetLoaded = true;
     }
   }
   
@@ -62,6 +64,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       script.remove();
     }
     (window as any).onTelegramAuth = undefined;
+    this.telegramWidgetLoaded = false;
   }
 
   onTelegramAuth(user: any) {
@@ -94,4 +97,8 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     // this.loadTelegramWidget();
   }
 
+
+  closePopUp() {
+    this.popUpEntryService.visible = false;
+  }
 }

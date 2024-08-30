@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MotivationsComponent } from '../form-components/motivations/motivations.component';
 import { TagSelectorComponent } from '../form-components/tag-selector/tag-selector.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormSettingService } from './form-setting.service';
 import { TagSelectedLevelComponent } from '../form-components/tag-selected-level/tag-selected-level.component';
 import { SettingHeaderService } from '../setting-header.service';
@@ -14,30 +14,28 @@ import { forkJoin } from 'rxjs';
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, TagSelectorComponent, MotivationsComponent, RadioButtonModule, TagSelectedLevelComponent],
   templateUrl: './form.component.html',
-  styleUrl: './form.component.css'
+  styleUrls: ['./form.component.css'] // Исправлено на styleUrls
 })
 export class FormComponent implements OnInit {
-
-  // tagss: string[] = ['Яндекс Трекер', 'Юзабилити-аудит сайта', 'Установка и обслуживание офисной техники', 'Контекстная реклама', ' САПР', 'Objective-С', '3d анимация', 'XML', 'Webflow', 'Web 3.0', 'Objective-С', 'Android User Interface Guidelines', 'Android User Interface Guidelines', 'Objective-С', 'Objective-С', 'Android User Interface Guidelines', 'Android User Interface Guidelines', 'Objective-С', 'Objective-С'];
 
   tagss: { name: string, id: number }[] = [
     { name: 'Яндекс Трекер', id: 1 },
     { name: 'Юзабилити-аудит сайта', id: 2 },
   ];
 
-  constructor(public formSettingService: FormSettingService,
+  constructor(
+    public formSettingService: FormSettingService,
     private settingHeaderService: SettingHeaderService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder
+  ) { }
 
   form!: FormGroup;
 
-  selectedTags: {id:number, name: string, color: string }[] = [];
+  selectedTags: { id: number, name: string, color: string }[] = [];
 
   motivations: any[] = [];
   professions: any[] = [];
   skills: any[] = [];
-
-
 
   ngOnInit(): void {
     // Выполняем все запросы параллельно
@@ -50,25 +48,22 @@ export class FormComponent implements OnInit {
         this.motivations = results.motivations;
         this.professions = results.professions;
         this.skills = results.skills;
-        
-        console.log('Теги (MOTIVATION):', this.motivations);
-        // console.log('Теги (PROFESSION):', this.professions);
-        // console.log('Теги (SKILL):', this.skills);
+
         this.form.get('motivations')?.setValue(this.motivations.filter(tag => this.selectedTags.some(st => st.name === tag.name)));
       },
       error: (error: any) => {
         console.error('Ошибка при загрузке тегов:', error);
       }
     });
-    
+
     this.settingHeaderService.backbtn = true;
     this.form = this.fb.group({
-      title: [''],
-      specialization: [[]],
-      skills: [[]],
-      motivations: [this.selectedTags],
+      title: ['', [this.optionalValidator]],
+      profession: [null, Validators.required],
+      skills: [[], Validators.required],
+      motivations: [this.selectedTags, Validators.required],
       gender: [''],
-      description: ['']
+      details: ['', [Validators.required, Validators.maxLength(700)]]
     });
 
     this.form.get('motivations')?.valueChanges.subscribe(tags => {
@@ -76,10 +71,20 @@ export class FormComponent implements OnInit {
     });
   }
 
-  onMotivationsChanged(tags: {id: number,  name: string, color: string }[]) {
-    this.form.get('motivations')?.setValue(tags);
+  // Пользовательский валидатор для поля title
+  optionalValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    // Если значение пустое, валидатор возвращает null, что означает, что ошибок нет
+    if (!control.value) {
+      return null;
+    }
+
+    // Если значение не пустое, применяются стандартные валидаторы
+    return Validators.required(control);
   }
 
+  onMotivationsChanged(tags: { id: number, name: string, color: string }[]) {
+    this.form.get('motivations')?.setValue(tags);
+  }
 
   adjustHeight(event: Event): void {
     const textarea = event.target as HTMLTextAreaElement;
@@ -104,31 +109,100 @@ export class FormComponent implements OnInit {
     return this.activeLink === link;
   }
 
-  onTagsChanged(tags: { name: string; id: number; level: string }[], formElement: string) {
+  onTagsChanged(tags: { name: string; id: number; competenceLevel: number }[], formElement: string) {
     this.form.get(`${formElement}`)?.setValue(tags);
   }
 
-
   submit() {
+    if (this.form.invalid) {
+      // Если форма не валидна, отображаем сообщения об ошибках
+      Object.keys(this.form.controls).forEach(control => {
+        const formControl = this.form.get(control);
+        if (formControl && formControl.invalid) {
+          formControl.markAsTouched(); // Подсвечиваем поля с ошибками
+        }
+      });
+
+      // Логирование названий полей с ошибками
+      console.log('Поля с ошибками:');
+      Object.keys(this.form.controls).forEach(control => {
+        const formControl = this.form.get(control);
+        if (formControl && formControl.invalid) {
+          console.log(`Поле "${control}" не прошло валидацию.`);
+        }
+      });
+
+      return;
+    }
+
     const formData = { ...this.form.value };
-  
+
     // Функция для поиска оригинального тега по имени
     const getOriginalTag = (name: string) => this.motivations.find(tag => tag.name === name);
-  
-    const removeColorProperty = (array: any[]) => array.map(({ color, ...rest }) => rest);
-  
-    // Преобразуем выбранные теги в формат, соответствующий данным с сервера
-    formData.motivations = removeColorProperty(
-      formData.motivations.map((tag: any) => getOriginalTag(tag.name) || tag)
+
+    // Функция для добавления недостающих полей и удаления color
+    const transformTags = (array: any[], type: string) => array.map(tag => ({
+      ...tag,
+      type: type,
+      color: tag.color || "string",
+    }));
+
+    // Преобразуем motivations и skills
+    formData.motivations = transformTags(
+      formData.motivations.map((tag: any) => getOriginalTag(tag.name) || tag),
+      'MOTIVATION'
     );
-    formData.specialization = removeColorProperty(
-      formData.specialization.map((tag: any) => getOriginalTag(tag.name) || tag)
+
+    formData.skills = transformTags(
+      formData.skills.map((tag: any) => getOriginalTag(tag.name) || tag),
+      'SKILL'
     );
-    formData.skills = removeColorProperty(
-      formData.skills.map((tag: any) => getOriginalTag(tag.name) || tag)
-    );
-  
+
+    // Извлекаем первый объект из profession и добавляем необходимые поля
+    if (Array.isArray(formData.profession) && formData.profession.length > 0) {
+      formData.profession = {
+        ...formData.profession[0],
+        competenceLevel: formData.profession[0].competenceLevel || null,
+        type: 'PROFESSION'
+      };
+    } else {
+      formData.profession = { id: 0, name: 'Java', competenceLevel: 1, type: 'PROFESSION' };
+    }
+
+    // Добавляем недостающие поля со значениями по умолчанию
+    formData.visibility = "CREATOR_ONLY";
+    formData.freeLink = formData.freeLink || "string";
+    formData.ownLink = formData.ownLink || "string";
+    formData.contacts = formData.contacts || "string";
+    formData.details = formData.details || "string";
+    formData.title = formData.title || "string";
+
+    delete formData.gender; // Удаляем ненужное поле
+
     console.log(formData);
+
+    // Отправляем данные
+    this.formSettingService.setData('vacancies', formData).subscribe(
+      (response) => {
+        console.log("response", response);
+
+        // Очистка формы после успешной отправки
+        this.form.reset({
+          title: '',
+          profession: [],
+          skills: [[]],
+          motivations: [],
+          gender: '',
+          details: ''
+        });
+
+       
+      },
+      (error) => {
+        console.error('Ошибка при загрузке тегов:', error);
+      }
+    );
   }
-  
+
+
 }

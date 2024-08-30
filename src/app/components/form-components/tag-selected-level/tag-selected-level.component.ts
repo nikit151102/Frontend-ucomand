@@ -20,11 +20,11 @@ export class TagSelectedLevelComponent implements ControlValueAccessor {
   @Input() tags: { name: string, id: number }[] = [];
   @Input() placeholderValue: string = '';
   @Input() maxTags: number = 3;
-  @Output() tagsChanged = new EventEmitter<{ name: string, id: number, level: string, color: string }[]>();
+  @Output() tagsChanged = new EventEmitter<{ name: string, id: number, competenceLevel: number, color: string }[]>();
 
   showTagBlock = false;
-  selectedTags: { name: string, id: number, level: string, color: string }[] = [];
-  selectedTag: { name: string, id: number, level: string, color: string } | null = null;
+  selectedTags: { name: string, id: number, competenceLevel: number, color: string }[] = [];
+  selectedTag: { name: string, id: number, competenceLevel: number, color: string } | null = null;
 
   private onChange: (value: any) => void = () => {};
   private onTouched: () => void = () => {};
@@ -39,20 +39,20 @@ export class TagSelectedLevelComponent implements ControlValueAccessor {
     if (this.selectedTag && this.selectedTag.name === name) {
       this.selectedTag = null;
     } else {
-      this.selectedTag = { name: name, id: id, level: '', color: ''  };
+      this.selectedTag = { name: name, id: id, competenceLevel: 0, color: ''  };
     }
     this.showTagBlock = true;
   }
 
-  selectLevel(level: string, id: number , color: string = '') {
+  selectLevel(level: number, id: number , color: string = '') {
     if (this.selectedTag) {
       if (this.selectedTags.length < this.maxTags || this.selectedTags.some(t => t.name === this.selectedTag!.name)) {
         let existingTag = this.selectedTags.find(t => t.name === this.selectedTag!.name);
         if (existingTag) {
-           existingTag.level = level;
+           existingTag.competenceLevel = level;
            existingTag.color = color;
         } else {
-          this.selectedTags.push({ name: this.selectedTag.name, id: this.selectedTag.id, level: level, color: color});
+          this.selectedTags.push({ name: this.selectedTag.name, id: this.selectedTag.id, competenceLevel: level, color: color});
         }
         this.selectedTag = null;
         this.showTagBlock = false;
@@ -64,7 +64,7 @@ export class TagSelectedLevelComponent implements ControlValueAccessor {
     }
   }
   
-  deleteTag(tag: { name: string, id: number, level: string }) {
+  deleteTag(tag: { name: string, id: number, competenceLevel: number }) {
     this.selectedTags = this.selectedTags.filter(t => t.id !== tag.id);
     this.onChange(this.selectedTags); // Сообщаем Angular формам о новом значении
     this.tagsChanged.emit(this.selectedTags); // Вызываем событие с обновленными тегами
