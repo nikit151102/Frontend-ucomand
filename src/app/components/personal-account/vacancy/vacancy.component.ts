@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ViewCardService } from '../../view-card/view-card.service';
+import { VacancyService } from './vacancy.service';
 
 @Component({
   selector: 'app-personal-vacancy',
@@ -14,7 +15,7 @@ export class PersonalVacancyComponent {
 
   @Input() item: any;
 
-  constructor(private router: Router, private viewCardService: ViewCardService) { }
+  constructor(private router: Router, private viewCardService: ViewCardService, private vacancyService: VacancyService) { }
 
   getSkillsColor(item: number): string {
     switch (item) {
@@ -73,7 +74,18 @@ export class PersonalVacancyComponent {
   }
 
   setArchive() {
+    if (this.item) {{}
+      this.item.visibility = 'EVERYBODY ';
+      this.vacancyService.setArchive(this.item.id, this.item).subscribe(
+        (response: any) => {
+          console.log("user", response);
+      
+          });
+        }
+        (error: any) => {
+          console.error('Ошибка при загрузке данных пользователя:', error);
+        }
 
-  }
+    }
 
 }
