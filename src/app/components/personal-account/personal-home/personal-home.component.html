@@ -80,7 +80,7 @@
                     Активные резюме:
                 </p>
                 <div class="cards">
-                        <app-personal-resume *ngFor="let itemResume of resumesData"
+                        <app-personal-resume *ngFor="let itemResume of filterResumes('CREATOR_ONLY')"
                         [cardItem]="itemResume"></app-personal-resume>
                     
                 </div>
@@ -103,7 +103,7 @@
                     Активные вакансии:
                 </p>
                 <div class="cards">
-                    <app-personal-vacancy [item]="itemVacancy" *ngFor="let itemVacancy of vacanciesData"></app-personal-vacancy>
+                    <app-personal-vacancy [item]="itemVacancy" *ngFor="let itemVacancy of filterVacancies('CREATOR_ONLY')"></app-personal-vacancy>
                 </div>
                 <div class="message-cards titleActive">
                     нет активных вакансий

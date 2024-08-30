@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { PopUpExitService } from './pop-up-exit.service';
+import { Router } from '@angular/router';
+import { TokenService } from '../token.service';
 
 @Component({
   selector: 'app-pop-up-exit',
@@ -10,10 +12,14 @@ import { PopUpExitService } from './pop-up-exit.service';
 })
 export class PopUpExitComponent {
 
-  constructor(public popUpExitService:PopUpExitService){}
+  constructor(public popUpExitService:PopUpExitService, private router: Router,public tokenService: TokenService){}
 
   cancel(): void {
     this.popUpExitService.hidePopup();  
   }
 
+  exitAccount(){
+    this.tokenService.clearToken();
+    this.router.navigate(['/']);
+  }
 }

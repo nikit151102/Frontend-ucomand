@@ -116,26 +116,6 @@ export class PersonalHomeComponent implements OnInit {
   getRouting() {
     this.router.navigate(['../personalData'], { relativeTo: this.route });
   }
-  personalVacanciesData = [
-    {
-      id: 1,
-      title: 'Backend разработчик',
-      context: 'UX-тестировщик.',
-      skills: ['Node.js', 'Express.js', 'MongoDB', 'REST API', 'Архитектура микросервисов', 'Тестирование программного обеспечения', 'Node.js', 'Express.js', 'MongoDB', 'REST API', 'Архитектура микросервисов'],
-      motivations: ['За долю', 'За оплату', 'Практика'],
-      fullName: 'Иванов Павел Сергеевич',
-      date: '2024-06-29'
-    },
-    {
-      id: 2,
-      title: 'Frontend разработчик',
-      context: 'Крупная IT-компания ищет креативного и ответственного разработчика frontend для создания пользовательских интерфейсов.',
-      skills: ['JavaScript', 'React.js', 'Redux', 'HTML5', 'CSS3', 'Адаптивная верстка'],
-      motivations: ['За оплату', 'Практика'],
-      fullName: 'Петрова Елена Александровна',
-      date: '2024-06-29'
-    }]
-
 
   deleteUser(): void {
     this.popUpDeleteService.showPopup();
@@ -146,6 +126,14 @@ export class PersonalHomeComponent implements OnInit {
   ngOnDestroy(): void {
 
     this.subscription.unsubscribe();
+  }
+
+  filterVacancies(type: string): any[] {
+    return this.vacanciesData.filter((vacancy: any) => vacancy.visibility == type);
+  }
+
+  filterResumes(type: string): any[] {
+    return this.vacanciesData.filter((vacancy: any) => vacancy.visibility == type);
   }
 
 }

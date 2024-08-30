@@ -134,7 +134,7 @@ export class FormComponent implements OnInit {
     }
 
     const formData = { ...this.form.value };
-
+    let typeEndpoint = 'vacancies'
     // Функция для поиска оригинального тега по имени
     const getOriginalTag = (name: string) => this.motivations.find(tag => tag.name === name);
 
@@ -142,7 +142,7 @@ export class FormComponent implements OnInit {
     const transformTags = (array: any[], type: string) => array.map(tag => ({
       ...tag,
       type: type,
-      color: tag.color || "string",
+      color: tag.color || null,
     }));
 
     // Преобразуем motivations и skills
@@ -169,18 +169,22 @@ export class FormComponent implements OnInit {
 
     // Добавляем недостающие поля со значениями по умолчанию
     formData.visibility = "CREATOR_ONLY";
-    formData.freeLink = formData.freeLink || "string";
-    formData.ownLink = formData.ownLink || "string";
-    formData.contacts = formData.contacts || "string";
-    formData.details = formData.details || "string";
-    formData.title = formData.title || "string";
+    formData.freeLink = formData.freeLink || null;
+    formData.ownLink = formData.ownLink || null;
+    formData.contacts = formData.contacts || null;
+    formData.details = formData.details || null;
+    formData.title = formData.title || null;
 
     delete formData.gender; // Удаляем ненужное поле
 
-    console.log(formData);
+    if (this.formSettingService.typeForm = 'резюме') [
+      typeEndpoint = 'resumes'
+    ]
+
+    console.log(formData, " ------", typeEndpoint);
 
     // Отправляем данные
-    this.formSettingService.setData('vacancies', formData).subscribe(
+    this.formSettingService.setData(typeEndpoint, formData).subscribe(
       (response) => {
         console.log("response", response);
 

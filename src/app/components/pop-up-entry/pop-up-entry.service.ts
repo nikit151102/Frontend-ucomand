@@ -17,11 +17,8 @@ export class PopUpEntryService {
     return this.http.get(`${this.domain}/admins/rootToken`);
   }
 
-
   showDialog() {
     this.visible = true;
   }
-
-
 
 }

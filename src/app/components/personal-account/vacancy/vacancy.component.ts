@@ -13,9 +13,9 @@ import { ViewCardService } from '../../view-card/view-card.service';
 export class PersonalVacancyComponent {
 
   @Input() item: any;
-  
-  constructor(private router: Router, private viewCardService:ViewCardService){}
-  
+
+  constructor(private router: Router, private viewCardService: ViewCardService) { }
+
   getSkillsColor(item: number): string {
     switch (item) {
       case 1:
@@ -41,7 +41,7 @@ export class PersonalVacancyComponent {
         return '';
     }
   }
-  
+
   getMotivationColor(item: string): string {
     switch (item) {
       case 'Без оплаты':
@@ -58,11 +58,11 @@ export class PersonalVacancyComponent {
   }
 
   isSettingActive: boolean = false;
-  
+
   Actived() {
     this.isSettingActive = !this.isSettingActive
   }
-  
+
 
   viewCard(type: string, route: string) {
     this.viewCardService.selectedCard = this.item.id;
@@ -70,5 +70,10 @@ export class PersonalVacancyComponent {
     localStorage.setItem('routeTypeCard', type);
     this.router.navigate([`/${route}`, this.item.id]);
 
-}
+  }
+
+  setArchive() {
+
+  }
+
 }
