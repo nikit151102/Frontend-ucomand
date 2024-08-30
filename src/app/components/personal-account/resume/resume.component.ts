@@ -83,7 +83,6 @@ export class PersonalResumeComponent implements OnInit {
       this.resumeService.setArchive(this.cardItem.id, this.cardItem).subscribe(
         (response: any) => {
           console.log("user", response);
-          this.resumeService.updateResumes(this.cardItem.id);
           this.resumeService.updateResumes(this.cardItem)
         });
     }
