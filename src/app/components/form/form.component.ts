@@ -178,12 +178,12 @@ export class FormComponent implements OnInit {
     delete formData.gender; // Удаляем ненужное поле
     let typeEndpoint;
     console.log(formData);
-    if (this.formSettingService.typeForm = 'резюме') {
+    if (this.formSettingService.typeForm == 'резюме') {
       typeEndpoint = 'resumes';
     } else {
       typeEndpoint = 'vacancies';
     }
-
+console.log("typeEndpoint",typeEndpoint)
     // Отправляем данные
     this.formSettingService.setData(typeEndpoint, formData).subscribe(
       (response) => {
