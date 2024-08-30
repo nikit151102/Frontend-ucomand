@@ -16,6 +16,7 @@ import { PopUpDeleteComponent } from '../../pop-up-delete/pop-up-delete.componen
 import { PopUpDeleteService } from '../../pop-up-delete/pop-up-delete.service';
 import { PopUpExitService } from '../../pop-up-exit/pop-up-exit.service';
 import { PopUpExitComponent } from '../../pop-up-exit/pop-up-exit.component';
+import { ResumeService } from '../services/resume.service';
 
 @Component({
   selector: 'app-personal-home',
@@ -34,7 +35,8 @@ export class PersonalHomeComponent implements OnInit {
   constructor(private settingHeaderService: SettingHeaderService, private router: Router,
     private route: ActivatedRoute, private domainService: DomainService,
     public viewCardService: ViewCardService, private personalDataService: PersonalDataService,
-    private personalHomeService: PersonalHomeService, private popUpDeleteService: PopUpDeleteService, public popUpExitService: PopUpExitService) { }
+    private personalHomeService: PersonalHomeService, private popUpDeleteService: PopUpDeleteService, public popUpExitService: PopUpExitService,
+  public resumeService:ResumeService) { }
 
   imagePath: string = '';
   domainName: string = '';
@@ -54,6 +56,9 @@ export class PersonalHomeComponent implements OnInit {
     const urlString = this.viewCardService.selectedUser.url;
     this.domainName = this.domainService.setDomain(urlString);
     console.log("property", this.domainName)
+
+    this.resumeService.subscribeToGetCardsData();
+    
     this.domainService.checkImageExists(this.domainName).then((path) => {
       this.imagePath = path;
     });
@@ -120,9 +125,11 @@ export class PersonalHomeComponent implements OnInit {
   deleteUser(): void {
     this.popUpDeleteService.showPopup();
   }
+
   exitAccount() {
     this.popUpExitService.showPopup();
   }
+
   ngOnDestroy(): void {
 
     this.subscription.unsubscribe();
@@ -132,8 +139,6 @@ export class PersonalHomeComponent implements OnInit {
     return this.vacanciesData.filter((vacancy: any) => vacancy.visibility == type);
   }
 
-  filterResumes(type: string): any[] {
-    return this.resumesData.filter((resume: any) => resume.visibility == type);
-  }
+
 
 }

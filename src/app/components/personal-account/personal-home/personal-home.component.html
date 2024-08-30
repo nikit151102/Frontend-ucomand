@@ -80,7 +80,7 @@
                     Активные резюме:
                 </p>
                 <div class="cards">
-                        <app-personal-resume *ngFor="let itemResume of filterResumes('CREATOR_ONLY')"
+                        <app-personal-resume *ngFor="let itemResume of resumeService.filterResumes('CREATOR_ONLY')"
                         [cardItem]="itemResume"></app-personal-resume>
                     
                 </div>
@@ -93,7 +93,7 @@
                     Архив резюме:
                 </p>
                 <div class="cards">
-                    <app-archive-resume *ngFor="let itemResume of filterResumes('EVERYBODY')"
+                    <app-archive-resume *ngFor="let itemResume of resumeService.filterResumes('EVERYBODY')"
                     [cardItem]="itemResume"></app-archive-resume>
                 </div>
             </div>
