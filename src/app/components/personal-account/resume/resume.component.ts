@@ -84,6 +84,7 @@ export class PersonalResumeComponent implements OnInit {
         (response: any) => {
           console.log("user", response);
           this.resumeService.updateResumes(this.cardItem.id);
+          this.resumeService.updateResumes(this.cardItem)
         });
     }
     (error: any) => {
