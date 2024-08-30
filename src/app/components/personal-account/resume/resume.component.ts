@@ -78,18 +78,7 @@ export class PersonalResumeComponent implements OnInit {
 
   setArchive() {
     if (this.cardItem) {
-      { }
-      this.cardItem.visibility = 'EVERYBODY ';
-      this.resumeService.setArchive(this.cardItem.id, this.cardItem).subscribe(
-        (response: any) => {
-          console.log("user", response);
-          this.resumeService.updateResumes(this.cardItem)
-        });
+      this.resumeService.toggleResumeArchive(this.cardItem);
     }
-    (error: any) => {
-      console.error('Ошибка при загрузке данных пользователя:', error);
-    }
-
   }
-
 }

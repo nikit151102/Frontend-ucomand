@@ -36,7 +36,7 @@ export class PersonalHomeComponent implements OnInit {
     private route: ActivatedRoute, private domainService: DomainService,
     public viewCardService: ViewCardService, private personalDataService: PersonalDataService,
     private personalHomeService: PersonalHomeService, private popUpDeleteService: PopUpDeleteService, public popUpExitService: PopUpExitService,
-  public resumeService:ResumeService) { }
+    public resumeService: ResumeService) { }
 
   imagePath: string = '';
   domainName: string = '';
@@ -58,7 +58,7 @@ export class PersonalHomeComponent implements OnInit {
     console.log("property", this.domainName)
 
     this.resumeService.subscribeToGetCardsData();
-    
+
     this.domainService.checkImageExists(this.domainName).then((path) => {
       this.imagePath = path;
     });
@@ -72,7 +72,7 @@ export class PersonalHomeComponent implements OnInit {
         this.isExitPopupVisible = visible;
       })
     );
-    
+
     // Параллельное выполнение запросов
     forkJoin({
       user: this.personalDataService.getCurrentUser().pipe(
@@ -99,7 +99,7 @@ export class PersonalHomeComponent implements OnInit {
         this.vacanciesData = vacancies;
         this.resumesData = resumes;
         this.checkUserData();
-        console.log("dataCurrentUser",this.dataCurrentUser)
+        console.log("dataCurrentUser", this.dataCurrentUser)
         console.log("resumes", resumes)
         console.log("vacancies", vacancies)
         this.visiblePage = true;
@@ -115,7 +115,7 @@ export class PersonalHomeComponent implements OnInit {
     const { firstName, lastName, gender, age, freeLink, ownLink, aboutMe, cityOfResidence } = this.dataCurrentUser;
 
     // Check if any field is missing or empty
-    this.isDataComplete = !!(firstName && lastName );
+    this.isDataComplete = !!(firstName && lastName);
   }
 
   getRouting() {
@@ -131,7 +131,7 @@ export class PersonalHomeComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-
+    this.resumeService.unsubscribeFromGetCardsData();
     this.subscription.unsubscribe();
   }
 

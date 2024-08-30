@@ -8,12 +8,13 @@ import { Observable, Subscription } from 'rxjs';
 export class ResumeService {
 
   constructor(private http: HttpClient) { }
-  
-  private subscription: Subscription | null = null;
 
+  private subscription: Subscription | null = null;
   private domain = 'https://vm-7c43f39f.na4u.ru/api';
 
-  resumesList: any;
+  resumesList: any[] = [];
+  activeResumes: any[] = [];
+  archiveResumes: any[] = [];
 
   getCardsData(): Observable<any> {
     const token = localStorage.getItem('authToken');
@@ -29,7 +30,8 @@ export class ResumeService {
   subscribeToGetCardsData(): void {
     this.subscription = this.getCardsData().subscribe(
       (response: any) => {
-        this.resumesList = response; 
+        this.resumesList = response;
+        this.updateResumesLists();
       },
       (error: any) => {
         console.error('Ошибка при загрузке данных резюме:', error);
@@ -66,13 +68,39 @@ export class ResumeService {
   }
 
   filterResumes(type: string): any[] {
-    return this.resumesList.filter((resume: any) => resume.visibility == type);
+    return this.resumesList.filter((resume: any) => resume.visibility === type);
+  }
+
+  updateResumesLists(): void {
+    this.activeResumes = this.filterResumes('CREATOR_ONLY');
+    this.archiveResumes = this.filterResumes('EVERYBODY');
+  }
+
+  // Метод для перемещения резюме в архив или обратно
+  toggleResumeArchive(resume: any): void {
+    // Определяем новое состояние для резюме
+    const newVisibility = resume.visibility === 'CREATOR_ONLY' ? 'EVERYBODY' : 'CREATOR_ONLY';
+    const updatedResume = { ...resume, visibility: newVisibility };
+
+    // Обновляем резюме на сервере
+    this.setArchive(resume.id, updatedResume).subscribe(
+      (response: any) => {
+        // После успешного обновления на сервере обновляем локальные данные
+        this.updateResumes(updatedResume);
+        this.updateResumesLists();
+        console.log('Резюме успешно обновлено:', response);
+      },
+      (error: any) => {
+        console.error('Ошибка при обновлении резюме:', error);
+      }
+    );
   }
 
   // Метод для обновления списка резюме
-  updateResumes(updatedResume: any) {
+  updateResumes(updatedResume: any): void {
     this.resumesList = this.resumesList.map((resume: any) =>
       resume.id === updatedResume.id ? updatedResume : resume
     );
   }
 }
+ 
