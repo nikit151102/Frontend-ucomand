@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { VacancyService } from '../services/vacancy.service';
 
 @Component({
   selector: 'app-archive-vacancy',
@@ -10,15 +11,9 @@ import { Component, Input } from '@angular/core';
 })
 export class ArchiveVacancyComponent {
 
-  @Input() cardItem: {
-    title: string;
-    context: string;
-    date: string;
-  } = {
-      title: 'title',
-      context: 'context',
-      date: '08.07.2024'
-    };
+  constructor(private vacancyService: VacancyService) { }
+
+  @Input() cardItem: any;
 
   getSkillsColor(item: string): string {
     switch (item) {
@@ -33,9 +28,40 @@ export class ArchiveVacancyComponent {
     }
   }
   isSettingActive: boolean = false;
-  
+
   Actived() {
     this.isSettingActive = !this.isSettingActive
   }
 
+  refund() {
+    if (this.cardItem) {
+      { }
+      this.cardItem.visibility = 'CREATOR_ONLY';
+      this.vacancyService.setArchive(this.cardItem.id, this.cardItem).subscribe(
+        (response: any) => {
+          console.log("user", response);
+
+        });
+    }
+    (error: any) => {
+      console.error('Ошибка при загрузке данных пользователя:', error);
+    }
+  }
+
+  deleteById() {
+    if (this.cardItem) {
+      { }
+      this.cardItem.visibility = 'CREATOR_ONLY';
+      this.vacancyService.deleteById(this.cardItem.id).subscribe(
+        (response: any) => {
+          console.log("user", response);
+
+        });
+    }
+    (error: any) => {
+      console.error('Ошибка при загрузке данных пользователя:', error);
+    }
+  }
 }
+
+

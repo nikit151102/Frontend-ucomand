@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ViewCardService } from '../../view-card/view-card.service';
-import { VacancyService } from './vacancy.service';
+import { VacancyService } from '../services/vacancy.service';
 
 @Component({
   selector: 'app-personal-vacancy',
@@ -87,5 +87,7 @@ export class PersonalVacancyComponent {
         }
 
     }
+
+  
 
 }

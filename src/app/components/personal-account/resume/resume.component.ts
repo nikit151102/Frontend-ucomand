@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ViewCardService } from '../../view-card/view-card.service';
 import { Router } from '@angular/router';
+import { ResumeService } from '../services/resume.service';
 
 
 @Component({
@@ -14,10 +15,10 @@ import { Router } from '@angular/router';
 export class PersonalResumeComponent implements OnInit {
 
   @Input() cardItem: any;
-  
-  constructor(private router: Router, private viewCardService:ViewCardService){}
+
+  constructor(private router: Router, private viewCardService: ViewCardService, private resumeService: ResumeService) { }
   ngOnInit(): void {
-    console.log("cardItem",this.cardItem)
+    console.log("cardItem", this.cardItem)
   }
 
   getSkillsColor(item: number): string {
@@ -45,7 +46,7 @@ export class PersonalResumeComponent implements OnInit {
         return '';
     }
   }
-  
+
   getMotivationColor(item: string): string {
     switch (item) {
       case 'Без оплаты':
@@ -60,9 +61,9 @@ export class PersonalResumeComponent implements OnInit {
         return '';
     }
   }
-  
+
   isSettingActive: boolean = false;
-  
+
   Actived() {
     this.isSettingActive = !this.isSettingActive
   }
@@ -73,6 +74,23 @@ export class PersonalResumeComponent implements OnInit {
     localStorage.setItem('routeTypeCard', type);
     this.router.navigate([`/${route}`, this.cardItem.id]);
 
-}
-  
+  }
+
+
+  setArchive() {
+    if (this.cardItem) {
+      { }
+      this.cardItem.visibility = 'EVERYBODY ';
+      this.resumeService.setArchive(this.cardItem.id, this.cardItem).subscribe(
+        (response: any) => {
+          console.log("user", response);
+
+        });
+    }
+    (error: any) => {
+      console.error('Ошибка при загрузке данных пользователя:', error);
+    }
+
+  }
+
 }

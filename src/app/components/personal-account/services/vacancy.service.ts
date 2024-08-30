@@ -21,4 +21,15 @@ export class VacancyService {
 
     return this.http.put(`${this.domain}/vacancies/ofCurrentUser/${id}`, body ,{ headers });
   }
+
+  deleteById(id: string){
+    const token = localStorage.getItem('authToken');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.delete(`${this.domain}/vacancies/${id}`,{ headers });
+  }
+  
 }

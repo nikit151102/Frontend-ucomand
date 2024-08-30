@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { ResumeService } from '../services/resume.service';
 
 @Component({
   selector: 'app-archive-resume',
@@ -11,6 +12,8 @@ import { Component, Input } from '@angular/core';
 export class ArchiveResumeComponent {
   
   @Input() cardItem: any;
+
+  constructor(private resumeService:ResumeService){}
 
   getSkillsColor(item: string): string {
     switch (item) {
@@ -28,5 +31,35 @@ export class ArchiveResumeComponent {
   
   Actived() {
     this.isSettingActive = !this.isSettingActive
+  }
+
+  refund() {
+    if (this.cardItem) {
+      { }
+      this.cardItem.visibility = 'CREATOR_ONLY';
+      this.resumeService.setArchive(this.cardItem.id, this.cardItem).subscribe(
+        (response: any) => {
+          console.log("user", response);
+
+        });
+    }
+    (error: any) => {
+      console.error('Ошибка при загрузке данных пользователя:', error);
+    }
+  }
+
+  deleteById() {
+    if (this.cardItem) {
+      { }
+      this.cardItem.visibility = 'CREATOR_ONLY';
+      this.resumeService.deleteById(this.cardItem.id).subscribe(
+        (response: any) => {
+          console.log("user", response);
+
+        });
+    }
+    (error: any) => {
+      console.error('Ошибка при загрузке данных пользователя:', error);
+    }
   }
 }
