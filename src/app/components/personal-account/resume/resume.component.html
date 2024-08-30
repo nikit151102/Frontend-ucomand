@@ -1,4 +1,4 @@
-<div class="card"  (click)="viewCard('resumes', 'resume')" >
+<div class="card" (click)="viewCard('resumes', 'resume')">
     <div class="chapterCard">
         <p class="chapterCard-title" style="margin-bottom: 0;">
             Специальность:
@@ -7,9 +7,9 @@
             <p class="title" style="margin-top: 0.5rem; width: 90%;">
                 {{ cardItem?.profession?.name | uppercase }} <!-- Исправлено на profession.name -->
             </p>
-            <p [ngStyle]="{ 'background': getSkillsColor(cardItem.profession.competenceLevel) }" class="lookingCard-level">
-                {{ getSkills(cardItem.profession?.competenceLevel)  }}
-              </p>
+            <p [ngStyle]="{ 'background': getSkillsColor(cardItem?.profession?.competenceLevel) }" class="lookingCard-level">
+                {{ getSkills(cardItem?.profession?.competenceLevel) }}
+            </p>
         </div>
     </div>
     <div class="chapterCard">
@@ -17,8 +17,8 @@
             Навыки:
         </p>
         <div class="tags">
-            <ng-container *ngIf="cardItem.skills">
-                <div class="tag" *ngFor="let skill of cardItem.skills">
+            <ng-container *ngIf="cardItem?.skills">
+                <div class="tag" *ngFor="let skill of cardItem?.skills">
                     {{ skill?.name }} <!-- Обновлено для отображения имени навыка -->
                 </div>
             </ng-container>
@@ -29,7 +29,7 @@
             Мотивация:
         </p>
         <div class="motivations">
-            <ng-container *ngFor="let motivation of cardItem.motivations">
+            <ng-container *ngFor="let motivation of cardItem?.motivations">
                 <div class="motivation" [ngStyle]="{ 'background': getMotivationColor(motivation?.name) }">
                     {{ motivation?.name }} <!-- Обновлено для отображения имени мотивации -->
                 </div>
