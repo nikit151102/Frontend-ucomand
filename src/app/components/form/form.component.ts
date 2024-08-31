@@ -8,6 +8,7 @@ import { FormSettingService } from './form-setting.service';
 import { TagSelectedLevelComponent } from '../form-components/tag-selected-level/tag-selected-level.component';
 import { SettingHeaderService } from '../setting-header.service';
 import { forkJoin } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -24,7 +25,8 @@ export class FormComponent implements OnInit {
   constructor(
     public formSettingService: FormSettingService,
     private settingHeaderService: SettingHeaderService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   form!: FormGroup;
@@ -176,18 +178,28 @@ export class FormComponent implements OnInit {
     formData.title = formData.title || "string";
 
     delete formData.gender; // Удаляем ненужное поле
-    let typeEndpoint;
+    let typeEndpoint: string;
     console.log(formData);
+
     if (this.formSettingService.typeForm == 'резюме') {
       typeEndpoint = 'resumes';
     } else {
       typeEndpoint = 'vacancies';
     }
-console.log("typeEndpoint",typeEndpoint)
+
+    console.log("typeEndpoint", typeEndpoint)
     // Отправляем данные
     this.formSettingService.setData(typeEndpoint, formData).subscribe(
       (response) => {
         console.log("response", response);
+
+        if (typeEndpoint == 'resumes') {
+          localStorage.setItem('routeTypeCard', 'resumes');
+          this.router.navigate(['/resume', response.id]);
+        } else {
+          localStorage.setItem('routeTypeCard', 'vacancies');
+          this.router.navigate(['/vacancy', response.id]);
+        }
 
         // Очистка формы после успешной отправки
         this.form.reset({

@@ -149,6 +149,38 @@
     background: #806BFF;
 }
 
+
+
+.menu_btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.menu_btn a {
+    flex: 1;
+    background: #e2e2e2;
+    border-radius: 300px;
+    padding: 0.7rem 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 120%;
+    color: #101010;
+}
+
+.menu_btn a:hover {
+    background: #B9AEFF;
+}
+
 @media (max-width: 768px) {
     .container {
         width: 100%;

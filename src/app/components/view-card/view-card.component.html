@@ -15,34 +15,46 @@
                 </div>
                 <div style="display: flex; flex-wrap: wrap; align-content: flex-end; flex-direction: column;">
                     <p class="fullName">
-                        {{viewCardService.selectedUser.surname}}
+                        {{dataCard?.user?.lastName}}
                     </p>
                     <p class="fullName">
-                        {{viewCardService.selectedUser.name}}
+                        {{dataCard?.user?.firstName}}
                     </p>
-                </div> 
+                </div>
             </div>
 
 
             <ng-container *ngIf="tokenService.getToken()">
-                <p class="chapterCard-title">
-                    Контакты:
-                </p>
-                <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
-       
-                    <div class="contacts-item">
-                        <img src="assets/domains/t.png" alt="logo" width="24px">
-                        <p>Telegram</p>
+                <div class="contacts">
+                    <div>
+                        <p class="chapterCard-title">
+                            Портфолио:
+                        </p>
+                        <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
+                            <a class="contacts-item" [href]="dataCard?.user?.freeLink">
+                                <img [src]="imagePath" alt="logo" width="24px">
+                                <p>{{domainName}}</p>
+                            </a>
+
+                        </diV>
                     </div>
-                    <div class="contacts-item">
-                        <img [src]="imagePath" alt="logo" width="24px">
-                        <p>{{domainName}}</p>
+                    <div>
+                        <p class="chapterCard-title">
+                            Контакты:
+                        </p>
+                        <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
+                            <a class="contacts-item" [href]="'https://t.me/' + dataCard?.user?.telegram"
+                                target="_blank">
+                                <img src="assets/domains/t.png" alt="logo" width="24px">
+                                <p>Telegram</p>
+                            </a>
+                        </diV>
                     </div>
-                    
-                </diV>
+                </div>
+
             </ng-container>
-          
-          
+
+
             <ng-container *ngIf="!tokenService.getToken()">
                 <div>
                     <p class="titleLogin" style="margin-bottom: 0;">
@@ -52,22 +64,43 @@
                         Войти
                     </a>
                 </div>
-                
+
             </ng-container>
 
         </div>
 
         <div>
-            <a (click)="viewUser()" class="btnAccount_user">
-                В аккаунт пользователя
-                <p style="margin: 0">
-                    <svg width="39" height="12" viewBox="0 0 39 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M38.495 6.49497C38.7683 6.22161 38.7683 5.77839 38.495 5.50503L34.0402 1.05025C33.7668 0.776886 33.3236 0.776886 33.0503 1.05025C32.7769 1.32362 32.7769 1.76684 33.0503 2.0402L37.0101 6L33.0503 9.9598C32.7769 10.2332 32.7769 10.6764 33.0503 10.9497C33.3236 11.2231 33.7668 11.2231 34.0402 10.9497L38.495 6.49497ZM0 6.7H38V5.3H0L0 6.7Z"
-                            fill="white" />
-                    </svg>
-                </p>
-            </a>
+            <ng-container *ngIf="tokenService.getToken()">
+                <a (click)="viewUser()" class="btnAccount_user"
+                    *ngIf="!(currentUser && currentUser.id === dataCard.user.id)">
+                    В аккаунт пользователя
+                    <p style="margin: 0">
+                        <svg width="39" height="12" viewBox="0 0 39 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M38.495 6.49497C38.7683 6.22161 38.7683 5.77839 38.495 5.50503L34.0402 1.05025C33.7668 0.776886 33.3236 0.776886 33.0503 1.05025C32.7769 1.32362 32.7769 1.76684 33.0503 2.0402L37.0101 6L33.0503 9.9598C32.7769 10.2332 32.7769 10.6764 33.0503 10.9497C33.3236 11.2231 33.7668 11.2231 34.0402 10.9497L38.495 6.49497ZM0 6.7H38V5.3H0L0 6.7Z"
+                                fill="white" />
+                        </svg>
+                    </p>
+                </a>
+                <ng-container *ngIf="currentUser && currentUser.id === dataCard.user.id">
+                    <div class="menu_btn">
+                        <a (click)="setArchive($event)">
+                            В архив
+                        </a>
+                        <a href="">
+                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M7.75 3.00004H2.75C2.21957 3.00004 1.71086 3.21075 1.33579 3.58583C0.960714 3.9609 0.75 4.46961 0.75 5.00004V16C0.75 16.5305 0.960714 17.0392 1.33579 17.4143C1.71086 17.7893 2.21957 18 2.75 18H13.75C14.2804 18 14.7891 17.7893 15.1642 17.4143C15.5393 17.0392 15.75 16.5305 15.75 16V11M14.336 1.58604C14.5205 1.39502 14.7412 1.24266 14.9852 1.13784C15.2292 1.03302 15.4916 0.977847 15.7572 0.975539C16.0228 0.973232 16.2861 1.02384 16.5319 1.1244C16.7777 1.22496 17.001 1.37346 17.1888 1.56125C17.3766 1.74904 17.5251 1.97234 17.6256 2.21813C17.7262 2.46392 17.7768 2.72728 17.7745 2.99284C17.7722 3.2584 17.717 3.52084 17.6122 3.76485C17.5074 4.00886 17.355 4.22955 17.164 4.41404L8.578 13H5.75V10.172L14.336 1.58604Z"
+                                    stroke="#806BFF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            Редактировать
+                        </a>
+                    </div>
+                </ng-container>
+
+
+            </ng-container>
+
         </div>
     </div>
 </div>

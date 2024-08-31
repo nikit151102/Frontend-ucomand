@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
+import { TokenService } from '../token.service';
 
 export interface Vacancy {
   title: string;
@@ -33,7 +34,7 @@ export interface User {
 })
 export class ViewCardService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private tokenService:TokenService) { }
 
   selectedCard: any;
   selectedUser: User = {
@@ -53,12 +54,30 @@ export class ViewCardService {
 
   typeCard: string = '';
 
-  private domain = 'https://vm-7c43f39f.na4u.ru/api'; 
+  private domain = 'https://vm-7c43f39f.na4u.ru/api';
 
   getCardData(id: number): Observable<any> {
-    console.log("id",id)
+    console.log("id", id)
     const type = localStorage.getItem('routeTypeCard');
     return this.http.get(`${this.domain}/${type}/${id}`);
+  }
+
+  getCurrentUser(): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      return of(null);
+    }
+    // Создание заголовков с токеном
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<any>(`${this.domain}/users/currentUser`, { headers }).pipe(
+      catchError(() => {
+        this.tokenService.clearToken()
+        return of(null); 
+      })
+    );
   }
 
 }

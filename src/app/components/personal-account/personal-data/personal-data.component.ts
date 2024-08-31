@@ -31,7 +31,7 @@ export class PersonalDataComponent implements OnInit {
       age: ['', Validators.required],
       gender: ['', Validators.required],
       city: ['', Validators.required],
-      portfolio: [''],
+      freeLink: [''],
       aboutMe: [''],
       email: ['', [Validators.required, Validators.email]],
       telegram: [''],
@@ -67,7 +67,7 @@ export class PersonalDataComponent implements OnInit {
           age: user.age || '',         // Защита от null
           gender: user.gender || '',   // Защита от null
           city: user.cityOfResidence?.name || '', // Защита от null
-          portfolio: user.freeLink || '', // Защита от null
+          freeLink: user.freeLink || '', // Защита от null
           aboutMe: user.aboutMe || '', // Защита от null
           email: user.email,  // Если email не указан в данных, оставьте пустым или используйте значение по умолчанию
           telegram: user.telegram,  // Аналогично, если telegram не указан
@@ -116,7 +116,7 @@ export class PersonalDataComponent implements OnInit {
         lastName: formValues.surname,
         gender: formValues.gender.toUpperCase(),  // Преобразование в верхний регистр
         age: formValues.age,
-        freeLink: formValues.portfolio,
+        freeLink: formValues.freeLink,
         ownLink: '',  // Пустое значение по умолчанию, если требуется, можно заменить на реальное значение
         aboutMe: formValues.aboutMe,
         telegram: formValues.telegram,

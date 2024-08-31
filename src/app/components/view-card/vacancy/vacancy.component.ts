@@ -28,6 +28,7 @@ export class VacancyComponent {
         return '';
     }
   }
+  
   getSkills(item: number): string {
     console.log("item", )
     switch (item) {
@@ -41,6 +42,7 @@ export class VacancyComponent {
         return '';
     }
   }
+
   getMotivationColor(item: string): string {
     switch (item) {
       case 'Без оплаты':
