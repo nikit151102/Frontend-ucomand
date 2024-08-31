@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageErrorComponent } from './components/page-error/page-error.component';
+import { AuthGuard } from './components/personal-account/auth.guard';
 
 
 const routes: Routes = [
@@ -18,7 +19,7 @@ const routes: Routes = [
     path: 'user/:id', loadChildren: () => import('./components/user-account/user-account.module').then(m => m.UserAccountModule)
   },
   {
-    path: 'myaccount/:id', loadChildren: () => import('./components/personal-account/personal-account.module').then(m => m.PersonalAccountModule)
+    path: 'myaccount/:id', loadChildren: () => import('./components/personal-account/personal-account.module').then(m => m.PersonalAccountModule), canActivate: [AuthGuard]
   },
   {
     path: 'newResume', loadChildren: () => import('./components/form/form.module').then(m => m.FormModule)
