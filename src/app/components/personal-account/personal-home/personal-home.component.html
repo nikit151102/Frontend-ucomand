@@ -21,7 +21,8 @@
             <div class="personal-details" *ngIf="isDataComplete">
                 <div class="location">
                     <p class="title">Город:</p>
-                    <span>{{dataCurrentUser.cityOfResidence.name}}</span>
+                    <span *ngIf="dataCurrentUser.cityOfResidence">{{dataCurrentUser.cityOfResidence.name}}</span>
+
                 </div>
                 <div class="age">
                     <p class="title">Возраст:</p>
