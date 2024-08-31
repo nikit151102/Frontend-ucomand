@@ -54,9 +54,8 @@ export class PersonalHomeComponent implements OnInit {
 
     this.settingHeaderService.shared = true;
     this.settingHeaderService.backbtn = true;
-    const urlString = this.viewCardService.selectedUser.url;
-    this.domainName = this.domainService.setDomain(urlString);
-    console.log("property", this.domainName)
+  
+
 
     this.resumeService.subscribeToGetCardsData();
     this.vacancyService.subscribeToGetCardsData();
@@ -105,6 +104,7 @@ export class PersonalHomeComponent implements OnInit {
         console.log("resumes", resumes)
         console.log("vacancies", vacancies)
         this.visiblePage = true;
+        this.domainName = this.domainService.setDomain(user.freeLink);
       },
       (error) => {
         console.error('Ошибка при загрузке данных:', error);
