@@ -36,6 +36,7 @@ export class ResumeComponent {
         return '';
     }
   }
+
   getSkills(item: number): string {
     console.log("item", item)
     switch (item) {
@@ -45,6 +46,20 @@ export class ResumeComponent {
         return 'Middle';
       case 3:
         return 'Senior';
+      default:
+        return '';
+    }
+  }
+
+  getSkillText(item: number): string {
+    console.log("item",)
+    switch (item) {
+      case 1:
+        return 'Jun';
+      case 2:
+        return 'Mdl';
+      case 3:
+        return 'Snr';
       default:
         return '';
     }

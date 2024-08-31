@@ -43,6 +43,38 @@
     color: var(--font-color);
 }
 
+
+
+.lookingCard {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+/* .lookingCard-level {
+    margin: 0;
+    padding: 4px 6px;
+    border-radius: 5px;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.7rem;
+    line-height: 120%;
+    color: #fff;
+} */
+
+.lookingCard-level {
+    margin: 0;
+    border: 2px solid #fad305;
+    padding: 4px 6px;
+    border-radius: 5px;
+    font-family: var(--font-Monts);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 100%;
+    color: var(--font-color);
+}
+
 .tags {
     display: flex;
     flex-wrap: wrap;
@@ -50,16 +82,34 @@
 }
 
 .tag {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
     border: 1px solid #806bff;
     border-radius: 10px;
     padding: 4px 8px 4px 8px;
     background: rgba(243, 243, 243, 0.1);
+}
 
+.tagText {
     font-family: var(--font-Monts);
     font-weight: 300;
     font-size: 0.8rem;
     line-height: 120%;
     color: var(--font-color);
+    margin: 0;
+}
+
+.tag-level {
+    margin: 0;
+    padding: 4px 6px;
+    border-radius: 5px;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.7rem;
+    line-height: 120%;
+    color: #fff;
 }
 
 .motivations {
@@ -108,7 +158,7 @@
 
 .dateVacancy {
     font-family: var(--font-Monts);
-        font-weight: 400;
+    font-weight: 400;
     font-size: 0.75rem;
     font-weight: 500;
     line-height: 120%;
@@ -131,9 +181,8 @@
     font-weight: 500;
 }
 
-.logo img{
+.logo img {
     border-radius: 30px;
     width: 52px;
     height: 52px;
 }
-

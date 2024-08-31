@@ -1,15 +1,20 @@
 <div class="card">
     <p class="title">
-        {{cardItem.context}}
+        {{cardItem.title}}
        
     </p>
     <div class="chapterCard">
         <p class="chapterCard-title" style="margin-bottom: 0;">
             Ищу:
         </p>
-        <p class="chapterCard-value" style="margin-top: 0.5rem;">
-            {{cardItem.title | uppercase }}
-        </p>
+        <div class="lookingCard">
+            <p class="chapterCard-value" style="margin-top: 0.5rem; width: 90%;">
+                {{ cardItem?.profession?.name | uppercase }}
+            </p>
+            <p [ngStyle]="{ 'border-color': getSkillsColor(cardItem.profession.competenceLevel) }" class="lookingCard-level">
+                {{ getSkills(cardItem.profession?.competenceLevel)  }}
+              </p>
+        </div>
     </div>
     <div class="chapterCard">
         <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
@@ -18,7 +23,7 @@
         <div class="tags">
             <ng-container *ngFor="let item of cardItem.skills">
                 <div class="tag">
-                    {{item}}
+                    {{item.name}}
                 </div>
             </ng-container>
         </div>
@@ -29,8 +34,8 @@
         </p>
         <div class="motivations">
             <ng-container *ngFor="let item of cardItem.motivations">
-                <div class="motivation" [ngStyle]="{ 'background': getMotivationColor(item) }">
-                    {{ item }}
+                <div class="motivation" [ngStyle]="{ 'background': getMotivationColor(item.name) }">
+                    {{ item.name }}
                 </div>
             </ng-container>
         </div>
@@ -60,7 +65,7 @@
                 размещено
             </p>
             <p class="dateVacancy dateValue">
-                {{cardItem.date}}
+                {{cardItem.creationDate | date: 'dd-MM-yyyy' }}
             </p>
         </div>
         

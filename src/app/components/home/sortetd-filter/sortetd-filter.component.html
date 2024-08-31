@@ -34,13 +34,13 @@
                 <p class="stage-filter-title">
                     Специализация:
                 </p>
-                <app-tag-selector [placeholderValue]="'Выберете специализацию'" [tags]="professions"></app-tag-selector>
+                <app-tag-selector [placeholderValue]="'Выберете специализацию'" [tags]="professions" [maxTags]="1"></app-tag-selector>
             </div>
             <div class="stage-filter">
                 <p class="stage-filter-title">
                     Навыки:
                 </p>
-                <app-tag-selector [placeholderValue]="'Выберете навыки'" [tags]="skills"></app-tag-selector>
+                <app-tag-selector [placeholderValue]="'Выберете навыки'" [tags]="skills" [visibleText]="true"></app-tag-selector>
             </div>
             <div class="stage-filter" class="three-stages" style="flex: 1;">
                 <div class="three-stage">

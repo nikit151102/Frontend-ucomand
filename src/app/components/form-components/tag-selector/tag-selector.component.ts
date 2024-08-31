@@ -19,9 +19,9 @@ interface tag {
 export class TagSelectorComponent {
 
   @Input() tags: tag[] = [];
-
+  @Input() maxTags: number = 3;
   @Input() placeholderValue: string = '';
-
+  @Input() visibleText:boolean = false;
   showTagBlock = false;
 
   selectedTags: tag[] = [];
@@ -33,11 +33,12 @@ export class TagSelectorComponent {
   }
 
   selectTag(tag: tag) {
-    if (!this.selectedTags.includes(tag)) {
+    if (!this.selectedTags.includes(tag) && this.selectedTags.length < this.maxTags) {
       this.selectedTags.push(tag);
     }
     this.showTagBlock = false;
   }
+  
 
   deleteTag(tag: tag) {
     let index = this.selectedTags.indexOf(tag);

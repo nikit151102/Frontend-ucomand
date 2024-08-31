@@ -1,24 +1,30 @@
 <div class="container">
-    <div  class="selectedTags-block">
-        <div class="tagItem" *ngFor="let tag of selectedTags" >
-            <div  class="tag">
-                {{ tag.name }}
-            </div>
-            <a (click)="deleteTag(tag)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 5L18 18M5.0002 18L18 5" stroke="#806BFF" stroke-width="1.4"
-                        stroke-linecap="round" />
-                </svg>
-            </a>
+    <div class="selectedTags-block">
+      <div class="tagItem" *ngFor="let tag of selectedTags">
+        <div class="tag">
+          {{ tag.name }}
         </div>
+        <a (click)="deleteTag(tag)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 5L18 18M5.0002 18L18 5" stroke="#806BFF" stroke-width="1.4"
+              stroke-linecap="round" />
+          </svg>
+        </a>
+      </div>
     </div>
-    
+  
     <div class="tag-selector">
-        <input type="text" (focus)="toggleTagBlock(true)" (blur)="toggleTagBlock(false)" class="tag-input" [placeholder]="placeholderValue">
-        <div *ngIf="showTagBlock" class="tag-block">
-            <div *ngFor="let tag of tags" (click)="selectTag(tag)">
-                {{ tag.name }}
-            </div>
+      <input type="text" (focus)="toggleTagBlock(true)" (blur)="toggleTagBlock(false)" class="tag-input" [placeholder]="placeholderValue">
+      
+      <div *ngIf="showTagBlock && selectedTags.length < maxTags" class="tag-block">
+        <div *ngFor="let tag of tags" (click)="selectTag(tag)">
+          {{ tag.name }}
         </div>
+      </div>
+      
+      <div *ngIf="selectedTags.length >= maxTags && visibleText" class="tag-limit-message">
+        Выбрано максимальное количество тегов
+      </div>
     </div>
-</div>
+  </div>
+  

@@ -12,8 +12,8 @@ import { CommonModule } from '@angular/common';
 export class VacancyComponent {
 
   @Input() data: any;
-  constructor(public viewCardService: ViewCardService){
-    
+  constructor(public viewCardService: ViewCardService) {
+
   }
 
   getSkillsColor(item: number): string {
@@ -28,9 +28,9 @@ export class VacancyComponent {
         return '';
     }
   }
-  
+
   getSkills(item: number): string {
-    console.log("item", )
+    console.log("item",)
     switch (item) {
       case 1:
         return 'Junior';
@@ -38,6 +38,20 @@ export class VacancyComponent {
         return 'Middle';
       case 3:
         return 'Senior';
+      default:
+        return '';
+    }
+  }
+
+  getSkillText(item: number): string {
+    console.log("item",)
+    switch (item) {
+      case 1:
+        return 'Jun';
+      case 2:
+        return 'Mdl';
+      case 3:
+        return 'Snr';
       default:
         return '';
     }

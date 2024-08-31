@@ -19,7 +19,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 export class TagSelectedLevelComponent implements ControlValueAccessor {
   @Input() tags: { name: string, id: number }[] = [];
   @Input() placeholderValue: string = '';
-  @Input() maxTags: number = 3;
+  @Input() maxTags: number = 10;
   @Output() tagsChanged = new EventEmitter<{ name: string, id: number, competenceLevel: number, color: string }[]>();
 
   showTagBlock = false;
