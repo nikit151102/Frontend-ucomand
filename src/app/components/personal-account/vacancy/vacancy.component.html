@@ -10,7 +10,7 @@
       <p class="chapterCard_value" style="margin-top: 0.5rem; width: 90%;">
         {{ item?.profession?.name | uppercase }}
       </p>
-      <p [ngStyle]="{ 'background': getSkillsColor(item?.profession?.competenceLevel) }" class="lookingCard_level">
+      <p [ngStyle]="{ 'border-color': getSkillsColor(item?.profession?.competenceLevel) }" class="lookingCard_level">
         {{ getSkills(item?.profession?.competenceLevel) }}
       </p>
     </div>
@@ -21,9 +21,14 @@
     </p>
     <div class="tags">
       <ng-container *ngFor="let skill of item?.skills">
-        <div class="tag">
-          {{ skill?.name }} <!-- Обратите внимание на свойство "name" -->
-        </div>
+          <div class="tag">
+              <p class="tagText">
+                  {{skill.name}}
+              </p>
+              <p [ngStyle]="{ 'background': getSkillsColor(skill.competenceLevel) }" class="tag-level">
+                  {{ getSkillText(skill.competenceLevel)  }}
+                </p>
+          </div>
       </ng-container>
     </div>
   </div>

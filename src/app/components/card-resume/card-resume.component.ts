@@ -38,6 +38,7 @@ export class CardResumeComponent {
         return '';
     }
   }
+
   getSkillText(item: number): string {
     console.log("item", )
     switch (item) {
@@ -51,6 +52,7 @@ export class CardResumeComponent {
         return '';
     }
   }
+  
   getMotivationColor(item: string): string {
     switch (item) {
       case 'Без оплаты':

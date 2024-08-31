@@ -48,6 +48,20 @@ export class PersonalResumeComponent implements OnInit {
     }
   }
 
+  getSkillText(item: number): string {
+    console.log("item", )
+    switch (item) {
+      case 1:
+        return 'Jun';
+      case 2:
+        return 'Mdl';
+      case 3:
+        return 'Snr';
+      default:
+        return '';
+    }
+  }
+  
   getMotivationColor(item: string): string {
     switch (item) {
       case 'Без оплаты':
