@@ -57,7 +57,9 @@
             </div>
             <div class="date_registration">
                 <p class="title">На платформе с </p>
-                <span>{{dataCurrentUser.dateOfRegistration}}</span>
+                <span>
+                    {{ dataCurrentUser.dateOfRegistration | date: 'dd-MM-yyyy' }}
+                </span>
             </div>
         </div>
     </div>
@@ -83,7 +85,7 @@
                         [cardItem]="itemResume"></app-personal-resume>
 
                 </div>
-                <div class="message-cards titleActive" *ngIf="resumeService.filterResumes('CREATOR_ONLY').length>0">
+                <div class="message-cards titleActive" *ngIf="resumeService.filterResumes('CREATOR_ONLY').length==0">
                     нет активных резюме
                 </div>
             </div>
@@ -106,7 +108,7 @@
                     <app-personal-vacancy [item]="itemVacancy"
                         *ngFor="let itemVacancy of vacancyService.filterVacancies('CREATOR_ONLY')"></app-personal-vacancy>
                 </div>
-                <div class="message-cards titleActive" *ngIf="vacancyService.filterVacancies('CREATOR_ONLY').length>0">
+                <div class="message-cards titleActive" *ngIf="vacancyService.filterVacancies('CREATOR_ONLY').length==0">
                     нет активных вакансий
                 </div>
             </div>
