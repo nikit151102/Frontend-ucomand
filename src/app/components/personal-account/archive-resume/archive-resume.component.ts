@@ -15,18 +15,33 @@ export class ArchiveResumeComponent {
 
   constructor(private resumeService:ResumeService){}
 
-  getSkillsColor(item: string): string {
+  getSkillsColor(item: number): string {
     switch (item) {
-      case 'Junior':
+      case 1:
         return '#50B229';
-      case 'Middle':
+      case 2:
         return '#FAD305';
-      case 'Senior':
+      case 3:
         return '#EE5354';
       default:
         return '';
     }
   }
+
+  getSkills(item: number): string {
+    console.log("item", item)
+    switch (item) {
+      case 1:
+        return 'Junior';
+      case 2:
+        return 'Middle';
+      case 3:
+        return 'Senior';
+      default:
+        return '';
+    }
+  }
+  
   isSettingActive: boolean = false;
   
   Actived() {
@@ -35,7 +50,6 @@ export class ArchiveResumeComponent {
 
   refund() {
     if (this.cardItem) {
-     
           this.resumeService.toggleResumeArchive(this.cardItem); 
     }
   }

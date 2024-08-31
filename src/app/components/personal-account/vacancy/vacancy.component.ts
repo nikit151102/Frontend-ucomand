@@ -73,19 +73,11 @@ export class PersonalVacancyComponent {
 
   }
 
-  setArchive() {
-    if (this.item) {{}
-      this.item.visibility = 'EVERYBODY ';
-      this.vacancyService.setArchive(this.item.id, this.item).subscribe(
-        (response: any) => {
-          console.log("user", response);
-      
-          });
-        }
-        (error: any) => {
-          console.error('Ошибка при загрузке данных пользователя:', error);
-        }
-
+  setArchive(event: Event) {
+    event.stopPropagation();
+    if (this.item) {
+      this.vacancyService.toggleResumeArchive(this.item);
+    }
     }
 
   

@@ -8,10 +8,10 @@
         </p>
         <div class="lookingCard">
             <p class="chapterCard-value" style="margin-top: 0.5rem; width: 90%;">
-                {{cardItem.context}}
+                {{ cardItem?.profession?.name | uppercase }}
             </p>
-            <p class="lookingCard-level" [ngStyle]="{ 'background': getSkillsColor('Middle') }">
-                Middle
+            <p [ngStyle]="{ 'background': getSkillsColor(cardItem?.profession?.competenceLevel) }" class="lookingCard-level">
+                {{ getSkills(cardItem?.profession?.competenceLevel) }}
             </p>
         </div>
     </div>
@@ -22,7 +22,7 @@
                 размещено
             </p>
             <p class="dateVacancy dateValue">
-                {{cardItem.date}}
+                {{ cardItem?.creationDate | date: 'dd.MM.yyyy' }} 
             </p>
         </div>
 

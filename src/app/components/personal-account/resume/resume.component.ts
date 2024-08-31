@@ -33,6 +33,7 @@ export class PersonalResumeComponent implements OnInit {
         return '';
     }
   }
+  
   getSkills(item: number): string {
     console.log("item", item)
     switch (item) {

@@ -17,6 +17,7 @@ import { PopUpDeleteService } from '../../pop-up-delete/pop-up-delete.service';
 import { PopUpExitService } from '../../pop-up-exit/pop-up-exit.service';
 import { PopUpExitComponent } from '../../pop-up-exit/pop-up-exit.component';
 import { ResumeService } from '../services/resume.service';
+import { VacancyService } from '../services/vacancy.service';
 
 @Component({
   selector: 'app-personal-home',
@@ -36,7 +37,7 @@ export class PersonalHomeComponent implements OnInit {
     private route: ActivatedRoute, private domainService: DomainService,
     public viewCardService: ViewCardService, private personalDataService: PersonalDataService,
     private personalHomeService: PersonalHomeService, private popUpDeleteService: PopUpDeleteService, public popUpExitService: PopUpExitService,
-    public resumeService: ResumeService) { }
+    public resumeService: ResumeService, public vacancyService:VacancyService) { }
 
   imagePath: string = '';
   domainName: string = '';
@@ -58,6 +59,7 @@ export class PersonalHomeComponent implements OnInit {
     console.log("property", this.domainName)
 
     this.resumeService.subscribeToGetCardsData();
+    this.vacancyService.subscribeToGetCardsData();
 
     this.domainService.checkImageExists(this.domainName).then((path) => {
       this.imagePath = path;
@@ -132,6 +134,7 @@ export class PersonalHomeComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.resumeService.unsubscribeFromGetCardsData();
+    this.vacancyService.unsubscribeFromGetCardsData();
     this.subscription.unsubscribe();
   }
 

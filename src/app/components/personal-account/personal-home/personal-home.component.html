@@ -105,7 +105,7 @@
                     Активные вакансии:
                 </p>
                 <div class="cards">
-                    <app-personal-vacancy [item]="itemVacancy" *ngFor="let itemVacancy of filterVacancies('CREATOR_ONLY')"></app-personal-vacancy>
+                    <app-personal-vacancy [item]="itemVacancy" *ngFor="let itemVacancy of vacancyService.filterVacancies('CREATOR_ONLY')"></app-personal-vacancy>
                 </div>
                 <div class="message-cards titleActive">
                     нет активных вакансий
@@ -116,7 +116,7 @@
                     Архив вакансий:
                 </p>
                 <div class="cards">
-                    <app-archive-vacancy [cardItem]="itemVacancy" *ngFor="let itemVacancy of filterVacancies('EVERYBODY')"></app-archive-vacancy>
+                    <app-archive-vacancy [cardItem]="itemVacancy" *ngFor="let itemVacancy of vacancyService.filterVacancies('EVERYBODY')"></app-archive-vacancy>
                 </div>
             </div>
         </div>

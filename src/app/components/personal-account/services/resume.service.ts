@@ -47,6 +47,7 @@ export class ResumeService {
     }
   }
 
+  
   setArchive(id: string, body: any): Observable<any> {
     const token = localStorage.getItem('authToken');
 
@@ -57,6 +58,7 @@ export class ResumeService {
     return this.http.put(`${this.domain}/resumes/ofCurrentUser/${id}`, body, { headers });
   }
 
+
   deleteById(id: string) {
     const token = localStorage.getItem('authToken');
 
@@ -66,6 +68,7 @@ export class ResumeService {
 
     return this.http.delete(`${this.domain}/resumes/${id}`, { headers });
   }
+
 
   filterResumes(type: string): any[] {
     return this.resumesList.filter((resume: any) => resume.visibility === type);
