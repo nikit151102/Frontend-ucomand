@@ -19,7 +19,7 @@
         <div class="dialog" (click)="$event.stopPropagation()"  >
             <form [formGroup]="form" (ngSubmit)="submit()">
                 <div class="dialog-btns">
-                    <p class="clear">
+                    <p class="clear" (click)="clearFilters()">
                         Сбросить фильтры
                     </p>
                     <a (click)="visible = false">
@@ -33,7 +33,7 @@
                         <p class="stage-filter-title">
                             Специализация:
                         </p>
-                        <app-tag-selector [placeholderValue]="'Выберете специализацию'" [tags]="professions" [maxTags]="1"
+                        <app-tag-selector [placeholderValue]="'Выберете специализацию'" [tags]="professions" [maxTags]="1" 
                             (tagsChanged)="onTagsChanged($event,'profession')" formControlName="profession"></app-tag-selector>
                     </div>
                     <div class="stage-filter">

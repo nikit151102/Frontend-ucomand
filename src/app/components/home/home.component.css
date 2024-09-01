@@ -39,6 +39,14 @@
     left: 0;
 }
 
+.messageError{
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 106%;
+    letter-spacing: 0.023em;
+    color: var(--font-color);
+}
 
 @media (max-width: 1199.98px) {
     .card-container {

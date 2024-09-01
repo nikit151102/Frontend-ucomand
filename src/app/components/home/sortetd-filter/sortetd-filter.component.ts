@@ -13,24 +13,33 @@ import { SettingHeaderService } from '../../setting-header.service';
 import { CheckboxModule } from 'primeng/checkbox';
 import { HomeService } from '../home.service';
 
+interface Tag {
+  id: number;
+  name: string;
+  competenceLevel?: any;
+  type: 'SKILL' | 'PROFESSION' | 'MOTIVATION';
+  color?: string;
+}
+
+
 @Component({
   selector: 'app-sortetd-filter',
   standalone: true,
   imports: [
-    CommonModule, 
-    SortingComponent, 
-    DialogModule, 
-    TagSelectorComponent, 
-    RadioButtonModule, 
-    FormsModule, 
-    ReactiveFormsModule, 
-    MotivationsComponent, 
+    CommonModule,
+    SortingComponent,
+    DialogModule,
+    TagSelectorComponent,
+    RadioButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MotivationsComponent,
     OverlayPanelModule,
     CheckboxModule
   ],
   templateUrl: './sortetd-filter.component.html',
   styleUrls: ['./sortetd-filter.component.css'],
-  
+
 })
 export class SortetdFilterComponent implements OnInit {
   form: FormGroup;
@@ -41,12 +50,12 @@ export class SortetdFilterComponent implements OnInit {
   skills: any[] = [];
 
   constructor(
-    private sortetdFilterService: SortetdFilterService, 
+    private sortetdFilterService: SortetdFilterService,
     public settingHeaderService: SettingHeaderService,
     private fb: FormBuilder,
-    private homeService:HomeService,
+    private homeService: HomeService,
     private cdRef: ChangeDetectorRef
-  ) { 
+  ) {
     // Initialize the reactive form
     this.form = this.fb.group({
       profession: [[]],
@@ -66,6 +75,7 @@ export class SortetdFilterComponent implements OnInit {
         this.motivations = results.motivations;
         this.professions = results.professions;
         this.skills = results.skills;
+        this.loadFiltersFromLocalStorage();
       },
       error: (error: any) => {
         console.error('Ошибка при загрузке тегов:', error);
@@ -73,16 +83,47 @@ export class SortetdFilterComponent implements OnInit {
     });
   }
 
+  private loadFiltersFromLocalStorage(): void {
+    const filters = localStorage.getItem('bodyFilters');
+
+    if (filters) {
+      try {
+        const parsedFilters = JSON.parse(filters);
+
+        // Установка значений в форму
+        if (parsedFilters.genders) {
+          this.form.get('genders')?.setValue(parsedFilters.genders);
+        }
+
+        if (parsedFilters.tags) {
+          // Указываем тип Tag для параметра tag
+          const tags: Tag[] = parsedFilters.tags;
+
+          const skills = tags.filter((tag: Tag) => tag.type === 'SKILL').map((tag: Tag) => tag);
+          const professions = tags.filter((tag: Tag) => tag.type === 'PROFESSION').map((tag: Tag) => tag);
+          const motivation = tags.filter((tag: Tag) => tag.type === 'MOTIVATION').map((tag: Tag) => tag);
+          this.form.get('skills')?.setValue(skills);
+          this.form.get('profession')?.setValue(professions);
+          this.form.get('motivation')?.setValue(motivation);
+        }
+
+      } catch (error) {
+        console.error('Ошибка при парсинге данных из localStorage:', error);
+      }
+    }
+  }
+
+
   showDialog() {
     this.visible = true;
     this.cdRef.detectChanges();
-    console.log("visiblevisible",this.visible)
+    console.log("visiblevisible", this.visible)
   }
 
   closeDialog() {
     this.visible = false;
-    this.cdRef.detectChanges(); 
-    console.log("visiblevisible",this.visible)
+    this.cdRef.detectChanges();
+    console.log("visiblevisible", this.visible)
   }
 
   onTagsChanged(tags: any[], formElement: string) {
@@ -90,17 +131,19 @@ export class SortetdFilterComponent implements OnInit {
   }
 
   clearFilters() {
-    this.form.reset(); 
-    this.homeService.saveFilters( {"visibilities": [
-      "CREATOR_ONLY"
-    ]});
+    this.form.reset();
+    this.homeService.saveFilters({
+      "visibilities": [
+        "CREATOR_ONLY"
+      ]
+    });
     this.homeService.getVacancies();
     this.homeService.getResumes();
     this.visible = false;
   }
 
 
-  submit(){
+  submit() {
     const formData = { ...this.form.value };
 
     const tags = [...formData.skills, ...formData.profession, ...formData.motivation];

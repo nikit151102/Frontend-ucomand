@@ -1,7 +1,7 @@
 <div class="main">
     <app-one-section></app-one-section>
     <div class="container">
-            <app-sortetd-filter [ngClass]="{'sticky-filter': settingHeaderService.isSticky}"></app-sortetd-filter>
+        <app-sortetd-filter [ngClass]="{'sticky-filter': settingHeaderService.isSticky}"></app-sortetd-filter>
 
         <div class="card-container">
             <ng-container *ngIf="homeService.typeToggle === 'vacancy'">
@@ -9,14 +9,22 @@
                     <app-card-vacancy [cardItem]="item" class="app-card-vacancy"
                         (click)="viewCard(item.id, 'vacancies','vacancy')"></app-card-vacancy>
                 </ng-container>
+                
             </ng-container>
             <ng-container *ngIf="homeService.typeToggle === 'resume'">
                 <ng-container *ngFor="let item of homeService.resumes">
                     <app-card-resume [cardItem]="item" class="app-card-vacancy"
                         (click)="viewCard(item.id, 'resumes', 'resume')"></app-card-resume>
                 </ng-container>
+               
             </ng-container>
-        </div>
 
+        </div>
+        <p *ngIf="homeService.vacancies.length==0 && homeService.typeToggle === 'vacancy'" class="messageError">
+            Нет доступных вакансий по вашему запросу. Попробуйте изменить фильтры или параметры поиска.
+        </p>
+        <p *ngIf="homeService.resumes.length==0 && homeService.typeToggle === 'resume' " class="messageError">
+            Нет доступных резюме по вашему запросу. Попробуйте изменить фильтры или параметры поиска.
+        </p>
     </div>
 </div>
