@@ -20,10 +20,10 @@
             </ng-container>
 
         </div>
-        <p *ngIf="homeService.vacancies.length==0 && homeService.typeToggle === 'vacancy'" class="messageError">
+        <p *ngIf="homeService?.vacancies?.length==0 && homeService?.typeToggle === 'vacancy'" class="messageError">
             Нет доступных вакансий по вашему запросу. Попробуйте изменить фильтры или параметры поиска.
         </p>
-        <p *ngIf="homeService.resumes.length==0 && homeService.typeToggle === 'resume' " class="messageError">
+        <p *ngIf="homeService?.resumes?.length==0 && homeService?.typeToggle === 'resume' " class="messageError">
             Нет доступных резюме по вашему запросу. Попробуйте изменить фильтры или параметры поиска.
         </p>
     </div>

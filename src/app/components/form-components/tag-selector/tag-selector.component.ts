@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, EventEmitter, forwardRef, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 interface Tag {
   id: number;
@@ -12,7 +12,7 @@ interface Tag {
 @Component({
   selector: 'app-tag-selector',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './tag-selector.component.html',
   styleUrls: ['./tag-selector.component.css'],
   providers: [
@@ -23,7 +23,7 @@ interface Tag {
     }
   ]
 })
-export class TagSelectorComponent implements ControlValueAccessor {
+export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
 
   @Input() tags: Tag[] = [];
   @Input() maxTags: number = 3;
@@ -35,11 +35,21 @@ export class TagSelectorComponent implements ControlValueAccessor {
 
   showTagBlock = false;
   selectedTags: Tag[] = [];
+  searchQuery: string = ''; 
+  filteredTags: Tag[] = []; 
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['tags']) {
+      this.updateFilteredTags();
+    }
+  }
 
   toggleTagBlock(show: boolean) {
     setTimeout(() => {
       this.showTagBlock = show;
+      if (show) {
+        this.updateFilteredTags();
+      }
     }, 200);
   }
 
@@ -50,6 +60,8 @@ export class TagSelectorComponent implements ControlValueAccessor {
       this.tagsChanged.emit(this.selectedTags);
     }
     this.showTagBlock = false;
+    this.searchQuery = ''; 
+    this.updateFilteredTags(); // Ensure filtered tags are updated when a tag is selected
   }
 
   deleteTag(tag: Tag) {
@@ -58,18 +70,18 @@ export class TagSelectorComponent implements ControlValueAccessor {
       this.selectedTags.splice(index, 1);
       this.onChange(this.selectedTags);
     }
+    this.updateFilteredTags(); // Ensure filtered tags are updated when a tag is deleted
   }
 
   writeValue(value: Tag[]): void {
     if (value && Array.isArray(value)) {
       this.selectedTags = value;
-      console.log("value",value)
     } else {
       this.selectedTags = [];
     }
-    // Обновите отображение или выполните другую логику, если необходимо
+    this.updateFilteredTags(); // Ensure filtered tags are updated when value is written
   }
-  
+
   registerOnChange(fn: (value: Tag[]) => void): void {
     this.onChange = fn;
   }
@@ -78,9 +90,15 @@ export class TagSelectorComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {
-    // Обработка состояния отключения, если нужно
+  setDisabledState?(isDisabled: boolean): void {}
+
+  filterTags() {
+    this.updateFilteredTags();
   }
 
-
+  private updateFilteredTags() {
+    this.filteredTags = this.tags
+      .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }
 }
