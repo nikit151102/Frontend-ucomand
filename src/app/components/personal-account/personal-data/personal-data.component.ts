@@ -6,18 +6,14 @@ import { PersonalDataService } from './personal-data.service';
 import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
 import { CityOfResidence, User } from './user-interface';
 
-
-
 @Component({
   selector: 'app-personal-data',
   standalone: true,
   imports: [RadioButtonModule, CommonModule, FormsModule, ReactiveFormsModule, AutoCompleteModule],
   templateUrl: './personal-data.component.html',
-  styleUrl: './personal-data.component.css'
+  styleUrls: ['./personal-data.component.css']
 })
 export class PersonalDataComponent implements OnInit {
-  ingredient!: string;
-
   personalDataForm: FormGroup;
   cities: any;
   filteredCities: any;
@@ -44,35 +40,32 @@ export class PersonalDataComponent implements OnInit {
     this.personalDataService.getCities().subscribe(
       (data) => {
         this.cities = data;
-       
       },
       (error) => {
         console.error('Ошибка при загрузке тегов:', error);
       }
     );
-    this.userData()
-   
+    this.userData();
   }
 
   userData() {
     this.personalDataService.getCurrentUser().subscribe(
       (user: User) => {
-        console.log("user", user);
         this.dataCurrentUser = user;
-        this.cityOfResidence = user.cityOfResidence || {}; // Защита от null
-        // Заполнение формы данными пользователя
+        this.cityOfResidence = user.cityOfResidence || {}; 
+  
         this.personalDataForm.patchValue({
-          name: user.firstName || '',  // Защита от null
-          surname: user.lastName || '', // Защита от null
-          age: user.age || '',         // Защита от null
-          gender: user.gender || '',   // Защита от null
-          city: user.cityOfResidence?.name || '', // Защита от null
-          freeLink: user.freeLink || '', // Защита от null
-          aboutMe: user.aboutMe || '', // Защита от null
-          email: user.email,  // Если email не указан в данных, оставьте пустым или используйте значение по умолчанию
-          telegram: user.telegram,  // Аналогично, если telegram не указан
-          domain: '',  // Аналогично, если domain не указан
-          approval: false  // Если approval изначально false, можете оставить так
+          name: user.firstName || '',  
+          surname: user.lastName || '', 
+          age: user.age || '',        
+          gender: user.gender || '',  
+          city: user.cityOfResidence?.name || '', 
+          freeLink: user.freeLink || '', 
+          aboutMe: user.aboutMe || '', 
+          email: user.email,  
+          telegram: user.telegram,  
+          domain: '',  
+          approval: false  
         });
       },
       (error) => {
@@ -81,7 +74,6 @@ export class PersonalDataComponent implements OnInit {
     );
   }
   
-
   filterCities(event: AutoCompleteCompleteEvent) {
     let filtered: any[] = [];
     let query = event.query;
@@ -96,47 +88,42 @@ export class PersonalDataComponent implements OnInit {
   }
 
   onCitySelect(event: any) {
-    // `event` содержит выбранный объект
     this.cityOfResidence = event.value;
-    console.log('Selected city:', this.cityOfResidence);
-    // Установите значение формы city
     this.personalDataForm.get('city')?.setValue(this.cityOfResidence.name);
   }
 
-
   onSubmit(): void {
+    if (this.personalDataForm.invalid) {
+      this.personalDataForm.markAllAsTouched();
+      return;
+    }
 
-      // Получаем значения из формы
-      const formValues = this.personalDataForm.value;
-  
-      // Создаем объект пользователя
-      const user: User = {
-        id: 0,  // Значение ID по умолчанию, если требуется, можно заменить на реальное значение
-        firstName: formValues.name,
-        lastName: formValues.surname,
-        gender: formValues.gender.toUpperCase(),  // Преобразование в верхний регистр
-        age: formValues.age,
-        freeLink: formValues.freeLink,
-        ownLink: '',  // Пустое значение по умолчанию, если требуется, можно заменить на реальное значение
-        aboutMe: formValues.aboutMe,
-        telegram: formValues.telegram,
-        email: formValues.email,
-        dateOfRegistration: new Date().toISOString(),  // Установите текущую дату или другое значение
-        cityOfResidence: this.cityOfResidence,
-        role: this.dataCurrentUser.role,  // Установите роль по умолчанию или в соответствии с вашими требованиями
-      };
-  
-      // Отправляем данные
-      this.personalDataService.updateUser(user).subscribe(
-        response => {
-          console.log('Данные успешно отправлены', response);
-          this.userData()
-        },
-        error => {
-          console.error('Ошибка при отправке данных:', error);
-        }
-      );
- 
+    const formValues = this.personalDataForm.value;
+
+    const user: User = {
+      id: 0,  
+      firstName: formValues.name,
+      lastName: formValues.surname,
+      gender: formValues.gender.toUpperCase(),  
+      age: formValues.age,
+      freeLink: formValues.freeLink,
+      ownLink: '', 
+      aboutMe: formValues.aboutMe,
+      telegram: formValues.telegram,
+      email: formValues.email,
+      dateOfRegistration: new Date().toISOString(),  
+      cityOfResidence: this.cityOfResidence,
+      role: this.dataCurrentUser.role,  
+    };
+
+    this.personalDataService.updateUser(user).subscribe(
+      response => {
+        console.log('Данные успешно отправлены', response);
+        this.userData();
+      },
+      error => {
+        console.error('Ошибка при отправке данных:', error);
+      }
+    );
   }
-
 }

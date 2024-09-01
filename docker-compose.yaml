@@ -1,16 +1,5 @@
-# version: '3.1'
-# services:
-#   frontend:
-#     build:
-#       context: ./Frontend-ucomand
-#       dockerfile: Dockerfile-frontend
-#     ports:
-#       - 80:80
-#     volumes:
-#       - ./Frontend-ucomand:/app
-#       - /app/node_modules
-
 services:
+
   frontend:
     build:
       context: ./Frontend-ucomand
@@ -46,19 +35,6 @@ services:
       POSTGRES_USER: ucomand
       POSTGRES_PASSWORD: ucomand
       POSTGRES_DB: ucomand-db
-
-  # #Контейнер нужен для тестирования авторизации через телеграм. На проде должен быть отключен
-  # ucomand-ngrok:
-  #   #TDOO захардкодить версию
-  #   image: ngrok/ngrok:latest
-  #   command:
-  #     - "start"
-  #     - "--all"
-  #     - "--config"
-  #     - "/etc/ngrok.yml"
-  #   volumes:
-  #     - ./ngrok.yml:/etc/ngrok.yml
-  #   network_mode: host
 
 volumes:
   ucomand-database_data:
