@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, ViewChild, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { HomeService } from '../../home.service';
 
 @Component({
   selector: 'app-sorting',
@@ -11,6 +12,9 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
   encapsulation: ViewEncapsulation.None
 })
 export class SortingComponent {
+
+  constructor(private homeService:HomeService){}
+
   @ViewChild('dropdown') dropdown!: ElementRef;
 
   isDropdownVisible = false;
@@ -25,6 +29,15 @@ export class SortingComponent {
 
   setActive(link: string) {
     this.activeLink = link;
+    if(this.activeLink=='Сначала новые'){
+      this.homeService.toggleSort('creationDate_desc');
+      this.homeService.getVacancies();
+      this.homeService.getResumes();
+    }else{
+      this.homeService.toggleSort('creationDate');
+      this.homeService.getVacancies();
+      this.homeService.getResumes();
+    }
     this.isDropdownVisible = false; // Закрываем меню после выбора
   }
 

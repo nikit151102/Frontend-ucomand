@@ -14,7 +14,9 @@
     </div>
   
     <div class="tag-selector">
-      <input type="text" (focus)="toggleTagBlock(true)" (blur)="toggleTagBlock(false)" class="tag-input" [placeholder]="placeholderValue">
+      <ng-container *ngIf="selectedTags.length < maxTags">
+        <input type="text" (focus)="toggleTagBlock(true)" (blur)="toggleTagBlock(false)" class="tag-input" [placeholder]="placeholderValue" >
+      </ng-container>
       
       <div *ngIf="showTagBlock && selectedTags.length < maxTags" class="tag-block">
         <div *ngFor="let tag of tags" (click)="selectTag(tag)">
@@ -22,9 +24,6 @@
         </div>
       </div>
       
-      <div *ngIf="selectedTags.length >= maxTags && visibleText" class="tag-limit-message">
-        Выбрано максимальное количество тегов
-      </div>
     </div>
   </div>
   

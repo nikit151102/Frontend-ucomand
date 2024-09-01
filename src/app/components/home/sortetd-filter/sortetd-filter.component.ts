@@ -1,38 +1,62 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { TagSelectorComponent } from '../../form-components/tag-selector/tag-selector.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { MotivationsComponent } from '../../form-components/motivations/motivations.component';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { SortingComponent } from './sorting/sorting.component';
 import { SortetdFilterService } from './sortetd-filter.service';
 import { forkJoin } from 'rxjs';
 import { SettingHeaderService } from '../../setting-header.service';
+import { CheckboxModule } from 'primeng/checkbox';
+import { HomeService } from '../home.service';
 
 @Component({
   selector: 'app-sortetd-filter',
   standalone: true,
-  imports: [CommonModule, SortingComponent, DialogModule, TagSelectorComponent, RadioButtonModule, FormsModule, MotivationsComponent, OverlayPanelModule],
+  imports: [
+    CommonModule, 
+    SortingComponent, 
+    DialogModule, 
+    TagSelectorComponent, 
+    RadioButtonModule, 
+    FormsModule, 
+    ReactiveFormsModule, 
+    MotivationsComponent, 
+    OverlayPanelModule,
+    CheckboxModule
+  ],
   templateUrl: './sortetd-filter.component.html',
-  styleUrl: './sortetd-filter.component.css',
+  styleUrls: ['./sortetd-filter.component.css'],
+  
 })
 export class SortetdFilterComponent implements OnInit {
-
-
-  constructor(private sortetdFilterService: SortetdFilterService, public settingHeaderService: SettingHeaderService) { }
-
+  form: FormGroup;
   visible: boolean = false;
-
-  selectedGender: string = '';
 
   motivations: any[] = [];
   professions: any[] = [];
   skills: any[] = [];
 
+  constructor(
+    private sortetdFilterService: SortetdFilterService, 
+    public settingHeaderService: SettingHeaderService,
+    private fb: FormBuilder,
+    private homeService:HomeService,
+    private cdRef: ChangeDetectorRef
+  ) { 
+    // Initialize the reactive form
+    this.form = this.fb.group({
+      profession: [[]],
+      skills: [[]],
+      motivation: [''],
+      genders: [[]]
+    });
+  }
+
   ngOnInit(): void {
-    // Выполняем все запросы параллельно
     forkJoin({
       motivations: this.sortetdFilterService.getTags('MOTIVATION'),
       professions: this.sortetdFilterService.getTags('PROFESSION'),
@@ -42,10 +66,6 @@ export class SortetdFilterComponent implements OnInit {
         this.motivations = results.motivations;
         this.professions = results.professions;
         this.skills = results.skills;
-        
-        // console.log('Теги (MOTIVATION):', this.motivations);
-        // console.log('Теги (PROFESSION):', this.professions);
-        // console.log('Теги (SKILL):', this.skills);
       },
       error: (error: any) => {
         console.error('Ошибка при загрузке тегов:', error);
@@ -55,20 +75,54 @@ export class SortetdFilterComponent implements OnInit {
 
   showDialog() {
     this.visible = true;
+    this.cdRef.detectChanges();
+    console.log("visiblevisible",this.visible)
   }
 
-  closeDialog(event: Event) {
-    event.stopPropagation();
+  closeDialog() {
     this.visible = false;
+    this.cdRef.detectChanges(); 
+    console.log("visiblevisible",this.visible)
+  }
+
+  onTagsChanged(tags: any[], formElement: string) {
+    this.form.get(formElement)?.setValue(tags);
   }
 
   clearFilters() {
-    // Логика сброса фильтров
+    this.form.reset(); 
+    this.homeService.saveFilters( {"visibilities": [
+      "CREATOR_ONLY"
+    ]});
+    this.homeService.getVacancies();
+    this.homeService.getResumes();
+    this.visible = false;
   }
 
-  applyFilters() {
-    // Логика применения фильтров
-    this.visible = false;
+
+  submit(){
+    const formData = { ...this.form.value };
+
+    const tags = [...formData.skills, ...formData.profession, ...formData.motivation];
+
+    const dataToSubmit = {
+      ...formData,
+      tags: tags,
+      "visibilities": [
+        "CREATOR_ONLY"
+      ]
+    };
+
+    delete dataToSubmit.skills;
+    delete dataToSubmit.profession;
+    delete dataToSubmit.motivation;
+
+    console.log('dataToSubmit', dataToSubmit);
+
+    this.homeService.saveFilters(dataToSubmit);
+    this.homeService.getVacancies();
+    this.homeService.getResumes();
+    this.closeDialog();
   }
 
 }
