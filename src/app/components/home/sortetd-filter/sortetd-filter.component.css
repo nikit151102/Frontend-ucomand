@@ -221,6 +221,43 @@
     align-items: center;
 }
 
+
+
+:host ::ng-deep .p-checkbox .p-checkbox-box {
+    border-radius: 50% !important;
+    border: 2px solid #806BFF !important;
+}
+
+:host ::ng-deep .p-checkbox .p-checkbox-box:checked {
+    background-color: #fff;
+    border: 2px solid #806BFF;
+}
+
+:host ::ng-deep .p-checkbox .p-checkbox-box .p-icon {
+    display: none;
+}
+
+:host ::ng-deep .p-checkbox .p-checkbox-box::after {
+    content: "";
+    display: block;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: #806BFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+
+
+
+
+
 @media (max-width: 789.98px) {
     .content-filter {
         flex-direction: column;
@@ -254,7 +291,7 @@
         align-items: normal !important;
     }
 
-    .text{
+    .text {
         font-size: 0.8rem;
     }
 }
