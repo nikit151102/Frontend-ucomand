@@ -97,4 +97,11 @@ export class PersonalResumeComponent implements OnInit {
       this.resumeService.toggleResumeArchive(this.cardItem);
     }
   }
+
+  update(event: Event, id: number) {
+    event.stopPropagation();
+    const userId = localStorage.getItem('userId')
+    this.router.navigate([`/myaccount/${userId}/updateResume/${id}`]);
+  }
+
 }

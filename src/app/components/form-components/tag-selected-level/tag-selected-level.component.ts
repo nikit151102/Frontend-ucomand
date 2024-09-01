@@ -1,12 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component, forwardRef, Input, Output, EventEmitter, HostListener } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, forwardRef, Input, Output, EventEmitter, HostListener, OnChanges, SimpleChanges } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule } from '@angular/forms';
+
+
+interface Tag {
+  id: number;
+  name: string;
+  competenceLevel: null;
+  type: string;
+  color: string;
+}
 
 @Component({
   selector: 'app-tag-selected-level',
   templateUrl: './tag-selected-level.component.html',
   styleUrls: ['./tag-selected-level.component.css'],
-  imports: [ CommonModule ],
+  imports: [CommonModule, FormsModule],
   standalone: true,
   providers: [
     {
@@ -16,58 +25,64 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
     }
   ]
 })
-export class TagSelectedLevelComponent implements ControlValueAccessor {
-  @Input() tags: { name: string, id: number }[] = [];
+export class TagSelectedLevelComponent implements ControlValueAccessor, OnChanges {
+  @Input() tags: { id: number; name: string; competenceLevel: number | null; type: string, color: string | null }[] = [];
   @Input() placeholderValue: string = '';
   @Input() maxTags: number = 10;
-  @Output() tagsChanged = new EventEmitter<{ name: string, id: number, competenceLevel: number, color: string }[]>();
+  @Output() tagsChanged = new EventEmitter<{ id: number; name: string; competenceLevel: number | null; type: string, color: string | null }[]>();
 
   showTagBlock = false;
-  selectedTags: { name: string, id: number, competenceLevel: number, color: string }[] = [];
-  selectedTag: { name: string, id: number, competenceLevel: number, color: string } | null = null;
+  selectedTags: {id: number; name: string; competenceLevel: number | null; type: string, color: string | null }[] = [];
+  selectedTag: { id: number; name: string; competenceLevel: number | null; type: string, color: string | null } | null = null;
+  searchQuery: string = '';
+  filteredTags: { id: number; name: string; competenceLevel: number | null; type: string, color: string | null }[] = [];
 
-  private onChange: (value: any) => void = () => {};
-  private onTouched: () => void = () => {};
+  private onChange: (value: any) => void = () => { };
+  private onTouched: () => void = () => { };
 
-  toggleTagBlock(show: boolean) {
-    setTimeout(() => {
-      this.showTagBlock = show;
-    }, 200);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['tags']) {
+      this.filterTags();
+    }
   }
 
-  selectTag(name: string, id: number) {
-    if (this.selectedTag && this.selectedTag.name === name) {
+  toggleTagBlock(show: boolean) {
+    this.showTagBlock = show;
+  }
+
+  selectTag(tag:any) {
+    if (this.selectedTag && this.selectedTag.name === tag.name) {
       this.selectedTag = null;
     } else {
-      this.selectedTag = { name: name, id: id, competenceLevel: 0, color: ''  };
+      this.selectedTag = { name: tag.name, id: tag.id, competenceLevel: tag.competenceLevel, color: tag.color, type: tag.type  };
     }
     this.showTagBlock = true;
   }
 
-  selectLevel(level: number, id: number , color: string = '') {
+  selectLevel(level: number, id: number, color: string = '', type: string) {
     if (this.selectedTag) {
       if (this.selectedTags.length < this.maxTags || this.selectedTags.some(t => t.name === this.selectedTag!.name)) {
         let existingTag = this.selectedTags.find(t => t.name === this.selectedTag!.name);
         if (existingTag) {
-           existingTag.competenceLevel = level;
-           existingTag.color = color;
+          existingTag.competenceLevel = level;
+          existingTag.color = color;
         } else {
-          this.selectedTags.push({ name: this.selectedTag.name, id: this.selectedTag.id, competenceLevel: level, color: color});
+          this.selectedTags.push({ name: this.selectedTag.name, id: this.selectedTag.id, competenceLevel: level, color: color, type: type});
         }
         this.selectedTag = null;
         this.showTagBlock = false;
-        this.onChange(this.selectedTags); // Сообщаем Angular формам о новом значении
-        this.tagsChanged.emit(this.selectedTags); // Emit event with updated tags
+        this.onChange(this.selectedTags);
+        this.tagsChanged.emit(this.selectedTags);
       } else {
-        // alert(You can select up to ${this.maxTags} tags only.);
+
       }
     }
   }
-  
-  deleteTag(tag: { name: string, id: number, competenceLevel: number }) {
+
+  deleteTag(tag: { id: number; name: string; competenceLevel: number | null; type: string, color: string | null}) {
     this.selectedTags = this.selectedTags.filter(t => t.id !== tag.id);
-    this.onChange(this.selectedTags); // Сообщаем Angular формам о новом значении
-    this.tagsChanged.emit(this.selectedTags); // Вызываем событие с обновленными тегами
+    this.onChange(this.selectedTags);
+    this.tagsChanged.emit(this.selectedTags);
   }
 
   reset() {
@@ -75,12 +90,13 @@ export class TagSelectedLevelComponent implements ControlValueAccessor {
     this.tagsChanged.emit(this.selectedTags);
   }
 
-  writeValue(value: any): void {
-    if (value) {
+  writeValue(value: Tag[]): void {
+    if (value && Array.isArray(value)) {
       this.selectedTags = value;
     } else {
       this.selectedTags = [];
     }
+    this.updateFilteredTags(); // Ensure filtered tags are updated when value is written
   }
 
   registerOnChange(fn: any): void {
@@ -92,8 +108,9 @@ export class TagSelectedLevelComponent implements ControlValueAccessor {
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    // Обработка состояния disabled, если необходимо
+
   }
+
   getCompetenceLevel(level: number): string {
     switch (level) {
       case 1:
@@ -103,9 +120,23 @@ export class TagSelectedLevelComponent implements ControlValueAccessor {
       case 3:
         return 'senior';
       default:
-        return ''; // Если 0 или другое значение, вернет пустую строку
+        return '';
     }
   }
+  
+  getSkillsColor(item: number): string {
+    switch (item) {
+      case 1:
+        return '#50B229';
+      case 2:
+        return '#FAD305';
+      case 3:
+        return '#EE5354';
+      default:
+        return '';
+    }
+  }
+
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
@@ -117,5 +148,15 @@ export class TagSelectedLevelComponent implements ControlValueAccessor {
   @HostListener('click', ['$event'])
   onClickInside(event: MouseEvent) {
     event.stopPropagation();
+  }
+
+  filterTags() {
+    this.filteredTags = this.tags.filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
+  }
+
+  private updateFilteredTags() {
+    this.filteredTags = this.tags
+      .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
+      .sort((a, b) => a.name.localeCompare(b.name));
   }
 }

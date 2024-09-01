@@ -15,10 +15,11 @@
     padding: 16px;
     height: 46px;
 }
+
 .tag-input::placeholder {
     font-family: var(--font-Monts);
     font-weight: 400;
-    font-size: 0.8rem; 
+    font-size: 0.8rem;
     line-height: 140%;
 }
 
@@ -29,49 +30,42 @@
 
 .tag-block {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
     gap: 0.5rem;
     padding: 16px 12px;
     border: 2px solid #e2e2e2;
-    border-radius: 1rem 0.4rem 0.4rem 1rem;
-    top: 100%;
-    left: 0;
+    border-radius: 1rem;
     background: white;
     width: 100%;
     margin-top: 0.5rem;
     max-height: calc(12 * 1.5rem + 12px + 12px);
     overflow-y: auto;
+    box-shadow: inset 0 0 0 10px white;
 }
 
-/* Стили для всего скроллбара */
 .tag-block::-webkit-scrollbar {
     width: 8px;
-    /* Ширина скроллбара */
-    height: 8px;
-    /* Высота скроллбара (для горизонтального скроллбара) */
+    margin: 10px 0;
 }
 
-/* Стили для ползунка скроллбара */
 .tag-block::-webkit-scrollbar-thumb {
     background-color: #806BFF;
-    /* Цвет ползунка */
     border-radius: 4px;
-    /* Скругленные углы */
+    margin: 10px 0;
 }
 
-/* Стили для фона скроллбара */
 .tag-block::-webkit-scrollbar-track {
     background: #f1f1f1;
-    /* Цвет фона */
     border-radius: 4px;
-    /* Скругленные углы */
+    margin: 10px 0;
 }
 
-/* Убираем стрелки сверху и снизу */
 .tag-block::-webkit-scrollbar-button {
     display: none;
-    /* Скрыть стрелки */
+    margin: 10px 0;
 }
+
 
 .tag-block div {
     cursor: pointer;
@@ -127,7 +121,7 @@
     gap: 0.5rem;
 }
 
-/* Добавьте стили для уровня */
+
 .level {
     display: flex;
     flex-direction: row;
@@ -156,4 +150,13 @@
 
 .level div:hover {
     background: #e0e0e0;
+}
+
+
+.no-tags-message {
+    color: var(--font-color);
+    font-size: 0.8rem;
+    text-align: start;
+    padding: 0 10px;
+    margin: 0;
 }

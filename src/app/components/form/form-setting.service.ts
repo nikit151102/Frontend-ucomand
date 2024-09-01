@@ -24,15 +24,28 @@ export class FormSettingService {
   }
 
   setData(type: string, data: any): Observable<any> {
-
     const token = localStorage.getItem('authToken');
-
-    // Создание заголовков с токеном
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
-
     return this.http.post(`${this.domain}/${type}/forCurrentUser`, data, { headers });
+  }
+
+
+  getDataById(type: string, id: string){
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(`${this.domain}/${type}/${id}`, { headers });
+  }
+
+
+  putDataById(type: string, data: any, id: string){
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put(`${this.domain}/${type}/${id}`,data, { headers });
   }
 }

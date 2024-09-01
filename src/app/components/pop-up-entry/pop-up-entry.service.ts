@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -14,6 +14,17 @@ export class PopUpEntryService {
   private domain = 'http://80.87.108.138:8080'; 
 
   getUser(): Observable<any> {
+    const token = localStorage.getItem('authToken');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    
+    return this.http.get(`${this.domain}/users/currentUser`, { headers });
+  }
+
+  getRoot(): Observable<any> {
     return this.http.get(`${this.domain}/admins/rootToken`);
   }
 

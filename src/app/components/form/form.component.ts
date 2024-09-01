@@ -8,37 +8,59 @@ import { FormSettingService } from './form-setting.service';
 import { TagSelectedLevelComponent } from '../form-components/tag-selected-level/tag-selected-level.component';
 import { SettingHeaderService } from '../setting-header.service';
 import { forkJoin } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TagSelectorComponent, MotivationsComponent, RadioButtonModule, TagSelectedLevelComponent],
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    ReactiveFormsModule, 
+    TagSelectorComponent, 
+    MotivationsComponent, 
+    RadioButtonModule, 
+    TagSelectedLevelComponent
+  ],
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css'] // Исправлено на styleUrls
+  styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-
   @ViewChild(MotivationsComponent) motivationsComponent!: MotivationsComponent;
   @ViewChild(TagSelectedLevelComponent) tagSelectedLevelComponent!: TagSelectedLevelComponent;
+
+  form!: FormGroup;
+  selectedTags: { id: number, name: string, color: string }[] = [];
+  motivations: any[] = [];
+  professions: any[] = [];
+  skills: any[] = [];
+  typeForm: string = '';
+  isEditMode: boolean = false;
+  visible: boolean = false;
+  activeLink: string = 'Сначала новые';
 
   constructor(
     public formSettingService: FormSettingService,
     private settingHeaderService: SettingHeaderService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
-  form!: FormGroup;
-
-  selectedTags: { id: number, name: string, color: string }[] = [];
-
-  motivations: any[] = [];
-  professions: any[] = [];
-  skills: any[] = [];
-
   ngOnInit(): void {
-    // Выполняем все запросы параллельно
+    this.initializeForm();
+    this.route.data.subscribe(data => {
+      const routeName = data['routeName'];
+      this.isEditMode = routeName.includes('update');
+      this.typeForm = routeName.includes('Resume') ? 'резюме' : 'вакансии';
+      
+      if (this.isEditMode) {
+        this.loadExistingData();
+      } else {
+        this.initializeForm();
+      }
+    });
+
     forkJoin({
       motivations: this.formSettingService.getTags('MOTIVATION'),
       professions: this.formSettingService.getTags('PROFESSION'),
@@ -48,15 +70,17 @@ export class FormComponent implements OnInit {
         this.motivations = results.motivations;
         this.professions = results.professions;
         this.skills = results.skills;
-
-        this.form.get('motivations')?.setValue(this.motivations.filter(tag => this.selectedTags.some(st => st.name === tag.name)));
+        this.form.get('motivations')?.setValue(
+          this.motivations.filter(tag => this.selectedTags.some(st => st.name === tag.name))
+        );
       },
-      error: (error: any) => {
-        console.error('Ошибка при загрузке тегов:', error);
-      }
+      error: (error) => console.error('Ошибка при загрузке тегов:', error)
     });
 
     this.settingHeaderService.backbtn = true;
+  }
+
+  initializeForm(): void {
     this.form = this.fb.group({
       title: ['', [this.optionalValidator]],
       profession: [null, Validators.required],
@@ -71,37 +95,39 @@ export class FormComponent implements OnInit {
     });
   }
 
-  // Пользовательский валидатор для поля title
-  optionalValidator(control: AbstractControl): { [key: string]: boolean } | null {
-    // Если значение пустое, валидатор возвращает null, что означает, что ошибок нет
-    if (!control.value) {
-      return null;
-    }
+  loadExistingData(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      const typeEndpoint = this.typeForm === 'резюме' ? ['resumes', id] : ['vacancies', id];
+      this.formSettingService.getDataById(typeEndpoint[0], typeEndpoint[1]).subscribe((data: any) => {
+        console.log("getDataById",data)
+        this.initializeForm();
+      
+        this.form.patchValue(data);
 
-    // Если значение не пустое, применяются стандартные валидаторы
-    return Validators.required(control);
+        this.form.get('skills')?.setValue(data.skills);
+        this.form.get('profession')?.setValue([data.profession]);
+        this.form.get('motivations')?.setValue(data.motivations);
+
+      });
+    }
   }
 
-  onMotivationsChanged(tags: { id: number, name: string, color: string }[]) {
+  optionalValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    return control.value ? Validators.required(control) : null;
+  }
+
+  onMotivationsChanged(tags: { id: number, name: string, color: string }[]): void {
     this.form.get('motivations')?.setValue(tags);
   }
 
   adjustHeight(event: Event): void {
     const textarea = event.target as HTMLTextAreaElement;
-    textarea.style.height = '46px'; // Сбросить высоту
-    textarea.style.height = `${textarea.scrollHeight}px`; // Установить новую высоту
+    textarea.style.height = '46px'; 
+    textarea.style.height = `${textarea.scrollHeight}px`; 
   }
 
-  visible: boolean = false;
-  paul!: string;
-
-  showDialog() {
-    this.visible = true;
-  }
-
-  activeLink: string = 'Сначала новые';
-
-  setActive(link: string) {
+  setActive(link: string): void {
     this.activeLink = link;
   }
 
@@ -109,45 +135,61 @@ export class FormComponent implements OnInit {
     return this.activeLink === link;
   }
 
-  onTagsChanged(tags: { name: string; id: number; competenceLevel: number }[], formElement: string) {
-    this.form.get(`${formElement}`)?.setValue(tags);
+  onTagsChanged(tags: { id: number; name: string; competenceLevel: number | null; type: string, color: string | null}[], formElement: string): void {
+    this.form.get(formElement)?.setValue(tags);
   }
 
-  submit() {
+  submit(): void {
     if (this.form.invalid) {
-      // Если форма не валидна, отображаем сообщения об ошибках
       Object.keys(this.form.controls).forEach(control => {
         const formControl = this.form.get(control);
         if (formControl && formControl.invalid) {
-          formControl.markAsTouched(); // Подсвечиваем поля с ошибками
+          formControl.markAsTouched();
         }
       });
 
-      // Логирование названий полей с ошибками
-      console.log('Поля с ошибками:');
+      console.error('Поля с ошибками:');
       Object.keys(this.form.controls).forEach(control => {
         const formControl = this.form.get(control);
         if (formControl && formControl.invalid) {
-          console.log(`Поле "${control}" не прошло валидацию.`);
+          console.error(`Поле "${control}" не прошло валидацию.`);
         }
       });
 
       return;
     }
 
+    const formData = this.prepareFormData();
+
+    const typeEndpoint = this.typeForm === 'резюме' ? 'resumes' : 'vacancies';
+
+    if (this.isEditMode) {
+      const id = this.route.snapshot.paramMap.get('id');
+      if(id){
+        this.formSettingService.putDataById(typeEndpoint, formData,id ).subscribe(
+          (response) => this.handleSuccess(response, typeEndpoint),
+          (error) => console.error('Ошибка при изменении данных:', error)
+        );
+      }
+    } else {
+      this.formSettingService.setData(typeEndpoint, formData).subscribe(
+        (response) => this.handleSuccess(response, typeEndpoint),
+        (error) => console.error('Ошибка при отправке данных:', error)
+      );
+  
+    }
+  }
+
+  prepareFormData(): any {
     const formData = { ...this.form.value };
 
-    // Функция для поиска оригинального тега по имени
     const getOriginalTag = (name: string) => this.motivations.find(tag => tag.name === name);
-
-    // Функция для добавления недостающих полей и удаления color
     const transformTags = (array: any[], type: string) => array.map(tag => ({
       ...tag,
       type: type,
       color: tag.color || null,
     }));
 
-    // Преобразуем motivations и skills
     formData.motivations = transformTags(
       formData.motivations.map((tag: any) => getOriginalTag(tag.name) || tag),
       'MOTIVATION'
@@ -158,18 +200,13 @@ export class FormComponent implements OnInit {
       'SKILL'
     );
 
-    // Извлекаем первый объект из profession и добавляем необходимые поля
-    if (Array.isArray(formData.profession) && formData.profession.length > 0) {
       formData.profession = {
         ...formData.profession[0],
         competenceLevel: formData.profession[0].competenceLevel || null,
         type: 'PROFESSION'
       };
-    } else {
-      formData.profession = { id: 0, name: 'Java', competenceLevel: 1, type: 'PROFESSION' };
-    }
 
-    // Добавляем недостающие поля со значениями по умолчанию
+
     formData.visibility = "CREATOR_ONLY";
     formData.freeLink = formData.freeLink || "string";
     formData.ownLink = formData.ownLink || "string";
@@ -177,48 +214,27 @@ export class FormComponent implements OnInit {
     formData.details = formData.details || "string";
     formData.title = formData.title || "string";
 
-    delete formData.gender; // Удаляем ненужное поле
-    let typeEndpoint: string;
-    console.log(formData);
-
-    if (this.formSettingService.typeForm == 'резюме') {
-      typeEndpoint = 'resumes';
-    } else {
-      typeEndpoint = 'vacancies';
-    }
-
-    console.log("typeEndpoint", typeEndpoint)
-    // Отправляем данные
-    this.formSettingService.setData(typeEndpoint, formData).subscribe(
-      (response) => {
-        console.log("response", response);
-
-        if (typeEndpoint == 'resumes') {
-          localStorage.setItem('routeTypeCard', 'resumes');
-          this.router.navigate(['/resume', response.id]);
-        } else {
-          localStorage.setItem('routeTypeCard', 'vacancies');
-          this.router.navigate(['/vacancy', response.id]);
-        }
-
-        // Очистка формы после успешной отправки
-        this.form.reset({
-          title: '',
-          profession: [],
-          skills: [],
-          motivations: [],
-          gender: '',
-          details: ''
-        });
-        this.motivationsComponent.reset();
-        this.tagSelectedLevelComponent.reset();
-
-      },
-      (error) => {
-        console.error('Ошибка при загрузке тегов:', error);
-      }
-    );
+    delete formData.gender;
+    return formData
   }
 
+  handleSuccess(response: any, typeEndpoint: string): void {
+    console.log("response", response);
 
+    localStorage.setItem('routeTypeCard', typeEndpoint);
+    const route = typeEndpoint === 'resumes' ? ['/resume', response.id] : ['/vacancy', response.id];
+    this.router.navigate(route);
+
+    this.form.reset({
+      title: '',
+      profession: [],
+      skills: [],
+      motivations: [],
+      gender: '',
+      details: ''
+    });
+
+    this.motivationsComponent.reset();
+    this.tagSelectedLevelComponent.reset();
+  }
 }

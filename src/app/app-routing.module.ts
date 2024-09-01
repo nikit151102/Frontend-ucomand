@@ -22,12 +22,6 @@ const routes: Routes = [
     path: 'myaccount/:id', loadChildren: () => import('./components/personal-account/personal-account.module').then(m => m.PersonalAccountModule), canActivate: [AuthGuard]
   },
   {
-    path: 'newResume', loadChildren: () => import('./components/form/form.module').then(m => m.FormModule)
-  },
-  {
-    path: 'newVacancy', loadChildren: () => import('./components/form/form.module').then(m => m.FormModule)
-  },
-  {
     path: 'aboutUs', loadChildren: () => import('./components/about-us/about-us.module').then(m => m.AboutUsModule)
   },
   {

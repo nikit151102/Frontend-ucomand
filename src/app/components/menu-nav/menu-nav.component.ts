@@ -77,7 +77,8 @@ export class MenuNavComponent implements OnInit {
     this.settingHeaderService.post = false;
     this.settingHeaderService.shared = false;
     this.sidebarVisible = false;
-    this.router.navigate([`/newResume`]);
+    const userId = localStorage.getItem('userId')
+    this.router.navigate([`/myaccount/${userId}/newResume`]);
   }
 
   handlePostVacancy(): void {
@@ -87,7 +88,8 @@ export class MenuNavComponent implements OnInit {
     this.settingHeaderService.post = false;
     this.settingHeaderService.shared = false;
     this.sidebarVisible = false;
-    this.router.navigate([`/newVacancy`]);
+    const userId = localStorage.getItem('userId')
+    this.router.navigate([`/myaccount/${userId}/newVacancy`]);
   }
 
   handleLogin(): void {

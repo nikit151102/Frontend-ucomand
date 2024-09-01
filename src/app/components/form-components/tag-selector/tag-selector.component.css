@@ -28,11 +28,12 @@
 }
 .tag-block {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
     gap: 0.5rem;
     padding: 16px 12px;
     border: 1px solid #e2e2e2;
-    border-radius: 1rem 0.4rem 0.4rem 1rem;
+    border-radius: 1rem;
     top: 100%;
     left: 0;
     background: white;
@@ -101,9 +102,10 @@
 }
 
 .no-tags-message {
-    color: #999;
-    font-size: 0.9rem;
-    text-align: center;
-    padding: 1rem;
+    color: var(--font-color);
+    font-size: 0.8rem;
+    text-align: start;
+    padding: 0 10px;
+    margin: 0;
   }
   

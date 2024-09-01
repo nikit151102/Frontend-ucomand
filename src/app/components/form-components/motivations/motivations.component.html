@@ -2,7 +2,7 @@
     <div class="listTags">
         <ng-container *ngFor="let tag of selectedTags">
             <div class="tag">
-                <div class="motivationTag selectTag" [style.background]="tag.color">
+                <div class="motivationTag selectTag" [style.background]="getSkillsColor(tag.name)">
                     {{ tag.name }}
                 </div>
                 <a (click)="deleteTag(tag)">

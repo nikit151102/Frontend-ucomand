@@ -45,7 +45,7 @@ export class PersonalVacancyComponent {
   }
 
   getSkillText(item: number): string {
-    console.log("item", )
+    console.log("item",)
     switch (item) {
       case 1:
         return 'Jun';
@@ -57,7 +57,7 @@ export class PersonalVacancyComponent {
         return '';
     }
   }
-  
+
   getMotivationColor(item: string): string {
     switch (item) {
       case 'Без оплаты':
@@ -93,8 +93,13 @@ export class PersonalVacancyComponent {
     if (this.item) {
       this.vacancyService.toggleResumeArchive(this.item);
     }
-    }
+  }
 
-  
+  update(event: Event, id: number) {
+    event.stopPropagation();
+    const userId = localStorage.getItem('userId')
+    this.router.navigate([`/myaccount/${userId}/updateVacancy/${id}`]);
+  }
+
 
 }

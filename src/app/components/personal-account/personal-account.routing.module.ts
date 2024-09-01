@@ -21,6 +21,18 @@ const routes: Routes = [
         path: 'personalData',
         loadChildren: () => import('./personal-data/personal-data.module').then(m => m.PersonalDataModule)
       },
+      {
+        path: 'newResume', loadChildren: () => import('../form/form.module').then(m => m.FormModule), data: { routeName: 'createResume' }
+      },
+      {
+        path: 'newVacancy', loadChildren: () => import('../form/form.module').then(m => m.FormModule), data: { routeName: 'createVacancy' }
+      },
+      {
+        path: 'updateResume/:id', loadChildren: () => import('../form/form.module').then(m => m.FormModule), data: { routeName: 'updateResume' }
+      },
+      {
+        path: 'updateVacancy/:id', loadChildren: () => import('../form/form.module').then(m => m.FormModule), data: { routeName: 'updateVacancy' }
+      },
     ]
   }
 ];

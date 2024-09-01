@@ -75,7 +75,18 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       console.log("response", response);
       console.log("response.token", response.token);
       this.tokenService.setToken(response.token);
-      this.popUpEntryService.visible = false;
+      this.popUpEntryService.getUser().subscribe(
+        (data) => {
+          this.tokenService.setToken(data.token);
+
+          console.log('User data:', data.token);
+          this.login_user()
+        },
+        (error) => {
+          console.error('Error fetching user data:', error);
+        }
+      );
+      
     });
   }
   
@@ -83,10 +94,11 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
   login_enter() {
     this.popUpEntryService.visible = false;
 
-    this.popUpEntryService.getUser().subscribe(
+    this.popUpEntryService.getRoot().subscribe(
       (data) => {
         this.tokenService.setToken(data.token);
         console.log('User data:', data.token);
+        this.login_user()
         this.popUpEntryService.userVisible = true;
       },
       (error) => {
@@ -94,10 +106,24 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       }
     );
 
-    // this.loadTelegramWidget();
+  }
+
+  login_user(){
+    this.popUpEntryService.visible = false;
+
+    this.popUpEntryService.getUser().subscribe(
+      (data) => {
+        localStorage.setItem('userId', data.id);
+        this.popUpEntryService.userVisible = true;
+      },
+      (error) => {
+        console.error('Error fetching user data:', error);
+      }
+    );
   }
 
 
+  
   closePopUp() {
     this.popUpEntryService.visible = false;
   }
