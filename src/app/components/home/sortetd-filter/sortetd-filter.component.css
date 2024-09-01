@@ -222,15 +222,10 @@
 }
 
 
-
 :host ::ng-deep .p-checkbox .p-checkbox-box {
     border-radius: 50% !important;
     border: 2px solid #806BFF !important;
-}
-
-:host ::ng-deep .p-checkbox .p-checkbox-box:checked {
-    background-color: #fff;
-    border: 2px solid #806BFF;
+    position: relative; 
 }
 
 :host ::ng-deep .p-checkbox .p-checkbox-box .p-icon {
@@ -241,16 +236,21 @@
     content: "";
     display: block;
     border-radius: 50%;
-    width: 12px;
-    height: 12px;
-    background-color: #806BFF;
+    width: 12px; 
+    height: 12px; 
+    background-color: transparent; 
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: background-color 0.3s; 
+    border: 2px solid #ffffff; 
 }
 
-
+:host ::ng-deep .p-checkbox.p-checkbox-checked .p-checkbox-box::after {
+    background-color: #806BFF; 
+    border: 2px solid #ffffff; 
+}
 
 
 
