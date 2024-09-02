@@ -1,0 +1,11 @@
+<div class="popup-overlay" *ngIf="saveChangesPopupService.visible$ | async">
+    <div class="popup" (click)="$event.stopPropagation()">
+        <p class="popup-title">Вы не завершили сохранение данных.</p>
+        <p class="popup-subtitle">Вы внесли данные в форму, но не завершили её публикацию. Если вы уйдете сейчас, все введенные данные могут быть потеряны.
+            Вы хотите сохранить свои данные для продолжения позже?</p>
+        <div class="btns">
+            <a class="popup-btn-edit" (click)="editDraft()">Редактировать</a>
+            <a class="popup-delete-draft" (click)="deleteDraft()">Удалить черновик</a>
+        </div>
+
+    </div>

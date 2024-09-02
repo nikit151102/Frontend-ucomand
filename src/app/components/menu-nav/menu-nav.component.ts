@@ -82,7 +82,6 @@ export class MenuNavComponent implements OnInit {
   }
 
   handlePostVacancy(): void {
-    // Логика для размещения вакансии
     this.formSettingService.isheading = true;
     this.formSettingService.typeForm = 'вакансии';
     this.settingHeaderService.post = false;

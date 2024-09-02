@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MotivationsComponent } from '../form-components/motivations/motivations.component';
 import { TagSelectorComponent } from '../form-components/tag-selector/tag-selector.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
@@ -9,18 +9,21 @@ import { TagSelectedLevelComponent } from '../form-components/tag-selected-level
 import { SettingHeaderService } from '../setting-header.service';
 import { forkJoin } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SaveChangesPopupComponent } from './save-changes-popup/save-changes-popup.component';
+import { SaveChangesPopupService } from './save-changes-popup/save-changes-popup.service';
 
 @Component({
   selector: 'app-form',
   standalone: true,
   imports: [
-    CommonModule, 
-    FormsModule, 
-    ReactiveFormsModule, 
-    TagSelectorComponent, 
-    MotivationsComponent, 
-    RadioButtonModule, 
-    TagSelectedLevelComponent
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TagSelectorComponent,
+    MotivationsComponent,
+    RadioButtonModule,
+    TagSelectedLevelComponent,
+    SaveChangesPopupComponent
   ],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
@@ -39,12 +42,15 @@ export class FormComponent implements OnInit {
   visible: boolean = false;
   activeLink: string = 'Сначала новые';
 
+  private readonly FORM_STORAGE_KEY = 'formData';
+
   constructor(
     public formSettingService: FormSettingService,
     private settingHeaderService: SettingHeaderService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public saveChangesPopupService: SaveChangesPopupService
   ) { }
 
   ngOnInit(): void {
@@ -53,11 +59,12 @@ export class FormComponent implements OnInit {
       const routeName = data['routeName'];
       this.isEditMode = routeName.includes('update');
       this.typeForm = routeName.includes('Resume') ? 'резюме' : 'вакансии';
-      
+
       if (this.isEditMode) {
         this.loadExistingData();
       } else {
         this.initializeForm();
+        this.loadFormDataFromStorage();
       }
     });
 
@@ -95,14 +102,46 @@ export class FormComponent implements OnInit {
     });
   }
 
+  loadFormDataFromStorage(): void {
+    const savedData = localStorage.getItem(this.FORM_STORAGE_KEY);
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+
+      if (parsedData.type === this.typeForm) {
+        this.saveChangesPopupService.showPopup();
+        const formData = parsedData.formData;
+        this.form.patchValue(formData);
+
+        this.form.get('skills')?.setValue(formData.skills);
+        this.form.get('profession')?.setValue([formData.profession]);
+        this.form.get('motivations')?.setValue(formData.motivations);
+      }
+    }
+  }
+
+  clearDraft(): void {
+    localStorage.removeItem(this.FORM_STORAGE_KEY);
+    this.form.reset({
+      title: '',
+      profession: [],
+      skills: [],
+      motivations: [],
+      gender: '',
+      details: ''
+    });
+    this.motivationsComponent.reset();
+    this.tagSelectedLevelComponent.reset();
+    this.saveChangesPopupService.hidePopup();
+  }
+
   loadExistingData(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       const typeEndpoint = this.typeForm === 'резюме' ? ['resumes', id] : ['vacancies', id];
       this.formSettingService.getDataById(typeEndpoint[0], typeEndpoint[1]).subscribe((data: any) => {
-        console.log("getDataById",data)
+        console.log("getDataById", data)
         this.initializeForm();
-      
+
         this.form.patchValue(data);
 
         this.form.get('skills')?.setValue(data.skills);
@@ -123,8 +162,8 @@ export class FormComponent implements OnInit {
 
   adjustHeight(event: Event): void {
     const textarea = event.target as HTMLTextAreaElement;
-    textarea.style.height = '46px'; 
-    textarea.style.height = `${textarea.scrollHeight}px`; 
+    textarea.style.height = '46px';
+    textarea.style.height = `${textarea.scrollHeight}px`;
   }
 
   setActive(link: string): void {
@@ -135,7 +174,7 @@ export class FormComponent implements OnInit {
     return this.activeLink === link;
   }
 
-  onTagsChanged(tags: { id: number; name: string; competenceLevel: number | null; type: string, color: string | null}[], formElement: string): void {
+  onTagsChanged(tags: { id: number; name: string; competenceLevel: number | null; type: string, color: string | null }[], formElement: string): void {
     this.form.get(formElement)?.setValue(tags);
   }
 
@@ -165,18 +204,23 @@ export class FormComponent implements OnInit {
 
     if (this.isEditMode) {
       const id = this.route.snapshot.paramMap.get('id');
-      if(id){
-        this.formSettingService.putDataById(typeEndpoint, formData,id ).subscribe(
-          (response) => this.handleSuccess(response, typeEndpoint),
+      if (id) {
+        this.formSettingService.putDataById(typeEndpoint, formData, id).subscribe(
+          (response) => {
+            this.handleSuccess(response, typeEndpoint)
+   
+          },
           (error) => console.error('Ошибка при изменении данных:', error)
         );
       }
     } else {
       this.formSettingService.setData(typeEndpoint, formData).subscribe(
-        (response) => this.handleSuccess(response, typeEndpoint),
+        (response) => {
+          this.handleSuccess(response, typeEndpoint)
+        },
         (error) => console.error('Ошибка при отправке данных:', error)
       );
-  
+
     }
   }
 
@@ -200,11 +244,11 @@ export class FormComponent implements OnInit {
       'SKILL'
     );
 
-      formData.profession = {
-        ...formData.profession[0],
-        competenceLevel: formData.profession[0].competenceLevel || null,
-        type: 'PROFESSION'
-      };
+    formData.profession = {
+      ...formData.profession[0],
+      competenceLevel: formData.profession[0].competenceLevel || null,
+      type: 'PROFESSION'
+    };
 
 
     formData.visibility = "CREATOR_ONLY";
@@ -222,7 +266,8 @@ export class FormComponent implements OnInit {
     console.log("response", response);
 
     localStorage.setItem('routeTypeCard', typeEndpoint);
-    const route = typeEndpoint === 'resumes' ? ['/resume', response.id] : ['/vacancy', response.id];
+    const userId = localStorage.getItem('userId')
+    const route = typeEndpoint === 'resumes' ? [`/myaccount/${userId}/resume`, response.id] : [`/myaccount/${userId}/vacancy`, response.id];
     this.router.navigate(route);
 
     this.form.reset({
@@ -237,4 +282,15 @@ export class FormComponent implements OnInit {
     this.motivationsComponent.reset();
     this.tagSelectedLevelComponent.reset();
   }
+
+  saveFormDataToStorage(): void {
+    const formData = this.prepareFormData();
+    localStorage.setItem(this.FORM_STORAGE_KEY, JSON.stringify({ formData, type: this.typeForm }));
+  }
+
+  @HostListener('window:beforeunload')
+  handleBeforeUnload(): void {
+    this.saveFormDataToStorage();
+  }
+
 }
