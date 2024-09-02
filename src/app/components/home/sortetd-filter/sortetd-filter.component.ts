@@ -90,13 +90,11 @@ export class SortetdFilterComponent implements OnInit {
       try {
         const parsedFilters = JSON.parse(filters);
 
-        // Установка значений в форму
         if (parsedFilters.genders) {
           this.form.get('genders')?.setValue(parsedFilters.genders);
         }
 
         if (parsedFilters.tags) {
-          // Указываем тип Tag для параметра tag
           const tags: Tag[] = parsedFilters.tags;
 
           const skills = tags.filter((tag: Tag) => tag.type === 'SKILL').map((tag: Tag) => tag);
