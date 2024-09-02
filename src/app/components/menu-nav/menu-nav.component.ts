@@ -92,14 +92,13 @@ export class MenuNavComponent implements OnInit {
   }
 
   handleLogin(): void {
-    // Логика для входа в аккаунт
     this.sidebarVisible = false;
     this.popUpEntryService.showDialog();
   }
 
   handleRegistration(): void {
     this.sidebarVisible = false;
-    // Логика для регистрации
+    this.popUpEntryService.showDialog();
   }
 
   goBack(): void {
@@ -123,7 +122,6 @@ export class MenuNavComponent implements OnInit {
     this.activeTopic = type;
     this.sidebarVisible = false;
 
-    // Сохраняем тему в localStorage
     localStorage.setItem('theme', type);
     if (type === 'dark') {
       document.documentElement.style.setProperty('--background', '#333334');
