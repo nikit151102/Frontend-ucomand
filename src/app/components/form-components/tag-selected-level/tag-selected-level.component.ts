@@ -6,6 +6,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule } from '@angular/f
 interface Tag {
   id: number;
   name: string;
+  nameEng: string;
   competenceLevel: null;
   type: string;
   color: string;
@@ -26,16 +27,17 @@ interface Tag {
   ]
 })
 export class TagSelectedLevelComponent implements ControlValueAccessor, OnChanges {
-  @Input() tags: { id: number; name: string; competenceLevel: number | null; type: string, color: string | null }[] = [];
+  @Input() tags: { id: number; name: string; nameEng: string; competenceLevel: number | null; type: string, color: string | null }[] = [];
   @Input() placeholderValue: string = '';
   @Input() maxTags: number = 10;
-  @Output() tagsChanged = new EventEmitter<{ id: number; name: string; competenceLevel: number | null; type: string, color: string | null }[]>();
+  @Input() type: string = 'skills';
+  @Output() tagsChanged = new EventEmitter<{ id: number; name: string; nameEng: string; competenceLevel: number | null; type: string, color: string | null }[]>();
 
   showTagBlock = false;
-  selectedTags: {id: number; name: string; competenceLevel: number | null; type: string, color: string | null }[] = [];
-  selectedTag: { id: number; name: string; competenceLevel: number | null; type: string, color: string | null } | null = null;
+  selectedTags: { id: number; name: string; nameEng: string; competenceLevel: number | null; type: string, color: string | null }[] = [];
+  selectedTag: { id: number; name: string; nameEng: string; competenceLevel: number | null; type: string, color: string | null } | null = null;
   searchQuery: string = '';
-  filteredTags: { id: number; name: string; competenceLevel: number | null; type: string, color: string | null }[] = [];
+  filteredTags: { id: number; name: string; nameEng: string; competenceLevel: number | null; type: string, color: string | null }[] = [];
 
   private onChange: (value: any) => void = () => { };
   private onTouched: () => void = () => { };
@@ -50,16 +52,16 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
     this.showTagBlock = show;
   }
 
-  selectTag(tag:any) {
+  selectTag(tag: any) {
     if (this.selectedTag && this.selectedTag.name === tag.name) {
       this.selectedTag = null;
     } else {
-      this.selectedTag = { name: tag.name, id: tag.id, competenceLevel: tag.competenceLevel, color: tag.color, type: tag.type  };
+      this.selectedTag = { name: tag.name, id: tag.id, competenceLevel: tag.competenceLevel, color: tag.color, type: tag.type, nameEng: tag.nameEng };
     }
     this.showTagBlock = true;
   }
 
-  selectLevel(level: number, id: number, color: string = '', type: string) {
+  selectLevel(level: number, id: number, color: string = '', type: string, nameEng: string) {
     if (this.selectedTag) {
       if (this.selectedTags.length < this.maxTags || this.selectedTags.some(t => t.name === this.selectedTag!.name)) {
         let existingTag = this.selectedTags.find(t => t.name === this.selectedTag!.name);
@@ -67,7 +69,7 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
           existingTag.competenceLevel = level;
           existingTag.color = color;
         } else {
-          this.selectedTags.push({ name: this.selectedTag.name, id: this.selectedTag.id, competenceLevel: level, color: color, type: type});
+          this.selectedTags.push({ name: this.selectedTag.name, id: this.selectedTag.id, competenceLevel: level, color: color, type: type, nameEng: nameEng  });
         }
         this.selectedTag = null;
         this.showTagBlock = false;
@@ -79,7 +81,7 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
     }
   }
 
-  deleteTag(tag: { id: number; name: string; competenceLevel: number | null; type: string, color: string | null}) {
+  deleteTag(tag: { id: number; name: string; competenceLevel: number | null; type: string, color: string | null }) {
     this.selectedTags = this.selectedTags.filter(t => t.id !== tag.id);
     this.onChange(this.selectedTags);
     this.tagsChanged.emit(this.selectedTags);
@@ -96,7 +98,7 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
     } else {
       this.selectedTags = [];
     }
-    this.updateFilteredTags(); // Ensure filtered tags are updated when value is written
+    this.updateFilteredTags(); 
   }
 
   registerOnChange(fn: any): void {
@@ -123,7 +125,7 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
         return '';
     }
   }
-  
+
   getSkillsColor(item: number): string {
     switch (item) {
       case 1:
@@ -150,13 +152,39 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
     event.stopPropagation();
   }
 
-  filterTags() {
-    this.filteredTags = this.tags.filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
+  isEnglish(text: string): boolean {
+    const englishRegex = /^[A-Za-z\s]+$/;
+    return englishRegex.test(text);
   }
 
-  private updateFilteredTags() {
-    this.filteredTags = this.tags
-      .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
-      .sort((a, b) => a.name.localeCompare(b.name));
+  languagesEng: boolean = false;
+
+  filterTags() {
+    this.updateFilteredTags()
   }
+
+
+  private updateFilteredTags() {
+    if (this.type == 'profession') {
+      if (this.isEnglish(this.searchQuery)) {
+
+        this.languagesEng = true;
+        this.filteredTags = this.tags
+          .filter(tag => tag.nameEng.toLowerCase().includes(this.searchQuery.toLowerCase())) 
+          .sort((a, b) => a.nameEng.localeCompare(b.nameEng)); 
+      } else {
+
+        this.languagesEng = false;
+        this.filteredTags = this.tags
+          .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase())) 
+          .sort((a, b) => a.name.localeCompare(b.name)); 
+      }
+    }else{
+      this.languagesEng = false;
+      this.filteredTags = this.tags
+        .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase())) 
+        .sort((a, b) => a.name.localeCompare(b.name)); 
+    }
+  }
+
 }

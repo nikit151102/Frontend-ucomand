@@ -5,6 +5,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 interface Tag {
   id: number;
   name: string;
+  nameEng: string;
   competenceLevel: null;
   type: string;
 }
@@ -28,6 +29,7 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
   @Input() tags: Tag[] = [];
   @Input() maxTags: number = 3;
   @Input() placeholderValue: string = '';
+  @Input() type: string = 'skills';
   @Output() tagsChanged = new EventEmitter<Tag[]>();
 
   private onChange: (value: Tag[]) => void = () => { };
@@ -61,7 +63,7 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
     }
     this.showTagBlock = false;
     this.searchQuery = ''; 
-    this.updateFilteredTags(); // Ensure filtered tags are updated when a tag is selected
+    this.updateFilteredTags(); 
   }
 
   deleteTag(tag: Tag) {
@@ -70,7 +72,7 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
       this.selectedTags.splice(index, 1);
       this.onChange(this.selectedTags);
     }
-    this.updateFilteredTags(); // Ensure filtered tags are updated when a tag is deleted
+    this.updateFilteredTags(); 
   }
 
   writeValue(value: Tag[]): void {
@@ -79,7 +81,7 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
     } else {
       this.selectedTags = [];
     }
-    this.updateFilteredTags(); // Ensure filtered tags are updated when value is written
+    this.updateFilteredTags(); 
   }
 
   registerOnChange(fn: (value: Tag[]) => void): void {
@@ -93,12 +95,34 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
   setDisabledState?(isDisabled: boolean): void {}
 
   filterTags() {
-    this.updateFilteredTags();
+    this.updateFilteredTags()
   }
 
+  isEnglish(text: string): boolean {
+    const englishRegex = /^[A-Za-z\s]+$/;
+    return englishRegex.test(text);
+  }
+
+  languagesEng: boolean = false;
+
   private updateFilteredTags() {
-    this.filteredTags = this.tags
-      .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
-      .sort((a, b) => a.name.localeCompare(b.name));
+    if (this.type == 'profession') {
+      if (this.isEnglish(this.searchQuery)) {
+        this.languagesEng = true;
+        this.filteredTags = this.tags
+          .filter(tag => tag.nameEng.toLowerCase().includes(this.searchQuery.toLowerCase())) 
+          .sort((a, b) => a.nameEng.localeCompare(b.nameEng)); 
+      } else {
+        this.languagesEng = false;
+        this.filteredTags = this.tags
+          .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase())) 
+          .sort((a, b) => a.name.localeCompare(b.name)); 
+      }
+    }else{
+      this.languagesEng = false;
+      this.filteredTags = this.tags
+        .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase())) 
+        .sort((a, b) => a.name.localeCompare(b.name)); 
+    }
   }
 }

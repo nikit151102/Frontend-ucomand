@@ -267,7 +267,7 @@ export class FormComponent implements OnInit {
 
     localStorage.setItem('routeTypeCard', typeEndpoint);
     const userId = localStorage.getItem('userId')
-    const route = typeEndpoint === 'resumes' ? [`/myaccount/${userId}/resume`, response.id] : [`/myaccount/${userId}/vacancy`, response.id];
+    const route = typeEndpoint === 'resumes' ? [`/resume`, response.id] : [`/vacancy`, response.id];
     this.router.navigate(route);
 
     this.form.reset({

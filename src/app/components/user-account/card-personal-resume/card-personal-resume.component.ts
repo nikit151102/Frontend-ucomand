@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { VacancyService } from '../../personal-account/services/vacancy.service';
+import { ViewCardService } from '../../view-card/view-card.service';
 
 @Component({
   selector: 'app-card-personal-resume',
@@ -10,6 +13,8 @@ import { Component, Input } from '@angular/core';
 })
 export class CardPersonalResumeComponent {
 
+  constructor(private router: Router, private viewCardService: ViewCardService) { }
+  
   @Input() cardItem: any;
   
   getSkillsColor(item: number): string {
@@ -39,5 +44,12 @@ export class CardPersonalResumeComponent {
     }
   }
 
+
+  viewCard(type: string, route: string) {
+    this.viewCardService.selectedCard = this.cardItem.id;
+    this.viewCardService.typeCard = type;
+    localStorage.setItem('routeTypeCard', type);
+    this.router.navigate([`/${route}`, this.cardItem.id]);
+  }
 
 }

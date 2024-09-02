@@ -3,6 +3,8 @@ import { SettingHeaderService } from '../setting-header.service';
 import { Router } from '@angular/router';
 import { HomeService } from '../home/home.service';
 import { FormSettingService } from '../form/form-setting.service';
+import { PopUpEntryService } from '../pop-up-entry/pop-up-entry.service';
+import { TokenService } from '../token.service';
 
 @Component({
   selector: 'app-footer',
@@ -15,7 +17,9 @@ export class FooterComponent {
 
   constructor( public settingHeaderService: SettingHeaderService,
     private router: Router, private homeService: HomeService,
-    private formSettingService: FormSettingService) {
+    private formSettingService: FormSettingService,
+    private popUpEntryService: PopUpEntryService,
+    private tokenService: TokenService) {
   }
 
   navigateTo(path: string) {
@@ -28,23 +32,30 @@ export class FooterComponent {
     this.router.navigate(['/']);
   }
 
-  handlePostResume(): void {
-    this.formSettingService.isheading = false;
-    this.formSettingService.typeForm = 'резюме';
-    this.settingHeaderService.post = false;
-    this.settingHeaderService.shared = false;
-    const userId = localStorage.getItem('userId')
-    this.router.navigate([`/myaccount/${userId}/newResume`]);
+  handlePostResume() {
+    if (this.tokenService.getToken()) {
+      this.formSettingService.isheading = false;
+      this.formSettingService.typeForm = 'резюме';
+      this.settingHeaderService.post = false;
+      this.settingHeaderService.shared = false;
+      const userId = localStorage.getItem('userId')
+      this.router.navigate([`/myaccount/${userId}/newResume`]);
+    }else{
+      this.popUpEntryService.showDialog();
+    }
   }
 
-  handlePostVacancy(): void {
-    this.formSettingService.isheading = true;
-    this.formSettingService.typeForm = 'вакансии';
-    this.settingHeaderService.post = false;
-    this.settingHeaderService.shared = false;
-    const userId = localStorage.getItem('userId')
-    this.router.navigate([`/myaccount/${userId}/newVacancy`]);
+  handlePostVacancy() {
+    if (this.tokenService.getToken()) {
+      this.formSettingService.isheading = true;
+      this.formSettingService.typeForm = 'вакансии';
+      this.settingHeaderService.post = false;
+      this.settingHeaderService.shared = false;
+      const userId = localStorage.getItem('userId')
+      this.router.navigate([`/myaccount/${userId}/newVacancy`]);
+    }else{
+      this.popUpEntryService.showDialog();
+    }
   }
-
 
 }

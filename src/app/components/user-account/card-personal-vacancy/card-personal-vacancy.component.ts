@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { VacancyService } from '../../personal-account/services/vacancy.service';
+import { ViewCardService } from '../../view-card/view-card.service';
 
 @Component({
   selector: 'app-card-personal-vacancy',
@@ -9,6 +12,8 @@ import { Component, Input } from '@angular/core';
   styleUrl: './card-personal-vacancy.component.css'
 })
 export class CardPersonalVacancyComponent {
+
+  constructor(private router: Router, private viewCardService: ViewCardService, private vacancyService: VacancyService) { }
 
   @Input() cardItem: any;
   
@@ -52,6 +57,13 @@ export class CardPersonalVacancyComponent {
       default:
         return '';
     }
+  }
+
+  viewCard(type: string, route: string) {
+    this.viewCardService.selectedCard = this.cardItem.id;
+    this.viewCardService.typeCard = type;
+    localStorage.setItem('routeTypeCard', type);
+    this.router.navigate([`/${route}`, this.cardItem.id]);
   }
 
 }

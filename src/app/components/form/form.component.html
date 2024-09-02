@@ -27,8 +27,8 @@
                 <div class="stage">
                     <p class="stage-title">Специализация:</p>
                     <app-tag-selected-level [placeholderValue]="'Выберете специализацию'" [tags]="professions"
-                        [maxTags]="1" formControlName="profession"
-                        (tagsChanged)="onTagsChanged($event, 'profession')"></app-tag-selected-level>
+                       [type]="'profession'"
+                    (tagsChanged)="onTagsChanged($event, 'profession')"></app-tag-selected-level>
                     <div *ngIf="form.get('profession')?.invalid && form.get('profession')?.touched"
                         class="error-message">
                         Необходимо выбрать специализацию

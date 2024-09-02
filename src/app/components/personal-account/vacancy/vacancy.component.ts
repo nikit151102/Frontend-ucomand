@@ -85,7 +85,6 @@ export class PersonalVacancyComponent {
     this.viewCardService.typeCard = type;
     localStorage.setItem('routeTypeCard', type);
     this.router.navigate([`/${route}`, this.item.id]);
-
   }
 
   setArchive(event: Event) {
