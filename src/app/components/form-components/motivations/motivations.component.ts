@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, forwardRef, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, OnInit, Output } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MotivationsService } from './motivations.service';
 
 @Component({
   selector: 'app-motivations',
@@ -16,7 +17,15 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class MotivationsComponent {
+export class MotivationsComponent implements OnInit {
+
+  constructor(private motivationsService: MotivationsService) { }
+
+  ngOnInit(): void {
+    this.motivationsService.getTags().subscribe((data: any) => { 
+      this.tagsList = data
+    })
+  }
 
   tagsList: { id: number, name: string, color: string, type: string }[] = [
     { id: 1, name: 'Без оплаты', color: '#FFAB00', type: 'MOTIVATION' },
@@ -40,7 +49,7 @@ export class MotivationsComponent {
         return '';
     }
   }
-  
+
   @Output() tagsChanged = new EventEmitter<{ id: number, name: string, color: string, type: string }[]>();
   private onChange: (value: any) => void = () => { };
   private onTouched: () => void = () => { };
