@@ -26,19 +26,17 @@ export class HomeComponent implements OnInit {
     this.settingHeaderService.backbtn = false;
   }
 
-  vacancies: any[] = [];
-  resumes: any[] = [];
 
   ngOnInit(): void {
     this.homeService.getVacancies();
     this.homeService.getResumes();
     this.homeService.toggleSortDirection();
-    
   }
 
   viewCard(cardValue: any, type: string, route: string) {
     this.viewCardService.selectedCard = cardValue;
     this.viewCardService.typeCard = type;
+    
     localStorage.setItem('routeTypeCard', type);
     this.router.navigate([`/${route}`, cardValue]);
 

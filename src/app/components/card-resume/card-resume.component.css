@@ -75,6 +75,17 @@
     color: var(--font-color);
 }
 
+.chapterCard-value-eng {
+    margin: 0;
+    width: 90%;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.7rem;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: #101010a8;
+}
+
 .tags {
     display: flex;
     flex-wrap: wrap;

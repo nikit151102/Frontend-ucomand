@@ -3,12 +3,11 @@
         class="background-imgs"></app-background-imgs>
 
     <div class="main">
-        <!-- <div class="logo-container">
+        <div class="logo-container">
             <svg width="203" height="118" viewBox="0 0 203 118" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_1702_14319)">
                     <path class="backgroundFonn"
-                        d="M57.4759 118C89.219 118 114.952 91.5848 114.952 59C114.952 26.4152 89.219 0 57.4759 0C25.7328 0 0 26.4152 0 59C0 91.5848 25.7328 118 57.4759 118Z"
-                        />
+                        d="M57.4759 118C89.219 118 114.952 91.5848 114.952 59C114.952 26.4152 89.219 0 57.4759 0C25.7328 0 0 26.4152 0 59C0 91.5848 25.7328 118 57.4759 118Z" />
                     <path
                         d="M25.3805 66.9425L37.1208 22.125H53.1327L41.3906 66.9425C38.4345 81.3456 59.5384 84.0538 62.7407 67.7567L73.414 22.125H90.4932L79.8202 67.7567C70.2116 111.216 16.8311 98.9965 25.3805 66.9425Z"
                         fill="#A6EB20" />
@@ -22,16 +21,34 @@
                     </clipPath>
                 </defs>
             </svg>
-        </div> -->
-        <div class="info-container">
-            <p class="info-text">
-                площадка для поиска единомышленников
-            </p>
-            <p class="info-subtext">
-                /создай свою IT&#8209;команду
-            </p>
+        </div>
+        <div style="width: 90%;">
+            <div class="info-container">
+                <div>
+                    <p class="info-text">
+                        площадка для поиска единомышленников
+                    </p>
+                </div>
+
+                <div style="width: 100%;"> 
+                    <div>
+                        <p class="info-subtext">
+                            /создай свою IT&#8209;команду
+                        </p>
+                    </div>
+                  
+                    <div style="display: flex; justify-content: flex-end;">
+                        <a (click)="handlePostResume()" class="additionalBtn btnNewResume" > Разместить резюме </a>
+                        <a (click)="handlePostVacancy()" class="additionalBtn btnNewVacancy" > Разместить вакансию
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+
         </div>
 
     </div>
-    
+
 </div>

@@ -2,7 +2,7 @@
   <div class="page-title">
     <p>Мои данные</p>
   </div>
-  <form [formGroup]="personalDataForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="personalDataForm" >
     <div class="content">
       <div class="content-column">
         <div class="chapter-content avatar">
@@ -144,13 +144,14 @@
             <label for="approval">Нажимая на кнопку «Сохранить», я даю свое согласие на обработку моих персональных
               данных, в соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных», на
               условиях и для целей, определенных в Согласии на обработку персональных данных</label>
-            <div *ngIf="personalDataForm.get('approval')?.invalid && (personalDataForm.get('approval')?.dirty || personalDataForm.get('approval')?.touched)" class="error-message">
-              <div *ngIf="personalDataForm.get('approval')?.errors?.['required']">Необходимо согласие на обработку данных.</div>
-            </div>
+
+          </div>
+          <div *ngIf="personalDataForm.get('approval')?.invalid && (personalDataForm.get('approval')?.dirty || personalDataForm.get('approval')?.touched)" class="error-message">
+            <div *ngIf="personalDataForm.get('approval')?.errors?.['required']">Необходимо согласие на обработку данных.</div>
           </div>
         </div>
         <div class="chapter">
-          <button class="btnSave" type="submit" [disabled]="personalDataForm.invalid">Сохранить</button>
+          <button class="btnSave" type="submit" (click)="onSubmit()">Сохранить</button>
         </div>
       </div>
     </div>

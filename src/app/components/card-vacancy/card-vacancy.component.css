@@ -43,6 +43,17 @@
     color: var(--font-color);
 }
 
+.chapterCard-value-eng {
+    margin: 0;
+    width: 90%;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.7rem;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: #101010a8;
+}
+
 .lookingCard {
     display: flex;
     flex-direction: row;
@@ -146,7 +157,7 @@
     font-size: 0.75rem;
 }
 
-.logo img{
+.logo img {
     border-radius: 30px;
     width: 52px;
     height: 52px;

@@ -5,7 +5,8 @@
       <p class="popup-telegram-auth">Авторизация через Telegram</p>
 
       <!-- Условно отображаем кнопку "Войти" в зависимости от состояния telegramWidgetLoaded -->
-      <a *ngIf="!telegramWidgetLoaded" class="popup-login-link" (click)="loadTelegramWidget()">Войти</a>
+      <a *ngIf="!telegramWidgetLoaded" class="popup-login-link" (click)="login_enter()">Войти</a>
+      <!-- loadTelegramWidget -->
 
       <!-- Контейнер для виджета Telegram -->
       <div id="telegram-login"></div>

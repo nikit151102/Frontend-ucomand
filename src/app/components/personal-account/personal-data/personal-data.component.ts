@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { PersonalDataService } from './personal-data.service';
 import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
 import { CityOfResidence, User } from './user-interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-personal-data',
@@ -20,7 +21,7 @@ export class PersonalDataComponent implements OnInit {
   dataCurrentUser!: User;
   cityOfResidence!: CityOfResidence;
 
-  constructor(private fb: FormBuilder, private personalDataService: PersonalDataService) {
+  constructor(private fb: FormBuilder, private personalDataService: PersonalDataService,  private router: Router) {
     this.personalDataForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -93,7 +94,9 @@ export class PersonalDataComponent implements OnInit {
   }
 
   onSubmit(): void {
+   
     if (this.personalDataForm.invalid) {
+      console.log("submit-invalid")
       this.personalDataForm.markAllAsTouched();
       return;
     }
@@ -120,6 +123,8 @@ export class PersonalDataComponent implements OnInit {
       response => {
         console.log('Данные успешно отправлены', response);
         this.userData();
+        const userId = localStorage.getItem('userId')
+        this.router.navigate([`/myaccount/${userId}/home`]);
       },
       error => {
         console.error('Ошибка при отправке данных:', error);

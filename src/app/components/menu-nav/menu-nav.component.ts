@@ -67,11 +67,10 @@ export class MenuNavComponent implements OnInit {
         { label: 'Регистрация', action: () => this.handleRegistration() }
       ];
     }
-    this.cdr.detectChanges(); // Обновляем изменения вручную
+    this.cdr.detectChanges(); 
   }
 
   handlePostResume(): void {
-    // Логика для размещения резюме
     this.formSettingService.isheading = false;
     this.formSettingService.typeForm = 'резюме';
     this.settingHeaderService.post = false;
