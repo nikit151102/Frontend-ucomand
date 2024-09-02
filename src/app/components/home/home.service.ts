@@ -18,7 +18,7 @@ export class HomeService {
 
   getCardData(type: string): Observable<any> {
     let savedFilters: any = {};
-    const filters = localStorage.getItem('bodyFilters');
+    const filters = sessionStorage.getItem('bodyFilters');
 
     if (filters) {
       savedFilters = JSON.parse(filters);
@@ -47,11 +47,11 @@ export class HomeService {
   }
   
   saveFilters(filters: any): void {
-    localStorage.setItem('bodyFilters', JSON.stringify(filters));
+    sessionStorage.setItem('bodyFilters', JSON.stringify(filters));
   }
 
   clearFilters(): void {
-    localStorage.removeItem('bodyFilters');
+    sessionStorage.removeItem('bodyFilters');
   }
 
   toggleSortDirection(): void {
