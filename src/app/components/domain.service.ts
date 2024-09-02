@@ -10,11 +10,16 @@ export class DomainService {
 
   // Метод для извлечения основного домена
   setDomain(urlString: string): string {
-    const url = new URL(urlString);
-    const hostname = url.hostname;
-    const domainParts = hostname.split('.');
-
-    return domainParts.length > 2 ? domainParts[domainParts.length - 2] : domainParts[0];
+    try {
+      const url = new URL(urlString);
+      const hostname = url.hostname;
+      const domainParts = hostname.split('.');
+  
+      return domainParts.length > 2 ? domainParts[domainParts.length - 2] : domainParts[0];
+    } catch (error) {
+      return ''; 
+    }
+    
   }
 
   // Метод для проверки существования изображения

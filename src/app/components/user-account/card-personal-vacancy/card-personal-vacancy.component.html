@@ -8,25 +8,23 @@
         </p>
         <div class="lookingFor">
             <p class="value">
-                Директор по информационным технологиям (CIO)
+                {{ cardItem?.profession?.name | uppercase }}
             </p>
-            <p class="level" [ngStyle]="{ 'background': getSkillsColor('Middle') }">
-                Middle
-            </p>
+            <p [ngStyle]="{ 'border-color': getSkillsColor(cardItem?.profession?.competenceLevel) }" class="level">
+                {{ getSkills(cardItem?.profession?.competenceLevel) }}
+              </p>
         </div>
     </div>
-    <div>
-        <p class="title">
-            Мотивация:
-        </p>
-        <div class="tags-motivation">
-            <div class="motivation" [ngStyle]="{ 'background': getMotivationColor('Без оплаты') }">
-                Без оплаты
-            </div>
-            <div class="motivation" [ngStyle]="{ 'background': getMotivationColor('За оплату') }">
-                За оплату
-            </div>
+    <div class="container-date">
+
+        <div class="rightProfileChapter">
+            <p class="dateTitle">
+                размещено
+            </p>
+            <p class="dateValue">
+                {{ cardItem?.creationDate | date: 'dd.MM.yyyy' }} 
+            </p>
         </div>
-      
+
     </div>
 </div>

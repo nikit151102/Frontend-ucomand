@@ -51,7 +51,7 @@ p {
 }
 
 
-.tags-motivation{
+.tags-motivation {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -60,28 +60,47 @@ p {
 
 .level {
     margin: 0;
+    border: 2px solid #fad305;
     padding: 4px 6px;
     border-radius: 5px;
     font-family: var(--font-Monts);
-    font-weight: 400;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 100%;
+    color: var(--font-color);
+}
+
+
+.container-date {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 1rem;
+}
+
+.rightProfileChapter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.rightProfileChapter p {
+    font-family: var(--font-Monts);
+    font-weight: 500;
     font-size: 0.8rem;
     line-height: 120%;
-    color: #fff;
+    color: var(--font-color);
+}
+
+.dateTitle {
+    font-size: 0.8rem;
+}
+
+.dateValue {
+    font-size: 1rem;
 }
 
 @media (max-width: 798px) {
     .level {
         font-size: 0.7rem;
     }
-}
-
-.motivation {
-    border-radius: 50px;
-    padding: 8px 10px;
-
-    font-family: var(--font-Monts);
-    font-weight: 400;
-    font-size: 0.7rem;
-    line-height: 120%;
-    color: #fff;
 }

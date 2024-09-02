@@ -54,6 +54,7 @@ export class ViewCardComponent implements OnInit {
           });
           this.viewCardService.getCurrentUser().subscribe(user => {
             this.currentUser = user;
+            console.log("user",user)
           });
         },
         (error) => {

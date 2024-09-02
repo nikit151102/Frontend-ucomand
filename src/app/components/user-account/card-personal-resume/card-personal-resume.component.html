@@ -5,10 +5,11 @@
         </p>
         <div class="value-container">
             <p class="value">
-regre greg
+                {{ cardItem?.profession?.name | uppercase }}
             </p>
-            <p class="level" [ngStyle]="{ 'background': getSkillsColor('Middle') }">
-                Middle
+
+            <p [ngStyle]="{ 'border-color': getSkillsColor(cardItem?.profession?.competenceLevel) }" class="level">
+                {{ getSkills(cardItem?.profession?.competenceLevel) }}
             </p>
         </div>
     </div>
@@ -19,7 +20,7 @@ regre greg
                 размещено
             </p>
             <p class="dateValue">
-                12.11.2024
+                {{ cardItem?.creationDate | date: 'dd.MM.yyyy' }} 
             </p>
         </div>
 

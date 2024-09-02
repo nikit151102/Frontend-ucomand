@@ -46,20 +46,17 @@ p {
 
 .level {
     margin: 0;
+    border: 2px solid #fad305;
     padding: 4px 6px;
     border-radius: 5px;
     font-family: var(--font-Monts);
-    font-weight: 400;
-    font-size: 0.8rem;
-    line-height: 120%;
-    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 100%;
+    color: var(--font-color);
 }
 
-@media (max-width: 798px) {
-    .level {
-        font-size: 0.7rem;
-    }
-}
+
 .container-date {
     display: flex;
     flex-direction: row-reverse;
@@ -86,4 +83,10 @@ p {
 
 .dateValue {
     font-size: 1rem;
+}
+
+@media (max-width: 798px) {
+    .level {
+        font-size: 0.7rem;
+    }
 }

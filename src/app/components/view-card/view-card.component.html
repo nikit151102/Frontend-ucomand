@@ -70,9 +70,8 @@
         </div>
 
         <div>
-            <ng-container *ngIf="tokenService.getToken()">
-                <a (click)="viewUser()" class="btnAccount_user"
-                    *ngIf="!(currentUser && currentUser.id === dataCard.user.id)">
+            <a (click)="viewUser()" class="btnAccount_user"
+                *ngIf="!currentUser || currentUser.id !== dataCard.user.id">
                     В аккаунт пользователя
                     <p style="margin: 0">
                         <svg width="39" height="12" viewBox="0 0 39 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,6 +81,7 @@
                         </svg>
                     </p>
                 </a>
+            <ng-container *ngIf="tokenService.getToken()">
                 <ng-container *ngIf="currentUser && currentUser.id === dataCard.user.id">
                     <div class="menu_btn">
                         <a (click)="setArchive($event)">

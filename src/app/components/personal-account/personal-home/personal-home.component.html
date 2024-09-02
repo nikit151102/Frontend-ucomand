@@ -37,7 +37,7 @@
                     Портфолио:
                 </p>
                 <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
-                    <a class="contacts-item" [href]="dataCurrentUser.freeLink" *ngIf="dataCurrentUser.freeLink">
+                    <a class="contacts-item" [href]="dataCurrentUser.freeLink" *ngIf="dataCurrentUser.freeLink && imagePath.length>0">
                         <img [src]="imagePath" alt="logo" width="24px">
                         <p>{{domainName}}</p>
                     </a>

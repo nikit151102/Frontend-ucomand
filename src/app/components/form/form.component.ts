@@ -89,7 +89,7 @@ export class FormComponent implements OnInit {
 
   initializeForm(): void {
     this.form = this.fb.group({
-      title: ['', [this.optionalValidator]],
+      title: ['', [this.optionalValidator, Validators.maxLength(100)]],
       profession: [null, Validators.required],
       skills: [[], Validators.required],
       motivations: [this.selectedTags, Validators.required],

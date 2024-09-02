@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { CardPersonalResumeComponent } from './card-personal-resume/card-personal-resume.component';
 import { CardPersonalVacancyComponent } from './card-personal-vacancy/card-personal-vacancy.component';
 import { SettingHeaderService } from '../setting-header.service';
@@ -18,7 +18,9 @@ import { ActivatedRoute } from '@angular/router';
 
 export class UserAccountComponent implements OnInit, OnDestroy {
 
-  constructor(private route: ActivatedRoute, private settingHeaderService: SettingHeaderService, public viewCardService: ViewCardService, private domainService: DomainService, private userAccountService: UserAccountService) {
+  constructor(private route: ActivatedRoute, private settingHeaderService: SettingHeaderService, public viewCardService: ViewCardService, 
+    private domainService: DomainService, private userAccountService: UserAccountService,
+    private cdRef: ChangeDetectorRef ) {
     this.settingHeaderService.shared = true;
   }
 
@@ -30,47 +32,36 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   imagePath: string = '';
   domainName: string = '';
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.settingHeaderService.shared = true;
     this.settingHeaderService.backbtn = true;
-
+  
     this.route.paramMap.subscribe(params => {
       this.userId = params.get('id')!;
       if (this.userId) {
         this.loadData(this.userId);
-        console.log("vacancies", this.vacancies)
-        console.log("resumes", this.resumes)
       }
     });
   }
-
-
-  loadData(id: string): void {
-    // this.userAccountService.subscribeToObservable(
-    //   this.userAccountService.getUserData(id),
-    //   data => {
-    //     this.userData = data
-
-    //     this.domainName = this.domainService.setDomain(data.);
-
-    //     this.domainService.checkImageExists(this.domainName).then((path) => {
-    //       this.imagePath = path;
-    //     });
-    //   }
-    // );
-
-    this.userAccountService.subscribeToObservable(
-      this.userAccountService.getVacanciesData(id),
-      data => this.vacancies = data
-    );
-
-    this.userAccountService.subscribeToObservable(
-      this.userAccountService.getResumessData(id),
-      data => this.resumes = data
-    );
-
-
+  
+  async loadData(id: string): Promise<void> {
+    try {
+      const userData = await this.userAccountService.getUserData(id).toPromise();
+      this.userData = userData;
+      
+      if (userData.freeLink) {
+        this.domainName = this.domainService.setDomain(userData.freeLink);
+        this.imagePath = await this.domainService.checkImageExists(this.domainName);
+      }
+      
+      this.vacancies = await this.userAccountService.getVacanciesData(id).toPromise();
+      this.resumes = await this.userAccountService.getResumessData(id).toPromise();
+    } catch (error) {
+      console.error('Error loading data', error);
+    }
   }
+  
+  
 
   ngOnDestroy(): void {
     this.userAccountService.unsubscribe();

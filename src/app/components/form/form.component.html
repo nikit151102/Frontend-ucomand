@@ -16,6 +16,9 @@
                             class="error-message">
                             Заголовок обязателен
                         </div>
+                        <div *ngIf="form.get('title')?.errors?.['maxlength']" class="error-message">
+                            Заголовок не должно превышать 100 символов
+                        </div>
                     </div>
                 </div>
             </ng-container>

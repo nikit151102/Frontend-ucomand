@@ -7,7 +7,7 @@ import { Observable, Subscription, Subject } from 'rxjs';
 })
 export class UserAccountService {
   private domain = 'https://vm-7c43f39f.na4u.ru/api';
-  private subscription = new Subscription(); // Хранит активные подписки
+  private subscription = new Subscription(); 
 
   constructor(private http: HttpClient) { }
 
@@ -16,11 +16,15 @@ export class UserAccountService {
   }
 
   getVacanciesData(id: string): Observable<any> {
-    return this.http.post(`${this.domain}/vacancies/getAll?page=0&size=1000`, {"userId": id});
+    return this.http.post(`${this.domain}/vacancies/getAll?page=0&size=1000`, {"userId": id, "visibilities": [
+    "CREATOR_ONLY"
+  ]});
   }
 
   getResumessData(id: string): Observable<any> {
-    return this.http.post(`${this.domain}/resumes/getAll?page=0&size=1000`, {"userId": id});
+    return this.http.post(`${this.domain}/resumes/getAll?page=0&size=1000`, {"userId": id, "visibilities": [
+    "CREATOR_ONLY"
+  ]});
   }
 
   subscribeToObservable(observable: Observable<any>, next: (data: any) => void, error?: (error: any) => void): void {
