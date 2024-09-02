@@ -11,7 +11,6 @@ import { CardResumeComponent } from '../card-resume/card-resume.component';
 import { HomeService } from './home.service';
 import { OneSectionComponent } from './one-section/one-section.component';
 
-
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -34,6 +33,7 @@ export class HomeComponent implements OnInit {
     this.homeService.getVacancies();
     this.homeService.getResumes();
     this.homeService.toggleSortDirection();
+    
   }
 
   viewCard(cardValue: any, type: string, route: string) {

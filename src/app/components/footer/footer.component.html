@@ -1,28 +1,28 @@
 <div class="footer">
     <div class="footer-main">
         <ul class="footer-main-menu">
-            <li class="footer-main-menu-btn">
-                <a href="">Список вакансий</a>
+            <li class="footer-main-menu-btn" (click)="toggle('vacancy')">
+                <a>Список вакансий</a>
+            </li>
+            <li class="footer-main-menu-btn" (click)="toggle('resume')">
+                <a>Список резюме</a>
+            </li>
+            <li class="footer-main-menu-btn" (click)="handlePostResume()">
+                <a>Разместить резюме</a>
+            </li>
+            <li class="footer-main-menu-btn" (click)="handlePostVacancy()">
+                <a>Разместить вакансию</a>
+            </li>
+            <li class="footer-main-menu-btn" (click)="navigateTo('aboutUs')">
+                <a>О нас</a>
             </li>
             <li class="footer-main-menu-btn">
-                <a href="">Список резюме</a>
-            </li>
-            <li class="footer-main-menu-btn">
-                <a href="">Разместить резюме</a>
-            </li>
-            <li class="footer-main-menu-btn">
-                <a href="">Разместить вакансию</a>
-            </li>
-            <li class="footer-main-menu-btn">
-                <a href="">О нас</a>
-            </li>
-            <li class="footer-main-menu-btn">
-                <a href="">Пригласить друзей</a>
+                <a>Пригласить друзей</a>
             </li>
         </ul>
 
         <div class="footer-main-contacts">
-            <div class="footer-main-contacts-content">
+            <div class="footer-main-contacts-content" style="flex: 1;">
                 <div class="footer-main-contacts-logo">
                     <svg width="166" height="95" viewBox="0 0 166 95" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -36,27 +36,7 @@
                             fill="white" />
                     </svg>
                 </div>
-                <div class="footer-main-contacts-block-column phone-team">
-                    <p class="title">
-
-                    </p>
-                    <p class="footer-main-contacts-block-column-team-title">
-                        Team:
-                    </p>
-                    <a href="" class="footer-main-contacts-block-column-team-btn">
-                        Frondend by Shevchenko Nikita
-                    </a>
-                    <a href="https://www.behance.net/KseniyaEliseevaUX"
-                        class="footer-main-contacts-block-column-team-btn">
-                        Design by Ksenia Eliseeva
-                    </a>
-                </div>
-
-
             </div>
-
-
-            <div class="footer-main-contacts-block">
                 <div class="footer-main-contacts-block-column">
                     <p class="title">
                         Присоединяйтесь:
@@ -122,23 +102,9 @@
 
                     </a>
                 </div>
-                <div class="footer-main-contacts-block-column desktop-team">
-                    <p class="title">
-
-                    </p>
-                    <p class="footer-main-contacts-block-column-team-title">
-                        Team:
-                    </p>
-                    <a href="" class="footer-main-contacts-block-column-team-btn">
-                        Frondend by Shevchenko Nikita
-                    </a>
-                    <a href="https://www.behance.net/KseniyaEliseevaUX"
-                        class="footer-main-contacts-block-column-team-btn">
-                        Design by Ksenia Eliseeva
-                    </a>
-                </div>
+               
             </div>
-        </div>
+
 
     </div>
 </div>

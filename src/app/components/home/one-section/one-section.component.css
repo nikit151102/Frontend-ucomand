@@ -94,11 +94,11 @@ app-search:not(.sticky) {
 }
 
 
-@media (max-width: 789.98px) {
+@media (max-width: 1199.98px) {
     app-search.sticky {
         width: 100%;
-        top: 60px; /* Отступ от верхней части экрана */
-        background: #806BFF; /* Цвет при приклеивании */
+        top: 60px; 
+        background: #806BFF;
         padding: 0;
         z-index: 50;
         transition: top 0.2s ease, background-color 0.1s ease;
@@ -114,9 +114,9 @@ app-search:not(.sticky) {
     }
 
     .search {
-        background: none;
         align-items: start;
         padding: 0.5rem 0;
+        background-color: #806BFF;
     }
 
 

@@ -95,6 +95,14 @@
      .toggle-btn.active {
          padding: 1rem 1.2rem;
      }
+
+     .conteiner {
+         position: relative;
+         flex-direction: row;
+         justify-content: space-around;
+         gap: 0.5rem;
+         background-color: #806BFF;
+     }
  }
 
  @media (min-width: 1024px) {

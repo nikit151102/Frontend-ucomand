@@ -171,4 +171,7 @@ ul {
         justify-content: space-between
     }
 
+    .footer-main-contacts-logo {
+        display: none;
+    }
 }
