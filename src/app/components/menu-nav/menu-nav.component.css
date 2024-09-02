@@ -266,6 +266,7 @@ a {
         width: 100%;
         gap: 0;
         padding: 0
+        
     }
 
     .first-container {
@@ -311,3 +312,15 @@ a {
         /* Белый цвет для активной кнопки */
     }
 }
+
+@media (max-height: 650px) {
+    .btns{
+        flex-direction: row;
+       
+    }
+    :host ::ng-deep .p-sidebar-right{
+    padding-bottom: 0;
+}
+}
+
+

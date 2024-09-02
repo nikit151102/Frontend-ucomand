@@ -69,3 +69,8 @@
         padding: 0.8rem 0.5rem 0.8rem 0.5rem;
     }
 }
+@media (max-width: 400px) {
+    .toggle-btn:not(.active) {
+        padding: 0.8rem 1.5rem 0.8rem 0.5rem;
+    }
+}

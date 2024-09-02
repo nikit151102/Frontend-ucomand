@@ -259,6 +259,11 @@
 
 
 @media (max-width: 789.98px) {
+
+    .dialog{
+        width: 90vw;
+    }
+    
     .content-filter {
         flex-direction: column;
     }
