@@ -311,6 +311,12 @@ input[type="checkbox"]{
     .chapter-domain input {
         width: 100%;
     }
+
+    .custom-checkbox {
+        width: 2rem;
+        height: 2rem;
+    }
+    
 }
 
 @media (max-width: 480px) {
@@ -336,4 +342,9 @@ input[type="checkbox"]{
     .avatar .title p {
         font-size: 0.6rem;
     }
+    .custom-checkbox {
+        width: 1rem;
+        height: 1rem;
+    }
+
 }
