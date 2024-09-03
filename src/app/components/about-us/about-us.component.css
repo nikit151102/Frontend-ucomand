@@ -124,70 +124,72 @@
 
 
 .overlay-top-right {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
 .tags-wrapper {
-  display: flex;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
 .tags-list {
-  display: flex;
-  width: 200%; 
-  gap: 0.5rem;
-  animation-duration: 30s; 
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  white-space: nowrap; 
+    display: flex;
+    width: 200%;
+    gap: 0.5rem;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    white-space: nowrap;
 }
 
 .tag {
-  background: none;
-  border: 1px solid var(--font-color);
-  border-radius: 1.3rem;
-  padding: 8px 10px;
-  margin: 0;
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 117%;
-  color: var(--font-color);
-  flex-shrink: 0;
-  white-space: nowrap; 
+    background: none;
+    border: 1px solid var(--font-color);
+    border-radius: 1.3rem;
+    padding: 8px 10px;
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: var(--font-color);
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .scroll-left {
-  animation-name: scrollLeft;
+    animation-name: scrollLeft;
 }
 
 .scroll-right {
-  animation-name: scrollRight;
+    animation-name: scrollRight;
 }
 
 @keyframes scrollLeft {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 @keyframes scrollRight {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
 }
 
-  
+
 
 
 .container_chapter-team {
@@ -211,12 +213,17 @@
 
 .team-member {
     font-family: var(--font-Monts);
-    font-weight: 400;
+    font-weight: 300;
     font-size: 14px;
     line-height: 114%;
     text-decoration: underline;
     text-decoration-skip-ink: none;
-    color: #fff;
+    color: var(--font-color);
+    margin-bottom: 0.3rem;
+}
+
+.team-member:hover {
+    color: #84dd2c;
 }
 
 @media (max-width: 789px) {

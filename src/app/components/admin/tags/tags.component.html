@@ -1,15 +1,14 @@
 <h3>{{Title}}</h3>
-<div class="createStatus">
-    <div style="display: flex; flex-direction: row; gap: 0.5rem;">
-        <span class="p-float-label">
-            <input pInputText id="username" [(ngModel)]="newStatus"  style="width: 100%;"/>
-            <label for="username">Название</label>
-        </span>
-            <p-button icon="pi pi-save" (click)="createStatus()"></p-button>
+<p-button label="Добавить"  (onClick)="addTag()" *ngIf="!visibleForm"/>
+<p-button label="Скрыть"  (onClick)="resetForm()" *ngIf="visibleForm"/>
+<ng-container *ngIf="visibleForm">
+    <div class="createStatus" >
+        <app-tag-form [Service]="Service" [tagData]="editTag" ></app-tag-form>
+    
+            <!-- <app-excel-reader style="display: flex; flex-direction: row; gap: 0.5rem;" [nameFile]="'sample'"></app-excel-reader> -->
     </div>
+</ng-container>
 
-        <app-excel-reader style="display: flex; flex-direction: row; gap: 0.5rem;" [nameFile]="'sample'"></app-excel-reader>
-</div>
 
 <p-orderList [value]="products" [listStyle]="{ 'max-height': '30rem' }" filterBy="name" filterPlaceholder="Название">
     <ng-template let-product pTemplate="item" style="border-bottom: 1px solid red;">
@@ -19,9 +18,16 @@
                     <p>
                         {{product.id}}
                     </p>
-                    <p>
-                        {{product.name}}
-                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 0.3rem; justify-content: center" >
+                        <p>
+                            {{product.name}}
+                        </p>
+                        <p *ngIf="product.nameEng">
+                            {{product.nameEng}}
+                        </p>
+                        
+                    </div>
+                    
                 </div>
                 <p-button (click)="op.toggle($event)" icon="pi pi-ellipsis-v" [rounded]="true" [text]="true" />
                 <p-overlayPanel #op>
