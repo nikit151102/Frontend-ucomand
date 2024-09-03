@@ -215,12 +215,24 @@ p {
         margin-top: 100px;
     }
 
-    .first-part{
+    .information-user {
+        font-size: 0.7rem;
+        margin-left: 10px;
+    }
+
+    .first-part {
         margin: 1rem;
     }
 
+    .fullName {
+        font-size: 0.8rem;
+    }
     .ProfileChapter {
         padding: 0 1rem 0px 1rem;
+    }
+
+    .personal-details {
+        margin-left: 10px;
     }
 
     .logoImg {
@@ -229,18 +241,30 @@ p {
 
     .contacts {
         padding-top: 0 !important;
+        margin-left: 10px;
     }
 
     .date_registration {
         margin-top: 1rem;
     }
-    .date_registration span{
+
+    .date_registration span {
         font-size: 0.7rem;
     }
+
     .cards {
         padding-left: 0.5rem;
         padding-right: 0.5rem;
         padding-bottom: 0.5rem
+    }
+
+    .information-user,
+    .location-value {
+        font-size: 0.9rem;
+    }
+
+    .chapterCard-title {
+        font-size: 0.7rem;
     }
 }
 
@@ -251,16 +275,21 @@ p {
         font-size: 0.7rem;
     }
 
+    .information-user,
+    .location-value {
+        font-size: 0.9rem;
+    }
+
     .ProfileChapter {
         padding: 0.5rem 0.5rem 0px 0.5rem;
     }
 
     .fullName {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 
     .information-user {
-        font-size: 0.7rem;
+        margin-left: 10px;
     }
 
     .title-cards {
@@ -274,4 +303,7 @@ p {
         padding-bottom: 0.3rem;
     }
 
+    .personal-details {
+        margin-left: 10px;
+    }
 }

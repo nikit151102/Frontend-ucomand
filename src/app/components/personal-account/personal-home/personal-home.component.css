@@ -35,7 +35,8 @@
 .titleActive {
     color: #fff !important;
 }
-.archiveMessage{
+
+.archiveMessage {
     color: #959292 !important;
 }
 
@@ -295,7 +296,7 @@ p {
     color: var(--font-color);
 }
 
-.switchCards:hover{
+.switchCards:hover {
     color: #676768;
 }
 
@@ -367,13 +368,21 @@ p {
         margin: 1rem;
     }
 
+    .contacts {
+        margin-left: 10px;
+    }
+
+    .personal-details {
+        margin-left: 10px;
+    }
 
     .ProfileChapter {
         padding: 0 1rem 0px 1rem;
     }
 
     .fullName {
-        font-size: 0.9rem;
+        font-size: 1rem;
+        ;
     }
 
     .information-user {
@@ -408,11 +417,14 @@ p {
     .menuProfile {
         flex-direction: column;
     }
-    .chapterCard-title{
+
+    .chapterCard-title {
         font-size: 0.7rem;
         font-weight: 500;
     }
-    .information-user, .location-value{
+
+    .information-user,
+    .location-value {
         font-size: 0.9rem;
     }
 }
@@ -426,18 +438,24 @@ p {
     .title {
         font-size: 0.7rem;
     }
-    .chapterCard-title{
+
+    .chapterCard-title {
         font-size: 0.7rem;
         font-weight: 500;
     }
+
     .ProfileChapter {
         padding: 0.5rem 0.5rem 0px 0.5rem;
     }
-    .information-user, .location-value{
+
+    .information-user,
+    .location-value {
         font-size: 0.9rem;
     }
+
     .fullName {
-        font-size: 0.8rem;
+        font-size: 1rem;
+        ;
     }
 
 

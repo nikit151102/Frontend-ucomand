@@ -187,7 +187,9 @@
         flex-direction: column;
         margin-top: 130px;
     }
-
+    .chapterCard-title{
+        font-size: 0.7rem;
+    }
     .ProfileChapter {
         padding: 0rem 0px 1rem;
     }
