@@ -149,6 +149,7 @@ ul {
 
     .footer-main-contacts {
         flex-direction: column-reverse;
+        padding-left: 16px;
     }
 
     .footer-main-contacts-block {
