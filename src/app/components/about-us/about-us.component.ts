@@ -2,20 +2,25 @@ import { Component } from '@angular/core';
 import { DestinyItemComponent } from './destiny-item/destiny-item.component';
 import { CommonModule } from '@angular/common';
 import { LineItemComponent } from './line-item/line-item.component';
-import { BackgroundImgsAboutUsComponent } from './background-imgs/background-imgs.component';
+import { BackgroundImgsComponent } from '../background-imgs/background-imgs.component';
 
 @Component({
   selector: 'app-about-us',
   standalone: true,
-  imports: [CommonModule, DestinyItemComponent, LineItemComponent, BackgroundImgsAboutUsComponent],
+  imports: [CommonModule, DestinyItemComponent, LineItemComponent, BackgroundImgsComponent],
   templateUrl: './about-us.component.html',
   styleUrl: './about-us.component.css'
 })
 export class AboutUsComponent {
-
-  tagsList = ['Веб дизайнер', '3d моделлер', 'Архитектор баз данных', 'Арт директор', 'Архитектор баз данных',
-    'Системный аналитик', 'Арт директор', 'Арт директор', 'Арт директор', 'Арт директор']
-    
+  direction: string = 'left';
+  tagsList = [
+    'JavaScript', 'Python', 'Java', 'C#', 'C++', 'Ruby', 'TypeScript', 'PHP', 'Swift', 'Kotlin',
+    'Go', 'Rust', 'Dart', 'Objective-C', 'Scala', 'Perl', 'Lua', 'Haskell', 'MATLAB', 'R',
+    'Elixir', 'F#', 'Clojure', 'Groovy', 'Visual Basic .NET', 'SQL', 'HTML', 'CSS', 'Sass', 'Less',
+    'React', 'Angular', 'Vue', 'Svelte', 'Next.js', 'Nuxt.js', 'Django', 'Flask', 'Spring Boot', 'Ruby on Rails',
+    'ASP.NET', 'Express.js', 'NestJS', 'Laravel', 'Symfony', 'Meteor', 'Ember.js', 'Backbone.js', 'jQuery', 'Bootstrap'
+  ];
+  
   destinyList=[
     'владельцев IT-компаний/HR-менеджеров, которым нужны специалисты в штат',
     'людей с идеей, но нехваткой специалистов, которые смогут это реализовать',

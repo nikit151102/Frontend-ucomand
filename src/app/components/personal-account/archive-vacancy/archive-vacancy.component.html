@@ -7,7 +7,7 @@
             Ищу:
         </p>
         <div class="lookingCard">
-            <p class="chapterCard-value" style="margin-top: 0.5rem; width: 90%; font-weight: 500;">
+            <p class="chapterCard-value" style="margin-top: 0.5rem; width: 90%">
                 {{ cardItem?.profession?.name | uppercase }}
             </p>
             <p [ngStyle]="{ 'border-color': getSkillsColor(cardItem?.profession?.competenceLevel) }" class="lookingCard-level">
