@@ -38,11 +38,11 @@ export class MotivationsComponent implements OnInit {
   getSkillsColor(item: string): string {
     switch (item) {
       case 'Без оплаты':
-        return '#50B229';
+        return '#FFAB00';
       case 'Практика':
-        return '#FAD305';
+        return '#CF87F1';
       case 'За долю':
-        return '#EE5354';
+        return '#298CF4';
       case 'За оплату':
         return '#23B9B0';
       default:

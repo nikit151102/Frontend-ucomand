@@ -29,14 +29,14 @@ export class DomainService {
       const img = new Image();
 
       img.onload = () => resolve(imageUrl); // Если изображение найдено
-      img.onerror = () => resolve('assets/domains/default.png'); // Если изображение не найдено
+      img.onerror = () => resolve('assets/domains/default.svg'); // Если изображение не найдено
 
       img.src = imageUrl;
 
       // Дополнительное ожидание для предотвращения отображения кэшированных изображений
       setTimeout(() => {
         if (img.complete && img.naturalHeight === 0) {
-          resolve('assets/domains/default.png');
+          resolve('assets/domains/default.svg');
         }
       }, 1000); // Подождите 1 секунду для завершения загрузки
     });
