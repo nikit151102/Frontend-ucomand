@@ -324,6 +324,7 @@ p {
 
     .information-user {
         font-size: 0.9rem;
+        
     }
 
     .title-cards {
@@ -345,7 +346,9 @@ p {
 
 /* Media queries for phones */
 @media (max-width: 768px) {
-
+    .information-user {
+        margin-left: 10px;
+    }
     .logo {
         width: 100px;
     }
