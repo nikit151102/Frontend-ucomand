@@ -34,7 +34,6 @@ export class TagsComponent {
   @Input() Title: string = '';
   @Input() IsDropList: boolean = false;
 
-  products!: tag[];
   clonedProducts: { [s: string]: tag } = {};
   newStatus: string = '';
   selectedStage: any;
@@ -43,42 +42,34 @@ export class TagsComponent {
   constructor(private messageService: MessageService) { }
 
   ngOnInit() {
-    this.getdataStatusses();
+    this.Service.getdataStatusses()
   }
 
   addTag() {
     this.editTag = null;
     this.visibleForm = true;
+    this.Service.visibleForm = true;
   }
 resetForm(){
   this.editTag = null;
   this.visibleForm = false;
+  this.Service.visibleForm = false;
 }
 
-  getdataStatusses() {
-    this.Service.getFunction().subscribe(
-      (response: tag[]) => {
-        this.products = response;
-        console.log(":this.products", this.products)
-      },
-      (error: any) => {
-        console.error('Error:', error);
-      }
-    );
-  }
+
 
   onRowEditInit(product: tag) {
     this.editTag = product;
-    this.visibleForm = true;
+    this.Service.visibleForm = true;
   }
 
   onRowEditSave(product: tag) {
     if (product.name && product.name != '') {
-      this.getdataStatusses();
+   
       this.Service.putFunction(product['id'], product['name']).subscribe(
         (response: any) => {
           this.messageService.add({ severity: 'success', summary: 'Подтверждено', detail: 'Статус заявки изменен', life: 2000 });
-          this.getdataStatusses();
+      
         },
         (error: any) => {
           this.messageService.add({ severity: 'error', summary: 'Ошибка', detail: 'Ошибка при изменении статуса заявки', life: 2000 });
@@ -90,7 +81,6 @@ resetForm(){
   }
 
   onRowEditCancel(product: tag, index: number) {
-    this.products[index] = this.clonedProducts[product.id as number];
     delete this.clonedProducts[product.id as number];
     this.messageService.add({ severity: 'error', summary: 'Отклонено', detail: 'Действие отменено', life: 2000 });
   }
@@ -101,7 +91,7 @@ resetForm(){
         .subscribe(
           (response: any) => {
             this.messageService.add({ severity: 'success', summary: 'Подтверждено', detail: 'Статус заявки добавлен', life: 2000 });
-            this.getdataStatusses();
+    
             this.newStatus = '';
           },
           (error: any) => {
@@ -118,7 +108,7 @@ resetForm(){
       .subscribe(
         (response: any) => {
           this.messageService.add({ severity: 'success', summary: 'Подтверждено', detail: 'Статус заявки успешно удален', life: 2000 });
-          this.getdataStatusses();
+          this.Service.getdataStatusses();
         },
         (error: any) => {
           this.messageService.add({ severity: 'error', summary: 'Ошибка', detail: 'Ошибка при удалении статуса', life: 2000 });

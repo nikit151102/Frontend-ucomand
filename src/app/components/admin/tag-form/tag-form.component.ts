@@ -62,7 +62,9 @@ export class TagFormComponent implements OnInit {
         console.log('Form Submitted', tagToSubmit);
         this.Service.putFunction(JSON.stringify(tagToSubmit), this.tagData.id).subscribe(
           (response: tag[]) => {
+            this.Service.visibleForm = false;
             this.messageService.add({ severity: 'success', summary: 'Подтверждено', detail: 'успешно обновлены данные', life: 2000 });
+            this.Service.getdataStatusses();
           },
           (error: any) => {
             this.messageService.add({ severity: 'error', summary: 'Ошибка', detail: 'Ошибка при обновлении', life: 2000 });
@@ -71,6 +73,8 @@ export class TagFormComponent implements OnInit {
       } else {
         this.Service.addFunction(JSON.stringify(tagToSubmit)).subscribe(
           (response: tag[]) => {
+            this.Service.visibleForm = false;
+            this.Service.getdataStatusses();
             this.messageService.add({ severity: 'success', summary: 'Подтверждено', detail: 'успешно создано', life: 2000 });
           },
           (error: any) => {

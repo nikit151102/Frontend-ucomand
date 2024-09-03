@@ -18,10 +18,10 @@ interface tag {
 export class SpecialtiesService {
 
 
-
+  products: any;
   private stages: any;
   type = "PROFESSION";
-
+  visibleForm:boolean = false;
   constructor(private http: HttpClient) { }
   private domain = 'https://vm-7c43f39f.na4u.ru/api';
 
@@ -30,7 +30,9 @@ export class SpecialtiesService {
   }
 
   addFunction(tag: tag): Observable<any> {
-    return this.http.post<any>(`${this.domain}/tags`, tag);
+    return this.http.post<any>(`${this.domain}/tags`,  tag, {
+      headers: { 'Content-Type': 'application/json' } 
+    });
 
   }
 
@@ -41,8 +43,18 @@ export class SpecialtiesService {
 
   putFunction(tag: tag, id: string): Observable<any> {
     return this.http.put<any>(`${this.domain}/tags/${id}`, tag, {
-      headers: { 'Content-Type': 'application/json' } // Explicitly set Content-Type to application/json
+      headers: { 'Content-Type': 'application/json' } 
     });
   }
-  
+
+  getdataStatusses() {
+    this.getFunction().subscribe(
+      (response: tag[]) => {
+        this.products = response;
+      },
+      (error: any) => {
+        console.error('Error:', error);
+      }
+    );
+  }
 }

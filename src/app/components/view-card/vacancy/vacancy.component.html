@@ -10,7 +10,7 @@
             <p class="chapterCard-value" style="margin-top: 0.5rem; width: 90%;">
                 {{ data?.profession?.name | uppercase }}
             </p>
-            <p [ngStyle]="{ 'border-color': getSkillsColor(data.profession.competenceLevel) }" class="lookingCard-level">
+            <p [ngStyle]="{ 'border-color': getSkillsColor(data.profession.competenceLevel) }" class="lookingCard-level" *ngIf="data.profession.competenceLevel">
                 {{ getSkills(data.profession?.competenceLevel)  }}
               </p>
         </div>

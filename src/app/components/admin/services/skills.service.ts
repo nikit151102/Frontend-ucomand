@@ -16,18 +16,20 @@ interface tag {
 })
 export class SkillsService {
   private stages: any;
-
-
+  products: any;
+  type = "SKILL";
+visibleForm:boolean = false;
   constructor(private http: HttpClient) { }
   private domain = 'https://vm-7c43f39f.na4u.ru/api';
-  type ="PROFESSION";
-  
+
   getFunction(): Observable<any> {
     return this.http.get<any>(`${this.domain}/tags?types=SKILL`,);
   }
 
   addFunction(tag: tag): Observable<any> {
-    return this.http.post<any>(`${this.domain}/tags`, tag);
+    return this.http.post<any>(`${this.domain}/tags`,  tag, {
+      headers: { 'Content-Type': 'application/json' } 
+    });
 
   }
 
@@ -36,8 +38,19 @@ export class SkillsService {
 
   }
 
-  putFunction(tag: tag): Observable<any> {
-    return this.http.put<any>(`${this.domain}/tags/${tag.id}`, { tag });
+  putFunction(tag: tag, id: string): Observable<any> {
+    return this.http.put<any>(`${this.domain}/tags/${id}`, tag, {
+      headers: { 'Content-Type': 'application/json' } 
+    });
   }
-
+  getdataStatusses() {
+    this.getFunction().subscribe(
+      (response: tag[]) => {
+        this.products = response;
+      },
+      (error: any) => {
+        console.error('Error:', error);
+      }
+    );
+  }
 }

@@ -10,7 +10,7 @@
             <p class="value" style="font-weight: 500;  font-size: 0.8rem;">
                 {{ cardItem?.profession?.name | uppercase }}
             </p>
-            <p [ngStyle]="{ 'border-color': getSkillsColor(cardItem?.profession?.competenceLevel) }" class="level">
+            <p [ngStyle]="{ 'border-color': getSkillsColor(cardItem?.profession?.competenceLevel) }" class="level" *ngIf="cardItem?.profession?.competenceLevel">
                 {{ getSkills(cardItem?.profession?.competenceLevel) }}
               </p>
         </div>

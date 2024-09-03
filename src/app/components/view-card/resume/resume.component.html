@@ -7,7 +7,7 @@
             <p class="chapterCard-value" style="margin-top: 0.5rem; width: 90%;">
                 {{ getSpecialization() }}
             </p>
-            <p [ngStyle]="{ 'border-color': getSkillsColor(data.profession.competenceLevel) }"
+            <p [ngStyle]="{ 'border-color': getSkillsColor(data.profession.competenceLevel) } " *ngIf="data.profession.competenceLevel"
                 class="lookingCard-level">
                 {{ getSkills(data.profession?.competenceLevel) }}
             </p>

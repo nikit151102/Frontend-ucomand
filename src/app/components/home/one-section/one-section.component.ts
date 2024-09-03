@@ -60,7 +60,7 @@ export class OneSectionComponent implements AfterViewInit {
         this.isStickyApplied = false;
       }
     }
-  }, 0);
+  }, 200);
   
   private scrollScheduled: boolean = false;
 
@@ -74,8 +74,6 @@ export class OneSectionComponent implements AfterViewInit {
       });
     }
   }
-  
-
 
   
   newVacancy() {

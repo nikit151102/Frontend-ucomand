@@ -12,8 +12,24 @@
 
 .card:hover {
     background: #A6EB20;
+    color: #010101; 
 }
 
+.card:hover .title,
+.card:hover .chapterCard-value-eng,
+.card:hover .lookingCard_level,
+.card:hover .chapterCard-title,
+.card:hover .chapterCard_title,
+.card:hover .chapterCard_value,
+.card:hover .tagText,
+/* .card:hover .motivation, */
+.card:hover .dateVacancy,
+.card:hover .dateTitle,
+.card:hover .dateValue,
+.card:hover .level,
+.card:hover .menu_btn a {
+    color: #010101; 
+}
 
 .chapterCard-value-eng {
     margin: 0;
