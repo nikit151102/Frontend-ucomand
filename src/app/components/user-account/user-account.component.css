@@ -115,7 +115,7 @@ p {
 .fullName {
     margin: 0;
     font-family: var(--font-Monts);
-    font-weight: 40.0;
+    font-weight: 400;
     font-size: 1rem;
     line-height: 117%;
     color: var(--font-color);
@@ -225,7 +225,8 @@ p {
     }
 
     .fullName {
-        font-size: 0.8rem;
+        font-weight: 400;
+        font-size: 1rem;
     }
     .ProfileChapter {
         padding: 0 1rem 0px 1rem;
