@@ -62,7 +62,7 @@ export class OneSectionComponent implements AfterViewInit {
         }
       }
     }
-  }, 100); 
+  }, 1000); 
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
