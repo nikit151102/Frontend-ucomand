@@ -343,8 +343,8 @@ input[type="checkbox"]{
         font-size: 0.6rem;
     }
     .custom-checkbox {
-        width: 1rem;
-        height: 1rem;
+        width: 2rem;
+        height: 2rem;
     }
 
 }
