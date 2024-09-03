@@ -107,7 +107,10 @@ p {
     justify-content: space-between;
     margin-top: 1rem;
 }
-
+.logoImg {
+    width: 6vw;
+    border-radius: 50%
+}
 .logo {
     width: 100px;
 }

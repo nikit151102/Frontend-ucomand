@@ -3,7 +3,12 @@
         <div class="information">
             <div class="ProfileChapter">
                 <div class="logo">
-                    <img src="assets/male.png" alt="logo" class="logoImg" >
+                    <ng-container *ngIf="userData?.gender == 'MALE'">
+                        <img src="assets/male.png" alt="logo" class="logoImg"  >
+                    </ng-container>
+                    <ng-container *ngIf="userData?.gender == 'FEMALE'">
+                        <img src="assets/famale.png" alt="logo" class="logoImg">
+                    </ng-container>
                 </div>
                 <div
                     style="display: flex; flex-wrap: wrap; align-content: flex-end; flex-direction: column; justify-content: flex-end">

@@ -35,7 +35,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
     this.settingHeaderService.shared = true;
     this.settingHeaderService.backbtn = true;
-  
+ 
     this.route.paramMap.subscribe(params => {
       this.userId = params.get('id')!;
       if (this.userId) {
@@ -48,7 +48,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
     try {
       const userData = await this.userAccountService.getUserData(id).toPromise();
       this.userData = userData;
-      
+      console.log("userData",this.userData)
       if (userData.freeLink) {
         this.domainName = this.domainService.setDomain(userData.freeLink);
         this.imagePath = await this.domainService.checkImageExists(this.domainName);
