@@ -40,7 +40,7 @@ export class OneSectionComponent implements AfterViewInit {
   
   handleScroll = throttle(() => {
     if (this.searchElement) {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
       const elementRect = this.searchElement.getBoundingClientRect();
       const elementTop = scrollTop + elementRect.top;
   
