@@ -117,12 +117,15 @@ export class MenuNavComponent implements OnInit {
     this.sidebarVisible = false;
   }
 
-  toggleTopic(type: string) {
-    this.activeTopic = type;
-    this.sidebarVisible = false;
-
-    localStorage.setItem('theme', type);
-    if (type === 'dark') {
+  toggleTopic(savedTheme: any ='') {
+    if(!savedTheme){
+      this.activeTopic = this.activeTopic === 'light' ? 'dark' : 'light';
+      this.sidebarVisible = false;
+    }else{
+      this.activeTopic = savedTheme;
+    }
+    localStorage.setItem('theme', this.activeTopic);
+    if (this.activeTopic === 'dark') {
       document.documentElement.style.setProperty('--background', '#333334');
       document.documentElement.style.setProperty('--background-card', 'rgba(255, 255, 255, 0.1)');
       document.documentElement.style.setProperty('--card-hover', '#5a4bb8');

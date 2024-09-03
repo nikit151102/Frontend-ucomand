@@ -48,9 +48,24 @@
     color: var(--font-color);
 }
 
+@media (min-width: 1199.99px){
+app-one-section{
+    z-index: 1;
+}
+}
 @media (max-width: 1199.98px) {
     .card-container {
         columns: 2;
+    }
+    app-one-section{
+        z-index: 0;
+    }
+}
+
+
+@media (min-width: 789.99px) and (max-width: 1199px) {
+    .sticky-filter{
+        top: 120px;
     }
 }
 

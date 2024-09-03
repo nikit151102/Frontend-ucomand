@@ -92,7 +92,7 @@
 
 </div>
 
-<p-sidebar [(visible)]="sidebarVisible" position="right">
+<p-sidebar [(visible)]="sidebarVisible" position="right" >
     <div class="btnClosed">
         <a (click)="sidebarVisible = false" class="navBTN">
             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -105,8 +105,8 @@
         <ul>
             <li style="display: flex; align-items: center; gap: 0.5rem;">
                 Выберите тему :
-                <div class="toggle-switch">
-                    <button class="toggle-btn" [class.active]="activeTopic === 'light'" (click)="toggleTopic('light')">
+                <div class="toggle-switch" (click)="toggleTopic()">
+                    <button class="toggle-btn" [class.active]="activeTopic === 'light'" >
                         <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
                             class="toggle_btn_svg">
                             <mask id="mask0_23_1078" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="1" y="1"
@@ -128,7 +128,7 @@
 
                         light
                     </button>
-                    <button class="toggle-btn" [class.active]="activeTopic === 'dark'" (click)="toggleTopic('dark')">
+                    <button class="toggle-btn" [class.active]="activeTopic === 'dark'" >
                         <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
                             class="toggle_btn_svg">
                             <path
