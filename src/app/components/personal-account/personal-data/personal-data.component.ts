@@ -29,7 +29,7 @@ export class PersonalDataComponent implements OnInit {
       gender: ['', Validators.required],
       city: ['', Validators.required],
       freeLink: [''],
-      aboutMe: [''],
+      aboutMe: ['',[Validators.maxLength(250)]],
       email: ['', [Validators.required, Validators.email]],
       telegram: [''],
       domain: [''],

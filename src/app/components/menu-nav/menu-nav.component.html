@@ -164,11 +164,11 @@
                     Пригласить друзей
                 </a>
             </li>
-            <li *ngIf="tokenService.getToken()" (click)="navigateTo('notifications')" >
+            <!-- <li *ngIf="tokenService.getToken()" (click)="navigateTo('notifications')" >
                 <a>
                     Уведомление
                 </a>
-            </li>
+            </li> -->
             <li>
                 <div class="btns">
                     <ng-container *ngFor="let btn of buttonsConfig">

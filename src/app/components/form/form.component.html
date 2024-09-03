@@ -10,7 +10,7 @@
                 <div class="firstRow">
                     <div class="stage">
                         <p class="stage-title">Заголовок:</p>
-                        <textarea formControlName="title" placeholder="Поле ввода"
+                        <textarea formControlName="title" placeholder="Напишите заголовок"
                             (input)="adjustHeight($event)"></textarea>
                         <div *ngIf="form.get('title')?.invalid && form.get('title')?.touched && form.get('title')?.value"
                             class="error-message">
@@ -26,7 +26,7 @@
             <div class="secondRow">
                 <div class="stage">
                     <p class="stage-title">Специализация:</p>
-                    <app-tag-selected-level [placeholderValue]="'Выберете специализацию'" [tags]="professions"
+                    <app-tag-selected-level [placeholderValue]="'Выберете специализацию'" [tags]="professions" [maxTags]="1"
                        [type]="'profession'"
                     (tagsChanged)="onTagsChanged($event, 'profession')"></app-tag-selected-level>
                     <div *ngIf="form.get('profession')?.invalid && form.get('profession')?.touched"

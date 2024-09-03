@@ -43,6 +43,7 @@
     font-size: 0.85rem;
     line-height: 117%;
     color: var(--font-color);
+    margin-left: 25px;
 }
 
 .personal-details {
