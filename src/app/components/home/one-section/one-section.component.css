@@ -18,6 +18,7 @@
     align-items: center;
     position: relative; /* Начальное положение */
     transition: position 0.5s; /* Плавный переход */
+    
 }
 
 .sticky-background {
@@ -28,6 +29,7 @@
 app-search{
     position: relative; /* Начальное положение */
     transition: position 0.5s; /* Плавный переход */
+    will-change: position, transform;
 }
 app-search.sticky {
     width: 65.5%;
@@ -101,7 +103,7 @@ app-search:not(.sticky) {
         background: #806BFF;
         padding: 0;
         z-index: 50;
-        transform: translateY(0);
+        will-change: position, transform;
     }
     
     .content {

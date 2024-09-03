@@ -43,33 +43,38 @@ export class OneSectionComponent implements AfterViewInit {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const elementRect = this.searchElement.getBoundingClientRect();
       const elementTop = scrollTop + elementRect.top;
-
-      if (scrollTop >= (elementTop - this.stickyOffset) && (scrollTop > this.fixedPixel)) {
-        if (!this.isStickyApplied) {
-          console.log("add('sticky')");
-          this.searchElement.classList.add('sticky');
-          this.fixedPixel = scrollTop;
-          this.settingHeaderService.isSticky = true;
-          this.isStickyApplied = true;
-        }
-      } else {
-        if (this.isStickyApplied) {
-          console.log("remove('sticky');");
-          this.searchElement.classList.remove('sticky');
-          this.fixedPixel = 0;
-          this.settingHeaderService.isSticky = false;
-          this.isStickyApplied = false;
-        }
+  
+      const shouldApplySticky = scrollTop >= (elementTop - this.stickyOffset) && (scrollTop > this.fixedPixel);
+  
+      if (shouldApplySticky && !this.isStickyApplied) {
+        console.log("add('sticky')");
+        this.searchElement.classList.add('sticky');
+        this.fixedPixel = scrollTop;
+        this.settingHeaderService.isSticky = true;
+        this.isStickyApplied = true;
+      } else if (!shouldApplySticky && this.isStickyApplied) {
+        console.log("remove('sticky');");
+        this.searchElement.classList.remove('sticky');
+        this.fixedPixel = 0;
+        this.settingHeaderService.isSticky = false;
+        this.isStickyApplied = false;
       }
     }
-  }, 100); 
+  }, 200);
+  
+  private scrollScheduled: boolean = false;
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
-    requestAnimationFrame(() => {
-      this.handleScroll();
-    });
+    if (!this.scrollScheduled) {
+      this.scrollScheduled = true;
+      requestAnimationFrame(() => {
+        this.handleScroll();
+        this.scrollScheduled = false; 
+      });
+    }
   }
+  
 
 
   
