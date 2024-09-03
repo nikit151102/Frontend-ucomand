@@ -22,9 +22,9 @@ export class MotivationsComponent implements OnInit {
   constructor(private motivationsService: MotivationsService) { }
 
   ngOnInit(): void {
-    this.motivationsService.getTags().subscribe((data: any) => { 
-      this.tagsList = data
-    })
+    // this.motivationsService.getTags().subscribe((data: any) => { 
+    //   this.tagsList = data
+    // })
   }
 
   tagsList: { id: number, name: string, color: string, type: string }[] = [

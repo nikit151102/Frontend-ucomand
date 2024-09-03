@@ -10,6 +10,7 @@ import { ToggleSwitchComponent } from '../toggle-switch/toggle-switch.component'
 import { PopUpEntryService } from '../../pop-up-entry/pop-up-entry.service';
 import { SettingHeaderService } from '../../setting-header.service';
 import { TokenService } from '../../token.service';
+import { throttle } from 'lodash';
 
 @Component({
   selector: 'app-one-section',
@@ -37,24 +38,23 @@ export class OneSectionComponent implements AfterViewInit {
   }
 
   
-@HostListener('window:scroll', ['$event'])
-  onWindowScroll() {
+  handleScroll = throttle(() => {
     if (this.searchElement) {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const elementRect = this.searchElement.getBoundingClientRect();
       const elementTop = scrollTop + elementRect.top;
 
       if (scrollTop >= (elementTop - this.stickyOffset) && (scrollTop > this.fixedPixel)) {
-        if (!this.isStickyApplied) { 
-          console.log("add('sticky')")
+        if (!this.isStickyApplied) {
+          console.log("add('sticky')");
           this.searchElement.classList.add('sticky');
           this.fixedPixel = scrollTop;
           this.settingHeaderService.isSticky = true;
-          this.isStickyApplied = true; 
+          this.isStickyApplied = true;
         }
       } else {
-        if (this.isStickyApplied) { 
-          console.log("remove('sticky');")
+        if (this.isStickyApplied) {
+          console.log("remove('sticky');");
           this.searchElement.classList.remove('sticky');
           this.fixedPixel = 0;
           this.settingHeaderService.isSticky = false;
@@ -62,8 +62,14 @@ export class OneSectionComponent implements AfterViewInit {
         }
       }
     }
-  }
+  }, 100); 
 
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    requestAnimationFrame(() => {
+      this.handleScroll();
+    });
+  }
 
 
   
