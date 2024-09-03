@@ -115,7 +115,7 @@ p {
 .fullName {
     margin: 0;
     font-family: var(--font-Monts);
-    font-weight: 400;
+    font-weight: 40.0;
     font-size: 1rem;
     line-height: 117%;
     color: var(--font-color);
@@ -124,7 +124,7 @@ p {
 .chapterCard-title {
     margin-bottom: 0.5rem;
     font-family: var(--font-Monts);
-    font-weight: 400;
+    font-weight: 500;
     font-size: 0.9rem;
     line-height: 117%;
     color: var(--font-color);
