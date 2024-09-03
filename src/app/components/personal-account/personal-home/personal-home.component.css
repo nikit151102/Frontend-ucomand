@@ -30,8 +30,12 @@
     line-height: 140%;
     color: var(--font-color);
 }
-.titleActive{
-color: #fff !important;
+
+.titleActive {
+    color: #fff !important;
+}
+.archiveMessage{
+    color: #959292 !important;
 }
 
 .ProfileChapter {
@@ -112,7 +116,7 @@ p {
     border-radius: 20px;
     padding: 6px 12px 6px 8px;
     background: #e2e2e2;
-    
+
 }
 
 .contacts-item:hover {
@@ -272,6 +276,25 @@ p {
     background: #b9aeff;
 }
 
+.block-switchCards {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.switchCards {
+    font-family: var(--font-Monts);
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 114%;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: var(--font-color);
+}
+
+.switchCards:hover{
+    color: #676768;
+}
+
 /* Media queries for tablets */
 @media (max-width: 1024px) {
     .container {
@@ -318,7 +341,7 @@ p {
 /* Media queries for phones */
 @media (max-width: 768px) {
 
-    .logo{
+    .logo {
         width: 100px;
     }
 
@@ -369,11 +392,12 @@ p {
         justify-content: end;
         text-align: center;
     }
-    
+
     .title {
         font-size: 0.7rem;
     }
-    .date_registration span{
+
+    .date_registration span {
         font-size: 0.7rem;
     }
 

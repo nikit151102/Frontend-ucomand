@@ -14,8 +14,8 @@
     --line-item: rgba(255, 255, 255, 0.1); /* rgba(0, 0, 0, 0.1) */
     --font-color: #fff; /* #101010 */
     --logo-text-color: #fff; /* #5a4bb8 */
-    --logo-background-color: rgba(255, 255, 255, 0.1)    ; /* rgba(185, 174, 255, 1)*/
-
+    --logo-background-color: rgba(255, 255, 255, 0.1); /* rgba(185, 174, 255, 1)*/
+    --font-profession-eng: rgba(255, 255, 255, 0.1);
     --font-Monts: "Montserrat";
     --second-family: "Comfortaa";
 }

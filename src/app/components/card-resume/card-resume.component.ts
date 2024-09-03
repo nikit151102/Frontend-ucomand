@@ -11,7 +11,8 @@ import { Component, Input } from '@angular/core';
 export class CardResumeComponent {
 
   @Input() cardItem: any;
-  
+
+
   getSkillsColor(item: number): string {
     switch (item) {
       case 1:
@@ -26,7 +27,6 @@ export class CardResumeComponent {
   }
   
   getSkills(item: number): string {
-    console.log("item", )
     switch (item) {
       case 1:
         return 'Junior';
@@ -40,7 +40,6 @@ export class CardResumeComponent {
   }
 
   getSkillText(item: number): string {
-    console.log("item", )
     switch (item) {
       case 1:
         return 'Jun';

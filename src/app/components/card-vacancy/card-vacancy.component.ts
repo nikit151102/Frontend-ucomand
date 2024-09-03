@@ -26,7 +26,6 @@ export class CardVacancyComponent {
   }
   
   getSkills(item: number): string {
-    console.log("item", )
     switch (item) {
       case 1:
         return 'Junior';

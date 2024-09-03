@@ -100,6 +100,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
         console.log('User data:', data.token);
        
         this.popUpEntryService.userVisible = true;
+        this.popUpEntryService.visible = false;
         this.login_user()
       },
       (error) => {
@@ -116,6 +117,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       (data) => {
         localStorage.setItem('userId', data.id);
         this.popUpEntryService.userVisible = true;
+        this.popUpEntryService.visible = false;
       },
       (error) => {
         console.error('Error fetching user data:', error);

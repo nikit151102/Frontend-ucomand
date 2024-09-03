@@ -37,7 +37,8 @@
                     Портфолио:
                 </p>
                 <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
-                    <a class="contacts-item" [href]="dataCurrentUser.freeLink" *ngIf="dataCurrentUser.freeLink && imagePath.length>0">
+                    <a class="contacts-item" [href]="dataCurrentUser.freeLink"
+                        *ngIf="dataCurrentUser.freeLink && imagePath.length>0">
                         <img [src]="imagePath" alt="logo" width="24px">
                         <p>{{domainName}}</p>
                     </a>
@@ -49,7 +50,8 @@
                 </p>
                 <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
 
-                    <a class="contacts-item" [href]="'https://t.me/' + dataCurrentUser.telegram" target="_blank" *ngIf="dataCurrentUser.telegram">
+                    <a class="contacts-item" [href]="'https://t.me/' + dataCurrentUser.telegram" target="_blank"
+                        *ngIf="dataCurrentUser.telegram">
                         <img src="assets/domains/t.png" alt="logo" width="24px">
                         <p>Telegram</p>
                     </a>
@@ -81,12 +83,19 @@
                     Активные резюме:
                 </p>
                 <div class="cards">
-                    <app-personal-resume *ngFor="let itemResume of resumeService.filterResumes('CREATOR_ONLY')"
+                    <app-personal-resume
+                        *ngFor="let itemResume of resumeService.filterResumes('CREATOR_ONLY')| slice:0:itemsToShowResume"
                         [cardItem]="itemResume"></app-personal-resume>
+                    <div class="block-switchCards">
+                        <a (click)="toggleResumes()" *ngIf="resumeService.filterResumes('CREATOR_ONLY').length>3"
+                            class="switchCards">
+                            {{ showAllResume ? 'Свернуть' : 'Показать все' }}
+                        </a>
+                    </div>
 
                 </div>
                 <div class="message-cards titleActive" *ngIf="resumeService.filterResumes('CREATOR_ONLY').length==0">
-                    нет активных резюме
+                    Нет активных резюме
                 </div>
             </div>
             <div class="archive-resume">
@@ -94,8 +103,18 @@
                     Архив резюме:
                 </p>
                 <div class="cards">
-                    <app-archive-resume *ngFor="let itemResume of resumeService.filterResumes('EVERYBODY')"
+                    <app-archive-resume
+                        *ngFor="let itemResume of resumeService.filterResumes('EVERYBODY') | slice:0:itemsToShowArchiveResume "
                         [cardItem]="itemResume"></app-archive-resume>
+                    <div class="block-switchCards">
+                        <a (click)="toggleArchiveResumes()" *ngIf="resumeService.filterResumes('EVERYBODY').length>3"
+                            class="switchCards">
+                            {{ showAllArchiveResume ? 'Свернуть' : 'Показать все' }}
+                        </a>
+                    </div>
+                </div>
+                <div class="message-cards archiveMessage" *ngIf="resumeService.filterResumes('EVERYBODY').length==0">
+                    Архив пуст
                 </div>
             </div>
         </div>
@@ -105,11 +124,19 @@
                     Активные вакансии:
                 </p>
                 <div class="cards">
-                    <app-personal-vacancy [item]="itemVacancy"
-                        *ngFor="let itemVacancy of vacancyService.filterVacancies('CREATOR_ONLY')"></app-personal-vacancy>
+                    <app-personal-vacancy
+                        *ngFor="let itemVacancy of vacancyService.filterVacancies('CREATOR_ONLY') | slice:0:itemsToShowVacancies"
+                        [item]="itemVacancy">
+                    </app-personal-vacancy>
+                    <div class="block-switchCards">
+                        <a (click)="toggleVacancies()" *ngIf="vacancyService.filterVacancies('CREATOR_ONLY').length>3"
+                            class="switchCards">
+                            {{ showAllVacancies ? 'Свернуть' : 'Показать все' }}
+                        </a>
+                    </div>
                 </div>
                 <div class="message-cards titleActive" *ngIf="vacancyService.filterVacancies('CREATOR_ONLY').length==0">
-                    нет активных вакансий
+                    Нет активных вакансий
                 </div>
             </div>
             <div class="archive-vacancy">
@@ -118,7 +145,16 @@
                 </p>
                 <div class="cards">
                     <app-archive-vacancy [cardItem]="itemVacancy"
-                        *ngFor="let itemVacancy of vacancyService.filterVacancies('EVERYBODY')"></app-archive-vacancy>
+                        *ngFor="let itemVacancy of vacancyService.filterVacancies('EVERYBODY') | slice:0:itemsToShowArchiveVacancies"></app-archive-vacancy>
+                    <div class="block-switchCards">
+                        <a (click)="toggleArchiveVacancies()"
+                            *ngIf="vacancyService.filterVacancies('EVERYBODY').length>3" class="switchCards">
+                            {{ showAllArchiveVacancies ? 'Свернуть' : 'Показать все' }}
+                        </a>
+                    </div>
+                </div>
+                <div class="message-cards archiveMessage" *ngIf="vacancyService.filterVacancies('EVERYBODY').length==0" >
+                    Архив пуст
                 </div>
             </div>
         </div>

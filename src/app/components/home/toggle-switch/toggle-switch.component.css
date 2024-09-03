@@ -71,6 +71,14 @@
 }
 @media (max-width: 400px) {
     .toggle-btn:not(.active) {
-        padding: 0.8rem 1.5rem 0.8rem 0.5rem;
+        font-size: 0.7rem;
+        padding: 0.8rem 0.3rem 0.8rem 0.3rem;
+    }
+    .toggle-btn.active {
+        font-size: 0.7rem;
+        padding: 0.8rem 1rem 0.8rem 1rem;
     }
 }
+
+
+

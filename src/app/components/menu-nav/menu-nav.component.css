@@ -319,6 +319,9 @@ a {
        
     }
     :host ::ng-deep .p-sidebar-right{
+        padding-bottom: 0;
+    }
+    :host ::ng-deep .p-sidebar .p-sidebar-header + .p-sidebar-content{
     padding-bottom: 0;
 }
 }

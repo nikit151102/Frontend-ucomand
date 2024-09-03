@@ -5,7 +5,6 @@
     border-radius: 1.3rem;
     padding: 12px;
     width: 100%;
-    margin-bottom: 2rem;
     break-inside: avoid;
 }
 
@@ -55,6 +54,18 @@
     color: var(--font-color);
 }
 
+.chapterCard-value-eng {
+    margin: 0;
+    width: 90%;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.7rem;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: var(--font-profession-eng);
+}
+
+
 .tags {
     display: flex;
     flex-wrap: wrap;
@@ -74,7 +85,7 @@
 
 .tagText {
     font-family: var(--font-Monts);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 0.7rem;
     line-height: 120%;
     color: var(--font-color);
@@ -87,7 +98,7 @@
     border-radius: 5px;
     font-family: var(--font-Monts);
     font-weight: 400;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     line-height: 120%;
     color: #fff;
 }

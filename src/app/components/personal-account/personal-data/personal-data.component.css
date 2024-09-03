@@ -232,12 +232,15 @@
 
 .approval {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+}
+input[type="checkbox"]{
+  accent-color: #E2E2E2;
 }
 
 .custom-checkbox {
-    width: 2rem;
-    height: 2rem;
+    width: 4rem;
+    height: 4rem;
 }
 
 .approval label {

@@ -22,4 +22,6 @@ export class PopUpExitComponent {
     this.tokenService.clearToken();
     this.router.navigate(['/']);
   }
+
+
 }

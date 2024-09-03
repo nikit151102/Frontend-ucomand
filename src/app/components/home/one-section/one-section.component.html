@@ -1,10 +1,10 @@
 <div class="content">
-    <app-desktop-type class="desktop-only" *ngIf="!popUpEntryService.userVisible"></app-desktop-type>
-    <app-phone-type class="phone-only" *ngIf="!popUpEntryService.userVisible"></app-phone-type>
+    <app-desktop-type class="desktop-only" *ngIf="!tokenService.getToken()"></app-desktop-type>
+    <app-phone-type class="phone-only" *ngIf="!tokenService.getToken()"></app-phone-type>
 
     <div class="search" [ngClass]="{'sticky-background': settingHeaderService.isSticky}">
         <div class="search-container">
-            <app-search [ngClass]="{'no-type': !hasType, 'has-type': hasType}"></app-search>
+            <app-search [ngClass]="{'no-type': !hasType, 'has-type': hasType}" style="z-index: 10;"></app-search>
         </div>
     </div>
 </div>

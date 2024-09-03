@@ -9,6 +9,7 @@
 }
 
 .main {
+    margin-left: 25rem;
     width: 75%;
     display: flex;
     top: -100px;
@@ -71,6 +72,14 @@
 }
 
 
+.btns {
+    display: flex;
+    justify-content: flex-end;
+    width: 70%;
+    margin-top: 20px;
+    z-index: 10;
+}
+
 .additionalBtn {
     display: flex;
     flex-direction: row;
@@ -95,9 +104,7 @@
     background: #806bff
 }
 
-.btnNewResume:active{
-
-}
+.btnNewResume:active {}
 
 .btnNewVacancy {
     background: #806bff;
@@ -106,4 +113,18 @@
 
 .btnNewVacancy:hover {
     background: #84dd2c
+}
+
+@media (max-width: 1199.98px) {
+    .btns {
+        display: none;
+    }
+}
+
+
+@media (max-width: 1099.98px) {
+    .main {
+        margin-left: 15rem;
+        margin-top: 2rem;
+    }
 }

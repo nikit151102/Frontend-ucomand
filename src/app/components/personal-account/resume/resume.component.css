@@ -11,7 +11,7 @@
 }
 
 .card:hover {
-    background: var(--card-hover-account);
+    background: #A6EB20;
 }
 
 
@@ -21,6 +21,17 @@
     font-size: 14px;
     line-height: 114%;
     color: var(--font-color);
+}
+
+.chapterCard-value-eng {
+    margin: 0;
+    width: 90%;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.7rem;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: var(--font-profession-eng);
 }
 
 
@@ -84,8 +95,8 @@
 
 .tagText {
     font-family: var(--font-Monts);
-    font-weight: 300;
-    font-size: 0.8rem;
+    font-weight: 400;
+    font-size: 0.7rem;
     line-height: 120%;
     color: var(--font-color);
     margin: 0;
@@ -97,7 +108,7 @@
     border-radius: 5px;
     font-family: var(--font-Monts);
     font-weight: 400;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     line-height: 120%;
     color: #fff;
 }

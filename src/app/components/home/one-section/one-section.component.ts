@@ -9,6 +9,7 @@ import { PhoneTypeComponent } from './phone-type/phone-type.component';
 import { ToggleSwitchComponent } from '../toggle-switch/toggle-switch.component';
 import { PopUpEntryService } from '../../pop-up-entry/pop-up-entry.service';
 import { SettingHeaderService } from '../../setting-header.service';
+import { TokenService } from '../../token.service';
 
 @Component({
   selector: 'app-one-section',
@@ -20,19 +21,23 @@ import { SettingHeaderService } from '../../setting-header.service';
 
 export class OneSectionComponent implements AfterViewInit {
 
+  constructor(public settingHeaderService: SettingHeaderService, private formSettingService: FormSettingService, public tokenService:TokenService, private router: Router, public popUpEntryService: PopUpEntryService) { }
+
   hasType = false;
 
-  private stickyOffset: number = 60; // Значение отступа для приклеивания
+  private stickyOffset: number = 60; 
   private searchElement: HTMLElement | null = null;
   private fixedPixel: number = 0;
+  private isStickyApplied: boolean = false;
 
   ngAfterViewInit() {
     this.hasType = !!document.querySelector('app-desktop-type') || !!document.querySelector('app-phone-type');
     this.searchElement = document.querySelector('app-search');
-    this.onWindowScroll(); // Инициализируем состояние при загрузке
+    this.onWindowScroll(); 
   }
 
-  @HostListener('window:scroll', ['$event'])
+  
+@HostListener('window:scroll', ['$event'])
   onWindowScroll() {
     if (this.searchElement) {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -40,16 +45,20 @@ export class OneSectionComponent implements AfterViewInit {
       const elementTop = scrollTop + elementRect.top;
 
       if (scrollTop >= (elementTop - this.stickyOffset) && (scrollTop > this.fixedPixel)) {
-        if (!this.searchElement.classList.contains('sticky')) {
+        if (!this.isStickyApplied) { 
+          console.log("add('sticky')")
           this.searchElement.classList.add('sticky');
           this.fixedPixel = scrollTop;
           this.settingHeaderService.isSticky = true;
+          this.isStickyApplied = true; 
         }
       } else {
-        if (this.searchElement.classList.contains('sticky')) {
+        if (this.isStickyApplied) { 
+          console.log("remove('sticky');")
           this.searchElement.classList.remove('sticky');
           this.fixedPixel = 0;
           this.settingHeaderService.isSticky = false;
+          this.isStickyApplied = false;
         }
       }
     }
@@ -57,15 +66,7 @@ export class OneSectionComponent implements AfterViewInit {
 
 
 
-  constructor(public settingHeaderService: SettingHeaderService, private formSettingService: FormSettingService, private router: Router, public popUpEntryService: PopUpEntryService) { }
-
-  tagsList = ['Веб дизайнер', '3d моделлер', 'Архитектор баз данных', 'Арт директор', 'Архитектор баз данных',
-    'Системный аналитик', 'Арт директор', 'Арт директор', 'Арт директор', 'Арт директор', 'Веб дизайнер', '3d моделлер', 'Архитектор баз данных', 'Арт директор',
-    'Веб дизайнер', '3d моделлер', 'Архитектор баз данных', 'Арт директор', 'Архитектор баз данных',
-    'Системный аналитик', 'Арт директор', 'Арт директор', 'Арт директор', 'Арт директор', 'Веб дизайнер', '3d моделлер', 'Архитектор баз данных', 'Арт директор',
-    'Веб дизайнер', '3d моделлер', 'Архитектор баз данных', 'Арт директор', 'Архитектор баз данных',
-    'Системный аналитик', 'Арт директор', 'Арт директор', 'Арт директор', 'Арт директор', 'Веб дизайнер', '3d моделлер', 'Архитектор баз данных', 'Арт директор']
-
+  
   newVacancy() {
     this.formSettingService.isheading = true;
     this.formSettingService.typeForm = 'вакансии';

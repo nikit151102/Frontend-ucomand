@@ -7,12 +7,18 @@
             <p class="chapterCard-value" style="margin-top: 0.5rem; width: 90%;">
                 {{ getSpecialization() }}
             </p>
-            <p [ngStyle]="{ 'border-color': getSkillsColor(data.profession.competenceLevel) }" class="lookingCard-level">
-                {{ getSkills(data.profession?.competenceLevel)  }}
-              </p>
+            <p [ngStyle]="{ 'border-color': getSkillsColor(data.profession.competenceLevel) }"
+                class="lookingCard-level">
+                {{ getSkills(data.profession?.competenceLevel) }}
+            </p>
+        </div>
+        <div class="lookingCard">
+            <p class="chapterCard-value-eng">
+                {{ data?.profession?.nameEng | uppercase }}
+            </p>
         </div>
     </div>
-    
+
     <div class="chapterCard">
         <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
             Навыки:
@@ -24,13 +30,13 @@
                         {{skill.name}}
                     </p>
                     <p [ngStyle]="{ 'background': getSkillsColor(skill.competenceLevel) }" class="tag-level">
-                        {{ getSkillText(skill.competenceLevel)  }}
-                      </p>
+                        {{ getSkillText(skill.competenceLevel) }}
+                    </p>
                 </div>
             </ng-container>
         </div>
     </div>
-    
+
     <div class="chapterCard">
         <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
             Мотивация:
@@ -63,5 +69,5 @@
             </p>
         </div>
     </div>
-    
+
 </div>

@@ -23,9 +23,7 @@
 
  .search-input {
      width: 50px;
-     /* Initial width */
      min-width: 50px;
-     /* Ensure a minimum width */
      height: 50px;
      border-style: none;
      padding: 10px;
@@ -35,7 +33,6 @@
      outline: none;
      border-radius: 25px;
      transition: width 0.5s ease-in-out;
-     /* Only specify transition once */
      background-color: #ffff;
      color: #000000;
      font-family: var(--font-Monts);
@@ -65,10 +62,7 @@
  .search-container:hover .search-input,
  .search-input:focus,
  .search-input:not(:placeholder-shown) {
-     /* Adjust width based on focus and content */
      width: 400px;
-     /* Expanded width */
-     /* Specify transition properties */
  }
 
  .search-button svg {
@@ -77,6 +71,9 @@
 
 
  .search-btn-phone {
+     display: flex;
+     align-items: center;
+     justify-content: center;
      border-radius: 30px;
      width: 40px;
      height: 40px;

@@ -1,4 +1,9 @@
 <div class="content">
+    <div class="btns">
+        <a (click)="handlePostResume()" class="additionalBtn btnNewResume" > Разместить резюме </a>
+        <a (click)="handlePostVacancy()" class="additionalBtn btnNewVacancy" > Разместить вакансию
+        </a>
+    </div>
     <app-background-imgs style=" width: 100%; "
         class="background-imgs"></app-background-imgs>
 
@@ -37,11 +42,7 @@
                         </p>
                     </div>
                   
-                    <div style="display: flex; justify-content: flex-end;">
-                        <a (click)="handlePostResume()" class="additionalBtn btnNewResume" > Разместить резюме </a>
-                        <a (click)="handlePostVacancy()" class="additionalBtn btnNewVacancy" > Разместить вакансию
-                        </a>
-                    </div>
+                    
                 </div>
 
 

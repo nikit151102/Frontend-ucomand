@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { SettingHeaderService } from '../../setting-header.service';
 import { ArchiveResumeComponent } from '../archive-resume/archive-resume.component';
 import { ArchiveVacancyComponent } from '../archive-vacancy/archive-vacancy.component';
@@ -37,7 +37,7 @@ export class PersonalHomeComponent implements OnInit {
     private route: ActivatedRoute, private domainService: DomainService,
     public viewCardService: ViewCardService, private personalDataService: PersonalDataService,
     private personalHomeService: PersonalHomeService, private popUpDeleteService: PopUpDeleteService, public popUpExitService: PopUpExitService,
-    public resumeService: ResumeService, public vacancyService:VacancyService) { }
+    public resumeService: ResumeService, public vacancyService: VacancyService) { }
 
   imagePath: string = '';
   domainName: string = '';
@@ -47,6 +47,35 @@ export class PersonalHomeComponent implements OnInit {
   vacanciesData: any;
   resumesData: any;
 
+  showAllResume: boolean = false;
+  itemsToShowResume: number = 3;
+  toggleResumes() {
+    this.showAllResume = !this.showAllResume;
+    this.itemsToShowResume = this.showAllResume ? Infinity : 3;
+  }
+
+  showAllArchiveResume: boolean = false;
+  itemsToShowArchiveResume: number = 3;
+  toggleArchiveResumes() {
+    this.showAllArchiveResume = !this.showAllArchiveResume;
+    this.itemsToShowArchiveResume = this.showAllArchiveResume ? Infinity : 3;
+  }
+
+
+  showAllVacancies: boolean = false;
+  itemsToShowVacancies: number = 3;
+  toggleVacancies() {
+    this.showAllVacancies = !this.showAllVacancies;
+    this.itemsToShowVacancies = this.showAllVacancies ? Infinity : 3;
+  }
+
+  showAllArchiveVacancies: boolean = false;
+  itemsToShowArchiveVacancies: number = 3;
+  toggleArchiveVacancies() {
+    this.showAllArchiveVacancies = !this.showAllArchiveVacancies;
+    this.itemsToShowArchiveVacancies = this.showAllArchiveVacancies ? Infinity : 3;
+  }
+
   ngOnInit(): void {
     this.settingHeaderService.shared = true;
     this.settingHeaderService.post = true;
@@ -54,7 +83,7 @@ export class PersonalHomeComponent implements OnInit {
 
     this.settingHeaderService.shared = true;
     this.settingHeaderService.backbtn = true;
-  
+
 
 
     this.resumeService.subscribeToGetCardsData();
@@ -141,7 +170,6 @@ export class PersonalHomeComponent implements OnInit {
   filterVacancies(type: string): any[] {
     return this.vacanciesData.filter((vacancy: any) => vacancy.visibility == type);
   }
-
 
 
 }

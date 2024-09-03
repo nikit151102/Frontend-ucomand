@@ -6,7 +6,7 @@
 }
 
 .card:hover {
-    background: var(--card-hover-account);
+    background: #A6EB20;
 }
 
 p {
@@ -28,10 +28,22 @@ p {
     margin-bottom: 0.3rem;
 }
 
+.chapterCard-value-eng {
+    margin: 0;
+    width: 90%;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.7rem;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: var(--font-profession-eng);
+}
+
 .value-container {
     display: flex;
     flex-direction: row;
     width: 100%;
+    align-items: center
 }
 
 .value {
