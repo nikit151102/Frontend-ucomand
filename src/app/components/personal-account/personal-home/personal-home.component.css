@@ -410,6 +410,7 @@ p {
     }
     .chapterCard-title{
         font-size: 0.7rem;
+        font-weight: 500;
     }
     .information-user, .location-value{
         font-size: 0.9rem;
@@ -427,6 +428,7 @@ p {
     }
     .chapterCard-title{
         font-size: 0.7rem;
+        font-weight: 500;
     }
     .ProfileChapter {
         padding: 0.5rem 0.5rem 0px 0.5rem;
