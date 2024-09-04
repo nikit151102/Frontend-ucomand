@@ -10,11 +10,14 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { InputOtpModule } from 'primeng/inputotp';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { ListCardsComponent } from './list-cards/list-cards.component';
+import { VacanciesService } from './services/vacancies.service';
+import { ResumesService } from './services/resumes.service';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule, MenubarModule, TagsComponent, ExcelReaderComponent, FormsModule, InputOtpModule, NotificationsComponent],
+  imports: [CommonModule, MenubarModule, TagsComponent, ExcelReaderComponent, FormsModule, InputOtpModule, NotificationsComponent, ListCardsComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css',
   providers: [MessageService]
@@ -41,12 +44,23 @@ export class AdminComponent implements OnInit {
   items: MenuItem[] | undefined;
   TypeSetting: string = 'specialties';
 
-  constructor(public skillsService: SkillsService, public specialtiesService: SpecialtiesService, private router: Router) { }
+  constructor(public vacanciesService: VacanciesService,
+    public resumesService: ResumesService,
+    public skillsService: SkillsService,
+     public specialtiesService: SpecialtiesService, private router: Router) { }
 
   ngOnInit() {
     this.items = [
       {
         label: 'Главная',
+      },
+      {
+        label: 'Вакансии',
+        command: () => { this.TypeSetting = 'vacancies' }
+      },
+      {
+        label: 'Резюме',
+        command: () => { this.TypeSetting = 'resumes' }
       },
       {
         label: 'Специальности',

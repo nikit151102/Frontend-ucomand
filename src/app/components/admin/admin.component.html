@@ -13,6 +13,12 @@
 <ng-container *ngIf="isAuthenticated">
     <div class="container">
         <p-menubar [model]="items" class="menubar" />
+        <ng-container *ngIf="TypeSetting === 'vacancies'">
+            <app-list-cards  class="viewData" [Service]="vacanciesService"></app-list-cards>
+        </ng-container>
+        <ng-container *ngIf="TypeSetting === 'resumes'">
+            <app-list-cards  class="viewData" [Service]="resumesService"></app-list-cards>
+        </ng-container>
         <ng-container *ngIf="TypeSetting === 'specialties'">
             <app-tags [Service]="specialtiesService" [Title]="'Специальности'" [IsDropList]="false"
                 class="viewData"></app-tags>
