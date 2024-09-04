@@ -100,6 +100,7 @@ app-search:not(.sticky) {
     app-search.sticky {
         width: 100%;
         top: 60px; 
+        
         background: #806BFF;
         padding: 0;
         z-index: 50;
@@ -118,7 +119,7 @@ app-search:not(.sticky) {
     .search {
         align-items: start;
         padding: 0.5rem 0;
-        background-color: #806BFF;
+        background: none;
     }
 
 
