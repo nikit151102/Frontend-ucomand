@@ -13,13 +13,26 @@ import { ResumeService } from '../personal-account/services/resume.service';
 import { PageErrorComponent } from '../page-error/page-error.component';
 import { ErrorViewCardComponent } from './error-view-card/error-view-card.component';
 import { GlobalErrorHandler } from '../../global-error-handler.service';
+import { SkeletCardComponent } from '../skelet-card/skelet-card.component';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-view-vacancy',
   standalone: true,
-  imports: [CommonModule, VacancyComponent, ResumeComponent, SkeletonModule, PageErrorComponent, ErrorViewCardComponent],
+  imports: [CommonModule,SkeletonModule, VacancyComponent, ResumeComponent, SkeletonModule, PageErrorComponent, ErrorViewCardComponent,SkeletCardComponent],
   templateUrl: './view-card.component.html',
-  styleUrls: ['./view-card.component.css']
+  styleUrls: ['./view-card.component.css'],
+  animations: [
+    trigger('fadeAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class ViewCardComponent implements OnInit {
 
@@ -52,7 +65,10 @@ export class ViewCardComponent implements OnInit {
       const id = +params.get('id')!;
       this.viewCardService.getCardData(id).subscribe(
         (data) => {
-          this.dataCard = data;
+          
+          setTimeout(() => {
+            this.dataCard = data;
+          }, 1000);
           this.visibleCard = true;
           this.visibleError = false;
           this.domainName = this.domainService.setDomain(this.dataCard.user.freeLink);

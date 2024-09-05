@@ -10,7 +10,7 @@ import { SettingHeaderService } from '../setting-header.service';
 import { CardResumeComponent } from '../card-resume/card-resume.component';
 import { HomeService } from './home.service';
 import { OneSectionComponent } from './one-section/one-section.component';
-import { SkeletCardComponent } from './skelet-card/skelet-card.component';
+import { SkeletCardComponent } from '../skelet-card/skelet-card.component';
 import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({

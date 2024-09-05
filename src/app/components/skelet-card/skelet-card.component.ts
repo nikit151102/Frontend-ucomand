@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SkeletonModule } from 'primeng/skeleton';
-import { HomeService } from '../home.service';
+import { HomeService } from '../home/home.service';
 
 @Component({
   selector: 'app-skelet-card',
