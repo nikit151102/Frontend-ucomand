@@ -10,33 +10,38 @@ import { SettingHeaderService } from '../setting-header.service';
 import { CardResumeComponent } from '../card-resume/card-resume.component';
 import { HomeService } from './home.service';
 import { OneSectionComponent } from './one-section/one-section.component';
+import { SkeletCardComponent } from './skelet-card/skelet-card.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, OneSectionComponent, BackgroundImgsComponent, SearchComponent, CardVacancyComponent, SortetdFilterComponent, CardResumeComponent],
+  imports: [CommonModule, OneSectionComponent, BackgroundImgsComponent, SearchComponent, CardVacancyComponent, SortetdFilterComponent, CardResumeComponent, SkeletCardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-
+  skeletonArray = new Array(10); 
+  loading: boolean = true;
   constructor(private viewCardService: ViewCardService, public settingHeaderService: SettingHeaderService, private router: Router, public homeService: HomeService) {
     this.settingHeaderService.post = false;
     this.settingHeaderService.shared = false;
     this.settingHeaderService.backbtn = false;
   }
 
+  ngOnInit() {
 
-  ngOnInit(): void {
-    this.homeService.getVacancies();
-    this.homeService.getResumes();
-    this.homeService.toggleSortDirection();
+    setTimeout(() => {
+      this.homeService.getVacancies();
+      this.homeService.getResumes();
+      this.homeService.toggleSortDirection();
+      this.loading = false;
+    }, 200);
   }
 
   viewCard(cardValue: any, type: string, route: string) {
     this.viewCardService.selectedCard = cardValue;
     this.viewCardService.typeCard = type;
-    
+
     localStorage.setItem('routeTypeCard', type);
     this.router.navigate([`/${route}`, cardValue]);
 
