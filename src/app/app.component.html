@@ -1,13 +1,14 @@
 <div class="main">
     <div class="container_header" *ngIf="settingHeaderService.isheader">
-        <app-menu-nav ></app-menu-nav>
+      <app-menu-nav></app-menu-nav>
     </div>
-    <div class="container content">
-        <router-outlet ></router-outlet>
+    <div class="container content" [@fadeAnimation]="true">
+      <router-outlet></router-outlet>
     </div>
     <div class="footer-container" *ngIf="settingHeaderService.isFooter">
-        <app-footer></app-footer>
+      <app-footer></app-footer>
     </div>
-</div>
+  </div>
+  
 
 <app-pop-up-entry></app-pop-up-entry>
