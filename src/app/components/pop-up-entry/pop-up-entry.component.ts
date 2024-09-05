@@ -88,15 +88,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
           console.log('User data:', data.token);
           this.login_user()
         },
-        (error: any) => {
-          if (error.status) {
-            this.router.navigate(['/error', { num: error.status }]);
-          } else {
-            this.router.navigate(['/error', { num: 500 }]);
-          }
-        }
       );
-
     });
   }
 
