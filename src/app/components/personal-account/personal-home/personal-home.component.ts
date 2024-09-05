@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { SettingHeaderService } from '../../setting-header.service';
 import { ArchiveResumeComponent } from '../archive-resume/archive-resume.component';
 import { ArchiveVacancyComponent } from '../archive-vacancy/archive-vacancy.component';
@@ -26,7 +26,7 @@ import { VacancyService } from '../services/vacancy.service';
   templateUrl: './personal-home.component.html',
   styleUrl: './personal-home.component.css'
 })
-export class PersonalHomeComponent implements OnInit {
+export class PersonalHomeComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription = new Subscription();
   private subscriptionExit: Subscription = new Subscription();
@@ -162,6 +162,8 @@ export class PersonalHomeComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
+    this.isExitPopupVisible = false;
+    this.isPopupVisible = false;
     this.resumeService.unsubscribeFromGetCardsData();
     this.vacancyService.unsubscribeFromGetCardsData();
     this.subscription.unsubscribe();
