@@ -118,7 +118,7 @@ app-search:not(.sticky) {
 
     .search {
         align-items: start;
-        padding: 0.5rem 0;
+        padding: 0 0;
         background: none;
     }
 
