@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pop-up-entry',
@@ -23,6 +24,9 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     private http: HttpClient,
     private router: Router
   ) { }
+
+ 
+
 
   telegramWidgetLoaded: boolean = false;
 
@@ -71,18 +75,36 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
   onTelegramAuth(user: any) {
     console.log("Telegram User Data:", user);
+    
+    // Отправка данных пользователя на ваш сервер
     this.http.post('https://vm-7c43f39f.na4u.ru/api/users/auth/byTelegram', user, {
       headers: { 'Content-Type': 'application/json' }
     }).subscribe((response: any) => {
       console.log("response", response);
       console.log("response.token", response.token);
       this.tokenService.setToken(response.token);
+      
+      // Получение данных о пользователе
       this.popUpEntryService.getUser().subscribe(
         (data) => {
           this.tokenService.setToken(data.token);
           this.popUpEntryService.visible = false;
           console.log('User data:', data.token);
-          this.login_user()
+  
+          // Здесь мы предполагаем, что у вас есть userId
+          this.getUserProfilePhotos(user.id).subscribe(photoData => {
+            if (photoData.result && photoData.result.photos && photoData.result.photos.length > 0) {
+              const photoFileId = photoData.result.photos[0][0].file_id;
+              this.getFileUrl(photoFileId).subscribe(fileData => {
+                const photoUrl = `https://api.telegram.org/file/bot${this.botToken}/${fileData.result.file_path}`;
+                
+                // Установите URL аватарки в ваш HTML
+                this.setUserAvatar(photoUrl);
+              });
+            }
+          });
+  
+          this.login_user();
         },
         (error: any) => {
           if (error.status) {
@@ -92,9 +114,35 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
           }
         }
       );
-
     });
   }
+  
+  userAvatarUrl: string | undefined;
+  private botToken = '5547226280:AAER7OzBYfDejmrk5BGYBNpwzkPmnDhodTc'; // Ваш бот-токен
+  
+  private apiUrl = `https://api.telegram.org/bot${this.botToken}`;
+ 
+  private setUserAvatar(url: string): void {
+    this.userAvatarUrl = url;
+  }
+
+
+  getUserProfilePhotos(userId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/getUserProfilePhotos?user_id=${userId}`);
+  }
+  
+  getFile(fileId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/getFile?file_id=${fileId}`);
+  }
+  
+  private getFileUrl(fileId: string): Observable<any> {
+    return this.getFile(fileId);
+  }
+  
+
+
+
+
 
 
   login_enter() {
