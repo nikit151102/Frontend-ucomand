@@ -44,6 +44,7 @@ export class HomeService {
   getVacancies(){
     this.getCardData('vacancies').subscribe(data => {
       this.vacancies = data; 
+      console.log("data,",data)
     },(error:any) => { 
       if (error.status) {
       this.router.navigate(['/error', { num: error.status }]);
@@ -95,6 +96,7 @@ export class HomeService {
   }
 
   loading: boolean = true;
+  
   toggleType(type: any){
     this.typeToggle = type;
     this.loading = true;

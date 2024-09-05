@@ -18,6 +18,7 @@ import { PopUpExitService } from '../../pop-up-exit/pop-up-exit.service';
 import { PopUpExitComponent } from '../../pop-up-exit/pop-up-exit.component';
 import { ResumeService } from '../services/resume.service';
 import { VacancyService } from '../services/vacancy.service';
+import { FormSettingService } from '../../form/form-setting.service';
 
 @Component({
   selector: 'app-personal-home',
@@ -37,7 +38,8 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute, private domainService: DomainService,
     public viewCardService: ViewCardService, private personalDataService: PersonalDataService,
     private personalHomeService: PersonalHomeService, private popUpDeleteService: PopUpDeleteService, public popUpExitService: PopUpExitService,
-    public resumeService: ResumeService, public vacancyService: VacancyService) { }
+    public resumeService: ResumeService, public vacancyService: VacancyService,
+  private formSettingService:FormSettingService) { }
 
   imagePath: string = '';
   domainName: string = '';
@@ -173,5 +175,22 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     return this.vacanciesData.filter((vacancy: any) => vacancy.visibility == type);
   }
 
+  handlePostResume(): void {
+    this.formSettingService.isheading = false;
+    this.formSettingService.typeForm = 'резюме';
+    this.settingHeaderService.post = false;
+    this.settingHeaderService.shared = false;
+    const userId = localStorage.getItem('userId')
+    this.router.navigate([`/myaccount/${userId}/newResume`]);
+  }
+
+  handlePostVacancy(): void {
+    this.formSettingService.isheading = true;
+    this.formSettingService.typeForm = 'вакансии';
+    this.settingHeaderService.post = false;
+    this.settingHeaderService.shared = false;
+    const userId = localStorage.getItem('userId')
+    this.router.navigate([`/myaccount/${userId}/newVacancy`]);
+  }
 
 }

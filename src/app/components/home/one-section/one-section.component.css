@@ -44,6 +44,7 @@ app-search:not(.sticky) {
 
 .search-container {
     width: 65%;
+    z-index: 11;
 }
 
 /* styles.css */

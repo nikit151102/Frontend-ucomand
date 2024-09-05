@@ -1,16 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SkeletonModule } from 'primeng/skeleton';
 import { HomeService } from '../home/home.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-skelet-card',
   standalone: true,
-  imports: [SkeletonModule],
+  imports: [CommonModule, SkeletonModule],
   templateUrl: './skelet-card.component.html',
   styleUrl: './skelet-card.component.css'
 })
 export class SkeletCardComponent {
-  
+
+  @Input() title: boolean = false;
   background: string = '';
 
   constructor(private homeService: HomeService) { }

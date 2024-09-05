@@ -19,7 +19,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 @Component({
   selector: 'app-view-vacancy',
   standalone: true,
-  imports: [CommonModule,SkeletonModule, VacancyComponent, ResumeComponent, SkeletonModule, PageErrorComponent, ErrorViewCardComponent,SkeletCardComponent],
+  imports: [CommonModule, SkeletonModule, VacancyComponent, ResumeComponent, SkeletonModule, PageErrorComponent, ErrorViewCardComponent, SkeletCardComponent],
   templateUrl: './view-card.component.html',
   styleUrls: ['./view-card.component.css'],
   animations: [
@@ -44,6 +44,7 @@ export class ViewCardComponent implements OnInit {
   typeCard: any;
   currentUser: any;
   numberError!: number;
+  routeName: string = '';
 
   constructor(
     public viewCardService: ViewCardService,
@@ -54,7 +55,13 @@ export class ViewCardComponent implements OnInit {
     private popUpEntryService: PopUpEntryService,
     private route: ActivatedRoute,
     private resumeService: ResumeService,
-  ) { }
+  ) {
+    this.visibleError = true;
+    this.route.data.subscribe(data => {
+      this.routeName = data['routeName'];
+      console.log('Route Name:', this.routeName);
+    });
+  }
 
   ngOnInit(): void {
     this.typeCard = localStorage.getItem('routeTypeCard');
@@ -65,7 +72,7 @@ export class ViewCardComponent implements OnInit {
       const id = +params.get('id')!;
       this.viewCardService.getCardData(id).subscribe(
         (data) => {
-          
+
           setTimeout(() => {
             this.dataCard = data;
           }, 1000);
@@ -91,7 +98,7 @@ export class ViewCardComponent implements OnInit {
             this.visibleCard = false;
             this.visibleError = true;
             this.numberError = error.status;
-             this.router.navigate(['/error', { num: error.status }]);
+            this.router.navigate(['/error', { num: error.status }]);
           }
           console.error('Ошибка при загрузке данных:', error);
         }

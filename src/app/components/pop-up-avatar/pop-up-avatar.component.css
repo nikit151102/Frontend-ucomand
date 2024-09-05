@@ -16,7 +16,7 @@
     padding: 80px;
     border-radius: 8px;
     width: 725px;
-    height: 384px;
+    height: auto;
     position: relative;
     border: 1px solid #fff25f;
     border-radius: 20px;
@@ -38,10 +38,12 @@
     width: 24px;
     height: 24px;
     z-index: 1000;
+
+    
 }
 
 .close-button:hover svg path {
-    stroke: #402abb; 
+    stroke: #402abb;
     stroke-opacity: 0.6;
 }
 
@@ -50,69 +52,77 @@ p {
 }
 
 .popup-title {
+    display: flex;
+    width: 100%;
+    margin-bottom: 44px;
     font-family: var(--font-Monts);
     font-weight: 700;
     font-size: 16px;
     line-height: 112%;
     text-transform: uppercase;
-    text-align: center;
     color: #101010;
-    margin-bottom: 44px;
 }
 
-.popup-subtitle {
-    font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 114%;
-    text-align: left;
-    color: #101010;
-    margin-bottom: 44px;
-}
-
-.popup-cancel {
-    flex: 1;
-    border-radius: 30px;
-    padding: 16px;
-    background: #84dd2c;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 0.8rem;
-    line-height: 117%;
-    color: #fff;
-}
-
-.popup-cancel:hover {
-    background: #5A4BB8;
-}
 
 .btns {
     display: flex;
     justify-content: space-between;
     width: 100%;
     gap: 1rem;
+    margin-top: 44px;
 }
 
-.popup-btn-delete {
+.popup-btn-setAvatar {
+    width: 100%;
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 30px;
-    padding: 8px 12px;
-    background: #e2e2e2;
-    font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 0.8rem;
-    line-height: 117%;
+    padding: 16px;
+    background: #84dd2c;
+    color: #fff;
 }
 
-.popup-btn-delete:hover {
-    background: #b9aeff;
+.popup-btn-setAvatar:hover {
+    background: #5A4BB8;
 }
+
+
+
+.avatar-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+app-item-avatar {
+    flex: 1 1 calc(25% - 10px);
+    max-width: calc(25% - 10px);
+    box-sizing: border-box;
+}
+
+
+@media (max-width: 987px) {
+    app-item-avatar {
+        flex: 1 1 calc(33.33% - 10px);
+    }
+}
+
+@media (max-width: 568px) {
+    app-item-avatar {
+        display: flex;
+        justify-content: center;
+        flex: 1 1 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+    }
+}
+
+
+
+
+
 
 /* Адаптивность для планшетов */
 @media (max-width: 987px) {

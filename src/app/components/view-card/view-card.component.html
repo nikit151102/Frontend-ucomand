@@ -1,10 +1,15 @@
 <div class="container" *ngIf="visibleCard && !visibleError">
     <div class="left-part">
 
-        <ng-container *ngIf="!dataCard" @fadeAnimation>
-            <app-skelet-card ></app-skelet-card>
+
+        <ng-container *ngIf="!dataCard && routeName == 'vacancy'" @fadeAnimation>
+            <app-skelet-card [title]="true"></app-skelet-card>
         </ng-container>
-    
+        <ng-container *ngIf="!dataCard && routeName == 'resume'" @fadeAnimation>
+            <app-skelet-card [title]="false"></app-skelet-card>
+        </ng-container>
+
+
         <ng-container *ngIf="typeCard == 'vacancies' && dataCard" @fadeAnimation>
             <app-vacancy [data]="dataCard"></app-vacancy>
         </ng-container>

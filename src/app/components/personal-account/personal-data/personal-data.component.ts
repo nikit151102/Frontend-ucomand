@@ -6,11 +6,14 @@ import { PersonalDataService } from './personal-data.service';
 import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
 import { CityOfResidence, User } from './user-interface';
 import { Router } from '@angular/router';
+import { PopUpAvatarComponent } from '../../pop-up-avatar/pop-up-avatar.component';
+import { PopUpAvatarService } from '../../pop-up-avatar/pop-up-avatar.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-personal-data',
   standalone: true,
-  imports: [RadioButtonModule, CommonModule, FormsModule, ReactiveFormsModule, AutoCompleteModule],
+  imports: [RadioButtonModule, CommonModule, FormsModule, ReactiveFormsModule, AutoCompleteModule, PopUpAvatarComponent],
   templateUrl: './personal-data.component.html',
   styleUrls: ['./personal-data.component.css']
 })
@@ -20,8 +23,10 @@ export class PersonalDataComponent implements OnInit {
   filteredCities: any;
   dataCurrentUser!: User;
   cityOfResidence!: CityOfResidence;
+  isPopupVisible: boolean = false;
+  private subscription: Subscription = new Subscription();
 
-  constructor(private fb: FormBuilder, private personalDataService: PersonalDataService,  private router: Router) {
+  constructor(private fb: FormBuilder, private personalDataService: PersonalDataService, private router: Router, public popUpAvatarService: PopUpAvatarService) {
     this.personalDataForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -29,15 +34,20 @@ export class PersonalDataComponent implements OnInit {
       gender: ['', Validators.required],
       city: ['', Validators.required],
       freeLink: [''],
-      aboutMe: ['',[Validators.maxLength(250)]],
+      aboutMe: ['', [Validators.maxLength(250)]],
       email: ['', [Validators.required, Validators.email]],
       telegram: [''],
       domain: [''],
       approval: [false, Validators.requiredTrue]
     });
   }
-  
+
   ngOnInit(): void {
+    this.subscription.add(
+      this.popUpAvatarService.visible$.subscribe(visible => {
+        this.isPopupVisible = visible;
+      })
+    );
     this.personalDataService.getCities().subscribe(
       (data) => {
         this.cities = data;
@@ -49,24 +59,28 @@ export class PersonalDataComponent implements OnInit {
     this.userData();
   }
 
+  getAvatar() {
+    this.popUpAvatarService.showPopup();
+  }
+
   userData() {
     this.personalDataService.getCurrentUser().subscribe(
       (user: User) => {
         this.dataCurrentUser = user;
-        this.cityOfResidence = user.cityOfResidence || {}; 
-  
+        this.cityOfResidence = user.cityOfResidence || {};
+
         this.personalDataForm.patchValue({
-          name: user.firstName || '',  
-          surname: user.lastName || '', 
-          age: user.age || '',        
-          gender: user.gender || '',  
-          city: user.cityOfResidence?.name || '', 
-          freeLink: user.freeLink || '', 
-          aboutMe: user.aboutMe || '', 
-          email: user.email,  
-          telegram: user.telegram,  
-          domain: '',  
-          approval: false  
+          name: user.firstName || '',
+          surname: user.lastName || '',
+          age: user.age || '',
+          gender: user.gender || '',
+          city: user.cityOfResidence?.name || '',
+          freeLink: user.freeLink || '',
+          aboutMe: user.aboutMe || '',
+          email: user.email,
+          telegram: user.telegram,
+          domain: '',
+          approval: false
         });
       },
       (error) => {
@@ -74,7 +88,7 @@ export class PersonalDataComponent implements OnInit {
       }
     );
   }
-  
+
   filterCities(event: AutoCompleteCompleteEvent) {
     let filtered: any[] = [];
     let query = event.query;
@@ -94,7 +108,7 @@ export class PersonalDataComponent implements OnInit {
   }
 
   onSubmit(): void {
-   
+
     if (this.personalDataForm.invalid) {
       console.log("submit-invalid")
       this.personalDataForm.markAllAsTouched();
@@ -104,19 +118,19 @@ export class PersonalDataComponent implements OnInit {
     const formValues = this.personalDataForm.value;
 
     const user: User = {
-      id: 0,  
+      id: 0,
       firstName: formValues.name,
       lastName: formValues.surname,
-      gender: formValues.gender.toUpperCase(),  
+      gender: formValues.gender.toUpperCase(),
       age: formValues.age,
       freeLink: formValues.freeLink,
-      ownLink: '', 
+      ownLink: '',
       aboutMe: formValues.aboutMe,
       telegram: formValues.telegram,
       email: formValues.email,
-      dateOfRegistration: new Date().toISOString(),  
+      dateOfRegistration: new Date().toISOString(),
       cityOfResidence: this.cityOfResidence,
-      role: this.dataCurrentUser.role,  
+      role: this.dataCurrentUser.role,
     };
 
     this.personalDataService.updateUser(user).subscribe(

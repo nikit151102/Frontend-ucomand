@@ -17,4 +17,5 @@ export class PopUpDeleteComponent {
   cancel(): void {
     this.popUpDeleteService.hidePopup();  
   }
+  
 }
