@@ -40,6 +40,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
+    this.telegramWidgetLoaded = false;
     this.removeTelegramWidget();
   }
 
