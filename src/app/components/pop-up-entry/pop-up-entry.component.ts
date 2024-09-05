@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pop-up-entry',
@@ -19,17 +20,18 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
   constructor(
     public popUpEntryService: PopUpEntryService,
     private tokenService: TokenService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   telegramWidgetLoaded: boolean = false;
-  
+
   ngAfterViewInit() {
     if (this.popUpEntryService.visible) {
       this.loadTelegramWidget();
     }
   }
-  ngOnInit(){
+  ngOnInit() {
     // this.loadTelegramWidget()
   }
 
@@ -55,8 +57,8 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       this.telegramWidgetLoaded = true;
     }
   }
-  
-  
+
+
 
   removeTelegramWidget() {
     const script = document.getElementById('telegram-widget-script');
@@ -82,14 +84,18 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
           console.log('User data:', data.token);
           this.login_user()
         },
-        (error) => {
-          console.error('Error fetching user data:', error);
+        (error: any) => {
+          if (error.status) {
+            this.router.navigate(['/error', { num: error.status }]);
+          } else {
+            this.router.navigate(['/error', { num: 500 }]);
+          }
         }
       );
-      
+
     });
   }
-  
+
 
   login_enter() {
     this.popUpEntryService.visible = false;
@@ -98,7 +104,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       (data) => {
         this.tokenService.setToken(data.token);
         console.log('User data:', data.token);
-       
+
         this.popUpEntryService.userVisible = true;
         this.popUpEntryService.visible = false;
         this.login_user()
@@ -110,7 +116,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
   }
 
-  login_user(){
+  login_user() {
     this.popUpEntryService.visible = false;
 
     this.popUpEntryService.getUser().subscribe(
@@ -123,10 +129,11 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
         console.error('Error fetching user data:', error);
       }
     );
+    this.closePopUp()
   }
 
 
-  
+
   closePopUp() {
     this.popUpEntryService.visible = false;
   }

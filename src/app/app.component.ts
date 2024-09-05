@@ -7,7 +7,7 @@ import { SettingHeaderService } from './components/setting-header.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'ucomand';
+  title = 'uteam';
 
   constructor(public settingHeaderService: SettingHeaderService){
 

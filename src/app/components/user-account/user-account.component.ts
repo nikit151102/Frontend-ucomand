@@ -6,7 +6,7 @@ import { SettingHeaderService } from '../setting-header.service';
 import { ViewCardService } from '../view-card/view-card.service';
 import { DomainService } from '../domain.service';
 import { UserAccountService } from './user-account.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-account',
@@ -20,7 +20,8 @@ export class UserAccountComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private settingHeaderService: SettingHeaderService, public viewCardService: ViewCardService, 
     private domainService: DomainService, private userAccountService: UserAccountService,
-    private cdRef: ChangeDetectorRef ) {
+    private cdRef: ChangeDetectorRef, 
+    private router: Router  ) {
     this.settingHeaderService.shared = true;
   }
 
@@ -56,8 +57,12 @@ export class UserAccountComponent implements OnInit, OnDestroy {
       
       this.vacancies = await this.userAccountService.getVacanciesData(id).toPromise();
       this.resumes = await this.userAccountService.getResumessData(id).toPromise();
-    } catch (error) {
-      console.error('Error loading data', error);
+    } catch (error: any) {
+     if (error.status) {
+       this.router.navigate(['/error', { num: error.status }]);
+     } else {
+       this.router.navigate(['/error', { num: 500 }]);
+     }
     }
   }
   

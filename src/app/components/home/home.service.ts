@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class HomeService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   typeToggle: string = 'vacancy';
   vacancies: any;
@@ -30,22 +31,34 @@ export class HomeService {
     }
     const typeSort = localStorage.getItem('typeSort');
     const queryParams = `page=0&size=60&sorts=${typeSort}`;
-   
+
     return this.http.post(`${this.domain}/${type}/getAll?${queryParams}`, savedFilters);
   }
 
-  getVacancies(){
+  getVacancies() {
     this.getCardData('vacancies').subscribe(data => {
-      this.vacancies = data; 
+      this.vacancies = data;
+    }, (error: any) => {
+      if (error.status) {
+        this.router.navigate(['/error', { num: error.status }]);
+      } else {
+        this.router.navigate(['/error', { num: 500 }]);
+      }
     });
   }
 
-  getResumes(){
+  getResumes() {
     this.getCardData('resumes').subscribe(data => {
-      this.resumes = data; 
+      this.resumes = data;
+    }, (error: any) => {
+      if (error.status) {
+        this.router.navigate(['/error', { num: error.status }]);
+      } else {
+        this.router.navigate(['/error', { num: 500 }]);
+      }
     });
   }
-  
+
   saveFilters(filters: any): void {
     sessionStorage.setItem('bodyFilters', JSON.stringify(filters));
   }

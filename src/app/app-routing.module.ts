@@ -1,7 +1,9 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageErrorComponent } from './components/page-error/page-error.component';
 import { AuthGuard } from './components/personal-account/auth.guard';
+import { PageErrorGuard } from './components/page-error/page-error.guard';
+import { GlobalErrorHandler } from './global-error-handler.service';
 
 
 const routes: Routes = [
@@ -33,6 +35,7 @@ const routes: Routes = [
   {
     path: 'error', component:PageErrorComponent
   },
+  { path: '**', redirectTo: '/error' }
   
 ];
 

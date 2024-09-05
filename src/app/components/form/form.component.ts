@@ -80,8 +80,7 @@ export class FormComponent implements OnInit {
         this.form.get('motivations')?.setValue(
           this.motivations.filter(tag => this.selectedTags.some(st => st.name === tag.name))
         );
-      },
-      error: (error) => console.error('Ошибка при загрузке тегов:', error)
+      }
     });
 
     this.settingHeaderService.backbtn = true;
@@ -208,9 +207,14 @@ export class FormComponent implements OnInit {
         this.formSettingService.putDataById(typeEndpoint, formData, id).subscribe(
           (response) => {
             this.handleSuccess(response, typeEndpoint)
-   
           },
-          (error) => console.error('Ошибка при изменении данных:', error)
+          (error:any) => {
+            if (error.status) {
+              this.router.navigate(['/error', { num: error.status }]);
+            } else {
+              this.router.navigate(['/error', { num: 500 }]);
+            }
+          }
         );
       }
     } else {
@@ -218,7 +222,13 @@ export class FormComponent implements OnInit {
         (response) => {
           this.handleSuccess(response, typeEndpoint)
         },
-        (error) => console.error('Ошибка при отправке данных:', error)
+        (error:any) => {
+          if (error.status) {
+            this.router.navigate(['/error', { num: error.status }]);
+          } else {
+            this.router.navigate(['/error', { num: 500 }]);
+          }
+        }
       );
 
     }

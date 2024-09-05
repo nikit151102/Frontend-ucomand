@@ -13,7 +13,8 @@ export class SettingHeaderService {
   isheader: boolean = true;
   searchinputVisible: boolean = false;
   isSticky: boolean = false;
-
+  isFooter: boolean = true;
+  
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {

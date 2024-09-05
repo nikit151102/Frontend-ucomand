@@ -28,6 +28,9 @@
     margin-top: 60px;
 }
 
+
+
+
 /* Адаптивные стили для мобильных устройств */
 @media (max-width: 768px) {
     .container_header {

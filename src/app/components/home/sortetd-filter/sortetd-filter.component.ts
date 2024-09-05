@@ -12,6 +12,7 @@ import { forkJoin } from 'rxjs';
 import { SettingHeaderService } from '../../setting-header.service';
 import { CheckboxModule } from 'primeng/checkbox';
 import { HomeService } from '../home.service';
+import { Router } from '@angular/router';
 
 interface Tag {
   id: number;
@@ -54,9 +55,10 @@ export class SortetdFilterComponent implements OnInit {
     public settingHeaderService: SettingHeaderService,
     private fb: FormBuilder,
     private homeService: HomeService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef, 
+    private router: Router
   ) {
-    // Initialize the reactive form
+
     this.form = this.fb.group({
       profession: [[]],
       skills: [[]],
@@ -78,7 +80,11 @@ export class SortetdFilterComponent implements OnInit {
         this.loadFiltersFromLocalStorage();
       },
       error: (error: any) => {
-        console.error('Ошибка при загрузке тегов:', error);
+        if (error.status) {
+          this.router.navigate(['/error', { num: error.status }]);
+        } else {
+          this.router.navigate(['/error', { num: 500 }]);
+        }
       }
     });
   }

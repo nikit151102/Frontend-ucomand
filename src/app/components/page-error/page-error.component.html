@@ -1,22 +1,28 @@
 <div class="main">
     <div class="text-background">
-        405
+        {{content.numError}}
       </div>
     <div class="container" [ngStyle]="{'background': content.Bgimg}">
         <div class="img">
-            <img [src]="content.imageSource">
-        </div>
+            <img src="assets/error/ups.png" alt="Image">
+            <div class="text-img">Упс...</div>
+          </div>
         <div class="content" >
             <div class="text">
                 <p class="title">
-                    Что-то пошло не так!
+                    {{ content.title }}
                 </p>
+                
                 <p class="subtitle">
                     {{ content.subtitle }}
                 </p>
             </div>
             <div class="btn">
-                <a class="link">Написать в тех. поддержку</a>
+                <ng-container [ngSwitch]="content.btn">
+                    <a *ngSwitchCase="'главная'" class="link" routerLink="/">На главную</a>
+                    <a *ngSwitchCase="'ок'" class="link" href="/">Ок</a>
+                    <a *ngSwitchDefault class="link" routerLink="/support">Написать в тех. поддержку</a>
+                  </ng-container>
             </div>
            
             </div>

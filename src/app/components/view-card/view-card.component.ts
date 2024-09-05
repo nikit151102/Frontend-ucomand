@@ -10,11 +10,14 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { ResumeComponent } from './resume/resume.component';
 import { VacancyComponent } from './vacancy/vacancy.component';
 import { ResumeService } from '../personal-account/services/resume.service';
+import { PageErrorComponent } from '../page-error/page-error.component';
+import { ErrorViewCardComponent } from './error-view-card/error-view-card.component';
+import { GlobalErrorHandler } from '../../global-error-handler.service';
 
 @Component({
   selector: 'app-view-vacancy',
   standalone: true,
-  imports: [CommonModule, VacancyComponent, ResumeComponent, SkeletonModule],
+  imports: [CommonModule, VacancyComponent, ResumeComponent, SkeletonModule, PageErrorComponent, ErrorViewCardComponent],
   templateUrl: './view-card.component.html',
   styleUrls: ['./view-card.component.css']
 })
@@ -23,9 +26,11 @@ export class ViewCardComponent implements OnInit {
   imagePath: string = '';
   domainName: string = '';
   visibleCard: boolean = false;
+  visibleError: boolean = false;
   dataCard: any;
   typeCard: any;
   currentUser: any;
+  numberError!: number;
 
   constructor(
     public viewCardService: ViewCardService,
@@ -35,7 +40,8 @@ export class ViewCardComponent implements OnInit {
     private domainService: DomainService,
     private popUpEntryService: PopUpEntryService,
     private route: ActivatedRoute,
-    private resumeService: ResumeService) {}
+    private resumeService: ResumeService,
+  ) { }
 
   ngOnInit(): void {
     this.typeCard = localStorage.getItem('routeTypeCard');
@@ -48,16 +54,29 @@ export class ViewCardComponent implements OnInit {
         (data) => {
           this.dataCard = data;
           this.visibleCard = true;
+          this.visibleError = false;
           this.domainName = this.domainService.setDomain(this.dataCard.user.freeLink);
           this.domainService.checkImageExists(this.domainName).then((path) => {
             this.imagePath = path;
           });
           this.viewCardService.getCurrentUser().subscribe(user => {
             this.currentUser = user;
-            console.log("user",user)
+            console.log("user", user)
           });
         },
         (error) => {
+          if (error.status == 404) {
+            this.visibleCard = false;
+            this.visibleError = false;
+            this.settingHeaderService.isheader = false;
+            this.settingHeaderService.isFooter = false;
+            this.numberError = error.status;
+          } else {
+            this.visibleCard = false;
+            this.visibleError = true;
+            this.numberError = error.status;
+             this.router.navigate(['/error', { num: error.status }]);
+          }
           console.error('Ошибка при загрузке данных:', error);
         }
       );
@@ -74,8 +93,8 @@ export class ViewCardComponent implements OnInit {
 
   setArchive(event: Event) {
     event.stopPropagation();
-      this.resumeService.toggleResumeArchive(this.dataCard);
-      this.router.navigate([`/myaccount`, this.dataCard.user.id]);
+    this.resumeService.toggleResumeArchive(this.dataCard);
+    this.router.navigate([`/myaccount`, this.dataCard.user.id]);
   }
 
 }
