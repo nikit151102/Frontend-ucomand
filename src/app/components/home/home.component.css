@@ -53,9 +53,7 @@
     .card-container {
         columns: 2;
     }
-    app-one-section{
-        z-index: 0;
-    }
+ 
 }
 
 
@@ -79,5 +77,6 @@
     }
     .sticky-filter{
         top: 115px;
+        z-index: 1;
     }
 }

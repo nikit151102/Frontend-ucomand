@@ -17,26 +17,28 @@ import { SkeletCardComponent } from './skelet-card/skelet-card.component';
   standalone: true,
   imports: [CommonModule, OneSectionComponent, BackgroundImgsComponent, SearchComponent, CardVacancyComponent, SortetdFilterComponent, CardResumeComponent, SkeletCardComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  skeletonArray = new Array(10); 
+  skeletonArray = new Array(10);
   loading: boolean = true;
-  constructor(private viewCardService: ViewCardService, public settingHeaderService: SettingHeaderService, private router: Router, public homeService: HomeService) {
+
+  constructor(
+    private viewCardService: ViewCardService, 
+    public settingHeaderService: SettingHeaderService, 
+    private router: Router, 
+    public homeService: HomeService
+  ) {
     this.settingHeaderService.post = false;
     this.settingHeaderService.shared = false;
     this.settingHeaderService.backbtn = false;
   }
 
   ngOnInit() {
-
-    setTimeout(() => {
-      this.homeService.getVacancies();
-      this.homeService.getResumes();
-      this.homeService.toggleSortDirection();
-      this.loading = false;
-    }, 200);
+    this.homeService.loadData();
   }
+
+  
 
   viewCard(cardValue: any, type: string, route: string) {
     this.viewCardService.selectedCard = cardValue;
@@ -45,6 +47,7 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('routeTypeCard', type);
     this.router.navigate([`/${route}`, cardValue]);
 
+    // Показать скелетоны при изменении данных
+    this.homeService.loadData();
   }
-
 }

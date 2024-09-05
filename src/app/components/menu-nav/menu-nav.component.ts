@@ -121,8 +121,10 @@ export class MenuNavComponent implements OnInit {
     if(!savedTheme){
       this.activeTopic = this.activeTopic === 'light' ? 'dark' : 'light';
       this.sidebarVisible = false;
+      this.homeService.changeTheme(this.activeTopic);
     }else{
       this.activeTopic = savedTheme;
+      this.homeService.changeTheme(this.activeTopic);
     }
     localStorage.setItem('theme', this.activeTopic);
     if (this.activeTopic === 'dark') {

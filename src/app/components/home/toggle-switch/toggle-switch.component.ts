@@ -20,6 +20,6 @@ export class ToggleSwitchComponent {
 
   toggle(button: string) {
     this.activeButton = button;
-    this.homeService.typeToggle = button;
+    this.homeService.toggleType(button);
   }
 }

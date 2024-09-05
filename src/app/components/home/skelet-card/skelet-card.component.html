@@ -1,21 +1,16 @@
 <div class="card">
     <p class="title">
-        <p-skeleton height="2rem" styleClass="mb-2" />
+        <p-skeleton height="2rem" styleClass="mb-2" [style]="{'background': background}"/>
     </p>
     <div class="chapterCard">
         <p class="chapterCard-title" style="margin-bottom: 0;">
             Ищу:
         </p>
         <div class="lookingCard">
-            <p class="chapterCard-value" style="margin-top: 0.5rem; width: 90%; margin-bottom: 5px;">
-                <p-skeleton height="2rem" styleClass="mb-2" />
+            <p class="chapterCard-value" style="margin-top: 0.5rem; width: 100%; margin-bottom: 5px;">
+                <p-skeleton height="2rem" styleClass="mb-2"  [style]="{'background': background}"/>
             </p>
 
-        </div>
-        <div class="lookingCard">
-            <p class="chapterCard-value-eng" >
-                <p-skeleton height="2rem" styleClass="mb-2" />
-            </p>
         </div>
         
     </div>
@@ -23,29 +18,29 @@
         <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
             Навыки:
         </p>
-        <div class="tags">
-            <p-skeleton height="2rem" styleClass="mb-2" />
+        <div>
+            <p-skeleton height="2rem" styleClass="skeleton mb-2" [style]="{'background': background}"/>
         </div>
     </div>
     <div class="chapterCard">
         <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
             Мотивация:
         </p>
-        <div class="motivations">
-            <p-skeleton height="2rem" styleClass="mb-2" />
+        <div >
+            <p-skeleton height="2rem" styleClass="mb-2" [style]="{'background': background}"/>
         </div>
     </div>
     <div class="profile">
         <div class="leftProfileChapter">
             <div class="logo">
-                <p-skeleton shape="circle" size="5rem" />
+                <p-skeleton shape="circle" size="5rem" [style]="{'background': background}"/>
             </div>
             <div style="display: flex; flex-wrap: wrap; flex-direction: column; justify-content: flex-end; margin-bottom: 2px;">
-                <p class="fullName" style="margin: 0;">
-                    <p-skeleton height="2rem" styleClass="mb-2" />
+                <p style="margin: 0;">
+                    <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}"/>
                 </p>
-                <p class="fullName" style="margin: 0;">
-                    <p-skeleton height="2rem" styleClass="mb-2" />
+                <p  style="margin: 0;">
+                    <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}"/>
                 </p>
             </div>
            
@@ -55,7 +50,7 @@
                 размещено
             </p>
             <p class="dateVacancy dateValue">
-                <p-skeleton height="2rem" styleClass="mb-2" />
+                <p-skeleton height="1rem" styleClass="mb-2" [style]="{'background': background}"/>
             </p>
         </div>
         
