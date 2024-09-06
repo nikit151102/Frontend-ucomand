@@ -51,20 +51,20 @@
     <div class="profile">
         <div class="leftProfileChapter">
             <div class="logo">
-                <ng-container *ngIf="cardItem.floor === 'MALE'">
+                <ng-container *ngIf="cardItem?.user?.gender === 'MALE'">
                     <img src="assets/male.png" alt="logo">
                 </ng-container>
-                <ng-container *ngIf="cardItem.floor === 'FEMALE'">
+                <ng-container *ngIf="cardItem?.user?.gender === 'FEMALE'">
                     <img src="assets/famale.png" alt="logo">
                 </ng-container>
             </div>
             
             <div style="display: flex; flex-wrap: wrap; flex-direction: column; justify-content: flex-end; margin-bottom: 2px;">
                 <p class="fullName" style="margin: 0;">
-                    {{cardItem.lastName}}
+                    {{cardItem?.user?.lastName}}
                 </p>
                 <p class="fullName" style="margin: 0;">
-                    {{cardItem.firstName}}
+                    {{cardItem?.user?.firstName}}
                 </p>
             </div>
            

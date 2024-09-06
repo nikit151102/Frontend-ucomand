@@ -9,12 +9,11 @@ import { UserAccountService } from './user-account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SkeletonModule } from 'primeng/skeleton';
 import { HomeService } from '../home/home.service';
-import { CardSkeletonComponent } from './card-skeleton/card-skeleton.component';
 
 @Component({
   selector: 'app-user-account',
   standalone: true,
-  imports: [CommonModule, CardPersonalResumeComponent, CardPersonalVacancyComponent, SkeletonModule, CardSkeletonComponent],
+  imports: [CommonModule, CardPersonalResumeComponent, CardPersonalVacancyComponent, SkeletonModule],
   templateUrl: './user-account.component.html',
   styleUrl: './user-account.component.css'
 })
@@ -39,22 +38,13 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
     this.settingHeaderService.shared = true;
     this.settingHeaderService.backbtn = true;
-    this.homeService.activeTheme$.subscribe(theme => {
-      this.applyTheme(theme);
-    });
+  
     this.route.paramMap.subscribe(params => {
       this.userId = params.get('id')!;
       if (this.userId) {
         this.loadData(this.userId);
       }
     });
-  }
-  private applyTheme(theme: string) {
-    if (theme === 'dark') {
-      this.background = '#3a3a3a';
-    } else {
-      this.background = '#e0e0e0';
-    }
   }
 
   async loadData(id: string): Promise<void> {

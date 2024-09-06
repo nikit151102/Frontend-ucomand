@@ -3,30 +3,22 @@
         <div class="information">
             <div class="ProfileChapter">
                 <div class="logo">
-                    <ng-container *ngIf="!userData">
-                        <div style="width: 100px;">
-                            <p-skeleton shape="circle" size="100px" [style]="{'background': background}" />
-                        </div>
-
-                    </ng-container>
-                    <ng-container *ngIf="userData?.gender == 'MALE' && userData">
+                  
+                    <ng-container *ngIf="userData?.gender == 'MALE'">
                         <img src="assets/male.png" alt="logo" class="logoImg">
                     </ng-container>
-                    <ng-container *ngIf="userData?.gender == 'FEMALE' && userData">
+                    <ng-container *ngIf="userData?.gender == 'FEMALE'">
                         <img src="assets/famale.png" alt="logo" class="logoImg">
                     </ng-container>
                 </div>
 
                 <div
                     style="display: flex; flex-wrap: wrap; align-content: flex-end; flex-direction: column; justify-content: flex-end">
-                    <div class="skeleton-tag" *ngIf="!userData">
-                        <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}" />
-                        <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}" />
-                    </div>
-                    <p class="fullName" *ngIf="userData">
+                 
+                    <p class="fullName">
                         {{userData?.lastName}}
                     </p>
-                    <p class="fullName" *ngIf="userData">
+                    <p class="fullName">
                         {{userData?.firstName}}
                     </p>
                 </div>
@@ -34,10 +26,7 @@
             <div class="phoneDate">
                 <div class="date_registration">
                     <p class="title">На платформе с </p>
-                    <div class="skeleton-tag" *ngIf="!userData">
-                        <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}" />
-                    </div>
-                    <span *ngIf="userData">
+                    <span>
                         {{ userData.dateOfRegistration | date: 'dd-MM-yyyy' }}
                     </span>
                 </div>
@@ -48,19 +37,12 @@
             <div class="personal-details">
                 <div class="location" >
                     <p class="title">Город:</p>
-                    <div class="skeleton-tag" *ngIf="!userData"  >
-                        <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}"  />
-                    </div>
                     <span class="location-value"
-                        *ngIf="userData.cityOfResidence && userData">{{userData.cityOfResidence.name}}</span>
-
+                        *ngIf="userData.cityOfResidence">{{userData?.cityOfResidence?.name}}</span>
                 </div>
                 <div class="age">
                     <p class="title">Возраст:</p>
-                    <div class="skeleton-tag" *ngIf="!userData">
-                        <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}" />
-                    </div>
-                    <span class="location-value" *ngIf="userData">{{userData.age}}</span>
+                    <span class="location-value" >{{userData?.age}}</span>
                 </div>
             </div>
         </div>
@@ -70,12 +52,8 @@
                     Портфолио:
                 </p>
                 <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
-                    <div class="skeleton-tag" *ngIf="!userData">
-                        <p-skeleton height="2rem" styleClass="mb-2" borderRadius="16px"
-                            [style]="{'background': background}" />
-                    </div>
                     <a class="contacts-item" [href]="userData.freeLink"
-                        *ngIf="userData.freeLink && imagePath.length>0 && userData">
+                        *ngIf="userData.freeLink && imagePath.length>0">
                         <img [src]="imagePath" alt="logo" width="24px">
                         <p>{{domainName}}</p>
                     </a>
@@ -86,12 +64,8 @@
                     Контакты:
                 </p>
                 <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
-                    <div class="skeleton-tag" *ngIf="!userData">
-                        <p-skeleton height="2rem" styleClass="mb-2" borderRadius="16px"
-                            [style]="{'background': background}" />
-                    </div>
                     <a class="contacts-item" [href]="'https://t.me/' + userData.telegram" target="_blank"
-                        *ngIf="userData.telegram && userData">
+                        *ngIf="userData.telegram">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_669_1177)">
                                 <path
@@ -121,10 +95,7 @@
 
             <div class="date_registration desktopDate">
                 <p class="title">На платформе с </p>
-                <div class="skeleton-tag" *ngIf="!userData">
-                    <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}" />
-                </div>
-                <span *ngIf="userData">
+                <span>
                     {{ userData.dateOfRegistration | date: 'dd-MM-yyyy' }}
                 </span>
             </div>
@@ -136,16 +107,8 @@
                 Активные резюме:
             </p>
             <div class="cards">
-                <ng-container  *ngIf="!userData">
-                    <app-card-skeleton [title]="false"></app-card-skeleton>
-                    <app-card-skeleton [title]="false"></app-card-skeleton>
-                    <app-card-skeleton [title]="false"></app-card-skeleton>
-                </ng-container>
-                
-                <ng-container  *ngIf="userData">
                     <app-card-personal-resume *ngFor="let itemResume of resumes"
                     [cardItem]="itemResume"></app-card-personal-resume>
-                </ng-container>
             </div>
         </div>
         <div class="container-vacancy">
@@ -153,19 +116,8 @@
                 Активные вакансии:
             </p>
             <div class="cards">
-
-                <ng-container  *ngIf="!userData">
-                    <app-card-skeleton [title]="true"></app-card-skeleton>
-                    <app-card-skeleton [title]="true"></app-card-skeleton>
-                    <app-card-skeleton [title]="true"></app-card-skeleton>
-                </ng-container>
-                
-                <ng-container  *ngIf="userData">
                     <app-card-personal-vacancy [cardItem]="itemVacancy"
-                    *ngFor="let itemVacancy of vacancies"></app-card-personal-vacancy>
-                </ng-container>
-
-                
+                    *ngFor="let itemVacancy of vacancies"></app-card-personal-vacancy> 
             </div>
         </div>
     </div>

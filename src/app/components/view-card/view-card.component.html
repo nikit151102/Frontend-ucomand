@@ -1,19 +1,10 @@
-<div class="container" *ngIf="visibleCard && !visibleError">
+<div class="container" *ngIf="visibleCard && !visibleError" @fadeAnimation>
     <div class="left-part">
 
-
-        <ng-container *ngIf="!dataCard && routeName == 'vacancy'" @fadeAnimation>
-            <app-skelet-card [title]="true"></app-skelet-card>
-        </ng-container>
-        <ng-container *ngIf="!dataCard && routeName == 'resume'" @fadeAnimation>
-            <app-skelet-card [title]="false"></app-skelet-card>
-        </ng-container>
-
-
-        <ng-container *ngIf="typeCard == 'vacancies' && dataCard" @fadeAnimation>
+        <ng-container *ngIf="typeCard == 'vacancies'" @fadeAnimation>
             <app-vacancy [data]="dataCard"></app-vacancy>
         </ng-container>
-        <ng-container *ngIf="typeCard == 'resumes' && dataCard" @fadeAnimation>
+        <ng-container *ngIf="typeCard == 'resumes'" @fadeAnimation>
             <app-resume [data]="dataCard"></app-resume>
         </ng-container>
     </div>
@@ -21,28 +12,22 @@
         <div class="right-path-content">
             <div class="ProfileChapter">
                 <div class="logo">
-                    <ng-container *ngIf="!dataCard">
-                        <p-skeleton shape="circle" size="5rem" [style]="{'background': background}" />
-                    </ng-container>
-                    
-                    <ng-container *ngIf="dataCard?.user?.gender == 'MALE' && dataCard">
+ 
+                    <ng-container *ngIf="dataCard?.user?.gender == 'MALE'">
                         <img src="assets/male.png" alt="logo" class="logoImg"
                             style="border-radius: 50%; width:92px; height:92px">
                     </ng-container>
-                    <ng-container *ngIf="dataCard?.user?.gender == 'FEMALE' && dataCard">
+                    <ng-container *ngIf="dataCard?.user?.gender == 'FEMALE' ">
                         <img src="assets/famale.png" alt="logo" class="logoImg"
                             style="border-radius: 50%; width:92px; height:92px">
                     </ng-container>
                 </div>
                 <div style="display: flex; flex-wrap: wrap; align-content: flex-end; flex-direction: column;">
-                    <div class="skeleton-tag" *ngIf="!dataCard" >
-                        <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}" />
-                        <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}" />
-                    </div>
-                    <p class="fullName" *ngIf="dataCard" >
+                    
+                    <p class="fullName" >
                         {{dataCard?.user?.lastName}}
                     </p>
-                    <p class="fullName" *ngIf="dataCard" >
+                    <p class="fullName" >
                         {{dataCard?.user?.firstName}}
                     </p>
                 </div>
@@ -57,12 +42,7 @@
                         </p>
                         <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
                             
-                            <div class="skeleton-tag" *ngIf="!dataCard" >
-                                <p-skeleton height="2rem" styleClass="mb-2" borderRadius="16px" [style]="{'background': background}" />
-                            </div>
-                            
-
-                            <a class="contacts-item" [href]="dataCard?.user?.freeLink" *ngIf="dataCard">
+                            <a class="contacts-item" [href]="dataCard?.user?.freeLink" >
                                 <img [src]="imagePath" alt="logo" width="24px">
                                 <p>{{domainName}}</p>
                             </a>
@@ -75,12 +55,10 @@
                         </p>
                         <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
 
-                            <div class="skeleton-tag" *ngIf="!dataCard" >
-                                <p-skeleton height="2rem" styleClass="mb-2" borderRadius="16px" [style]="{'background': background}" />
-                            </div>
+          
 
                             <a class="contacts-item" [href]="'https://t.me/' + dataCard?.user?.telegram"
-                                target="_blank" *ngIf="dataCard">
+                                target="_blank" >
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_669_1177)">

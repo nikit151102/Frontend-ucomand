@@ -9,13 +9,25 @@ import { Router } from '@angular/router';
 import { PopUpAvatarComponent } from '../../pop-up-avatar/pop-up-avatar.component';
 import { PopUpAvatarService } from '../../pop-up-avatar/pop-up-avatar.service';
 import { Subscription } from 'rxjs';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-personal-data',
   standalone: true,
   imports: [RadioButtonModule, CommonModule, FormsModule, ReactiveFormsModule, AutoCompleteModule, PopUpAvatarComponent],
   templateUrl: './personal-data.component.html',
-  styleUrls: ['./personal-data.component.css']
+  styleUrls: ['./personal-data.component.css'],
+  animations: [
+    trigger('fadeAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class PersonalDataComponent implements OnInit {
   personalDataForm: FormGroup;

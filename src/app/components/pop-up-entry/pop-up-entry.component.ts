@@ -87,11 +87,12 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
           this.tokenService.setToken(data.token);
           this.popUpEntryService.visible = false;
           console.log('User data:', data.token);
-          this.login_user()
+          
           this.closePopUp()
         },
       );
     });
+    this.login_user()
   }
 
 
@@ -134,6 +135,8 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
 
   closePopUp() {
-    this.popUpEntryService.visible = false;
+      this.popUpEntryService.visible = false; 
+      this.telegramWidgetLoaded = false; 
+      this.removeTelegramWidget(); 
   }
 }

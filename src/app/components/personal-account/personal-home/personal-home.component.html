@@ -1,32 +1,23 @@
-<div class="container">
+<div class="container" @fadeAnimation>
     <div class="first-part">
         <div class="information">
             <div class="ProfileChapter">
-                <div class="logo">
-                    <ng-container *ngIf="!dataCurrentUser">
-                        <div style="width: 92px;">
-                            <p-skeleton shape="circle" size="5rem" [style]="{'background': background}" />
-                        </div>
+                <div class="logo" @fadeAnimation>
 
-                    </ng-container>
-                    <ng-container *ngIf="dataCurrentUser?.gender == 'MALE' && dataCurrentUser">
+                    <ng-container *ngIf="dataCurrentUser?.gender == 'MALE'">
                         <img src="assets/male.png" alt="logo" class="logoImg">
                     </ng-container>
-                    <ng-container *ngIf="dataCurrentUser?.gender == 'FEMALE' && dataCurrentUser">
+                    <ng-container *ngIf="dataCurrentUser?.gender == 'FEMALE'">
                         <img src="assets/famale.png" alt="logo" class="logoImg">
                     </ng-container>
                 </div>
 
-                <div
+                <div @fadeAnimation
                     style="display: flex; flex-wrap: wrap; align-content: flex-end; flex-direction: column; justify-content: flex-end">
-                    <div class="skeleton-tag" *ngIf="!dataCurrentUser">
-                        <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}" />
-                        <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}" />
-                    </div>
-                    <p class="fullName" *ngIf="dataCurrentUser">
+                    <p class="fullName">
                         {{dataCurrentUser?.user?.lastName}}
                     </p>
-                    <p class="fullName" *ngIf="dataCurrentUser">
+                    <p class="fullName">
                         {{dataCurrentUser?.user?.firstName}}
                     </p>
                 </div>
@@ -34,10 +25,7 @@
             <div class="phoneDate">
                 <div class="date_registration">
                     <p class="title">На платформе с </p>
-                    <div class="skeleton-tag" *ngIf="!dataCurrentUser">
-                        <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}" />
-                    </div>
-                    <span *ngIf="dataCurrentUser">
+                    <span>
                         {{ dataCurrentUser.dateOfRegistration | date: 'dd-MM-yyyy' }}
                     </span>
                 </div>
@@ -48,34 +36,23 @@
             <div class="personal-details" *ngIf="isDataComplete">
                 <div class="location">
                     <p class="title">Город:</p>
-                    <div class="skeleton-tag" *ngIf="!dataCurrentUser">
-                        <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}" />
-                    </div>
                     <span class="location-value"
-                        *ngIf="dataCurrentUser.cityOfResidence && dataCurrentUser">{{dataCurrentUser.cityOfResidence.name}}</span>
-
+                        *ngIf="dataCurrentUser.cityOfResidence ">{{dataCurrentUser.cityOfResidence.name}}</span>
                 </div>
                 <div class="age">
                     <p class="title">Возраст:</p>
-                    <div class="skeleton-tag" *ngIf="!dataCurrentUser">
-                        <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}" />
-                    </div>
-                    <span class="location-value" *ngIf="dataCurrentUser">{{dataCurrentUser.age}}</span>
+                    <span class="location-value">{{dataCurrentUser.age}}</span>
                 </div>
             </div>
         </div>
-        <div class="contacts">
+        <div class="contacts" @fadeAnimation>
             <div>
                 <p class="chapterCard-title">
                     Портфолио:
                 </p>
                 <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
-                    <div class="skeleton-tag" *ngIf="!dataCurrentUser">
-                        <p-skeleton height="2rem" styleClass="mb-2" borderRadius="16px"
-                            [style]="{'background': background}" />
-                    </div>
                     <a class="contacts-item" [href]="dataCurrentUser.freeLink"
-                        *ngIf="dataCurrentUser.freeLink && imagePath.length>0 && dataCurrentUser">
+                        *ngIf="dataCurrentUser.freeLink && imagePath.length>0">
                         <img [src]="imagePath" alt="logo" width="24px">
                         <p>{{domainName}}</p>
                     </a>
@@ -86,12 +63,8 @@
                     Контакты:
                 </p>
                 <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
-                    <div class="skeleton-tag" *ngIf="!dataCurrentUser">
-                        <p-skeleton height="2rem" styleClass="mb-2" borderRadius="16px"
-                            [style]="{'background': background}" />
-                    </div>
                     <a class="contacts-item" [href]="'https://t.me/' + dataCurrentUser.telegram" target="_blank"
-                        *ngIf="dataCurrentUser.telegram && dataCurrentUser">
+                        *ngIf="dataCurrentUser.telegram">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_669_1177)">
                                 <path
@@ -117,7 +90,7 @@
                     </a>
                 </diV>
             </div>
-            <div class="phone-btns">
+            <div class="phone-btns" @fadeAnimation>
                 <div class="phone-btns-edit">
                     <a (click)="getRouting()" style="padding: 0.67rem 1rem;">
                         <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -136,16 +109,13 @@
 
             <div class="date_registration desktopDate">
                 <p class="title">На платформе с </p>
-                <div class="skeleton-tag" *ngIf="!dataCurrentUser">
-                    <p-skeleton height="1rem" styleClass="mb-1" [style]="{'background': background}" />
-                </div>
-                <span *ngIf="dataCurrentUser">
+                <span>
                     {{ dataCurrentUser.dateOfRegistration | date: 'dd-MM-yyyy' }}
                 </span>
             </div>
         </div>
     </div>
-    <div class="message-profile" *ngIf="!isDataComplete">
+    <div class="message-profile" *ngIf="!isDataComplete" @fadeAnimation>
         <p class="title-message">
             Заполните свой профиль!
         </p>
@@ -159,18 +129,12 @@
     </div>
     <div class="second-path">
         <div class="container-cards">
-            <div class="container-resume">
+            <div class="container-resume" @fadeAnimation>
                 <p class="title-cards titleActive ">
                     Активные резюме:
                 </p>
-
                 <div class="cards">
-                    <ng-container *ngIf="!dataCurrentUser">
-                        <app-skeleton [title]="false"></app-skeleton>
-                        <app-skeleton [title]="false"></app-skeleton>
-                    </ng-container>
-                    <ng-container *ngIf="dataCurrentUser">
-                        <app-personal-resume
+                        <app-personal-resume @fadeAnimation
                             *ngFor="let itemResume of resumeService.filterResumes('CREATOR_ONLY')| slice:0:itemsToShowResume"
                             [cardItem]="itemResume"></app-personal-resume>
                         <div class="block-switchCards">
@@ -179,9 +143,6 @@
                                 {{ showAllResume ? 'Свернуть' : 'Показать все' }}
                             </a>
                         </div>
-                    </ng-container>
-
-
                 </div>
                 <div class="message-cards titleActive" *ngIf="resumeService.filterResumes('CREATOR_ONLY').length==0">
                     Нет активных резюме
@@ -192,7 +153,7 @@
                     Архив резюме:
                 </p>
                 <div class="cards">
-                    <app-archive-resume
+                    <app-archive-resume @fadeAnimation
                         *ngFor="let itemResume of resumeService.filterResumes('EVERYBODY') | slice:0:itemsToShowArchiveResume "
                         [cardItem]="itemResume"></app-archive-resume>
                     <div class="block-switchCards">
@@ -207,18 +168,13 @@
                 </div>
             </div>
         </div>
-        <div class="container-cards">
+        <div class="container-cards" @fadeAnimation>
             <div class="container-vacancy">
                 <p class="title-cards titleActive">
                     Активные вакансии:
                 </p>
                 <div class="cards">
-                    <ng-container *ngIf="!dataCurrentUser">
-                        <app-skeleton [title]="true"></app-skeleton>
-                        <app-skeleton [title]="true"></app-skeleton>
-                    </ng-container>
-                    <ng-container *ngIf="dataCurrentUser">
-                        <app-personal-vacancy
+                        <app-personal-vacancy @fadeAnimation
                             *ngFor="let itemVacancy of vacancyService.filterVacancies('CREATOR_ONLY') | slice:0:itemsToShowVacancies"
                             [item]="itemVacancy">
                         </app-personal-vacancy>
@@ -228,7 +184,6 @@
                                 {{ showAllVacancies ? 'Свернуть' : 'Показать все' }}
                             </a>
                         </div>
-                    </ng-container>
                 </div>
                 <div class="message-cards titleActive" *ngIf="vacancyService.filterVacancies('CREATOR_ONLY').length==0">
                     Нет активных вакансий
@@ -239,7 +194,7 @@
                     Архив вакансий:
                 </p>
                 <div class="cards">
-                    <app-archive-vacancy [cardItem]="itemVacancy"
+                    <app-archive-vacancy [cardItem]="itemVacancy" @fadeAnimation
                         *ngFor="let itemVacancy of vacancyService.filterVacancies('EVERYBODY') | slice:0:itemsToShowArchiveVacancies"></app-archive-vacancy>
                     <div class="block-switchCards">
                         <a (click)="toggleArchiveVacancies()"

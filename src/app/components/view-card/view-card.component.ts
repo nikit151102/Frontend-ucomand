@@ -12,14 +12,12 @@ import { VacancyComponent } from './vacancy/vacancy.component';
 import { ResumeService } from '../personal-account/services/resume.service';
 import { PageErrorComponent } from '../page-error/page-error.component';
 import { ErrorViewCardComponent } from './error-view-card/error-view-card.component';
-import { SkeletCardComponent } from '../skelet-card/skelet-card.component';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { HomeService } from '../home/home.service';
 
 @Component({
   selector: 'app-view-vacancy',
   standalone: true,
-  imports: [CommonModule, SkeletonModule, VacancyComponent, ResumeComponent, SkeletonModule, PageErrorComponent, ErrorViewCardComponent, SkeletCardComponent],
+  imports: [CommonModule, SkeletonModule, VacancyComponent, ResumeComponent, SkeletonModule, PageErrorComponent, ErrorViewCardComponent],
   templateUrl: './view-card.component.html',
   styleUrls: ['./view-card.component.css'],
   animations: [
@@ -55,31 +53,13 @@ export class ViewCardComponent implements OnInit {
     private popUpEntryService: PopUpEntryService,
     private route: ActivatedRoute,
     private resumeService: ResumeService,
-    private homeService: HomeService
   ) {
     this.visibleError = true;
-    this.route.data.subscribe(data => {
-      this.routeName = data['routeName'];
-      console.log('Route Name:', this.routeName);
-    });
   }
 
-  background: string = '';
 
-
-
-  private applyTheme(theme: string) {
-    if (theme === 'dark') {
-      this.background = '#3a3a3a';
-    } else {
-      this.background = '#e0e0e0';
-    }
-  }
 
   ngOnInit(): void {
-    this.homeService.activeTheme$.subscribe(theme => {
-      this.applyTheme(theme);
-    });
 
     this.typeCard = localStorage.getItem('routeTypeCard');
     this.settingHeaderService.shared = true;
@@ -89,10 +69,7 @@ export class ViewCardComponent implements OnInit {
       const id = +params.get('id')!;
       this.viewCardService.getCardData(id).subscribe(
         (data) => {
-
-          setTimeout(() => {
-            this.dataCard = data;
-          }, 1000);
+          this.dataCard = data;
           this.visibleCard = true;
           this.visibleError = false;
           this.domainName = this.domainService.setDomain(this.dataCard.user.freeLink);

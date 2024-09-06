@@ -19,16 +19,26 @@ import { PopUpExitComponent } from '../../pop-up-exit/pop-up-exit.component';
 import { ResumeService } from '../services/resume.service';
 import { VacancyService } from '../services/vacancy.service';
 import { FormSettingService } from '../../form/form-setting.service';
-import { SkeletonModule } from 'primeng/skeleton';
 import { HomeService } from '../../home/home.service';
-import { SkeletonComponent } from '../skeleton/skeleton.component';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-personal-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, PersonalVacancyComponent, PersonalResumeComponent, ArchiveResumeComponent, ArchiveVacancyComponent, PopUpDeleteComponent, PopUpExitComponent, SkeletonModule, SkeletonComponent],
+  imports: [CommonModule, RouterLink, PersonalVacancyComponent, PersonalResumeComponent, ArchiveResumeComponent, ArchiveVacancyComponent, PopUpDeleteComponent, PopUpExitComponent],
   templateUrl: './personal-home.component.html',
-  styleUrl: './personal-home.component.css'
+  styleUrl: './personal-home.component.css',
+  animations: [
+    trigger('fadeAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class PersonalHomeComponent implements OnInit, OnDestroy {
 
@@ -83,19 +93,12 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
-    this.homeService.activeTheme$.subscribe(theme => {
-      this.applyTheme(theme);
-    });
-
     this.settingHeaderService.shared = true;
     this.settingHeaderService.post = true;
     this.settingHeaderService.backbtn = false;
 
     this.settingHeaderService.shared = true;
     this.settingHeaderService.backbtn = true;
-
-
 
     this.resumeService.subscribeToGetCardsData();
     this.vacancyService.subscribeToGetCardsData();
@@ -136,12 +139,10 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
       )
     }).subscribe(
       ({ user, vacancies, resumes }) => {
-        setTimeout(() => {
           this.dataCurrentUser = user;
         this.vacanciesData = vacancies;
         this.resumesData = resumes;
         this.checkUserData();
-        }, 1000);
        
         console.log("dataCurrentUser", this.dataCurrentUser)
         console.log("resumes", resumes)
@@ -178,6 +179,8 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.isExitPopupVisible = false;
     this.isPopupVisible = false;
+    this.popUpDeleteService.hidePopup();
+    this.popUpExitService.hidePopup();
     this.resumeService.unsubscribeFromGetCardsData();
     this.vacancyService.unsubscribeFromGetCardsData();
     this.subscription.unsubscribe();

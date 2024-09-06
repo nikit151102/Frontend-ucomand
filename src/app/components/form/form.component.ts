@@ -11,6 +11,7 @@ import { forkJoin } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SaveChangesPopupComponent } from './save-changes-popup/save-changes-popup.component';
 import { SaveChangesPopupService } from './save-changes-popup/save-changes-popup.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-form',
@@ -26,7 +27,18 @@ import { SaveChangesPopupService } from './save-changes-popup/save-changes-popup
     SaveChangesPopupComponent
   ],
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.css'],
+  animations: [
+    trigger('fadeAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class FormComponent implements OnInit {
   @ViewChild(MotivationsComponent) motivationsComponent!: MotivationsComponent;

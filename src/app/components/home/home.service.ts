@@ -87,12 +87,10 @@ export class HomeService {
   
 
   loadData() {
-    setTimeout(() => {
       this.getVacancies();
       this.getResumes();
       this.toggleSortDirection();
       this.loading = false; 
-    }, 1000);
   }
 
   loading: boolean = true;
@@ -100,12 +98,10 @@ export class HomeService {
   toggleType(type: any){
     this.typeToggle = type;
     this.loading = true;
-    setTimeout(() => {
       this.getVacancies();
       this.getResumes();
       this.toggleSortDirection();
       this.loading = false; 
-    }, 1000);
   }
 
 

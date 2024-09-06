@@ -10,13 +10,12 @@ import { SettingHeaderService } from '../setting-header.service';
 import { CardResumeComponent } from '../card-resume/card-resume.component';
 import { HomeService } from './home.service';
 import { OneSectionComponent } from './one-section/one-section.component';
-import { SkeletCardComponent } from '../skelet-card/skelet-card.component';
 import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, OneSectionComponent, BackgroundImgsComponent, SearchComponent, CardVacancyComponent, SortetdFilterComponent, CardResumeComponent, SkeletCardComponent],
+  imports: [CommonModule, OneSectionComponent, BackgroundImgsComponent, SearchComponent, CardVacancyComponent, SortetdFilterComponent, CardResumeComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   animations: [
@@ -32,7 +31,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ]
 })
 export class HomeComponent implements OnInit {
-  skeletonArray = new Array(10);
+
   loading: boolean = true;
 
   constructor(
@@ -59,7 +58,6 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('routeTypeCard', type);
     this.router.navigate([`/${route}`, cardValue]);
 
-    // Показать скелетоны при изменении данных
     this.homeService.loadData();
   }
 }
