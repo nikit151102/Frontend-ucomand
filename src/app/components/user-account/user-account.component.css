@@ -34,6 +34,12 @@
     padding: 1rem 2rem 0px 25px;
 }
 
+.skeleton-tag {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
 
 .information-user {
@@ -204,6 +210,10 @@ p {
     width: 6vw;
 }
 
+.phoneDate{
+    display: none;
+}
+
 @media (max-width : 865px) {
 
     .first-part,
@@ -213,6 +223,14 @@ p {
 }
 
 @media (max-width: 789.98px) {
+
+    .phoneDate{
+        display: flex;
+        margin-left: 10px;
+    }
+    .desktopDate{
+        display: none !important;
+    }
     .container {
         width: 100%;
         margin-top: 100px;

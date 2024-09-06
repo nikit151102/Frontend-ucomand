@@ -7,11 +7,14 @@ import { ViewCardService } from '../view-card/view-card.service';
 import { DomainService } from '../domain.service';
 import { UserAccountService } from './user-account.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SkeletonModule } from 'primeng/skeleton';
+import { HomeService } from '../home/home.service';
+import { CardSkeletonComponent } from './card-skeleton/card-skeleton.component';
 
 @Component({
   selector: 'app-user-account',
   standalone: true,
-  imports: [CommonModule, CardPersonalResumeComponent, CardPersonalVacancyComponent],
+  imports: [CommonModule, CardPersonalResumeComponent, CardPersonalVacancyComponent, SkeletonModule, CardSkeletonComponent],
   templateUrl: './user-account.component.html',
   styleUrl: './user-account.component.css'
 })
@@ -21,22 +24,24 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private settingHeaderService: SettingHeaderService, public viewCardService: ViewCardService, 
     private domainService: DomainService, private userAccountService: UserAccountService,
     private cdRef: ChangeDetectorRef, 
-    private router: Router  ) {
+    private router: Router, private homeService: HomeService  ) {
     this.settingHeaderService.shared = true;
   }
 
   userId: string = '';
-  userData: any;
+  userData: any = '';
   vacancies: any;
   resumes: any;
-
+  background: string = '';
   imagePath: string = '';
   domainName: string = '';
 
   async ngOnInit(): Promise<void> {
     this.settingHeaderService.shared = true;
     this.settingHeaderService.backbtn = true;
- 
+    this.homeService.activeTheme$.subscribe(theme => {
+      this.applyTheme(theme);
+    });
     this.route.paramMap.subscribe(params => {
       this.userId = params.get('id')!;
       if (this.userId) {
@@ -44,17 +49,28 @@ export class UserAccountComponent implements OnInit, OnDestroy {
       }
     });
   }
-  
+  private applyTheme(theme: string) {
+    if (theme === 'dark') {
+      this.background = '#3a3a3a';
+    } else {
+      this.background = '#e0e0e0';
+    }
+  }
+
   async loadData(id: string): Promise<void> {
     try {
       const userData = await this.userAccountService.getUserData(id).toPromise();
-      this.userData = userData;
+      setTimeout(() => {
+        this.userData = userData;
+        console.log("userData",userData)
+      }, 1000);
+      
+
       console.log("userData",this.userData)
       if (userData.freeLink) {
         this.domainName = this.domainService.setDomain(userData.freeLink);
         this.imagePath = await this.domainService.checkImageExists(this.domainName);
       }
-      
       this.vacancies = await this.userAccountService.getVacanciesData(id).toPromise();
       this.resumes = await this.userAccountService.getResumessData(id).toPromise();
     } catch (error: any) {
