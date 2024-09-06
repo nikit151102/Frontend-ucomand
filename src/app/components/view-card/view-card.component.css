@@ -27,10 +27,16 @@
 }
 
 
+.skeleton-tag{
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
-
-
-
+.btnSetUser{
+    width: 100%;
+}
 /* right-path */
 
 

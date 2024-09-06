@@ -19,11 +19,14 @@ import { PopUpExitComponent } from '../../pop-up-exit/pop-up-exit.component';
 import { ResumeService } from '../services/resume.service';
 import { VacancyService } from '../services/vacancy.service';
 import { FormSettingService } from '../../form/form-setting.service';
+import { SkeletonModule } from 'primeng/skeleton';
+import { HomeService } from '../../home/home.service';
+import { SkeletonComponent } from '../skeleton/skeleton.component';
 
 @Component({
   selector: 'app-personal-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, PersonalVacancyComponent, PersonalResumeComponent, ArchiveResumeComponent, ArchiveVacancyComponent, PopUpDeleteComponent, PopUpExitComponent],
+  imports: [CommonModule, RouterLink, PersonalVacancyComponent, PersonalResumeComponent, ArchiveResumeComponent, ArchiveVacancyComponent, PopUpDeleteComponent, PopUpExitComponent, SkeletonModule, SkeletonComponent],
   templateUrl: './personal-home.component.html',
   styleUrl: './personal-home.component.css'
 })
@@ -39,11 +42,12 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     public viewCardService: ViewCardService, private personalDataService: PersonalDataService,
     private personalHomeService: PersonalHomeService, private popUpDeleteService: PopUpDeleteService, public popUpExitService: PopUpExitService,
     public resumeService: ResumeService, public vacancyService: VacancyService,
-  private formSettingService:FormSettingService) { }
+  private formSettingService:FormSettingService,
+  private homeService: HomeService) { }
 
   imagePath: string = '';
   domainName: string = '';
-  dataCurrentUser!: User;
+  dataCurrentUser: any = '';
   isDataComplete: boolean = true;
   visiblePage: boolean = false;
   vacanciesData: any;
@@ -79,6 +83,11 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
+    this.homeService.activeTheme$.subscribe(theme => {
+      this.applyTheme(theme);
+    });
+
     this.settingHeaderService.shared = true;
     this.settingHeaderService.post = true;
     this.settingHeaderService.backbtn = false;
@@ -127,10 +136,13 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
       )
     }).subscribe(
       ({ user, vacancies, resumes }) => {
-        this.dataCurrentUser = user;
+        setTimeout(() => {
+          this.dataCurrentUser = user;
         this.vacanciesData = vacancies;
         this.resumesData = resumes;
         this.checkUserData();
+        }, 1000);
+       
         console.log("dataCurrentUser", this.dataCurrentUser)
         console.log("resumes", resumes)
         console.log("vacancies", vacancies)
@@ -192,5 +204,19 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     const userId = localStorage.getItem('userId')
     this.router.navigate([`/myaccount/${userId}/newVacancy`]);
   }
+
+
+  background: string = '';
+
+
+
+  private applyTheme(theme: string) {
+    if (theme === 'dark') {
+      this.background = '#3a3a3a';
+    } else {
+      this.background = '#e0e0e0';
+    }
+  }
+
 
 }

@@ -12,9 +12,9 @@ import { VacancyComponent } from './vacancy/vacancy.component';
 import { ResumeService } from '../personal-account/services/resume.service';
 import { PageErrorComponent } from '../page-error/page-error.component';
 import { ErrorViewCardComponent } from './error-view-card/error-view-card.component';
-import { GlobalErrorHandler } from '../../global-error-handler.service';
 import { SkeletCardComponent } from '../skelet-card/skelet-card.component';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { HomeService } from '../home/home.service';
 
 @Component({
   selector: 'app-view-vacancy',
@@ -55,6 +55,7 @@ export class ViewCardComponent implements OnInit {
     private popUpEntryService: PopUpEntryService,
     private route: ActivatedRoute,
     private resumeService: ResumeService,
+    private homeService: HomeService
   ) {
     this.visibleError = true;
     this.route.data.subscribe(data => {
@@ -63,7 +64,23 @@ export class ViewCardComponent implements OnInit {
     });
   }
 
+  background: string = '';
+
+
+
+  private applyTheme(theme: string) {
+    if (theme === 'dark') {
+      this.background = '#3a3a3a';
+    } else {
+      this.background = '#e0e0e0';
+    }
+  }
+
   ngOnInit(): void {
+    this.homeService.activeTheme$.subscribe(theme => {
+      this.applyTheme(theme);
+    });
+
     this.typeCard = localStorage.getItem('routeTypeCard');
     this.settingHeaderService.shared = true;
     this.settingHeaderService.backbtn = true;
