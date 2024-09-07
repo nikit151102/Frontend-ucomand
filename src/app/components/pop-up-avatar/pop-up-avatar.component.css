@@ -95,7 +95,26 @@ p {
     flex-wrap: wrap;
     gap: 5px;
     justify-content: center;
+    overflow-y: auto;
+    height: 70vh; 
 }
+
+
+
+
+.avatar-container::-webkit-scrollbar {
+    width: 0;
+    background: transparent; 
+}
+
+.avatar-container::-webkit-scrollbar-thumb {
+    background: transparent; 
+}
+
+.avatar-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
 
 app-item-avatar {
     flex: 1 1 calc(25% - 10px);
