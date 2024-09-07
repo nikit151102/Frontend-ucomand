@@ -46,20 +46,18 @@ export class OneSectionComponent implements AfterViewInit {
   
       const shouldApplySticky = scrollTop >= (elementTop - this.stickyOffset) && (scrollTop > this.fixedPixel);
       if (shouldApplySticky && !this.isStickyApplied) {
-        console.log("add('sticky')");
         this.searchElement.classList.add('sticky');
         this.fixedPixel = scrollTop;
         this.settingHeaderService.isSticky = true;
         this.isStickyApplied = true;
       } else if (!shouldApplySticky && this.isStickyApplied) {
-        console.log("remove('sticky');");
         this.searchElement.classList.remove('sticky');
         this.fixedPixel = 0;
         this.settingHeaderService.isSticky = false;
         this.isStickyApplied = false;
       }
     }
-  }, 0);
+  }, 200);
   
   private scrollScheduled: boolean = false;
 

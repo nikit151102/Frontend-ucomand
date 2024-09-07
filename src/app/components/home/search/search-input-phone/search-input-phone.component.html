@@ -1,4 +1,4 @@
-<div *ngIf="settingHeaderService.searchinputVisible" class="input-container" (click)="stopPropagation($event)">
+<div class="input-container" (click)="stopPropagation($event)">
     <input #inputField type="text" placeholder="Введите текст..." (blur)="hideInputField()" [(ngModel)]="searchText" />
     <svg 
         *ngIf="!searchText"
@@ -14,3 +14,4 @@
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
     </svg>
 </div>
+<!-- *ngIf="settingHeaderService.searchinputVisible"  -->

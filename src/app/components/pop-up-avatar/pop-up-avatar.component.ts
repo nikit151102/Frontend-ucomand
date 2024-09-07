@@ -18,5 +18,7 @@ export class PopUpAvatarComponent {
     this.popUpAvatarService.hidePopup();  
   }
 
-
+avatarImgs= [
+  
+]
 }
