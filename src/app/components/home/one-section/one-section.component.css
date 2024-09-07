@@ -108,6 +108,10 @@ app-search:not(.sticky) {
         will-change: position, transform;
     }
     
+    .search-container {
+        z-index: 10;
+    }
+    
     .content {
         padding-top: 66px;
         height: auto;
