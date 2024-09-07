@@ -88,19 +88,13 @@ p {
     background: #5A4BB8;
 }
 
-
-
 .avatar-container {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
     justify-content: center;
     overflow-y: auto;
-    height: 70vh; 
 }
-
-
-
 
 .avatar-container::-webkit-scrollbar {
     width: 0;

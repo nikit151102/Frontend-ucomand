@@ -38,7 +38,7 @@ export class PersonalDataComponent implements OnInit {
   cityOfResidence!: CityOfResidence;
   isPopupVisible: boolean = false;
   setAvatar: string | null = '';
-
+  setGender: string | null = '';
   private subscription: Subscription = new Subscription();
 
   constructor(private fb: FormBuilder, private personalDataService: PersonalDataService, private router: Router, public popUpAvatarService: PopUpAvatarService, private avatarSelectionService: AvatarSelectionService) {
@@ -76,6 +76,9 @@ export class PersonalDataComponent implements OnInit {
       }
     );
     this.userData();
+    this.personalDataForm.get('gender')?.valueChanges.subscribe(value => {
+      this.setGender = value;
+    });
   }
 
   getAvatar() {
@@ -101,6 +104,8 @@ export class PersonalDataComponent implements OnInit {
           domain: '',
           approval: false
         });
+
+        this.setGender = user.gender;
       },
       (error) => {
         console.error('Ошибка при загрузке данных пользователя:', error);

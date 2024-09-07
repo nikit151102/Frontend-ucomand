@@ -14,7 +14,7 @@ import { AvatarSelectionService } from './avatar-selection.service';
 })
 export class PopUpAvatarComponent {
 
-  @Input() setGender: any = '';
+  @Input() gender: any = '';
   constructor(private avatarSelectionService: AvatarSelectionService, private popUpAvatarService: PopUpAvatarService, private router: Router) { }
   
   avatarSrc: string = 'default-avatar'; 
@@ -37,7 +37,7 @@ export class PopUpAvatarComponent {
   };
 
   get filteredAvatars(): string[] {
-    return this.allAvatars[this.setGender] || this.allAvatars[''];
+    return this.allAvatars[this.gender] || this.allAvatars[''];
   }
 
  
