@@ -43,6 +43,7 @@ export interface User {
   telegram: string | null;
   dateOfRegistration: string | null; 
   cityOfResidence: CityOfResidence;
+  imageLink: string | null; 
   role: 'ROOT' | 'USER' | 'ADMIN'; 
 }
 
@@ -169,6 +170,7 @@ export class FormUserComponent implements OnInit {
         email: formValues.email,
         dateOfRegistration: new Date().toISOString(),  
         cityOfResidence: this.cityOfResidence,
+        imageLink: null,
         role: this.dataCurrentUser.role,  
       };
   

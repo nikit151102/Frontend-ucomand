@@ -4,18 +4,19 @@
             Специальность:
         </p>
         <div class="lookingCard">
-            <p class="title"  *ngIf="cardItem.profession">
+            <p class="title" *ngIf="cardItem.profession">
                 {{cardItem.profession.name | uppercase }}
             </p>
-            <p [ngStyle]="{ 'border-color': getSkillsColor(cardItem.profession.competenceLevel) }" class="lookingCard-level" *ngIf="cardItem?.profession?.competenceLevel">
-                {{ getSkills(cardItem.profession?.competenceLevel)  }}
-              </p>
+            <p [ngStyle]="{ 'border-color': getSkillsColor(cardItem.profession.competenceLevel) }"
+                class="lookingCard-level" *ngIf="cardItem?.profession?.competenceLevel">
+                {{ getSkills(cardItem.profession?.competenceLevel) }}
+            </p>
         </div>
         <div class="lookingCard">
-            <p class="chapterCard-value-eng" >
+            <p class="chapterCard-value-eng">
                 {{ cardItem?.profession?.nameEng | uppercase }}
             </p>
-           
+
         </div>
     </div>
     <div class="chapterCard">
@@ -29,8 +30,8 @@
                         {{item.name}}
                     </p>
                     <p [ngStyle]="{ 'background': getSkillsColor(item.competenceLevel) }" class="tag-level">
-                        {{ getSkillText(item.competenceLevel)  }}
-                      </p>
+                        {{ getSkillText(item.competenceLevel) }}
+                    </p>
                 </div>
             </ng-container>
         </div>
@@ -43,7 +44,7 @@
             <ng-container *ngFor="let item of cardItem.motivations">
                 <div class="motivation" [ngStyle]="{ 'background': getMotivationColor(item.name) }">
                     {{ item.name }}
-                    
+
                 </div>
             </ng-container>
         </div>
@@ -51,15 +52,16 @@
     <div class="profile">
         <div class="leftProfileChapter">
             <div class="logo">
-                <ng-container *ngIf="cardItem?.user?.gender === 'MALE'">
-                    <img src="assets/male.png" alt="logo">
+                <ng-container *ngIf="cardItem?.user?.imageLink">
+                    <img [src]="'assets/avatars/'+ cardItem?.user?.imageLink + '.png'" alt="avatar">
                 </ng-container>
-                <ng-container *ngIf="cardItem?.user?.gender === 'FEMALE'">
-                    <img src="assets/famale.png" alt="logo">
+                <ng-container *ngIf="!cardItem?.user?.imageLink">
+                    <img [src]="'assets/avatars/default.png'" alt="avatar">
                 </ng-container>
             </div>
-            
-            <div style="display: flex; flex-wrap: wrap; flex-direction: column; justify-content: flex-end; margin-bottom: 2px;">
+
+            <div
+                style="display: flex; flex-wrap: wrap; flex-direction: column; justify-content: flex-end; margin-bottom: 2px;">
                 <p class="fullName" style="margin: 0;">
                     {{cardItem?.user?.lastName}}
                 </p>
@@ -67,7 +69,7 @@
                     {{cardItem?.user?.firstName}}
                 </p>
             </div>
-           
+
         </div>
         <div class="rightProfileChapter">
             <p class="dateVacancy dateTitle">
@@ -77,6 +79,6 @@
                 {{cardItem.creationDate | date: 'dd.MM.yyyy' }}
             </p>
         </div>
-        
+
     </div>
 </div>

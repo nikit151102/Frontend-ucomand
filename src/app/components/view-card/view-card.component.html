@@ -12,22 +12,21 @@
         <div class="right-path-content">
             <div class="ProfileChapter">
                 <div class="logo">
- 
-                    <ng-container *ngIf="dataCard?.user?.gender == 'MALE'">
-                        <img src="assets/male.png" alt="logo" class="logoImg"
-                            style="border-radius: 50%; width:92px; height:92px">
+                    <ng-container *ngIf="dataCard?.user?.imageLink">
+                        <img [src]="'assets/avatars/'+ dataCard?.user?.imageLink + '.png'" alt="avatar"
+                            style="width:92px; height:92px" class="logoImg">
                     </ng-container>
-                    <ng-container *ngIf="dataCard?.user?.gender == 'FEMALE' ">
-                        <img src="assets/famale.png" alt="logo" class="logoImg"
-                            style="border-radius: 50%; width:92px; height:92px">
+                    <ng-container *ngIf="!dataCard?.user?.imageLink">
+                        <img [src]="'assets/avatars/default.png'" alt="avatar" style="width:92px; height:92px"
+                            class="logoImg">
                     </ng-container>
                 </div>
                 <div style="display: flex; flex-wrap: wrap; align-content: flex-end; flex-direction: column;">
-                    
-                    <p class="fullName" >
+
+                    <p class="fullName">
                         {{dataCard?.user?.lastName}}
                     </p>
-                    <p class="fullName" >
+                    <p class="fullName">
                         {{dataCard?.user?.firstName}}
                     </p>
                 </div>
@@ -41,8 +40,8 @@
                             Портфолио:
                         </p>
                         <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
-                            
-                            <a class="contacts-item" [href]="dataCard?.user?.freeLink" >
+
+                            <a class="contacts-item" [href]="dataCard?.user?.freeLink">
                                 <img [src]="imagePath" alt="logo" width="24px">
                                 <p>{{domainName}}</p>
                             </a>
@@ -55,10 +54,10 @@
                         </p>
                         <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
 
-          
+
 
                             <a class="contacts-item" [href]="'https://t.me/' + dataCard?.user?.telegram"
-                                target="_blank" >
+                                target="_blank">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_669_1177)">
@@ -90,7 +89,7 @@
             </ng-container>
 
 
-            <ng-container *ngIf="!tokenService.getToken() && dataCard" >
+            <ng-container *ngIf="!tokenService.getToken() && dataCard">
                 <div>
                     <p class="titleLogin" style="margin-bottom: 0;">
                         Контакты доступны только авторизированным пользователям.
@@ -105,8 +104,9 @@
         </div>
 
         <div>
-         
-            <a (click)="viewUser()" class="btnAccount_user" *ngIf="!currentUser || currentUser.id !== dataCard.user.id && dataCard">
+
+            <a (click)="viewUser()" class="btnAccount_user"
+                *ngIf="!currentUser || currentUser.id !== dataCard.user.id && dataCard">
                 В аккаунт пользователя
                 <p style="margin: 0">
                     <svg width="39" height="12" viewBox="0 0 39 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -143,6 +143,5 @@
 </div>
 
 <ng-container *ngIf="!visibleCard && !visibleError">
-   <app-error-view-card></app-error-view-card>>
+    <app-error-view-card></app-error-view-card>>
 </ng-container>
-

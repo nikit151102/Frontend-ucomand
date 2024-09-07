@@ -7,24 +7,15 @@
             </svg>
         </div>
         <div class="popup-title">
-            <p>
-                Выберете аватарку
-            </p>
+            <p>Выберите аватарку</p>
         </div>
 
-       <div class="avatar-container">
-        <app-item-avatar></app-item-avatar>
-        <app-item-avatar></app-item-avatar>
-        <app-item-avatar></app-item-avatar>
-        <app-item-avatar></app-item-avatar>
-        <app-item-avatar></app-item-avatar>
-        <app-item-avatar></app-item-avatar>
-        <app-item-avatar></app-item-avatar>
-        <app-item-avatar></app-item-avatar>
-       </div>
-       <div class="btns">
-<a class="popup-btn-setAvatar">Выбрать</a>
-    </div>
-       
+        <div class="avatar-container">
+            <app-item-avatar *ngFor="let item of filteredAvatars" [avatarSrc]="item"></app-item-avatar>
+        </div>
+        
+        <div class="btns">
+            <a class="popup-btn-setAvatar" (click)="selectAvatar()">Выбрать</a>
+        </div>
     </div>
 </div>

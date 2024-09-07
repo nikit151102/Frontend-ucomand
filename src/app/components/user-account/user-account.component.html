@@ -3,12 +3,11 @@
         <div class="information">
             <div class="ProfileChapter">
                 <div class="logo">
-                  
-                    <ng-container *ngIf="userData?.gender == 'MALE'">
-                        <img src="assets/male.png" alt="logo" class="logoImg">
+                    <ng-container *ngIf="userData?.imageLink">
+                        <img [src]="'assets/avatars/'+ userData?.imageLink + '.png'" class="logoImg">
                     </ng-container>
-                    <ng-container *ngIf="userData?.gender == 'FEMALE'">
-                        <img src="assets/famale.png" alt="logo" class="logoImg">
+                    <ng-container *ngIf="!userData?.imageLink">
+                        <img [src]="'assets/avatars/default.png'" alt="logo" class="logoImg">
                     </ng-container>
                 </div>
 

@@ -49,12 +49,12 @@
     <div class="profile">
         <div class="leftProfileChapter">
             <div class="logo">
-                <ng-container *ngIf="cardItem?.user?.gender === 'MALE'">
-                    <img src="assets/male.png" alt="logo">
-                </ng-container>
-                <ng-container *ngIf="cardItem?.user?.gender === 'FEMALE'">
-                    <img src="assets/famale.png" alt="logo">
-                </ng-container>
+                <ng-container *ngIf="cardItem?.user?.imageLink">
+                    <img [src]="'assets/avatars/'+ cardItem?.user?.imageLink + '.png'" alt="avatar">
+                  </ng-container>
+                  <ng-container *ngIf="!cardItem?.user?.imageLink">
+                    <img [src]="'assets/avatars/default.png'" alt="avatar">
+                  </ng-container>
             </div>
             <div style="display: flex; flex-wrap: wrap; flex-direction: column; justify-content: flex-end; margin-bottom: 2px;">
                 <p class="fullName" style="margin: 0;">

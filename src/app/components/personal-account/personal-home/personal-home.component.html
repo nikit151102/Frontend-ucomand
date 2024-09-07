@@ -3,12 +3,11 @@
         <div class="information">
             <div class="ProfileChapter">
                 <div class="logo" @fadeAnimation>
-
-                    <ng-container *ngIf="dataCurrentUser?.gender == 'MALE'">
-                        <img src="assets/male.png" alt="logo" class="logoImg">
+                    <ng-container *ngIf="dataCurrentUser?.imageLink">
+                        <img [src]="'assets/avatars/'+ dataCurrentUser?.imageLink + '.png'" class="logoImg">
                     </ng-container>
-                    <ng-container *ngIf="dataCurrentUser?.gender == 'FEMALE'">
-                        <img src="assets/famale.png" alt="logo" class="logoImg">
+                    <ng-container *ngIf="!dataCurrentUser?.imageLink">
+                        <img [src]="'assets/avatars/default.png'" alt="logo" class="logoImg">
                     </ng-container>
                 </div>
 

@@ -10,6 +10,7 @@ import { PopUpAvatarComponent } from '../../pop-up-avatar/pop-up-avatar.componen
 import { PopUpAvatarService } from '../../pop-up-avatar/pop-up-avatar.service';
 import { Subscription } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { AvatarSelectionService } from '../../pop-up-avatar/avatar-selection.service';
 
 @Component({
   selector: 'app-personal-data',
@@ -36,9 +37,11 @@ export class PersonalDataComponent implements OnInit {
   dataCurrentUser!: User;
   cityOfResidence!: CityOfResidence;
   isPopupVisible: boolean = false;
+  setAvatar: string | null = '';
+
   private subscription: Subscription = new Subscription();
 
-  constructor(private fb: FormBuilder, private personalDataService: PersonalDataService, private router: Router, public popUpAvatarService: PopUpAvatarService) {
+  constructor(private fb: FormBuilder, private personalDataService: PersonalDataService, private router: Router, public popUpAvatarService: PopUpAvatarService, private avatarSelectionService: AvatarSelectionService) {
     this.personalDataForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -55,6 +58,10 @@ export class PersonalDataComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.avatarSelectionService.selectedAvatar$.subscribe(selectedAvatar => {
+      this.setAvatar = selectedAvatar
+    });
+
     this.subscription.add(
       this.popUpAvatarService.visible$.subscribe(visible => {
         this.isPopupVisible = visible;
@@ -80,7 +87,7 @@ export class PersonalDataComponent implements OnInit {
       (user: User) => {
         this.dataCurrentUser = user;
         this.cityOfResidence = user.cityOfResidence || {};
-
+        this.setAvatar = user.imageLink;
         this.personalDataForm.patchValue({
           name: user.firstName || '',
           surname: user.lastName || '',
@@ -142,6 +149,7 @@ export class PersonalDataComponent implements OnInit {
       email: formValues.email,
       dateOfRegistration: new Date().toISOString(),
       cityOfResidence: this.cityOfResidence,
+      imageLink: this.setAvatar,
       role: this.dataCurrentUser.role,
     };
 

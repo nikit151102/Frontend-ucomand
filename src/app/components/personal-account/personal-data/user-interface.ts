@@ -19,14 +19,15 @@ export interface User {
     id: number;
     firstName: string | null;
     lastName: string | null;
-    gender: 'MALE' | 'FEMALE'; // Предположим, что возможно два значения
+    gender: 'MALE' | 'FEMALE'; 
     age: number | null;
     freeLink: string | null;
     ownLink: string | null;
     aboutMe: string | null;
     email: string | null;
     telegram: string | null;
-    dateOfRegistration: string | null; // Можно использовать Date, если требуется работа с датой
+    dateOfRegistration: string | null; 
     cityOfResidence: CityOfResidence;
-    role: 'ROOT' | 'USER' | 'ADMIN'; // Укажите возможные значения для роли
+    imageLink: string | null;
+    role: 'ROOT' | 'USER' | 'ADMIN'; 
 }
