@@ -11,7 +11,7 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  private domain = 'https://vm-7c43f39f.na4u.ru/api';
+  private domain = 'https://uteam.top/api';
 
   getFunction(): Observable<any> {
     return this.http.get<any>(`${this.domain}/users?page=0&size=1000`,);

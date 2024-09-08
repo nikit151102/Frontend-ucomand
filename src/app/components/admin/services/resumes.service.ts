@@ -14,7 +14,7 @@ export class ResumesService {
   type = "PROFESSION";
   visibleForm: boolean = false;
   constructor(private http: HttpClient) { }
-  private domain = 'https://vm-7c43f39f.na4u.ru/api';
+  private domain = 'https://uteam.top/api';
 
   getFunction(): Observable<any> {
     return this.http.post<any>(`${this.domain}/resumes/getAll?page=0&size=1000`, this.body);

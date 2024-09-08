@@ -11,7 +11,7 @@ export class VacancyService {
   private subscription: Subscription | null = null;
   constructor(private http: HttpClient) { }
   
-  private domain = 'https://vm-7c43f39f.na4u.ru/api'; 
+  private domain = 'https://uteam.top/api';
 
   vacanciesList: any[] = [];
   activeVacancies: any[] = [];

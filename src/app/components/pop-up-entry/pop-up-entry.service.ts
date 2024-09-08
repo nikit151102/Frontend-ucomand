@@ -11,7 +11,7 @@ export class PopUpEntryService {
 
   visible: boolean = false;
   userVisible: boolean = false;
-  private domain = 'http://80.87.108.138:8080'; 
+  private domain = 'https://uteam.top/api';
 
   getUser(): Observable<any> {
     const token = localStorage.getItem('authToken');

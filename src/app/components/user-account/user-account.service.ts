@@ -6,7 +6,7 @@ import { Observable, Subscription, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserAccountService {
-  private domain = 'https://vm-7c43f39f.na4u.ru/api';
+  private domain = 'https://uteam.top/api';
   private subscription = new Subscription(); 
 
   constructor(private http: HttpClient) { }

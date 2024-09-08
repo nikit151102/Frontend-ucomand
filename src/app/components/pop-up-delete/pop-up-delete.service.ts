@@ -9,7 +9,7 @@ export class PopUpDeleteService {
   private visibleSubject = new BehaviorSubject<boolean>(false);
   visible$ = this.visibleSubject.asObservable();  // Экспортируем как Observable
 
-  private domain = 'https://vm-7c43f39f.na4u.ru/api';
+  private domain = 'https://uteam.top/api';
 
   constructor(private http: HttpClient) { }
 

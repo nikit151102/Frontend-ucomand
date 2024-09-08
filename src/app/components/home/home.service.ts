@@ -17,7 +17,7 @@ export class HomeService {
   private themeSubject = new BehaviorSubject<string>(localStorage.getItem('theme') || 'light');
   activeTheme$ = this.themeSubject.asObservable();
   
-  private domain = 'https://vm-7c43f39f.na4u.ru/api';
+  private domain = 'https://uteam.top/api';
 
   changeTheme(theme: string) {
     this.themeSubject.next(theme);

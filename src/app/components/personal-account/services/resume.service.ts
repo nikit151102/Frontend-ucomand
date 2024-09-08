@@ -10,7 +10,7 @@ export class ResumeService {
   constructor(private http: HttpClient) { }
 
   private subscription: Subscription | null = null;
-  private domain = 'https://vm-7c43f39f.na4u.ru/api';
+  private domain = 'https://uteam.top/api';
 
   resumesList: any[] = [];
   activeResumes: any[] = [];

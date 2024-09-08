@@ -54,7 +54,7 @@ export class ViewCardService {
 
   typeCard: string = '';
 
-  private domain = 'https://vm-7c43f39f.na4u.ru/api';
+  private domain = 'https://uteam.top/api';
 
   getCardData(id: number): Observable<any> {
     console.log("id", id)
