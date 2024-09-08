@@ -184,6 +184,7 @@ export class PersonalDataComponent implements OnInit {
         this.userData();
         localStorage.setItem('userId', formValues.domain);
         const userId = localStorage.getItem('userId')
+        localStorage.setItem('fullAccess', 'b326b5062b2f0e69046810717534cb09' );
         this.router.navigate([`/myaccount/${userId}/home`]);
       },
       error => {
