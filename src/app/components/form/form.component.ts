@@ -210,7 +210,11 @@ export class FormComponent implements OnInit {
     }
 
     const formData = this.prepareFormData();
-
+    formData.profession.competenceLevel = formData.profession.competenceLevel === 0 ? null : formData.profession.competenceLevel;
+    formData.skills.forEach((skill: any) => {
+      skill.competenceLevel = skill.competenceLevel === 0 ? null : skill.competenceLevel;
+    });
+    
     const typeEndpoint = this.typeForm === 'резюме' ? 'resumes' : 'vacancies';
 
     if (this.isEditMode) {
