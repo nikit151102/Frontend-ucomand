@@ -7,8 +7,6 @@
 
  }
 
-
-
  .search-container {
      position: relative;
      width: fit-content;
@@ -126,7 +124,8 @@
 
  @media (min-width: 768px) and (max-width: 1199px) {
     .conteiner {
-        margin-top: 7px;
+        padding-top: 7px;
+        padding-bottom: 5px;
         margin-bottom: 7px;
     }
  }
