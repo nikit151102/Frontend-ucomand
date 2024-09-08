@@ -89,6 +89,7 @@ export class MenuNavComponent implements OnInit {
       this.router.navigate([`/myaccount/${userId}/newVacancy`]);
     } else {
       this.popUpErrorCreateService.visible = true;
+      this.sidebarVisible = false;
     }
   }
 
@@ -104,6 +105,7 @@ export class MenuNavComponent implements OnInit {
       this.router.navigate([`/myaccount/${userId}/newVacancy`]);
     } else {
       this.popUpErrorCreateService.visible = true;
+      this.sidebarVisible = false;
     }
   }
 
