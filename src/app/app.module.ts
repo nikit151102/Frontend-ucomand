@@ -9,12 +9,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
 import { PopUpEntryComponent } from './components/pop-up-entry/pop-up-entry.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { PopUpErrorCreateComponent } from './components/pop-up-error-create/pop-up-error-create.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -25,8 +25,8 @@ import { FooterComponent } from './components/footer/footer.component';
     FormsModule,
     MenuNavComponent,
     PopUpEntryComponent,
-    FooterComponent
-    
+    FooterComponent,
+    PopUpErrorCreateComponent
   ],
   bootstrap: [AppComponent],
 })

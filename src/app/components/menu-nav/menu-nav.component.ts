@@ -8,6 +8,7 @@ import { HomeService } from '../home/home.service';
 import { FormSettingService } from '../form/form-setting.service';
 import { Location } from '@angular/common';
 import { PopUpEntryService } from '../pop-up-entry/pop-up-entry.service';
+import { PopUpErrorCreateService } from '../pop-up-error-create/pop-up-error-create.service';
 
 @Component({
   selector: 'app-menu-nav',
@@ -28,9 +29,10 @@ export class MenuNavComponent implements OnInit {
   constructor(private location: Location, public settingHeaderService: SettingHeaderService,
     private router: Router, public tokenService: TokenService, private homeService: HomeService,
     private formSettingService: FormSettingService, private cdr: ChangeDetectorRef,
-    private popUpEntryService: PopUpEntryService,    
-     private ngZone: NgZone
-    ) {
+    private popUpEntryService: PopUpEntryService,
+    private ngZone: NgZone,
+    private popUpErrorCreateService: PopUpErrorCreateService
+  ) {
   }
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class MenuNavComponent implements OnInit {
       if (event instanceof NavigationStart) {
         if (event.url !== '/') {
           this.settingHeaderService.isSticky = false;
-          
+
         }
       }
     });
@@ -54,7 +56,7 @@ export class MenuNavComponent implements OnInit {
     });
   }
 
-  
+
   navigateTo(path: string) {
     this.router.navigate([path]);
     this.sidebarVisible = false;
@@ -72,27 +74,37 @@ export class MenuNavComponent implements OnInit {
         { label: 'Регистрация', action: () => this.handleRegistration() }
       ];
     }
-    this.cdr.detectChanges(); 
+    this.cdr.detectChanges();
   }
 
   handlePostResume(): void {
-    this.formSettingService.isheading = false;
+    const fullAccess = localStorage.getItem('fullAccess')
+    const userId = localStorage.getItem('userId')
+    if(fullAccess == 'b326b5062b2f0e69046810717534cb09'){
+      this.formSettingService.isheading = false;
     this.formSettingService.typeForm = 'резюме';
     this.settingHeaderService.post = false;
     this.settingHeaderService.shared = false;
     this.sidebarVisible = false;
-    const userId = localStorage.getItem('userId')
-    this.router.navigate([`/myaccount/${userId}/newResume`]);
+      this.router.navigate([`/myaccount/${userId}/newVacancy`]);
+    }else{
+      this.popUpErrorCreateService.visible = true;
+    }
   }
-
+ 
   handlePostVacancy(): void {
-    this.formSettingService.isheading = true;
-    this.formSettingService.typeForm = 'вакансии';
-    this.settingHeaderService.post = false;
-    this.settingHeaderService.shared = false;
-    this.sidebarVisible = false;
+    const fullAccess = localStorage.getItem('fullAccess')
     const userId = localStorage.getItem('userId')
-    this.router.navigate([`/myaccount/${userId}/newVacancy`]);
+    if(fullAccess == 'b326b5062b2f0e69046810717534cb09'){
+      this.formSettingService.isheading = true;
+      this.formSettingService.typeForm = 'вакансии';
+      this.settingHeaderService.post = false;
+      this.settingHeaderService.shared = false;
+      this.sidebarVisible = false;
+      this.router.navigate([`/myaccount/${userId}/newVacancy`]);
+    }else{
+      this.popUpErrorCreateService.visible = true;
+    }
   }
 
   handleLogin(): void {
@@ -122,12 +134,12 @@ export class MenuNavComponent implements OnInit {
     this.sidebarVisible = false;
   }
 
-  toggleTopic(savedTheme: any ='') {
-    if(!savedTheme){
+  toggleTopic(savedTheme: any = '') {
+    if (!savedTheme) {
       this.activeTopic = this.activeTopic === 'light' ? 'dark' : 'light';
       this.sidebarVisible = false;
       this.homeService.changeTheme(this.activeTopic);
-    }else{
+    } else {
       this.activeTopic = savedTheme;
       this.homeService.changeTheme(this.activeTopic);
     }
@@ -158,7 +170,7 @@ export class MenuNavComponent implements OnInit {
       document.documentElement.style.setProperty('--logo-text-color', '#5a4bb8');
       document.documentElement.style.setProperty('--logo-background-color', 'rgba(185, 174, 255, 1)');
       document.documentElement.style.setProperty('--font-profession-eng', 'rgba(0, 0, 0, 0.3)');
-      
+
     }
   }
 

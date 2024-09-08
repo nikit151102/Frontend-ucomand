@@ -35,7 +35,7 @@
 
             <ng-container *ngIf="tokenService.getToken()">
                 <div class="contacts">
-                    <div>
+                    <div *ngIf="dataCard?.user?.freeLink">
                         <p class="chapterCard-title">
                             Портфолио:
                         </p>
@@ -48,7 +48,7 @@
 
                         </diV>
                     </div>
-                    <div>
+                    <div *ngIf="dataCard?.user?.telegram">
                         <p class="chapterCard-title">
                             Контакты:
                         </p>

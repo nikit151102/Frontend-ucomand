@@ -33,32 +33,30 @@
             <div class="information-user" *ngIf="userData">
                 {{userData.aboutMe}}
             </div>
-            <div class="personal-details">
-                <div class="location" >
+            <div class="personal-details" >
+                <div class="location" *ngIf="userData.cityOfResidence">
                     <p class="title">Город:</p>
-                    <span class="location-value"
-                        *ngIf="userData.cityOfResidence">{{userData?.cityOfResidence?.name}}</span>
+                    <span class="location-value">{{userData?.cityOfResidence?.name}}</span>
                 </div>
-                <div class="age">
+                <div class="age" *ngIf="userData.age">
                     <p class="title">Возраст:</p>
                     <span class="location-value" >{{userData?.age}}</span>
                 </div>
             </div>
         </div>
         <div class="contacts">
-            <div>
+            <div *ngIf="userData.freeLink && imagePath.length>0">
                 <p class="chapterCard-title">
                     Портфолио:
                 </p>
                 <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
-                    <a class="contacts-item" [href]="userData.freeLink"
-                        *ngIf="userData.freeLink && imagePath.length>0">
+                    <a class="contacts-item" [href]="userData.freeLink">
                         <img [src]="imagePath" alt="logo" width="24px">
                         <p>{{domainName}}</p>
                     </a>
                 </diV>
             </div>
-            <div style="margin-top: 15px;">
+            <div style="margin-top: 15px;" *ngIf="userData.telegram">
                 <p class="chapterCard-title">
                     Контакты:
                 </p>

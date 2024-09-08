@@ -33,37 +33,35 @@
                 {{dataCurrentUser.aboutMe}}
             </div>
             <div class="personal-details" *ngIf="isDataComplete">
-                <div class="location">
+                <div class="location" *ngIf="dataCurrentUser.cityOfResidence ">
                     <p class="title">Город:</p>
                     <span class="location-value"
-                        *ngIf="dataCurrentUser.cityOfResidence ">{{dataCurrentUser.cityOfResidence.name}}</span>
+                        >{{dataCurrentUser.cityOfResidence.name}}</span>
                 </div>
-                <div class="age">
+                <div class="age" *ngIf="dataCurrentUser.age ">
                     <p class="title">Возраст:</p>
                     <span class="location-value">{{dataCurrentUser.age}}</span>
                 </div>
             </div>
         </div>
         <div class="contacts" @fadeAnimation>
-            <div>
+            <div *ngIf="dataCurrentUser.freeLink && imagePath.length>0">
                 <p class="chapterCard-title">
                     Портфолио:
                 </p>
                 <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
-                    <a class="contacts-item" [href]="dataCurrentUser.freeLink"
-                        *ngIf="dataCurrentUser.freeLink && imagePath.length>0">
+                    <a class="contacts-item" [href]="dataCurrentUser.freeLink" >
                         <img [src]="imagePath" alt="logo" width="24px">
                         <p>{{domainName}}</p>
                     </a>
                 </diV>
             </div>
-            <div style="margin-top: 15px;">
+            <div style="margin-top: 15px;" *ngIf="dataCurrentUser.telegram" > 
                 <p class="chapterCard-title">
                     Контакты:
                 </p>
                 <diV style=" display: flex;  flex-direction: row; align-items: flex-start; gap: 1rem;">
-                    <a class="contacts-item" [href]="'https://t.me/' + dataCurrentUser.telegram" target="_blank"
-                        *ngIf="dataCurrentUser.telegram">
+                    <a class="contacts-item" [href]="'https://t.me/' + dataCurrentUser.telegram" target="_blank">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_669_1177)">
                                 <path

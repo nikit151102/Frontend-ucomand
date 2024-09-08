@@ -21,6 +21,7 @@ import { VacancyService } from '../services/vacancy.service';
 import { FormSettingService } from '../../form/form-setting.service';
 import { HomeService } from '../../home/home.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { PopUpErrorCreateService } from '../../pop-up-error-create/pop-up-error-create.service';
 
 @Component({
   selector: 'app-personal-home',
@@ -52,8 +53,9 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     public viewCardService: ViewCardService, private personalDataService: PersonalDataService,
     private personalHomeService: PersonalHomeService, private popUpDeleteService: PopUpDeleteService, public popUpExitService: PopUpExitService,
     public resumeService: ResumeService, public vacancyService: VacancyService,
-  private formSettingService:FormSettingService,
-  private homeService: HomeService) { }
+    private formSettingService: FormSettingService,
+    private homeService: HomeService,
+    private popUpErrorCreateService: PopUpErrorCreateService) { }
 
   imagePath: string = '';
   domainName: string = '';
@@ -139,11 +141,11 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
       )
     }).subscribe(
       ({ user, vacancies, resumes }) => {
-          this.dataCurrentUser = user;
+        this.dataCurrentUser = user;
         this.vacanciesData = vacancies;
         this.resumesData = resumes;
         this.checkUserData();
-       
+
         console.log("dataCurrentUser", this.dataCurrentUser)
         console.log("resumes", resumes)
         console.log("vacancies", vacancies)
@@ -191,21 +193,31 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
   }
 
   handlePostResume(): void {
-    this.formSettingService.isheading = false;
-    this.formSettingService.typeForm = 'резюме';
-    this.settingHeaderService.post = false;
-    this.settingHeaderService.shared = false;
+    const fullAccess = localStorage.getItem('fullAccess')
     const userId = localStorage.getItem('userId')
-    this.router.navigate([`/myaccount/${userId}/newResume`]);
+    if (fullAccess == 'b326b5062b2f0e69046810717534cb09') {
+      this.formSettingService.isheading = false;
+      this.formSettingService.typeForm = 'резюме';
+      this.settingHeaderService.post = false;
+      this.settingHeaderService.shared = false;
+      this.router.navigate([`/myaccount/${userId}/newResume`]);
+    } else {
+      this.popUpErrorCreateService.visible = true;
+    }
   }
 
   handlePostVacancy(): void {
-    this.formSettingService.isheading = true;
-    this.formSettingService.typeForm = 'вакансии';
-    this.settingHeaderService.post = false;
-    this.settingHeaderService.shared = false;
+    const fullAccess = localStorage.getItem('fullAccess')
     const userId = localStorage.getItem('userId')
-    this.router.navigate([`/myaccount/${userId}/newVacancy`]);
+    if (fullAccess == 'b326b5062b2f0e69046810717534cb09') {
+      this.formSettingService.isheading = false;
+      this.formSettingService.typeForm = 'вакансии';
+      this.settingHeaderService.post = false;
+      this.settingHeaderService.shared = false;
+      this.router.navigate([`/myaccount/${userId}/newVacancy`]);
+    } else {
+      this.popUpErrorCreateService.visible = true;
+    }
   }
 
 
