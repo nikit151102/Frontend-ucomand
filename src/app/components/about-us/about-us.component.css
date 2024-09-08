@@ -208,7 +208,7 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 114%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .team-member {
@@ -274,5 +274,9 @@
 
     .destiny-title {
         padding: 1rem 0px 0px 0 !important;
+    }
+
+    .container_chapter-team{
+        justify-content: flex-start
     }
 }

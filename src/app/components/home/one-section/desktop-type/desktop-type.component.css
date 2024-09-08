@@ -75,9 +75,9 @@
 .btns {
     display: flex;
     justify-content: flex-end;
-    width: 70%;
-    margin-top: 20px;
-    z-index: 9;
+    width: 73%;
+    margin-top: 17px;
+    z-index: 10;
 }
 
 .additionalBtn {
@@ -104,11 +104,10 @@
     background: #806bff
 }
 
-.btnNewResume:active {}
 
 .btnNewVacancy {
     background: #806bff;
-    margin-left: 2rem;
+    margin-left: 1rem;
 }
 
 .btnNewVacancy:hover {

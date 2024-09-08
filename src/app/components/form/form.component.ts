@@ -221,6 +221,7 @@ export class FormComponent implements OnInit {
             this.handleSuccess(response, typeEndpoint)
           },
           (error:any) => {
+            this.saveFormDataToStorage();
             if (error.status) {
               this.router.navigate(['/error', { num: error.status }]);
             } else {
@@ -235,6 +236,7 @@ export class FormComponent implements OnInit {
           this.handleSuccess(response, typeEndpoint)
         },
         (error:any) => {
+          this.saveFormDataToStorage();
           if (error.status) {
             this.router.navigate(['/error', { num: error.status }]);
           } else {
