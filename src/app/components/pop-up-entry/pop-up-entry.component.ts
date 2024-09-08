@@ -82,8 +82,9 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       console.log("response", response);
       console.log("response.token", response.token);
       this.tokenService.setToken(response.token);
+      this.login_user()
     });
-    this.login_user()
+    
   }
 
 
@@ -108,7 +109,8 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
   login_user() {
     this.popUpEntryService.visible = false;
-
+    const token = this.tokenService.getToken();
+    console.log("tokentokentokentoken",token)
     this.popUpEntryService.getUser().subscribe(
       (data) => {
         const firstNameValid = typeof data.firstName === 'string' && data.firstName.trim() !== '';
