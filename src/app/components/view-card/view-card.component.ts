@@ -114,4 +114,16 @@ export class ViewCardComponent implements OnInit {
     this.router.navigate([`/myaccount`, this.dataCard.user.id]);
   }
 
+  update(event: Event, id: number) {
+    event.stopPropagation();
+    const userId = localStorage.getItem('userId')
+    
+    if( this.typeCard =='vacancies'){
+      this.router.navigate([`/myaccount/${userId}/updateVacancy/${id}`]);
+    }else{
+      this.router.navigate([`/myaccount/${userId}/updateResume/${id}`]);
+    }
+   
+  }
+
 }

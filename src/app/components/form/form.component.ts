@@ -80,6 +80,10 @@ export class FormComponent implements OnInit {
       }
     });
 
+    if(this.typeForm == 'вакансии'){
+      this.formSettingService.isheading = true;
+    }
+    
     forkJoin({
       motivations: this.formSettingService.getTags('MOTIVATION'),
       professions: this.formSettingService.getTags('PROFESSION'),
@@ -214,7 +218,7 @@ export class FormComponent implements OnInit {
     formData.skills.forEach((skill: any) => {
       skill.competenceLevel = skill.competenceLevel === 0 ? null : skill.competenceLevel;
     });
-    
+
     const typeEndpoint = this.typeForm === 'резюме' ? 'resumes' : 'vacancies';
 
     if (this.isEditMode) {
@@ -224,7 +228,7 @@ export class FormComponent implements OnInit {
           (response) => {
             this.handleSuccess(response, typeEndpoint)
           },
-          (error:any) => {
+          (error: any) => {
             this.saveFormDataToStorage();
             if (error.status) {
               this.router.navigate(['/error', { num: error.status }]);
@@ -239,7 +243,7 @@ export class FormComponent implements OnInit {
         (response) => {
           this.handleSuccess(response, typeEndpoint)
         },
-        (error:any) => {
+        (error: any) => {
           this.saveFormDataToStorage();
           if (error.status) {
             this.router.navigate(['/error', { num: error.status }]);

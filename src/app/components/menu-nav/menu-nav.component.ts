@@ -86,7 +86,7 @@ export class MenuNavComponent implements OnInit {
       this.settingHeaderService.post = false;
       this.settingHeaderService.shared = false;
       this.sidebarVisible = false;
-      this.router.navigate([`/myaccount/${userId}/newVacancy`]);
+      this.router.navigate([`/myaccount/${userId}/newResume`]);
     } else {
       this.popUpErrorCreateService.visible = true;
       this.sidebarVisible = false;

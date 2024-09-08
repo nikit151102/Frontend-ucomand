@@ -19,8 +19,8 @@
             </div>
             <div class="btn">
                 <ng-container [ngSwitch]="content.btn">
-                    <a *ngSwitchCase="'главная'" class="link" routerLink="/">На главную</a>
-                    <a *ngSwitchCase="'ок'" class="link" href="/">Ок</a>
+                    <a *ngSwitchCase="'главная'" class="link" href="">На главную</a>
+                    <a *ngSwitchCase="'ок'" class="link" href="">Ок</a>
                     <a *ngSwitchDefault class="link" routerLink="/support">Написать в тех. поддержку</a>
                   </ng-container>
             </div>
