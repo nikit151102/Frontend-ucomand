@@ -82,15 +82,6 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       console.log("response", response);
       console.log("response.token", response.token);
       this.tokenService.setToken(response.token);
-      this.popUpEntryService.getUser().subscribe(
-        (data) => {
-          this.tokenService.setToken(data.token);
-          this.popUpEntryService.visible = false;
-          console.log('User data:', data.token);
-          
-          this.closePopUp()
-        },
-      );
     });
     this.login_user()
   }
