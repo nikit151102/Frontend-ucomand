@@ -93,10 +93,10 @@
                 <div class="stage container-btns">
                     <a class="createBtn" (click)="submit()" style="color: #ffffff;">Опубликовать</a>
                     <div class="secondBtns">
-                        <ng-container *ngIf="formSettingService.isEdit">
-                            <a class="deleteBtn" style="color: #000000;">В архив</a>
+                        <ng-container *ngIf="isEditMode">
+                            <a class="deleteBtn" style="color: #000000;" (click)="deleteCard()">Удалить</a>
                         </ng-container>
-                        <a class="deleteBtn" style="color: #000000;">Удалить</a>
+                        
                     </div>
                 </div>
             </div>

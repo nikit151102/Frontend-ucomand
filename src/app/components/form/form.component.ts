@@ -80,10 +80,10 @@ export class FormComponent implements OnInit {
       }
     });
 
-    if(this.typeForm == 'вакансии'){
+    if (this.typeForm == 'вакансии') {
       this.formSettingService.isheading = true;
     }
-    
+
     forkJoin({
       motivations: this.formSettingService.getTags('MOTIVATION'),
       professions: this.formSettingService.getTags('PROFESSION'),
@@ -318,6 +318,18 @@ export class FormComponent implements OnInit {
   saveFormDataToStorage(): void {
     const formData = this.prepareFormData();
     localStorage.setItem(this.FORM_STORAGE_KEY, JSON.stringify({ formData, type: this.typeForm }));
+  }
+
+
+  deleteCard() {
+    const id = this.route.snapshot.paramMap.get('id');
+    const typeEndpoint = this.typeForm === 'резюме' ? ['resumes', id] : ['vacancies', id];
+    if (typeEndpoint[0]) {
+      this.formSettingService.deleteData(typeEndpoint[0], typeEndpoint[1]).subscribe((data:any) => {
+        const userId = localStorage.getItem('userId')
+        this.router.navigate([`/myaccount/${userId}`]);
+      })
+    }
   }
 
   @HostListener('window:beforeunload')

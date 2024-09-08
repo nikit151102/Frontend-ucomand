@@ -48,4 +48,12 @@ export class FormSettingService {
     });
     return this.http.put(`${this.domain}/${type}/${id}`,data, { headers });
   }
+
+  deleteData(type: string, id: any): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.delete(`${this.domain}/${type}/${id}`, { headers });
+  }
 }
