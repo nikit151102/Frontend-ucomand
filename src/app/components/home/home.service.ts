@@ -29,6 +29,7 @@ export class HomeService {
 
     if (filters) {
       savedFilters = JSON.parse(filters);
+      console.log("savedFilters",savedFilters)
     } else {
       savedFilters = {
         "visibilities": ["CREATOR_ONLY"]

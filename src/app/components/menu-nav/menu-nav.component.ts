@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { SidebarModule } from 'primeng/sidebar';
 import { SettingHeaderService } from '../setting-header.service';
 import { NavigationStart, Router } from '@angular/router';
@@ -14,7 +14,8 @@ import { PopUpEntryService } from '../pop-up-entry/pop-up-entry.service';
   standalone: true,
   imports: [CommonModule, SidebarModule],
   templateUrl: './menu-nav.component.html',
-  styleUrl: './menu-nav.component.css'
+  styleUrl: './menu-nav.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuNavComponent implements OnInit {
 
@@ -27,7 +28,7 @@ export class MenuNavComponent implements OnInit {
   constructor(private location: Location, public settingHeaderService: SettingHeaderService,
     private router: Router, public tokenService: TokenService, private homeService: HomeService,
     private formSettingService: FormSettingService, private cdr: ChangeDetectorRef,
-    private popUpEntryService: PopUpEntryService) {
+    private popUpEntryService: PopUpEntryService,     private ngZone: NgZone) {
   }
 
   ngOnInit(): void {
@@ -35,6 +36,7 @@ export class MenuNavComponent implements OnInit {
       if (event instanceof NavigationStart) {
         if (event.url !== '/') {
           this.settingHeaderService.isSticky = false;
+          
         }
       }
     });
@@ -42,9 +44,10 @@ export class MenuNavComponent implements OnInit {
     this.toggleTopic(savedTheme);
 
     this.tokenService.isAuthenticated$.subscribe(isAuthenticated => {
-      setTimeout(() => {
+      this.ngZone.run(() => {
         this.isAuthenticated = isAuthenticated;
         this.setButtons();
+        this.cdr.detectChanges();
       });
     });
   }

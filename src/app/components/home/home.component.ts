@@ -11,11 +11,12 @@ import { CardResumeComponent } from '../card-resume/card-resume.component';
 import { HomeService } from './home.service';
 import { OneSectionComponent } from './one-section/one-section.component';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { SearchInputPhoneComponent } from './search/search-input-phone/search-input-phone.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, OneSectionComponent, BackgroundImgsComponent, SearchComponent, CardVacancyComponent, SortetdFilterComponent, CardResumeComponent],
+  imports: [CommonModule, OneSectionComponent, BackgroundImgsComponent, SearchComponent, CardVacancyComponent, SortetdFilterComponent, CardResumeComponent, SearchInputPhoneComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   animations: [

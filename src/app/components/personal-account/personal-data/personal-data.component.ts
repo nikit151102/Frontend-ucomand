@@ -66,7 +66,7 @@ export class PersonalDataComponent implements OnInit {
 
     this.avatarSelectionService.selectedTypeAvatar$.subscribe(selectedTypeAvatar => {
       this.setTypeAvatar = selectedTypeAvatar
-      this.personalDataForm.get('gender')?.setValue(this.setTypeAvatar);
+      this.personalDataForm.get('gender')?.setValue(this.setTypeAvatar?.toUpperCase());
     });
 
     this.subscription.add(

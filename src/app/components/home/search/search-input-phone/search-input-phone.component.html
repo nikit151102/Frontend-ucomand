@@ -1,6 +1,6 @@
 <div class="input-container" *ngIf="settingHeaderService.searchinputVisible"  (click)="stopPropagation($event)">
-    <input #inputField type="text" placeholder="Введите текст..." (blur)="hideInputField()" [(ngModel)]="searchText" />
-    <svg 
+    <input #inputField type="text" placeholder="Введите текст..." (blur)="hideInputField()" [(ngModel)]="searchText"  (ngModelChange)="search()"/>
+    <svg  (click)="search()"
         *ngIf="!searchText"
         class="icon"
         xmlns="http://www.w3.org/2000/svg" 

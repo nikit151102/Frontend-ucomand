@@ -26,9 +26,10 @@ export class ItemAvatarComponent implements OnInit {
   onAvatarClick(event: Event, avatar: string): void {
     if (this.isSelected) {
       this.avatarSelectionService.selectAvatar('');
+      this.avatarSelectionService.selectGender('');
     } else {
       this.avatarSelectionService.selectAvatar(avatar);
-      this.avatarSelectionService.selectGender(this.avatarSrc.split('_')[1])
+      this.avatarSelectionService.selectGender(this.avatarSrc.split('_')[1]);
     }
     event.stopPropagation();
   }

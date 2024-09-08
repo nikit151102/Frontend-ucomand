@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SettingHeaderService } from '../../../setting-header.service';
+import { HomeService } from '../../home.service';
 
 @Component({
   selector: 'app-search-input-phone',
@@ -10,13 +11,44 @@ import { SettingHeaderService } from '../../../setting-header.service';
   templateUrl: './search-input-phone.component.html',
   styleUrl: './search-input-phone.component.css'
 })
-export class SearchInputPhoneComponent {
+export class SearchInputPhoneComponent implements OnInit {
 
   constructor(
     public settingHeaderService: SettingHeaderService,
-    private cdr: ChangeDetectorRef
-  ) {}
+    private cdr: ChangeDetectorRef,
+    private homeService: HomeService
+  ) { }
 
+  ngOnInit(): void {
+    this.loadFiltersFromLocalStorage();
+  }
+  private loadFiltersFromLocalStorage(): void {
+    const filters = sessionStorage.getItem('bodyFilters');
+
+    if (filters) {
+      try {
+        const parsedFilters = JSON.parse(filters);
+
+        if (parsedFilters.searchText) {
+          this.searchText = parsedFilters.genders;
+        }
+
+      } catch (error) {
+        console.error('Ошибка при парсинге данных из localStorage:', error);
+      }
+    }
+  }
+  search() {
+    const filters = sessionStorage.getItem('bodyFilters');
+    let bodyFilters = filters ? JSON.parse(filters) : {};
+
+    bodyFilters.searchText = this.searchText || '';
+
+    sessionStorage.setItem('bodyFilters', JSON.stringify(bodyFilters));
+    this.homeService.getVacancies();
+    this.homeService.getResumes();
+
+  }
   @ViewChild('inputField') inputField!: ElementRef;
   @ViewChild('inputContainer') inputContainer!: ElementRef;
 
@@ -29,7 +61,6 @@ export class SearchInputPhoneComponent {
   showInputField() {
     this.settingHeaderService.searchinputVisible = true;
 
-    // Обновляем представление
     this.cdr.detectChanges();
 
     this.inputField.nativeElement.focus();

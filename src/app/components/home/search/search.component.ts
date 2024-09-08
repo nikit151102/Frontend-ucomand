@@ -1,21 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from '../home.service'
 import { ToggleSwitchComponent } from '../toggle-switch/toggle-switch.component';
 import { SettingHeaderService } from '../../setting-header.service';
 import { CommonModule } from '@angular/common';
 import { SearchInputPhoneComponent } from './search-input-phone/search-input-phone.component';
+import { FormsModule } from '@angular/forms';
+import { HomeService } from '../home.service';
+
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [CommonModule, ToggleSwitchComponent, SearchInputPhoneComponent],
+  imports: [CommonModule, ToggleSwitchComponent, SearchInputPhoneComponent, FormsModule],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
 export class SearchComponent implements OnInit {
 
-  constructor(public settingHeaderService: SettingHeaderService) { }
+  searchText: string = '';
 
-  ngOnInit(): void { }
+  constructor(public settingHeaderService: SettingHeaderService, private homeService: HomeService) {
+  }
+
+  ngOnInit(): void {
+    this.loadFiltersFromLocalStorage();
+  }
+
+  private loadFiltersFromLocalStorage(): void {
+    const filters = sessionStorage.getItem('bodyFilters');
+
+    if (filters) {
+      try {
+        const parsedFilters = JSON.parse(filters);
+
+        if (parsedFilters.searchText) {
+          this.searchText = parsedFilters.genders;
+        }
+
+      } catch (error) {
+        console.error('Ошибка при парсинге данных из localStorage:', error);
+      }
+    }
+  }
+  search() {
+    const filters = sessionStorage.getItem('bodyFilters');
+    let bodyFilters = filters ? JSON.parse(filters) : {};
+
+    bodyFilters.searchText = this.searchText || '';
+
+    sessionStorage.setItem('bodyFilters', JSON.stringify(bodyFilters));
+    this.homeService.getVacancies();
+    this.homeService.getResumes();
+
+  }
 
   visibleSearch() {
     this.settingHeaderService.searchinputVisible = true;
