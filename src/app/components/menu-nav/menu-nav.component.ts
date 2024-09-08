@@ -80,29 +80,29 @@ export class MenuNavComponent implements OnInit {
   handlePostResume(): void {
     const fullAccess = localStorage.getItem('fullAccess')
     const userId = localStorage.getItem('userId')
-    if(fullAccess == 'b326b5062b2f0e69046810717534cb09'){
+    if (fullAccess == 'b326b5062b2f0e69046810717534cb09') {
       this.formSettingService.isheading = false;
-    this.formSettingService.typeForm = 'резюме';
-    this.settingHeaderService.post = false;
-    this.settingHeaderService.shared = false;
-    this.sidebarVisible = false;
+      this.formSettingService.typeForm = 'резюме';
+      this.settingHeaderService.post = false;
+      this.settingHeaderService.shared = false;
+      this.sidebarVisible = false;
       this.router.navigate([`/myaccount/${userId}/newVacancy`]);
-    }else{
+    } else {
       this.popUpErrorCreateService.visible = true;
     }
   }
- 
+
   handlePostVacancy(): void {
     const fullAccess = localStorage.getItem('fullAccess')
     const userId = localStorage.getItem('userId')
-    if(fullAccess == 'b326b5062b2f0e69046810717534cb09'){
+    if (fullAccess == 'b326b5062b2f0e69046810717534cb09') {
       this.formSettingService.isheading = true;
       this.formSettingService.typeForm = 'вакансии';
       this.settingHeaderService.post = false;
       this.settingHeaderService.shared = false;
       this.sidebarVisible = false;
       this.router.navigate([`/myaccount/${userId}/newVacancy`]);
-    }else{
+    } else {
       this.popUpErrorCreateService.visible = true;
     }
   }
@@ -130,8 +130,9 @@ export class MenuNavComponent implements OnInit {
   }
 
   viewUser() {
-    this.router.navigate([`/myaccount`, 'root']);
+    const userId = localStorage.getItem('userId')
     this.sidebarVisible = false;
+    this.router.navigate([`/myaccount/${userId}`]);
   }
 
   toggleTopic(savedTheme: any = '') {

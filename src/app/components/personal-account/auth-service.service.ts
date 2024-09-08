@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  private domain = 'https://vm-7c43f39f.na4u.ru/api'; 
+  private domain = 'https://uteam.top/api';
 
   // Метод для проверки аутентификации
   isAuthenticated(): Observable<boolean> {
