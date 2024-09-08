@@ -10,7 +10,7 @@ import { TokenService } from '../token.service';
 })
 export class AuthGuard implements CanActivate {
 
-  private domain = 'https://vm-7c43f39f.na4u.ru/api'; 
+  private domain = 'https://uteam.top/api';
 
   constructor(private router: Router, private tokenService: TokenService, private http: HttpClient) {}
 
