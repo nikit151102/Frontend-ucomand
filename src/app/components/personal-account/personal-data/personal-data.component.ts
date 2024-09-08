@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { AvatarSelectionService } from '../../pop-up-avatar/avatar-selection.service';
 import { forbiddenWordsValidator } from './errorNameList';
+import { SettingHeaderService } from '../../setting-header.service';
 
 @Component({
   selector: 'app-personal-data',
@@ -46,7 +47,9 @@ export class PersonalDataComponent implements OnInit {
 
   private subscription: Subscription = new Subscription();
 
-  constructor(private fb: FormBuilder, private personalDataService: PersonalDataService, private router: Router, public popUpAvatarService: PopUpAvatarService, private avatarSelectionService: AvatarSelectionService) {
+  constructor(private fb: FormBuilder, private personalDataService: PersonalDataService, 
+    private router: Router, public popUpAvatarService: PopUpAvatarService, 
+    private avatarSelectionService: AvatarSelectionService, private settingHeaderService: SettingHeaderService) {
     this.personalDataForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -63,6 +66,9 @@ export class PersonalDataComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.settingHeaderService.shared = true;
+    this.settingHeaderService.post = true;
+    this.settingHeaderService.backbtn = true;
     this.avatarSelectionService.selectedAvatar$.subscribe(selectedAvatar => {
       this.setAvatar = selectedAvatar
     });

@@ -54,7 +54,6 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     private personalHomeService: PersonalHomeService, private popUpDeleteService: PopUpDeleteService, public popUpExitService: PopUpExitService,
     public resumeService: ResumeService, public vacancyService: VacancyService,
     private formSettingService: FormSettingService,
-    private homeService: HomeService,
     private popUpErrorCreateService: PopUpErrorCreateService) { }
 
   imagePath: string = '';
