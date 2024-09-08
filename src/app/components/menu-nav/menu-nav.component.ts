@@ -15,7 +15,7 @@ import { PopUpEntryService } from '../pop-up-entry/pop-up-entry.service';
   imports: [CommonModule, SidebarModule],
   templateUrl: './menu-nav.component.html',
   styleUrl: './menu-nav.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuNavComponent implements OnInit {
 
@@ -28,7 +28,9 @@ export class MenuNavComponent implements OnInit {
   constructor(private location: Location, public settingHeaderService: SettingHeaderService,
     private router: Router, public tokenService: TokenService, private homeService: HomeService,
     private formSettingService: FormSettingService, private cdr: ChangeDetectorRef,
-    private popUpEntryService: PopUpEntryService,     private ngZone: NgZone) {
+    private popUpEntryService: PopUpEntryService,    
+     private ngZone: NgZone
+    ) {
   }
 
   ngOnInit(): void {

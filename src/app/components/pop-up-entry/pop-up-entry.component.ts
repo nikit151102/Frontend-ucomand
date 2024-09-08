@@ -120,13 +120,12 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
     this.popUpEntryService.getUser().subscribe(
       (data) => {
-        localStorage.setItem('userId', data.id);
+        localStorage.setItem('userId', data.nickname && data.nickname !== 'string' ? data.nickname : String(data.id));
         this.popUpEntryService.userVisible = true;
         this.popUpEntryService.visible = false;
         this.closePopUp()
       },
       (error) => {
-        console.error('Error fetching user data:', error);
       }
     );
     this.closePopUp()

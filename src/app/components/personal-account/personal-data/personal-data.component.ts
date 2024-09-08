@@ -182,6 +182,7 @@ export class PersonalDataComponent implements OnInit {
       response => {
         console.log('Данные успешно отправлены', response);
         this.userData();
+        localStorage.setItem('userId', formValues.domain);
         const userId = localStorage.getItem('userId')
         this.router.navigate([`/myaccount/${userId}/home`]);
       },
