@@ -29,5 +29,6 @@ export interface User {
     dateOfRegistration: string | null; 
     cityOfResidence: CityOfResidence;
     imageLink: string | null;
+    nickname: string | null;
     role: 'ROOT' | 'USER' | 'ADMIN'; 
 }

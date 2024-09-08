@@ -11,6 +11,7 @@ import { PopUpAvatarService } from '../../pop-up-avatar/pop-up-avatar.service';
 import { Subscription } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { AvatarSelectionService } from '../../pop-up-avatar/avatar-selection.service';
+import { forbiddenWordsValidator } from './errorNameList';
 
 @Component({
   selector: 'app-personal-data',
@@ -40,7 +41,9 @@ export class PersonalDataComponent implements OnInit {
   setAvatar: string | null = '';
   setGender: string | null = '';
   setTypeAvatar: string | null = '';
-  
+  isDisabled = false;
+
+
   private subscription: Subscription = new Subscription();
 
   constructor(private fb: FormBuilder, private personalDataService: PersonalDataService, private router: Router, public popUpAvatarService: PopUpAvatarService, private avatarSelectionService: AvatarSelectionService) {
@@ -54,7 +57,7 @@ export class PersonalDataComponent implements OnInit {
       aboutMe: ['', [Validators.maxLength(250)]],
       email: ['', [Validators.required, Validators.email]],
       telegram: [''],
-      domain: [''],
+      domain: ['', [forbiddenWordsValidator()]],
       approval: [false, Validators.requiredTrue]
     });
   }
@@ -86,12 +89,21 @@ export class PersonalDataComponent implements OnInit {
     this.personalDataForm.get('gender')?.valueChanges.subscribe(value => {
       this.setGender = value;
     });
+    this.toggleDisable()
   }
 
   getAvatar() {
     this.popUpAvatarService.showPopup();
   }
 
+  toggleDisable() {
+    this.isDisabled = !this.isDisabled;
+    if (this.isDisabled) {
+      this.personalDataForm.get('domain')?.disable();
+    } else {
+      this.personalDataForm.get('domain')?.enable();
+    }
+  }
   userData() {
     this.personalDataService.getCurrentUser().subscribe(
       (user: User) => {
@@ -108,7 +120,7 @@ export class PersonalDataComponent implements OnInit {
           aboutMe: user.aboutMe || '',
           email: user.email,
           telegram: user.telegram,
-          domain: '',
+          domain: user.nickname && user.nickname !== 'string' ? user.nickname : String(user.id),
           approval: false
         });
 
@@ -162,6 +174,7 @@ export class PersonalDataComponent implements OnInit {
       dateOfRegistration: new Date().toISOString(),
       cityOfResidence: this.cityOfResidence,
       imageLink: this.setAvatar,
+      nickname: formValues.domain,
       role: this.dataCurrentUser.role,
     };
 

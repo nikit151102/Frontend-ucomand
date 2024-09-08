@@ -44,6 +44,7 @@ export interface User {
   dateOfRegistration: string | null; 
   cityOfResidence: CityOfResidence;
   imageLink: string | null; 
+  nickname: string | null;
   role: 'ROOT' | 'USER' | 'ADMIN'; 
 }
 
@@ -171,6 +172,7 @@ export class FormUserComponent implements OnInit {
         dateOfRegistration: new Date().toISOString(),  
         cityOfResidence: this.cityOfResidence,
         imageLink: null,
+        nickname: formValues.domain,
         role: this.dataCurrentUser.role,  
       };
   
