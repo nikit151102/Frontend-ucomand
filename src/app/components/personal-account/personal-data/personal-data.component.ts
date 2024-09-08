@@ -39,6 +39,8 @@ export class PersonalDataComponent implements OnInit {
   isPopupVisible: boolean = false;
   setAvatar: string | null = '';
   setGender: string | null = '';
+  setTypeAvatar: string | null = '';
+  
   private subscription: Subscription = new Subscription();
 
   constructor(private fb: FormBuilder, private personalDataService: PersonalDataService, private router: Router, public popUpAvatarService: PopUpAvatarService, private avatarSelectionService: AvatarSelectionService) {
@@ -60,6 +62,11 @@ export class PersonalDataComponent implements OnInit {
   ngOnInit(): void {
     this.avatarSelectionService.selectedAvatar$.subscribe(selectedAvatar => {
       this.setAvatar = selectedAvatar
+    });
+
+    this.avatarSelectionService.selectedTypeAvatar$.subscribe(selectedTypeAvatar => {
+      this.setTypeAvatar = selectedTypeAvatar
+      this.personalDataForm.get('gender')?.setValue(this.setTypeAvatar);
     });
 
     this.subscription.add(

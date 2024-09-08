@@ -15,9 +15,11 @@ import { AvatarSelectionService } from './avatar-selection.service';
 export class PopUpAvatarComponent {
 
   @Input() gender: any = '';
+  @Input() serverSelectedAvatar: string | null = null;
+
   constructor(private avatarSelectionService: AvatarSelectionService, private popUpAvatarService: PopUpAvatarService, private router: Router) { }
-  
-  avatarSrc: string = 'default-avatar'; 
+
+  avatarSrc: string = 'default-avatar';
   selectedAvatar: string | null = null;
 
   private allAvatars: any = {
@@ -40,7 +42,13 @@ export class PopUpAvatarComponent {
     return this.allAvatars[this.gender] || this.allAvatars[''];
   }
 
- 
+  ngOnInit(): void {
+    if (this.serverSelectedAvatar) {
+      this.selectedAvatar = this.serverSelectedAvatar;
+      this.avatarSelectionService.selectAvatar(this.selectedAvatar);
+    }
+  }
+
   cancel(): void {
     this.popUpAvatarService.hidePopup();
   }
