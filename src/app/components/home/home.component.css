@@ -18,6 +18,9 @@
     display: flex;
     flex-direction: column;
 }
+.app-card-vacancy-link{
+    text-decoration: none;
+}
 
 .search {
     width: 100%;

@@ -57,7 +57,8 @@ export class CardVacancyComponent {
   }
 
   viewUser(event: Event,id: string) {
-    event.stopPropagation();
+    event.stopPropagation(); 
+    event.preventDefault();
     this.router.navigate([`/user`, id]);
   }
 }

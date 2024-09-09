@@ -61,4 +61,9 @@ export class HomeComponent implements OnInit {
 
     this.homeService.loadData();
   }
+  
+  getCardUrl(cardValue: any, type: string, route: string): string {
+    return this.router.createUrlTree([route, cardValue]).toString();
+  }
+  
 }
