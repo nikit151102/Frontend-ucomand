@@ -44,10 +44,10 @@
                 <ng-container *ngIf="currentUser && 
                 currentUser !== 'default' &&
                 currentUser.trim() !== ''; else default">
-                    <img [src]="'assets/avatars/'+ currentUser + '.png'" class="logoImg">
+                    <img [src]="'assets/avatars/'+ currentUser + '.png'" class="logoImg" style="width: 44px; height: 44px;;" (click)="viewUser()">
                 </ng-container>
-                <ng-template #default>
-                    <img [src]="'assets/avatars/default.png'" alt="logo" class="logoImg">
+                <ng-template #default> 
+                    <img [src]="'assets/avatars/default.png'" alt="logo" class="logoImg" style="width: 44px; height: 44px;;" (click)="viewUser()">
                 </ng-template>
 
                 <a (click)="sidebarVisible = true" class="navBTN">
