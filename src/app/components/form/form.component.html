@@ -11,7 +11,8 @@
                     <div class="stage">
                         <p class="stage-title">Заголовок:</p>
                         <textarea formControlName="title" placeholder="Напишите заголовок"
-                            (input)="adjustHeight($event)"></textarea>
+                            (input)="adjustHeight($event)" (paste)="adjustHeight($event)"></textarea>
+
                         <div *ngIf="form.get('title')?.invalid && form.get('title')?.touched && form.get('title')?.value"
                             class="error-message">
                             Заголовок обязателен
@@ -27,8 +28,7 @@
                 <div class="stage">
                     <p class="stage-title">Специализация:</p>
                     <app-tag-selected-level [placeholderValue]="'Выберете специализацию'" [tags]="professions"
-                        [maxTags]="1" [type]="'profession'"
-                        formControlName="profession"
+                        [maxTags]="1" [type]="'profession'" formControlName="profession"
                         (tagsChanged)="onTagsChanged($event, 'profession')"></app-tag-selected-level>
                     <div *ngIf="form.get('profession')?.invalid && form.get('profession')?.touched"
                         class="error-message">

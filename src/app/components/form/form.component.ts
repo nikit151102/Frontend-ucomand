@@ -196,7 +196,7 @@ export class FormComponent implements OnInit {
 
   adjustHeight(event: Event): void {
     const textarea = event.target as HTMLTextAreaElement;
-    textarea.style.height = '46px';
+    textarea.style.height = 'auto';
     textarea.style.height = `${textarea.scrollHeight}px`;
   }
 
