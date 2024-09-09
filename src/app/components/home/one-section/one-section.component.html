@@ -1,6 +1,6 @@
 <div class="content">
-    <app-desktop-type class="desktop-only" *ngIf="!tokenService.getToken()"></app-desktop-type>
-    <app-phone-type class="phone-only" *ngIf="!tokenService.getToken()"></app-phone-type>
+    <app-desktop-type class="desktop-only" *ngIf="showTypes && !tokenService.getToken()"></app-desktop-type>
+    <app-phone-type class="phone-only" *ngIf="showTypes && !tokenService.getToken()"></app-phone-type>
 
     <div class="search" [ngClass]="{'sticky-background': settingHeaderService.isSticky}">
         <div class="search-container">

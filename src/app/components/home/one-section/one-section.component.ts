@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostListener } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener } from '@angular/core';
 import { SearchComponent } from '../search/search.component';
 import { Router } from '@angular/router';
 import { FormSettingService } from '../../form/form-setting.service';
@@ -20,59 +20,40 @@ import { throttle } from 'lodash';
   styleUrl: './one-section.component.css'
 })
 
-export class OneSectionComponent implements AfterViewInit {
+export class OneSectionComponent {
 
-  constructor(public settingHeaderService: SettingHeaderService, private formSettingService: FormSettingService, public tokenService:TokenService, private router: Router, public popUpEntryService: PopUpEntryService) { }
-
-  hasType = false;
-
-  private stickyOffset: number = 60; 
-  private searchElement: HTMLElement | null = null;
-  private fixedPixel: number = 0;
-  private isStickyApplied: boolean = false;
+  constructor(public settingHeaderService: SettingHeaderService, private formSettingService: FormSettingService,
+    public tokenService: TokenService, private router: Router, public popUpEntryService: PopUpEntryService,
+    private elRef: ElementRef,
+    private cdr: ChangeDetectorRef) { }
+    
+    showTypes: boolean = true;
 
   ngAfterViewInit() {
-    this.hasType = !!document.querySelector('app-desktop-type') || !!document.querySelector('app-phone-type');
-    this.searchElement = document.querySelector('app-search');
-    this.onWindowScroll(); 
+    this.onWindowScroll();
   }
 
-  
-  handleScroll = throttle(() => {
-    if (this.searchElement) {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const elementRect = this.searchElement.getBoundingClientRect();
-      const elementTop = scrollTop + elementRect.top;
-  
-      const shouldApplySticky = scrollTop >= (elementTop - this.stickyOffset) && (scrollTop > this.fixedPixel);
-      if (shouldApplySticky && !this.isStickyApplied) {
-        this.searchElement.classList.add('sticky');
-        this.fixedPixel = scrollTop;
-        this.settingHeaderService.isSticky = true;
-        this.isStickyApplied = true;
-      } else if (!shouldApplySticky && this.isStickyApplied) {
-        this.searchElement.classList.remove('sticky');
-        this.fixedPixel = 0;
-        this.settingHeaderService.isSticky = false;
-        this.isStickyApplied = false;
-      }
-    }
-  }, 200);
-  
-  private scrollScheduled: boolean = false;
-
+  private stickyOffset: number = 60;
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
-    if (!this.scrollScheduled) {
-      this.scrollScheduled = true;
-      requestAnimationFrame(() => {
-        this.handleScroll();
-        this.scrollScheduled = false; 
-      });
+    const searchElement = this.elRef.nativeElement.querySelector('app-search');
+    if (searchElement) {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const elementRect = searchElement.getBoundingClientRect();
+      const elementTop = scrollTop + elementRect.top;
+
+      if (scrollTop >= (elementTop - this.stickyOffset)) {
+        searchElement.classList.add('sticky');
+        this.settingHeaderService.isSticky = true;
+        this.showTypes = false;
+        const element = this.elRef.nativeElement.querySelector('.content');
+        if (element) {
+          element.style.marginBottom = '90px';
+        }
+      }
     }
   }
 
-  
   newVacancy() {
     this.formSettingService.isheading = true;
     this.formSettingService.typeForm = 'вакансии';

@@ -17,30 +17,27 @@
     justify-content: center;
     align-items: center;
     position: relative; /* Начальное положение */
-    transition: position 0.5s; /* Плавный переход */
-    
+    transition: background-color 0.5s, padding 0.5s; /* Плавный переход */
+}
+
+app-search.sticky {
+    width: 65.5%;
+    position: fixed;
+    top: 0;
+    padding: 1rem 0;
+    background: #b9aeff; /* Цвет прилипшего состояния */
+    z-index: 10;
 }
 
 .sticky-background {
     background: none;
-    z-index: 10;
 }
 
-app-search{
-    position: relative; /* Начальное положение */
-    transition: position 0.5s; /* Плавный переход */
-    will-change: position, transform;
-}
-app-search.sticky {
-    width: 65.5%;
-    position: fixed;
-    top: 0px;
-    padding: 1rem 0;
-}
-
+/* Убедитесь, что стили для не-прилипшего состояния не конфликтуют */
 app-search:not(.sticky) {
     background: #b9aeff; /* Цвет, когда не приклеен */
 }
+
 
 .search-container {
     width: 65%;
