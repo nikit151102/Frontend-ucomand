@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ResumeService } from '../services/resume.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-archive-resume',
@@ -13,7 +14,7 @@ export class ArchiveResumeComponent {
   
   @Input() cardItem: any;
 
-  constructor(private resumeService:ResumeService){}
+  constructor(private resumeService:ResumeService, private router: Router){}
 
   getSkillsColor(item: number): string {
     switch (item) {
@@ -67,5 +68,12 @@ export class ArchiveResumeComponent {
     (error: any) => {
       console.error('Ошибка при загрузке данных пользователя:', error);
     }
+  }
+
+
+  update(event: Event, id: number) {
+    event.stopPropagation();
+    const userId = localStorage.getItem('userId')
+    this.router.navigate([`/myaccount/${userId}/updateResume/${id}`]);
   }
 }

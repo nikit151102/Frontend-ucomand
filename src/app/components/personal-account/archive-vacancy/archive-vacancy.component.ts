@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { VacancyService } from '../services/vacancy.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-archive-vacancy',
@@ -11,7 +12,7 @@ import { VacancyService } from '../services/vacancy.service';
 })
 export class ArchiveVacancyComponent {
 
-  constructor(private vacancyService: VacancyService) { }
+  constructor(private vacancyService: VacancyService,private router: Router) { }
 
   @Input() cardItem: any;
 
@@ -69,6 +70,12 @@ export class ArchiveVacancyComponent {
     }
   }
 
+  update(event: Event, id: number) {
+    event.stopPropagation();
+    const userId = localStorage.getItem('userId')
+    this.router.navigate([`/myaccount/${userId}/updateVacancy/${id}`]);
+  }
+  
 }
 
 
