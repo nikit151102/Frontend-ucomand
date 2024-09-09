@@ -327,4 +327,9 @@ a {
 }
 }
 
+@media (min-width: 1820px){
+    .first-container {
+        width: 85%;
+    }
+}
 
