@@ -45,7 +45,15 @@ export class FormComponent implements OnInit {
   @ViewChild(TagSelectedLevelComponent) tagSelectedLevelComponent!: TagSelectedLevelComponent;
 
   form!: FormGroup;
-  selectedTags: { id: number, name: string, color: string }[] = [];
+  selectedTags: {
+    id: number;
+    name: string;
+    color: string | null;
+    competenceLevel: string | null;
+    nameEng: string | null;
+    type: string;
+  }[] = [];
+
   motivations: any[] = [];
   professions: any[] = [];
   skills: any[] = [];
@@ -73,6 +81,7 @@ export class FormComponent implements OnInit {
       this.typeForm = routeName.includes('Resume') ? 'резюме' : 'вакансии';
 
       if (this.isEditMode) {
+        this.initializeForm();
         this.loadExistingData();
       } else {
         this.initializeForm();
@@ -121,16 +130,32 @@ export class FormComponent implements OnInit {
     const savedData = localStorage.getItem(this.FORM_STORAGE_KEY);
     if (savedData) {
       const parsedData = JSON.parse(savedData);
-
+      console.log("parsedData,", parsedData)
       if (parsedData.type === this.typeForm) {
-        this.saveChangesPopupService.showPopup();
+       
         const formData = parsedData.formData;
-        this.form.patchValue(formData);
+        this.form.patchValue({
+          ...formData,
+          profession:  [formData.profession]
+        });
 
-        this.form.get('skills')?.setValue(formData.skills);
-        this.form.get('profession')?.setValue([formData.profession]);
-        this.form.get('motivations')?.setValue(formData.motivations);
+        this.saveChangesPopupService.showPopup();
       }
+    }
+  }
+
+  loadExistingData(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      const typeEndpoint = this.typeForm === 'резюме' ? ['resumes', id] : ['vacancies', id];
+      this.formSettingService.getDataById(typeEndpoint[0], typeEndpoint[1]).subscribe((data: any) => {
+
+        this.form.patchValue({
+          ...data,
+          profession:  [data.profession]
+        });
+
+      });
     }
   }
 
@@ -149,31 +174,25 @@ export class FormComponent implements OnInit {
     this.saveChangesPopupService.hidePopup();
   }
 
-  loadExistingData(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      const typeEndpoint = this.typeForm === 'резюме' ? ['resumes', id] : ['vacancies', id];
-      this.formSettingService.getDataById(typeEndpoint[0], typeEndpoint[1]).subscribe((data: any) => {
-        console.log("getDataById", data)
-        this.initializeForm();
 
-        this.form.patchValue(data);
-
-        this.form.get('skills')?.setValue(data.skills);
-        this.form.get('profession')?.setValue([data.profession]);
-        this.form.get('motivations')?.setValue(data.motivations);
-
-      });
-    }
-  }
 
   optionalValidator(control: AbstractControl): { [key: string]: boolean } | null {
     return control.value ? Validators.required(control) : null;
   }
 
-  onMotivationsChanged(tags: { id: number, name: string, color: string }[]): void {
+  onMotivationsChanged(tags: {
+    id: number;
+    name: string;
+    color: string | null;
+    competenceLevel: string | null;
+    nameEng: string | null;
+    type: string;
+  }[]): void {
+
     this.form.get('motivations')?.setValue(tags);
   }
+
+
 
   adjustHeight(event: Event): void {
     const textarea = event.target as HTMLTextAreaElement;
@@ -302,6 +321,9 @@ export class FormComponent implements OnInit {
     const route = typeEndpoint === 'resumes' ? [`/resume`, response.id] : [`/vacancy`, response.id];
     this.router.navigate(route);
 
+    this.motivationsComponent.reset();
+    this.tagSelectedLevelComponent.reset();
+
     this.form.reset({
       title: '',
       profession: [],
@@ -311,8 +333,7 @@ export class FormComponent implements OnInit {
       details: ''
     });
 
-    this.motivationsComponent.reset();
-    this.tagSelectedLevelComponent.reset();
+
   }
 
   saveFormDataToStorage(): void {
@@ -325,7 +346,7 @@ export class FormComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     const typeEndpoint = this.typeForm === 'резюме' ? ['resumes', id] : ['vacancies', id];
     if (typeEndpoint[0]) {
-      this.formSettingService.deleteData(typeEndpoint[0], typeEndpoint[1]).subscribe((data:any) => {
+      this.formSettingService.deleteData(typeEndpoint[0], typeEndpoint[1]).subscribe((data: any) => {
         const userId = localStorage.getItem('userId')
         this.router.navigate([`/myaccount/${userId}`]);
       })

@@ -5,11 +5,11 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule } from '@angular/f
 
 interface Tag {
   id: number;
-  name: string;
-  nameEng: string;
-  competenceLevel: null;
+  name: string ;
+  nameEng: string ;
+  competenceLevel: number|null;
   type: string;
-  color: string;
+  color: string | null;
 }
 
 @Component({
@@ -59,6 +59,7 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
       this.selectedTag = { name: tag.name, id: tag.id, competenceLevel: tag.competenceLevel, color: tag.color, type: tag.type, nameEng: tag.nameEng };
     }
     this.showTagBlock = true;
+   
   }
 
   selectLevel(level: number, id: number, color: string = '', type: string, nameEng: string) {
@@ -93,13 +94,14 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
   }
 
   writeValue(value: Tag[]): void {
+    console.log("type",this.type)
     console.log("value",value)
     if (value && Array.isArray(value)) {
       this.selectedTags = value;
     } else {
       this.selectedTags = [];
     }
-    this.updateFilteredTags(); 
+
   }
 
   registerOnChange(fn: any): void {
@@ -187,5 +189,6 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
         .sort((a, b) => a.name.localeCompare(b.name)); 
     }
   }
+
 
 }

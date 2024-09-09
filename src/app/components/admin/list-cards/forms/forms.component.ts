@@ -126,7 +126,12 @@ export class FormsComponent implements OnInit {
     return control.value ? Validators.required(control) : null;
   }
 
-  onMotivationsChanged(tags: { id: number, name: string, color: string }[]): void {
+  onMotivationsChanged(tags: {  id: number; 
+    name: string; 
+    color: string | null; 
+    competenceLevel: string | null; 
+    nameEng: string | null; 
+    type: string;  }[]): void {
     this.form.get('motivations')?.setValue(tags);
   }
 

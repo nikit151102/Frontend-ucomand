@@ -41,13 +41,13 @@ export class CardVacancyComponent {
   getMotivationColor(item: string): string {
     switch (item) {
       case 'Без оплаты':
-        return '#ffab00';
-      case 'Практика':
-        return '#cf87f1';
+        return '#FFAB00';
+      case 'Нужна практика':
+        return '#CF87F1';
       case 'За долю':
-        return '#298cf4';
+        return '#298CF4';
       case 'За оплату':
-        return '#23b9b0';
+        return '#23B9B0';
       default:
         return '';
     }

@@ -9,7 +9,7 @@ export class MotivationsService {
 
   constructor(private http: HttpClient) { }
 
-  private domain = 'https://vm-7c43f39f.na4u.ru/api';
+  private domain = 'https://uteam.top/api';
 
   getTags(): Observable<any> {
     return this.http.get(`${this.domain}/tags?types=MOTIVATION`);

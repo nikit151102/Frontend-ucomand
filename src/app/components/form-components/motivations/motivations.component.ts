@@ -19,27 +19,59 @@ import { MotivationsService } from './motivations.service';
 })
 export class MotivationsComponent implements OnInit {
 
-  constructor(private motivationsService: MotivationsService) { }
-
-  ngOnInit(): void {
+  constructor(private motivationsService: MotivationsService) {
     // this.motivationsService.getTags().subscribe((data: any) => { 
     //   this.tagsList = data
     // })
+   }
+  // tagsList!: { id: number, name: string, color: string,competenceLevel: string|null, nameEng: string|null, type: string }[] ;
+  ngOnInit(): void {
+   
   }
 
-  tagsList: { id: number, name: string, color: string, type: string }[] = [
-    { id: 1, name: 'Без оплаты', color: '#FFAB00', type: 'MOTIVATION' },
-    { id: 2, name: 'Практика', color: '#CF87F1', type: 'MOTIVATION' },
-    { id: 3, name: 'За долю', color: '#298CF4', type: 'MOTIVATION' },
-    { id: 4, name: 'За оплату', color: '#23B9B0', type: 'MOTIVATION' }
-  ];
-  selectedTags: { id: number, name: string, color: string, type: string }[] = [];
+  tagsList: { id: number, name: string, color: string|null, competenceLevel: string|null, nameEng: string|null, type: string }[] = [
+  {
+    "id": 1,
+    "name": "Без оплаты",
+    "nameEng": null,
+    "competenceLevel": null,
+    "type": "MOTIVATION",
+    "color": null
+  },
+  {
+    "id": 2,
+    "name": "За оплату",
+    "nameEng": null,
+    "competenceLevel": null,
+    "type": "MOTIVATION",
+    "color": null
+  },
+  {
+    "id": 3,
+    "name": "За долю",
+    "nameEng": null,
+    "competenceLevel": null,
+    "type": "MOTIVATION",
+    "color": null
+  },
+  {
+    "id": 4,
+    "name": "Нужна практика",
+    "nameEng": null,
+    "competenceLevel": null,
+    "type": "MOTIVATION",
+    "color": null
+  }
+]
+
+
+  selectedTags: { id: number, name: string, color: string|null, competenceLevel: string|null, nameEng: string|null, type: string }[] = [];
 
   getSkillsColor(item: string): string {
     switch (item) {
       case 'Без оплаты':
         return '#FFAB00';
-      case 'Практика':
+      case 'Нужна практика':
         return '#CF87F1';
       case 'За долю':
         return '#298CF4';
@@ -50,18 +82,21 @@ export class MotivationsComponent implements OnInit {
     }
   }
 
-  @Output() tagsChanged = new EventEmitter<{ id: number, name: string, color: string, type: string }[]>();
+  @Output() tagsChanged = new EventEmitter<{ 
+    id: number, name: string, color: string|null, competenceLevel: string|null, nameEng: string|null, type: string
+  }[]>();
+  
   private onChange: (value: any) => void = () => { };
   private onTouched: () => void = () => { };
 
-  selectTag(tag: { id: number, name: string, color: string, type: string }) {
+  selectTag(tag: { id: number, name: string, color: string|null, competenceLevel: string|null, nameEng: string|null, type: string }) {
     this.tagsList = this.tagsList.filter(t => t.name !== tag.name);
     this.selectedTags.push(tag);
     this.onChange(this.selectedTags);
     this.tagsChanged.emit(this.selectedTags);
   }
 
-  deleteTag(tag: { id: number, name: string, color: string, type: string }) {
+  deleteTag(tag: { id: number, name: string, color: string|null, competenceLevel: string|null, nameEng: string|null, type: string }) {
     this.selectedTags = this.selectedTags.filter(t => t.name !== tag.name);
     this.tagsList.push(tag);
     this.onChange(this.selectedTags);
@@ -69,6 +104,8 @@ export class MotivationsComponent implements OnInit {
   }
 
   reset() {
+    this.tagsList.push(...this.selectedTags);
+    console.log(" this.tagsList", this.tagsList)
     this.selectedTags = [];
     this.tagsChanged.emit(this.selectedTags);
   }
@@ -81,7 +118,8 @@ export class MotivationsComponent implements OnInit {
     this.onTouched = fn;
   }
 
-  writeValue(value: { id: number, name: string, color: string, type: string }[]): void {
+  writeValue(value: { id: number, name: string, color: string|null, competenceLevel: string|null, nameEng: string|null, type: string }[]): void {
+    
     if (value && Array.isArray(value)) {
       this.selectedTags = value;
       this.updateAvailableTags();

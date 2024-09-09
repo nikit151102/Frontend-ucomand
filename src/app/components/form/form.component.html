@@ -26,9 +26,10 @@
             <div class="secondRow">
                 <div class="stage">
                     <p class="stage-title">Специализация:</p>
-                    <app-tag-selected-level [placeholderValue]="'Выберете специализацию'" [tags]="professions" [maxTags]="1"
-                       [type]="'profession'"
-                    (tagsChanged)="onTagsChanged($event, 'profession')"></app-tag-selected-level>
+                    <app-tag-selected-level [placeholderValue]="'Выберете специализацию'" [tags]="professions"
+                        [maxTags]="1" [type]="'profession'"
+                        formControlName="profession"
+                        (tagsChanged)="onTagsChanged($event, 'profession')"></app-tag-selected-level>
                     <div *ngIf="form.get('profession')?.invalid && form.get('profession')?.touched"
                         class="error-message">
                         Необходимо выбрать специализацию
@@ -41,7 +42,7 @@
                         formControlName="skills"
                         (tagsChanged)="onTagsChanged($event, 'skills' )"></app-tag-selected-level>
                     <div *ngIf="form.get('skills')?.invalid && form.get('skills')?.touched" class="error-message">
-                        Необходимо выбрать от 1 до 3 навыков
+                        Необходимо выбрать от 1 до 10 навыков
                     </div>
                 </div>
 
@@ -96,7 +97,7 @@
                         <ng-container *ngIf="isEditMode">
                             <a class="deleteBtn" style="color: #000000;" (click)="deleteCard()">Удалить</a>
                         </ng-container>
-                        
+
                     </div>
                 </div>
             </div>
