@@ -148,7 +148,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
         }else{
           localStorage.setItem('fullAccess', 'b326b5062b2f0e69046810717534cb09' );
         }
-        localStorage.setItem('Linkken', data.imageLinkken);
+        localStorage.setItem('Linkken', data.imageLink);
         localStorage.setItem('userId', data.nickname && data.nickname !== 'string' ? data.nickname : String(data.id));
         this.popUpEntryService.userVisible = true;
         this.popUpEntryService.visible = false;
