@@ -25,6 +25,7 @@ export class PopUpDeleteComponent {
         console.log('Пользователь успешно удален:', response);
         this.popUpDeleteService.hidePopup();
         this.tokenService.clearToken();
+        localStorage.removeItem('Linkken'); 
         this.router.navigate(['/']);
       },
       error => {

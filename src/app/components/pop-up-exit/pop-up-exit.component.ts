@@ -20,6 +20,7 @@ export class PopUpExitComponent {
 
   exitAccount(){
     this.tokenService.clearToken();
+    localStorage.removeItem('Linkken'); 
     this.router.navigate(['/']);
   }
 
