@@ -59,7 +59,10 @@ export class MenuNavComponent implements OnInit {
     });
   }
 
-
+  isImageAvatar(logo: string): boolean {
+    return logo.startsWith('image');
+  }
+  
   navigateTo(path: string) {
     this.router.navigate([path]);
     this.sidebarVisible = false;
