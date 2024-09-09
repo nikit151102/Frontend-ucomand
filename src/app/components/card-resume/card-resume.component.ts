@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-resume',
@@ -9,6 +10,8 @@ import { Component, Input } from '@angular/core';
   styleUrl: './card-resume.component.css'
 })
 export class CardResumeComponent {
+
+  constructor(private router: Router) { }
 
   @Input() cardItem: any;
 
@@ -25,7 +28,7 @@ export class CardResumeComponent {
         return '';
     }
   }
-  
+
   getSkills(item: number): string {
     switch (item) {
       case 1:
@@ -51,7 +54,7 @@ export class CardResumeComponent {
         return '';
     }
   }
-  
+
   getMotivationColor(item: string): string {
     switch (item) {
       case 'Без оплаты':
@@ -65,5 +68,11 @@ export class CardResumeComponent {
       default:
         return '';
     }
+  }
+
+
+  viewUser(event: Event,id: string) {
+    event.stopPropagation();
+    this.router.navigate([`/user`, id]);
   }
 }

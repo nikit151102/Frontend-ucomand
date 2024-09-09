@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-vacancy',
@@ -10,6 +11,8 @@ import { Component, Input } from '@angular/core';
 })
 export class CardVacancyComponent {
 
+  constructor(private router: Router) { }
+  
   @Input() cardItem: any
   
   getSkillsColor(item: number): string {
@@ -51,5 +54,10 @@ export class CardVacancyComponent {
       default:
         return '';
     }
+  }
+
+  viewUser(event: Event,id: string) {
+    event.stopPropagation();
+    this.router.navigate([`/user`, id]);
   }
 }

@@ -9,6 +9,8 @@ import { UserAccountService } from './user-account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SkeletonModule } from 'primeng/skeleton';
 import { HomeService } from '../home/home.service';
+import { TokenService } from '../token.service';
+import { PopUpEntryService } from '../pop-up-entry/pop-up-entry.service';
 
 @Component({
   selector: 'app-user-account',
@@ -20,10 +22,11 @@ import { HomeService } from '../home/home.service';
 
 export class UserAccountComponent implements OnInit, OnDestroy {
 
-  constructor(private route: ActivatedRoute, private settingHeaderService: SettingHeaderService, public viewCardService: ViewCardService, 
+  constructor(private route: ActivatedRoute, private settingHeaderService: SettingHeaderService, public viewCardService: ViewCardService,
     private domainService: DomainService, private userAccountService: UserAccountService,
-    private cdRef: ChangeDetectorRef, 
-    private router: Router, private homeService: HomeService  ) {
+    private cdRef: ChangeDetectorRef,
+    private router: Router, private homeService: HomeService, private popUpEntryService: PopUpEntryService,
+    public tokenService: TokenService) {
     this.settingHeaderService.shared = true;
   }
 
@@ -38,7 +41,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
     this.settingHeaderService.shared = true;
     this.settingHeaderService.backbtn = true;
-  
+
     this.route.paramMap.subscribe(params => {
       this.userId = params.get('id')!;
       if (this.userId) {
@@ -52,11 +55,11 @@ export class UserAccountComponent implements OnInit, OnDestroy {
       const userData = await this.userAccountService.getUserData(id).toPromise();
       setTimeout(() => {
         this.userData = userData;
-        console.log("userData",userData)
+        console.log("userData", userData)
       }, 1000);
-      
 
-      console.log("userData",this.userData)
+
+      console.log("userData", this.userData)
       if (userData.freeLink) {
         this.domainName = this.domainService.setDomain(userData.freeLink);
         this.imagePath = await this.domainService.checkImageExists(this.domainName);
@@ -64,20 +67,23 @@ export class UserAccountComponent implements OnInit, OnDestroy {
       this.vacancies = await this.userAccountService.getVacanciesData(id).toPromise();
       this.resumes = await this.userAccountService.getResumessData(id).toPromise();
     } catch (error: any) {
-     if (error.status) {
-       this.router.navigate(['/error', { num: error.status }]);
-     } else {
-       this.router.navigate(['/error', { num: 500 }]);
-     }
+      if (error.status) {
+        this.router.navigate(['/error', { num: error.status }]);
+      } else {
+        this.router.navigate(['/error', { num: 500 }]);
+      }
     }
   }
-  
-  
+
+
 
   ngOnDestroy(): void {
     this.userAccountService.unsubscribe();
   }
 
 
+  enter() {
+    this.popUpEntryService.showDialog();
+  }
 
 }

@@ -19,6 +19,31 @@
     flex: 1;
 }
 
+.titleLogin {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 117%;
+    text-transform: uppercase;
+    color: var(--font-color);
+}
+
+.btnLogin {
+    display: flex;
+    border-radius: 300px;
+    padding: 1rem 1.2rem;
+    margin-top: 2rem;
+    width: 100%;
+    background: #e2e2e2;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 120%;
+    color: #101010;
+    justify-content: center;
+    text-decoration: none;
+}
+
 .title {
     font-family: var(--font-Monts);
     font-weight: 500;
