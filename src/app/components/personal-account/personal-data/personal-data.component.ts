@@ -13,6 +13,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { AvatarSelectionService } from '../../pop-up-avatar/avatar-selection.service';
 import { forbiddenWordsValidator } from './errorNameList';
 import { SettingHeaderService } from '../../setting-header.service';
+import { MenuNavService } from '../../menu-nav/menu-nav.service';
 
 @Component({
   selector: 'app-personal-data',
@@ -49,7 +50,7 @@ export class PersonalDataComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private personalDataService: PersonalDataService, 
     private router: Router, public popUpAvatarService: PopUpAvatarService, 
-    private avatarSelectionService: AvatarSelectionService, private settingHeaderService: SettingHeaderService) {
+    private avatarSelectionService: AvatarSelectionService, private settingHeaderService: SettingHeaderService, public menuNavService:MenuNavService) {
     this.personalDataForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -110,9 +111,14 @@ export class PersonalDataComponent implements OnInit {
       this.personalDataForm.get('domain')?.enable();
     }
   }
+
+
   userData() {
     this.personalDataService.getCurrentUser().subscribe(
       (user: User) => {
+        if(user.imageLink){
+          this.menuNavService.setStorageValue(user.imageLink);
+        }
         this.dataCurrentUser = user;
         this.cityOfResidence = user.cityOfResidence || {};
         this.setAvatar = user.imageLink;
@@ -183,13 +189,14 @@ export class PersonalDataComponent implements OnInit {
       nickname: formValues.domain,
       role: this.dataCurrentUser.role,
     };
-
+      
     this.personalDataService.updateUser(user).subscribe(
       response => {
         console.log('Данные успешно отправлены', response);
         this.userData();
         localStorage.setItem('userId', formValues.domain);
         const userId = localStorage.getItem('userId')
+
         localStorage.setItem('fullAccess', 'b326b5062b2f0e69046810717534cb09' );
         this.router.navigate([`/myaccount/${userId}/home`]);
       },
