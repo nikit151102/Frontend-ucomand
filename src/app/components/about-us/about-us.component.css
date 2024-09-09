@@ -1,6 +1,6 @@
 .container {
     margin: 0 auto;
-    width: 75%;
+    width: 65%;
     position: relative;
     margin-top: 210px;
 }
@@ -12,7 +12,7 @@
 }
 
 .destiny-content {
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -94,7 +94,7 @@
     flex-direction: column;
     justify-content: space-between;
 
-    width: 80%;
+    width: 100%;
     height: 100%;
     border-radius: 20px;
     padding: 24px;
@@ -140,7 +140,7 @@
     display: flex;
     width: 200%;
     gap: 0.5rem;
-    animation-duration: 30s;
+    animation-duration: 45s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     white-space: nowrap;
@@ -148,15 +148,15 @@
 
 .tag {
     background: none;
-    border: 1px solid var(--font-color);
+    border: 1px solid rgb(255 255 255 / 80%);;
     border-radius: 1.3rem;
     padding: 8px 10px;
     margin: 0;
-    font-family: var(--font-family);
+    font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 12px;
     line-height: 117%;
-    color: var(--font-color);
+    color: rgb(255 255 255 / 80%);;
     flex-shrink: 0;
     white-space: nowrap;
 }
