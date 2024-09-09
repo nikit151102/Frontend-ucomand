@@ -45,10 +45,15 @@ export class OneSectionComponent {
       if (scrollTop >= (elementTop - this.stickyOffset)) {
         searchElement.classList.add('sticky');
         this.settingHeaderService.isSticky = true;
+        if(this.showTypes){
+          window.scrollTo(0, 0);
+        }
         this.showTypes = false;
+        
         const element = this.elRef.nativeElement.querySelector('.content');
         if (element) {
           element.style.marginBottom = '90px';
+
         }
       }
     }

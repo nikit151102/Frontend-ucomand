@@ -1,11 +1,10 @@
 .content {
     display: flex;
-    /* padding-top: 120px; */
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
     width: 100vw;
-    /* height: 100vh; */
+
 }
 
 
@@ -16,8 +15,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative; /* Начальное положение */
-    transition: background-color 0.5s, padding 0.5s; /* Плавный переход */
+    position: relative; 
+    transition: background-color 0.5s, padding 0.5s, top 0.5s;
 }
 
 app-search.sticky {
@@ -25,7 +24,7 @@ app-search.sticky {
     position: fixed;
     top: 0;
     padding: 1rem 0;
-    background: #b9aeff; /* Цвет прилипшего состояния */
+    background: #b9aeff; 
     z-index: 10;
 }
 
@@ -33,9 +32,8 @@ app-search.sticky {
     background: none;
 }
 
-/* Убедитесь, что стили для не-прилипшего состояния не конфликтуют */
 app-search:not(.sticky) {
-    background: #b9aeff; /* Цвет, когда не приклеен */
+    background: #b9aeff;
 }
 
 
@@ -54,35 +52,7 @@ app-search:not(.sticky) {
 }
 
 
-/* Когда отсутствует app-desktop-type и app-phone-type */
-.no-type .search {
-    background: #806BFF;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    padding-bottom: 0.5rem;
-    position: fixed;
-    top: 60px;
-    padding: 1.5rem 0;
-    z-index: 50;
-    transition: background-color 0.5s;
-}
 
-/* Когда присутствует app-desktop-type или app-phone-type */
-.has-type .search {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #b9aeff;
-    z-index: 10; /* Чтобы элемент был выше других */
-    transition: background-color 0.5s;
-}
-
-
-
-
-/* Медиазапрос для ПК */
 @media (min-width: 790px) {
     .desktop-only {
         display: block;
@@ -98,11 +68,9 @@ app-search:not(.sticky) {
     app-search.sticky {
         width: 100%;
         top: 60px; 
-        
         background: #806BFF;
         padding: 0;
         z-index: 50;
-        will-change: position, transform;
     }
     
     .search-container {
