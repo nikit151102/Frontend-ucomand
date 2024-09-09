@@ -162,3 +162,13 @@
     width: 52px;
     height: 52px;
 }
+
+
+
+
+
+@media (max-width: 1199.98px) {
+    .card:hover {
+        background: none;
+    }
+}

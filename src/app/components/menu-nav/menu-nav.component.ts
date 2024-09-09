@@ -9,6 +9,7 @@ import { FormSettingService } from '../form/form-setting.service';
 import { Location } from '@angular/common';
 import { PopUpEntryService } from '../pop-up-entry/pop-up-entry.service';
 import { PopUpErrorCreateService } from '../pop-up-error-create/pop-up-error-create.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-menu-nav',
@@ -24,14 +25,13 @@ export class MenuNavComponent implements OnInit {
   activeTopic: string = 'dark';
   activeButton: string = 'vacancy';
   isAuthenticated!: boolean;
-
+  private domain = 'https://uteam.top/api';
+  currentUser: any;
   buttonsConfig: { label: string, action: () => void }[] = [];
   constructor(private location: Location, public settingHeaderService: SettingHeaderService,
     private router: Router, public tokenService: TokenService, private homeService: HomeService,
-    private formSettingService: FormSettingService, private cdr: ChangeDetectorRef,
-    private popUpEntryService: PopUpEntryService,
-    private ngZone: NgZone,
-    private popUpErrorCreateService: PopUpErrorCreateService
+    private http: HttpClient,  private ngZone: NgZone, private cdr: ChangeDetectorRef, private formSettingService:FormSettingService,
+    private popUpErrorCreateService:PopUpErrorCreateService, private popUpEntryService:PopUpEntryService
   ) {
   }
 
@@ -40,13 +40,13 @@ export class MenuNavComponent implements OnInit {
       if (event instanceof NavigationStart) {
         if (event.url !== '/') {
           this.settingHeaderService.isSticky = false;
-
         }
       }
     });
+  
     const savedTheme = localStorage.getItem('theme') || 'light';
     this.toggleTopic(savedTheme);
-
+  
     this.tokenService.isAuthenticated$.subscribe(isAuthenticated => {
       this.ngZone.run(() => {
         this.isAuthenticated = isAuthenticated;
@@ -68,6 +68,7 @@ export class MenuNavComponent implements OnInit {
         { label: 'Разместить резюме', action: () => this.handlePostResume() },
         { label: 'Разместить вакансию', action: () => this.handlePostVacancy() }
       ];
+      this.currentUser = localStorage.getItem('Linkken');
     } else {
       this.buttonsConfig = [
         { label: 'Войти в аккаунт', action: () => this.handleLogin() },

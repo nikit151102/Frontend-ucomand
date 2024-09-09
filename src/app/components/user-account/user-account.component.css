@@ -249,6 +249,13 @@ p {
 
 @media (max-width: 789.98px) {
 
+    .title-cards{
+        font-size: 0.7rem;
+        padding: 0.8rem 1rem;
+        width: 95%;
+        margin: 0 auto;
+    }
+
     .phoneDate{
         display: flex;
         margin-left: 10px;
@@ -267,7 +274,9 @@ p {
     }
 
     .first-part {
-        margin: 1rem;
+        width: 95%;
+        margin: 0 auto;
+        padding: 1rem 0;
     }
 
     .fullName {
@@ -275,7 +284,7 @@ p {
         font-size: 1rem;
     }
     .ProfileChapter {
-        padding: 0 1rem 0px 1rem;
+        padding: 0 1rem 0px 0.5rem;
     }
 
     .personal-details {
@@ -299,12 +308,6 @@ p {
         font-size: 0.7rem;
     }
 
-    .cards {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-        padding-bottom: 0.5rem
-    }
-
     .information-user,
     .location-value {
         font-size: 0.9rem;
@@ -312,6 +315,17 @@ p {
 
     .chapterCard-title {
         font-size: 0.7rem;
+    }
+    .container-resume, .container-vacancy{
+        padding-bottom: 1.5rem;
+    }
+
+    .cards {
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        padding-bottom: 0.3rem;
+        width: 95%;
+        margin: 0 auto; 
     }
 }
 
@@ -337,17 +351,6 @@ p {
 
     .information-user {
         margin-left: 10px;
-    }
-
-    .title-cards {
-        font-size: 0.7rem;
-        padding: 0.8rem 1rem;
-    }
-
-    .cards {
-        padding-left: 0.3rem;
-        padding-right: 0.3rem;
-        padding-bottom: 0.3rem;
     }
 
     .personal-details {

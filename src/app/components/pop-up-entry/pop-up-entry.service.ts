@@ -19,8 +19,6 @@ export class PopUpEntryService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
-    
     return this.http.get(`${this.domain}/users/currentUser`, { headers });
   }
 
