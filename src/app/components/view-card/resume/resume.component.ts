@@ -69,7 +69,7 @@ export class ResumeComponent {
     switch (motivation) {
       case 'Без оплаты':
         return '#ffab00';
-      case 'Практика':
+      case 'Нужна практика':
         return '#cf87f1';
       case 'За долю':
         return '#298cf4';
