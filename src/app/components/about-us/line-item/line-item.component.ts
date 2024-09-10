@@ -13,5 +13,5 @@ export class LineItemComponent {
   @Input() width: number = 0;
   @Input() color: string = '';
   @Input() stroke: string = '';
-  
+  @Input() border: string = '';
 }

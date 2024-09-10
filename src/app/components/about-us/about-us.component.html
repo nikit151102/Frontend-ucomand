@@ -100,8 +100,14 @@
 
     </div>
     <div style="display: flex; flex-direction: column; gap:1rem; margin-bottom: 3rem;">
-        <app-line-item *ngFor="let item of itemLineList" [value]="item.value" [width]="item.width" [color]="item.color"
-            [stroke]="item.stroke"></app-line-item>
+        <app-line-item *ngFor="let item of itemLineList"
+               [value]="item.value"
+               [width]="item.width"
+               [color]="item.color"
+               [stroke]="item.stroke"
+               [border]="item.border">
+</app-line-item>
+
     </div>
     <div class="container container_chapter container_chapter-team">
         <div class="team-container">
