@@ -16,7 +16,7 @@
 
 <ng-container *ngIf="visible">
     <div class="dialog-backdrop" (click)="closeDialog()">
-        <div class="dialog" (click)="$event.stopPropagation()"  >
+        <div class="dialog" (click)="$event.stopPropagation()">
             <form [formGroup]="form" (ngSubmit)="submit()">
                 <div class="dialog-btns">
                     <p class="clear" (click)="clearFilters()">
@@ -24,7 +24,8 @@
                     </p>
                     <a (click)="visible = false">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 5L18 18M5.0002 18L18 5" stroke="#806BFF" stroke-width="1.4" stroke-linecap="round" />
+                            <path d="M5 5L18 18M5.0002 18L18 5" stroke="#806BFF" stroke-width="1.4"
+                                stroke-linecap="round" />
                         </svg>
                     </a>
                 </div>
@@ -33,14 +34,16 @@
                         <p class="stage-filter-title">
                             Специализация:
                         </p>
-                        <app-tag-selector [type]="'profession'" [placeholderValue]="'Выберете специализацию'" [tags]="professions" [maxTags]="1" 
-                            (tagsChanged)="onTagsChanged($event,'profession')" formControlName="profession"></app-tag-selector>
+                        <app-tag-selector [type]="'profession'" [placeholderValue]="'Выберете специализацию'"
+                            [tags]="professions" [maxTags]="1" (tagsChanged)="onTagsChanged($event,'profession')"
+                            formControlName="profession"></app-tag-selector>
                     </div>
                     <div class="stage-filter">
                         <p class="stage-filter-title">
                             Навыки:
                         </p>
-                        <app-tag-selector [placeholderValue]="'Выберете навыки'" [tags]="skills" formControlName="skills" (tagsChanged)="onTagsChanged($event,'skills')"></app-tag-selector>
+                        <app-tag-selector [placeholderValue]="'Выберете навыки'" [tags]="skills"
+                            formControlName="skills" (tagsChanged)="onTagsChanged($event,'skills')"></app-tag-selector>
                     </div>
                     <div class="stage-filter" class="three-stages" style="flex: 1;">
                         <div class="three-stage">
@@ -58,40 +61,34 @@
                                 justify-content: flex-start;
                                 align-items: center;
                                 gap: 3rem">
-<div style="display: flex; gap: 1rem; align-items: center; color: var(--font-color);;">
-    <p-checkbox 
-      value="MALE" 
-      formControlName="genders"
-      inputId="genderMale"
-      class="custom-checkbox"
-    ></p-checkbox>
-    <label for="genderMale" class="ml-2" style="font-size: 0.8rem;">Мужской</label>
-  </div>
-  <div style="display: flex; gap: 1rem; align-items: center;">
-    <p-checkbox 
-      value="FEMALE" 
-      formControlName="genders"
-      inputId="genderFemale"
-      class="custom-checkbox"
-    ></p-checkbox>
-    <label for="genderFemale" class="ml-2" style="font-size: 0.8rem;">Женский</label>
-  </div>
-  
+                                    <div
+                                        style="display: flex; gap: 1rem; align-items: center; color: var(--font-color);">
+                                        <p-checkbox value="MALE" formControlName="genders" inputId="genderMale"
+                                            class="custom-checkbox"></p-checkbox>
+                                        <label for="genderMale" class="ml-2" style="font-size: 0.8rem;">Мужской</label>
+                                    </div>
+                                    <div style="display: flex; gap: 1rem; align-items: center; color: var(--font-color);">
+                                        <p-checkbox value="FEMALE" formControlName="genders" inputId="genderFemale"
+                                            class="custom-checkbox"></p-checkbox>
+                                        <label for="genderFemale" class="ml-2"
+                                            style="font-size: 0.8rem;">Женский</label>
+                                    </div>
+
                                 </div>
-        
+
                             </div>
                         </div>
-        
+
                     </div>
                 </div>
-        
+
                 <div class="search">
                     <p class="search-btn" (click)="submit()">
                         Найти
                     </p>
                 </div>
             </form>
-        
+
         </div>
     </div>
 </ng-container>
