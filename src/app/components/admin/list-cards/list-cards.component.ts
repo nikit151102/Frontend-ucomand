@@ -5,11 +5,13 @@ import { TableModule, TableRowCollapseEvent, TableRowExpandEvent } from 'primeng
 import { ToastModule } from 'primeng/toast';
 import { FormsComponent } from './forms/forms.component';
 import { ListCardsService } from './list-cards.service';
+import { PaginatorModule } from 'primeng/paginator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-cards',
   standalone: true,
-  imports: [CommonModule, TableModule, ButtonModule, ToastModule, FormsComponent],
+  imports: [CommonModule, TableModule, ButtonModule, ToastModule, FormsComponent, PaginatorModule],
   templateUrl: './list-cards.component.html',
   styleUrl: './list-cards.component.css'
 })
@@ -17,8 +19,12 @@ export class ListCardsComponent {
   products!: any[];
   @Input() Service!: any;
   expandedRows = {};
+  rowsPerPage = 10;
+  totalUsers = 0;
+  sortOrder = 1;
+  sortField = 'id';
 
-  constructor(public listCardsService: ListCardsService) { }
+  constructor(public listCardsService: ListCardsService, private router: Router) { }
 
   ngOnInit() {
     this.Service.getData();
@@ -41,6 +47,16 @@ export class ListCardsComponent {
 
   }
 
+  viewCard(id: string) {
+    if(this.Service.type == "RESUME"){
+      localStorage.setItem('routeTypeCard', 'resumes');
+      return this.router.createUrlTree([`/resume`, id]).toString();
+    }else{
+      localStorage.setItem('routeTypeCard', 'vacancies');
+      return this.router.createUrlTree([`/vacancy`, id]).toString();
+    }
+   
+  }
 
 
   getSkillsColor(item: number): string {

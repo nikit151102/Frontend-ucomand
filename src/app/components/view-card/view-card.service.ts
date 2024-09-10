@@ -56,10 +56,8 @@ export class ViewCardService {
 
   private domain = 'https://uteam.top/api';
 
-  getCardData(id: number): Observable<any> {
-    console.log("id", id)
-    const type = localStorage.getItem('routeTypeCard');
-    return this.http.get(`${this.domain}/${type}/${id}`);
+  getCardData(id: number, typeCard:string): Observable<any> {
+    return this.http.get(`${this.domain}/${typeCard}/${id}`);
   }
 
   getCurrentUser(): Observable<any> {

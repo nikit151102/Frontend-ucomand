@@ -11,7 +11,7 @@ export class ResumesService {
   products: any;
   body: any = {};
   editData: any;
-  type = "PROFESSION";
+  type = "RESUME";
   visibleForm: boolean = false;
   constructor(private http: HttpClient) { }
   private domain = 'https://uteam.top/api';

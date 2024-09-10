@@ -60,14 +60,22 @@ export class ViewCardComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.route.data.subscribe(data => {
+      this.routeName = data['routeName'];
+      if(data['routeName'] == 'resume'){
+        this.typeCard = 'resumes';
 
-    this.typeCard = localStorage.getItem('routeTypeCard');
+      }
+      if(data['routeName'] == 'vacancy'){
+        this.typeCard = 'vacancies';
+      }
+    });
     this.settingHeaderService.shared = true;
     this.settingHeaderService.backbtn = true;
 
     this.route.paramMap.subscribe(params => {
       const id = +params.get('id')!;
-      this.viewCardService.getCardData(id).subscribe(
+      this.viewCardService.getCardData(id, this.typeCard).subscribe(
         (data) => {
           this.dataCard = data;
           this.visibleCard = true;
