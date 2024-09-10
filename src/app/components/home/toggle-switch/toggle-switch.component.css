@@ -1,4 +1,3 @@
-
 .toggle-switch {
     display: flex;
     border-radius: 2.5rem;
@@ -17,13 +16,16 @@
     appearance: none; 
     background: none; 
     color: #fff;
-    transition: background 0.3s, color 0.3s, border-radius 0.3s; 
+    transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
     font-family: var(--font-Monts);
     font-weight: 400;
     font-size: 0.9rem;
     line-height: 117%;
-    border-radius: 30px; 
+    border-radius: 30px;
 }
 
 .toggle-btn.active {
@@ -40,7 +42,7 @@
 
 .toggle-btn:focus {
     outline: none; 
-    border-radius: 30px; 
+    border-radius: 30px;
 }
 
 @media (max-width: 1198px) {

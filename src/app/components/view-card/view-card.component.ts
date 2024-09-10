@@ -100,9 +100,10 @@ export class ViewCardComponent implements OnInit {
     });
   }
 
-  viewUser() {
-    this.router.navigate([`/user`, this.dataCard.user.id]);
+  viewUser():string  {
+    return this.router.createUrlTree([`/user`, this.dataCard.user.id]).toString();
   }
+
 
   enter() {
     this.popUpEntryService.showDialog();
