@@ -241,7 +241,7 @@ p {
 
 
 .message-cards {
-    padding: 0 0 1rem 1.5rem;
+    padding: 0 0 1rem 2.2rem;
     font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 0.9rem;
@@ -268,7 +268,7 @@ p {
     display: flex;
     align-items: center;
     border-radius: 30px;
-    padding: 12px;
+    padding: 15px;
     margin-top: 2rem;
     margin-right: 2rem;
     max-width: 200px;

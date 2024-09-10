@@ -17,6 +17,7 @@
     padding: 12px 16px;
     width: 100%;
     padding-right: 40px; /* Add padding to the right to make room for the icon */
+    font-family: var(--font-Monts);
   }
   
   input:focus,
