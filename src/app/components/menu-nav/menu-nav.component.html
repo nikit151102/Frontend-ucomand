@@ -40,10 +40,10 @@
             <div class="menu-right">
                 <ng-container *ngIf="this.tokenService.getToken()">
                     <ng-container *ngIf="currentUserLogo && currentUserLogo !== 'default' && currentUserLogo.trim() !== ''; else default">
-                      <ng-container *ngIf="isImageAvatar(currentUserLogo); ">
-                        <img [src]="'assets/avatars/' + currentUserLogo + '.png'" class="logoImg"
-                             style="width: 44px; height: 44px;" (click)="viewUser()">
-                      </ng-container>
+                        <ng-container *ngIf="currentUserLogo && currentUserLogo !== 'default' && currentUserLogo.trim() !== '' && isImageAvatar(currentUserLogo); else default">
+                            <img [src]="'assets/avatars/' + currentUserLogo + '.png'" class="logoImg"
+                                 style="width: 44px; height: 44px;" (click)="viewUser()">
+                          </ng-container>                          
                     </ng-container>
                     <ng-template #default>
                       <a (click)="viewUser()" class="navBTN">

@@ -60,7 +60,7 @@ export class MenuNavComponent implements OnInit {
   }
 
   isImageAvatar(logo: string): boolean {
-    return logo.startsWith('image');
+    return logo.trim().startsWith('image');
   }
   
   navigateTo(path: string) {
