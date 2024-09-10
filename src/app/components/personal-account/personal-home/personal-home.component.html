@@ -134,9 +134,15 @@
     <div class="second-path">
         <div class="container-cards">
             <div class="container-resume" @fadeAnimation>
-                <p class="title-cards titleActive ">
-                    Активные резюме:
-                </p>
+                <div class="container-resume-header">
+                    <p class="title-cards titleActive ">
+                        Активные резюме:
+                    </p>
+                    <a class="container-resume-header-newCards">
+                        + Разместить  резюме
+                    </a>
+                </div>
+                
                 <div class="cards">
                     <app-personal-resume @fadeAnimation
                         *ngFor="let itemResume of resumeService.filterResumes('CREATOR_ONLY')| slice:0:itemsToShowResume"
@@ -156,6 +162,7 @@
                 <p class="title-cards">
                     Архив резюме:
                 </p>
+                
                 <div class="cards">
                     <app-archive-resume @fadeAnimation
                         *ngFor="let itemResume of resumeService.filterResumes('EVERYBODY') | slice:0:itemsToShowArchiveResume "
@@ -174,9 +181,14 @@
         </div>
         <div class="container-cards" @fadeAnimation>
             <div class="container-vacancy">
-                <p class="title-cards titleActive">
-                    Активные вакансии:
-                </p>
+                <div class="container-vacancy-header">
+                    <p class="title-cards titleActive ">
+                        Активные вакансии:
+                    </p>
+                    <a class="container-vacancy-header-newCards">
+                        + Разместить  вакансию
+                    </a>
+                </div>
                 <div class="cards">
                     <app-personal-vacancy @fadeAnimation
                         *ngFor="let itemVacancy of vacancyService.filterVacancies('CREATOR_ONLY') | slice:0:itemsToShowVacancies"

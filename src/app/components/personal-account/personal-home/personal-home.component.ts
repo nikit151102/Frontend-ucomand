@@ -94,11 +94,8 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.settingHeaderService.shared = true;
-    this.settingHeaderService.post = true;
-    this.settingHeaderService.backbtn = false;
-
-    this.settingHeaderService.shared = true;
+    this.settingHeaderService.shared = false;
+    this.settingHeaderService.post = false;
     this.settingHeaderService.backbtn = true;
 
     this.resumeService.subscribeToGetCardsData();

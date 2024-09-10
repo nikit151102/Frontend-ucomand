@@ -37,8 +37,8 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
 
   showTagBlock = false;
   selectedTags: Tag[] = [];
-  searchQuery: string = ''; 
-  filteredTags: Tag[] = []; 
+  searchQuery: string = '';
+  filteredTags: Tag[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['tags']) {
@@ -60,20 +60,26 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
       this.selectedTags.push(tag);
       this.onChange(this.selectedTags);
       this.tagsChanged.emit(this.selectedTags);
+      
+      this.tags = this.tags.filter(t => t.id !== tag.id);
+      
+      this.updateFilteredTags();
     }
-    this.showTagBlock = false;
-    this.searchQuery = ''; 
-    this.updateFilteredTags(); 
   }
+
 
   deleteTag(tag: Tag) {
     const index = this.selectedTags.indexOf(tag);
     if (index !== -1) {
       this.selectedTags.splice(index, 1);
       this.onChange(this.selectedTags);
+
+      this.tags.push(tag);
+
+      this.updateFilteredTags();
     }
-    this.updateFilteredTags(); 
   }
+  
 
   writeValue(value: Tag[]): void {
     if (value && Array.isArray(value)) {
@@ -81,7 +87,7 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
     } else {
       this.selectedTags = [];
     }
-    this.updateFilteredTags(); 
+    this.updateFilteredTags();
   }
 
   registerOnChange(fn: (value: Tag[]) => void): void {
@@ -92,7 +98,7 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
     this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {}
+  setDisabledState?(isDisabled: boolean): void { }
 
   filterTags() {
     this.updateFilteredTags()
@@ -110,19 +116,19 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
       if (this.isEnglish(this.searchQuery)) {
         this.languagesEng = true;
         this.filteredTags = this.tags
-          .filter(tag => tag.nameEng.toLowerCase().includes(this.searchQuery.toLowerCase())) 
-          .sort((a, b) => a.nameEng.localeCompare(b.nameEng)); 
+          .filter(tag => tag.nameEng.toLowerCase().includes(this.searchQuery.toLowerCase()))
+          .sort((a, b) => a.nameEng.localeCompare(b.nameEng));
       } else {
         this.languagesEng = false;
         this.filteredTags = this.tags
-          .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase())) 
-          .sort((a, b) => a.name.localeCompare(b.name)); 
+          .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
+          .sort((a, b) => a.name.localeCompare(b.name));
       }
-    }else{
+    } else {
       this.languagesEng = false;
       this.filteredTags = this.tags
-        .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase())) 
-        .sort((a, b) => a.name.localeCompare(b.name)); 
+        .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
+        .sort((a, b) => a.name.localeCompare(b.name));
     }
   }
 }

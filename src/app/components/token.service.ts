@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class TokenService {
   private authTokenSubject = new BehaviorSubject<boolean>(this.hasToken());
   isAuthenticated$ = this.authTokenSubject.asObservable();

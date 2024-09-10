@@ -64,14 +64,26 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
 
   selectLevel(level: number, id: number, color: string = '', type: string, nameEng: string) {
     if (this.selectedTag) {
+      const tagId = this.selectedTag.id; 
       if (this.selectedTags.length < this.maxTags || this.selectedTags.some(t => t.name === this.selectedTag!.name)) {
         let existingTag = this.selectedTags.find(t => t.name === this.selectedTag!.name);
         if (existingTag) {
           existingTag.competenceLevel = level;
           existingTag.color = color;
         } else {
-          this.selectedTags.push({ name: this.selectedTag.name, id: this.selectedTag.id, competenceLevel: level, color: color, type: type, nameEng: nameEng  });
+          this.selectedTags.push({ 
+            name: this.selectedTag.name, 
+            id: this.selectedTag.id, 
+            competenceLevel: level, 
+            color: color, 
+            type: type, 
+            nameEng: nameEng 
+          });
         }
+        
+        this.tags = this.tags.filter(t => t.id !== tagId);
+        this.updateFilteredTags()
+        
         this.selectedTag = null;
         this.showTagBlock = false;
         this.onChange(this.selectedTags);
@@ -81,9 +93,12 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
       }
     }
   }
+  
 
-  deleteTag(tag: { id: number; name: string; competenceLevel: number | null; type: string, color: string | null }) {
+  deleteTag(tag: { id: number; name: string; nameEng: string; competenceLevel: number | null; type: string, color: string | null }) {
     this.selectedTags = this.selectedTags.filter(t => t.id !== tag.id);
+    this.tags.push(tag);
+    this.updateFilteredTags()
     this.onChange(this.selectedTags);
     this.tagsChanged.emit(this.selectedTags);
   }
