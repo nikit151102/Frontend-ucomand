@@ -13,8 +13,8 @@
             <th pSortableColumn="lastName" style="width:15%">
                 Фамилия <p-sortIcon field="lastName" />
             </th>
-            <th pSortableColumn="cityOfResidence" style="width:20%">
-                Город <p-sortIcon field="cityOfResidence.name" />
+            <th pSortableColumn="nickname" style="width:20%">
+                Логин <p-sortIcon field="nickname" />
             </th>
             <th pSortableColumn="telegram" style="width:15%">
                 Телеграм <p-sortIcon field="telegram" />
@@ -22,8 +22,7 @@
             <th pSortableColumn="dateOfRegistration" style="width:20%">
                 Дата регистрации <p-sortIcon field="dateOfRegistration" />
             </th>
-            <th pSortableColumn="role" style="width:15%">
-                Роль <p-sortIcon field="role" />
+            <th style="width:15%">
             </th>
         </tr>
     </ng-template>
@@ -33,10 +32,10 @@
             <td>{{ user.id }}</td>
             <td>{{ user.firstName }}</td>
             <td>{{ user.lastName }}</td>
-            <td>{{ user.cityOfResidence?.name }}</td>
+            <td>{{ user.nickname}}</td>
             <td>{{ user.telegram }}</td>
-            <td>{{ user.dateOfRegistration | date:'short' }}</td>
-            <td>{{ user.role }}</td>
+            <td>{{ user.dateOfRegistration | date: 'dd/MM/yyyy' }}</td>
+            <td><a [href]="viewUser(user.id)" target="_blank">Перейти</a></td>
         </tr>
     </ng-template>
     <ng-template pTemplate="paginator">

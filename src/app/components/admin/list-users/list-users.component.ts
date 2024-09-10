@@ -6,6 +6,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ButtonModule } from 'primeng/button';
 import { ListUsersService } from './list-users.service';
 import { FormUserComponent } from './form-user/form-user.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-users',
@@ -23,7 +24,7 @@ export class ListUsersComponent {
   sortField = 'id';
   sortOrder = 1;
 
-  constructor(public usersService: UsersService, public listUsersService: ListUsersService) { }
+  constructor(public usersService: UsersService, private router: Router, public listUsersService: ListUsersService) { }
 
   ngOnInit() {
     this.loadUsers();
@@ -37,5 +38,10 @@ export class ListUsersComponent {
     this.selectedUser = user;
     this.listUsersService.visibleForm = true;
   }
+
+  viewUser(id: string):string  {
+    return this.router.createUrlTree([`/user`, id]).toString();
+  }
+
 
 }
