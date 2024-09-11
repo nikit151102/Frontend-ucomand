@@ -22,4 +22,9 @@
             </div>
         </ng-container>
     </div>
+
+    <div *ngIf="isPaymentInputVisible && isPayment" class="payment-input">
+        <label for="payment">Оплата от:</label>
+        <input id="payment"  placeholder="Введите сумму в ₽">
+    </div>
 </div>

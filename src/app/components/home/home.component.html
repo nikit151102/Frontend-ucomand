@@ -1,36 +1,34 @@
 <div class="main">
-    <app-one-section></app-one-section>
-    <div class="container">
-        <app-sortetd-filter [ngClass]="{'sticky-filter': settingHeaderService.isSticky}"></app-sortetd-filter>
+  <app-one-section></app-one-section>
+  <div class="container">
+    <app-sortetd-filter [ngClass]="{'sticky-filter': settingHeaderService.isSticky}"></app-sortetd-filter>
 
-        <div class="card-container">
-            
-            <div class="card-content"  @fadeAnimation>
-              <ng-container *ngIf="homeService.typeToggle === 'vacancy'">
-                <ng-container *ngFor="let item of homeService.vacancies">
-                  <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" target="_blank" class="app-card-vacancy-link">
-                    <app-card-vacancy [cardItem]="item" class="app-card-vacancy"></app-card-vacancy>
-                  </a>
-                </ng-container>
-              </ng-container>
-          
-              <ng-container *ngIf="homeService.typeToggle === 'resume'">
-                <ng-container *ngFor="let item of homeService.resumes">
-                  <a [href]="getCardUrl(item.id, 'resumes', 'resume')" target="_blank" class="app-card-vacancy-link">
-                    <app-card-resume [cardItem]="item" class="app-card-vacancy"></app-card-resume>
-                  </a>
-                </ng-container>
-              </ng-container>
-            </div>
-          </div>
-          
+    <div class="card-container">
+      <ng-container *ngIf="homeService.typeToggle === 'vacancy'">
+        <ng-container *ngFor="let item of homeService.vacancies">
+          <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" target="_blank" class="app-card-vacancy-link">
+            <app-card-vacancy class="card" [cardItem]="item" class="app-card-vacancy"></app-card-vacancy>
+          </a>
+        </ng-container>
+      </ng-container>
 
-        <p *ngIf="homeService?.vacancies?.length === 0 && homeService?.typeToggle === 'vacancy'" class="messageError">
-            Нет доступных вакансий по вашему запросу. Попробуйте изменить фильтры или параметры поиска.
-        </p>
-        <p *ngIf="homeService?.resumes?.length === 0 && homeService?.typeToggle === 'resume'" class="messageError">
-            Нет доступных резюме по вашему запросу. Попробуйте изменить фильтры или параметры поиска.
-        </p>
+      <ng-container *ngIf="homeService.typeToggle === 'resume'">
+        <ng-container *ngFor="let item of homeService.resumes">
+          <a [href]="getCardUrl(item.id, 'resumes', 'resume')" target="_blank" class="app-card-vacancy-link">
+            <app-card-resume [cardItem]="item" class="app-card-vacancy"></app-card-resume>
+          </a>
+        </ng-container>
+      </ng-container>
     </div>
+
+
+
+    <p *ngIf="homeService?.vacancies?.length === 0 && homeService?.typeToggle === 'vacancy'" class="messageError">
+      Нет доступных вакансий по вашему запросу. Попробуйте изменить фильтры или параметры поиска.
+    </p>
+    <p *ngIf="homeService?.resumes?.length === 0 && homeService?.typeToggle === 'resume'" class="messageError">
+      Нет доступных резюме по вашему запросу. Попробуйте изменить фильтры или параметры поиска.
+    </p>
+  </div>
 </div>
 <app-search-input-phone></app-search-input-phone>

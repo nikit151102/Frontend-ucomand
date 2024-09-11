@@ -6,6 +6,9 @@
                 <th pSortableColumn="id" style="width:10%">
                     ID <p-sortIcon field="id" />
                 </th>
+                <th style="width:15%">
+                    Логин  
+                </th>
                 <th pSortableColumn="title" style="width:15%" *ngIf="Service.type !== 'RESUME'">
                     Название  
                 </th>
@@ -22,6 +25,8 @@
         <ng-template pTemplate="body" let-product>
             <tr>
                 <td>{{ product?.id }}</td>
+                <td *ngIf="product?.user?.nickname">{{ product?.user?.nickname }}</td>
+                <td *ngIf="!product?.user?.nickname">{{ product?.user?.id }}</td>
                 <td  *ngIf="Service.type !== 'RESUME'">{{ product?.title }}</td>
                 <td>{{ product?.profession?.name }}</td>
                 <td>{{ product.creationDate | date: 'dd/MM/yyyy' }}</td>

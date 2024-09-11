@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, forwardRef, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MotivationsService } from './motivations.service';
 
@@ -19,53 +19,55 @@ import { MotivationsService } from './motivations.service';
 })
 export class MotivationsComponent implements OnInit {
 
+
   constructor(private motivationsService: MotivationsService) {
     // this.motivationsService.getTags().subscribe((data: any) => { 
     //   this.tagsList = data
     // })
-   }
+  }
   // tagsList!: { id: number, name: string, color: string,competenceLevel: string|null, nameEng: string|null, type: string }[] ;
   ngOnInit(): void {
-   
+
   }
+  isPaymentInputVisible: boolean = false;
+  @Input() isPayment: boolean = false;
+  tagsList: { id: number, name: string, color: string | null, competenceLevel: string | null, nameEng: string | null, type: string }[] = [
+    {
+      "id": 1,
+      "name": "Без оплаты",
+      "nameEng": null,
+      "competenceLevel": null,
+      "type": "MOTIVATION",
+      "color": null
+    },
+    {
+      "id": 2,
+      "name": "За оплату",
+      "nameEng": null,
+      "competenceLevel": null,
+      "type": "MOTIVATION",
+      "color": null
+    },
+    {
+      "id": 3,
+      "name": "За долю",
+      "nameEng": null,
+      "competenceLevel": null,
+      "type": "MOTIVATION",
+      "color": null
+    },
+    {
+      "id": 4,
+      "name": "Нужна практика",
+      "nameEng": null,
+      "competenceLevel": null,
+      "type": "MOTIVATION",
+      "color": null
+    }
+  ]
 
-  tagsList: { id: number, name: string, color: string|null, competenceLevel: string|null, nameEng: string|null, type: string }[] = [
-  {
-    "id": 1,
-    "name": "Без оплаты",
-    "nameEng": null,
-    "competenceLevel": null,
-    "type": "MOTIVATION",
-    "color": null
-  },
-  {
-    "id": 2,
-    "name": "За оплату",
-    "nameEng": null,
-    "competenceLevel": null,
-    "type": "MOTIVATION",
-    "color": null
-  },
-  {
-    "id": 3,
-    "name": "За долю",
-    "nameEng": null,
-    "competenceLevel": null,
-    "type": "MOTIVATION",
-    "color": null
-  },
-  {
-    "id": 4,
-    "name": "Нужна практика",
-    "nameEng": null,
-    "competenceLevel": null,
-    "type": "MOTIVATION",
-    "color": null
-  }
-]
 
-
-  selectedTags: { id: number, name: string, color: string|null, competenceLevel: string|null, nameEng: string|null, type: string }[] = [];
+  selectedTags: { id: number, name: string, color: string | null, competenceLevel: string | null, nameEng: string | null, type: string }[] = [];
 
   getSkillsColor(item: string): string {
     switch (item) {
@@ -82,27 +84,34 @@ export class MotivationsComponent implements OnInit {
     }
   }
 
-  @Output() tagsChanged = new EventEmitter<{ 
-    id: number, name: string, color: string|null, competenceLevel: string|null, nameEng: string|null, type: string
+  @Output() tagsChanged = new EventEmitter<{
+    id: number, name: string, color: string | null, competenceLevel: string | null, nameEng: string | null, type: string
   }[]>();
-  
+
   private onChange: (value: any) => void = () => { };
   private onTouched: () => void = () => { };
 
-  selectTag(tag: { id: number, name: string, color: string|null, competenceLevel: string|null, nameEng: string|null, type: string }) {
+  selectTag(tag: { id: number, name: string, color: string | null, competenceLevel: string | null, nameEng: string | null, type: string }) {
     this.tagsList = this.tagsList.filter(t => t.name !== tag.name);
     this.selectedTags.push(tag);
     this.onChange(this.selectedTags);
     this.tagsChanged.emit(this.selectedTags);
+
+    if (tag.name === 'За оплату') {
+      this.isPaymentInputVisible = true;
+    }
   }
 
-  deleteTag(tag: { id: number, name: string, color: string|null, competenceLevel: string|null, nameEng: string|null, type: string }) {
+  deleteTag(tag: { id: number, name: string, color: string | null, competenceLevel: string | null, nameEng: string | null, type: string }) {
     this.selectedTags = this.selectedTags.filter(t => t.name !== tag.name);
     this.tagsList.push(tag);
     this.onChange(this.selectedTags);
     this.tagsChanged.emit(this.selectedTags);
-  }
 
+    if (tag.name === 'За оплату') {
+      this.isPaymentInputVisible = false;
+    }
+  }
   reset() {
     this.tagsList.push(...this.selectedTags);
     console.log(" this.tagsList", this.tagsList)
@@ -118,8 +127,8 @@ export class MotivationsComponent implements OnInit {
     this.onTouched = fn;
   }
 
-  writeValue(value: { id: number, name: string, color: string|null, competenceLevel: string|null, nameEng: string|null, type: string }[]): void {
-    
+  writeValue(value: { id: number, name: string, color: string | null, competenceLevel: string | null, nameEng: string | null, type: string }[]): void {
+
     if (value && Array.isArray(value)) {
       this.selectedTags = value;
       this.updateAvailableTags();
