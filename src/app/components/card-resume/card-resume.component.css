@@ -201,6 +201,6 @@
 
 @media (max-width: 1199.98px) {
     .card:hover {
-        background: none;
+        background: var(--background-card);
     }
 }
