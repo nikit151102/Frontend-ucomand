@@ -262,6 +262,23 @@
 
     .dialog{
         width: 90vw;
+        height: 85vh;
+        position: absolute;
+        overflow-y: auto;
+        top: 125px;
+    }
+    
+    .dialog::-webkit-scrollbar {
+        width: 0;
+        background: transparent; 
+    }
+    
+    .dialog::-webkit-scrollbar-thumb {
+        background: transparent; 
+    }
+    
+    .dialog::-webkit-scrollbar-track {
+        background: transparent;
     }
     
     .content-filter {
