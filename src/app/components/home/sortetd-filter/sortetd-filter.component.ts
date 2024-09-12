@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { TagSelectorComponent } from '../../form-components/tag-selector/tag-selector.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
@@ -70,6 +70,8 @@ export class SortetdFilterComponent implements OnInit {
     document.body.classList.remove('overflow-x-hidden');
     document.documentElement.classList.remove('overflow-x-hidden');
     document.body.style.overflowY = 'hidden';
+
+    
   }
 
   closeFilterDialog() {
