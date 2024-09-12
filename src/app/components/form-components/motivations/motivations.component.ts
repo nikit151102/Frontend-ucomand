@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MotivationsService } from './motivations.service';
 
 @Component({
   selector: 'app-motivations',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './motivations.component.html',
   styleUrl: './motivations.component.css',
   providers: [
@@ -31,6 +31,8 @@ export class MotivationsComponent implements OnInit {
   }
   isPaymentInputVisible: boolean = false;
   @Input() isPayment: boolean = false;
+  paymentAmount: number = 0;
+  @Output() paymentChanged = new EventEmitter<number>();
   tagsList: { id: number, name: string, color: string | null, competenceLevel: string | null, nameEng: string | null, type: string }[] = [
     {
       "id": 1,
@@ -143,5 +145,15 @@ export class MotivationsComponent implements OnInit {
 
   private updateAvailableTags() {
     this.tagsList = this.tagsList.filter(tag => !this.selectedTags.some(selectedTag => selectedTag.name === tag.name));
+  }
+
+  onPaymentAmountChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const newValue = parseInt(target.value, 10);
+
+    if (!isNaN(newValue)) {
+      this.paymentAmount = newValue;
+      this.paymentChanged.emit(this.paymentAmount);  
+    }
   }
 }

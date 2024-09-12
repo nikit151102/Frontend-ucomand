@@ -113,6 +113,10 @@ export class FormComponent implements OnInit {
     this.settingHeaderService.backbtn = true;
   }
 
+  onPaymentAmountChange(paymentAmount: number) {
+    console.log('Payment changed:', paymentAmount);
+  }
+
   initializeForm(): void {
     this.form = this.fb.group({
       title: ['', [this.optionalValidator, Validators.maxLength(100)]],
