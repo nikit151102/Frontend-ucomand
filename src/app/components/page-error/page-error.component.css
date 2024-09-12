@@ -15,7 +15,7 @@
     text-transform: uppercase;
     color: rgb(137 134 134 / 10%);
     /* Цвет фона текста */
-    z-index: 1;
+    z-index: -1;
     /* Позиция позади содержимого */
     text-align: center;
     pointer-events: none;
@@ -39,6 +39,51 @@
     z-index: 2;
     padding: 20px;
     box-sizing: border-box;
+}
+.main::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 40%;
+    width: 400px;
+    height: 400px;
+    background: url('https://static.tildacdn.com/tild3066-6661-4562-b630-663131656437/UnhealthyLimpEyelash.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+} 
+
+
+@media (max-width: 1132px){
+    .main::after{
+        left: 25%;
+    }
+}
+/* Медиазапрос для устройств с шириной экрана 768px и меньше */
+@media (max-width: 768px) {
+    .main::after {
+        width: 300px;
+        height: 300px;
+        left: 15%;
+        /* Уменьшение размеров */
+        right: 10px;
+        bottom: 10px;
+        /* Уменьшение расстояний от краёв */
+    }
+}
+
+/* Медиазапрос для устройств с шириной экрана 480px и меньше */
+@media (max-width: 480px) {
+    .main::after {
+        width: 300px;
+        height: 300px;
+        left: auto;
+        /* Ещё большее уменьшение размеров */
+        right: 5px;
+        bottom: 5px;
+        /* Уменьшение расстояний от краёв */
+    }
 }
 
 .img {
@@ -123,7 +168,7 @@
 /* Медиазапрос для устройств с шириной экрана 768px и меньше */
 @media (max-width: 768px) {
     .text-background {
-        align-items: flex-end;
+        /* align-items: flex-end; */
         /* Выравнивание текста по нижнему краю */
         font-size: 15rem;
     }

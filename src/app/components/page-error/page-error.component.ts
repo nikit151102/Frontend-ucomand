@@ -9,16 +9,17 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './page-error.component.html',
-  styleUrls: ['./page-error.component.css'] 
+  styleUrls: ['./page-error.component.css']
 })
 export class PageErrorComponent implements OnInit {
-  num!: number; 
+  num!: number;
 
-  content: any = {}; 
+  content: any = {};
 
-  constructor(private route: ActivatedRoute, private settingHeaderService:SettingHeaderService) {}
+  constructor(private route: ActivatedRoute, private settingHeaderService: SettingHeaderService) { }
 
   ngOnInit(): void {
+    this.open()
     this.settingHeaderService.isheader = false;
     this.settingHeaderService.isFooter = false;
     this.route.paramMap.subscribe(params => {
@@ -27,10 +28,24 @@ export class PageErrorComponent implements OnInit {
     });
   }
 
+  open() {
+    document.body.classList.remove('overflow-x-hidden');
+    document.documentElement.classList.remove('overflow-x-hidden');
+    document.body.style.overflowY = 'hidden';
+
+
+  }
+
+  close() {
+    document.body.classList.add('overflow-x-hidden');
+    document.documentElement.classList.add('overflow-x-hidden');
+    document.body.style.overflowY = '';
+  }
+
   loadErrorContent(): void {
 
     const errorData = errorContent.find((error: any) => error.numError === this.num);
-    
+
     if (errorData) {
       this.content = errorData;
     } else {
@@ -40,5 +55,9 @@ export class PageErrorComponent implements OnInit {
         btn: 'ОК'
       };
     }
+  }
+  ngOnDestroy(): void {
+    this.close();
+
   }
 }
