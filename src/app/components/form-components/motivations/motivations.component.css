@@ -42,7 +42,7 @@
 
 .payment-input {
     border-radius: 12px;
-    padding: 16px;
+    padding-top: 16px;
     width: 100%;
     outline: none;
     display: flex;

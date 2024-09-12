@@ -61,7 +61,8 @@ export class FormComponent implements OnInit {
   isEditMode: boolean = false;
   visible: boolean = false;
   activeLink: string = 'Сначала новые';
-
+  isPayment: boolean = false;
+  
   private readonly FORM_STORAGE_KEY = 'formData';
 
   constructor(
@@ -91,6 +92,7 @@ export class FormComponent implements OnInit {
 
     if (this.typeForm == 'вакансии') {
       this.formSettingService.isheading = true;
+      this.isPayment = true;
     }
 
     forkJoin({
@@ -132,11 +134,11 @@ export class FormComponent implements OnInit {
       const parsedData = JSON.parse(savedData);
       console.log("parsedData,", parsedData)
       if (parsedData.type === this.typeForm) {
-       
+
         const formData = parsedData.formData;
         this.form.patchValue({
           ...formData,
-          profession:  [formData.profession]
+          profession: [formData.profession]
         });
 
         this.saveChangesPopupService.showPopup();
@@ -152,7 +154,7 @@ export class FormComponent implements OnInit {
 
         this.form.patchValue({
           ...data,
-          profession:  [data.profession]
+          profession: [data.profession]
         });
 
       });

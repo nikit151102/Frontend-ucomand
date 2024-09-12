@@ -132,7 +132,9 @@ export class MotivationsComponent implements OnInit {
     if (value && Array.isArray(value)) {
       this.selectedTags = value;
       this.updateAvailableTags();
-      console.log("this.selectedTags", this.selectedTags)
+      if (value.some(tag => tag.name === 'За оплату')) {
+        this.isPaymentInputVisible = true;
+      }
     } else {
       this.selectedTags = [];
       this.updateAvailableTags();
