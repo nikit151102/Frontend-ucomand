@@ -38,17 +38,21 @@ export class SearchInputPhoneComponent implements OnInit {
       }
     }
   }
+
   search() {
     const filters = sessionStorage.getItem('bodyFilters');
     let bodyFilters = filters ? JSON.parse(filters) : {};
-
-    bodyFilters.searchText = this.searchText || '';
-
+  
+    if (this.searchText.length > 0) {
+      bodyFilters.searchText = this.searchText;
+    } else {
+      delete bodyFilters.searchText;
+    }
     sessionStorage.setItem('bodyFilters', JSON.stringify(bodyFilters));
     this.homeService.getVacancies();
     this.homeService.getResumes();
-
   }
+  
   @ViewChild('inputField') inputField!: ElementRef;
   @ViewChild('inputContainer') inputContainer!: ElementRef;
 
