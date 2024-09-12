@@ -92,14 +92,8 @@ export class SortetdFilterComponent implements OnInit {
         this.professions = results.professions;
         this.skills = results.skills;
         this.loadFiltersFromLocalStorage();
-      },
-      error: (error: any) => {
-        if (error.status) {
-          this.router.navigate(['/error', { num: error.status }]);
-        } else {
-          this.router.navigate(['/error', { num: 500 }]);
-        }
       }
+      
     });
   }
 

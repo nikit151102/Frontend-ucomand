@@ -46,12 +46,7 @@ export class HomeService {
     this.getCardData('vacancies').subscribe(data => {
       this.vacancies = data; 
       console.log("data,",data)
-    },(error:any) => { 
-      if (error.status) {
-      this.router.navigate(['/error', { num: error.status }]);
-    } else {
-      this.router.navigate(['/error', { num: 500 }]);
-    }});
+    })
   }
 
   getResumes(){
