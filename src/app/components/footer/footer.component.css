@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px 0 30px 0;
+    padding: 10px 0 10px 0
 }
 
 P {
@@ -24,7 +24,7 @@ ul {
     list-style-type: none;
     display: flex;
     flex-direction: row;
-    justify-content: space-between
+    justify-content: space-around;
 }
 
 .footer-main-menu-btn a {
@@ -44,7 +44,7 @@ ul {
 .footer-main-contacts {
     display: flex;
     flex-direction: row;
-    padding-top: 20px;
+    padding-top: 0;
     justify-content: space-between
 }
 
@@ -152,9 +152,15 @@ ul {
         padding-left: 16px;
     }
 
-    .footer-main-contacts-block {
-        flex-direction: column;
-        gap: 30px;
+    span{
+        display: none;
+    }
+    .footer-main-contacts-block-column {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        gap: 15px;
+        align-items: center;
     }
 
     li {
