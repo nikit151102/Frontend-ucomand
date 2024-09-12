@@ -26,6 +26,7 @@ body{
 
     
 }
+
 .p-component-overlay {
     z-index: 0 !important;
 }
@@ -34,8 +35,9 @@ body{
 :host ::ng-deep .p-component-overlay {
     z-index: 0 !important;
 }
-html, body {
-    overflow-x: hidden; /* Отключает горизонтальную прокрутку */
+
+.overflow-x-hidden{
+    overflow-x: hidden;
 }
 p, h1,h2,h3,div{
     font-family: var(--font-Monts);

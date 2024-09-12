@@ -55,10 +55,9 @@ export class SortetdFilterComponent implements OnInit {
     public settingHeaderService: SettingHeaderService,
     private fb: FormBuilder,
     private homeService: HomeService,
-    private cdRef: ChangeDetectorRef, 
+    private cdRef: ChangeDetectorRef,
     private router: Router
   ) {
-
     this.form = this.fb.group({
       profession: [[]],
       skills: [[]],
@@ -67,7 +66,20 @@ export class SortetdFilterComponent implements OnInit {
     });
   }
 
+  openFilterDialog() {
+    document.body.classList.remove('overflow-x-hidden');
+    document.documentElement.classList.remove('overflow-x-hidden');
+    document.body.style.overflowY = 'hidden';
+  }
+
+  closeFilterDialog() {
+    document.body.classList.add('overflow-x-hidden');
+    document.documentElement.classList.add('overflow-x-hidden');
+    document.body.style.overflowY = '';
+  }
+
   ngOnInit(): void {
+
     forkJoin({
       motivations: this.sortetdFilterService.getTags('MOTIVATION'),
       professions: this.sortetdFilterService.getTags('PROFESSION'),
@@ -120,12 +132,14 @@ export class SortetdFilterComponent implements OnInit {
 
   showDialog() {
     this.visible = true;
+    this.openFilterDialog()
     this.cdRef.detectChanges();
     console.log("visiblevisible", this.visible)
   }
 
   closeDialog() {
     this.visible = false;
+    this.closeFilterDialog()
     this.cdRef.detectChanges();
     console.log("visiblevisible", this.visible)
   }
