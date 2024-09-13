@@ -4,7 +4,9 @@
     justify-content: center;
     gap: 0.8rem;
     /* margin-top: 100px; */
-    padding-top: 5px;
+    width: 106%;
+    margin-left: -95px;
+    margin-top: -50px;
 }
 .imgs{
     width: 100%;
