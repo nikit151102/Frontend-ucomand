@@ -44,8 +44,7 @@ ul {
 .footer-main-contacts {
     display: flex;
     flex-direction: row;
-    padding-top: 0;
-    justify-content: space-between
+    width: 100%;
 }
 
 .footer-main-contacts-block {
@@ -54,10 +53,12 @@ ul {
     width: 78%;
 }
 
-.footer-main-contacts-block-column {
+.footer-main-contacts-block-row {
     display: flex;
-    flex-direction: column;
-    flex: 1;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 7rem;
+    width: 100%;
 }
 
 .title {
@@ -152,9 +153,10 @@ ul {
         padding-left: 16px;
     }
 
-    span{
+    span {
         display: none;
     }
+
     .footer-main-contacts-block-column {
         display: flex;
         flex-direction: row;
