@@ -5,25 +5,25 @@
     align-items: center;
     justify-content: flex-end;
     width: 100vw;
+    margin-bottom: -100px;
     /* height: 100vh; */
 }
 
 .main {
-    margin-left: 25rem;
+    /* margin-left: 25rem; */
     width: 75%;
     display: flex;
     top: -100px;
     position: relative;
     flex-direction: column;
-    align-items: flex-start;
-
+    align-items: center;
 }
 
 .main div {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    /* width: 100%; */
     margin-bottom: 1rem;
 
 }
@@ -84,7 +84,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-
+    justify-content: center;
+    
     gap: 0.5rem;
     border-radius: 30px;
     padding: 1rem;
@@ -98,6 +99,7 @@
 
 .btnNewResume {
     background: #84dd2c;
+    width: 198px;
 }
 
 .btnNewResume:hover {
@@ -129,6 +131,13 @@
         margin-left: 15rem;
         margin-top: 2rem;
     }
+    
+}
+@media (min-width: 1899.98px) {
+    .info-subtext {
+        font-size: 5.1rem;
+    }
+    
 }
 
 h2 {

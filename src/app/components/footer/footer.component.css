@@ -57,8 +57,10 @@ ul {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    gap: 7rem;
+    gap: 3rem;
     width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .title {
@@ -151,6 +153,7 @@ ul {
     .footer-main-contacts {
         flex-direction: column-reverse;
         padding-left: 16px;
+        padding-right: 35px;
     }
 
     span {
