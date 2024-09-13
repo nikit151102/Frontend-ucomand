@@ -118,6 +118,9 @@
     .btns {
         display: none;
     }
+    .main{
+        width: 100%;
+    }
 }
 
 
@@ -126,4 +129,29 @@
         margin-left: 15rem;
         margin-top: 2rem;
     }
+}
+
+h2 {
+    all: unset;
+    display: block;
+    font-size: inherit;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    color: inherit;
+}
+
+
+
+h2 {
+    border-radius: 30px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+
+    font-family: var(--second-Monst);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    color: #a6eb20;
 }

@@ -245,7 +245,8 @@ export class FormComponent implements OnInit {
     });
 
     const typeEndpoint = this.typeForm === 'резюме' ? 'resumes' : 'vacancies';
-
+    console.log("typeEndpointtypeEndpoint",typeEndpoint)
+    console.log("formDataformData",formData)
     if (this.isEditMode) {
       const id = this.route.snapshot.paramMap.get('id');
       if (id) {
@@ -264,6 +265,7 @@ export class FormComponent implements OnInit {
         );
       }
     } else {
+
       this.formSettingService.setData(typeEndpoint, formData).subscribe(
         (response) => {
           this.handleSuccess(response, typeEndpoint)
@@ -306,7 +308,6 @@ export class FormComponent implements OnInit {
       competenceLevel: formData.profession[0].competenceLevel || null,
       type: 'PROFESSION'
     };
-
 
     formData.visibility = "CREATOR_ONLY";
     formData.freeLink = formData.freeLink || "string";

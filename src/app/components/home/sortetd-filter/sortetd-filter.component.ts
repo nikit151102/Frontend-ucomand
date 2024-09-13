@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { TagSelectorComponent } from '../../form-components/tag-selector/tag-selector.component';
@@ -56,7 +56,8 @@ export class SortetdFilterComponent implements OnInit {
     private fb: FormBuilder,
     private homeService: HomeService,
     private cdRef: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private vps: ViewportScroller
   ) {
     this.form = this.fb.group({
       profession: [[]],
@@ -66,12 +67,11 @@ export class SortetdFilterComponent implements OnInit {
     });
   }
 
+
   openFilterDialog() {
     document.body.classList.remove('overflow-x-hidden');
     document.documentElement.classList.remove('overflow-x-hidden');
-    document.body.style.overflowY = 'hidden';
-
-    
+    document.body.style.overflowY = 'hidden';    
   }
 
   closeFilterDialog() {

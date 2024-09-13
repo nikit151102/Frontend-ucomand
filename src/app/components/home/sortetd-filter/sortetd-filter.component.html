@@ -34,7 +34,7 @@
                         <p class="stage-filter-title">
                             Специализация:
                         </p>
-                        <app-tag-selector [type]="'profession'" [placeholderValue]="'Выберете специализацию'"
+                        <app-tag-selector #selectorProfessions [type]="'profession'" [placeholderValue]="'Выберете специализацию'"
                             [tags]="professions" [maxTags]="1" (tagsChanged)="onTagsChanged($event,'profession')"
                             formControlName="profession"></app-tag-selector>
                     </div>
