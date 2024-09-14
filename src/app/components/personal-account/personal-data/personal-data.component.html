@@ -147,15 +147,11 @@
           </div>
         </div>
         <div class="chapter">
-          <div class="approval">
-            <input type="checkbox" id="approval" name="approval" formControlName="approval" class="custom-checkbox" />
+          <div class="approval">>
             <label for="approval">Нажимая на кнопку «Сохранить», я даю свое согласие на обработку моих персональных
               данных, в соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных», на
               условиях и для целей, определенных в Согласии на обработку персональных данных</label>
 
-          </div>
-          <div *ngIf="personalDataForm.get('approval')?.invalid && (personalDataForm.get('approval')?.dirty || personalDataForm.get('approval')?.touched)" class="error-message">
-            <div *ngIf="personalDataForm.get('approval')?.errors?.['required']">Необходимо согласие на обработку данных.</div>
           </div>
         </div>
         <div class="chapter">

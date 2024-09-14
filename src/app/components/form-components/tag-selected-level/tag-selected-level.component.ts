@@ -86,6 +86,7 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
         
         this.selectedTag = null;
         this.showTagBlock = false;
+        this.searchQuery = '';
         this.onChange(this.selectedTags);
         this.tagsChanged.emit(this.selectedTags);
       } else {

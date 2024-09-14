@@ -34,7 +34,7 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
 
   private onChange: (value: Tag[]) => void = () => { };
   private onTouched: () => void = () => { };
-
+  
   showTagBlock = false;
   selectedTags: Tag[] = [];
   searchQuery: string = '';
@@ -62,7 +62,7 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
       this.tagsChanged.emit(this.selectedTags);
       
       this.tags = this.tags.filter(t => t.id !== tag.id);
-      
+      this.searchQuery = '';
       this.updateFilteredTags();
     }
   }

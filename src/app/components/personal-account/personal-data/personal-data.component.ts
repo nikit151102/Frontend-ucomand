@@ -62,7 +62,6 @@ export class PersonalDataComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       telegram: [''],
       domain: ['', [forbiddenWordsValidator()]],
-      approval: [false, Validators.requiredTrue]
     });
   }
 
@@ -133,7 +132,6 @@ export class PersonalDataComponent implements OnInit {
           email: user.email,
           telegram: user.telegram,
           domain: user.nickname && user.nickname !== 'string' ? user.nickname : String(user.id),
-          approval: false
         });
 
         this.setGender = user.gender;
