@@ -1,5 +1,5 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { TagSelectorComponent } from '../../form-components/tag-selector/tag-selector.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
@@ -12,7 +12,6 @@ import { forkJoin } from 'rxjs';
 import { SettingHeaderService } from '../../setting-header.service';
 import { CheckboxModule } from 'primeng/checkbox';
 import { HomeService } from '../home.service';
-import { Router } from '@angular/router';
 
 interface Tag {
   id: number;
@@ -55,9 +54,7 @@ export class SortetdFilterComponent implements OnInit {
     public settingHeaderService: SettingHeaderService,
     private fb: FormBuilder,
     private homeService: HomeService,
-    private cdRef: ChangeDetectorRef,
-    private router: Router,
-    private vps: ViewportScroller
+    private cdRef: ChangeDetectorRef
   ) {
     this.form = this.fb.group({
       profession: [[]],
@@ -66,15 +63,24 @@ export class SortetdFilterComponent implements OnInit {
       genders: [[]]
     });
   }
+  @ViewChild('dialog') dialog!: ElementRef;
 
   @ViewChild('selectorProfessions') selectorProfessions!: ElementRef;
   @ViewChild('selectorSkills') selectorSkills!: ElementRef;
 
-  scrollToView(element: ElementRef) {
-    if (element) {
-        element.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  scrollToView(element: ElementRef, offset: number = 0) {
+    if (element && this.dialog) {
+      setTimeout(() => {
+        const dialogRect = this.dialog.nativeElement.getBoundingClientRect();
+        const elementRect = element.nativeElement.getBoundingClientRect();
+        
+        // Вычислите прокрутку внутри контейнера
+        const scrollTop = elementRect.top - dialogRect.top + this.dialog.nativeElement.scrollTop - offset;
+        this.dialog.nativeElement.scrollTo({ top: scrollTop, behavior: 'smooth' });
+      }, 0);
     }
   }
+  
 
   scrollToSelectorProfessions() {
     this.scrollToView(this.selectorProfessions);
@@ -96,6 +102,7 @@ export class SortetdFilterComponent implements OnInit {
     document.body.classList.add('overflow-x-hidden');
     document.documentElement.classList.add('overflow-x-hidden');
     document.body.style.overflowY = '';
+    this.settingHeaderService.setBooleanValue(false);
   }
 
   ngOnInit(): void {
