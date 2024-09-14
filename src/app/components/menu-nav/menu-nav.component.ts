@@ -166,6 +166,8 @@ export class MenuNavComponent implements OnInit {
       document.documentElement.style.setProperty('--logo-text-color', '#fff');
       document.documentElement.style.setProperty('--logo-background-color', 'rgba(255, 255, 255, 0.1)');
       document.documentElement.style.setProperty('--font-profession-eng', 'rgba(255, 255, 255, 0.3)');
+      document.documentElement.style.setProperty('--screensaver-color', '#a6eb20');
+      document.documentElement.style.setProperty('--screensaver-background', '#474748');
     } else {
       document.documentElement.style.setProperty('--background', '#f2f2f2');
       document.documentElement.style.setProperty('--background-card', '#fff');
@@ -179,7 +181,8 @@ export class MenuNavComponent implements OnInit {
       document.documentElement.style.setProperty('--logo-text-color', '#5a4bb8');
       document.documentElement.style.setProperty('--logo-background-color', 'rgba(185, 174, 255, 1)');
       document.documentElement.style.setProperty('--font-profession-eng', 'rgba(0, 0, 0, 0.3)');
-
+      document.documentElement.style.setProperty('--screensaver-color', '#101010');
+      document.documentElement.style.setProperty('--screensaver-background', '#a6eb20');
     }
   }
 

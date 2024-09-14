@@ -7,11 +7,12 @@ import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModu
 import { FormSettingService } from './form-setting.service';
 import { TagSelectedLevelComponent } from '../form-components/tag-selected-level/tag-selected-level.component';
 import { SettingHeaderService } from '../setting-header.service';
-import { forkJoin } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  forkJoin, Subscription } from 'rxjs';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { SaveChangesPopupComponent } from './save-changes-popup/save-changes-popup.component';
 import { SaveChangesPopupService } from './save-changes-popup/save-changes-popup.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form',
@@ -73,7 +74,7 @@ export class FormComponent implements OnInit {
     private route: ActivatedRoute,
     public saveChangesPopupService: SaveChangesPopupService
   ) { }
-
+  private routerEventsSubscription!: Subscription;
   ngOnInit(): void {
     this.initializeForm();
     this.route.data.subscribe(data => {
@@ -111,6 +112,14 @@ export class FormComponent implements OnInit {
     });
 
     this.settingHeaderService.backbtn = true;
+
+    this.routerEventsSubscription = this.router.events
+    .pipe(
+      filter(event => event instanceof NavigationStart)
+    )
+    .subscribe((event: any) => {
+      this.saveFormDataToStorage();
+    });
   }
 
   onPaymentAmountChange(paymentAmount: number) {
@@ -360,9 +369,8 @@ export class FormComponent implements OnInit {
     }
   }
 
-  @HostListener('window:beforeunload')
-  handleBeforeUnload(): void {
+  @HostListener('window:beforeunload', ['$event'])
+  handleBeforeUnload(event: any): void {
     this.saveFormDataToStorage();
   }
-
 }

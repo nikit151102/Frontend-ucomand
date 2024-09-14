@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormSettingService } from '../../../form/form-setting.service';
 import { PopUpEntryService } from '../../../pop-up-entry/pop-up-entry.service';
@@ -14,11 +14,12 @@ import { TokenService } from '../../../token.service';
 })
 export class PhoneTypeComponent {
 
-  constructor(private tokenService: TokenService, 
+  constructor(private tokenService: TokenService,
     private popUpEntryService: PopUpEntryService,
     private settingHeaderService: SettingHeaderService,
     private formSettingService: FormSettingService,
     private router: Router) { }
+
 
   handlePostResume() {
     if (this.tokenService.getToken()) {
@@ -28,7 +29,7 @@ export class PhoneTypeComponent {
       this.settingHeaderService.shared = false;
       const userId = localStorage.getItem('userId')
       this.router.navigate([`/myaccount/${userId}/newResume`]);
-    }else{
+    } else {
       this.popUpEntryService.showDialog();
     }
   }
@@ -41,9 +42,9 @@ export class PhoneTypeComponent {
       this.settingHeaderService.shared = false;
       const userId = localStorage.getItem('userId')
       this.router.navigate([`/myaccount/${userId}/newVacancy`]);
-    }else{
+    } else {
       this.popUpEntryService.showDialog();
     }
   }
-  
+
 }

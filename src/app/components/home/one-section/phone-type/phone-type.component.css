@@ -99,13 +99,15 @@ img {
 .tag {
     border-radius: 30px;
     padding: 10px;
-    background: #474748;
     font-family: var(--second-Monst);
     font-weight: 400;
     font-size: 14px;
     line-height: 114%;
-    color: #a6eb20;
+    background: var(--screensaver-background);
+    color: var(--screensaver-color);
 }
+
+
 
 .button-container {
     display: flex;
@@ -165,4 +167,14 @@ h2 {
     padding: 0;
     line-height: normal;
     color: inherit;
+}
+
+
+
+.backgroundFonn {
+    fill: var(--logo-background-color);
+}
+
+.textLogo {
+    fill: var(--logo-text-color);
 }
