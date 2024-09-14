@@ -29,20 +29,20 @@
                         </svg>
                     </a>
                 </div>
-                <div class="content-filter">
-                    <div class="stage-filter">
+                <div #filterContent class="content-filter" >
+                    <div class="stage-filter" #selectorProfessions>
                         <p class="stage-filter-title">
                             Специализация:
                         </p>
-                        <app-tag-selector #selectorProfessions [type]="'profession'" [placeholderValue]="'Выберете специализацию'"
-                            [tags]="professions" [maxTags]="1" (tagsChanged)="onTagsChanged($event,'profession')"
+                        <app-tag-selector  [type]="'profession'" [placeholderValue]="'Выберете специализацию'"
+                        (click)="scrollToSelectorProfessions()"    [tags]="professions" [maxTags]="1" (tagsChanged)="onTagsChanged($event,'profession')"
                             formControlName="profession"></app-tag-selector>
                     </div>
-                    <div class="stage-filter">
+                    <div class="stage-filter" #selectorSkills>
                         <p class="stage-filter-title">
                             Навыки:
                         </p>
-                        <app-tag-selector [placeholderValue]="'Выберете навыки'" [tags]="skills"
+                        <app-tag-selector [placeholderValue]="'Выберете навыки'" [tags]="skills" (click)="scrollToSelectorSkills()" 
                             formControlName="skills" (tagsChanged)="onTagsChanged($event,'skills')"></app-tag-selector>
                     </div>
                     <div class="stage-filter" class="three-stages" style="flex: 1;">

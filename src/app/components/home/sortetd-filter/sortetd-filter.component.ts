@@ -67,16 +67,29 @@ export class SortetdFilterComponent implements OnInit {
     });
   }
 
+  @ViewChild('selectorProfessions') selectorProfessions!: ElementRef;
+  @ViewChild('selectorSkills') selectorSkills!: ElementRef;
+
+  scrollToView(element: ElementRef) {
+    if (element) {
+        element.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  scrollToSelectorProfessions() {
+    this.scrollToView(this.selectorProfessions);
+  }
+
+  scrollToSelectorSkills() {
+    this.scrollToView(this.selectorSkills);
+  }
+
 
   openFilterDialog() {
     document.body.classList.remove('overflow-x-hidden');
     document.documentElement.classList.remove('overflow-x-hidden');
     document.body.style.overflowY = 'hidden';
     this.settingHeaderService.setBooleanValue(true);
-    this.settingHeaderService.isFilterState$.subscribe(value => {
-      console.log('isFilterState value:', value);
-    });
-    console.log("this.settingHeaderService.setBooleanValue",this.settingHeaderService.isFilterState$)
   }
 
   closeFilterDialog() {
