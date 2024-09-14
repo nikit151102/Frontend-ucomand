@@ -10,6 +10,11 @@ const routes: Routes = [
     loadChildren: () => import('./components/home/home.module').then(m => m.HomeModule)
   },
   {
+    path: 'news',
+    redirectTo: '',
+    pathMatch: 'full'
+  },
+  {
     path: 'resume/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule), data: { routeName: 'resume' }
   },
   {
@@ -31,13 +36,13 @@ const routes: Routes = [
     path: 'adminAccount', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
   },
   {
-    path: 'error', component:PageErrorComponent
+    path: 'error', component: PageErrorComponent
   },
   { path: '**', redirectTo: '/error' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' , scrollPositionRestoration: 'top' })],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload', scrollPositionRestoration: 'top' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
