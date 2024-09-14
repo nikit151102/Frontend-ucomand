@@ -1,6 +1,8 @@
 <div class="main">
     <div class="container_header" *ngIf="settingHeaderService.isheader">
-      <app-menu-nav></app-menu-nav>
+      <app-menu-nav [ngClass]="{
+        'zIndexDialog': (isVisibleFilter)
+      }"></app-menu-nav>
     </div>
     <div class="container content" [@fadeAnimation]="true">
       <router-outlet></router-outlet>

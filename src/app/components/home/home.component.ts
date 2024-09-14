@@ -34,6 +34,7 @@ import { SearchInputPhoneComponent } from './search/search-input-phone/search-in
 export class HomeComponent implements OnInit {
 
   loading: boolean = true;
+  isVisibleFilter: boolean = false;
 
   constructor(
     private viewCardService: ViewCardService, 
@@ -47,6 +48,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.settingHeaderService.isFilterState$.subscribe(value => {
+      this.isVisibleFilter = value;
+      console.log('Boolean value changed:', value);
+    });
     this.homeService.loadData();
   }
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,4 +28,17 @@ export class SettingHeaderService {
     });
   }
   
+  private isFilterSubject = new BehaviorSubject<boolean>(false);
+
+  isFilterState$ = this.isFilterSubject.asObservable();
+
+  setBooleanValue(newValue: boolean): void {
+    this.isFilterSubject.next(newValue);
+  }
+
+  getBooleanValue(): boolean {
+    return this.isFilterSubject.getValue();
+  }
+
+
 }

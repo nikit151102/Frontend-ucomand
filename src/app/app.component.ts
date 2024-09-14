@@ -20,9 +20,13 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class AppComponent {
   title = 'uteam';
-
+  isVisibleFilter: boolean = false;
   constructor(public settingHeaderService: SettingHeaderService){
 
   }
-  
+  ngOnInit() {
+    this.settingHeaderService.isFilterState$.subscribe(value => {
+      this.isVisibleFilter = value;
+    });
+  }
 }

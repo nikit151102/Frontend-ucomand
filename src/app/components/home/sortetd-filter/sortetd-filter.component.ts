@@ -71,7 +71,12 @@ export class SortetdFilterComponent implements OnInit {
   openFilterDialog() {
     document.body.classList.remove('overflow-x-hidden');
     document.documentElement.classList.remove('overflow-x-hidden');
-    document.body.style.overflowY = 'hidden';    
+    document.body.style.overflowY = 'hidden';
+    this.settingHeaderService.setBooleanValue(true);
+    this.settingHeaderService.isFilterState$.subscribe(value => {
+      console.log('isFilterState value:', value);
+    });
+    console.log("this.settingHeaderService.setBooleanValue",this.settingHeaderService.isFilterState$)
   }
 
   closeFilterDialog() {
@@ -81,7 +86,7 @@ export class SortetdFilterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+   
     forkJoin({
       motivations: this.sortetdFilterService.getTags('MOTIVATION'),
       professions: this.sortetdFilterService.getTags('PROFESSION'),
@@ -93,7 +98,7 @@ export class SortetdFilterComponent implements OnInit {
         this.skills = results.skills;
         this.loadFiltersFromLocalStorage();
       }
-      
+
     });
   }
 
