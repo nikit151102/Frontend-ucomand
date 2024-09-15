@@ -14,6 +14,9 @@
 <ng-container *ngIf="isAuthenticated">
     <div class="container">
         <p-menubar [model]="items" class="menubar" />
+        <ng-container *ngIf="TypeSetting === 'admins'">
+            <app-admins-list class="viewData"></app-admins-list>
+        </ng-container>
         <ng-container *ngIf="TypeSetting === 'users'">
             <app-list-users class="viewData"></app-list-users>
         </ng-container>

@@ -14,11 +14,12 @@ import { ListCardsComponent } from './list-cards/list-cards.component';
 import { VacanciesService } from './services/vacancies.service';
 import { ResumesService } from './services/resumes.service';
 import { ListUsersComponent } from './list-users/list-users.component';
+import { AdminsListComponent } from './admins-list/admins-list.component';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule, MenubarModule, TagsComponent, ExcelReaderComponent, ListUsersComponent,FormsModule, InputOtpModule, NotificationsComponent, ListCardsComponent],
+  imports: [CommonModule, MenubarModule, TagsComponent, ExcelReaderComponent, ListUsersComponent,FormsModule, InputOtpModule, NotificationsComponent, ListCardsComponent, AdminsListComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css',
   providers: [MessageService]
@@ -54,6 +55,7 @@ export class AdminComponent implements OnInit {
     this.items = [
       {
         label: 'Главная',
+        command: () => { this.TypeSetting = 'admins' }
       },
       {
         label: 'Пользователи',
