@@ -10,6 +10,16 @@ services:
       - ./Frontend-ucomand:/app
       - /app/node_modules
 
+  Admin-frontend:
+    build:
+      context: ./AdminUteam
+      dockerfile: Dockerfile-frontend
+    ports:
+      - 8010:8010
+    volumes:
+      - ./AdminUteam:/app
+      - /app/node_modules
+
   ucomand-backend:
     build:
       context: ./
