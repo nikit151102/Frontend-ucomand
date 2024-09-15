@@ -314,6 +314,12 @@ a {
     }
 }
 
+@media (min-width: 1999px){
+    .first-container {
+        width: 85%;
+    }
+}
+
 @media (max-height: 650px) {
     .btns{
         flex-direction: row;
@@ -327,9 +333,11 @@ a {
 }
 }
 
-@media (min-width: 1999px){
-    .first-container {
-        width: 85%;
+@media (max-height: 650px) and (max-width: 504px) {
+    .grnBtn{
+        padding-left: 32px;
+        padding-right: 32px;
     }
+
 }
 

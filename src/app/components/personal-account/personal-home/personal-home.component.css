@@ -627,8 +627,8 @@ p {
 @media (max-width: 390px) {
     .phone-btns-create a {
         text-align: center;
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 25px;
+        padding-right: 25px;
     }
 
 }
