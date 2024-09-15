@@ -33,9 +33,6 @@ const routes: Routes = [
     path: 'notifications', loadChildren: () => import('./components/notification/notification.module').then(m => m.NotificationModule)
   },
   {
-    path: 'adminAccount', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
-  },
-  {
     path: 'error', component: PageErrorComponent
   },
   { path: '**', redirectTo: '/error' }
