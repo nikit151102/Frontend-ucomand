@@ -7,7 +7,7 @@ import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModu
 import { FormSettingService } from './form-setting.service';
 import { TagSelectedLevelComponent } from '../form-components/tag-selected-level/tag-selected-level.component';
 import { SettingHeaderService } from '../setting-header.service';
-import {  forkJoin, Subscription } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { SaveChangesPopupComponent } from './save-changes-popup/save-changes-popup.component';
 import { SaveChangesPopupService } from './save-changes-popup/save-changes-popup.service';
@@ -63,7 +63,7 @@ export class FormComponent implements OnInit {
   visible: boolean = false;
   activeLink: string = 'Сначала новые';
   isPayment: boolean = false;
-  
+
   private readonly FORM_STORAGE_KEY = 'formData';
 
   constructor(
@@ -114,16 +114,19 @@ export class FormComponent implements OnInit {
     this.settingHeaderService.backbtn = true;
 
     this.routerEventsSubscription = this.router.events
-    .pipe(
-      filter(event => event instanceof NavigationStart)
-    )
-    .subscribe((event: any) => {
-      this.saveFormDataToStorage();
-    });
+      .pipe(
+        filter(event => event instanceof NavigationStart)
+      )
+      .subscribe((event: any) => {
+        this.saveFormDataToStorage();
+      });
   }
 
+  setPaymentAmount: number = 0;
   onPaymentAmountChange(paymentAmount: number) {
     console.log('Payment changed:', paymentAmount);
+    this.setPaymentAmount = paymentAmount
+    this.form.get('minPayment')?.setValue(this.setPaymentAmount);
   }
 
   initializeForm(): void {
@@ -133,7 +136,8 @@ export class FormComponent implements OnInit {
       skills: [[], Validators.required],
       motivations: [this.selectedTags, Validators.required],
       gender: [''],
-      details: ['', [Validators.required, Validators.maxLength(700)]]
+      details: ['', [Validators.required, Validators.maxLength(700)]],
+      minPayment: [this.setPaymentAmount ],
     });
 
     this.form.get('motivations')?.valueChanges.subscribe(tags => {
@@ -252,10 +256,10 @@ export class FormComponent implements OnInit {
     formData.skills.forEach((skill: any) => {
       skill.competenceLevel = skill.competenceLevel === 0 ? null : skill.competenceLevel;
     });
-
+    
     const typeEndpoint = this.typeForm === 'резюме' ? 'resumes' : 'vacancies';
-    console.log("typeEndpointtypeEndpoint",typeEndpoint)
-    console.log("formDataformData",formData)
+    console.log("typeEndpointtypeEndpoint", typeEndpoint)
+    console.log("formDataformData", formData)
     if (this.isEditMode) {
       const id = this.route.snapshot.paramMap.get('id');
       if (id) {
@@ -317,15 +321,17 @@ export class FormComponent implements OnInit {
       competenceLevel: formData.profession[0].competenceLevel || null,
       type: 'PROFESSION'
     };
-
+    console.log("formData.minPayment",formData.minPayment)
     formData.visibility = "CREATOR_ONLY";
     formData.freeLink = formData.freeLink || "string";
     formData.ownLink = formData.ownLink || "string";
     formData.contacts = formData.contacts || "string";
     formData.details = formData.details || "string";
     formData.title = formData.title || "string";
-
+    formData.minPayment = formData.minPayment || 0;
     delete formData.gender;
+
+ 
     return formData
   }
 

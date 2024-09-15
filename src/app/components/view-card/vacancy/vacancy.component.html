@@ -49,6 +49,16 @@
             </ng-container>
         </div>
     </div>
+    <ng-container *ngIf="data?.minPayment && data?.minPayment > 0">
+        <div class="chapterCard">
+            <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
+                Оплата:
+            </p>
+            <div class="description">
+               от {{ data?.minPayment }}₽
+            </div>
+        </div>
+    </ng-container>
     <div class="chapterCard">
         <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
             Описание:
