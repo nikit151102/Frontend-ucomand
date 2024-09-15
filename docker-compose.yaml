@@ -15,7 +15,7 @@ services:
       context: ./AdminUteam
       dockerfile: Dockerfile-frontend
     ports:
-      - 8010:8010
+      - 8082:8082
     volumes:
       - ./AdminUteam:/app
       - /app/node_modules
