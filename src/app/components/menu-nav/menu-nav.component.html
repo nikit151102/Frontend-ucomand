@@ -176,7 +176,7 @@
             <li>
                 <div class="btns">
                     <ng-container *ngFor="let btn of buttonsConfig">
-                        <button class="grnBtn" (click)="btn.action()" [innerHTML]="btn.label">
+                        <button [class]="btn.class" (click)="btn.action()" [innerHTML]="btn.label">
          
                         </button>
                     </ng-container>

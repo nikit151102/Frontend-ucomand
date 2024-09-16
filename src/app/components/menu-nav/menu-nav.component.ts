@@ -28,11 +28,11 @@ export class MenuNavComponent implements OnInit {
   isAuthenticated!: boolean;
   private domain = 'https://uteam.top/api';
   currentUserLogo: any;
-  buttonsConfig: { label: string, action: () => void }[] = [];
+  buttonsConfig: { label: string, class: string, action: () => void }[] = [];
   constructor(private location: Location, public settingHeaderService: SettingHeaderService,
     private router: Router, public tokenService: TokenService, private homeService: HomeService,
-    private http: HttpClient,  private ngZone: NgZone, private cdr: ChangeDetectorRef, private formSettingService:FormSettingService,
-    private popUpErrorCreateService:PopUpErrorCreateService, private popUpEntryService:PopUpEntryService, public menuNavService:MenuNavService
+    private http: HttpClient, private ngZone: NgZone, private cdr: ChangeDetectorRef, private formSettingService: FormSettingService,
+    private popUpErrorCreateService: PopUpErrorCreateService, private popUpEntryService: PopUpEntryService, public menuNavService: MenuNavService
   ) {
   }
 
@@ -49,7 +49,7 @@ export class MenuNavComponent implements OnInit {
     });
     const savedTheme = localStorage.getItem('theme') || 'light';
     this.toggleTopic(savedTheme);
-  
+
     this.tokenService.isAuthenticated$.subscribe(isAuthenticated => {
       this.ngZone.run(() => {
         this.isAuthenticated = isAuthenticated;
@@ -62,7 +62,7 @@ export class MenuNavComponent implements OnInit {
   isImageAvatar(logo: string): boolean {
     return logo.trim().startsWith('image');
   }
-  
+
   navigateTo(path: string) {
     this.router.navigate([path]);
     this.sidebarVisible = false;
@@ -71,13 +71,13 @@ export class MenuNavComponent implements OnInit {
   setButtons(): void {
     if (this.isAuthenticated) {
       this.buttonsConfig = [
-        { label: 'Разместить резюме', action: () => this.handlePostResume() },
-        { label: 'Разместить вакансию', action: () => this.handlePostVacancy() }
+        { label: 'Разместить резюме', class: "grnBtn btnAdditional", action: () => this.handlePostResume() },
+        { label: 'Разместить вакансию', class: "grnBtn btnAdditional", action: () => this.handlePostVacancy() }
       ];
     } else {
       this.buttonsConfig = [
-        { label: 'Войти&nbsp;в аккаунт', action: () => this.handleLogin() },
-        { label: 'Регистрация', action: () => this.handleRegistration() }
+        { label: 'Войти&nbsp;в аккаунт', class: "grnBtn", action: () => this.handleLogin() },
+        { label: 'Регистрация', class: "grnBtn", action: () => this.handleRegistration() }
       ];
     }
     this.cdr.detectChanges();

@@ -155,6 +155,8 @@ img {
 @media (max-width: 400px) {
     .additionalBtn {
         font-size: 0.7rem;
+        padding-left: 8px;
+        padding-right: 8px;
     }
 }
 
