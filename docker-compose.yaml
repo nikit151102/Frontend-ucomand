@@ -7,7 +7,7 @@ services:
     ports:
       - 8081:8081
     volumes:
-      - ./Frontend-ucomand:/app
+      - ./Frontend-ucomand:/app:rw
       - /app/node_modules
 
   admin-frontend:
@@ -17,8 +17,9 @@ services:
     ports:
       - 8082:8082
     volumes:
-      - ./AdminUteam:/app
+      - ./Frontend-ucomand:/app:rw
       - /app/node_modules
+
 
   ucomand-backend:
     build:
