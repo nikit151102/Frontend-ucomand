@@ -8,19 +8,46 @@ export class DomainService {
  
   constructor() { }
 
-  // Метод для извлечения основного домена
-  setDomain(urlString: string): string {
-    try {
-      const url = new URL(urlString);
-      const hostname = url.hostname;
-      const domainParts = hostname.split('.');
-  
-      return domainParts.length > 2 ? domainParts[domainParts.length - 2] : domainParts[0];
-    } catch (error) {
-      return ''; 
+// Метод для извлечения основного домена без зоны
+setDomain(urlString: string): string {
+  try {
+    const url = new URL(urlString);
+    const hostname = url.hostname;
+    const domainParts = hostname.split('.');
+
+    if (hostname === 't.me') {
+      const channelName = url.pathname.slice(1); 
+      return `тг /${channelName}`;
     }
-    
+
+    return domainParts.length > 2 ? domainParts[domainParts.length - 2] : domainParts[0];
+  } catch (error) {
+    return ''; 
   }
+}
+
+// Метод для извлечения основного домена с зоной
+setDomainWithZone(urlString: string): string {
+  try {
+    const url = new URL(urlString);
+    const hostname = url.hostname;
+    const domainParts = hostname.split('.');
+
+    if (hostname === 't.me') {
+      const channelName = url.pathname.slice(1); 
+      return `тг / ${channelName}`;
+    }
+
+    if (domainParts.length >= 2) {
+      return domainParts.slice(-2).join('.');
+    }
+
+    return hostname;
+  } catch (error) {
+    return '';
+  }
+}
+
 
   // Метод для проверки существования изображения
   checkImageExists(domainName: string): Promise<string> {

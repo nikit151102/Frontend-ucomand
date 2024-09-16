@@ -146,7 +146,8 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
         console.log("resumes", resumes)
         console.log("vacancies", vacancies)
         this.visiblePage = true;
-        this.domainName = this.domainService.setDomain(user.freeLink);
+        console.log("user.freeLink",user.freeLink)
+        this.domainName = this.domainService.setDomainWithZone(user.freeLink);
       },
       (error) => {
         console.error('Ошибка при загрузке данных:', error);
@@ -213,6 +214,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
       this.router.navigate([`/myaccount/${userId}/newVacancy`]);
     } else {
       this.popUpErrorCreateService.visible = true;
+      
     }
   }
 

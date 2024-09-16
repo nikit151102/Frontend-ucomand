@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { PersonalDataService } from './personal-data.service';
 import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
 import { CityOfResidence, User } from './user-interface';
 import { Router } from '@angular/router';
 import { PopUpAvatarComponent } from '../../pop-up-avatar/pop-up-avatar.component';
 import { PopUpAvatarService } from '../../pop-up-avatar/pop-up-avatar.service';
-import { Subscription } from 'rxjs';
+import { catchError, map, Observable, of, Subscription } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { AvatarSelectionService } from '../../pop-up-avatar/avatar-selection.service';
 import { forbiddenWordsValidator } from './errorNameList';
@@ -44,13 +44,13 @@ export class PersonalDataComponent implements OnInit {
   setGender: string | null = '';
   setTypeAvatar: string | null = '';
   isDisabled = false;
-
+  oldDomain: string = ''
 
   private subscription: Subscription = new Subscription();
 
-  constructor(private fb: FormBuilder, private personalDataService: PersonalDataService, 
-    private router: Router, public popUpAvatarService: PopUpAvatarService, 
-    private avatarSelectionService: AvatarSelectionService, private settingHeaderService: SettingHeaderService, public menuNavService:MenuNavService) {
+  constructor(private fb: FormBuilder, private personalDataService: PersonalDataService,
+    private router: Router, public popUpAvatarService: PopUpAvatarService,
+    private avatarSelectionService: AvatarSelectionService, private settingHeaderService: SettingHeaderService, public menuNavService: MenuNavService) {
     this.personalDataForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -61,9 +61,11 @@ export class PersonalDataComponent implements OnInit {
       aboutMe: ['', [Validators.maxLength(250)]],
       email: ['', [Validators.required, Validators.email]],
       telegram: [''],
-      domain: ['', [forbiddenWordsValidator()]],
+      domain: [''],
     });
   }
+
+
 
   ngOnInit(): void {
     this.settingHeaderService.shared = true;
@@ -96,6 +98,19 @@ export class PersonalDataComponent implements OnInit {
       this.setGender = value;
     });
     // this.toggleDisable()
+
+
+  }
+
+
+  forbiddenWordsValidator(value: string) {
+    this.personalDataService.validatorDomain(value).subscribe((data: any) => {
+      if (data === false) {
+        this.personalDataForm.get('domain')?.setErrors({ forbiddenWords: true });
+      } else {
+        this.personalDataForm.get('domain')?.setErrors(null);
+      }
+    })
   }
 
   getAvatar() {
@@ -115,7 +130,7 @@ export class PersonalDataComponent implements OnInit {
   userData() {
     this.personalDataService.getCurrentUser().subscribe(
       (user: User) => {
-        if(user.imageLink){
+        if (user.imageLink) {
           this.menuNavService.setStorageValue(user.imageLink);
         }
         this.dataCurrentUser = user;
@@ -131,9 +146,18 @@ export class PersonalDataComponent implements OnInit {
           aboutMe: user.aboutMe || '',
           email: user.email,
           telegram: user.telegram,
-          domain: user.nickname && user.nickname !== 'string' ? user.nickname : String(user.id),
+          domain: user.nickname || '',
         });
+        if(user.nickname){
+          this.oldDomain = user.nickname;
+          
+        }
+    this.personalDataForm.get('domain')?.valueChanges.subscribe(value => {
+      if (value !== this.oldDomain && value.length > 0 ) {
+        this.forbiddenWordsValidator(value)
+      }
 
+    });
         this.setGender = user.gender;
       },
       (error) => {
@@ -187,7 +211,7 @@ export class PersonalDataComponent implements OnInit {
       nickname: formValues.domain,
       role: this.dataCurrentUser.role,
     };
-      
+
     this.personalDataService.updateUser(user).subscribe(
       response => {
         console.log('Данные успешно отправлены', response);
@@ -195,7 +219,7 @@ export class PersonalDataComponent implements OnInit {
         localStorage.setItem('userId', formValues.domain);
         const userId = localStorage.getItem('userId')
 
-        localStorage.setItem('fullAccess', 'b326b5062b2f0e69046810717534cb09' );
+        localStorage.setItem('fullAccess', 'b326b5062b2f0e69046810717534cb09');
         this.router.navigate([`/myaccount/${userId}/home`]);
       },
       error => {

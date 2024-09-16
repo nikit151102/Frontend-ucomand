@@ -25,8 +25,8 @@
         [(ngModel)]="searchQuery" (ngModelChange)="filterTags()">
     </ng-container>
     <ng-container *ngIf="showTagBlock">
-      <div *ngIf="filteredTags.length > 0; else noTags" class="tag-block" (click)="onClickInside($event)">
-        <div *ngFor="let tag of filteredTags" (click)="selectTag(tag)" class="selectTag">
+      <div #dialog *ngIf="filteredTags.length > 0; else noTags" class="tag-block" (click)="onClickInside($event)">
+        <div #selTag *ngFor="let tag of filteredTags" (click)="selectTag(tag, tagElement)" #tagElement  class="selectTag" >
           <ng-container *ngIf="languagesEng">
             {{ tag.nameEng }}
           </ng-container>

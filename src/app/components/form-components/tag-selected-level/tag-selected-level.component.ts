@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, forwardRef, Input, Output, EventEmitter, HostListener, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, forwardRef, Input, Output, EventEmitter, HostListener, OnChanges, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule } from '@angular/forms';
 
 
@@ -33,6 +33,10 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
   @Input() type: string = 'skills';
   @Output() tagsChanged = new EventEmitter<{ id: number; name: string; nameEng: string; competenceLevel: number | null; type: string, color: string | null }[]>();
 
+  @ViewChild('dialog') dialog!: ElementRef;
+
+  @ViewChild('selTag') selTag!: ElementRef;
+  
   showTagBlock = false;
   selectedTags: { id: number; name: string; nameEng: string; competenceLevel: number | null; type: string, color: string | null }[] = [];
   selectedTag: { id: number; name: string; nameEng: string; competenceLevel: number | null; type: string, color: string | null } | null = null;
@@ -48,11 +52,27 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
     }
   }
 
+
+
   toggleTagBlock(show: boolean) {
     this.showTagBlock = show;
   }
 
-  selectTag(tag: any) {
+  scrollToView(tagElement: HTMLElement, offset: number = 0) {
+    if (tagElement && this.dialog) {
+      setTimeout(() => {
+        const dialogRect = this.dialog.nativeElement.getBoundingClientRect();
+        const elementRect = tagElement.getBoundingClientRect();
+  
+        // Вычисляем прокрутку внутри контейнера
+        const scrollTop = elementRect.top - dialogRect.top + this.dialog.nativeElement.scrollTop - offset;
+        this.dialog.nativeElement.scrollTo({ top: scrollTop, behavior: 'smooth' });
+      }, 0);
+    }
+  }
+
+  selectTag(tag: any,  tagElement: HTMLElement) {
+    this.scrollToView(tagElement);
     if (this.selectedTag && this.selectedTag.name === tag.name) {
       this.selectedTag = null;
     } else {
