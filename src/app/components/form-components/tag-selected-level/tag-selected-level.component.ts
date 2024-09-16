@@ -49,6 +49,10 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['tags']) {
       this.filterTags();
+      if (changes['tags']) {
+        this.tags = this.tags.filter(tag => !this.selectedTags.some(selectedTag => selectedTag.id === tag.id));
+        this.updateFilteredTags()
+      }
     }
   }
 
@@ -133,6 +137,10 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
 
     if (value && Array.isArray(value)) {
       this.selectedTags = value;
+      this.tags = this.tags.filter(tag => !value.some(selectedTag => selectedTag.id === tag.id));
+    
+      // Обновляем фильтрованные теги после удаления
+      this.updateFilteredTags();
     } else {
       this.selectedTags = [];
     }
