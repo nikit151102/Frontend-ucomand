@@ -104,7 +104,7 @@ export class PersonalDataComponent implements OnInit {
 
 
   forbiddenWordsValidator(value: string) {
-    this.personalDataService.validatorDomain(value).subscribe((data: any) => {
+    this.personalDataService.validatorDomain(value.toLowerCase()).subscribe((data: any) => {
       if (data === false) {
         this.personalDataForm.get('domain')?.setErrors({ forbiddenWords: true });
       } else {

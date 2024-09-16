@@ -63,7 +63,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
   visiblePage: boolean = false;
   vacanciesData: any;
   resumesData: any;
-
+  favicon: any;
   showAllResume: boolean = false;
   itemsToShowResume: number = 3;
   toggleResumes() {
