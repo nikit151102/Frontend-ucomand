@@ -24,7 +24,11 @@
     </div>
 
     <div *ngIf="isPaymentInputVisible && isPayment" class="payment-input">
-        <label for="payment">Оплата от:</label>
-        <input type="number" id="payment" (input)="onPaymentAmountChange($event)" [value]="paymentAmount" />
+        <label for="payment">Оплата:</label>
+        <div class="payment-group">
+            <p>от </p>
+            <input type="number" id="payment" (input)="onPaymentAmountChange($event)" [value]="paymentAmount" />
+        </div>
+        
     </div>
 </div>

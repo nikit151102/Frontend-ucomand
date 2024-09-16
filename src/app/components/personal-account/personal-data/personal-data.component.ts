@@ -95,21 +95,21 @@ export class PersonalDataComponent implements OnInit {
     this.personalDataForm.get('gender')?.valueChanges.subscribe(value => {
       this.setGender = value;
     });
-    this.toggleDisable()
+    // this.toggleDisable()
   }
 
   getAvatar() {
     this.popUpAvatarService.showPopup();
   }
 
-  toggleDisable() {
-    this.isDisabled = !this.isDisabled;
-    if (this.isDisabled) {
-      this.personalDataForm.get('domain')?.disable();
-    } else {
-      this.personalDataForm.get('domain')?.enable();
-    }
-  }
+  // toggleDisable() {
+  //   this.isDisabled = !this.isDisabled;
+  //   if (this.isDisabled) {
+  //     this.personalDataForm.get('domain')?.disable();
+  //   } else {
+  //     this.personalDataForm.get('domain')?.enable();
+  //   }
+  // }
 
 
   userData() {

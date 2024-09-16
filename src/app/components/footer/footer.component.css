@@ -186,4 +186,8 @@ ul {
     .footer-main-contacts-logo {
         display: none;
     }
+
+    .footer-main-contacts-block-row{
+        justify-content: flex-start;
+    }
 }

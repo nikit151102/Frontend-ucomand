@@ -71,4 +71,12 @@ export class VacancyComponent {
         return '';
     }
   }
+
+
+  hasPaymentMotivation(): boolean {
+ const returnValue = this.data?.motivations?.some((motivation:any) => motivation.name === 'За оплату') && this.data?.minPayment > 0;
+    console.log("returnValue",returnValue)
+ return returnValue
+  }
+
 }

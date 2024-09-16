@@ -49,7 +49,7 @@
             </ng-container>
         </div>
     </div>
-    <ng-container *ngIf="data?.minPayment && data?.minPayment > 0">
+    <ng-container *ngIf="data?.minPayment && hasPaymentMotivation()">
         <div class="chapterCard">
             <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
                 Оплата:

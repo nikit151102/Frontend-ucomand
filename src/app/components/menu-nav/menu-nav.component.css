@@ -267,7 +267,6 @@ a {
         width: 100%;
         gap: 0;
         padding: 0
-        
     }
 
     .first-container {
@@ -314,30 +313,43 @@ a {
     }
 }
 
-@media (min-width: 1999px){
+@media (min-width: 1999px) {
     .first-container {
         width: 85%;
     }
 }
 
 @media (max-height: 650px) {
-    .btns{
+    .btns {
         flex-direction: row;
-       
+
     }
-    :host ::ng-deep .p-sidebar-right{
+
+    :host ::ng-deep .p-sidebar-right {
         padding-bottom: 0;
     }
-    :host ::ng-deep .p-sidebar .p-sidebar-header + .p-sidebar-content{
-    padding-bottom: 0;
-}
+
+    :host ::ng-deep .p-sidebar .p-sidebar-header+.p-sidebar-content {
+        padding-bottom: 0;
+    }
+
+    ul {
+
+        padding: 0;
+    }
+
+    ul li {
+        padding-right: 0;
+    }
 }
 
 @media (max-height: 650px) and (max-width: 504px) {
-    .grnBtn{
+    .grnBtn {
         padding-left: 32px;
         padding-right: 32px;
+        white-space: normal;
+        word-wrap: break-word;
+        text-align: center;
     }
 
 }
-

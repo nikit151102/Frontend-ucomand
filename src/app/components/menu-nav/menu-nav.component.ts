@@ -76,7 +76,7 @@ export class MenuNavComponent implements OnInit {
       ];
     } else {
       this.buttonsConfig = [
-        { label: 'Войти в аккаунт', action: () => this.handleLogin() },
+        { label: 'Войти&nbsp;в аккаунт', action: () => this.handleLogin() },
         { label: 'Регистрация', action: () => this.handleRegistration() }
       ];
     }
