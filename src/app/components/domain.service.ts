@@ -17,7 +17,7 @@ setDomain(urlString: string): string {
 
     if (hostname === 't.me') {
       const channelName = url.pathname.slice(1); 
-      return `тг /${channelName}`;
+      return `/${channelName}`;
     }
 
     return domainParts.length > 2 ? domainParts[domainParts.length - 2] : domainParts[0];

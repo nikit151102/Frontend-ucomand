@@ -130,14 +130,12 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
   }
 
   writeValue(value: Tag[]): void {
-    console.log("type",this.type)
-    console.log("value",value)
+
     if (value && Array.isArray(value)) {
       this.selectedTags = value;
     } else {
       this.selectedTags = [];
     }
-
   }
 
   registerOnChange(fn: any): void {
