@@ -95,5 +95,5 @@
     font-weight: 400;
     font-size: 0.8rem;
     line-height: 120%;
-    color: #101010;
+    color: var(--font-color);
 }

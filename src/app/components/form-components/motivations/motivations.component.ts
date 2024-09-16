@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MotivationsService } from './motivations.service';
 
@@ -25,13 +25,21 @@ export class MotivationsComponent implements OnInit {
     //   this.tagsList = data
     // })
   }
+  
   // tagsList!: { id: number, name: string, color: string,competenceLevel: string|null, nameEng: string|null, type: string }[] ;
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['payment'] || changes['isPayment']) {
+      this.paymentAmount = this.payment;
+    }
+  }
+  
   ngOnInit(): void {
-
+ 
   }
   isPaymentInputVisible: boolean = false;
   @Input() isPayment: boolean = false;
   paymentAmount: number = 0;
+  @Input() payment!: number;
   @Output() paymentChanged = new EventEmitter<number>();
   tagsList: { id: number, name: string, color: string | null, competenceLevel: string | null, nameEng: string | null, type: string }[] = [
     {
@@ -153,7 +161,7 @@ export class MotivationsComponent implements OnInit {
 
     if (!isNaN(newValue)) {
       this.paymentAmount = newValue;
-      this.paymentChanged.emit(this.paymentAmount);  
+      this.paymentChanged.emit(this.paymentAmount);
     }
   }
 }

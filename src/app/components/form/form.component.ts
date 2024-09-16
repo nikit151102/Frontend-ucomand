@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MotivationsComponent } from '../form-components/motivations/motivations.component';
 import { TagSelectorComponent } from '../form-components/tag-selector/tag-selector.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
@@ -72,10 +72,9 @@ export class FormComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    public saveChangesPopupService: SaveChangesPopupService
-  ) { }
-  private routerEventsSubscription!: Subscription;
-  ngOnInit(): void {
+    public saveChangesPopupService: SaveChangesPopupService,
+    private cdr: ChangeDetectorRef
+  ) { 
     this.initializeForm();
     this.route.data.subscribe(data => {
       const routeName = data['routeName'];
@@ -90,6 +89,10 @@ export class FormComponent implements OnInit {
         this.loadFormDataFromStorage();
       }
     });
+
+  }
+  private routerEventsSubscription!: Subscription;
+  ngOnInit(): void {
 
     if (this.typeForm == 'вакансии') {
       this.formSettingService.isheading = true;
@@ -155,10 +158,13 @@ export class FormComponent implements OnInit {
         const formData = parsedData.formData;
         this.form.patchValue({
           ...formData,
-          profession: [formData.profession]
+          profession: [formData.profession],
+          minPayment: formData.minPayment || 0
         });
-
+        this.setPaymentAmount = formData.minPayment || 0; 
         this.saveChangesPopupService.showPopup();
+
+        console.log("this.form",{ ...this.form.value })
       }
     }
   }
@@ -171,9 +177,13 @@ export class FormComponent implements OnInit {
 
         this.form.patchValue({
           ...data,
-          profession: [data.profession]
+          profession: [data.profession],
+          minPayment: data.minPayment || 0
         });
+        this.setPaymentAmount = data.minPayment || 0; 
 
+        console.log("this.form",{ ...this.form.value })
+        this.cdr.detectChanges();
       });
     }
   }

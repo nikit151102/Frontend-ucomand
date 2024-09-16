@@ -49,7 +49,7 @@
                     <div class="three-stage">
                         <p class="stage-title">Мотивация:</p>
                         <app-motivations (tagsChanged)="onMotivationsChanged($event)"
-                        (paymentChanged)="onPaymentAmountChange($event)"
+                        (paymentChanged)="onPaymentAmountChange($event)" [payment]="setPaymentAmount"
                             formControlName="motivations" [isPayment]="isPayment"></app-motivations>
                         <div *ngIf="form.get('motivations')?.invalid && form.get('motivations')?.touched"
                             class="error-message">
