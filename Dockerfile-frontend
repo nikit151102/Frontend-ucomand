@@ -27,7 +27,7 @@ RUN touch /var/run/nginx.pid && \
 
 USER nginx
 
-COPY --from=build /app/dist/frontend-vitkon17/browser/* /usr/share/nginx/html/
+COPY --from=build /app/dist/ucomand/browser/* /usr/share/nginx/html/
 COPY --from=build /app/src/assets /usr/share/nginx/html/assets
 
 EXPOSE 8081
