@@ -58,11 +58,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   async loadData(id: string): Promise<void> {
     try {
       const userData = await this.userAccountService.getUserData(id).toPromise();
-      setTimeout(() => {
         this.userData = userData;
-        console.log("userData", userData)
-      }, 1000);
-
 
       console.log("userData", this.userData)
       if (userData.freeLink) {
