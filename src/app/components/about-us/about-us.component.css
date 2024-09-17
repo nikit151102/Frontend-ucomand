@@ -301,6 +301,18 @@
     .section-text, .updates-title, .current-status, .research-text, .roadmap-text, .free-text, .updates-list li, .research-list li{
         font-size: 12px;
     }
+
+    .section-title{
+        font-family: var(--font-Monts);
+        font-weight: 700;
+        font-size: 1.3rem;
+        line-height: 125%;
+    }
+
+    .aboutUs{
+        padding: 0 1rem;
+    }
+    
     .container {
         width: 95%;
         margin-top: 100px;
