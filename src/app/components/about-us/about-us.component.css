@@ -128,6 +128,10 @@
     color: #fff;
 }
 
+.btn-mail:hover{
+    color: #A6EB20;
+}
+
 .logo {
     display: flex;
     flex-direction: row;
@@ -241,6 +245,49 @@
 }
   
 
+
+
+
+
+
+
+
+
+.section-title {
+    padding-left: 5rem;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 125%;
+    color: #fff;
+}
+
+.section-text, .updates-title, .current-status, .research-text, .roadmap-text, .free-text, .updates-list li, .research-list li{
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 114%;
+    color: #fff;
+}
+
+.updates-list, .research-list {
+    list-style-type: none;  
+    padding-left: 0;       
+    margin-left: 20px;     
+}
+
+
+.updates-list li::before, .research-list li::before {
+    content: '–';         
+    display: inline-block; 
+    width: 1em;           
+    margin-left: -1.5em;   
+    margin-right: 0;   
+}
+
+
+
+
 @media (max-width: 989px) {
     .destiny-chapter {
         flex-direction: column;
@@ -251,6 +298,9 @@
 }
 
 @media (max-width: 789px) {
+    .section-text, .updates-title, .current-status, .research-text, .roadmap-text, .free-text, .updates-list li, .research-list li{
+        font-size: 12px;
+    }
     .container {
         width: 95%;
         margin-top: 100px;

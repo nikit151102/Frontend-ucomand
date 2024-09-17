@@ -1,9 +1,9 @@
 <div class="container-line">
     <div class="gradient-line" [ngStyle]="{'width': width + '%', 'background': color}"></div>
 
-    <div class="circle-text-container" [ngStyle]="{'border': border }">
+    <div class="circle-text-container" [ngStyle]="{'background': border }">
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="14" cy="14" r="11" [attr.stroke]="stroke" stroke-width="6" />
+            <circle cx="14" cy="14" r="11" fill="#484849" [attr.stroke]="stroke" stroke-width="6" />
         </svg>
         <p class="text">{{value}}</p>
     </div>

@@ -5,9 +5,7 @@
     <div class="container">
         <div class="title">
             <P>
-                UTeam.top - платформа, предназначенная для объединения единомышленников IT-сферы и создания собственных
-                команд,
-                а в дальнейшем и успешных стартапов.
+                UTeam.top - Платформа для бесплатного размещения вакансий и резюме специалистов IT-сферы.
             </P>
         </div>
     </div>
@@ -35,7 +33,51 @@
             </div>
         </div>
     </div>
+
+
     <div class="container container_chapter" style="margin-top: 100px;">
+        <div>
+            <p class="section-title">О нас</p>
+            <p class="section-text">
+                Платформа Uteam.top создана, чтобы упростить возможность найти специалиста IT-сферы, или наоборот,
+                IT-специалисту найти
+                работу. Пользователь, заполнив небольшую анкету, может опубликовать вакансию или свое резюме. 
+                Особенностью платформы является то, что пользователь может создавать вакансии или сотрудничать с
+                компаниями не только за оплату но и бесплатно. Это актуально для поиска стажировки на уровне Junior, а
+                также для специалистов, ищущих стартап-проекты.
+                Пока это основной функционал MVP - формат доски объявлений, созданной айтишниками для айтишников.
+            </p>
+            <p class="updates-title">В ближайшее время выйдут обновления:</p>
+            <ul class="updates-list">
+                <li>возможность создавать Проекты и набирать к ним команды,</li>
+                <li>инструменты для работы с командами и развития проекта,</li>
+                <li>собственная статистика откликов и визитов,</li>
+                <li>более широкие возможности настройки аккаунтов,</li>
+                <li>мобильное приложение.</li>
+            </ul>
+            <p class="current-status">
+                Это то, что сейчас уже в разработке.
+            </p>
+            <p class="research-text">
+                Мы провели исследовательскую работу среди коллег IT сферы и постарались учесть их потребности в
+                Uteam.top:
+            </p>
+            <ul class="research-list">
+                <li>упрощён вход - через Telegram - он же становится основным контактом - время регистрации и входа Сокращено!</li>
+                <li>краткие, но ёмкие формы резюме и вакансий - навыки и уровень владения, а также основная информация (только для IT-сферы) - это позволило не только сократить время создания нового резюме или вакансии, но и возможность более корректного поиска среди всех объявлений.</li>
+                <li>основной формой контакта пользователей является Telegram, что позволяет напрямую связаться с тем, чьё резюме или вакансия вас заинтересовала - время отклика Сокращено!</li>
+            </ul>
+            <p class="roadmap-text">
+                Весь планируемый путь развития можно видеть в RoadMap.
+            </p>
+            <p class="free-text">
+                Весь функционал для пользователей бесплатен!
+            </p>
+        </div>
+    </div>
+
+    
+    <div class="container container_chapter" style="margin-top: 50px;">
         <div class="chapter">
             <div class="chapter-content">
                 <div class="destiny">
@@ -54,11 +96,11 @@
                                         <p class="appeal-title">
                                             По всем вопросам обращаться:
                                         </p>
-
-                                        <p class="appeal-title"
+                                        
+                                        <a href="mailto:mail@uteam.top" class="appeal-title btn-mail"
                                             style="text-decoration: underline; text-decoration-skip-ink: none;">
-                                            &#64;ucomand_support
-                                        </p>
+                                            mail&#64;uteam.top
+                                        </a >
 
                                     </div>
                                     <p class="subtitle">
@@ -100,13 +142,9 @@
 
     </div>
     <div style="display: flex; flex-direction: column; gap:1rem; margin-bottom: 3rem;">
-        <app-line-item *ngFor="let item of itemLineList"
-               [value]="item.value"
-               [width]="item.width"
-               [color]="item.color"
-               [stroke]="item.stroke"
-               [border]="item.border">
-</app-line-item>
+        <app-line-item *ngFor="let item of itemLineList" [value]="item.value" [width]="item.width" [color]="item.color"
+            [stroke]="item.stroke" [border]="item.border">
+        </app-line-item>
 
     </div>
     <div class="container container_chapter container_chapter-team">
