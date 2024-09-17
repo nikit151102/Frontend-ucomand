@@ -63,6 +63,6 @@ export class AboutUsComponent implements OnDestroy{
     { stroke: '#50b229', color: 'linear-gradient(270deg, #50b229 0%, rgba(80, 178, 41, 0.3) 100%)', width: 31, value: '3. Обновление, добавление разделов и функционала', border: 'rgba(255, 255, 255, 0.1)' },
     { stroke: '#806bff', color: 'linear-gradient(270deg, #806bff 0%, rgba(128, 107, 255, 0.3) 100%)', width: 33, value: '4. Создание Crypto-token.', border: 'rgba(255, 255, 255, 0.1)' },
     { stroke: '#cf87f1', color: 'linear-gradient(270deg, #cf87f1 0%, rgba(207, 135, 241, 0.3) 100%)', width: 36, value: '5. Telegram-app', border: 'rgba(255, 255, 255, 0.1)' },
-    { stroke: '#ffab00', color: 'linear-gradient(270deg, #ffab00 0%, rgba(255, 171, 0, 0.3) 100%)', width: 42, value: '7. Обновление, добавление разделов и функционала', border: 'rgba(255, 255, 255, 0.1)' },
+    { stroke: '#ffab00', color: 'linear-gradient(270deg, #ffab00 0%, rgba(255, 171, 0, 0.3) 100%)', width: 39, value: '6. Обновление, добавление разделов и функционала', border: 'rgba(255, 255, 255, 0.1)' },
   ]
 }
