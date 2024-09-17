@@ -38,4 +38,18 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('authToken'); // Удаляем токен из LocalStorage
   }
+
+
+  getCurrentUser(): Observable<any> {
+    const token = localStorage.getItem('authToken');
+
+    // Создание заголовков с токеном
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    // Выполнение запроса с заголовками
+    return this.http.get(`${this.domain}/users/currentUser`, { headers });
+  }
+
 }

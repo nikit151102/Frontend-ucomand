@@ -138,9 +138,9 @@ export class MenuNavComponent implements OnInit {
   }
 
   viewUser() {
-    const userId = localStorage.getItem('userId')
+    const userId = localStorage.getItem('userNickname')
     this.sidebarVisible = false;
-    this.router.navigate([`/myaccount/${userId}`]);
+    this.router.navigate([`/user/${userId}`]);
   }
 
   toggleTopic(savedTheme: any = '') {

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { PageErrorComponent } from './components/page-error/page-error.component';
 import { AuthGuard } from './components/personal-account/auth.guard';
 
@@ -21,7 +21,7 @@ const routes: Routes = [
     path: 'vacancy/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule), data: { routeName: 'vacancy' }
   },
   {
-    path: 'user/:id', loadChildren: () => import('./components/user-account/user-account.module').then(m => m.UserAccountModule)
+    path: 'user/:id', loadChildren: () => import('./components/user-path/user-path.module').then(m => m.UserPathModule)
   },
   {
     path: 'myaccount/:id', loadChildren: () => import('./components/personal-account/personal-account.module').then(m => m.PersonalAccountModule), canActivate: [AuthGuard]
@@ -38,8 +38,15 @@ const routes: Routes = [
   { path: '**', redirectTo: '/error' }
 ];
 
+// Define extra options separately
+const routerOptions: ExtraOptions = {
+  onSameUrlNavigation: 'reload',
+  scrollPositionRestoration: 'top',
+  paramsInheritanceStrategy: 'always'  // Include paramsInheritanceStrategy if needed
+};
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload', scrollPositionRestoration: 'top' })],
+  imports: [RouterModule.forRoot(routes, routerOptions)],  // Pass only two arguments
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

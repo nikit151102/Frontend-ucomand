@@ -39,15 +39,20 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   domainName: string = '';
 
   async ngOnInit(): Promise<void> {
+
     this.settingHeaderService.shared = true;
     this.settingHeaderService.backbtn = true;
-
+    console.log('userAccount')
     this.route.paramMap.subscribe(params => {
       this.userId = params.get('id')!;
+      console.log('User ID:', this.userId); // Добавьте проверку в консоль
       if (this.userId) {
         this.loadData(this.userId);
+      } else {
+        console.log('No user ID found');
       }
     });
+    
   }
 
   async loadData(id: string): Promise<void> {
@@ -64,8 +69,8 @@ export class UserAccountComponent implements OnInit, OnDestroy {
         this.domainName = this.domainService.setDomain(userData.freeLink);
         this.imagePath = await this.domainService.checkImageExists(this.domainName);
       }
-      this.vacancies = await this.userAccountService.getVacanciesData(id).toPromise();
-      this.resumes = await this.userAccountService.getResumessData(id).toPromise();
+      this.vacancies = await this.userAccountService.getVacanciesData(this.userData.id).toPromise();
+      this.resumes = await this.userAccountService.getResumessData(this.userData.id).toPromise();
     } catch (error: any) {
       if (error.status) {
         this.router.navigate(['/error', { num: error.status }]);

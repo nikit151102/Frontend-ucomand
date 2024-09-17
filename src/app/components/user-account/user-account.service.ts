@@ -11,8 +11,8 @@ export class UserAccountService {
 
   constructor(private http: HttpClient) { }
 
-  getUserData(id: string): Observable<any> {
-    return this.http.get(`${this.domain}/users/${id}`);
+  getUserData(nickname: string): Observable<any> {
+    return this.http.get(`${this.domain}/users/byNickname/${nickname}`);
   }
 
   getVacanciesData(id: string): Observable<any> {
