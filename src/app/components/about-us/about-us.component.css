@@ -247,21 +247,6 @@
 
 
 
-
-
-
-
-
-
-.section-title {
-    padding-left: 5rem;
-    font-family: var(--font-Monts);
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 125%;
-    color: #fff;
-}
-
 .section-text, .updates-title, .current-status, .research-text, .roadmap-text, .free-text, .updates-list li, .research-list li{
     font-family: var(--font-Monts);
     font-weight: 500;
