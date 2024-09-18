@@ -27,7 +27,7 @@ export class UserPathComponent {
   
     if (!authToken) {
 
-      this.router.navigate([`/user/${this.userNick}/profile`]);
+      this.router.navigate([`/${this.userNick}/profile`]);
       return; 
     }
 
@@ -36,10 +36,10 @@ export class UserPathComponent {
 
       if (this.userNick === this.userCurrentNick) {
 
-        this.router.navigate([`/user/${this.userNick}/account`],{ replaceUrl: true });
+        this.router.navigate([`/${this.userNick}/account`],{ replaceUrl: true });
       } else {
 
-        this.router.navigate([`/user/${this.userNick}/profile`],{ replaceUrl: true });
+        this.router.navigate([`/${this.userNick}/profile`],{ replaceUrl: true });
       }
     });
   }

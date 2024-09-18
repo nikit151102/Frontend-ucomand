@@ -109,7 +109,7 @@ export class ViewCardComponent implements OnInit {
   }
 
   viewUser():string  {
-    return this.router.createUrlTree([`/user`, this.dataCard.user.nickname]).toString();
+    return this.router.createUrlTree([``, this.dataCard.user.nickname]).toString();
   }
 
 

@@ -21,7 +21,7 @@ const routes: Routes = [
     path: 'vacancy/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule), data: { routeName: 'vacancy' }
   },
   {
-    path: 'user/:id', loadChildren: () => import('./components/user-path/user-path.module').then(m => m.UserPathModule)
+    path: ':id', loadChildren: () => import('./components/user-path/user-path.module').then(m => m.UserPathModule)
   },
   {
     path: 'myaccount/:id', loadChildren: () => import('./components/personal-account/personal-account.module').then(m => m.PersonalAccountModule), canActivate: [AuthGuard]
