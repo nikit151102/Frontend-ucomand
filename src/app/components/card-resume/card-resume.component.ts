@@ -74,6 +74,6 @@ export class CardResumeComponent {
   viewUser(event: Event,id: string) {
     event.stopPropagation();
     event.preventDefault();
-    this.router.navigate([`/user`, id]);
+    this.router.navigate([``, id]);
   }
 }
