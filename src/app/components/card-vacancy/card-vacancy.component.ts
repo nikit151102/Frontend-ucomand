@@ -61,4 +61,6 @@ export class CardVacancyComponent {
     event.preventDefault();
     this.router.navigate([`/user`, id]);
   }
+
+  
 }
