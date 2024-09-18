@@ -50,7 +50,7 @@
         </div>
     </div>
     <div class="profile">
-        <div class="leftProfileChapter" (click)="viewUser($event, cardItem?.user?.id)">
+        <div class="leftProfileChapter" (click)="viewUser($event, cardItem?.user?.nickname)">
             <div class="logo">
                 <ng-container *ngIf="cardItem?.user?.imageLink">
                     <img [src]="'assets/avatars/'+ cardItem?.user?.imageLink + '.png'" alt="avatar">
