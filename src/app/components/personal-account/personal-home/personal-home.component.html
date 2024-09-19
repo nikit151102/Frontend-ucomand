@@ -144,9 +144,13 @@
                 </div>
                 
                 <div class="cards">
-                    <app-personal-resume @fadeAnimation
-                        *ngFor="let itemResume of resumeService.filterResumes('CREATOR_ONLY')| slice:0:itemsToShowResume"
-                        [cardItem]="itemResume"></app-personal-resume>
+                    <ng-container *ngFor="let itemResume of resumeService.filterResumes('CREATOR_ONLY')| slice:0:itemsToShowResume">
+                        <a [href]="getCardUrl(itemResume.id, 'resumes', 'resume')" class="app-card-vacancy-link"
+                        (click)="onCardClick($event, itemResume.id, 'resume')">
+                        <app-personal-resume @fadeAnimation [cardItem]="itemResume"></app-personal-resume>
+                    </a>
+                    </ng-container>
+                    
                     <div class="block-switchCards">
                         <a (click)="toggleResumes()" *ngIf="resumeService.filterResumes('CREATOR_ONLY').length>3"
                             class="switchCards">
@@ -190,10 +194,14 @@
                     </a>
                 </div>
                 <div class="cards">
-                    <app-personal-vacancy @fadeAnimation
-                        *ngFor="let itemVacancy of vacancyService.filterVacancies('CREATOR_ONLY') | slice:0:itemsToShowVacancies"
-                        [item]="itemVacancy">
+                    <ng-container  *ngFor="let itemVacancy of vacancyService.filterVacancies('CREATOR_ONLY') | slice:0:itemsToShowVacancies">
+                        <a [href]="getCardUrl(itemVacancy.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
+                        (click)="onCardClick($event, itemVacancy.id, 'vacancy')">
+                        <app-personal-vacancy @fadeAnimation [item]="itemVacancy">
                     </app-personal-vacancy>
+                    </a>
+                    </ng-container>
+                    
                     <div class="block-switchCards">
                         <a (click)="toggleVacancies()" *ngIf="vacancyService.filterVacancies('CREATOR_ONLY').length>3"
                             class="switchCards">

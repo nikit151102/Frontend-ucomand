@@ -9,6 +9,10 @@
     break-inside: avoid;
 }
 
+.app-card-vacancy-link{
+    text-decoration: none;
+}
+
 .card:hover {
     background: #A6EB20;
     color: #010101; 

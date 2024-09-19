@@ -37,9 +37,9 @@ export class HomeComponent implements OnInit {
   isVisibleFilter: boolean = false;
 
   constructor(
-    private viewCardService: ViewCardService, 
-    public settingHeaderService: SettingHeaderService, 
-    private router: Router, 
+    private viewCardService: ViewCardService,
+    public settingHeaderService: SettingHeaderService,
+    private router: Router,
     public homeService: HomeService
   ) {
     this.settingHeaderService.post = false;
@@ -55,21 +55,21 @@ export class HomeComponent implements OnInit {
     this.homeService.loadData();
   }
 
-  
 
-  viewCard(cardValue: any, type: string, route: string) {
-    this.viewCardService.selectedCard = cardValue;
-    this.viewCardService.typeCard = type;
 
-    localStorage.setItem('routeTypeCard', type);
-    this.router.navigate([`/${route}`, cardValue]);
-
-    this.homeService.loadData();
-  }
 
   getCardUrl(cardValue: any, type: string, route: string): string {
     localStorage.setItem('routeTypeCard', type);
     return this.router.createUrlTree([route, cardValue]).toString();
   }
-  
+
+
+  onCardClick(event: MouseEvent, cardId: any, type: string): void {
+    if (event.button === 1 || event.ctrlKey || event.metaKey) {
+      return;
+    }
+    event.preventDefault();
+    this.router.navigate([`/${type}`, cardId]);
+  }
+
 }

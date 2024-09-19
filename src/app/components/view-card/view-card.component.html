@@ -111,8 +111,9 @@
         </div>
 
         <div>
-
-            <a [href]="viewUser()" class="btnAccount_user" target="_blank"
+            <a [href]="viewUser()" 
+            class="btnAccount_user"
+            (click)="onUserClick($event)"
                 *ngIf="!currentUser || currentUser.id !== dataCard.user.id && dataCard">
                 В аккаунт пользователя
                 <p style="margin: 0">

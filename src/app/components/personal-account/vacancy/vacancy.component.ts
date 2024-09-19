@@ -88,6 +88,7 @@ export class PersonalVacancyComponent {
   }
 
   setArchive(event: Event) {
+    event.preventDefault(); 
     event.stopPropagation();
     if (this.item) {
       this.vacancyService.toggleResumeArchive(this.item);
@@ -95,6 +96,7 @@ export class PersonalVacancyComponent {
   }
 
   update(event: Event, id: number) {
+    event.preventDefault(); 
     event.stopPropagation();
     const userId = localStorage.getItem('userId')
     this.router.navigate([`/myaccount/${userId}/updateVacancy/${id}`]);

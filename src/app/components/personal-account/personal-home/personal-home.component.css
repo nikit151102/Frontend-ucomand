@@ -411,6 +411,10 @@ p {
     gap: 3rem;
 }
 
+.app-card-vacancy-link{
+    text-decoration: none;
+}
+
 @media (max-width: 1198px) {
 
     .container-resume-header-newCards,

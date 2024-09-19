@@ -87,4 +87,18 @@ export class UserAccountComponent implements OnInit, OnDestroy {
     this.popUpEntryService.showDialog();
   }
 
+  getCardUrl(cardValue: any, type: string, route: string): string {
+    localStorage.setItem('routeTypeCard', type);
+    return this.router.createUrlTree([route, cardValue]).toString();
+  }
+
+
+  onCardClick(event: MouseEvent, cardId: any, type: string): void {
+    if (event.button === 1 || event.ctrlKey || event.metaKey) {
+      return;
+    }
+    event.preventDefault();
+    this.router.navigate([`/${type}`, cardId]);
+  }
+  
 }

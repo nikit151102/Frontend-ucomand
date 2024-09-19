@@ -12,7 +12,9 @@
     <div class="card-container">
       <ng-container *ngIf="homeService.typeToggle === 'vacancy'">
         <ng-container *ngFor="let item of homeService.vacancies">
-          <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" target="_blank" class="app-card-vacancy-link">
+          <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" 
+          class="app-card-vacancy-link"
+          (click)="onCardClick($event, item.id, 'vacancy')">
             <app-card-vacancy class="card" [cardItem]="item" class="app-card-vacancy"></app-card-vacancy>
           </a>
         </ng-container>
@@ -20,7 +22,9 @@
 
       <ng-container *ngIf="homeService.typeToggle === 'resume'">
         <ng-container *ngFor="let item of homeService.resumes">
-          <a [href]="getCardUrl(item.id, 'resumes', 'resume')" target="_blank" class="app-card-vacancy-link">
+          <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" 
+          class="app-card-vacancy-link"
+          (click)="onCardClick($event, item.id, 'resume')">
             <app-card-resume [cardItem]="item" class="app-card-vacancy"></app-card-resume>
           </a>
         </ng-container>

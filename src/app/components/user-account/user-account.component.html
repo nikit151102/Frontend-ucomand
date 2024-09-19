@@ -13,7 +13,7 @@
 
                 <div
                     style="display: flex; flex-wrap: wrap; align-content: flex-end; flex-direction: column; justify-content: flex-end">
-                 
+
                     <p class="fullName">
                         {{userData?.lastName}}
                     </p>
@@ -33,14 +33,14 @@
             <div class="information-user" *ngIf="userData">
                 {{userData.aboutMe}}
             </div>
-            <div class="personal-details" >
+            <div class="personal-details">
                 <div class="location" *ngIf="userData.cityOfResidence">
                     <p class="title">Город:</p>
                     <span class="location-value">{{userData?.cityOfResidence?.name}}</span>
                 </div>
                 <div class="age" *ngIf="userData.age">
                     <p class="title">Возраст:</p>
-                    <span class="location-value" >{{userData?.age}}</span>
+                    <span class="location-value">{{userData?.age}}</span>
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@
                     </a>
                 </diV>
             </div>
-           
+
 
             <div class="date_registration desktopDate">
                 <p class="title">На платформе с </p>
@@ -125,8 +125,16 @@
                 Активные резюме:
             </p>
             <div class="cards">
-                    <app-card-personal-resume *ngFor="let itemResume of resumes"
-                    [cardItem]="itemResume"></app-card-personal-resume>
+                <ng-container *ngFor="let itemResume of resumes">
+                    <a [href]="getCardUrl(itemResume.id, 'resumes', 'resume')" class="app-card-vacancy-link"
+                    (click)="onCardClick($event, itemResume.id, 'resume')">
+                    <app-card-personal-resume 
+                        [cardItem]="itemResume"></app-card-personal-resume>
+                </a>
+                </ng-container>
+                
+               
+
             </div>
         </div>
         <div class="container-vacancy">
@@ -134,8 +142,12 @@
                 Активные вакансии:
             </p>
             <div class="cards">
-                    <app-card-personal-vacancy [cardItem]="itemVacancy"
-                    *ngFor="let itemVacancy of vacancies"></app-card-personal-vacancy> 
+                <ng-container *ngFor="let itemVacancy of vacancies">
+                    <a [href]="getCardUrl(itemVacancy.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
+                    (click)="onCardClick($event, itemVacancy.id, 'vacancy')">
+                    <app-card-personal-vacancy [cardItem]="itemVacancy"></app-card-personal-vacancy>
+                </a>
+                </ng-container>
             </div>
         </div>
     </div>

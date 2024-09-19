@@ -112,6 +112,14 @@ export class ViewCardComponent implements OnInit {
     return this.router.createUrlTree([``, this.dataCard.user.nickname]).toString();
   }
 
+  onUserClick(event: MouseEvent): void {
+    if (event.button === 1 || event.ctrlKey || event.metaKey) {
+      return;
+    }
+    event.preventDefault();
+    this.router.navigate([``, this.dataCard.user.nickname]);
+  }
+
 
   enter() {
     this.popUpEntryService.showDialog();

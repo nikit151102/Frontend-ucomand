@@ -92,6 +92,7 @@ export class PersonalResumeComponent implements OnInit {
   }
 
   setArchive(event: Event) {
+    event.preventDefault(); 
     event.stopPropagation();
     if (this.cardItem) {
       this.resumeService.toggleResumeArchive(this.cardItem);
@@ -99,6 +100,7 @@ export class PersonalResumeComponent implements OnInit {
   }
 
   update(event: Event, id: number) {
+    event.preventDefault(); 
     event.stopPropagation();
     const userId = localStorage.getItem('userId')
     this.router.navigate([`/myaccount/${userId}/updateResume/${id}`]);
