@@ -10,6 +10,7 @@
       <p class="popup-telegram-auth">Авторизация через Telegram</p>
       <a *ngIf="!telegramWidgetLoaded" class="popup-login-link" (click)="loadTelegramWidget()">Войти</a>
       <div id="telegram-login"></div>
+       <a *ngIf="userAuthenticated" (click)="clearCookies()">войти с другого аккаунта</a>
     </ng-content>  
   </div>
 </div>

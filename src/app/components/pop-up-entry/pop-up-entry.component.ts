@@ -167,4 +167,19 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       this.telegramWidgetLoaded = false; 
       this.removeTelegramWidget(); 
   }
+
+  clearCookies() {
+    const cookies = document.cookie.split(';');
+
+    // Loop through the cookies and delete each one
+    for (let cookie of cookies) {
+      const eqPos = cookie.indexOf('=');
+      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      // Setting the cookie expiration date to the past will delete it
+      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+    }
+
+    console.log('All cookies cleared.');
+  }
+  
 }
