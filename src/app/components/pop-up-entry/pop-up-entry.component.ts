@@ -29,7 +29,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
 
   telegramWidgetLoaded: boolean = false;
-
+  userAuthenticated: boolean = false;
   ngAfterViewInit() {
     if (this.popUpEntryService.visible) {
       this.loadTelegramWidget();
@@ -82,6 +82,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       console.log("response", response);
       console.log("response.token", response.token);
       this.tokenService.setToken(response.token);
+      this.userAuthenticated = true;
       this.login_user()
     });
     this.closePopUp()
@@ -181,5 +182,5 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
     console.log('All cookies cleared.');
   }
-  
+
 }
