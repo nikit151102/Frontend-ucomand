@@ -15,6 +15,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'aboutUs', loadChildren: () => import('./components/about-us/about-us.module').then(m => m.AboutUsModule)
+  },
+  {
+    path: 'notifications', loadChildren: () => import('./components/notification/notification.module').then(m => m.NotificationModule)
+  },
+  {
     path: 'resume/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule), data: { routeName: 'resume' }
   },
   {
@@ -25,12 +31,6 @@ const routes: Routes = [
   },
   {
     path: 'myaccount/:id', loadChildren: () => import('./components/personal-account/personal-account.module').then(m => m.PersonalAccountModule), canActivate: [AuthGuard]
-  },
-  {
-    path: 'aboutUs', loadChildren: () => import('./components/about-us/about-us.module').then(m => m.AboutUsModule)
-  },
-  {
-    path: 'notifications', loadChildren: () => import('./components/notification/notification.module').then(m => m.NotificationModule)
   },
   {
     path: 'error', component: PageErrorComponent
