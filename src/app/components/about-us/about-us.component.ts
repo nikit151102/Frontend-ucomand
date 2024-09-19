@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LineItemComponent } from './line-item/line-item.component';
 import { BackgroundImgsComponent } from '../background-imgs/background-imgs.component';
 import { HomeService } from '../home/home.service';
+import { SettingHeaderService } from '../setting-header.service';
 
 @Component({
   selector: 'app-about-us',
@@ -14,8 +15,8 @@ import { HomeService } from '../home/home.service';
 })
 export class AboutUsComponent implements OnDestroy{
   savedTheme: string = '';
-  constructor(private homeService: HomeService) {
-  
+  constructor(private homeService: HomeService, private settingHeaderService:SettingHeaderService) {
+  this.settingHeaderService.backbtn = false;
   }
   ngOnInit(): void {
     this.savedTheme = localStorage.getItem('theme') || 'light';
