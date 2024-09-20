@@ -34,8 +34,9 @@ export class UserPathComponent {
   
       this.authService.getCurrentUser().subscribe((user: any) => {
         this.userCurrentNick = user.nickname;
-  
-        if (this.userNick === this.userCurrentNick) {
+        const token = localStorage.getItem('authToken');
+        const nick = localStorage.getItem('userNickname');
+        if (this.userNick === this.userCurrentNick && token && nick) {
           this.router.navigate([`/${this.userNick}/account`], { replaceUrl: true });
         } else {
           this.router.navigate([`/${this.userNick}/profile`], { replaceUrl: true });
