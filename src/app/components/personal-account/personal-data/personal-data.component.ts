@@ -86,6 +86,15 @@ export class PersonalDataComponent implements OnInit {
     return JSON.stringify(this.personalDataForm.value) === JSON.stringify(this.initialFormState);
   }
 
+  onCancel() {
+    if (this.initialFormState) {
+      this.personalDataForm.patchValue(this.initialFormState);
+    } else {
+      this.personalDataForm.reset();
+    }
+    this.cancel_btn = false;
+  }
+
 
   ngOnInit(): void {
     this.settingHeaderService.shared = true;
