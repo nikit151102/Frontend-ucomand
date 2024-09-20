@@ -31,6 +31,7 @@ export class ToggleSwitchComponent {
 
     this.activeButton = button;
     this.homeService.toggleType(button);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
     // setTimeout(() => {
     //   window.scrollTo({ top: this.scrollPositions[button] || 0, behavior: 'smooth' });
