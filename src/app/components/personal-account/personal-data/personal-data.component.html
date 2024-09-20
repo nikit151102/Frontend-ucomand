@@ -155,7 +155,8 @@
 
           </div>
         </div>
-        <div class="chapter">
+        <div class="btns">
+          <button *ngIf="cancel_btn" class="btnError" type="submit" (click)="onSubmit()">Отмена</button>
           <button class="btnSave" type="submit" (click)="onSubmit()">Сохранить</button>
         </div>
       </div>

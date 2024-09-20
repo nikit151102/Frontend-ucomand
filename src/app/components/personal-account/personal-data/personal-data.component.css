@@ -253,17 +253,24 @@ input[type="checkbox"] {
     color: var(--font-color);
 }
 
+.btns{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+}
+
 .btnSave {
+    flex: 1;
     border-radius: 30px;
     padding: 16px;
-    width: 100%;
     background: #84dd2c;
     border: none;
 
     font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 0.8rem;
-    line-height: 117%;
+    line-height: 117%;                         
     color: #fff;
 
 }
@@ -283,6 +290,23 @@ input[type="checkbox"] {
 
 .chapter-domain a:hover{
     background: rgba(51, 51, 52, 0.3);
+}
+
+.btnError{
+    flex: 1;
+    border-radius: 30px;
+    padding: 16px;
+    background: #806bff;
+    border: none;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: #fff;
+}
+
+.btnError:hover{
+    background: #a6eb20;
 }
 
 @media (max-width: 768px) {

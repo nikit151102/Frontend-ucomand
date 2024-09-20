@@ -45,6 +45,8 @@ export class PersonalDataComponent implements OnInit {
   setTypeAvatar: string | null = '';
   isDisabled = false;
   oldDomain: string = ''
+  cancel_btn: boolean = false;
+  initialFormState: any;
 
   private subscription: Subscription = new Subscription();
 
@@ -65,6 +67,24 @@ export class PersonalDataComponent implements OnInit {
     });
   }
 
+  formChanges() {
+    this.personalDataForm.valueChanges.subscribe((changes) => {
+      if (this.areAllFieldsEmpty() || this.isFormUnchanged()) {
+        this.cancel_btn = false;
+      }
+      else {
+        this.cancel_btn = true;
+      }
+    });
+  }
+
+  areAllFieldsEmpty(): boolean {
+    return Object.values(this.personalDataForm.value).every(value => value === '');
+  }
+
+  isFormUnchanged(): boolean {
+    return JSON.stringify(this.personalDataForm.value) === JSON.stringify(this.initialFormState);
+  }
 
 
   ngOnInit(): void {
@@ -148,17 +168,20 @@ export class PersonalDataComponent implements OnInit {
           telegram: user.telegram,
           domain: user.nickname || '',
         });
-        if(user.nickname){
+        if (user.nickname) {
           this.oldDomain = user.nickname;
-          
-        }
-    this.personalDataForm.get('domain')?.valueChanges.subscribe(value => {
-      if (value !== this.oldDomain && value.length > 0 ) {
-        this.forbiddenWordsValidator(value)
-      }
 
-    });
+        }
+        this.personalDataForm.get('domain')?.valueChanges.subscribe(value => {
+          if (value !== this.oldDomain && value.length > 0) {
+            this.forbiddenWordsValidator(value)
+          }
+
+        });
         this.setGender = user.gender;
+        this.initialFormState = this.personalDataForm.value;
+        this.formChanges();
+
       },
       (error) => {
         console.error('Ошибка при загрузке данных пользователя:', error);
