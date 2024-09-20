@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { SidebarModule } from 'primeng/sidebar';
 import { SettingHeaderService } from '../setting-header.service';
-import { NavigationStart, Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { TokenService } from '../token.service';
 import { HomeService } from '../home/home.service';
 import { FormSettingService } from '../form/form-setting.service';
@@ -36,7 +36,10 @@ export class MenuNavComponent implements OnInit {
   ) {
   }
 
+
   ngOnInit(): void {
+
+    
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         if (event.url !== '/') {
