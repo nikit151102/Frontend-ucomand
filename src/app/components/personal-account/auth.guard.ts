@@ -16,8 +16,10 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): Observable<boolean> {
     const token = localStorage.getItem('authToken');
-    
-    if (!token) {
+    const nick = localStorage.getItem('userNickname');
+    if (!token && nick) {
+      this.tokenService.clearToken()
+      localStorage.removeItem('userNickname');
       this.router.navigate(['/']); // Перенаправляем на главную страницу, если токена нет
       return of(false); // Возвращаем Observable с false
     }
@@ -31,6 +33,7 @@ export class AuthGuard implements CanActivate {
       map(() => true),  // Если данные возвращены успешно, возвращаем true
       catchError(() => {
         this.tokenService.clearToken()
+        localStorage.removeItem('userNickname');
         this.router.navigate(['/']); // Перенаправляем на главную страницу
         return of(false); // Возвращаем Observable с false
       })
