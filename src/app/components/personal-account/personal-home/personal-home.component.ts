@@ -191,13 +191,13 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
 
   handlePostResume(): void {
     const fullAccess = localStorage.getItem('fullAccess')
-    const userId = localStorage.getItem('userId')
+    const userNickname = localStorage.getItem('userNickname')
     if (fullAccess == 'b326b5062b2f0e69046810717534cb09') {
       this.formSettingService.isheading = false;
       this.formSettingService.typeForm = 'резюме';
       this.settingHeaderService.post = false;
       this.settingHeaderService.shared = false;
-      this.router.navigate([`/myaccount/${userId}/newResume`]);
+      this.router.navigate([`/${userNickname}/account/newResume`]);
     } else {
       this.popUpErrorCreateService.visible = true;
     }
@@ -218,16 +218,15 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
   
   handlePostVacancy(): void {
     const fullAccess = localStorage.getItem('fullAccess')
-    const userId = localStorage.getItem('userId')
+    const userNickname = localStorage.getItem('userNickname')
     if (fullAccess == 'b326b5062b2f0e69046810717534cb09') {
       this.formSettingService.isheading = false;
       this.formSettingService.typeForm = 'вакансии';
       this.settingHeaderService.post = false;
       this.settingHeaderService.shared = false;
-      this.router.navigate([`/myaccount/${userId}/newVacancy`]);
+      this.router.navigate([`/${userNickname}/account/newVacancy`]);
     } else {
       this.popUpErrorCreateService.visible = true;
-      
     }
   }
 
