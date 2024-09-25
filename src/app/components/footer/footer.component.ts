@@ -33,27 +33,29 @@ export class FooterComponent {
   }
 
   handlePostResume() {
-    if (this.tokenService.getToken()) {
+    const fullAccess = localStorage.getItem('fullAccess')
+    const userId = localStorage.getItem('userNickname')
+    if (fullAccess == 'b326b5062b2f0e69046810717534cb09') {
       this.formSettingService.isheading = false;
       this.formSettingService.typeForm = 'резюме';
       this.settingHeaderService.post = false;
       this.settingHeaderService.shared = false;
-      const userId = localStorage.getItem('userId')
-      this.router.navigate([`/myaccount/${userId}/newResume`]);
-    }else{
+      this.router.navigate([`/${userId}/account/newResume`]);
+    } else {
       this.popUpEntryService.showDialog();
     }
   }
 
   handlePostVacancy() {
-    if (this.tokenService.getToken()) {
+    const fullAccess = localStorage.getItem('fullAccess')
+    const userId = localStorage.getItem('userNickname')
+    if (fullAccess == 'b326b5062b2f0e69046810717534cb09') {
       this.formSettingService.isheading = true;
       this.formSettingService.typeForm = 'вакансии';
       this.settingHeaderService.post = false;
       this.settingHeaderService.shared = false;
-      const userId = localStorage.getItem('userId')
-      this.router.navigate([`/myaccount/${userId}/newVacancy`]);
-    }else{
+      this.router.navigate([`/${userId}/account/newVacancy`]);
+    } else {
       this.popUpEntryService.showDialog();
     }
   }
