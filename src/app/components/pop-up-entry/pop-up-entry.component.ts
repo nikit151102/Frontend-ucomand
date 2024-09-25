@@ -8,6 +8,7 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environment';
 
 @Component({
   selector: 'app-pop-up-entry',
@@ -27,7 +28,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
  
 
-
+  private domain = `${environment.apiUrl}`;
   telegramWidgetLoaded: boolean = false;
   userAuthenticated: boolean = false;
   ngAfterViewInit() {
@@ -50,7 +51,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       script.id = 'telegram-widget-script';
       script.async = true;
       script.src = 'https://telegram.org/js/telegram-widget.js?22';
-      script.setAttribute('data-telegram-login', 'Uteam_top_bot');
+      script.setAttribute('data-telegram-login', `${environment.userNameBot}`);
       script.setAttribute('data-size', 'large');
       script.setAttribute('data-onauth', 'onTelegramAuth(user)');
       script.setAttribute('data-request-access', 'write');
@@ -76,7 +77,8 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
   
   onTelegramAuth(user: any) {
     console.log("Telegram User Data:", user);
-    this.http.post('https://uteam.top/api/users/auth/byTelegram', user, {
+
+    this.http.post(`${this.domain}/users/auth/byTelegram`, user, {
       headers: { 'Content-Type': 'application/json' }
     }).subscribe((response: any) => {
       console.log("response", response);

@@ -11,6 +11,7 @@ import { PopUpEntryService } from '../pop-up-entry/pop-up-entry.service';
 import { PopUpErrorCreateService } from '../pop-up-error-create/pop-up-error-create.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MenuNavService } from './menu-nav.service';
+import { environment } from '../../../environment';
 
 @Component({
   selector: 'app-menu-nav',
@@ -26,7 +27,7 @@ export class MenuNavComponent implements OnInit {
   activeTopic: string = 'dark';
   activeButton: string = 'vacancy';
   isAuthenticated!: boolean;
-  private domain = 'https://uteam.top/api';
+  private domain = `${environment.apiUrl}`;
   currentUserLogo: any;
   buttonsConfig: { label: string, class: string, action: () => void }[] = [];
   constructor(private location: Location, public settingHeaderService: SettingHeaderService,

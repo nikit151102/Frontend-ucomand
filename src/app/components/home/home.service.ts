@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class HomeService {
   private themeSubject = new BehaviorSubject<string>(localStorage.getItem('theme') || 'light');
   activeTheme$ = this.themeSubject.asObservable();
   
-  private domain = 'https://uteam.top/api';
+  private domain = `${environment.apiUrl}`;
 
   changeTheme(theme: string) {
     this.themeSubject.next(theme);

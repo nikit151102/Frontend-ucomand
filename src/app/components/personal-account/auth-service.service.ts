@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { environment } from '../../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  private domain = 'https://uteam.top/api';
+  private domain = `${environment.apiUrl}`;
 
   // Метод для проверки аутентификации
   isAuthenticated(): Observable<boolean> {
