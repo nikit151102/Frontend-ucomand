@@ -2,50 +2,16 @@ services:
 
   frontend:
     build:
-      context: ./Frontend-ucomand
+      context: ./
       dockerfile: Dockerfile-frontend
     ports:
       - 8081:8081
     volumes:
-      - ./Frontend-ucomand:/app:rw
-      - /app/node_modules:rw
+      - /app
+      - /app/node_modules
+    networks:
+      - ucomand-network
 
-  admin-frontend:
-    build:
-      context: ./AdminUteam
-      dockerfile: Dockerfile-frontend
-    ports:
-      - 8082:8082
-    volumes:
-      - ./AdminUteam:/app:rw
-      - /app/node_modules:rw
-
-  ucomand-backend:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    ports:
-      - '8080:8080'
-      - '5005:5005'
-    environment:
-      - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,address=*:5005,server=y,suspend=n
-    env_file:
-      - ./.env
-    depends_on:
-      - ucomand-database
-
-
-  ucomand-database:
-    image: postgres:15.1-alpine
-    ports:
-      - "5432:5432"
-    volumes:
-      - ucomand-database_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: ucomand
-      POSTGRES_PASSWORD: ucomand
-      POSTGRES_DB: ucomand-db
-
-volumes:
-  ucomand-database_data:
-
+networks:
+  ucomand-network:
+    external: true
