@@ -123,12 +123,8 @@ export class MotivationsComponent implements OnInit {
     }
   }
   reset() {
-    console.log(" this.this.selectedTags", this.selectedTags)
     this.tagsList.push(...this.selectedTags);
-    console.log(" this.tagsList", this.tagsList)
     this.selectedTags = [];
-    console.log(" this.this.selectedTags", this.selectedTags)
-    console.log(" this.this.tagsList", this.tagsList)
     this.tagsChanged.emit(this.selectedTags);
   }
 
