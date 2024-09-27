@@ -38,6 +38,7 @@ export class HomeService {
       };
       this.saveFilters(savedFilters);
     }
+
     const typeSort = localStorage.getItem('typeSort');
     const queryParams = `page=${this.selectPage}&size=30&sorts=${typeSort}`;
 
@@ -76,6 +77,7 @@ export class HomeService {
     });
   }
 
+
   nextPage() {
     if (this.typeToggle === 'vacancy') {
       this.getVacancies();
@@ -85,8 +87,12 @@ export class HomeService {
     }
   }
 
+
   saveFilters(filters: any): void {
     sessionStorage.setItem('bodyFilters', JSON.stringify(filters));
+    this.selectPage = 0;
+    this.vacancies = [];
+    this.resumes = [];
   }
 
   clearFilters(): void {

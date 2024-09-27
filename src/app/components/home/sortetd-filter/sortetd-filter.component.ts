@@ -200,7 +200,7 @@ export class SortetdFilterComponent implements OnInit {
     delete dataToSubmit.motivation;
 
     console.log('dataToSubmit', dataToSubmit);
-
+this.homeService.selectPage = 0;
     this.homeService.saveFilters(dataToSubmit);
     this.homeService.getVacancies();
     this.homeService.getResumes();
