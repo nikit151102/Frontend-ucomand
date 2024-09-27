@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CardVacancyComponent } from '../card-vacancy/card-vacancy.component';
 import { CommonModule } from '@angular/common';
 import { BackgroundImgsComponent } from '../background-imgs/background-imgs.component';
@@ -36,12 +36,18 @@ export class HomeComponent implements OnInit {
   loading: boolean = true;
   isVisibleFilter: boolean = false;
 
+  isDesktop = false;
+  isTablet = false;
+  isMobile = false;
+
+
   constructor(
     private viewCardService: ViewCardService,
     public settingHeaderService: SettingHeaderService,
     private router: Router,
-    public homeService: HomeService
+    public homeService: HomeService,
   ) {
+    
     this.settingHeaderService.post = false;
     this.settingHeaderService.shared = false;
     this.settingHeaderService.backbtn = false;
@@ -53,10 +59,31 @@ export class HomeComponent implements OnInit {
       console.log('Boolean value changed:', value);
     });
     this.homeService.loadData();
+    this.updateView(window.innerWidth);
   }
 
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.updateView(event.target.innerWidth);
+  }
 
+  // Function to update screen size variables based on window width
+  updateView(width: number): void {
+    if (width >= 1024) {
+      this.isDesktop = true;
+      this.isTablet = false;
+      this.isMobile = false;
+    } else if (width >= 768 && width < 1024) {
+      this.isDesktop = false;
+      this.isTablet = true;
+      this.isMobile = false;
+    } else {
+      this.isDesktop = false;
+      this.isTablet = false;
+      this.isMobile = true;
+    }
+  }
 
   getCardUrl(cardValue: any, type: string, route: string): string {
     localStorage.setItem('routeTypeCard', type);

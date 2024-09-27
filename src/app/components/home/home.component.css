@@ -12,12 +12,17 @@
 }
 
 .card-container {
-    columns: 3;
-    column-gap: 1rem;
+    display: flex;
+    gap: 1rem;
 }
+
+.column{
+    flex: 1;
+}
+
 .card {
     text-decoration: none;
-    width: 32%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     min-height: 100px;
@@ -31,7 +36,7 @@
     flex-direction: column;
 }
 
-.app-card-vacancy-link{
+.app-card-vacancy-link, .app-card-resume-link{
     text-decoration: none;
 }
 
@@ -96,4 +101,31 @@
         top: 115px;
         z-index: 1;
     }
+}
+
+
+/* For desktop */
+@media (min-width: 1024px) {
+    .app-card-vacancy-link {
+      width: 33.33%; /* 3 divs per row */
+    }
+  }
+  
+  /* For tablets */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .app-card-vacancy-link {
+      width: 50%; /* 2 divs per row */
+    }
+  }
+  
+  /* For mobile phones */
+  @media (max-width: 767px) {
+    .app-card-vacancy-link {
+      width: 100%; 
+    }
+    .card-container{
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+  }  
 }

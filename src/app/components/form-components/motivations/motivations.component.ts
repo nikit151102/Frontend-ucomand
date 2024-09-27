@@ -125,6 +125,40 @@ export class MotivationsComponent implements OnInit {
   reset() {
     this.tagsList.push(...this.selectedTags);
     this.selectedTags = [];
+    this.tagsList =  [
+      {
+        "id": 1,
+        "name": "Без оплаты",
+        "nameEng": null,
+        "competenceLevel": null,
+        "type": "MOTIVATION",
+        "color": null
+      },
+      {
+        "id": 2,
+        "name": "За оплату",
+        "nameEng": null,
+        "competenceLevel": null,
+        "type": "MOTIVATION",
+        "color": null
+      },
+      {
+        "id": 3,
+        "name": "За долю",
+        "nameEng": null,
+        "competenceLevel": null,
+        "type": "MOTIVATION",
+        "color": null
+      },
+      {
+        "id": 4,
+        "name": "Нужна практика",
+        "nameEng": null,
+        "competenceLevel": null,
+        "type": "MOTIVATION",
+        "color": null
+      }
+    ]
     this.tagsChanged.emit(this.selectedTags);
   }
 
