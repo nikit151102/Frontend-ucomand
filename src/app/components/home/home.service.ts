@@ -12,10 +12,11 @@ export class HomeService {
   constructor(private http: HttpClient, private router: Router) { }
 
   typeToggle: string = 'vacancy';
-  vacancies: any;
-  resumes: any;
+  vacancies: any[] = [];
+  resumes: any[] = [];
   loading: boolean = true;
-  
+  selectPage: number = 0;
+  visibleNextPage: boolean = false;
   private themeSubject = new BehaviorSubject<string>(localStorage.getItem('theme') || 'light');
   activeTheme$ = this.themeSubject.asObservable();
 
@@ -38,23 +39,50 @@ export class HomeService {
       this.saveFilters(savedFilters);
     }
     const typeSort = localStorage.getItem('typeSort');
-    const queryParams = `page=0&size=60&sorts=${typeSort}`;
+    const queryParams = `page=${this.selectPage}&size=30&sorts=${typeSort}`;
 
     return this.http.post(`${this.domain}/${type}/getAll?${queryParams}`, savedFilters);
   }
 
   getVacancies() {
     this.getCardData('vacancies').subscribe(data => {
-      this.vacancies = data;
+      if (data) {
+        if (data.length === 30) {
+          this.visibleNextPage = true;
+        }
+        else {
+          this.visibleNextPage = false;
+        }
+        this.selectPage = this.selectPage + 1;
+        this.vacancies = [...this.vacancies, ...data];
+      }
       this.loading = false;
     })
   }
 
   getResumes() {
     this.getCardData('resumes').subscribe(data => {
-      this.resumes = data;
+      if (data) {
+        if (data.length === 30) {
+          this.visibleNextPage = true;
+        }
+        else {
+          this.visibleNextPage = false;
+        }
+        this.selectPage = this.selectPage + 1;
+        this.resumes = [...this.resumes, ...data];
+      }
       this.loading = false;
     });
+  }
+
+  nextPage() {
+    if (this.typeToggle === 'vacancy') {
+      this.getVacancies();
+    }
+    if (this.typeToggle === 'resume') {
+      this.getResumes();
+    }
   }
 
   saveFilters(filters: any): void {
@@ -98,15 +126,15 @@ export class HomeService {
   toggleType(type: any) {
     this.typeToggle = type;
     this.loading = true;
+    this.selectPage = 0;
+    this.resumes = [];
+    this.vacancies = [];
     if (type === 'vacancy') {
       this.getVacancies();
-      this.resumes = [];
     }
     if (type === 'resume') {
       this.getResumes();
-      this.vacancies = [];
     }
   }
-
 
 }

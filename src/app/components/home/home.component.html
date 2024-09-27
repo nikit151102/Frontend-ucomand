@@ -160,11 +160,14 @@
             </a>
           </ng-container>
         </ng-container>
-
-
-
-
       </ng-container>
+
+    </div>
+    
+    <div class="nextPage">
+      <a *ngIf="homeService.visibleNextPage"  (click)="nextPage()">
+        Показать еще
+      </a>
     </div>
 
 

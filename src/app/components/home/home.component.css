@@ -70,6 +70,24 @@
     color: var(--font-color);
 }
 
+.nextPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.nextPage a{
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.85rem;
+    line-height: 114%;
+    color: var(--font-color);
+}
+
+.nextPage a:hover{
+    color: #A6EB20;
+}
 
 @media (max-width: 1199.98px) {
     .card-container {

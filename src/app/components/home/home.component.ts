@@ -97,4 +97,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate([`/${type}`, cardId]);
   }
 
+
+  nextPage(){
+    this.homeService.nextPage()
+  }
 }
