@@ -56,7 +56,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.settingHeaderService.isFilterState$.subscribe(value => {
       this.isVisibleFilter = value;
-      console.log('Boolean value changed:', value);
     });
     this.homeService.loadData();
     this.updateView(window.innerWidth);
@@ -68,7 +67,6 @@ export class HomeComponent implements OnInit {
     this.updateView(event.target.innerWidth);
   }
 
-  // Function to update screen size variables based on window width
   updateView(width: number): void {
     if (width >= 1024) {
       this.isDesktop = true;

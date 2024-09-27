@@ -9,15 +9,16 @@ import { environment } from '../../../environment';
 })
 export class HomeService {
 
-  constructor(private http: HttpClient,  private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   typeToggle: string = 'vacancy';
   vacancies: any;
   resumes: any;
-
+  loading: boolean = true;
+  
   private themeSubject = new BehaviorSubject<string>(localStorage.getItem('theme') || 'light');
   activeTheme$ = this.themeSubject.asObservable();
-  
+
   private domain = `${environment.apiUrl}`;
 
   changeTheme(theme: string) {
@@ -30,7 +31,6 @@ export class HomeService {
 
     if (filters) {
       savedFilters = JSON.parse(filters);
-      console.log("savedFilters",savedFilters)
     } else {
       savedFilters = {
         "visibilities": ["CREATOR_ONLY"]
@@ -39,23 +39,24 @@ export class HomeService {
     }
     const typeSort = localStorage.getItem('typeSort');
     const queryParams = `page=0&size=60&sorts=${typeSort}`;
-   
+
     return this.http.post(`${this.domain}/${type}/getAll?${queryParams}`, savedFilters);
   }
 
-  getVacancies(){
+  getVacancies() {
     this.getCardData('vacancies').subscribe(data => {
-      this.vacancies = data; 
-      console.log("data,",data)
+      this.vacancies = data;
+      this.loading = false;
     })
   }
 
-  getResumes(){
+  getResumes() {
     this.getCardData('resumes').subscribe(data => {
-      this.resumes = data; 
+      this.resumes = data;
+      this.loading = false;
     });
   }
-  
+
   saveFilters(filters: any): void {
     sessionStorage.setItem('bodyFilters', JSON.stringify(filters));
   }
@@ -81,24 +82,30 @@ export class HomeService {
   saveSort(sort: string): void {
     localStorage.setItem('sort', sort);
   }
-  
+
 
   loadData() {
+    this.toggleSortDirection();
+    if (this.typeToggle === 'vacancy') {
       this.getVacancies();
+    }
+    if (this.typeToggle === 'resume') {
       this.getResumes();
-      this.toggleSortDirection();
-      this.loading = false; 
+    }
+    this.loading = false;
   }
 
-  loading: boolean = true;
-  
-  toggleType(type: any){
+  toggleType(type: any) {
     this.typeToggle = type;
     this.loading = true;
+    if (type === 'vacancy') {
       this.getVacancies();
+      this.resumes = [];
+    }
+    if (type === 'resume') {
       this.getResumes();
-      this.toggleSortDirection();
-      this.loading = false; 
+      this.vacancies = [];
+    }
   }
 
 
