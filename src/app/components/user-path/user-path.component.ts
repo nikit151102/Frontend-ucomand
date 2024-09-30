@@ -21,40 +21,49 @@ export class UserPathComponent {
     private route: ActivatedRoute,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   reloadComponent(): void {
     this.paramsSubscription = this.route.params.subscribe(params => {
       this.userNick = params['id'];
       const authToken = localStorage.getItem('authToken');
-  
-      // Если токен отсутствует, перенаправляем на профиль
+
       if (!authToken) {
         this.router.navigateByUrl(`/${this.userNick}/profile`);
         return;
       }
-  
-      // Получаем текущего пользователя и выполняем проверку
-      this.authService.getCurrentUser().subscribe((user: any) => {
-        this.userCurrentNick = user.nickname;
-        const token = localStorage.getItem('authToken');
-        const nick = localStorage.getItem('userNickname');
-  
-        if (this.userNick === this.userCurrentNick && token && nick) {
-          // Если пользователь находится на подмаршруте внутри account, не перенаправляем
-          if (!this.router.url.startsWith(`/${this.userNick}/account`)) {
-            this.router.navigateByUrl(`/${this.userNick}/account`);
+
+      const storedNickname = localStorage.getItem('userNickname');
+
+      if (this.userNick === storedNickname) {
+        this.authService.getCurrentUser().subscribe(
+          (user: any) => {
+            this.userCurrentNick = user.nickname;
+            const token = localStorage.getItem('authToken');
+            const nick = localStorage.getItem('userNickname');
+
+            if (this.userNick === this.userCurrentNick && token && nick) {
+              if (!this.router.url.startsWith(`/${this.userNick}/account`)) {
+                this.router.navigateByUrl(`/${this.userNick}/account`);
+              }
+            } else {
+              if (!this.router.url.startsWith(`/${this.userNick}/profile`)) {
+                this.router.navigateByUrl(`/${this.userNick}/profile`);
+              }
+            }
+          },
+          (error) => {
+            localStorage.removeItem('Linkken');
+            localStorage.removeItem('fullAccess');
+            localStorage.removeItem('userNickname');
+            this.router.navigate(['/']);
           }
-        } else {
-          // Если пользователь на profile странице, проверяем подмаршруты
-          if (!this.router.url.startsWith(`/${this.userNick}/profile`)) {
-            this.router.navigateByUrl(`/${this.userNick}/profile`);
-          }
-        }
-      });
+        );
+      } else {
+        this.router.navigateByUrl(`/${this.userNick}/profile`);
+      }
     });
   }
-  
 
   ngOnInit(): void {
     // Подписка на параметры маршрута
@@ -66,7 +75,7 @@ export class UserPathComponent {
         }
       }
     });
-    
+
     this.reloadComponent();
   }
 
