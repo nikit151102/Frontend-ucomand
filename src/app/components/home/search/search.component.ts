@@ -41,6 +41,19 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  searchValue(){
+    const filters = sessionStorage.getItem('bodyFilters');
+    let bodyFilters = filters ? JSON.parse(filters) : {};
+
+    if (this.searchText.length == 0) {
+      if (bodyFilters.searchText && bodyFilters.searchText.length > 0) {
+        delete bodyFilters.searchText;
+        sessionStorage.setItem('bodyFilters', JSON.stringify(bodyFilters)); 
+        this.homeService.searchCards(); 
+      }
+    }
+  }
+
   search() {
     const filters = sessionStorage.getItem('bodyFilters');
     let bodyFilters = filters ? JSON.parse(filters) : {};
@@ -51,8 +64,7 @@ export class SearchComponent implements OnInit {
       delete bodyFilters.searchText;
     }
     sessionStorage.setItem('bodyFilters', JSON.stringify(bodyFilters));
-    this.homeService.getVacancies();
-    this.homeService.getResumes();
+    this.homeService.searchCards();
   }
   
   visibleSearch() {

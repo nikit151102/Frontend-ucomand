@@ -42,16 +42,17 @@ export class SearchInputPhoneComponent implements OnInit {
   search() {
     const filters = sessionStorage.getItem('bodyFilters');
     let bodyFilters = filters ? JSON.parse(filters) : {};
-  
+  console.log("searchsearch")
     if (this.searchText.length > 0) {
       bodyFilters.searchText = this.searchText;
     } else {
       delete bodyFilters.searchText;
     }
     sessionStorage.setItem('bodyFilters', JSON.stringify(bodyFilters));
-    this.homeService.getVacancies();
-    this.homeService.getResumes();
+    this.homeService.searchCards();
+    this.settingHeaderService.searchinputVisible = false;
   }
+  
   
   @ViewChild('inputField') inputField!: ElementRef;
   @ViewChild('inputContainer') inputContainer!: ElementRef;
@@ -71,7 +72,7 @@ export class SearchInputPhoneComponent implements OnInit {
   }
 
   hideInputField() {
-    this.settingHeaderService.searchinputVisible = false;
+    // this.settingHeaderService.searchinputVisible = false;
   }
 
   @HostListener('document:click', ['$event'])
@@ -85,6 +86,18 @@ export class SearchInputPhoneComponent implements OnInit {
     event.stopPropagation();
   }
 
+  searchValue(){
+    const filters = sessionStorage.getItem('bodyFilters');
+    let bodyFilters = filters ? JSON.parse(filters) : {};
+
+    if (this.searchText.length == 0) {
+      if (bodyFilters.searchText && bodyFilters.searchText.length > 0) {
+        delete bodyFilters.searchText;
+        sessionStorage.setItem('bodyFilters', JSON.stringify(bodyFilters)); 
+        this.homeService.searchCards(); 
+      }
+    }
+  }
 
   searchText: string = '';
 

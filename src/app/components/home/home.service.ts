@@ -87,6 +87,18 @@ export class HomeService {
     }
   }
 
+  searchCards() {
+    this.selectPage = 0;
+    this.vacancies = [];
+    this.resumes = [];
+    if (this.typeToggle === 'vacancy') {
+      this.getVacancies();
+    }
+    if (this.typeToggle === 'resume') {
+      this.getResumes();
+    }
+  }
+
 
   saveFilters(filters: any): void {
     sessionStorage.setItem('bodyFilters', JSON.stringify(filters));

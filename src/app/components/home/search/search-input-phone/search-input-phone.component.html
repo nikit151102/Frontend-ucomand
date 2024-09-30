@@ -1,7 +1,7 @@
-<div class="input-container" *ngIf="settingHeaderService.searchinputVisible"  (click)="stopPropagation($event)">
-    <input #inputField type="text" placeholder="Введите текст..." (blur)="hideInputField()" [(ngModel)]="searchText"  (ngModelChange)="search()"/>
-    <svg  (click)="search()"
-        *ngIf="!searchText"
+<div class="input-container" *ngIf="settingHeaderService.searchinputVisible"  (click)="stopPropagation($event)" >
+    <input #inputField type="text" placeholder="Введите текст..." [(ngModel)]="searchText"  (ngModelChange)="searchValue()"/>
+    <button class="search-button" (click)="search()">
+        <svg 
         class="icon"
         xmlns="http://www.w3.org/2000/svg" 
         viewBox="0 0 24 24" 
@@ -13,4 +13,5 @@
         <circle cx="11" cy="11" r="8"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
     </svg>
+</button>
 </div>
