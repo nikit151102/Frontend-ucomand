@@ -28,7 +28,8 @@ export class FooterComponent {
 
   toggle(button: string) {
     this.homeService.typeToggle = button;
-    console.log(this.homeService.typeToggle)
+    this.homeService.toggleType(button);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     this.router.navigate(['/']);
   }
 

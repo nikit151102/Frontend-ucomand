@@ -19,7 +19,6 @@ import { environment } from '../../../environment';
   imports: [CommonModule, SidebarModule],
   templateUrl: './menu-nav.component.html',
   styleUrl: './menu-nav.component.css',
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuNavComponent implements OnInit {
 
@@ -27,12 +26,12 @@ export class MenuNavComponent implements OnInit {
   activeTopic: string = 'dark';
   activeButton: string = 'vacancy';
   isAuthenticated!: boolean;
-  private domain = `${environment.apiUrl}`;
+
   currentUserLogo: any;
   buttonsConfig: { label: string, class: string, action: () => void }[] = [];
   constructor(private location: Location, public settingHeaderService: SettingHeaderService,
     private router: Router, public tokenService: TokenService, private homeService: HomeService,
-    private http: HttpClient, private ngZone: NgZone, private cdr: ChangeDetectorRef, private formSettingService: FormSettingService,
+    private ngZone: NgZone, private cdr: ChangeDetectorRef, private formSettingService: FormSettingService,
     private popUpErrorCreateService: PopUpErrorCreateService, private popUpEntryService: PopUpEntryService, public menuNavService: MenuNavService
   ) {
   }
@@ -136,7 +135,8 @@ export class MenuNavComponent implements OnInit {
   toggle(button: string) {
     this.homeService.typeToggle = button;
     this.activeButton = button;
-    console.log(this.homeService.typeToggle)
+    this.homeService.toggleType(button);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     this.router.navigate(['/']);
     this.sidebarVisible = false;
   }
