@@ -116,11 +116,11 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     forkJoin({
       user: this.personalDataService.getCurrentUser().pipe(
         catchError(error => {
-          this.router.navigate(['/']);
           this.tokenService.clearToken();
           localStorage.removeItem('Linkken');
           localStorage.removeItem('fullAccess');
           localStorage.removeItem('userNickname');
+          this.router.navigate(['/']);
           return [];
         })
       ),
