@@ -223,3 +223,8 @@
     background: #B9AEFF;
 }
 
+@media (max-width: 1199.98px) {
+    .card:hover {
+        background: var(--background-card);
+    }
+}

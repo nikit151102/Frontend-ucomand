@@ -133,3 +133,8 @@ p {
         font-size: 0.7rem;
     }
 }
+@media (max-width: 1199.98px) {
+    .card:hover {
+        background: var(--background-card);
+    }
+}
