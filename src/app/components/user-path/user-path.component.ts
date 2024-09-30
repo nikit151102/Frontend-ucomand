@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../personal-account/auth-service.service';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { TokenService } from '../token.service';
 
 @Component({
   selector: 'app-user-path',
@@ -20,7 +21,8 @@ export class UserPathComponent {
   constructor(
     private route: ActivatedRoute,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private tokenService:TokenService
   ) { }
 
   reloadComponent(): void {
@@ -53,6 +55,7 @@ export class UserPathComponent {
             }
           },
           (error) => {
+            this.tokenService.clearToken();
             localStorage.removeItem('Linkken');
             localStorage.removeItem('fullAccess');
             localStorage.removeItem('userNickname');
