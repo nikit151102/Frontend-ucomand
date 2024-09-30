@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SettingHeaderService } from '../../setting-header.service';
 import { ArchiveResumeComponent } from '../archive-resume/archive-resume.component';
 import { ArchiveVacancyComponent } from '../archive-vacancy/archive-vacancy.component';
@@ -9,7 +9,6 @@ import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { DomainService } from '../../domain.service';
 import { PersonalDataService } from '../personal-data/personal-data.service';
 import { ViewCardService } from '../../view-card/view-card.service';
-import { User } from '../personal-data/user-interface';
 import { PersonalHomeService } from './personal-home.service';
 import { catchError, forkJoin, Subscription } from 'rxjs';
 import { PopUpDeleteComponent } from '../../pop-up-delete/pop-up-delete.component';
@@ -19,7 +18,6 @@ import { PopUpExitComponent } from '../../pop-up-exit/pop-up-exit.component';
 import { ResumeService } from '../services/resume.service';
 import { VacancyService } from '../services/vacancy.service';
 import { FormSettingService } from '../../form/form-setting.service';
-import { HomeService } from '../../home/home.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { PopUpErrorCreateService } from '../../pop-up-error-create/pop-up-error-create.service';
 
@@ -78,7 +76,6 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     this.itemsToShowArchiveResume = this.showAllArchiveResume ? Infinity : 3;
   }
 
-
   showAllVacancies: boolean = false;
   itemsToShowVacancies: number = 3;
   toggleVacancies() {
@@ -115,7 +112,6 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
       })
     );
 
-    // Параллельное выполнение запросов
     forkJoin({
       user: this.personalDataService.getCurrentUser().pipe(
         catchError(error => {
@@ -125,13 +121,11 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
       ),
       vacancies: this.personalHomeService.getCardsData("vacancies").pipe(
         catchError(error => {
-          console.error('Ошибка при загрузке вакансий:', error);
           return [];
         })
       ),
       resumes: this.personalHomeService.getCardsData("resumes").pipe(
         catchError(error => {
-          console.error('Ошибка при загрузке резюме:', error);
           return [];
         })
       )
@@ -141,12 +135,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
         this.vacanciesData = vacancies;
         this.resumesData = resumes;
         this.checkUserData();
-
-        console.log("dataCurrentUser", this.dataCurrentUser)
-        console.log("resumes", resumes)
-        console.log("vacancies", vacancies)
         this.visiblePage = true;
-        console.log("user.freeLink",user.freeLink)
         this.domainName = this.domainService.setDomainWithZone(user.freeLink);
       },
       (error) => {
@@ -158,8 +147,6 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
 
   checkUserData(): void {
     const { firstName, lastName, gender, age, freeLink, ownLink, aboutMe, cityOfResidence } = this.dataCurrentUser;
-
-    // Check if any field is missing or empty
     this.isDataComplete = !!(firstName && lastName);
   }
 
@@ -230,10 +217,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     }
   }
 
-
   background: string = '';
-
-
 
   private applyTheme(theme: string) {
     if (theme === 'dark') {
