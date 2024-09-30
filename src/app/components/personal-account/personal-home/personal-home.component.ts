@@ -20,6 +20,7 @@ import { VacancyService } from '../services/vacancy.service';
 import { FormSettingService } from '../../form/form-setting.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { PopUpErrorCreateService } from '../../pop-up-error-create/pop-up-error-create.service';
+import { TokenService } from '../../token.service';
 
 @Component({
   selector: 'app-personal-home',
@@ -50,7 +51,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute, private domainService: DomainService,
     public viewCardService: ViewCardService, private personalDataService: PersonalDataService,
     private personalHomeService: PersonalHomeService, private popUpDeleteService: PopUpDeleteService, public popUpExitService: PopUpExitService,
-    public resumeService: ResumeService, public vacancyService: VacancyService,
+    public resumeService: ResumeService, public vacancyService: VacancyService,public tokenService: TokenService,
     private formSettingService: FormSettingService,
     private popUpErrorCreateService: PopUpErrorCreateService) { }
 
@@ -115,7 +116,11 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     forkJoin({
       user: this.personalDataService.getCurrentUser().pipe(
         catchError(error => {
-          console.error('Ошибка при загрузке пользователя:', error);
+          this.router.navigate(['/']);
+          this.tokenService.clearToken();
+          localStorage.removeItem('Linkken');
+          localStorage.removeItem('fullAccess');
+          localStorage.removeItem('userNickname');
           return [];
         })
       ),
