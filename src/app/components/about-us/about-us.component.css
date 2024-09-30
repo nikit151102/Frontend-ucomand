@@ -248,17 +248,18 @@
 
 
 .section-text, .updates-title, .current-status, .research-text, .roadmap-text, .free-text, .updates-list li, .research-list li{
+    text-align: justify;
     font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 14px;
     line-height: 114%;
-    color: #fff;
+    color: var(--font-color);
 }
 
 .updates-list, .research-list {
     list-style-type: none;  
     padding-left: 0;       
-    margin-left: 20px;     
+    /* margin-left: 20px;      */
 }
 
 
@@ -266,7 +267,7 @@
     content: '–';         
     display: inline-block; 
     width: 1em;           
-    margin-left: -1.5em;   
+    /* margin-left: -1.5em;    */
     margin-right: 0;   
 }
 
