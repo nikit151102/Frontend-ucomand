@@ -24,7 +24,7 @@ export class SortingComponent {
 
   toggle(event: Event) {
     this.isDropdownVisible = !this.isDropdownVisible;
-    event.stopPropagation(); // Останавливаем всплытие события клика
+    event.stopPropagation(); 
   }
 
   setActive(link: string) {
@@ -32,12 +32,8 @@ export class SortingComponent {
       this.activeLink = link;
     if(this.activeLink=='Сначала новые'){
       this.homeService.toggleSort('creationDate_desc');
-      this.homeService.getVacancies();
-      this.homeService.getResumes();
     }else{
       this.homeService.toggleSort('creationDate');
-      this.homeService.getVacancies();
-      this.homeService.getResumes();
     }
     
     }
