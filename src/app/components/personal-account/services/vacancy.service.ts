@@ -93,7 +93,6 @@ export class VacancyService {
         // После успешного обновления на сервере обновляем локальные данные
         this.updateVacancies(updatedResume);
         this.updateVacanciesLists();
-        console.log('Резюме успешно обновлено:', response);
       },
       (error: any) => {
         console.error('Ошибка при обновлении резюме:', error);

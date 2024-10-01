@@ -61,8 +61,6 @@ export class ArchiveResumeComponent {
       this.cardItem.visibility = 'CREATOR_ONLY';
       this.resumeService.deleteById(this.cardItem.id).subscribe(
         (response: any) => {
-          console.log("user", response);
-
         });
     }
     (error: any) => {

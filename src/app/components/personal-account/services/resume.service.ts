@@ -92,7 +92,6 @@ export class ResumeService {
         // После успешного обновления на сервере обновляем локальные данные
         this.updateResumes(updatedResume);
         this.updateResumesLists();
-        console.log('Резюме успешно обновлено:', response);
       },
       (error: any) => {
         console.error('Ошибка при обновлении резюме:', error);

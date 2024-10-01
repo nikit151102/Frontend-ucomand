@@ -22,7 +22,6 @@ export class PopUpDeleteComponent {
   deleteUser() {
     this.popUpDeleteService.getCurrentUserAndDelete().subscribe(
       response => {
-        console.log('Пользователь успешно удален:', response);
         this.popUpDeleteService.hidePopup();
         this.tokenService.clearToken();
         localStorage.removeItem('Linkken'); 

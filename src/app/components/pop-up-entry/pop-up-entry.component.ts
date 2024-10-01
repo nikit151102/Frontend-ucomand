@@ -76,13 +76,9 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
   }
   
   onTelegramAuth(user: any) {
-    console.log("Telegram User Data:", user);
-
     this.http.post(`${this.domain}/users/auth/byTelegram`, user, {
       headers: { 'Content-Type': 'application/json' }
     }).subscribe((response: any) => {
-      console.log("response", response);
-      console.log("response.token", response.token);
       this.tokenService.setToken(response.token);
       this.userAuthenticated = true;
       this.login_user()
@@ -112,7 +108,6 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
   login_user() {
     this.popUpEntryService.visible = false;
     const token = this.tokenService.getToken();
-    console.log("tokentokentokentoken",token)
     this.popUpEntryService.getUser().subscribe(
       (data) => {
         const firstNameValid = typeof data.firstName === 'string' && data.firstName.trim() !== '';
@@ -181,8 +176,6 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       // Setting the cookie expiration date to the past will delete it
       document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
     }
-
-    console.log('All cookies cleared.');
   }
 
 }

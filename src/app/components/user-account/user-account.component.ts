@@ -45,11 +45,9 @@ export class UserAccountComponent implements OnInit, OnDestroy {
     console.log('userAccount')
     this.route.paramMap.subscribe(params => {
       this.userId = params.get('id')!;
-      console.log('User ID:', this.userId); // Добавьте проверку в консоль
       if (this.userId) {
         this.loadData(this.userId);
       } else {
-        console.log('No user ID found');
       }
     });
     
@@ -59,8 +57,6 @@ export class UserAccountComponent implements OnInit, OnDestroy {
     try {
       const userData = await this.userAccountService.getUserData(id).toPromise();
         this.userData = userData;
-
-      console.log("userData", this.userData)
       if (userData.freeLink) {
         this.domainName = this.domainService.setDomain(userData.freeLink);
         this.imagePath = await this.domainService.checkImageExists(this.domainName);

@@ -61,7 +61,6 @@ export class ArchiveVacancyComponent {
       this.cardItem.visibility = 'CREATOR_ONLY';
       this.vacancyService.deleteById(this.cardItem.id).subscribe(
         (response: any) => {
-          console.log("user", response);
 
         });
     }

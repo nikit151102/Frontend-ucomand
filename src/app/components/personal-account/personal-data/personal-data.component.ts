@@ -219,7 +219,6 @@ export class PersonalDataComponent implements OnInit {
   onSubmit(): void {
 
     if (this.personalDataForm.invalid) {
-      console.log("submit-invalid")
       this.personalDataForm.markAllAsTouched();
       return;
     }
@@ -246,7 +245,6 @@ export class PersonalDataComponent implements OnInit {
 
     this.personalDataService.updateUser(user).subscribe(
       response => {
-        console.log('Данные успешно отправлены', response);
         this.userData();
         localStorage.setItem('userId', formValues.domain);
         const userId = localStorage.getItem('userId')
