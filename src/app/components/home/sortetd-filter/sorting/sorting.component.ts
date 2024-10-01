@@ -28,7 +28,8 @@ export class SortingComponent {
   }
 
   setActive(link: string) {
-    this.activeLink = link;
+    if(this.activeLink !== link){
+      this.activeLink = link;
     if(this.activeLink=='Сначала новые'){
       this.homeService.toggleSort('creationDate_desc');
       this.homeService.getVacancies();
@@ -38,7 +39,9 @@ export class SortingComponent {
       this.homeService.getVacancies();
       this.homeService.getResumes();
     }
-    this.isDropdownVisible = false; // Закрываем меню после выбора
+    
+    }
+    this.isDropdownVisible = false; 
   }
 
   isActive(link: string): boolean {

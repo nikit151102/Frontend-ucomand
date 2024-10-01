@@ -123,6 +123,17 @@ export class HomeService {
 
   toggleSort(sortItem: string): void {
     localStorage.setItem('typeSort', sortItem);
+    this.loading = true;
+    this.selectPage = 0;
+    this.resumes = [];
+    this.vacancies = [];
+    if (this.typeToggle === 'vacancy') {
+      this.getVacancies();
+    }
+    if (this.typeToggle === 'resume') {
+      this.getResumes();
+    }
+    
   }
 
   saveSort(sort: string): void {
