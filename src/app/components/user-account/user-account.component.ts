@@ -23,8 +23,7 @@ import { PopUpEntryService } from '../pop-up-entry/pop-up-entry.service';
 export class UserAccountComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private settingHeaderService: SettingHeaderService, public viewCardService: ViewCardService,
-    private domainService: DomainService, private userAccountService: UserAccountService,
-    private cdRef: ChangeDetectorRef,
+    public domainService: DomainService, private userAccountService: UserAccountService,
     private router: Router, private homeService: HomeService, private popUpEntryService: PopUpEntryService,
     public tokenService: TokenService) {
     this.settingHeaderService.shared = true;

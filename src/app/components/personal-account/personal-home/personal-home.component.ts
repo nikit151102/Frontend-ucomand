@@ -48,7 +48,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
   isExitPopupVisible: boolean = false;
 
   constructor(private settingHeaderService: SettingHeaderService, private router: Router,
-    private route: ActivatedRoute, private domainService: DomainService,
+    private route: ActivatedRoute, public domainService: DomainService,
     public viewCardService: ViewCardService, private personalDataService: PersonalDataService,
     private personalHomeService: PersonalHomeService, private popUpDeleteService: PopUpDeleteService, public popUpExitService: PopUpExitService,
     public resumeService: ResumeService, public vacancyService: VacancyService,public tokenService: TokenService,
@@ -101,6 +101,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
 
     this.domainService.checkImageExists(this.domainName).then((path) => {
       this.imagePath = path;
+  
     });
     this.subscription.add(
       this.popUpDeleteService.visible$.subscribe(visible => {

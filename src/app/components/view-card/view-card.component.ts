@@ -49,7 +49,7 @@ export class ViewCardComponent implements OnInit {
     private settingHeaderService: SettingHeaderService,
     private router: Router,
     public tokenService: TokenService,
-    private domainService: DomainService,
+    public domainService: DomainService,
     private popUpEntryService: PopUpEntryService,
     private route: ActivatedRoute,
     private resumeService: ResumeService,
@@ -83,6 +83,7 @@ export class ViewCardComponent implements OnInit {
           this.domainName = this.domainService.setDomain(this.dataCard.user.freeLink);
           this.domainService.checkImageExists(this.domainName).then((path) => {
             this.imagePath = path;
+            
           });
           this.viewCardService.getCurrentUser().subscribe(user => {
             this.currentUser = user;
