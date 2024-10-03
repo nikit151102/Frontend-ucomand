@@ -40,7 +40,7 @@ export class HomeService {
     }
 
     const typeSort = localStorage.getItem('typeSort');
-    const queryParams = `page=${this.selectPage}&size=30&sorts=${typeSort}`;
+    const queryParams = `page=${this.selectPage}&size=30&sorts=creationDate_desc`;
 
     return this.http.post(`${this.domain}/${type}/getAll?${queryParams}`, savedFilters);
   }
@@ -111,15 +111,15 @@ export class HomeService {
     sessionStorage.removeItem('bodyFilters');
   }
 
-  toggleSortDirection(): void {
-    let currentSort = localStorage.getItem('typeSort');
-    if (currentSort) {
-      currentSort = currentSort === 'creationDate_desc' ? 'creationDate' : 'creationDate_desc';
-    } else {
-      currentSort = 'creationDate_desc';
-    }
-    localStorage.setItem('typeSort', currentSort);
-  }
+  // toggleSortDirection(): void {
+  //   let currentSort = localStorage.getItem('typeSort');
+  //   if (currentSort) {
+  //     currentSort = currentSort === 'creationDate_desc' ? 'creationDate' : 'creationDate_desc';
+  //   } else {
+  //     currentSort = 'creationDate_desc';
+  //   }
+  //   localStorage.setItem('typeSort', currentSort);
+  // }
 
   toggleSort(sortItem: string): void {
     localStorage.setItem('typeSort', sortItem);
@@ -142,7 +142,7 @@ export class HomeService {
 
 
   loadData() {
-    this.toggleSortDirection();
+    // this.toggleSortDirection();
     if (this.typeToggle === 'vacancy') {
       this.getVacancies();
     }
