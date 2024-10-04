@@ -216,7 +216,17 @@ export class PersonalDataComponent implements OnInit {
     this.personalDataForm.get('city')?.setValue(this.cityOfResidence.name);
   }
 
+  isCityValid(city: string): boolean {
+    return this.cities.some((c: any) => c.name === city);
+  }
+  
   onSubmit(): void {
+
+    const selectedCity = this.personalDataForm.get('city')?.value;
+    if (!this.isCityValid(selectedCity)) {
+      this.personalDataForm.get('city')?.setErrors({ invalidCity: true });
+      return;
+    }
 
     if (this.personalDataForm.invalid) {
       this.personalDataForm.markAllAsTouched();
@@ -226,11 +236,11 @@ export class PersonalDataComponent implements OnInit {
     const formValues = this.personalDataForm.value;
 
     const user: User = {
-      id: this.dataCurrentUser.id,
+      id: 0,
       firstName: formValues.name,
       lastName: formValues.surname,
       gender: formValues.gender.toUpperCase(),
-      age: formValues.age,
+      age: Number(formValues.age) ,
       freeLink: formValues.freeLink,
       ownLink: '',
       aboutMe: formValues.aboutMe,

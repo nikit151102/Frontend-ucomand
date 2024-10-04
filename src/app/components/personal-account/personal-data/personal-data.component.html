@@ -76,9 +76,10 @@
                 field="name" 
                 placeholder="Введите город"
                 [emptyMessage]="'Города не найдены'" autocomplete="off" />
-              <div *ngIf="personalDataForm.get('city')?.invalid && (personalDataForm.get('city')?.dirty || personalDataForm.get('city')?.touched)" class="error-message">
-                <div *ngIf="personalDataForm.get('city')?.errors?.['required']">Город обязателен для заполнения.</div>
-              </div>
+                <div *ngIf="personalDataForm.get('city')?.invalid && (personalDataForm.get('city')?.dirty || personalDataForm.get('city')?.touched)" class="error-message">
+                  <div *ngIf="personalDataForm.get('city')?.errors?.['required']">Город обязателен для заполнения.</div>
+                  <div *ngIf="personalDataForm.get('city')?.errors?.['invalidCity']">Выберите город из списка предложенных.</div>
+                </div>
             </div>
           </div>
         </div>
