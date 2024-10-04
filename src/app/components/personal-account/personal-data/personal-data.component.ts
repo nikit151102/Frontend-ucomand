@@ -60,7 +60,7 @@ export class PersonalDataComponent implements OnInit {
       gender: ['', Validators.required],
       city: ['', Validators.required],
       freeLink: [''],
-      aboutMe: ['', [Validators.maxLength(250)]],
+      aboutMe: ['', [Validators.maxLength(700)]],
       email: ['', [Validators.required, Validators.email]],
       telegram: [''],
       domain: [''],
@@ -219,7 +219,7 @@ export class PersonalDataComponent implements OnInit {
   isCityValid(city: string): boolean {
     return this.cities.some((c: any) => c.name === city);
   }
-  
+
   onSubmit(): void {
 
     const selectedCity = this.personalDataForm.get('city')?.value;

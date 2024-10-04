@@ -104,7 +104,7 @@
               <label for="about_me">О себе:</label>
               <textarea id="about_me" formControlName="aboutMe" placeholder="Введите информацию о себе" autocomplete="off" ></textarea>
               <div *ngIf="personalDataForm.get('aboutMe')?.invalid && (personalDataForm.get('aboutMe')?.dirty || personalDataForm.get('aboutMe')?.touched)" class="error-message">
-            
+            Не должно превышать 700 символов
               </div>
             </div>
           </div>
