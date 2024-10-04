@@ -3,7 +3,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    width: 75%;
+    align-items: stretch;
+    width: 65%;
     margin: 0 auto;
     margin-top: 100px;
     box-sizing: border-box;
@@ -23,11 +24,12 @@
 
 .right-path {
     flex: 1;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between
+    justify-content: space-between;
 }
+
 
 
 .skeleton-tag {
@@ -49,7 +51,7 @@
     flex-direction: row;
     align-items: flex-end;
     gap: 1rem;
-    padding: 1rem 2rem 0 0;
+    padding: 0 2rem 0 0;
 }
 
 .profile {
@@ -75,8 +77,8 @@
 .chapterCard-title {
     margin-bottom: 0.5rem;
     font-family: var(--font-Monts);
-    font-weight: 400;
-    font-size: 0.9rem;
+    font-weight: 500;
+    font-size: 0.8rem;
     line-height: 117%;
     color: var(--font-color);
 }
@@ -126,7 +128,7 @@
     display: flex;
     border-radius: 300px;
     padding: 1rem 1.2rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     width: 100%;
     background: #e2e2e2;
     font-family: var(--font-Monts);

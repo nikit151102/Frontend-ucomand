@@ -74,7 +74,7 @@
     margin-top: 1rem;
     font-family: var(--font-Monts);
     font-weight: 400;
-    font-size: 0.85rem;
+    font-size: 14px;
     line-height: 117%;
     color: var(--font-color);
     margin-left: 25px;
@@ -102,7 +102,7 @@ p {
 
     font-family: var(--font-Monts);
     font-weight: 400;
-    font-size: 0.85rem;
+    font-size: 14px;
     line-height: 117%;
 }
 
@@ -163,7 +163,7 @@ p {
     font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 0.8rem;
-    line-height: 117%;
+    line-height: 140%;
     color: var(--font-color);
 }
 
@@ -263,7 +263,7 @@ p {
 @media (max-width: 789.98px) {
 
     .title-cards{
-        font-size: 0.7rem;
+        /* font-size: 0.7rem; */
         padding: 0.8rem 1rem;
         width: 95%;
         margin: 0 auto;
@@ -326,9 +326,9 @@ p {
         font-size: 0.9rem;
     }
 
-    .chapterCard-title {
+    /* .chapterCard-title {
         font-size: 0.7rem;
-    }
+    } */
     .container-resume, .container-vacancy{
         padding-bottom: 1.5rem;
     }
