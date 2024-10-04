@@ -226,7 +226,7 @@ export class PersonalDataComponent implements OnInit {
     const formValues = this.personalDataForm.value;
 
     const user: User = {
-      id: 0,
+      id: this.dataCurrentUser.id,
       firstName: formValues.name,
       lastName: formValues.surname,
       gender: formValues.gender.toUpperCase(),
@@ -236,11 +236,12 @@ export class PersonalDataComponent implements OnInit {
       aboutMe: formValues.aboutMe,
       telegram: formValues.telegram,
       email: formValues.email,
-      dateOfRegistration: new Date().toISOString(),
+      dateOfRegistration: this.dataCurrentUser.dateOfRegistration,
       cityOfResidence: this.cityOfResidence,
       imageLink: this.setAvatar,
       nickname: formValues.domain,
       role: this.dataCurrentUser.role,
+      banned: this.dataCurrentUser.banned
     };
 
     this.personalDataService.updateUser(user).subscribe(

@@ -2,7 +2,7 @@
   <div class="page-title">
     <p>Мои данные</p>
   </div>
-  <form [formGroup]="personalDataForm" >
+  <form [formGroup]="personalDataForm" autocomplete="off">
     <div class="content">
       <div class="content-column">
         <div class="chapter-content avatar" (click)="getAvatar()">
@@ -25,21 +25,21 @@
           <div class="chapter-content">
             <div class="input-group">
               <label for="name">Имя:</label>
-              <input type="text" id="name" formControlName="name" placeholder="Введите имя">
+              <input type="text" id="name" formControlName="name" placeholder="Введите имя" autocomplete="off" >
               <div *ngIf="personalDataForm.get('name')?.invalid && (personalDataForm.get('name')?.dirty || personalDataForm.get('name')?.touched)" class="error-message">
                 <div *ngIf="personalDataForm.get('name')?.errors?.['required']">Имя обязательно для заполнения.</div>
               </div>
             </div>
             <div class="input-group">
               <label for="surname">Фамилия:</label>
-              <input type="text" id="surname" formControlName="surname" placeholder="Введите фамилию">
+              <input type="text" id="surname" formControlName="surname" placeholder="Введите фамилию" autocomplete="off" >
               <div *ngIf="personalDataForm.get('surname')?.invalid && (personalDataForm.get('surname')?.dirty || personalDataForm.get('surname')?.touched)" class="error-message">
                 <div *ngIf="personalDataForm.get('surname')?.errors?.['required']">Фамилия обязательна для заполнения.</div>
               </div>
             </div>
             <div class="input-group">
               <label for="age">Возраст:</label>
-              <input type="text" id="age" formControlName="age" placeholder="Введите возраст">
+              <input type="text" id="age" formControlName="age" placeholder="Введите возраст" autocomplete="off" >
               <div *ngIf="personalDataForm.get('age')?.invalid && (personalDataForm.get('age')?.dirty || personalDataForm.get('age')?.touched)" class="error-message">
                 <div *ngIf="personalDataForm.get('age')?.errors?.['required']">Возраст обязателен для заполнения.</div>
               </div>
@@ -75,7 +75,7 @@
                 (onSelect)="onCitySelect($event)"
                 field="name" 
                 placeholder="Введите город"
-                [emptyMessage]="'Города не найдены'"/>
+                [emptyMessage]="'Города не найдены'" autocomplete="off" />
               <div *ngIf="personalDataForm.get('city')?.invalid && (personalDataForm.get('city')?.dirty || personalDataForm.get('city')?.touched)" class="error-message">
                 <div *ngIf="personalDataForm.get('city')?.errors?.['required']">Город обязателен для заполнения.</div>
               </div>
@@ -87,7 +87,7 @@
           <div class="chapter-content">
             <div class="input-group">
               <label for="portfolio">Любая ссылка на ваши работы:</label>
-              <input type="text" id="portfolio" formControlName="freeLink" placeholder="Поле ввода">
+              <input type="text" id="portfolio" formControlName="freeLink" placeholder="Поле ввода" autocomplete="off" >
               <div *ngIf="personalDataForm.get('freeLink')?.invalid && (personalDataForm.get('freeLink')?.dirty || personalDataForm.get('freeLink')?.touched)" class="error-message">
     
               </div>
@@ -101,7 +101,7 @@
           <div class="chapter-content">
             <div class="input-group">
               <label for="about_me">О себе:</label>
-              <textarea id="about_me" formControlName="aboutMe" placeholder="Введите информацию о себе"></textarea>
+              <textarea id="about_me" formControlName="aboutMe" placeholder="Введите информацию о себе" autocomplete="off" ></textarea>
               <div *ngIf="personalDataForm.get('aboutMe')?.invalid && (personalDataForm.get('aboutMe')?.dirty || personalDataForm.get('aboutMe')?.touched)" class="error-message">
             
               </div>
@@ -113,7 +113,7 @@
           <div class="chapter-content">
             <div class="input-group">
               <label for="email">Email:</label>
-              <input type="text" id="email" formControlName="email" placeholder="Введите email ">
+              <input type="text" id="email" formControlName="email" placeholder="Введите email " autocomplete="off" >
               <div *ngIf="personalDataForm.get('email')?.invalid && (personalDataForm.get('email')?.dirty || personalDataForm.get('email')?.touched)" class="error-message">
                 <div *ngIf="personalDataForm.get('email')?.errors?.['required']">Email обязателен для заполнения.</div>
                 <div *ngIf="personalDataForm.get('email')?.errors?.['email']">Введите корректный email.</div>
@@ -121,7 +121,7 @@
             </div>
             <div class="input-group">
               <label for="telegram">Telegram:</label>
-              <input type="text" id="telegram" formControlName="telegram" placeholder="Введите telegram">
+              <input type="text" id="telegram" formControlName="telegram" placeholder="Введите telegram" autocomplete="off" >
               <div *ngIf="personalDataForm.get('telegram')?.invalid && (personalDataForm.get('telegram')?.dirty || personalDataForm.get('telegram')?.touched)" class="error-message">
           
               </div>

@@ -31,4 +31,5 @@ export interface User {
     imageLink: string | null;
     nickname: string | null;
     role: 'ROOT' | 'USER' | 'ADMIN'; 
+    banned: boolean
 }
