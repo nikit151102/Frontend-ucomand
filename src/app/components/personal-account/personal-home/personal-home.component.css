@@ -6,6 +6,9 @@
     margin-top: 100px;
     box-sizing: border-box;
     gap: 2rem;
+
+    position: relative;
+    z-index: 10;
 }
 
 .contacts {
@@ -420,6 +423,10 @@ p {
     .container-resume-header-newCards,
     .container-vacancy-header-newCards {
         display: none;
+    }
+    .container {
+        z-index: 1;
+        margin-top: 120px;
     }
 }
 

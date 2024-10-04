@@ -5,8 +5,11 @@
     margin: 0 auto;
     margin-top: 100px;
     box-sizing: border-box;
-    
     gap: 2rem;
+
+    position: relative;
+    z-index: 10;
+
 }
 
 .page-title {
@@ -253,7 +256,7 @@ input[type="checkbox"] {
     color: var(--font-color);
 }
 
-.btns{
+.btns {
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -270,7 +273,7 @@ input[type="checkbox"] {
     font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 0.8rem;
-    line-height: 117%;                         
+    line-height: 117%;
     color: #fff;
 
 }
@@ -288,11 +291,11 @@ input[type="checkbox"] {
     cursor: not-allowed;
 }
 
-.chapter-domain a:hover{
+.chapter-domain a:hover {
     background: rgba(51, 51, 52, 0.3);
 }
 
-.btnError{
+.btnError {
     flex: 1;
     border-radius: 30px;
     padding: 16px;
@@ -305,8 +308,15 @@ input[type="checkbox"] {
     color: #fff;
 }
 
-.btnError:hover{
+.btnError:hover {
     background: #a6eb20;
+}
+
+@media (max-width: 1198px) {
+    .container {
+        z-index: 1;
+        margin-top: 120px;
+    }
 }
 
 @media (max-width: 768px) {

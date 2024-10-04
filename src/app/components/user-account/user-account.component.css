@@ -6,6 +6,9 @@
     margin-top: 100px;
     box-sizing: border-box;
     gap: 2rem;
+
+    position: relative;
+    z-index: 10;
 }
 
 .first-part {
@@ -241,6 +244,12 @@ p {
 
 .app-card-vacancy-link{
     text-decoration: none;
+}
+@media (max-width: 1198px) {
+    .container {
+        z-index: 1;
+        margin-top: 120px;
+    }
 }
 
 @media (max-width : 865px) {
