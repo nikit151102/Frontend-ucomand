@@ -65,8 +65,8 @@ export class PersonalDataComponent implements OnInit {
       freeLink: [''],
       aboutMe: ['', [Validators.maxLength(700)]],
       email: ['', [Validators.required, Validators.email]],
-      telegram: [''],
-      domain: [''],
+      telegram: ['', [Validators.required]],
+      domain: ['', [Validators.required]],
     });
 
   }
@@ -165,7 +165,7 @@ export class PersonalDataComponent implements OnInit {
       (user: User) => {
         if (user.imageLink) {
           this.menuNavService.setStorageValue(user.imageLink);
-        }this.personalDataForm.patchValue({
+        } this.personalDataForm.patchValue({
           name: user.firstName || '',
           surname: user.lastName || '',
           age: user.age || '',
@@ -180,7 +180,7 @@ export class PersonalDataComponent implements OnInit {
         this.dataCurrentUser = user;
         this.cityOfResidence = user.cityOfResidence || {};
         this.setAvatar = user.imageLink;
-        
+
         if (user.nickname) {
           this.oldDomain = user.nickname;
         }
@@ -222,7 +222,7 @@ export class PersonalDataComponent implements OnInit {
   }
 
   isError: boolean = false;
-  
+
   onSubmit() {
     const selectedCity = this.personalDataForm.get('city')?.value;
     if (!this.isCityValid(selectedCity)) {
@@ -232,13 +232,26 @@ export class PersonalDataComponent implements OnInit {
     if (this.personalDataForm.invalid) {
       this.personalDataForm.markAllAsTouched();
       const invalidField = this.formFields.find((field) => {
-        const controlName = field.nativeElement.getAttribute('formControlName');
+        const controlName = field.nativeElement?.getAttribute('formControlName');
         const control = this.personalDataForm.get(controlName);
+
         return control ? control.invalid : false;
       });
-
+      const isMobileOrTablet = window.innerWidth < 1024;
       if (invalidField) {
-        invalidField.nativeElement.scrollIntoView({ behavior: 'smooth' });
+        if(isMobileOrTablet){
+          invalidField.nativeElement.scrollIntoView({ behavior: 'smooth' });
+
+          const offset = 120; 
+          const elementRect = invalidField.nativeElement.getBoundingClientRect();
+          const elementScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+          window.scrollTo({
+            top: elementRect.top + elementScrollTop - offset,
+            behavior: 'smooth'
+          });
+        }
+       
         invalidField.nativeElement.focus();
         this.isError = true;
         setTimeout(() => {

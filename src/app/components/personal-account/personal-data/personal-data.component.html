@@ -107,8 +107,9 @@
           <div class="chapter-content">
             <div class="input-group">
               <label for="about_me">О себе:</label>
-              <textarea id="about_me" formControlName="aboutMe" placeholder="Введите информацию о себе" autocomplete="off" ></textarea>
-              <div *ngIf="personalDataForm.get('aboutMe')?.invalid && (personalDataForm.get('aboutMe')?.dirty && isError || personalDataForm.get('aboutMe')?.touched && isError)" class="error-message">
+              <textarea #formField id="about_me" formControlName="aboutMe" placeholder="Введите информацию о себе" autocomplete="off" [ngClass]="{'invalid': personalDataForm.get('aboutMe')?.invalid  && (personalDataForm.get('aboutMe')?.dirty && isError || personalDataForm.get('aboutMe')?.touched && isError )}"></textarea>
+              
+              <div *ngIf="personalDataForm.get('aboutMe')?.invalid && (personalDataForm.get('aboutMe')?.dirty || personalDataForm.get('aboutMe')?.touched )" class="error-message">
             Не должно превышать 700 символов
               </div>
             </div>
@@ -119,17 +120,17 @@
           <div class="chapter-content">
             <div class="input-group">
               <label for="email">Email:</label>
-              <input #formField  type="text" id="email" formControlName="email" placeholder="Введите email " autocomplete="off" [ngClass]="{'invalid': personalDataForm.get('email')?.invalid && (personalDataForm.get('email')?.dirty || personalDataForm.get('email')?.touched)}">
-              <div *ngIf="personalDataForm.get('email')?.invalid && (personalDataForm.get('email')?.dirty && isError || personalDataForm.get('email')?.touched && isError)" class="error-message">
+              <input #formField  type="text" id="email" formControlName="email" placeholder="Введите email " autocomplete="off" [ngClass]="{'invalid': personalDataForm.get('email')?.invalid && (personalDataForm.get('email')?.dirty && isError || personalDataForm.get('email')?.touched && isError)}">
+              <div *ngIf="personalDataForm.get('email')?.invalid && (personalDataForm.get('email')?.dirty  || personalDataForm.get('email')?.touched )" class="error-message">
                 <div *ngIf="personalDataForm.get('email')?.errors?.['required']">Email обязателен для заполнения.</div>
                 <div *ngIf="personalDataForm.get('email')?.errors?.['email']">Введите корректный email.</div>
               </div>
             </div>
             <div class="input-group">
               <label for="telegram">Telegram:</label>
-              <input #formField type="text" id="telegram" formControlName="telegram" placeholder="Введите telegram" autocomplete="off"  [ngClass]="{'invalid': personalDataForm.get('telegram')?.invalid && (personalDataForm.get('telegram')?.dirty || personalDataForm.get('telegram')?.touched)}">
-              <div *ngIf="personalDataForm.get('telegram')?.invalid && (personalDataForm.get('telegram')?.dirty && isError || personalDataForm.get('telegram')?.touched && isError)" class="error-message">
-          
+              <input #formField type="text" id="telegram" formControlName="telegram" placeholder="Введите telegram" autocomplete="off"  [ngClass]="{'invalid': personalDataForm.get('telegram')?.invalid && (personalDataForm.get('telegram')?.dirty && isError || personalDataForm.get('telegram')?.touched && isError)}">
+              <div *ngIf="personalDataForm.get('telegram')?.invalid && (personalDataForm.get('telegram')?.dirty || personalDataForm.get('telegram')?.touched )" class="error-message">
+                <div *ngIf="personalDataForm.get('telegram')?.errors?.['required']">Telegram обязателен для заполнения.</div>
               </div>
             </div>
           </div>
