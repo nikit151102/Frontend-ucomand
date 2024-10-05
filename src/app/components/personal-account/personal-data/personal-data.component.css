@@ -91,6 +91,11 @@
     gap: 0.2rem;
 }
 
+
+.genderValue {
+    font-size: 15px;
+}
+
 .input-group label {
     padding: 0 1.2rem;
     font-family: var(--font-Monts);
@@ -136,12 +141,18 @@
 }
 
 .gender_title {
-    padding: 0.1rem 2rem;
+    padding: 0 1.2rem;
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.65rem;
     line-height: 140%;
     color: #101010;
+}
+
+.genderlabel  {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
 }
 
 .chapter-domain {
@@ -169,7 +180,7 @@
 
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 15px;
     line-height: 140%;
 }
 
@@ -376,8 +387,8 @@ input[type="checkbox"] {
     }
 
     .chapter-title {
-        padding: 0px 1.5rem;
-        font-size: 0.9rem;
+        font-size: 12px;
+        padding-bottom: 5px;
     }
 
     .input-group input,
@@ -402,13 +413,21 @@ input[type="checkbox"] {
     }
 
     .chapter-title {
-        font-size: 0.9rem;
+        font-size: 12px;
     }
 
     .input-group label,
     .input-group input,
     .input-group textarea {
-        font-size: 0.9rem;
+        font-size: 0.65rem;
+    }
+
+    .gender_title {
+        font-size: 0.65rem;
+    }
+
+    .genderValue {
+        font-size: 15px;
     }
 
     .icon {
@@ -432,5 +451,6 @@ input[type="checkbox"] {
 
     .avatar {
         gap: 2rem;
+        padding-bottom: 1.3rem !important;
     }
 }
