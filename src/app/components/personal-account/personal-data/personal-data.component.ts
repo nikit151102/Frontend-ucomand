@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { PersonalDataService } from './personal-data.service';
@@ -48,6 +48,9 @@ export class PersonalDataComponent implements OnInit {
   cancel_btn: boolean = false;
   initialFormState: any;
 
+
+  @ViewChildren('formField') formFields!: QueryList<ElementRef>;
+
   private subscription: Subscription = new Subscription();
 
   constructor(private fb: FormBuilder, private personalDataService: PersonalDataService,
@@ -65,6 +68,7 @@ export class PersonalDataComponent implements OnInit {
       telegram: [''],
       domain: [''],
     });
+
   }
 
   formChanges() {
@@ -161,11 +165,7 @@ export class PersonalDataComponent implements OnInit {
       (user: User) => {
         if (user.imageLink) {
           this.menuNavService.setStorageValue(user.imageLink);
-        }
-        this.dataCurrentUser = user;
-        this.cityOfResidence = user.cityOfResidence || {};
-        this.setAvatar = user.imageLink;
-        this.personalDataForm.patchValue({
+        }this.personalDataForm.patchValue({
           name: user.firstName || '',
           surname: user.lastName || '',
           age: user.age || '',
@@ -177,20 +177,21 @@ export class PersonalDataComponent implements OnInit {
           telegram: user.telegram,
           domain: user.nickname || '',
         });
+        this.dataCurrentUser = user;
+        this.cityOfResidence = user.cityOfResidence || {};
+        this.setAvatar = user.imageLink;
+        
         if (user.nickname) {
           this.oldDomain = user.nickname;
-
         }
         this.personalDataForm.get('domain')?.valueChanges.subscribe(value => {
           if (value !== this.oldDomain && value.length > 0) {
             this.forbiddenWordsValidator(value)
           }
-
         });
         this.setGender = user.gender;
         this.initialFormState = this.personalDataForm.value;
         this.formChanges();
-
       },
       (error) => {
         console.error('Ошибка при загрузке данных пользователя:', error);
@@ -220,52 +221,65 @@ export class PersonalDataComponent implements OnInit {
     return this.cities.some((c: any) => c.name === city);
   }
 
-  onSubmit(): void {
-
+  isError: boolean = false;
+  
+  onSubmit() {
     const selectedCity = this.personalDataForm.get('city')?.value;
     if (!this.isCityValid(selectedCity)) {
       this.personalDataForm.get('city')?.setErrors({ invalidCity: true });
       return;
     }
-
     if (this.personalDataForm.invalid) {
       this.personalDataForm.markAllAsTouched();
-      return;
-    }
+      const invalidField = this.formFields.find((field) => {
+        const controlName = field.nativeElement.getAttribute('formControlName');
+        const control = this.personalDataForm.get(controlName);
+        return control ? control.invalid : false;
+      });
 
-    const formValues = this.personalDataForm.value;
-
-    const user: User = {
-      id: 0,
-      firstName: formValues.name,
-      lastName: formValues.surname,
-      gender: formValues.gender.toUpperCase(),
-      age: Number(formValues.age) ,
-      freeLink: formValues.freeLink,
-      ownLink: '',
-      aboutMe: formValues.aboutMe,
-      telegram: formValues.telegram,
-      email: formValues.email,
-      dateOfRegistration: this.dataCurrentUser.dateOfRegistration,
-      cityOfResidence: this.cityOfResidence,
-      imageLink: this.setAvatar,
-      nickname: formValues.domain,
-      role: this.dataCurrentUser.role,
-      banned: this.dataCurrentUser.banned
-    };
-
-    this.personalDataService.updateUser(user).subscribe(
-      response => {
-        this.userData();
-        localStorage.setItem('userId', formValues.domain);
-        const userId = localStorage.getItem('userId')
-
-        localStorage.setItem('fullAccess', 'b326b5062b2f0e69046810717534cb09');
-        this.router.navigate([`/myaccount/${userId}/home`]);
-      },
-      error => {
-        console.error('Ошибка при отправке данных:', error);
+      if (invalidField) {
+        invalidField.nativeElement.scrollIntoView({ behavior: 'smooth' });
+        invalidField.nativeElement.focus();
+        this.isError = true;
+        setTimeout(() => {
+          this.isError = false;
+        }, 1000);
       }
-    );
+    } else {
+      const formValues = this.personalDataForm.value;
+
+      const user: User = {
+        id: 0,
+        firstName: formValues.name,
+        lastName: formValues.surname,
+        gender: formValues.gender.toUpperCase(),
+        age: Number(formValues.age),
+        freeLink: formValues.freeLink,
+        ownLink: '',
+        aboutMe: formValues.aboutMe,
+        telegram: formValues.telegram,
+        email: formValues.email,
+        dateOfRegistration: this.dataCurrentUser.dateOfRegistration,
+        cityOfResidence: this.cityOfResidence,
+        imageLink: this.setAvatar,
+        nickname: formValues.domain,
+        role: this.dataCurrentUser.role,
+        banned: this.dataCurrentUser.banned
+      };
+
+      this.personalDataService.updateUser(user).subscribe(
+        response => {
+          this.userData();
+          localStorage.setItem('userId', formValues.domain);
+          const userId = localStorage.getItem('userId')
+
+          localStorage.setItem('fullAccess', 'b326b5062b2f0e69046810717534cb09');
+          this.router.navigate([`/myaccount/${userId}/home`]);
+        },
+        error => {
+          console.error('Ошибка при отправке данных:', error);
+        }
+      );
+    }
   }
 }
