@@ -70,11 +70,11 @@
               </div>
             </div>
             <div *ngIf="personalDataForm.get('gender')?.invalid && personalDataForm.get('gender')?.touched" class="error-message">
-              Пол является обязательным для заполнения.
+              Пол обязателен для заполнения.
             </div>
             <div class="input-group">
               <label for="city">Город:</label>
-              <p-autoComplete  #formField 
+              <p-autoComplete  #cityField 
                 id="city"
                 formControlName="city"
                 [suggestions]="filteredCities" 

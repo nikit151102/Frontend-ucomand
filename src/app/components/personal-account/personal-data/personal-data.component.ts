@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { PersonalDataService } from './personal-data.service';
@@ -131,8 +131,6 @@ export class PersonalDataComponent implements OnInit {
       this.setGender = value;
     });
     // this.toggleDisable()
-
-
   }
 
 
@@ -221,43 +219,71 @@ export class PersonalDataComponent implements OnInit {
     return this.cities.some((c: any) => c.name === city);
   }
 
+
+
   isError: boolean = false;
+
+  scrollToField(invalidField: any) {
+    invalidField.nativeElement.scrollIntoView({ behavior: 'smooth' });
+
+    const offset = 130;
+    const elementRect = invalidField.nativeElement.getBoundingClientRect();
+    const elementScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    window.scrollTo({
+      top: elementRect.top + elementScrollTop - offset,
+      behavior: 'smooth'
+    });
+  }
+
+  setVisibleError() {
+    this.isError = true;
+    setTimeout(() => {
+      this.isError = false;
+    }, 1000);
+  }
+
+  getInputInval(scrollfocus: boolean) {
+    this.personalDataForm.markAllAsTouched();
+    const invalidField = this.formFields.find((field) => {
+      const controlName = field.nativeElement?.getAttribute('formControlName');
+      const control = this.personalDataForm.get(controlName);
+
+      return control ? control.invalid : false;
+    });
+    const isMobileOrTablet = window.innerWidth < 1024;
+    if (invalidField) {
+      if (isMobileOrTablet && scrollfocus) {
+        this.scrollToField(invalidField)
+      }
+      
+      this.setVisibleError();
+    }
+  }
+
+  @ViewChild('formField') cityField!: ElementRef;
 
   onSubmit() {
     const selectedCity = this.personalDataForm.get('city')?.value;
+    const selectedCityControl = this.personalDataForm.get('city');
+
     if (!this.isCityValid(selectedCity)) {
-      this.personalDataForm.get('city')?.setErrors({ invalidCity: true });
+      this.getInputInval(false);
+      selectedCityControl?.setErrors({ invalidCity: true });
+      const isMobileOrTablet = window.innerWidth < 1024;
+
+      if (isMobileOrTablet) {
+        if (this.cityField) {
+          this.scrollToField(this.cityField);
+        }
+      }
+      selectedCityControl?.markAsTouched();
+      this.setVisibleError();
       return;
     }
+
     if (this.personalDataForm.invalid) {
-      this.personalDataForm.markAllAsTouched();
-      const invalidField = this.formFields.find((field) => {
-        const controlName = field.nativeElement?.getAttribute('formControlName');
-        const control = this.personalDataForm.get(controlName);
-
-        return control ? control.invalid : false;
-      });
-      const isMobileOrTablet = window.innerWidth < 1024;
-      if (invalidField) {
-        if(isMobileOrTablet){
-          invalidField.nativeElement.scrollIntoView({ behavior: 'smooth' });
-
-          const offset = 120; 
-          const elementRect = invalidField.nativeElement.getBoundingClientRect();
-          const elementScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  
-          window.scrollTo({
-            top: elementRect.top + elementScrollTop - offset,
-            behavior: 'smooth'
-          });
-        }
-       
-        invalidField.nativeElement.focus();
-        this.isError = true;
-        setTimeout(() => {
-          this.isError = false;
-        }, 1000);
-      }
+      this.getInputInval(true);
     } else {
       const formValues = this.personalDataForm.value;
 
