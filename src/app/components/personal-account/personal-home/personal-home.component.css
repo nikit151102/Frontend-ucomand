@@ -499,7 +499,6 @@ p {
 
     .phoneDate {
         display: flex;
-        margin-left: 10px;
     }
 
     .container-cards {
@@ -538,7 +537,7 @@ p {
     }
 
     .personal-details {
-        margin-left: 10px;
+        margin-left: 0;
     }
 
     .ProfileChapter {
@@ -547,7 +546,6 @@ p {
 
     .fullName {
         font-size: 1rem;
-        ;
     }
 
     .information-user {
@@ -621,7 +619,7 @@ p {
     }
 
     .ProfileChapter {
-        padding: 0.5rem 0.5rem 0px 0.5rem;
+        padding: 0.5rem 0.5rem 0px 0;
     }
 
     .information-user,
