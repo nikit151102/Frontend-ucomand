@@ -11,10 +11,10 @@
 }
 
 .card:hover {
-    -webkit-box-shadow: 4px 4px 17px -3px rgba(40, 40, 40, 0.21);
-    -moz-box-shadow: 4px 4px 17px -3px rgba(40, 40, 40, 0.21);
-    box-shadow: 4px 4px 17px -3px rgba(40, 40, 40, 0.21);
-    transform: scale(1.01);
+    -webkit-box-shadow: 4px 4px 20px -11px rgba(40, 40, 40, 0.35);
+    -moz-box-shadow: 4px 4px 20px -11px rgba(40, 40, 40, 0.35);
+    box-shadow: 4px 4px 20px -11px rgba(40, 40, 40, 0.35);
+    transform: scale(1.012);
 }
 
 
