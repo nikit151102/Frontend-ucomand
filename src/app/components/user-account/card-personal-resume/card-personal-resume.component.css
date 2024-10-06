@@ -1,12 +1,12 @@
 .card {
     border-radius: 20px;
     padding: 0.8rem;
-    box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
     background: var(--background-card-account);
+    border: 4px solid #a7eb2000;
 }
 
 .card:hover {
-    background: #A6EB20;
+    border: 4px solid #84DD2C;
     color: #010101; 
 }
 
