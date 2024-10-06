@@ -15,14 +15,14 @@
     color: #010101; 
 }
 
-.card:hover .title,
+/* .card:hover .title,
 .card:hover .chapterCard-value-eng,
 .card:hover .lookingCard_level,
 .card:hover .chapterCard-title,
 .card:hover .chapterCard_title,
 .card:hover .chapterCard_value,
 .card:hover .tagText,
-/* .card:hover .motivation, */
+/* .card:hover .motivation, 
 .card:hover .dateVacancy,
 .card:hover .dateTitle,
 .card:hover .dateValue,
@@ -30,7 +30,7 @@
 .card:hover .lookingCard-level,
 .card:hover .menu_btn a {
     color: #010101; 
-}
+} */
 
 .title {
     font-family: var(--font-Monts);
@@ -176,8 +176,8 @@
     background: #B9AEFF;
 }
 
-@media (max-width: 1199.98px) {
+/* @media (max-width: 1199.98px) {
     .card:hover {
         background: var(--card-archive);
     }
-}
+} */
