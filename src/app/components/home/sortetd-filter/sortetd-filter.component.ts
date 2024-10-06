@@ -50,7 +50,7 @@ export class SortetdFilterComponent implements OnInit {
   skills: any[] = [];
 
   constructor(
-    private sortetdFilterService: SortetdFilterService,
+    public sortetdFilterService: SortetdFilterService,
     public settingHeaderService: SettingHeaderService,
     private fb: FormBuilder,
     private homeService: HomeService,
@@ -106,16 +106,12 @@ export class SortetdFilterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
+  
     forkJoin({
-      motivations: this.sortetdFilterService.getTags('MOTIVATION'),
-      professions: this.sortetdFilterService.getTags('PROFESSION'),
-      skills: this.sortetdFilterService.getTags('SKILL')
+      motivations: this.sortetdFilterService.getTags('MOTIVATION',0,10),
     }).subscribe({
       next: (results) => {
         this.motivations = results.motivations;
-        this.professions = results.professions;
-        this.skills = results.skills;
         this.loadFiltersFromLocalStorage();
       }
 

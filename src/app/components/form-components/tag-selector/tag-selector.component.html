@@ -27,7 +27,7 @@
     
     <ng-container *ngIf="showTagBlock && selectedTags.length < maxTags">
       <div *ngIf="filteredTags.length > 0; else noTags" 
-           class="tag-block">
+           class="tag-block" (scroll)="onScroll($event)">
         <div *ngFor="let tag of filteredTags" 
              (click)="selectTag(tag)">
              <ng-container *ngIf="languagesEng">

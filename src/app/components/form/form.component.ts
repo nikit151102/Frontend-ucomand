@@ -56,8 +56,8 @@ export class FormComponent implements OnInit {
   }[] = [];
 
   motivations: any[] = [];
-  professions: any[] = [];
-  skills: any[] = [];
+  // professions: any[] = [];
+  // skills: any[] = [];
   typeForm: string = '';
   isEditMode: boolean = false;
   visible: boolean = false;
@@ -100,14 +100,14 @@ export class FormComponent implements OnInit {
     }
 
     forkJoin({
-      motivations: this.formSettingService.getTags('MOTIVATION'),
-      professions: this.formSettingService.getTags('PROFESSION'),
-      skills: this.formSettingService.getTags('SKILL')
+      motivations: this.formSettingService.getTags('MOTIVATION',-1),
+      // professions: this.formSettingService.getTags('PROFESSION'),
+      // skills: this.formSettingService.getTags('SKILL')
     }).subscribe({
       next: (results) => {
         this.motivations = results.motivations;
-        this.professions = results.professions;
-        this.skills = results.skills;
+        // this.professions = results.professions;
+        // this.skills = results.skills;
         this.form.get('motivations')?.setValue(
           this.motivations.filter(tag => this.selectedTags.some(st => st.name === tag.name))
         );

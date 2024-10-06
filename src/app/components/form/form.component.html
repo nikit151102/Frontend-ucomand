@@ -26,9 +26,9 @@
             <div class="secondRow">
                 <div class="stage">
                     <p class="stage-title">Специализация:</p>
-                    <app-tag-selected-level [placeholderValue]="'Выберете специализацию'" [tags]="professions"
-                        [maxTags]="1" [type]="'profession'" formControlName="profession"
-                        (tagsChanged)="onTagsChanged($event, 'profession')"></app-tag-selected-level>
+                    <app-tag-selected-level [placeholderValue]="'Выберете специализацию'" 
+                        [maxTags]="1" [type]="'PROFESSION'" formControlName="profession"
+                        (tagsChanged)="onTagsChanged($event, 'profession')" [service]="formSettingService"></app-tag-selected-level>
                     <div *ngIf="form.get('profession')?.invalid && form.get('profession')?.touched"
                         class="error-message">
                         Необходимо выбрать специализацию
@@ -37,9 +37,9 @@
 
                 <div class="stage">
                     <p class="stage-title">Навыки:</p>
-                    <app-tag-selected-level [placeholderValue]="'Выберете навыки'" [tags]="skills"
+                    <app-tag-selected-level [placeholderValue]="'Выберете навыки'" 
                         formControlName="skills"
-                        (tagsChanged)="onTagsChanged($event, 'skills' )"></app-tag-selected-level>
+                        (tagsChanged)="onTagsChanged($event, 'skills' )" [service]="formSettingService"></app-tag-selected-level>
                     <div *ngIf="form.get('skills')?.invalid && form.get('skills')?.touched" class="error-message">
                         Необходимо выбрать от 1 до 10 навыков
                     </div>

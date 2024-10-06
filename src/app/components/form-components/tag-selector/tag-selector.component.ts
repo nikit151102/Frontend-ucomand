@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, forwardRef, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 interface Tag {
@@ -24,17 +24,20 @@ interface Tag {
     }
   ]
 })
-export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
+export class TagSelectorComponent implements ControlValueAccessor, OnChanges, OnInit {
 
-  @Input() tags: Tag[] = [];
+  tags: Tag[] = [];
+  page: number = 0;
   @Input() maxTags: number = 3;
   @Input() placeholderValue: string = '';
-  @Input() type: string = 'skills';
+  @Input() type: string = 'SKILL';
+  @Input() service: any;
+
   @Output() tagsChanged = new EventEmitter<Tag[]>();
 
   private onChange: (value: Tag[]) => void = () => { };
   private onTouched: () => void = () => { };
-  
+
   showTagBlock = false;
   selectedTags: Tag[] = [];
   searchQuery: string = '';
@@ -45,6 +48,32 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
       this.updateFilteredTags();
     }
   }
+
+  ngOnInit(): void {
+    this.tags = [];
+    this.loadMoreTags();
+  }
+
+  onScroll(event: any) {
+    const { scrollTop, scrollHeight, clientHeight } = event.target;
+    if (scrollTop + clientHeight >= scrollHeight - 20) {
+      this.loadMoreTags();
+    }
+  }
+
+  loadMoreTags() {
+    this.service.getTags(this.type, this.page, 100).subscribe((results: any) => {
+      if (results.length > 0) {
+        this.page += 1;
+        
+        const newTags = results.filter((newTag: any) => !this.tags.some(tag => tag.id === newTag.id));
+        
+        this.tags = [...this.tags, ...newTags];
+        this.updateFilteredTags();
+      }
+    });
+  }
+  
 
   toggleTagBlock(show: boolean) {
     setTimeout(() => {
@@ -60,7 +89,7 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
       this.selectedTags.push(tag);
       this.onChange(this.selectedTags);
       this.tagsChanged.emit(this.selectedTags);
-      
+
       this.tags = this.tags.filter(t => t.id !== tag.id);
       this.searchQuery = '';
       this.updateFilteredTags();
@@ -79,7 +108,7 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
       this.updateFilteredTags();
     }
   }
-  
+
 
   writeValue(value: Tag[]): void {
     if (value && Array.isArray(value)) {
@@ -112,23 +141,24 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges {
   languagesEng: boolean = false;
 
   private updateFilteredTags() {
-    if (this.type == 'profession') {
+    if (this.type === 'PROFESSION') {
       if (this.isEnglish(this.searchQuery)) {
         this.languagesEng = true;
         this.filteredTags = this.tags
-          .filter(tag => tag.nameEng.toLowerCase().includes(this.searchQuery.toLowerCase()))
-          .sort((a, b) => a.nameEng.localeCompare(b.nameEng));
+          .filter(tag => tag.nameEng && tag.nameEng.toLowerCase().includes(this.searchQuery.toLowerCase()))
+          // .sort((a, b) => a.nameEng.localeCompare(b.nameEng));
       } else {
         this.languagesEng = false;
         this.filteredTags = this.tags
-          .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
-          .sort((a, b) => a.name.localeCompare(b.name));
+          .filter(tag => tag.name && tag.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
+          // .sort((a, b) => a.name.localeCompare(b.name));
       }
     } else {
       this.languagesEng = false;
       this.filteredTags = this.tags
-        .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
-        .sort((a, b) => a.name.localeCompare(b.name));
+        .filter(tag => tag.name && tag.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
+        // .sort((a, b) => a.name.localeCompare(b.name));
     }
   }
+  
 }

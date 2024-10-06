@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, forwardRef, Input, Output, EventEmitter, HostListener, OnChanges, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
+import { Component, forwardRef, Input, Output, EventEmitter, HostListener, OnChanges, SimpleChanges, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule } from '@angular/forms';
 
 
@@ -26,11 +26,14 @@ interface Tag {
     }
   ]
 })
-export class TagSelectedLevelComponent implements ControlValueAccessor, OnChanges {
-  @Input() tags: { id: number; name: string; nameEng: string; competenceLevel: number | null; type: string, color: string | null }[] = [];
+export class TagSelectedLevelComponent implements ControlValueAccessor, OnChanges, OnInit {
   @Input() placeholderValue: string = '';
   @Input() maxTags: number = 10;
-  @Input() type: string = 'skills';
+  tags: { id: number; name: string; nameEng: string; competenceLevel: number | null; type: string, color: string | null }[]  = [];
+  page: number = 0;
+  @Input() type: string = 'SKILL';
+  @Input() service: any;
+
   @Output() tagsChanged = new EventEmitter<{ id: number; name: string; nameEng: string; competenceLevel: number | null; type: string, color: string | null }[]>();
 
   @ViewChild('dialog') dialog!: ElementRef;
@@ -56,11 +59,35 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
     }
   }
 
-
+  ngOnInit(): void {
+    this.tags = [];
+    this.loadMoreTags();
+  }
 
   toggleTagBlock(show: boolean) {
     this.showTagBlock = show;
   }
+
+  onScroll(event: any) {
+    const { scrollTop, scrollHeight, clientHeight } = event.target;
+    if (scrollTop + clientHeight >= scrollHeight - 20) {
+      this.loadMoreTags();
+    }
+  }
+
+  loadMoreTags() {
+    this.service.getTags(this.type, this.page, 100).subscribe((results: any) => {
+      if (results.length > 0) {
+        this.page += 1;
+        
+        const newTags = results.filter((newTag: any) => !this.tags.some(tag => tag.id === newTag.id));
+        
+        this.tags = [...this.tags, ...newTags];
+        this.updateFilteredTags();
+      }
+    });
+  }
+  
 
   scrollToView(tagElement: HTMLElement, offset: number = 0) {
     if (tagElement && this.dialog) {
@@ -210,25 +237,25 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
 
 
   private updateFilteredTags() {
-    if (this.type == 'profession') {
+    if (this.type == 'PROFESSION') {
       if (this.isEnglish(this.searchQuery)) {
 
         this.languagesEng = true;
         this.filteredTags = this.tags
           .filter(tag => tag.nameEng.toLowerCase().includes(this.searchQuery.toLowerCase())) 
-          .sort((a, b) => a.nameEng.localeCompare(b.nameEng)); 
+          // .sort((a, b) => a.nameEng.localeCompare(b.nameEng)); 
       } else {
 
         this.languagesEng = false;
         this.filteredTags = this.tags
           .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase())) 
-          .sort((a, b) => a.name.localeCompare(b.name)); 
+          // .sort((a, b) => a.name.localeCompare(b.name)); 
       }
     }else{
       this.languagesEng = false;
       this.filteredTags = this.tags
         .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase())) 
-        .sort((a, b) => a.name.localeCompare(b.name)); 
+        // .sort((a, b) => a.name.localeCompare(b.name)); 
     }
   }
 
