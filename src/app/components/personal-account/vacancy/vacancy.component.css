@@ -35,9 +35,9 @@
     color: #010101; 
 } */
 
-.card:hover .chapterCard-value-eng{
+/* .card:hover .chapterCard-value-eng{
     color: rgba(0, 0, 0, 0.3)
-}
+} */
 
 .chapterCard-value-eng {
     margin: 0;
