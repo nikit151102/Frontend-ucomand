@@ -25,15 +25,23 @@
         [(ngModel)]="searchQuery" (ngModelChange)="filterTags()">
     </ng-container>
     <ng-container *ngIf="showTagBlock">
-      <div #dialog *ngIf="filteredTags.length > 0; else noTags" class="tag-block" (click)="onClickInside($event)" (scroll)="onScroll($event)">
-        <div #selTag *ngFor="let tag of filteredTags" (click)="selectTag(tag, tagElement)" #tagElement  class="selectTag" >
-          <ng-container *ngIf="languagesEng">
-            {{ tag.nameEng }}
+      <div #dialog *ngIf="filteredTags.length > 0; else noTags" class="tag-block" (click)="onClickInside($event)"
+        (scroll)="onScroll($event)">
+        <div #selTag *ngFor="let tag of filteredTags" (click)="selectTag(tag, tagElement)" #tagElement
+          class="selectTag">
+          <div style="display: flex; flex-direction: column; padding: 0; "
+          [ngStyle]="(selectedTag && selectedTag.name === tag.name) ? {'padding-left': '12px'} : {}" >
+            <ng-container *ngIf="languagesEng">
+            <p style="margin: 0;">
+                {{ tag.nameEng }}
+            </p>
           </ng-container>
           <ng-container *ngIf="!languagesEng">
-            {{ tag.name }}
+            <p style="margin: 0;">
+                {{ tag.name }}
+            </p>
           </ng-container>
-
+          </div>
           <div *ngIf="selectedTag && selectedTag.name === tag.name" class="level">
             <div (click)="selectLevel(1, tag.id, '#50b229', tag.type, tag.nameEng)" style="background: #50b229;">
               <p>Junior</p>
