@@ -108,6 +108,8 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
       this.selectedTag = null;
     } else {
       this.selectedTag = { name: tag.name, id: tag.id, competenceLevel: tag.competenceLevel, color: tag.color, type: tag.type, nameEng: tag.nameEng };
+      tagElement.style.paddingTop = '15px';
+      tagElement.style.paddingBottom = '0px';
     }
     this.showTagBlock = true;
    
