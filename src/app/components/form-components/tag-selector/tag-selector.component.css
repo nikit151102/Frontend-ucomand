@@ -94,9 +94,8 @@
     align-items: center;
 }
 .tag{
-    min-height: 44px;
     border-radius: 2.3rem;
-    padding: 12px 10px;
+    padding: 7px 10px;
     background: #f3f3f3;
     border: 1px solid #806bff;
     font-family: var(--font-Monts);
