@@ -132,8 +132,10 @@
                     </a>
                 </div>
                 <div class="phone-btns-create">
-                    <a (click)="handlePostResume()" class="additionalBtn additional"> Разместить резюме </a>
-                    <a (click)="handlePostVacancy()" class="additionalBtn additional"> Разместить вакансию </a>
+                    <a (click)="handlePostResume()" class="additionalBtn additional" 
+                    [ngStyle]="{'pointer-events': dataCurrentUser.banned ? 'none' : 'auto', 'opacity': dataCurrentUser.banned ? '0.5' : '1'}"> Разместить резюме </a>
+                    <a (click)="handlePostVacancy()" class="additionalBtn additional"
+                    [ngStyle]="{'pointer-events': dataCurrentUser.banned ? 'none' : 'auto', 'opacity': dataCurrentUser.banned ? '0.5' : '1'}"> Разместить вакансию </a>
                 </div>
             </div>
 
@@ -157,6 +159,16 @@
         </p>
 
     </div>
+    <div class="message-profile" *ngIf="isDataComplete && dataCurrentUser.banned" @fadeAnimation>
+        <p class="title-message">
+            Этот профиль заблокирован!
+        </p>
+    
+        <p class="text-message">
+            Профиль был заблокирован по следующей причине: {{dataCurrentUser.banReason}}
+        </p>
+    </div>
+    
     <div class="second-path">
         <div class="container-cards">
             <div class="container-resume" @fadeAnimation>
@@ -164,7 +176,7 @@
                     <p class="title-cards titleActive ">
                         Активные резюме:
                     </p>
-                    <a class="container-resume-header-newCards" (click)="handlePostResume()">
+                    <a class="container-resume-header-newCards" (click)="handlePostResume()" [ngStyle]="{'pointer-events': dataCurrentUser.banned ? 'none' : 'auto', 'opacity': dataCurrentUser.banned ? '0.5' : '1'}">
                         + Добавить резюме
                     </a>
                 </div>
@@ -219,7 +231,7 @@
                     <p class="title-cards titleActive ">
                         Активные вакансии:
                     </p>
-                    <a class="container-vacancy-header-newCards" (click)="handlePostVacancy()">
+                    <a class="container-vacancy-header-newCards" (click)="handlePostVacancy()" [ngStyle]="{'pointer-events': dataCurrentUser.banned ? 'none' : 'auto', 'opacity': dataCurrentUser.banned ? '0.5' : '1'}">
                         + Добавить вакансию
                     </a>
                 </div>
@@ -269,13 +281,14 @@
     </div>
 
     <div class="menuProfile">
-        <a (click)="deleteUser()">
+        <a (click)="deleteUser()" [ngStyle]="{'pointer-events': dataCurrentUser.banned ? 'none' : 'auto', 'opacity': dataCurrentUser.banned ? '0.5' : '1'}">
             Удалить профиль
         </a>
         <a (click)="exitAccount()">
             Выйти из аккаунта
         </a>
-        <a (click)="getRouting()" style="padding: 0.67rem 1rem;" class="desktop-edit-profile">
+        <a (click)="getRouting()" style="padding: 0.67rem 1rem;" class="desktop-edit-profile"
+        [ngStyle]="{'pointer-events': dataCurrentUser.banned ? 'none' : 'auto', 'opacity': dataCurrentUser.banned ? '0.5' : '1'}">
             <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M8.5 3H3.5C2.96957 3 2.46086 3.21072 2.08579 3.58579C1.71071 3.96086 1.5 4.46957 1.5 5V16C1.5 16.5304 1.71071 17.0391 2.08579 17.4142C2.46086 17.7893 2.96957 18 3.5 18H14.5C15.0304 18 15.5391 17.7893 15.9142 17.4142C16.2893 17.0391 16.5 16.5304 16.5 16V11M15.086 1.586C15.2705 1.39498 15.4912 1.24262 15.7352 1.1378C15.9792 1.03298 16.2416 0.977809 16.5072 0.975501C16.7728 0.973194 17.0361 1.0238 17.2819 1.12436C17.5277 1.22492 17.751 1.37343 17.9388 1.56121C18.1266 1.749 18.2751 1.9723 18.3756 2.21809C18.4762 2.46389 18.5268 2.72725 18.5245 2.9928C18.5222 3.25836 18.467 3.5208 18.3622 3.76481C18.2574 4.00882 18.105 4.22951 17.914 4.414L9.328 13H6.5V10.172L15.086 1.586Z"
