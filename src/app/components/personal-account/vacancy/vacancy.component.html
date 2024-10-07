@@ -31,7 +31,7 @@
               <p class="tagText">
                   {{skill.name}}
               </p>
-              <p [ngStyle]="{ 'background': getSkillsColor(skill.competenceLevel) }" class="tag-level">
+              <p *ngIf="skill.competenceLevel" [ngStyle]="{ 'background': getSkillsColor(skill.competenceLevel) }" class="tag-level">
                   {{ getSkillText(skill.competenceLevel)  }}
                 </p>
           </div>
