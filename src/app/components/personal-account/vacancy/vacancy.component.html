@@ -27,7 +27,7 @@
     </p>
     <div class="tags">
       <ng-container *ngFor="let skill of item?.skills">
-          <div class="tag">
+          <div class="tag" [ngClass]="{ 'with-competence-level': skill.competenceLevel }">
               <p class="tagText">
                   {{skill.name}}
               </p>

@@ -24,7 +24,7 @@
         <div class="tags">
             <ng-container *ngIf="cardItem?.skills">
                 <ng-container *ngFor="let item of cardItem.skills">
-                    <div class="tag">
+                    <div class="tag" [ngClass]="{ 'with-competence-level': item.competenceLevel }">
                         <p class="tagText">
                             {{item.name}}
                         </p>

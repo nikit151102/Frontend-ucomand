@@ -111,6 +111,10 @@
     background: rgba(243, 243, 243, 0.1);
 }
 
+.with-competence-level {
+    padding-right: 4px !important;
+}
+
 .tagText {
     font-family: var(--font-Monts);
     font-weight: 400;
