@@ -1,0 +1,44 @@
+<div class="card" >
+    <div class="message">
+        <p>
+            Объявление заблокированно по причине: {{ item?.banReason }}
+        </p>
+    </div>
+    <p class="title">
+      {{ item?.title }}
+    </p>
+    <div class="chapterCard">
+      <p class="chapterCard-title" style="margin-bottom: 0;">
+        Ищу:
+      </p>
+      <div class="lookingCard">
+        <p class="chapterCard_value" style="margin-top: 0.5rem; width: 90%; margin-bottom: 0;     font-weight: 500;">
+          {{ item?.profession?.name | uppercase }}
+        </p>
+        <p [ngStyle]="{ 'border-color': getSkillsColor(item?.profession?.competenceLevel) }" class="lookingCard_level" *ngIf="item?.profession?.competenceLevel">
+          {{ getSkills(item?.profession?.competenceLevel) }}
+        </p>
+      </div>
+      <div class="lookingCard">
+        <p class="chapterCard-value-eng" >
+            {{ item?.profession?.nameEng | uppercase }}
+        </p>
+    </div>
+    </div>
+    <div class="profile">
+      <div class="rightProfileChapter">
+        <p class="dateVacancy dateTitle">
+          размещено
+        </p>
+        <p class="dateVacancy dateValue">
+          {{ item?.creationDate | date: 'dd.MM.yyyy' }} <!-- Форматирование даты -->
+        </p>
+      </div>
+    </div>
+    <div class="menu_btn">
+        <a href="mailto:mail@uteam.top">
+            Написать в тех. поддержку
+        </a>
+      </div>
+    </div>
+  

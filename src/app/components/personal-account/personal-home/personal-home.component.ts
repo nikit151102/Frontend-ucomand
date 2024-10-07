@@ -21,11 +21,13 @@ import { FormSettingService } from '../../form/form-setting.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { PopUpErrorCreateService } from '../../pop-up-error-create/pop-up-error-create.service';
 import { TokenService } from '../../token.service';
+import { BanResumeComponent } from '../ban-resume/ban-resume.component';
+import { BanVacancyComponent } from '../ban-vacancy/ban-vacancy.component';
 
 @Component({
   selector: 'app-personal-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, PersonalVacancyComponent, PersonalResumeComponent, ArchiveResumeComponent, ArchiveVacancyComponent, PopUpDeleteComponent, PopUpExitComponent],
+  imports: [CommonModule, RouterLink, PersonalVacancyComponent, PersonalResumeComponent, ArchiveResumeComponent, ArchiveVacancyComponent, PopUpDeleteComponent, PopUpExitComponent, BanResumeComponent, BanVacancyComponent],
   templateUrl: './personal-home.component.html',
   styleUrl: './personal-home.component.css',
   animations: [
