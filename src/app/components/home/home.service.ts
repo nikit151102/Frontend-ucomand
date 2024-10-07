@@ -48,14 +48,16 @@ export class HomeService {
   getVacancies() {
     this.getCardData('vacancies').subscribe(data => {
       if (data) {
-        if (data.length === 30) {
-          this.visibleNextPage = true;
-        }
-        else {
-          this.visibleNextPage = false;
-        }
-        this.selectPage = this.selectPage + 1;
-        this.vacancies = [...this.vacancies, ...data];
+        const filteredData = data.filter((vacancy:any) => vacancy.visibility !== "BAN");
+      
+      if (filteredData.length === 30) {
+        this.visibleNextPage = true;
+      } else {
+        this.visibleNextPage = false;
+      }
+      
+      this.selectPage = this.selectPage + 1;
+      this.vacancies = [...this.vacancies, ...filteredData];
       }
       this.loading = false;
     })
@@ -64,14 +66,16 @@ export class HomeService {
   getResumes() {
     this.getCardData('resumes').subscribe(data => {
       if (data) {
-        if (data.length === 30) {
-          this.visibleNextPage = true;
-        }
-        else {
-          this.visibleNextPage = false;
-        }
-        this.selectPage = this.selectPage + 1;
-        this.resumes = [...this.resumes, ...data];
+        const filteredData = data.filter((resume:any) => resume.visibility !== "BAN");
+      
+      if (filteredData.length === 30) {
+        this.visibleNextPage = true;
+      } else {
+        this.visibleNextPage = false;
+      }
+      
+      this.selectPage = this.selectPage + 1;
+      this.vacancies = [...this.vacancies, ...filteredData];
       }
       this.loading = false;
     });
