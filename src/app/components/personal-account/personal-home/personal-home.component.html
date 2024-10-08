@@ -281,7 +281,7 @@
     </div>
 
     <div class="menuProfile">
-        <a (click)="deleteUser()" [ngStyle]="{'pointer-events': dataCurrentUser.banned ? 'none' : 'auto', 'opacity': dataCurrentUser.banned ? '0.5' : '1'}">
+        <a (click)="deleteUser()" >
             Удалить профиль
         </a>
         <a (click)="exitAccount()">
