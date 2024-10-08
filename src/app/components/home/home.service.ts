@@ -67,7 +67,7 @@ export class HomeService {
     this.getCardData('resumes').subscribe(data => {
       if (data) {
         const filteredData = data.filter((resume:any) => resume.visibility !== "BAN");
-      
+
       if (filteredData.length === 30) {
         this.visibleNextPage = true;
       } else {
@@ -75,7 +75,7 @@ export class HomeService {
       }
       
       this.selectPage = this.selectPage + 1;
-      this.vacancies = [...this.vacancies, ...filteredData];
+      this.resumes = [...this.resumes, ...filteredData];
       }
       this.loading = false;
     });
