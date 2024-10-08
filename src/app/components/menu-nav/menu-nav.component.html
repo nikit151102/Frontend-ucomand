@@ -25,8 +25,8 @@
         </a>
         <div class="rightContent">
             <ng-container *ngIf="settingHeaderService.post">
-                <a (click)="handlePostResume()" class="additionalBtn additional"> Разместить резюме </a>
-                <a (click)="handlePostVacancy()" class="additionalBtn additional"> Разместить вакансию </a>
+                <a (click)="handlePostResume()" class="additionalBtn additional"  [ngStyle]="{'pointer-events': userAccess == 'we26b502b2fe32e69046810717534b32d' ? 'none' : 'auto', 'opacity': userAccess == 'we26b502b2fe32e69046810717534b32d' ? '0.5' : '1'}"> Разместить резюме </a>
+                <a (click)="handlePostVacancy()" class="additionalBtn additional" [ngStyle]="{'pointer-events': userAccess == 'we26b502b2fe32e69046810717534b32d' ? 'none' : 'auto', 'opacity': userAccess == 'we26b502b2fe32e69046810717534b32d' ? '0.5' : '1'}"> Разместить вакансию </a>
             </ng-container>
             <ng-container *ngIf="false">
                 <a href="" class="additionalBtn additional"> Поделиться
@@ -176,7 +176,8 @@
             <li>
                 <div class="btns">
                     <ng-container *ngFor="let btn of buttonsConfig">
-                        <button [class]="btn.class" (click)="btn.action()" [innerHTML]="btn.label">
+                        <button [class]="btn.class" (click)="btn.action()" [innerHTML]="btn.label" 
+                        [ngStyle]="{'pointer-events': (userAccess == 'b326b5062b2f0e69046810717534cb09' && (btn.label == 'Разместить резюме' || btn.label == 'Разместить вакансию')) ? 'none' : 'auto', 'opacity': (userAccess == 'b326b5062b2f0e69046810717534cb09' && (btn.label == 'Разместить резюме' || btn.label == 'Разместить вакансию')) ? '0.5' : '1'}">
          
                         </button>
                     </ng-container>

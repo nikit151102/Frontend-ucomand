@@ -26,6 +26,7 @@ export class MenuNavComponent implements OnInit {
   activeTopic: string = 'dark';
   activeButton: string = 'vacancy';
   isAuthenticated!: boolean;
+  userAccess: string | null = '';
 
   currentUserLogo: any;
   buttonsConfig: { label: string, class: string, action: () => void }[] = [];
@@ -39,7 +40,10 @@ export class MenuNavComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.userAccess = localStorage.getItem('USaccess');
     
+    console.log("userAccess",this.userAccess)
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         if (event.url !== '/') {
