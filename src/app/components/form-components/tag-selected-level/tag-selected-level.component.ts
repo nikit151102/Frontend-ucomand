@@ -61,6 +61,7 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
 
   ngOnInit(): void {
     this.tags = [];
+    this.page = 0;
     this.loadMoreTags();
   }
 
@@ -75,19 +76,34 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
     }
   }
 
-  loadMoreTags() {
-    this.service.getTags(this.type, this.page, 100).subscribe((results: any) => {
+  // loadMoreTags() {
+  //   this.service.getTags(this.type, this.page, 100).subscribe((results: any) => {
+  //     if (results.length > 0) {
+  //       this.page += 1;
+        
+  //       const newTags = results.filter((newTag: any) => !this.tags.some(tag => tag.id === newTag.id));
+        
+  //       this.tags = [...this.tags, ...newTags];
+  //       this.updateFilteredTags();
+  //     }
+  //   });
+  // }
+  
+  loadMoreTags(): void {
+    this.service.getTags(this.type, this.page, 1000).subscribe((results: any) => {
       if (results.length > 0) {
         this.page += 1;
-        
+  
         const newTags = results.filter((newTag: any) => !this.tags.some(tag => tag.id === newTag.id));
-        
         this.tags = [...this.tags, ...newTags];
+        
         this.updateFilteredTags();
+  
+        // Рекурсивный вызов для подгрузки следующих данных
+        this.loadMoreTags();
       }
     });
   }
-  
 
   scrollToView(tagElement: HTMLElement, offset: number = 0) {
     if (tagElement && this.dialog) {
@@ -238,28 +254,48 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
   }
 
 
-  private updateFilteredTags() {
-    if (this.type == 'PROFESSION') {
-      if (this.isEnglish(this.searchQuery)) {
+  // private updateFilteredTags() {
+  //   if (this.type == 'PROFESSION') {
+  //     if (this.isEnglish(this.searchQuery)) {
 
+  //       this.languagesEng = true;
+  //       this.filteredTags = this.tags
+  //         .filter(tag => tag.nameEng.toLowerCase().includes(this.searchQuery.toLowerCase())) 
+  //         // .sort((a, b) => a.nameEng.localeCompare(b.nameEng)); 
+  //     } else {
+
+  //       this.languagesEng = false;
+  //       this.filteredTags = this.tags
+  //         .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase())) 
+  //         // .sort((a, b) => a.name.localeCompare(b.name)); 
+  //     }
+  //   }else{
+  //     this.languagesEng = false;
+  //     this.filteredTags = this.tags
+  //       .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase())) 
+  //       // .sort((a, b) => a.name.localeCompare(b.name)); 
+  //   }
+  // }
+
+  private updateFilteredTags() {
+    if (this.type === 'PROFESSION') {
+      if (this.isEnglish(this.searchQuery)) {
         this.languagesEng = true;
         this.filteredTags = this.tags
-          .filter(tag => tag.nameEng.toLowerCase().includes(this.searchQuery.toLowerCase())) 
-          // .sort((a, b) => a.nameEng.localeCompare(b.nameEng)); 
+          .filter(tag => tag.nameEng && tag.nameEng.toLowerCase().startsWith(this.searchQuery.toLowerCase()))
+          // .sort((a, b) => a.nameEng.localeCompare(b.nameEng));
       } else {
-
         this.languagesEng = false;
         this.filteredTags = this.tags
-          .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase())) 
-          // .sort((a, b) => a.name.localeCompare(b.name)); 
+          .filter(tag => tag.name && tag.name.toLowerCase().startsWith(this.searchQuery.toLowerCase()))
+          // .sort((a, b) => a.name.localeCompare(b.name));
       }
-    }else{
+    } else {
       this.languagesEng = false;
       this.filteredTags = this.tags
-        .filter(tag => tag.name.toLowerCase().includes(this.searchQuery.toLowerCase())) 
-        // .sort((a, b) => a.name.localeCompare(b.name)); 
+        .filter(tag => tag.name && tag.name.toLowerCase().startsWith(this.searchQuery.toLowerCase()))
+        // .sort((a, b) => a.name.localeCompare(b.name));
     }
   }
-
 
 }
