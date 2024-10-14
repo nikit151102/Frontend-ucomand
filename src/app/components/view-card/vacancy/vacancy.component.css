@@ -82,7 +82,7 @@
     border: 1px solid #806bff;
     border-radius: 10px;
     padding: 4px 8px 4px 8px;
-    background: rgba(243, 243, 243, 0.1);
+    background: var(--tag-background);
 }
 
 .with-competence-level {
