@@ -118,13 +118,18 @@ export class SortetdFilterComponent implements OnInit {
     });
   }
 
+  parsedFilters: boolean = false;
+
   private loadFiltersFromLocalStorage(): void {
     const filters = sessionStorage.getItem('bodyFilters');
 
     if (filters) {
       try {
         const parsedFilters = JSON.parse(filters);
-
+        if(parsedFilters.length>0){
+          this.parsedFilters = true;
+        }
+        
         if (parsedFilters.genders) {
           this.form.get('genders')?.setValue(parsedFilters.genders);
         }
@@ -151,14 +156,14 @@ export class SortetdFilterComponent implements OnInit {
     this.visible = true;
     this.openFilterDialog()
     this.cdRef.detectChanges();
-    console.log("visiblevisible", this.visible)
+    // console.log("visiblevisible", this.visible)
   }
 
   closeDialog() {
     this.visible = false;
     this.closeFilterDialog()
     this.cdRef.detectChanges();
-    console.log("visiblevisible", this.visible)
+    // console.log("visiblevisible", this.visible)
   }
 
   onTagsChanged(tags: any[], formElement: string) {
@@ -175,14 +180,20 @@ export class SortetdFilterComponent implements OnInit {
     this.homeService.getVacancies();
     this.homeService.getResumes();
     this.visible = false;
+    this.parsedFilters = false;
   }
 
 
   submit() {
     const formData = { ...this.form.value };
 
-    const tags = [...formData.skills, ...formData.profession, ...formData.motivation];
+    const skills = Array.isArray(formData.skills) ? formData.skills : [];
+    const profession = Array.isArray(formData.profession) ? formData.profession : [];
+    const motivation = Array.isArray(formData.motivation) ? formData.motivation : [];
+  
+    const tags = [...skills, ...profession, ...motivation];
 
+  
     const dataToSubmit = {
       ...formData,
       tags: tags,
@@ -200,6 +211,7 @@ this.homeService.selectPage = 0;
     this.homeService.saveFilters(dataToSubmit);
     this.homeService.getVacancies();
     this.homeService.getResumes();
+    this.parsedFilters = true;
     this.closeDialog();
   }
 

@@ -55,7 +55,7 @@
 
 .sticky-filter{
     position: fixed;
-    top: 77px;
+    top: 84px; 
     width: 100%;
     background: var(--background);
     left: 0;
@@ -99,7 +99,7 @@
 
 @media (min-width: 789.99px) and (max-width: 1199px) {
     .sticky-filter{
-        top: 120px;
+        top: 125px;
     }
 }
 

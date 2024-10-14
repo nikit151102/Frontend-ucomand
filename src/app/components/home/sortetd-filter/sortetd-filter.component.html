@@ -1,6 +1,9 @@
 <div class="container" [ngClass]="{'sticky-filter': settingHeaderService.isSticky}">
     <!-- <app-sorting></app-sorting> -->
     <div class="filter">
+        <a (click)="clearFilters()" class="btnClosedFilter" *ngIf="parsedFilters">
+            Сбросить фильтры
+        </a>
         <a (click)="showDialog()" class="filter">
             <p class="text">
                 фильтр
@@ -29,21 +32,23 @@
                         </svg>
                     </a>
                 </div>
-                <div #filterContent class="content-filter" >
+                <div #filterContent class="content-filter">
                     <div class="stage-filter" #selectorProfessions>
                         <p class="stage-filter-title">
                             Специализация:
                         </p>
-                        <app-tag-selector  [type]="'PROFESSION'" [placeholderValue]="'Выберете специализацию'"
-                        (click)="scrollToSelectorProfessions()"  [maxTags]="1" (tagsChanged)="onTagsChanged($event,'profession')"
-                            formControlName="profession" [service]="sortetdFilterService"></app-tag-selector>
+                        <app-tag-selector [type]="'PROFESSION'" [placeholderValue]="'Выберете специализацию'"
+                            (click)="scrollToSelectorProfessions()" [maxTags]="1"
+                            (tagsChanged)="onTagsChanged($event,'profession')" formControlName="profession"
+                            [service]="sortetdFilterService"></app-tag-selector>
                     </div>
                     <div class="stage-filter" #selectorSkills>
                         <p class="stage-filter-title">
                             Навыки:
                         </p>
-                        <app-tag-selector [placeholderValue]="'Выберете навыки'"  (click)="scrollToSelectorSkills()" 
-                            formControlName="skills" (tagsChanged)="onTagsChanged($event,'skills')" [service]="sortetdFilterService"></app-tag-selector>
+                        <app-tag-selector [placeholderValue]="'Выберете навыки'" (click)="scrollToSelectorSkills()"
+                            formControlName="skills" (tagsChanged)="onTagsChanged($event,'skills')"
+                            [service]="sortetdFilterService"></app-tag-selector>
                     </div>
                     <div class="stage-filter" class="three-stages" style="flex: 1;">
                         <div class="three-stage">
@@ -67,7 +72,8 @@
                                             class="custom-checkbox"></p-checkbox>
                                         <label for="genderMale" class="ml-2" style="font-size: 0.8rem;">Мужской</label>
                                     </div>
-                                    <div style="display: flex; gap: 1rem; align-items: center; color: var(--font-color);">
+                                    <div
+                                        style="display: flex; gap: 1rem; align-items: center; color: var(--font-color);">
                                         <p-checkbox value="FEMALE" formControlName="genders" inputId="genderFemale"
                                             class="custom-checkbox"></p-checkbox>
                                         <label for="genderFemale" class="ml-2"

@@ -49,7 +49,7 @@ export class HomeService {
     this.getCardData('vacancies').subscribe(data => {
       if (data) {
         const filteredData = data.filter((vacancy:any) => vacancy.visibility !== "BAN");
-      
+        // console.log("searchdata",data)
       if (filteredData.length === 30) {
         this.visibleNextPage = true;
       } else {
