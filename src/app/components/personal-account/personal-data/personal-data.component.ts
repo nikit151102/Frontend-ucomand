@@ -295,7 +295,7 @@ export class PersonalDataComponent implements OnInit {
         age: Number(formValues.age),
         freeLink: formValues.freeLink,
         ownLink: '',
-        aboutMe: formValues.aboutMe,
+        aboutMe: formValues.aboutMe.replace(/\r?\n/g, '\n'),
         telegram: formValues.telegram,
         email: formValues.email,
         dateOfRegistration: this.dataCurrentUser.dateOfRegistration,
@@ -305,7 +305,7 @@ export class PersonalDataComponent implements OnInit {
         role: this.dataCurrentUser.role,
         banned: this.dataCurrentUser.banned
       };
-
+      console.log("User",user) 
       this.personalDataService.updateUser(user).subscribe(
         response => {
           this.userData();
