@@ -79,6 +79,8 @@ export class MotivationsComponent implements OnInit {
 
   selectedTags: { id: number, name: string, color: string | null, competenceLevel: string | null, nameEng: string | null, type: string }[] = [];
 
+  isHovered: string | null = null;
+
   getSkillsColor(item: string): string {
     switch (item) {
       case 'Без оплаты':

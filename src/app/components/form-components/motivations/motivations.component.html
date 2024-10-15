@@ -16,11 +16,15 @@
     </div>
 
     <div class="listTags">
-        <ng-container *ngFor="let tag of tagsList">
-            <div class="motivationTag notSelectedTag" [style.background]="'#E2E2E2'" (click)="selectTag(tag)">
-                {{ tag.name }}
-            </div>
-        </ng-container>
+         <ng-container *ngFor="let tag of tagsList">
+            <div class="motivationTag notSelectedTag" 
+                [style.background]="isHovered === tag.name ? getSkillsColor(tag.name) : '#E2E2E2'"             
+                [style.color]="isHovered === tag.name ? '#fff' : '#000000'" 
+                (click)="selectTag(tag)"  (mouseenter)="isHovered = tag.name" 
+                (mouseleave)="isHovered = null">
+                 {{ tag.name }}
+                 </div>
+             </ng-container>
     </div>
 
     <div *ngIf="isPaymentInputVisible && isPayment" class="payment-input">
