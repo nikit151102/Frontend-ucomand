@@ -122,7 +122,6 @@ export class SortetdFilterComponent implements OnInit {
 
   private loadFiltersFromLocalStorage(): void {
     const filters = sessionStorage.getItem('bodyFilters');
-
     if (filters) {
       try {
         const parsedFilters = JSON.parse(filters);

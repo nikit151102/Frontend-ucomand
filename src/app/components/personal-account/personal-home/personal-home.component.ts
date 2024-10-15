@@ -53,7 +53,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute, public domainService: DomainService,
     public viewCardService: ViewCardService, private personalDataService: PersonalDataService,
     private personalHomeService: PersonalHomeService, private popUpDeleteService: PopUpDeleteService, public popUpExitService: PopUpExitService,
-    public resumeService: ResumeService, public vacancyService: VacancyService,public tokenService: TokenService,
+    public resumeService: ResumeService, public vacancyService: VacancyService, public tokenService: TokenService,
     private formSettingService: FormSettingService,
     private popUpErrorCreateService: PopUpErrorCreateService) { }
 
@@ -103,7 +103,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
 
     this.domainService.checkImageExists(this.domainName).then((path) => {
       this.imagePath = path;
-  
+
     });
     this.subscription.add(
       this.popUpDeleteService.visible$.subscribe(visible => {
@@ -146,15 +146,20 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
         this.visiblePage = true;
         this.domainName = this.domainService.setDomainWithZone(user.freeLink);
 
-        if(user.banned  == false)
-          {
-            localStorage.setItem('USaccess', 'we26b502b2fe32e69046810717534b32d');
-          }else{
-            localStorage.setItem('USaccess', 'b326b5062b2f0e69046810717534cb09' );
-          }
+        if (user.banned == false) {
+          localStorage.setItem('USaccess', 'we26b502b2fe32e69046810717534b32d');
+        } else {
+          localStorage.setItem('USaccess', 'b326b5062b2f0e69046810717534cb09');
+        }
       },
       (error) => {
         console.error('Ошибка при загрузке данных:', error);
+        this.tokenService.clearToken();
+        localStorage.removeItem('Linkken');
+        localStorage.removeItem('fullAccess');
+        localStorage.removeItem('userNickname');
+        localStorage.removeItem('userId');
+        this.router.navigate(['/']);
       }
     );
 
@@ -217,7 +222,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     event.preventDefault();
     this.router.navigate([`/${type}`, cardId]);
   }
-  
+
   handlePostVacancy(): void {
     const fullAccess = localStorage.getItem('fullAccess')
     const userNickname = localStorage.getItem('userNickname')
