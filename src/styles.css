@@ -38,12 +38,12 @@ body{
 }
 
 .p-component-overlay {
-    z-index: 0 !important;
+    z-index: 11 !important;
 }
 
 /* Внутри компонента (например, menu-nav.component.css) */
 :host ::ng-deep .p-component-overlay {
-    z-index: 0 !important;
+    z-index: 11 !important;
 }
 
 .overflow-x-hidden{
