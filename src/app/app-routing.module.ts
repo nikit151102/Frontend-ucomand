@@ -33,7 +33,10 @@ const routes: Routes = [
     path: 'myaccount/:id', loadChildren: () => import('./components/personal-account/personal-account.module').then(m => m.PersonalAccountModule), canActivate: [AuthGuard]
   },
   {
-    path: 'error', component: PageErrorComponent
+    path: 'error/', component: PageErrorComponent
+  },
+  {
+    path: 'error/:id', component: PageErrorComponent
   },
   { path: '**', redirectTo: '/error' }
 ];

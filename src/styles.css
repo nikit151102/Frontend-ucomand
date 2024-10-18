@@ -23,6 +23,11 @@
     --btnClosedFilter-hover: rgba(227, 227, 230, 1);
     --font-Monts: "Montserrat";
     --second-family: "Comfortaa";
+
+    --font-size-sm: 10px; /* — для небольшого текста */
+    --font-size-base: 10px; /* — для основного текста */
+    --font-size-md: 10px; /* — для подзаголовков */
+    --font-size-lg: 10px; /* — для заголовков */
 }
 
 body{

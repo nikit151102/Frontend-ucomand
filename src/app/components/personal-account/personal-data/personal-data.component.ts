@@ -193,6 +193,15 @@ export class PersonalDataComponent implements OnInit {
       },
       (error) => {
         console.error('Ошибка при загрузке данных пользователя:', error);
+        console.log('error.status', error)
+        localStorage.removeItem('userNickname');
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('fullAccess');
+        if (error.status) {
+          this.router.navigate(['/error', error.status.toString()]);
+        } else {
+          this.router.navigate(['/error', { num: "500" }]);
+        }
       }
     );
   }
@@ -256,7 +265,7 @@ export class PersonalDataComponent implements OnInit {
       if (isMobileOrTablet && scrollfocus) {
         this.scrollToField(invalidField)
       }
-      
+
       this.setVisibleError();
     }
   }
@@ -305,7 +314,7 @@ export class PersonalDataComponent implements OnInit {
         role: this.dataCurrentUser.role,
         banned: this.dataCurrentUser.banned
       };
-      console.log("User",user) 
+      console.log("User", user)
       this.personalDataService.updateUser(user).subscribe(
         response => {
           this.userData();

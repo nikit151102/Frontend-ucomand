@@ -65,7 +65,7 @@ export class DomainService {
   }
 
   // Метод для проверки существования изображения
-  checkImageExists(domainName: string): Promise<string> {
+  checkImageExists(domainName: string): Promise<any> {
     return new Promise((resolve) => {
       const imageUrl = `assets/domains/${domainName}.png`;
       const img = new Image();

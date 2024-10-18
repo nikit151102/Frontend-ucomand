@@ -52,25 +52,50 @@ export class UserAccountComponent implements OnInit, OnDestroy {
     
   }
 
-  async loadData(id: string): Promise<void> {
-    try {
-      const userData = await this.userAccountService.getUserData(id).toPromise();
+loadData(id: string): void {
+    this.userAccountService.getUserData(id).subscribe(
+      async (userData) => {
         this.userData = userData;
-      if (userData.freeLink) {
-        this.domainName = this.domainService.setDomain(userData.freeLink);
-        this.imagePath = await this.domainService.checkImageExists(this.domainName);
+        
+        if (userData.freeLink) {
+          this.domainName = this.domainService.setDomain(userData.freeLink);
+  
+          this.imagePath = await this.domainService.checkImageExists(this.domainName);
+        }
+  
+        this.userAccountService.getVacanciesData(this.userData.id).subscribe(
+          (vacancies) => {
+            this.vacancies = vacancies;
+          },
+          (error) => {
+            console.error('Error while fetching vacancies:', error);
+          }
+        );
+  
+        this.userAccountService.getResumessData(this.userData.id).subscribe(
+          (resumes) => {
+            this.resumes = resumes;
+          },
+          (error) => {
+            console.error('Error while fetching resumes:', error);
+          }
+        );
+      },
+      (error) => {
+        console.log('error.status',error)
+        if(this.userId == localStorage.getItem('userNickname')) {
+          localStorage.removeItem('userNickname');
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('fullAccess');
+        }
+        if (error.status) {
+          this.router.navigate(['/error', error.status.toString()]);
+        } else {
+          this.router.navigate(['/error', { num: "500" }]);
+        }
       }
-      this.vacancies = await this.userAccountService.getVacanciesData(this.userData.id).toPromise();
-      this.resumes = await this.userAccountService.getResumessData(this.userData.id).toPromise();
-    } catch (error: any) {
-      if (error.status) {
-        this.router.navigate(['/error', { num: error.status }]);
-      } else {
-        this.router.navigate(['/error', { num: 500 }]);
-      }
-    }
+    );
   }
-
 
 
   ngOnDestroy(): void {
