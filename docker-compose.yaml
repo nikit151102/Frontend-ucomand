@@ -1,17 +1,3 @@
-# services:
-
-#   frontend:
-#     build:
-#       context: ./
-#       dockerfile: Dockerfile-frontend
-#     ports:
-#       - 8081:8081
-#     volumes:
-#       - /app
-#       - /app/node_modules
-#     networks:
-#       - ucomand-network
-
 services:
 
   frontend:
@@ -19,12 +5,13 @@ services:
       context: ./
       dockerfile: Dockerfile-frontend
     ports:
-      - 80:80
+      - 8081:8081
     volumes:
       - /app
       - /app/node_modules
     networks:
       - ucomand-network
-# networks:
-#   ucomand-network:
-#     external: true
+
+networks:
+  ucomand-network:
+    external: true
