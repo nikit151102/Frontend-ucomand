@@ -24,6 +24,9 @@ const routes: Routes = [
     path: 'notifications', loadChildren: () => import('./components/notification/notification.module').then(m => m.NotificationModule)
   },
   {
+    path: 'CreateProject', loadChildren: () => import('./components/projects/create-edit-projects/create-edit-projects.module').then(m => m.CreateEditProjectsModule)
+  },
+  {
     path: 'resume/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule), data: { routeName: 'resume' }
   },
   {
