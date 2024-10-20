@@ -18,6 +18,9 @@ const routes: Routes = [
     path: 'aboutUs', loadChildren: () => import('./components/about-us/about-us.module').then(m => m.AboutUsModule)
   },
   {
+    path: 'tariffs', loadChildren: () => import('./components/page-tariffs/page-tariffs.module').then(m => m.PageTariffsModule)
+  },
+  {
     path: 'notifications', loadChildren: () => import('./components/notification/notification.module').then(m => m.NotificationModule)
   },
   {

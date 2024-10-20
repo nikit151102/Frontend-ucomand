@@ -1,1 +1,45 @@
-<p>card-tariffs works!</p>
+<div class="card">
+    <div class="card-title">
+        <div style="display: flex; align-items: flex-end; gap: 10px;">
+            <div class="card-title-img" [innerHTML]="cardItem.icon"></div>
+            <p style="margin: 0; color: var(--font-color);">
+                {{cardItem.title}}
+            </p>
+        </div>
+
+        <p class="card-title-price">
+            {{cardItem.price}}
+            <svg width="14" height="17" viewBox="0 0 14 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M8.5 0H2V8.5H0V10.3889H2V12.2778H0V14.1667H2V17H4V14.1667H8V12.2778H4V10.3889H8.5C11.54 10.3889 14 8.06556 14 5.19444C14 2.32333 11.54 0 8.5 0ZM8.5 8.5H4V1.88889H8.5C10.43 1.88889 12 3.37167 12 5.19444C12 7.01722 10.43 8.5 8.5 8.5Z"
+                    fill="#B9AEFF" />
+            </svg>
+        </p>
+    </div>
+    <div class="card-description">
+        <ng-container *ngFor="let item of cardItem.conditions">
+            <div class="card-description-item">
+                <p class="card-description-item-title">
+                    {{item.title}}
+                </p>
+                <div class="card-description-item-values" [ngStyle]="{ 'gap': item.value.length > 0 ? '5px' : '0px' }">
+                    <p class="card-description-item-values-value">
+                        {{item.value}}
+                    </p>
+                    <p class="card-description-item-values-textItem">
+                        {{item.textItem}}
+                    </p>
+                </div>
+            </div>
+        </ng-container>
+        <ul class="card-description-ul">
+            <ng-container *ngFor="let item of cardItem.descriptions">
+                <li>{{item}}</li>
+            </ng-container>
+        </ul>
+        <button class="btnPayment">
+            Оплатить
+        </button>
+    </div>
+
+</div>
