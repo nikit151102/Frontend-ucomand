@@ -47,7 +47,11 @@
     color: var(--font-color);
 }
 
-
+.availability {
+    border-radius: 20px;
+    padding: 8px 10px;
+    background: #f3f3f3;
+}
 
 .lookingCard {
     display: flex;
