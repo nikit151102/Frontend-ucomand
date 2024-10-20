@@ -36,6 +36,21 @@
     margin-bottom: 0;
 }
 
+.work{
+    border-radius: 20px;
+    padding: 8px 10px;
+    background: #f3f3f3;
+}
+
+.workText {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.7rem;
+    line-height: 120%;
+    color: var(--font-color);
+    margin: 0;
+}
+
 .lookingCard {
     display: flex;
     flex-direction: row;
