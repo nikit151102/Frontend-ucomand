@@ -33,6 +33,9 @@ const routes: Routes = [
     path: 'vacancy/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule), data: { routeName: 'vacancy' }
   },
   {
+    path: 'project/:id', loadChildren: () => import('./components/projects/project/project.module').then(m => m.ProjectModule)
+  },
+  {
     path: ':id', loadChildren: () => import('./components/user-path/user-path.module').then(m => m.UserPathModule)
   },
   {
