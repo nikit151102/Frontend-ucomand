@@ -1,5 +1,214 @@
 .container {
     margin: 0 auto;
     width: 75%;
-    margin-top: 125px;
+    margin-top: 0.5rem;
+}
+
+
+.background-container {
+    position: relative;
+    width: 100%;
+    height: 396px;
+    border-radius: 20px;
+    background-color: #b9aeff;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: rgba(16, 16, 16, 0.6);
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+.container-elements {
+    position: relative;
+    top: -40px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.container-elements-left,
+.container-elements-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.container-elements-right {
+    justify-content: space-between
+}
+
+.container-elements-left-iconBlock {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-radius: 20px;
+    padding: 12px 18px 12px 12px;
+    box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
+    background: #b9aeff;
+}
+
+.container-elements-left-iconBlock-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 88px;
+    height: 88px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.container-elements-left-text {
+    max-width: 255px;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 140%;
+    color: #2c3339;
+}
+
+.container-elements-left-gruopInputs {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.container-elements-left-gruopInputs-title {
+    margin: 0;
+    padding: 0px 32px;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color:var(--font-color);
+}
+
+.container-elements-left-gruopInputs-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-radius: 20px;
+    padding: 12px;
+    box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
+    background: #b9aeff;
+}
+
+.container-elements-left-gruopInputs-items-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-elements-left-gruopInputs-items-block-title {
+    margin: 0;
+    padding: 2px 20px;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 140%;
+    color: #101010;
+}
+
+input,
+textarea {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 140%;
+    outline: none;
+    box-sizing: border-box;
+    overflow: hidden;
+    resize: none;
+}
+
+textarea::placeholder,
+textarea::placeholder {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 140%;
+}
+
+.container-elements-left-gruopInputs-items-block-input {
+    width: 100%;
+    height: 46px;
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    padding: 16px;
+    background: #fff;
+}
+
+.textarea {
+    height: 98px;
+}
+
+.container-elements-right-confirmationText {
+    padding: 0 12px;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: var(--font-color);
+}
+
+
+.container-elements-right-btnBlock-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    padding: 16px;
+    width: 100%;
+    background: #84dd2c;
+    color: #fff;
+    border: none;
+}
+
+
+@media (max-width: 1198px) {
+    .container {
+        width: 100%;
+        margin-top: 65px;
+    }
+
+    .container-elements {
+        margin: 0 auto;
+        width: 95%;
+    }
+
+    .background-container {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .overlay,
+    .content {
+        width: 100%;
+        border-radius: 0;
+    }
+    .container-elements-left-text{
+        max-width: 202px;
+    }
+}
+
+@media (max-width: 878px) {
+    .container-elements {
+        flex-direction: column;
+    }
+}
+
+
+@media (max-width: 361px) {
+    .container-elements-left-text{
+        max-width: 170px;
+    }
 }
