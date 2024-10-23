@@ -100,7 +100,7 @@ export class FormComponent implements OnInit {
     }
 
     forkJoin({
-      motivations: this.formSettingService.getTags('MOTIVATION',-1),
+      motivations: this.formSettingService.getTags('MOTIVATION'),
       // professions: this.formSettingService.getTags('PROFESSION'),
       // skills: this.formSettingService.getTags('SKILL')
     }).subscribe({
