@@ -108,7 +108,7 @@ export class SortetdFilterComponent implements OnInit {
   ngOnInit(): void {
   
     forkJoin({
-      motivations: this.sortetdFilterService.getTags('MOTIVATION',0,10),
+      motivations: this.sortetdFilterService.getTags('MOTIVATION'),
     }).subscribe({
       next: (results) => {
         this.motivations = results.motivations;

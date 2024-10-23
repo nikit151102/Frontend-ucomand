@@ -30,7 +30,6 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
   @Input() placeholderValue: string = '';
   @Input() maxTags: number = 10;
   tags: { id: number; name: string; nameEng: string; competenceLevel: number | null; type: string, color: string | null }[]  = [];
-  page: number = 0;
   @Input() type: string = 'SKILL';
   @Input() service: any;
 
@@ -61,7 +60,6 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
 
   ngOnInit(): void {
     this.tags = [];
-    this.page = 0;
     this.loadMoreTags();
   }
 
@@ -90,17 +88,14 @@ export class TagSelectedLevelComponent implements ControlValueAccessor, OnChange
   // }
   
   loadMoreTags(): void {
-    this.service.getTags(this.type, this.page, 1000).subscribe((results: any) => {
+    this.service.getTags(this.type).subscribe((results: any) => {
       if (results.length > 0) {
-        this.page += 1;
   
         const newTags = results.filter((newTag: any) => !this.tags.some(tag => tag.id === newTag.id));
         this.tags = [...this.tags, ...newTags];
         
         this.updateFilteredTags();
   
-        // Рекурсивный вызов для подгрузки следующих данных
-        this.loadMoreTags();
       }
     });
   }
