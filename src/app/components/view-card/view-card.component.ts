@@ -78,6 +78,7 @@ export class ViewCardComponent implements OnInit {
       this.viewCardService.getCardData(id, this.typeCard).subscribe(
         (data) => {
           this.dataCard = data;
+          console.log("this.dataCard",this.dataCard)
           this.visibleCard = true;
           this.visibleError = false;
           this.domainName = this.domainService.setDomain(this.dataCard.user.freeLink);

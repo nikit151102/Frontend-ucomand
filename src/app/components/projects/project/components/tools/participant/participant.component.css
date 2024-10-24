@@ -1,0 +1,38 @@
+.content {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+p{
+    margin: 0;
+}
+
+.content-logo {
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+}
+
+.content-item,
+.content-item-personal {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-item-personal-lastName,
+.content-item-personal-firstName {
+    font-family: var(--font-Monts);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 117%;
+    color: #101010;
+}
+
+.content-item-profession {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #101010;
+}

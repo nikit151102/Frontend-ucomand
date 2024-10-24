@@ -1,1 +1,16 @@
-<p>tools works!</p>
+<div class="container">
+    <div class="container-card">
+        <div class="container-card-title">
+            <p class="container-card-title-text">
+                Команда
+            </p>
+        </div>
+        <div class="container-card-users">
+            <app-participant *ngFor="let item of itemsList " [itemData]="item"></app-participant>
+           
+        </div>
+    </div>
+   
+
+    <a class="container-users-btn">Хочу в команду</a>
+</div>
