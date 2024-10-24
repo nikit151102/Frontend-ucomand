@@ -1,1 +1,47 @@
-<p>vacancies works!</p>
+<div class="container">
+    <div class="container-title">
+        <p class="container-title-text">
+            вакансии
+        </p>
+    </div>
+    <div class="container-cards">
+        <ng-container *ngIf="isTablet">
+            <div class="column">
+                <ng-container *ngFor="let item of vacancies; let i = index">
+                  <ng-container *ngIf="i % 2 === 0"> <!-- First Column: 0, 2, 4, ... -->
+                    <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" 
+                       class="app-card-vacancy-link"
+                       (click)="onCardClick($event, item.id, 'vacancy')">
+                      <app-card-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-card-vacancy>
+                    </a>
+                  </ng-container>
+                </ng-container>
+              </div>
+        
+              <div class="column">
+                <ng-container *ngFor="let item of vacancies; let i = index">
+                  <ng-container *ngIf="i % 2 !== 0"> <!-- Second Column: 1, 3, 5, ... -->
+                    <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" 
+                       class="app-card-vacancy-link"
+                       (click)="onCardClick($event, item.id, 'vacancy')">
+                      <app-card-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-card-vacancy>
+                    </a>
+                  </ng-container>
+                </ng-container>
+              </div>
+        </ng-container>
+    
+          <ng-container *ngIf="isMobile">
+            <div class="column">
+                <ng-container *ngFor="let item of vacancies">
+                    <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" 
+                       class="app-card-vacancy-link"
+                       (click)="onCardClick($event, item.id, 'vacancy')">
+                      <app-card-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-card-vacancy>
+                    </a>
+                  </ng-container>
+            </div>
+          </ng-container>
+       
+    </div>
+</div>

@@ -1,0 +1,56 @@
+p {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.container-title {
+    padding: 32px 24px 0px 24px;
+}
+
+.container-title-text {
+    padding-bottom: 10px;
+    border-bottom: 1.40px solid #bdbdbd;
+    font-family: var(--font-Monts);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    text-transform: uppercase;
+    color: #101010;
+}
+
+.container-cards{
+    display: flex;
+    gap: 1rem;
+}
+
+
+.column{
+    flex: 1;
+}
+
+.card {
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100px;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.app-card-vacancy-link{
+    text-decoration: none;
+}
+
+
+@media (max-width: 1199.98px) {
+    .card-container {
+        columns: 1;
+    }
+ 
+}
