@@ -1,1 +1,16 @@
-<p>about-project works!</p>
+<div class="container">
+
+    <div class="container-detals">
+        <div class="container-detals-item" *ngFor="let item of detailsList">
+            <p class="container-detals-item-title">
+                {{item.title}}
+            </p>
+            <p class="container-detals-item-content">
+                {{item.context}}
+            </p>
+        </div>
+    </div>
+</div>
+
+
+

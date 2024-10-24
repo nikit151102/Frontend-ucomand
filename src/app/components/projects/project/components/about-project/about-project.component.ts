@@ -1,12 +1,38 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '../../project.service';
 
 @Component({
   selector: 'app-about-project',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, ],
   templateUrl: './about-project.component.html',
   styleUrl: './about-project.component.css'
 })
-export class AboutProjectComponent {
+export class AboutProjectComponent implements OnInit {
 
+  constructor(public projectService: ProjectService) {
+
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  
+
+  detailsList = [
+    {
+      title: 'Описание',
+      context: 'SmartFarm - это инновационная платформа для автоматизации и оптимизации процессов на ферме с использованием интернета вещей (IoT), машинного обучения и аналитики данных. Цель проекта - улучшить производительность сельскохозяйственных операций, уменьшить затраты и повысить устойчивость к изменяющимся погодным условиям и другим внешним факторам.'
+    },
+    {
+      title: 'Этап развития',
+      context: 'SmartFarm - это инновационная платформа для автоматизации и оптимизации процессов на ферме с использованием интернета вещей (IoT), машинного обучения и аналитики данных. Цель проекта - улучшить производительность сельскохозяйственных операций, уменьшить затраты и повысить устойчивость к изменяющимся погодным условиям и другим внешним факторам.'
+    },
+    {
+      title: 'Задачи',
+      context: 'SmartFarm - это инновационная платформа для автоматизации и оптимизации процессов на ферме с использованием интернета вещей (IoT), машинного обучения и аналитики данных. Цель проекта - улучшить производительность сельскохозяйственных операций, уменьшить затраты и повысить устойчивость к изменяющимся погодным условиям и другим внешним факторам.'
+    },
+  ]
 }

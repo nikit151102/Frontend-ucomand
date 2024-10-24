@@ -1,0 +1,45 @@
+p {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.container-detals {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-detals-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.container-detals-item-title {
+    font-family: var(--font-Monts);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 125%;
+    color: #000;
+}
+
+.container-detals-item-title {
+    font-family: var(--font-Monts);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 125%;
+    color: #000;
+}
+
+.container-detals-item-content {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 129%;
+    color: #000;
+}

@@ -7,7 +7,24 @@
     </div>
     <div class="container-elements">
         <div class="container-elements-left">
-<app-vacancies></app-vacancies>
+            <div class="container-elements-left-context">
+                <div class="container-nav">
+                    <a class="container-nav-item"
+                    [class.active]="projectService.activeTab === 'aboutProject'"
+                    (click)="setActiveTab('aboutProject')">
+                     О проекте
+                 </a>
+                 <a class="container-nav-item"
+                    [class.active]="projectService.activeTab === 'tape'"
+                    (click)="setActiveTab('tape')">
+                     Лента
+                 </a>
+                 
+                </div>
+                <app-about-project *ngIf="projectService.activeTab == 'aboutProject'"></app-about-project>
+            </div>
+           
+            <app-vacancies *ngIf="projectService.activeTab == 'aboutProject'"></app-vacancies>
         </div>
         <div class="container-elements-right">
             <app-team></app-team>

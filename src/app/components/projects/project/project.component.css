@@ -47,3 +47,34 @@
     display: flex;
     flex-direction: column;
 }
+
+.container-elements-left-context{
+    border-radius: 20px;
+    padding: 24px;
+    background: #fff;
+}
+
+
+.container-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    padding-bottom: 24px;
+}
+
+.container-nav-item {
+    padding: 10px 10px 10px 10px;
+    border-bottom: 1.4px solid #bdbdbd;
+    font-family: var(--font-Monts);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    text-transform: uppercase;
+    color: #bdbdbd;
+    transition: border-bottom 0.3s ease, color 0.3s ease;
+
+    &.active {
+        border-bottom: 1.4px solid #101010;
+        color: #101010;
+      }
+}
