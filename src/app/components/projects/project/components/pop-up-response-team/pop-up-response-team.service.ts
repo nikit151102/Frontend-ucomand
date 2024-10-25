@@ -9,6 +9,8 @@ export class PopUpResponseTeamService {
   private visibleSubject = new BehaviorSubject<boolean>(false);
   visible$ = this.visibleSubject.asObservable();  
 
+  visibleResume = ''
+
   constructor() { }
 
   showPopup() {
@@ -18,4 +20,13 @@ export class PopUpResponseTeamService {
   hidePopup() {
     this.visibleSubject.next(false); // Устанавливаем значение false
   }
+
+
+  private selectedtResumeSubject = new BehaviorSubject<any | null>(null);
+  selectedResume$ = this.selectedtResumeSubject.asObservable();
+  
+  selectResume(resume: string): void {
+    this.selectedtResumeSubject.next(resume);
+  }
+
 }

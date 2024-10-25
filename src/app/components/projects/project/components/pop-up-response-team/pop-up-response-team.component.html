@@ -17,7 +17,8 @@
         </div>
         <p class="popup-subtitle">Прикрепите актуальное резюме</p>
         <div class="popup-resumes">
-            <app-card-personal-resume *ngFor="let item of vacanciesList" [cardItem]="item"></app-card-personal-resume>
+            <app-active-resumes *ngFor="let item of vacanciesList" [cardItem]="item"></app-active-resumes>
+            
         </div>
         <div class="btns">
             <a class="popup-cancel" (click)="submit()">Отправить</a>
