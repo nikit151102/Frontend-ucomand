@@ -372,6 +372,10 @@ export class PopUpResponseTeamComponent {
 
   constructor(private popUpResponseTeamService: PopUpResponseTeamService) { }
 
+  ngOnInit(): void {
+    this.popUpResponseTeamService.selectResume('');
+  }
+
   submit(): void {
     this.popUpResponseTeamService.hidePopup();
   }
