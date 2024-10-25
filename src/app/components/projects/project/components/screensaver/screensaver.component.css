@@ -1,0 +1,199 @@
+p{
+    margin: 0;
+}
+
+.background-container {
+    position: relative;
+    width: 100%;
+    height: 396px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 30%);
+    position: relative;
+    z-index: 1;
+    padding: 20px 40px;
+}
+
+
+.tags {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.tag {
+    border: 1px solid #fff;
+    border-radius: 30px;
+    padding: 8px 12px;
+    background: rgba(16, 16, 16, 0.685);
+
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 129%;
+    color: #fff;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.logo {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.header-name-project {
+    font-family: var(--font-Monts);
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 111%;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.header-name-title {
+    width: 60%;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 122%;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.dateAndContacts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+.date {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+.date-title {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 120%;
+    color: #fff;
+}
+
+.date-value {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #fff;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contacts-title {
+    padding-left: 20px;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #fff;
+}
+
+.contacts-btns {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.contacts-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 20px;
+    padding: 6px 12px 6px 8px;
+    background: #e2e2e2;
+}
+
+.contacts-item:hover {
+    background: #B9AEFF;
+}
+
+
+.contacts-item img {
+    object-fit: contain;
+}
+
+.contacts-item p {
+    margin: 0;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 120%;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: #101010;
+}
+
+
+
+@media (max-width: 1199px) {
+    .background-container,
+    .overlay,
+    .content {
+        aspect-ratio: 16 / 9;
+        height: auto;
+    }
+
+    .background-container {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .background-container,
+    .overlay,
+    .content {
+        border-radius: 0;
+
+    }
+}

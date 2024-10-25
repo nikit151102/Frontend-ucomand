@@ -1,10 +1,5 @@
 <div class="container">
-    <div class="background-container">
-        <div class="overlay"></div>
-        <div class="content">
-
-        </div>
-    </div>
+    <app-screensaver></app-screensaver>
     <div class="container-elements">
         <div class="container-elements-left">
             <div class="container-elements-left-context">
@@ -21,13 +16,13 @@
                 <app-about-project *ngIf="projectService.activeTab == 'aboutProject'"></app-about-project>
                 <ng-container *ngIf="projectService.activeTab != 'aboutProject'">
                     <app-tape></app-tape>
-                  </ng-container>
+                </ng-container>
             </div>
             <ng-container *ngIf="projectService.activeTab == 'aboutProject'">
                 <app-vacancies></app-vacancies>
                 <app-reviews></app-reviews>
             </ng-container>
-            
+
         </div>
         <div class="container-elements-right">
             <app-team></app-team>
