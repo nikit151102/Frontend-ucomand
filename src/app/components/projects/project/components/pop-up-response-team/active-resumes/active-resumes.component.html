@@ -34,6 +34,6 @@
     </div>
     
     <div class="checkbox-container">
-        <input type="checkbox" [checked]="isSelected" class="custom-checkbox" />
+        <input type="checkbox" [checked]="isSelected" class="custom-checkbox"  (click)="viewCard(cardItem?.id)"/>
       </div>
 </div>
