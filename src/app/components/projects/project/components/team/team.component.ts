@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ParticipantComponent } from './participant/participant.component';
+import { PopUpResponseTeamService } from '../pop-up-response-team/pop-up-response-team.service';
 
 @Component({
   selector: 'app-team',
@@ -11,7 +12,7 @@ import { ParticipantComponent } from './participant/participant.component';
 })
 export class TeamComponent {
 
-  
+
   itemsList = [
     {
       lastName: 'Чаплыгин',
@@ -35,5 +36,12 @@ export class TeamComponent {
       profession: 'Дизайнер'
     },
   ]
+
+  constructor(private popUpResponseTeamService: PopUpResponseTeamService) { }
+
+  getPopUoP(){
+    this.popUpResponseTeamService.showPopup()
+  }
+  
 }
 

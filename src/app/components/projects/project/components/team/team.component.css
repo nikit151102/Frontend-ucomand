@@ -49,3 +49,7 @@
     line-height: 114%;
     color: #fff;
 }
+
+.container-users-btn:hover{
+    background: #5A4BB8;
+}

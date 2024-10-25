@@ -6,18 +6,28 @@ import { AboutProjectComponent } from './components/about-project/about-project.
 import { ProjectService } from './project.service';
 import { CommonModule } from '@angular/common';
 import { ReviewsComponent } from './components/reviews/reviews.component';
+import { PopUpResponseTeamService } from './components/pop-up-response-team/pop-up-response-team.service';
+import { PopUpResponseTeamComponent } from './components/pop-up-response-team/pop-up-response-team.component';
 
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [CommonModule, ToolsComponent,TeamComponent,AboutProjectComponent, VacanciesComponent, ReviewsComponent],
+  imports: [CommonModule, ToolsComponent,TeamComponent,AboutProjectComponent, VacanciesComponent, ReviewsComponent, PopUpResponseTeamComponent],
   templateUrl: './project.component.html',
   styleUrl: './project.component.css'
 })
-export class ProjectComponent {
+export class ProjectComponent implements OnInit{
 
-  constructor(public projectService:ProjectService){
+  isPopupVisible: boolean = false;
 
+  constructor(public projectService:ProjectService, private popUpResponseTeamService:PopUpResponseTeamService){
+
+  }
+
+  ngOnInit(): void {
+    this.popUpResponseTeamService.visible$.subscribe(visible => {
+      this.isPopupVisible = visible;
+    })
   }
 
   setActiveTab(tab: 'aboutProject' | 'tape') {

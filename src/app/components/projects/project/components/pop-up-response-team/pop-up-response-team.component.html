@@ -1,0 +1,26 @@
+<div class="popup-overlay">
+    <div class="popup" (click)="$event.stopPropagation()">
+        <div class="close-button" (click)="cancel()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 5L18 18M5.0002 18L18 5" stroke="#333334" stroke-opacity="0.3" stroke-width="1.4"
+                    stroke-linecap="round" />
+            </svg>
+        </div>
+        <p class="popup-title">Отклик в команду проекта</p>
+        <div class="popup-groupInput">
+            <p class="popup-groupInput-title">
+                Текст сообщения:
+            </p>
+            <textarea class="popup-groupInput-input textarea" type="text"
+                placeholder="Краткое описание (не более 300 символов)"></textarea>
+
+        </div>
+        <p class="popup-subtitle">Прикрепите актуальное резюме</p>
+        <div class="popup-resumes">
+            <app-card-personal-resume *ngFor="let item of vacanciesList" [cardItem]="item"></app-card-personal-resume>
+        </div>
+        <div class="btns">
+            <a class="popup-cancel" (click)="submit()">Отправить</a>
+        </div>
+    </div>
+</div>

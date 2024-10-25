@@ -49,7 +49,7 @@
     flex-direction: column;
 }
 
-.container-elements-left-context{
+.container-elements-left-context {
     border-radius: 20px;
     padding: 24px;
     background: #fff;
@@ -77,5 +77,46 @@
     &.active {
         border-bottom: 1.4px solid #101010;
         color: #101010;
-      }
+    }
+}
+
+@media (max-width: 1199px) {
+
+    .container {
+        width: 95%;
+        margin-top: 85px;
+    }
+
+
+    .background-container,
+    .overlay,
+    .content {
+        aspect-ratio: 16 / 9;
+        height: auto;
+    }
+
+    .background-container {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .container {
+        width: 100%;
+        margin-top: 65px;
+    }
+
+    .container-elements {
+        flex-direction: column-reverse;
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .background-container,
+    .overlay,
+    .content {
+        border-radius: 0;
+
+    }
 }
