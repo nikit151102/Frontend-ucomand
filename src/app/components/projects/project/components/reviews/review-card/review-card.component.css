@@ -1,0 +1,69 @@
+p {
+    margin: 0;
+}
+
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cardContainer-userData {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.cardContainer-userData-logo {
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+}
+
+.cardContainer-userData-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cardContainer-userData-content-fullName {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardContainer-userData-content-fullName p {
+    font-family: var(--font-Monts);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 117%;
+    color: #101010;
+}
+
+.cardContainer-userData-content-dateOfRegistration {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #bdbdbd;
+}
+
+.cardContainer-feedback {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardContainer-feedback-title {
+    font-family: var(--font-Monts);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 125%;
+    color: #000;
+}
+
+.cardContainer-feedback-content {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 129%;
+    color: #000;
+}

@@ -9,22 +9,21 @@
         <div class="container-elements-left">
             <div class="container-elements-left-context">
                 <div class="container-nav">
-                    <a class="container-nav-item"
-                    [class.active]="projectService.activeTab === 'aboutProject'"
-                    (click)="setActiveTab('aboutProject')">
-                     О проекте
-                 </a>
-                 <a class="container-nav-item"
-                    [class.active]="projectService.activeTab === 'tape'"
-                    (click)="setActiveTab('tape')">
-                     Лента
-                 </a>
-                 
+                    <a class="container-nav-item" [class.active]="projectService.activeTab === 'aboutProject'"
+                        (click)="setActiveTab('aboutProject')">
+                        О проекте
+                    </a>
+                    <a class="container-nav-item" [class.active]="projectService.activeTab === 'tape'"
+                        (click)="setActiveTab('tape')">
+                        Лента
+                    </a>
                 </div>
                 <app-about-project *ngIf="projectService.activeTab == 'aboutProject'"></app-about-project>
             </div>
-           
-            <app-vacancies *ngIf="projectService.activeTab == 'aboutProject'"></app-vacancies>
+            <ng-container *ngIf="projectService.activeTab == 'aboutProject'">
+                <app-vacancies></app-vacancies>
+                <app-reviews></app-reviews>
+            </ng-container>
         </div>
         <div class="container-elements-right">
             <app-team></app-team>

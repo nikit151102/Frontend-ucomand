@@ -1,0 +1,34 @@
+<div class="cardContainer">
+    <div class="cardContainer-userData">
+        <div class="cardContainer-userData-logo">
+            <ng-container *ngIf="Item?.user?.imageLink">
+                <img [src]="'assets/avatars/'+ Item.user.imageLink + '.png'" alt="avatar"
+                    style="width:100%; height:100%" class="logoImg">
+            </ng-container>
+            <ng-container *ngIf="!Item?.user?.imageLink">
+                <img [src]="'assets/avatars/default.png'" alt="avatar" style="width:100%; height:100%" class="logoImg">
+            </ng-container>
+        </div>
+        <div class="cardContainer-userData-content">
+            <div class="cardContainer-userData-content-fullName">
+                <p>
+                    {{Item.user.lastName}}
+                </p>
+                <p>
+                    {{Item.user.lastName}}
+                </p>
+            </div>
+            <p class="cardContainer-userData-content-dateOfRegistration">
+                {{ getFormattedDate(Item.user.dateOfRegistration) }}
+            </p>
+        </div>
+    </div>
+    <div class="cardContainer-feedback">
+        <p class="cardContainer-feedback-title">
+            {{Item.title}}
+        </p>
+        <p class="cardContainer-feedback-content">
+            {{Item.text}}
+        </p>
+    </div>
+</div>

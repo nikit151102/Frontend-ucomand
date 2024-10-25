@@ -1,1 +1,10 @@
-<p>reviews works!</p>
+<div class="container">
+    <div class="container-nav">
+        <p class="container-nav-item">
+            Отзывы
+        </p>
+    </div>
+    <div class="container-items">
+        <app-review-card [Item]="itemCard" *ngFor="let itemCard of itemsLisat"></app-review-card>
+    </div>
+</div>

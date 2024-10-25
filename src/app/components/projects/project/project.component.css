@@ -40,6 +40,7 @@
     flex: 70;
     display: flex;
     flex-direction: column;
+    gap: 24px;
 }
 
 .container-elements-right {
