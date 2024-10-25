@@ -1,3 +1,7 @@
+p{
+    margin: 0;
+}
+
 .container {
     margin: 0 auto;
     width: 75%;
@@ -84,13 +88,12 @@
 }
 
 .container-elements-left-gruopInputs-title {
-    margin: 0;
-    padding: 0px 32px;
+    padding: 0px 2.3rem 0.5rem 2.3rem;
     font-family: var(--font-Monts);
     font-weight: 500;
     font-size: 12px;
     line-height: 117%;
-    color:var(--font-color);
+    color: var(--font-color);
 }
 
 .container-elements-left-gruopInputs-items {
@@ -110,10 +113,10 @@
 
 .container-elements-left-gruopInputs-items-block-title {
     margin: 0;
-    padding: 2px 20px;
+    padding: 2px 1.2rem;
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 10px;
+    font-weight: 400;
+    font-size: 0.65rem;
     line-height: 140%;
     color: #101010;
 }
@@ -130,11 +133,11 @@ textarea {
     resize: none;
 }
 
-textarea::placeholder,
+input::placeholder,
 textarea::placeholder {
     font-family: var(--font-Monts);
     font-weight: 400;
-    font-size: 0.8rem;
+    font-size: 12px;
     line-height: 140%;
 }
 
@@ -152,10 +155,9 @@ textarea::placeholder {
 }
 
 .container-elements-right-confirmationText {
-    padding: 0 12px;
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 12px;
+    font-weight: 400;
+    font-size: 0.7rem;
     line-height: 117%;
     color: var(--font-color);
 }

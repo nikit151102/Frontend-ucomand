@@ -15,7 +15,7 @@
     background: #fff25f;
     padding: 60px;
     border-radius: 8px;
-    width: 725px;
+    width: 850px;
     max-height: 85vh;
     position: relative;
     border: 1px solid #fff25f;
@@ -80,8 +80,8 @@ p {
 .popup-groupInput-title {
     padding-left: 15px;
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 10px;
+    font-weight: 400;
+    font-size: 0.65rem;
     line-height: 140%;
     color: #101010;
 }
@@ -110,7 +110,7 @@ p {
 textarea::placeholder {
     font-family: var(--font-Monts);
     font-weight: 400;
-    font-size: 0.8rem;
+    font-size: 12px;
     line-height: 140%;
 }
 
