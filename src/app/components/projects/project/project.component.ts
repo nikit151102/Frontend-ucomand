@@ -8,11 +8,12 @@ import { CommonModule } from '@angular/common';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { PopUpResponseTeamService } from './components/pop-up-response-team/pop-up-response-team.service';
 import { PopUpResponseTeamComponent } from './components/pop-up-response-team/pop-up-response-team.component';
+import { TapeComponent } from './components/tape/tape.component';
 
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [CommonModule, ToolsComponent,TeamComponent,AboutProjectComponent, VacanciesComponent, ReviewsComponent, PopUpResponseTeamComponent],
+  imports: [CommonModule, ToolsComponent,TeamComponent,AboutProjectComponent, VacanciesComponent, ReviewsComponent, PopUpResponseTeamComponent, TapeComponent],
   templateUrl: './project.component.html',
   styleUrl: './project.component.css'
 })

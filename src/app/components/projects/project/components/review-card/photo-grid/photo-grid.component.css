@@ -1,0 +1,35 @@
+.photo-grid {
+    width: 100%;
+    display: grid;
+    gap: 4px; /* расстояние между фотографиями */
+    overflow: hidden;
+  }
+  
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px; /* закругленные углы */
+  }
+  
+  .photo-grid.one-photo {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    height: auto; /* половина высоты квадрата */
+  }
+  
+  .photo-grid.two-photos {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    height: auto; /* половина высоты квадрата */
+  }
+  
+  .photo-grid.three-photos {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .photo-grid.three-photos .photo:first-child {
+    grid-row: 1 / 3; /* первая фото на всю высоту */
+  }
+  

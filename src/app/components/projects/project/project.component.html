@@ -19,11 +19,15 @@
                     </a>
                 </div>
                 <app-about-project *ngIf="projectService.activeTab == 'aboutProject'"></app-about-project>
+                <ng-container *ngIf="projectService.activeTab != 'aboutProject'">
+                    <app-tape></app-tape>
+                  </ng-container>
             </div>
             <ng-container *ngIf="projectService.activeTab == 'aboutProject'">
                 <app-vacancies></app-vacancies>
                 <app-reviews></app-reviews>
             </ng-container>
+            
         </div>
         <div class="container-elements-right">
             <app-team></app-team>

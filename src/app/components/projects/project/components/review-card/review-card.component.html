@@ -31,4 +31,9 @@
             {{Item.text}}
         </p>
     </div>
+
+    <ng-container *ngIf="visibleFoto">
+        <app-photo-grid [photos]="photoArray"></app-photo-grid>
+    </ng-container>
+    
 </div>
