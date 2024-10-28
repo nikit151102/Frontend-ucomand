@@ -1,104 +1,116 @@
 <div class="container">
-    <div class="background-container">
-        <div class="overlay"></div>
-        <div class="content">
-           
-        </div>
-    </div>
-    <div class="container-elements">
-        <div class="container-elements-left">
-            <div class="container-elements-left-iconBlock">
-                <div class="container-elements-left-iconBlock-img">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 3V21M3 12H21" stroke="#806BFF" stroke-width="1.4" stroke-linecap="round" />
-                      </svg>
-                </div>
-                <p class="container-elements-left-text">
-                    Добавьте логотип вашей компании/проекта (jpg, png не более 10 мб)
-                </p>
-            </div>
-            <div class="container-elements-left-gruopInputs">
-                <p class="container-elements-left-gruopInputs-title">
-                    Профиль вашего проекта:
-                </p>
-                <div class="container-elements-left-gruopInputs-items">
-                    <div class="container-elements-left-gruopInputs-items-block">
-                        <p class="container-elements-left-gruopInputs-items-block-title">
-                            Название проекта
-                        </p>
-                        <input class="container-elements-left-gruopInputs-items-block-input" type="text"  placeholder="Введите название">
+    <form [formGroup]="form">
+        <div class="background-container">
+            <div class="overlay"></div>
+            <div class="content">
 
-                    </div>
-                    <div class="container-elements-left-gruopInputs-items-block">
-                        <p class="container-elements-left-gruopInputs-items-block-title">
-                            Краткое описание (не более 300 символов)
-                        </p>
-                        <textarea class="container-elements-left-gruopInputs-items-block-input textarea" type="text"  placeholder="Поле ввода"></textarea>
-
-                    </div>
-                    <div class="container-elements-left-gruopInputs-items-block">
-                        <p class="container-elements-left-gruopInputs-items-block-title">
-                            Тип проекта:
-                        </p>
-                        <input class="container-elements-left-gruopInputs-items-block-input" type="text" placeholder="Выбрать">
-
-                    </div>
-                </div>
-            </div>
-            <div class="container-elements-left-gruopInputs">
-                <p class="container-elements-left-gruopInputs-title">
-                    Контактные данные:
-                </p>
-                <div class="container-elements-left-gruopInputs-items">
-                    <div class="container-elements-left-gruopInputs-items-block">
-                        <p class="container-elements-left-gruopInputs-items-block-title">
-                            Email:
-                        </p>
-                        <input class="container-elements-left-gruopInputs-items-block-input" type="text" placeholder="Введите email">
-
-                    </div>
-                    <div class="container-elements-left-gruopInputs-items-block">
-                        <p class="container-elements-left-gruopInputs-items-block-title">
-                            Telegram:
-                        </p>
-                        <input class="container-elements-left-gruopInputs-items-block-input" type="text" placeholder="Введите telegram">
-
-                    </div>
-                </div>
             </div>
         </div>
-        <div class="container-elements-right">
-            <div class="container-elements-left-gruopInputs">
-                <div class="container-elements-left-gruopInputs-items" style=" padding-bottom: 52px;" >
-                    <div class="container-elements-left-gruopInputs-items-block">
-                        <p class="container-elements-left-gruopInputs-items-block-title">
-                            Описание:
-                        </p>
-                        <textarea class="container-elements-left-gruopInputs-items-block-input textarea" type="text" placeholder="Введите описание"></textarea>
+        <div class="container-elements">
+            <div class="container-elements-left">
+                <div class="container-elements-left-iconBlock">
+                    <div class="container-elements-left-iconBlock-img">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 3V21M3 12H21" stroke="#806BFF" stroke-width="1.4" stroke-linecap="round" />
+                        </svg>
                     </div>
-                    <div class="container-elements-left-gruopInputs-items-block">
-                        <p class="container-elements-left-gruopInputs-items-block-title">
-                            Этап развития:
-                        </p>
-                        <textarea class="container-elements-left-gruopInputs-items-block-input textarea" type="text" placeholder="Введите этапы работы"></textarea>
+                    <p class="container-elements-left-text">
+                        Добавьте логотип вашей компании/проекта (jpg, png не более 10 мб)
+                    </p>
+                </div>
+                <div class="container-elements-left-gruopInputs">
+                    <p class="container-elements-left-gruopInputs-title">
+                        Профиль вашего проекта:
+                    </p>
+                    <div class="container-elements-left-gruopInputs-items">
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">
+                                Название проекта
+                            </p>
+                            <input class="container-elements-left-gruopInputs-items-block-input" type="text"
+                                placeholder="Введите название" formControlName="nameProject">
+
+                        </div>
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">
+                                Краткое описание (не более 300 символов)
+                            </p>
+                            <textarea class="container-elements-left-gruopInputs-items-block-input textarea" type="text"
+                                placeholder="Поле ввода" formControlName="miniDescription"></textarea>
+
+                        </div>
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">
+                                Тип проекта:
+                            </p>
+                            <input class="container-elements-left-gruopInputs-items-block-input" type="text"
+                                placeholder="Выбрать" formControlName="typeProject">
+
+                        </div>
                     </div>
-                    <div class="container-elements-left-gruopInputs-items-block">
-                        <p class="container-elements-left-gruopInputs-items-block-title">
-                            Задачи:
-                        </p>
-                        <textarea class="container-elements-left-gruopInputs-items-block-input textarea" type="text" placeholder="Введите задачи"></textarea>
+                </div>
+                <div class="container-elements-left-gruopInputs">
+                    <p class="container-elements-left-gruopInputs-title">
+                        Контактные данные:
+                    </p>
+                    <div class="container-elements-left-gruopInputs-items">
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">
+                                Email:
+                            </p>
+                            <input class="container-elements-left-gruopInputs-items-block-input" type="text"
+                                placeholder="Введите email" formControlName="email">
+
+                        </div>
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">
+                                Telegram:
+                            </p>
+                            <input class="container-elements-left-gruopInputs-items-block-input" type="text"
+                                placeholder="Введите telegram" formControlName="telegram">
+
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="container-elements-right">
+                <div class="container-elements-left-gruopInputs">
+                    <div class="container-elements-left-gruopInputs-items" style=" padding-bottom: 52px;">
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">
+                                Описание:
+                            </p>
+                            <textarea class="container-elements-left-gruopInputs-items-block-input textarea" type="text"
+                                placeholder="Введите описание" formControlName="description"></textarea>
+                        </div>
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">
+                                Этап развития:
+                            </p>
+                            <textarea class="container-elements-left-gruopInputs-items-block-input textarea" type="text"
+                                placeholder="Введите этапы работы" formControlName="stageDevelopment"></textarea>
+                        </div>
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">
+                                Задачи:
+                            </p>
+                            <textarea class="container-elements-left-gruopInputs-items-block-input textarea" type="text"
+                                placeholder="Введите задачи" formControlName="tasks"></textarea>
+                        </div>
+                    </div>
+                </div>
 
-            <p class="container-elements-right-confirmationText">
-                Нажимая на кнопку «Опубликовать», я даю свое согласие на обработку моих персональных данных, в соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных», на условиях и для целей, определенных в Согласии на обработку персональных данных
-            </p>
-            <div class="container-elements-right-btnBlock">
-                <button class="container-elements-right-btnBlock-btn">
-                    Опубликовать
-                </button>
+                <p class="container-elements-right-confirmationText">
+                    Нажимая на кнопку «Опубликовать», я даю свое согласие на обработку моих персональных данных, в
+                    соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных», на условиях и
+                    для целей, определенных в Согласии на обработку персональных данных
+                </p>
+                <div class="container-elements-right-btnBlock">
+                    <button class="container-elements-right-btnBlock-btn">
+                        Опубликовать
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
