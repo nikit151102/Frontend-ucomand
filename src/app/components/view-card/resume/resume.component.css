@@ -10,8 +10,8 @@
 
 .title {
     font-family: var(--font-Monts);
-    font-weight: 400;
-    font-size: 0.9rem;
+    font-weight: 600;
+    font-size: var(--subtitle1);
     line-height: 114%;
     color: var(--font-color);
     margin-bottom: 0;
@@ -21,8 +21,8 @@
 
 .chapterCard-title {
     font-family: var(--font-Monts);
-    font-weight: 400;
-    font-size: 0.8rem;
+    font-weight: 500;
+    font-size: var(--text12);
     line-height: 117%;
     color: var(--font-color);
     margin-top: 0;

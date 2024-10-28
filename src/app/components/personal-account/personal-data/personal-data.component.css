@@ -80,7 +80,7 @@
     padding: 0px 2.3rem 0.5rem 2.3rem;
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 12px;
+    font-size: var(--text12);
     line-height: 117%;
     color: var(--font-color);
 }
@@ -96,14 +96,7 @@
     font-size: 15px;
 }
 
-.input-group label {
-    padding: 0 1.2rem;
-    font-family: var(--font-Monts);
-    font-weight: 400;
-    font-size: 0.65rem;
-    line-height: 140%;
-    color: #101010;
-}
+
 
 .input-group input {
     border: 1px solid #e2e2e2;
@@ -143,10 +136,11 @@
 .gender_title {
     padding: 0 1.2rem;
     font-family: var(--font-Monts);
-    font-weight: 500;
-    font-size: 0.65rem;
+    font-weight: 400;
+    font-size: var(--text10);
     line-height: 140%;
     color: #101010;
+    opacity: 0.5;
 }
 
 .genderlabel  {
