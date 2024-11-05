@@ -1,40 +1,94 @@
-
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-:root{
-    --background: #333334; /* #f2f2f2 */
-    --background-card: rgba(255, 255, 255, 0.1); /* #fff */
-    --card-hover: #5a4bb8; /* #a6eb20 */
-    --background-card-account: #5a4bb8; /* #fff */
-    --card-hover-account: rgba(255, 255, 255, 0.1); /* #a6eb20 */
-    --background-archive: #101010; /* #e2e2e2 */
-    --card-archive: #434242; /* #fff */
-    --line-item: rgba(255, 255, 255, 0.1); /* rgba(0, 0, 0, 0.1) */
-    --font-color: #fff; /* #101010 */
-    --logo-text-color: #fff; /* #5a4bb8 */
-    --logo-background-color: rgba(255, 255, 255, 0.1); /* rgba(185, 174, 255, 1)*/
+
+:root {
+    --background: #333334;
+    /* #f2f2f2 */
+    --background-card: rgba(255, 255, 255, 0.1);
+    /* #fff */
+    --card-hover: #5a4bb8;
+    /* #a6eb20 */
+    --background-card-account: #5a4bb8;
+    /* #fff */
+    --card-hover-account: rgba(255, 255, 255, 0.1);
+    /* #a6eb20 */
+    --background-archive: #101010;
+    /* #e2e2e2 */
+    --card-archive: #434242;
+    /* #fff */
+    --line-item: rgba(255, 255, 255, 0.1);
+    /* rgba(0, 0, 0, 0.1) */
+    --font-color: #fff;
+    /* #101010 */
+    --logo-text-color: #fff;
+    /* #5a4bb8 */
+    --logo-background-color: rgba(255, 255, 255, 0.1);
+    /* rgba(185, 174, 255, 1)*/
     --font-profession-eng: rgba(255, 255, 255, 0.1);
-    --screensaver-color: #a6eb20; /* #101010 */
-    --screensaver-background: #474748; /* #a6eb20 */
+    --screensaver-color: #a6eb20;
+    /* #101010 */
+    --screensaver-background: #474748;
+    /* #a6eb20 */
     --tag-background: rgba(243, 243, 243, 0.1);
-    --btnClosedFilter-color: rgba(51, 51, 52, 0.3);/* rgba(227, 227, 230, 0.3); */ 
+    --btnClosedFilter-color: rgba(51, 51, 52, 0.3);
+    /* rgba(227, 227, 230, 0.3); */
     --btnClosedFilter-hover: rgba(227, 227, 230, 1);
     --font-Monts: "Montserrat";
     --second-family: "Comfortaa";
 
-    --font-size-sm: 10px; /* — для небольшого текста */
-    --font-size-base: 10px; /* — для основного текста */
-    --font-size-md: 10px; /* — для подзаголовков */
-    --font-size-lg: 10px; /* — для заголовков */
+    --subtitle1: 14px;
+    --text10: 10px;
+    --text12: 12px;
+    --text13: 13px;
+    --text14: 14px;
+    --text16: 16px;
 }
 
-body{
+.text13Caps {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: var(--text13);
+    line-height: 117%;
+    text-transform: uppercase;
+    color: var(--font-color);
+}
+
+.text10opac05 {
+    padding: 0 1.2rem;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: var(--text10);
+    line-height: 140%;
+    color: #101010;
+    opacity: 0.5;
+}
+
+.subtitle16caps{
+    padding: 10px 10px 10px 10px;
+    border-bottom: 1.4px solid #bdbdbd;
+    font-family: var(--font-Monts);
+    font-weight: 700;
+    font-size: var(--text16);
+    line-height: 112%;
+    text-transform: uppercase;
+    color: #bdbdbd;
+    transition: border-bottom 0.3s ease, color 0.3s ease;
+
+    &.active {
+        border-bottom: 1.4px solid #101010;
+        color: #101010;
+    }
+}
+
+
+
+body {
     margin: 0;
     background: var(--background);
 
-    
+
 }
 
 .p-component-overlay {
@@ -46,12 +100,14 @@ body{
     z-index: 11 !important;
 }
 
-.overflow-x-hidden{
+.overflow-x-hidden {
     overflow-x: hidden;
 }
-p, h1,h2,h3,div{
+
+p,
+h1,
+h2,
+h3,
+div {
     font-family: var(--font-Monts);
 }
-
-
-

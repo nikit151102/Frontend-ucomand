@@ -16,17 +16,6 @@ p{
     padding-bottom: 32px;
 }
 
-.container-nav-item {
-    padding: 10px 10px 10px 10px;
-    font-family: var(--font-Monts);
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 112%;
-    text-transform: uppercase;
-    border-bottom: 1.4px solid #101010;
-    color: #101010;
-}
-
 .container-items{
     display: flex;
     flex-direction: column;

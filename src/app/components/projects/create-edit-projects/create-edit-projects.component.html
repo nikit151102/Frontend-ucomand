@@ -2,8 +2,7 @@
     <form [formGroup]="form">
         <div class="background-container">
             <div class="overlay"></div>
-            <div class="content">
-
+            <div class="content">-
             </div>
         </div>
         <div class="container-elements">
@@ -43,8 +42,8 @@
                             <p class="container-elements-left-gruopInputs-items-block-title">
                                 Тип проекта:
                             </p>
-                            <input class="container-elements-left-gruopInputs-items-block-input" type="text"
-                                placeholder="Выбрать" formControlName="typeProject">
+                            <app-type-project formControlName="typeProject"
+                                [placeholderValue]="'Выбрать'" (tagsChanged)="onTagsChanged($event, 'typeProject')"></app-type-project>
 
                         </div>
                     </div>

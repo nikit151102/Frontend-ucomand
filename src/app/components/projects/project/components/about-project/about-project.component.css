@@ -23,7 +23,7 @@ p {
 .container-detals-item-title {
     font-family: var(--font-Monts);
     font-weight: 600;
-    font-size: 16px;
+    font-size: var(--text16);
     line-height: 125%;
     color: #000;
 }
@@ -31,7 +31,7 @@ p {
 .container-detals-item-title {
     font-family: var(--font-Monts);
     font-weight: 600;
-    font-size: 16px;
+    font-size: var(--text16);
     line-height: 125%;
     color: #000;
 }
@@ -39,7 +39,7 @@ p {
 .container-detals-item-content {
     font-family: var(--font-Monts);
     font-weight: 400;
-    font-size: 14px;
+    font-size: var(--text14);
     line-height: 129%;
     color: #000;
 }

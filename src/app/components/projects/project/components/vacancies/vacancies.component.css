@@ -12,16 +12,7 @@ p {
     padding: 32px 24px 0px 24px;
 }
 
-.container-title-text {
-    padding-bottom: 10px;
-    border-bottom: 1.40px solid #bdbdbd;
-    font-family: var(--font-Monts);
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 112%;
-    text-transform: uppercase;
-    color: #101010;
-}
+
 
 .container-cards{
     display: flex;
