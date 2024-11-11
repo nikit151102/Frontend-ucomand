@@ -248,7 +248,9 @@
 input[type="checkbox"] {
     accent-color: #E2E2E2;
 }
-
+input:disabled, textarea:disabled, select:disabled {
+    background-color: #edebeb !important;
+  }
 .custom-checkbox {
     width: 4rem;
     height: 4rem;
