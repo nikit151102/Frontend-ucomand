@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-screensaver',
@@ -9,6 +9,8 @@ import { Component } from '@angular/core';
   styleUrl: './screensaver.component.css'
 })
 export class ScreensaverComponent {
+
+  @Input() detailsList: any;
 
   tags = ['Стартап','Компания','Разовый проект']
   

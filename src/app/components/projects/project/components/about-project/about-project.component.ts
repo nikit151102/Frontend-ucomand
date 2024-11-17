@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProjectService } from '../../project.service';
 
 @Component({
@@ -11,28 +11,29 @@ import { ProjectService } from '../../project.service';
 })
 export class AboutProjectComponent implements OnInit {
 
+  @Input() detailsList: any;
+  data:any;
   constructor(public projectService: ProjectService) {
 
   }
 
   ngOnInit(): void {
+this.data = [
+  {
+    title: 'Описание',
+    context: this.detailsList.description
+  },
+  {
+    title: 'Этап развития',
+    context: this.detailsList.stageDevelopment
+  },
+  {
+    title: 'Задачи',
+    context: this.detailsList.tasks
+  },
+]
 
+console.log("data", this.data)
   }
 
-  
-
-  detailsList = [
-    {
-      title: 'Описание',
-      context: 'SmartFarm - это инновационная платформа для автоматизации и оптимизации процессов на ферме с использованием интернета вещей (IoT), машинного обучения и аналитики данных. Цель проекта - улучшить производительность сельскохозяйственных операций, уменьшить затраты и повысить устойчивость к изменяющимся погодным условиям и другим внешним факторам.'
-    },
-    {
-      title: 'Этап развития',
-      context: 'SmartFarm - это инновационная платформа для автоматизации и оптимизации процессов на ферме с использованием интернета вещей (IoT), машинного обучения и аналитики данных. Цель проекта - улучшить производительность сельскохозяйственных операций, уменьшить затраты и повысить устойчивость к изменяющимся погодным условиям и другим внешним факторам.'
-    },
-    {
-      title: 'Задачи',
-      context: 'SmartFarm - это инновационная платформа для автоматизации и оптимизации процессов на ферме с использованием интернета вещей (IoT), машинного обучения и аналитики данных. Цель проекта - улучшить производительность сельскохозяйственных операций, уменьшить затраты и повысить устойчивость к изменяющимся погодным условиям и другим внешним факторам.'
-    },
-  ]
 }

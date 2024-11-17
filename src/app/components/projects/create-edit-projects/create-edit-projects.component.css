@@ -175,6 +175,11 @@ textarea::placeholder {
     border: none;
 }
 
+.error-message {
+    color: red;
+    font-size: 0.7rem;
+}
+
 
 @media (max-width: 1198px) {
     .container {

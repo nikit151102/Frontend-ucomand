@@ -10,6 +10,7 @@ import { PopUpResponseTeamService } from './components/pop-up-response-team/pop-
 import { PopUpResponseTeamComponent } from './components/pop-up-response-team/pop-up-response-team.component';
 import { TapeComponent } from './components/tape/tape.component';
 import { ScreensaverComponent } from './components/screensaver/screensaver.component';
+import { CreateEditProjectsService } from '../create-edit-projects.service';
 
 @Component({
   selector: 'app-project',
@@ -22,12 +23,29 @@ export class ProjectComponent implements OnInit{
 
   isPopupVisible: boolean = false;
 
-  constructor(public projectService:ProjectService, private popUpResponseTeamService:PopUpResponseTeamService){
+  constructor(public projectService:ProjectService, private popUpResponseTeamService:PopUpResponseTeamService, private createEditProjectsService: CreateEditProjectsService){
 
   }
 
+  projectData: any;
 
   ngOnInit(): void {
+    this.projectData = this.createEditProjectsService.getFormData();
+
+  if(!this.createEditProjectsService.getFormData()){
+    this.projectData = {
+      nameProject: 'Проект будущего', // Название проекта
+      miniDescription: 'Краткое описание проекта, не более 300 символов', // Минимальное описание
+      typeProject: {
+        name: 'Технологический'
+      }, // Тип проекта
+      email: 'example@example.com', // Электронная почта
+      telegram: '@username', // Telegram-аккаунт
+      description: 'Подробное описание проекта, максимум 1500 символов.', // Полное описание
+      stageDevelopment: 'Проект находится на стадии разработки.', // Стадия развития
+      tasks: 'Определить рынок, собрать команду, запустить MVP.' // Задачи
+    };
+  }
     this.popUpResponseTeamService.visible$.subscribe(visible => {
       this.isPopupVisible = visible;
     });

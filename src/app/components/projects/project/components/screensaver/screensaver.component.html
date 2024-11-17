@@ -2,8 +2,8 @@
     <div class="overlay"></div>
     <div class="content">
         <div class="tags">
-            <p class="tag" *ngFor="let item of tags">
-                {{item}}
+            <p class="tag" >
+                {{detailsList.typeProject.name}}
             </p>
         </div>
         <div class="header-content">
@@ -11,10 +11,10 @@
                 <img [src]="'assets/avatars/default.png'" alt="avatar">
             </div>
             <p class="header-name-project">
-                Название проекта
+                {{detailsList.nameProject}}
             </p>
             <p class="header-name-title">
-                Елки ру - проект помогающий грамотно сортировать мусор и искать места приема  вторсырья
+                {{detailsList.miniDescription}}
             </p>
         </div>
         <div class="dateAndContacts">

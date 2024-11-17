@@ -26,12 +26,9 @@ interface Tag {
 })
 export class TypeProjectComponent implements ControlValueAccessor, OnChanges, OnInit {
   tags: Tag[] = [
-    { id: 1, name: 'Web Development', nameEng: 'Web Development', competenceLevel: null, type: 'PROJECT' },
-    { id: 2, name: 'Mobile Development', nameEng: 'Mobile Development', competenceLevel: null, type: 'PROJECT' },
-    { id: 3, name: 'Data Science', nameEng: 'Data Science', competenceLevel: null, type: 'PROJECT' },
-    { id: 4, name: 'UI/UX Design', nameEng: 'UI/UX Design', competenceLevel: null, type: 'PROJECT' },
-    { id: 5, name: 'DevOps', nameEng: 'DevOps', competenceLevel: null, type: 'PROJECT' },
-    { id: 6, name: 'Machine Learning', nameEng: 'Machine Learning', competenceLevel: null, type: 'PROJECT' }
+    { id: 1, name: 'Стартап', nameEng: '', competenceLevel: null, type: 'PROJECT' },
+    { id: 2, name: 'Компания', nameEng: '', competenceLevel: null, type: 'PROJECT' },
+    { id: 3, name: 'Разовый проект', nameEng: '', competenceLevel: null, type: 'PROJECT' },
   ];
   
   page: number = 0;
