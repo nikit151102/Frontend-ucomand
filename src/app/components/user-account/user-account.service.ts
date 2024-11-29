@@ -18,13 +18,13 @@ export class UserAccountService {
 
   getVacanciesData(id: string): Observable<any> {
     return this.http.post(`${this.domain}/vacancies/getAll?page=0&size=1000`, {"userId": id, "visibilities": [
-    "CREATOR_ONLY"
+    "EVERYBODY"
   ]});
   }
 
   getResumessData(id: string): Observable<any> {
     return this.http.post(`${this.domain}/resumes/getAll?page=0&size=1000`, {"userId": id, "visibilities": [
-    "CREATOR_ONLY"
+    "EVERYBODY"
   ]});
   }
 

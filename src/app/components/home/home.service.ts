@@ -34,7 +34,7 @@ export class HomeService {
       savedFilters = JSON.parse(filters);
     } else {
       savedFilters = {
-        "visibilities": ["CREATOR_ONLY"]
+        "visibilities": ["EVERYBODY"]
       };
       this.saveFilters(savedFilters);
     }
