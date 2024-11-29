@@ -139,17 +139,24 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
       )
     }).subscribe(
       ({ user, vacancies, resumes }) => {
-        this.dataCurrentUser = user;
-        this.vacanciesData = vacancies;
-        this.resumesData = resumes;
-        this.checkUserData();
-        this.visiblePage = true;
-        this.domainName = this.domainService.setDomainWithZone(user.freeLink);
+        if (user && user.nickname && user.id) {
+          this.dataCurrentUser = user;
+          this.vacanciesData = vacancies;
+          this.resumesData = resumes;
+          this.checkUserData();
+          this.visiblePage = true;
+          this.domainName = this.domainService.setDomainWithZone(user.freeLink);
 
-        if (user.banned == false) {
-          localStorage.setItem('USaccess', 'we26b502b2fe32e69046810717534b32d');
+          if (user.banned == false) {
+            localStorage.setItem('USaccess', 'we26b502b2fe32e69046810717534b32d');
+          } else {
+            localStorage.setItem('USaccess', 'b326b5062b2f0e69046810717534cb09');
+          }
         } else {
-          localStorage.setItem('USaccess', 'b326b5062b2f0e69046810717534cb09');
+          localStorage.removeItem('userNickname');
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('fullAccess');
+          this.router.navigate(['/']);
         }
       },
       (error) => {

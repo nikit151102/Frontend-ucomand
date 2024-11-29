@@ -44,6 +44,26 @@
     --text13: 13px;
     --text14: 14px;
     --text16: 16px;
+
+}
+
+.text13Caps{
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: var(--text13);
+    line-height: 117%;
+    text-transform: uppercase;
+    color: var(--font-color);
+}
+
+.text10opac05 {
+    padding: 0 1.2rem;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: var(--text10);
+    line-height: 140%;
+    color: #101010;
+    opacity: 0.5;
 }
 
 .text13Caps {

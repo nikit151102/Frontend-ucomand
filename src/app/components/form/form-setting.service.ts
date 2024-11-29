@@ -20,8 +20,8 @@ export class FormSettingService {
 
   private domain = `${environment.apiUrl}`;
 
-  getTags(type: string, page: number, size=100): Observable<any> {
-    return this.http.get(`${this.domain}/tags?page=${page}&size=${size}&types=${type}`);
+  getTags(type: string): Observable<any> {
+    return this.http.get(`${this.domain}/tags?types=${type}`);
   }
 
   setData(type: string, data: any): Observable<any> {

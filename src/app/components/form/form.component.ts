@@ -100,7 +100,7 @@ export class FormComponent implements OnInit {
     }
 
     forkJoin({
-      motivations: this.formSettingService.getTags('MOTIVATION',-1),
+      motivations: this.formSettingService.getTags('MOTIVATION'),
       // professions: this.formSettingService.getTags('PROFESSION'),
       // skills: this.formSettingService.getTags('SKILL')
     }).subscribe({
@@ -332,7 +332,7 @@ export class FormComponent implements OnInit {
       type: 'PROFESSION'
     };
     console.log("formData.minPayment",formData.minPayment)
-    formData.visibility = "CREATOR_ONLY";
+    formData.visibility = "EVERYBODY";
     formData.freeLink = formData.freeLink || "string";
     formData.ownLink = formData.ownLink || "string";
     formData.contacts = formData.contacts || "string";

@@ -26,11 +26,13 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     private router: Router
   ) { }
 
- 
+
 
   private domain = `${environment.apiUrl}`;
   telegramWidgetLoaded: boolean = false;
   userAuthenticated: boolean = false;
+  errorMessage: string = '';
+
   ngAfterViewInit() {
     if (this.popUpEntryService.visible) {
       this.loadTelegramWidget();
@@ -74,16 +76,20 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     (window as any).onTelegramAuth = undefined;
     this.telegramWidgetLoaded = false;
   }
-  
+
   onTelegramAuth(user: any) {
-    this.http.post(`${this.domain}/users/auth/byTelegram`, user, {
-      headers: { 'Content-Type': 'application/json' }
-    }).subscribe((response: any) => {
-      this.tokenService.setToken(response.token);
-      this.userAuthenticated = true;
-      this.login_user()
-    });
-    this.closePopUp()
+    if (user.username) {
+      this.http.post(`${this.domain}/users/auth/byTelegram`, user, {
+        headers: { 'Content-Type': 'application/json' }
+      }).subscribe((response: any) => {
+        this.tokenService.setToken(response.token);
+        this.userAuthenticated = true;
+        this.login_user()
+      });
+      this.closePopUp()
+    } else {
+      this.errorMessage = 'Пожалуйста, заполните имя пользователя в Telegram';
+    }
   }
 
 
@@ -116,7 +122,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
         const ageValid = typeof data.age === 'number' && data.age > 0;
         const cityOfResidenceValid = typeof data.cityOfResidence !== null;
         const emailValid = typeof data.email === 'string' && data.email.trim() !== '';
-        
+
         // if (!firstNameValid) {
         //   console.error('Invalid first name:', data.firstName);
         // }
@@ -137,14 +143,13 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
         // }
 
         const isDataValid = firstNameValid && lastNameValid && genderValid && ageValid && cityOfResidenceValid && emailValid;
-        
+
         // true -> b326b5062b2f0e69046810717534cb09
 
-        if(!isDataValid)
-        {
+        if (!isDataValid) {
           localStorage.setItem('fullAccess', 'we26b502b2fe32e69046810717534b32d');
-        }else{
-          localStorage.setItem('fullAccess', 'b326b5062b2f0e69046810717534cb09' );
+        } else {
+          localStorage.setItem('fullAccess', 'b326b5062b2f0e69046810717534cb09');
         }
         localStorage.setItem('Linkken', data.imageLink);
         localStorage.setItem('userNickname', data.nickname);
@@ -161,9 +166,10 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
 
   closePopUp() {
-      this.popUpEntryService.visible = false; 
-      this.telegramWidgetLoaded = false; 
-      this.removeTelegramWidget(); 
+    this.popUpEntryService.visible = false;
+    this.telegramWidgetLoaded = false;
+    this.removeTelegramWidget();
+    this.errorMessage = '';
   }
 
   clearCookies() {
