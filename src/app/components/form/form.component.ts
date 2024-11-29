@@ -332,7 +332,7 @@ export class FormComponent implements OnInit {
       type: 'PROFESSION'
     };
     console.log("formData.minPayment",formData.minPayment)
-    formData.visibility = "CREATOR_ONLY";
+    formData.visibility = "EVERYBODY";
     formData.freeLink = formData.freeLink || "string";
     formData.ownLink = formData.ownLink || "string";
     formData.contacts = formData.contacts || "string";
