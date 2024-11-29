@@ -1,13 +1,12 @@
 <div class="container">
-    <div class="container-detals">
-      <div class="container-detals-item" *ngFor="let item of data">
-        <p class="container-detals-item-title">
-          {{ item.title }}
-        </p>
-        <p class="container-detals-item-content" style="white-space: pre-wrap;">
-          {{ item.context }}
-        </p>
-      </div>
+  <div class="container-detals">
+    <div class="container-detals-item" *ngFor="let item of detailsList">
+      <p class="container-detals-item-title">
+        {{ item.title }}
+      </p>
+      <p class="container-detals-item-content" style="white-space: pre-wrap;">
+        {{ item.context }}
+      </p>
     </div>
   </div>
-  
+</div>

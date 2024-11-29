@@ -15,6 +15,8 @@ p{
     height: 396px;
     border-radius: 20px;
     background-color: #b9aeff;
+    cursor: pointer;
+    overflow: hidden;
 }
 
 .overlay {
@@ -30,7 +32,17 @@ p{
 .content {
     position: relative;
     z-index: 1;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    line-height: 396px; 
+    font-weight: bold;
+    pointer-events: none;
 }
+
+.content.hidden {
+    display: none; 
+  }
 
 .container-elements {
     position: relative;
