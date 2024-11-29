@@ -16,8 +16,7 @@ export class ScreensaverComponent {
 
   constructor(private router: Router, private projectService: ProjectService) { }
 
-  tags = [{ name: 'Стартап', type: 'STARTUP' }, { name: 'Компания', type: 'COMPANY' }, { name: 'Разовый проект', type: 'ONE_TIME_PROJECT ' }]
-
+  tags = [{ name: 'Стартап', type: 'STARTUP' }, { name: 'Компания', type: 'COMPANY' }, { name: 'Разовый проект', type: 'ONE_TIME_PROJECT' }]
 
   getTagName(type: string): string {
     const tag = this.tags.find(tag => tag.type === type);

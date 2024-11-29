@@ -1,5 +1,7 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { environment } from '../../../../../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class PopUpResponseTeamService {
 
   visibleResume = ''
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   showPopup() {
     this.visibleSubject.next(true);  // Устанавливаем значение true
@@ -28,5 +30,20 @@ export class PopUpResponseTeamService {
   selectResume(resume: string): void {
     this.selectedtResumeSubject.next(resume);
   }
+
+  getCardsData(): Observable<any> {
+    const token = localStorage.getItem('authToken');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get(`${environment.apiUrl}/resumes/ofCurrentUser`, { headers });
+  }
+
+  filterResumes(type: string, list:any[]): any[] {
+    return list.filter((resume: any) => resume.visibility === type);
+  }
+
 
 }

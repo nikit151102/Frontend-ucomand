@@ -17,8 +17,7 @@
         </div>
         <p class="popup-subtitle">Прикрепите актуальное резюме</p>
         <div class="popup-resumes">
-            <app-active-resumes *ngFor="let item of vacanciesList" [cardItem]="item"></app-active-resumes>
-            
+            <app-active-resumes [cardItem]="itemResume" *ngFor="let itemResume of popUpResponseTeamService.filterResumes('EVERYBODY', resumesList) " ></app-active-resumes>
         </div>
         <div class="btns">
             <a class="popup-cancel" (click)="submit()">Отправить</a>

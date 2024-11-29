@@ -31,11 +31,7 @@ export class TypeProjectComponent implements ControlValueAccessor, OnChanges, On
     { id: 3, name: 'Разовый проект', nameEng: '', competenceLevel: null, type: 'ONE_TIME_PROJECT' },
   ];
   
-  page: number = 0;
-  @Input() maxTags: number = 3;
-  @Input() placeholderValue: string = '';
-  @Input() type: string = 'SKILL';
-  @Input() service: any;
+  @Input() maxTags: number = 1;
   @Output() tagsChanged = new EventEmitter<Tag>();
   value: string = '';
   private onChange: (value: Tag) => void = () => {};
@@ -47,27 +43,6 @@ export class TypeProjectComponent implements ControlValueAccessor, OnChanges, On
   ngOnChanges(changes: SimpleChanges): void {}
 
   ngOnInit(): void {
-    // this.tags = [];
-    this.page = 0;
-    // this.loadMoreTags();
-  }
-
-  // onScroll(event: any) {
-  //   const { scrollTop, scrollHeight, clientHeight } = event.target;
-  //   if (scrollTop + clientHeight >= scrollHeight - 20) {
-  //     this.loadMoreTags();
-  //   }
-  // }
-
-  loadMoreTags(): void {
-    this.service.getTags(this.type, this.page, 1000).subscribe((results: any) => {
-      if (results.length > 0) {
-        this.page += 1;
-        const newTags = results.filter((newTag: any) => !this.tags.some(tag => tag.id === newTag.id));
-        this.tags = [...this.tags, ...newTags];
-        this.loadMoreTags();
-      }
-    });
   }
 
   toggleTagBlock(show: boolean) {
@@ -77,13 +52,10 @@ export class TypeProjectComponent implements ControlValueAccessor, OnChanges, On
   }
 
   selectTag(tag: Tag) {
-    console.log("tag",tag)
     if (!this.selectedTags.includes(tag) && this.selectedTags.length < this.maxTags) {
-      // this.selectedTags.push(tag);
       this.onChange(tag);
       this.tagsChanged.emit(tag);
       this.value = tag.name;
-      // this.tags = this.tags.filter(t => t.id !== tag.id);
     }
   }
 
@@ -100,9 +72,10 @@ export class TypeProjectComponent implements ControlValueAccessor, OnChanges, On
     return this.selectedTags.map(tag => tag.name).join(', ');
   }
 
-  writeValue(value: Tag[]): void {
-    if (value && Array.isArray(value)) {
-      this.selectedTags = value;
+  writeValue(value: any): void {
+    const tag = this.tags.find(tag => tag.type === value);
+    if (tag) {
+      this.selectTag(tag)
     } else {
       this.selectedTags = [];
     }

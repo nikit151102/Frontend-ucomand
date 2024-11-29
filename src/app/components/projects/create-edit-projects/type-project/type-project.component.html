@@ -7,22 +7,16 @@
       (click)="toggleTagBlock(true)"
       (blur)="toggleTagBlock(false)"
       class="tag-input"
-      [placeholder]="getSelectedTagsText() || placeholderValue"
+      [placeholder]="getSelectedTagsText() || 'Выбрать'"
       [ngModel]="value"
     />
 
     <ng-container *ngIf="showTagBlock && selectedTags.length < maxTags">
-      <div *ngIf="tags.length > 0; else noTags" class="tag-block" >
-        <!-- (scroll)="onScroll($event)" -->
+      <div *ngIf="tags.length > 0;" class="tag-block" >
         <div *ngFor="let tag of tags" (click)="selectTag(tag)">
           {{ tag.name }}
         </div>
       </div>
-      <ng-template #noTags>
-        <div class="tag-block">
-          <p class="no-tags-message">Нет тегов, соответствующих вашему запросу</p>
-        </div>
-      </ng-template>
     </ng-container>
   </div>
 </div>
