@@ -75,6 +75,14 @@
     color: var(--font-color);
 }
 
+.text12 {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: var(--text12);
+    line-height: 117%;
+    color: var(--font-color);
+}
+
 .text10opac05 {
     padding: 0 1.2rem;
     font-family: var(--font-Monts);

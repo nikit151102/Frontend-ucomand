@@ -12,11 +12,12 @@ import { TapeComponent } from './components/tape/tape.component';
 import { ScreensaverComponent } from './components/screensaver/screensaver.component';
 import { CreateEditProjectsService } from '../create-edit-projects/create-edit-projects.service';
 import { ActivatedRoute } from '@angular/router';
+import { ArchiveVacanciesComponent } from './components/archive-vacancies/archive-vacancies.component';
 
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [CommonModule, ToolsComponent, TeamComponent, AboutProjectComponent, VacanciesComponent, ReviewsComponent, PopUpResponseTeamComponent, TapeComponent, ScreensaverComponent],
+  imports: [CommonModule, ToolsComponent, TeamComponent, AboutProjectComponent, VacanciesComponent, ReviewsComponent, PopUpResponseTeamComponent, TapeComponent, ScreensaverComponent, ArchiveVacanciesComponent],
   templateUrl: './project.component.html',
   styleUrl: './project.component.css'
 })

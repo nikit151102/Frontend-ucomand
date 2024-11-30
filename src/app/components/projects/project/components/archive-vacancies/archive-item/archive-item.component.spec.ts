@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CardResumeComponent } from './card-resume.component';
+import { ArchiveItemComponent } from './archive-item.component';
 
-describe('CardResumeComponent', () => {
-  let component: CardResumeComponent;
-  let fixture: ComponentFixture<CardResumeComponent>;
+describe('ArchiveItemComponent', () => {
+  let component: ArchiveItemComponent;
+  let fixture: ComponentFixture<ArchiveItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CardResumeComponent]
+      imports: [ArchiveItemComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CardResumeComponent);
+    fixture = TestBed.createComponent(ArchiveItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

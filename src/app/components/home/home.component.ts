@@ -1,5 +1,4 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { CardVacancyComponent } from '../card-vacancy/card-vacancy.component';
 import { CommonModule } from '@angular/common';
 import { BackgroundImgsComponent } from '../background-imgs/background-imgs.component';
 import { SearchComponent } from './search/search.component';
@@ -7,16 +6,16 @@ import { SortetdFilterComponent } from './sortetd-filter/sortetd-filter.componen
 import { ViewCardService } from '../view-card/view-card.service';
 import { Router } from '@angular/router';
 import { SettingHeaderService } from '../setting-header.service';
-import { CardResumeComponent } from '../card-resume/card-resume.component';
 import { HomeService } from './home.service';
 import { OneSectionComponent } from './one-section/one-section.component';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { SearchInputPhoneComponent } from './search/search-input-phone/search-input-phone.component';
+import { ResumeLibraryComponent, VacancyLibraryComponent } from '../../../common-uteam-library';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, OneSectionComponent, BackgroundImgsComponent, SearchComponent, CardVacancyComponent, SortetdFilterComponent, CardResumeComponent, SearchInputPhoneComponent],
+  imports: [CommonModule, OneSectionComponent, BackgroundImgsComponent, SearchComponent, SortetdFilterComponent, SearchInputPhoneComponent, VacancyLibraryComponent, ResumeLibraryComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   animations: [
@@ -39,7 +38,7 @@ export class HomeComponent implements OnInit {
   isDesktop = false;
   isTablet = false;
   isMobile = false;
-
+  resumeVisibleSections: string[] = ['profession', 'availability', 'skills', 'motivations', 'profile']
 
   constructor(
     private viewCardService: ViewCardService,

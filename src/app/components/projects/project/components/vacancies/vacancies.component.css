@@ -9,18 +9,31 @@ p {
 }
 
 .container-title {
-    padding: 32px 24px 0px 24px;
+    display: flex;
+    justify-content: space-between;
+    margin: 32px 24px 0px 24px;
+    padding-bottom: 10px;
+    border-bottom: 1.4px solid #bdbdbd;
 }
 
 
+.btn-new-vacancy {
+    border-radius: 30px;
+    padding: 12px;
+    width: 161px;
+    height: 38px;
+    background: #84dd2c;
+    color: #fff;
+}
 
-.container-cards{
+
+.container-cards {
     display: flex;
     gap: 1rem;
 }
 
 
-.column{
+.column {
     flex: 1;
 }
 
@@ -34,14 +47,13 @@ p {
     box-sizing: border-box;
 }
 
-.app-card-vacancy-link{
+.app-card-vacancy-link {
     text-decoration: none;
 }
-
 
 @media (max-width: 1199.98px) {
     .card-container {
         columns: 1;
     }
- 
+
 }

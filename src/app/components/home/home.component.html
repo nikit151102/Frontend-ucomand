@@ -18,7 +18,7 @@
                 <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" 
                    class="app-card-vacancy-link"
                    (click)="onCardClick($event, item.id, 'vacancy')">
-                  <app-card-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-card-vacancy>
+                  <lib-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy>
                 </a>
               </ng-container>
             </ng-container>
@@ -30,7 +30,7 @@
                 <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" 
                    class="app-card-vacancy-link"
                    (click)="onCardClick($event, item.id, 'vacancy')">
-                  <app-card-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-card-vacancy>
+                  <lib-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy>
                 </a>
               </ng-container>
             </ng-container>
@@ -42,7 +42,7 @@
                 <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" 
                    class="app-card-vacancy-link"
                    (click)="onCardClick($event, item.id, 'vacancy')">
-                  <app-card-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-card-vacancy>
+                  <lib-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy>
                 </a>
               </ng-container>
             </ng-container>
@@ -56,7 +56,7 @@
                 <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" 
                    class="app-card-vacancy-link"
                    (click)="onCardClick($event, item.id, 'vacancy')">
-                  <app-card-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-card-vacancy>
+                  <lib-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy>
                 </a>
               </ng-container>
             </ng-container>
@@ -68,7 +68,7 @@
                 <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" 
                    class="app-card-vacancy-link"
                    (click)="onCardClick($event, item.id, 'vacancy')">
-                  <app-card-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-card-vacancy>
+                  <lib-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy>
                 </a>
               </ng-container>
             </ng-container>
@@ -80,7 +80,7 @@
             <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" 
                class="app-card-vacancy-link"
                (click)="onCardClick($event, item.id, 'vacancy')">
-              <app-card-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-card-vacancy>
+              <lib-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy>
             </a>
           </ng-container>
         </ng-container>
@@ -94,7 +94,7 @@
                 <a [href]="getCardUrl(item.id, 'resumes', 'resume')" 
                    class="app-card-resume-link"
                    (click)="onCardClick($event, item.id, 'resume')">
-                  <app-card-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-card-resume>
+                  <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'" [visibleSections]="resumeVisibleSections"></lib-resume>
                 </a>
               </ng-container>
             </ng-container>
@@ -106,7 +106,7 @@
                 <a [href]="getCardUrl(item.id, 'resumes', 'resume')" 
                    class="app-card-resume-link"
                    (click)="onCardClick($event, item.id, 'resume')">
-                  <app-card-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-card-resume>
+                  <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'" [visibleSections]="resumeVisibleSections"></lib-resume>
                 </a>
               </ng-container>
             </ng-container>
@@ -118,7 +118,7 @@
                 <a [href]="getCardUrl(item.id, 'resumes', 'resume')" 
                    class="app-card-resume-link"
                    (click)="onCardClick($event, item.id, 'resume')">
-                  <app-card-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-card-resume>
+                  <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'" [visibleSections]="resumeVisibleSections"></lib-resume>
                 </a>
               </ng-container>
             </ng-container>
@@ -132,7 +132,7 @@
                 <a [href]="getCardUrl(item.id, 'resumes', 'resume')" 
                    class="app-card-resume-link"
                    (click)="onCardClick($event, item.id, 'resume')">
-                  <app-card-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"> </app-card-resume>
+                  <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'" [visibleSections]="resumeVisibleSections"> </lib-resume>
                 </a>
               </ng-container>
             </ng-container>
@@ -144,7 +144,7 @@
                 <a [href]="getCardUrl(item.id, 'resumes', 'resume')" 
                    class="app-card-resume-link"
                    (click)="onCardClick($event, item.id, 'resume')">
-                  <app-card-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-card-resume>
+                  <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'" [visibleSections]="resumeVisibleSections"></lib-resume>
                 </a>
               </ng-container>
             </ng-container>
@@ -156,7 +156,7 @@
             <a [href]="getCardUrl(item.id, 'resumes', 'resume')" 
                class="app-card-resume-link"
                (click)="onCardClick($event, item.id, 'resume')">
-              <app-card-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-card-resume>
+              <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'" [visibleSections]="resumeVisibleSections"></lib-resume>
             </a>
           </ng-container>
         </ng-container>

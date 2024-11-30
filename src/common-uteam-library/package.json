@@ -1,0 +1,25 @@
+{
+  "name": "common-uteam-library",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^18.2.0",
+    "@angular/core": "^18.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "module": "fesm2022/common-uteam-library.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2022": "./esm2022/common-uteam-library.mjs",
+      "esm": "./esm2022/common-uteam-library.mjs",
+      "default": "./fesm2022/common-uteam-library.mjs"
+    }
+  }
+}

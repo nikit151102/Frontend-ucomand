@@ -1,0 +1,25 @@
+<div class="card">
+    <p class="title">
+        {{cardItem.title}}
+       
+    </p>
+    <div class="chapterCard">
+        <p class="chapterCard-title" style="margin-bottom: 0;">
+            Ищу:
+        </p>
+        <div class="lookingCard">
+            <p class="chapterCard-value" style="margin-top: 0.5rem; width: 90%; margin-bottom: 5px;">
+                {{ cardItem?.profession?.name | uppercase }}
+            </p>
+            <p [ngStyle]="{ 'border-color': getSkillsColor(cardItem.profession.competenceLevel) }" class="lookingCard-level" *ngIf="cardItem?.profession?.competenceLevel">
+                {{ getSkills(cardItem.profession?.competenceLevel)  }}
+              </p>
+        </div>
+        <div class="lookingCard">
+            <p class="chapterCard-value-eng" >
+                {{ cardItem?.profession?.nameEng | uppercase }}
+            </p>
+        </div>
+        
+    </div>
+</div>

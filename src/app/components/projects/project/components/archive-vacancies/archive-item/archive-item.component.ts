@@ -3,14 +3,13 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-card-vacancy',
+  selector: 'app-archive-item',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './card-vacancy.component.html',
-  styleUrl: './card-vacancy.component.css'
+  templateUrl: './archive-item.component.html',
+  styleUrl: './archive-item.component.css'
 })
-export class CardVacancyComponent {
-
+export class ArchiveItemComponent {
   constructor(private router: Router) { }
   
   @Input() cardItem: any

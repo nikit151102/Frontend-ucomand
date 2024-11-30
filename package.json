@@ -28,7 +28,8 @@
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "xlsx": "^0.18.5",
-    "zone.js": "~0.14.3"
+    "zone.js": "~0.14.3",
+      "my-shared-library": "file:../common-uteam-library"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.0.2",
