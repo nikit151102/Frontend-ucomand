@@ -19,6 +19,9 @@
                         <div *ngIf="form.get('title')?.errors?.['maxlength']" class="error-message">
                             Заголовок не должно превышать 100 символов
                         </div>
+                        <div *ngIf="form.get('title')?.errors?.['forbiddenWords']" class="error-message">
+                            Запрещённые слова: <span *ngFor="let word of form.get('title')?.errors?.['forbiddenWords']">{{ word }}, </span>
+                        </div>
                     </div>
                 </div>
             </ng-container>
@@ -87,6 +90,9 @@
                         </div>
                         <div *ngIf="form.get('details')?.errors?.['maxlength']" class="error-message">
                             Описание не должно превышать 700 символов
+                        </div>
+                        <div *ngIf="form.get('details')?.errors?.['forbiddenWords']" class="error-message">
+                            Запрещённые слова: <span *ngFor="let word of form.get('details')?.errors?.['forbiddenWords']">{{ word }}, </span>
                         </div>
                     </div>
                 </div>

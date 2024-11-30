@@ -13,6 +13,7 @@ import { SaveChangesPopupComponent } from './save-changes-popup/save-changes-pop
 import { SaveChangesPopupService } from './save-changes-popup/save-changes-popup.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { filter } from 'rxjs/operators';
+import { forbiddenWordsValidator } from '../../../validators/forbidden-words.validator';
 
 @Component({
   selector: 'app-form',
@@ -134,12 +135,12 @@ export class FormComponent implements OnInit {
 
   initializeForm(): void {
     this.form = this.fb.group({
-      title: ['', [this.optionalValidator, Validators.maxLength(100)]],
+      title: ['', [this.optionalValidator, Validators.maxLength(100), forbiddenWordsValidator()]],
       profession: [null, Validators.required],
       skills: [[], Validators.required],
       motivations: [this.selectedTags, Validators.required],
       gender: [''],
-      details: ['', [Validators.required, Validators.maxLength(700)]],
+      details: ['', [Validators.required, Validators.maxLength(700), forbiddenWordsValidator()]],
       minPayment: [this.setPaymentAmount ],
     });
 
@@ -147,7 +148,7 @@ export class FormComponent implements OnInit {
       this.selectedTags = tags;
     });
   }
-
+  
   loadFormDataFromStorage(): void {
     const savedData = localStorage.getItem(this.FORM_STORAGE_KEY);
     if (savedData) {

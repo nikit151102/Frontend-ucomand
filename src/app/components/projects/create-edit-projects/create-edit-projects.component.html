@@ -65,6 +65,9 @@
                                 <div *ngIf="form.get('summary')?.errors?.['maxlength']">
                                     Описание не должно превышать 300 символов.
                                 </div>
+                                <div *ngIf="form.get('summary')?.errors?.['forbiddenWords']" class="error-message">
+                                    Запрещённые слова: <span *ngFor="let word of form.get('summary')?.errors?.['forbiddenWords']">{{ word }}, </span>
+                                </div>
                             </div>
                         </div>
                         <div class="container-elements-left-gruopInputs-items-block">
@@ -98,6 +101,9 @@
                                 class="error-message">
                                 <div *ngIf="form.get('telegram')?.errors?.['required']">Telegram обязателен.</div>
                             </div>
+                            <div *ngIf="form.get('telegram')?.errors?.['forbiddenWords']" class="error-message">
+                                Запрещённые слова: <span *ngFor="let word of form.get('telegram')?.errors?.['forbiddenWords']">{{ word }}, </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -116,6 +122,9 @@
                                     Описание не должно превышать 1500 символов.
                                 </div>
                             </div>
+                            <div *ngIf="form.get('description')?.errors?.['forbiddenWords']" class="error-message">
+                                Запрещённые слова: <span *ngFor="let word of form.get('description')?.errors?.['forbiddenWords']">{{ word }}, </span>
+                            </div>
                         </div>
                         <div class="container-elements-left-gruopInputs-items-block">
                             <p class="container-elements-left-gruopInputs-items-block-title">Этап развития:</p>
@@ -128,6 +137,9 @@
                                 <div *ngIf="form.get('developmentStage')?.errors?.['maxlength']">
                                     Этапы развития не должны превышать 1500 символов.
                                 </div>
+                                <div *ngIf="form.get('developmentStage')?.errors?.['forbiddenWords']" class="error-message">
+                                    Запрещённые слова: <span *ngFor="let word of form.get('developmentStage')?.errors?.['forbiddenWords']">{{ word }}, </span>
+                                </div>
                             </div>
                         </div>
                         <div class="container-elements-left-gruopInputs-items-block">
@@ -139,6 +151,9 @@
                                 <div *ngIf="form.get('tasks')?.errors?.['required']">Задачи обязательны.</div>
                                 <div *ngIf="form.get('tasks')?.errors?.['maxlength']">
                                     Задачи не должны превышать 1500 символов.
+                                </div>
+                                <div *ngIf="form.get('tasks')?.errors?.['forbiddenWords']" class="error-message">
+                                    Запрещённые слова: <span *ngFor="let word of form.get('tasks')?.errors?.['forbiddenWords']">{{ word }}, </span>
                                 </div>
                             </div>
                         </div>
@@ -164,6 +179,9 @@
                             </div>
                             <div *ngIf="form.get('nickname')?.hasError('forbiddenWords')">
                                 <p class="error-message">Данный логин занят.</p>
+                            </div>
+                            <div *ngIf="form.get('nickname')?.errors?.['forbiddenWords']" class="error-message">
+                                Запрещённые слова: <span *ngFor="let word of form.get('nickname')?.errors?.['forbiddenWords']">{{ word }}, </span>
                             </div>
                         </div>
                     </div>

@@ -33,6 +33,11 @@
                 class="error-message">
                 <div *ngIf="personalDataForm.get('name')?.errors?.['required']">Имя обязательно для заполнения.</div>
               </div>
+              <div *ngIf="personalDataForm.get('name')?.errors?.['forbiddenWords']" class="error-message">
+                Запрещённые слова: <span
+                  *ngFor="let word of personalDataForm.get('name')?.errors?.['forbiddenWords']">{{ word }},
+                </span>
+              </div>
             </div>
             <div class="input-group">
               <label for="surname" class="text10opac05">Фамилия:</label>
@@ -44,6 +49,10 @@
                 class="error-message">
                 <div *ngIf="personalDataForm.get('surname')?.errors?.['required']">Фамилия обязательна для заполнения.
                 </div>
+              </div>
+              <div *ngIf="personalDataForm.get('surname')?.errors?.['forbiddenWords']" class="error-message">
+                Запрещённые слова: <span *ngFor="let word of personalDataForm.get('surname')?.errors?.['forbiddenWords']">{{ word }},
+                </span>
               </div>
             </div>
             <div class="input-group">
@@ -62,12 +71,12 @@
               <div style="display: flex; gap: 1rem;">
                 <p-radioButton class="genderValue" name="gender" value="MALE" formControlName="gender"
                   inputId="male"></p-radioButton>
-                <label class="ml-2 genderlabel" for="male" >Мужской</label>
+                <label class="ml-2 genderlabel" for="male">Мужской</label>
               </div>
               <div style="display: flex; gap: 1rem;">
                 <p-radioButton class="genderValue" name="gender" value="FEMALE" formControlName="gender"
                   inputId="female"></p-radioButton>
-                <label class="ml-2 genderlabel" for="female"  >Женский</label>
+                <label class="ml-2 genderlabel" for="female">Женский</label>
               </div>
             </div>
             <div *ngIf="personalDataForm.get('gender')?.invalid && personalDataForm.get('gender')?.touched"
@@ -101,6 +110,10 @@
                 class="error-message">
 
               </div>
+              <div *ngIf="personalDataForm.get('freeLink')?.errors?.['forbiddenWords']" class="error-message">
+                Запрещённые слова: <span *ngFor="let word of personalDataForm.get('freeLink')?.errors?.['forbiddenWords']">{{ word }},
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -119,6 +132,10 @@
                 *ngIf="personalDataForm.get('aboutMe')?.invalid && (personalDataForm.get('aboutMe')?.dirty || personalDataForm.get('aboutMe')?.touched )"
                 class="error-message">
                 Не должно превышать 700 символов
+              </div>
+              <div *ngIf="personalDataForm.get('aboutMe')?.errors?.['forbiddenWords']" class="error-message">
+                Запрещённые слова: <span *ngFor="let word of personalDataForm.get('aboutMe')?.errors?.['forbiddenWords']">{{ word }},
+                </span>
               </div>
             </div>
           </div>
@@ -149,6 +166,10 @@
                 <div *ngIf="personalDataForm.get('telegram')?.errors?.['required']">Telegram обязателен для заполнения.
                 </div>
               </div>
+              <div *ngIf="personalDataForm.get('telegram')?.errors?.['forbiddenWords']" class="error-message">
+                Запрещённые слова: <span *ngFor="let word of personalDataForm.get('telegram')?.errors?.['forbiddenWords']">{{ word }},
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -170,6 +191,10 @@
           </div>
           <div *ngIf="personalDataForm.get('domain')?.hasError('forbiddenWords')">
             <p class="error-message">Данный логин занят.</p>
+          </div>
+          <div *ngIf="personalDataForm.get('domain')?.errors?.['forbiddenWords']" class="error-message">
+            Запрещённые слова: <span *ngFor="let word of personalDataForm.get('domain')?.errors?.['forbiddenWords']">{{ word }},
+            </span>
           </div>
         </div>
         <div class="chapter">

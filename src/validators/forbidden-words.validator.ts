@@ -1,6 +1,7 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { forbiddenWordsList } from './bad-words';
 
-export function forbiddenWordsValidator(forbiddenWordsList: { letter: string; words: string[] }[]): any {
+export function forbiddenWordsValidator(): any {
     return (control: AbstractControl): ValidationErrors | null => {
         if (!control.value) return null;
 

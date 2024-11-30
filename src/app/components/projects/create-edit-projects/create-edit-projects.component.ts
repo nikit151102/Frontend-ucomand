@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CreateEditProjectsService } from './create-edit-projects.service';
 import { ProjectService } from '../project/project.service';
-import { forbiddenWordsValidator } from './forbidden-words.validator';
+import { forbiddenWordsValidator } from '../../../../validators/forbidden-words.validator';
 
 @Component({
   selector: 'app-create-edit-projects',
@@ -50,29 +50,24 @@ export class CreateEditProjectsComponent implements OnInit {
 
   }
 
-  forbiddenWordsList: any = [
-    { letter: 'а', words: ['анус', 'аборт'] },
-    { letter: 'б', words: ['бздун', 'беспезды', 'бздюх', 'бля'] },
-];
   initializeForm(): void {
     this.form = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(200),  forbiddenWordsValidator(this.forbiddenWordsList)]],
-      summary: ['', [Validators.required, Validators.maxLength(300),  forbiddenWordsValidator(this.forbiddenWordsList)]],
+      title: ['', [Validators.required, Validators.maxLength(200),  forbiddenWordsValidator()]],
+      summary: ['', [Validators.required, Validators.maxLength(300),  forbiddenWordsValidator()]],
       type: [, Validators.required],
       email: ['', Validators.required],
-      telegram: ['', [Validators.required,  forbiddenWordsValidator(this.forbiddenWordsList)]],
-      description: ['', [Validators.required, Validators.maxLength(1500),  forbiddenWordsValidator(this.forbiddenWordsList)]],
-      developmentStage: ['', [Validators.required, Validators.maxLength(1500),  forbiddenWordsValidator(this.forbiddenWordsList)]],
-      tasks: ['', [Validators.required, Validators.maxLength(1500),  forbiddenWordsValidator(this.forbiddenWordsList)]],
-      nickname: ['', Validators.required],
+      telegram: ['', [Validators.required,  forbiddenWordsValidator()]],
+      description: ['', [Validators.required, Validators.maxLength(1500),  forbiddenWordsValidator()]],
+      developmentStage: ['', [Validators.required, Validators.maxLength(1500),  forbiddenWordsValidator()]],
+      tasks: ['', [Validators.required, Validators.maxLength(1500),  forbiddenWordsValidator()]],
+      nickname: ['', [Validators.required, forbiddenWordsValidator()]],
     });
   }
 
   @ViewChild('fileBackgroundInput') fileBackgroundInput!: ElementRef<HTMLInputElement>;
   @ViewChild('fileLogoInput') fileLogoInput!: ElementRef<HTMLInputElement>;
-  get forbiddenWords() {
-    return this.form.get('description')?.errors?.['forbiddenWords'] || [];
-  }
+ 
+
   isBackgroundImageSelected = false;
   isLogoImageSelected = false;
 
