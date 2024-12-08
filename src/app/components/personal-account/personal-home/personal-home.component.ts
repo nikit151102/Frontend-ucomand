@@ -216,6 +216,20 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
       this.popUpErrorCreateService.visible = true;
     }
   }
+
+  handlePostProject(): void {
+    const fullAccess = localStorage.getItem('fullAccess')
+    const userNickname = localStorage.getItem('userNickname')
+    if (fullAccess == 'b326b5062b2f0e69046810717534cb09') {
+      this.formSettingService.isheading = false;
+      this.settingHeaderService.post = false;
+      this.settingHeaderService.shared = false;
+      this.router.navigate([`/${userNickname}/account/newProject`]);
+    } else {
+      this.popUpErrorCreateService.visible = true;
+    }
+  }
+
   getCardUrl(cardValue: any, type: string, route: string): string {
     localStorage.setItem('routeTypeCard', type);
     return this.router.createUrlTree([route, cardValue]).toString();

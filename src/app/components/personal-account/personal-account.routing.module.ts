@@ -28,6 +28,9 @@ const routes: Routes = [
         path: 'newVacancy', loadChildren: () => import('../form/form.module').then(m => m.FormModule), data: { routeName: 'createVacancy' }
       },
       {
+        path: 'newProject', loadChildren: () => import('.././projects/create-edit-projects/create-edit-projects.module').then(m => m.CreateEditProjectsModule),
+      },
+      {
         path: 'updateResume/:id', loadChildren: () => import('../form/form.module').then(m => m.FormModule), data: { routeName: 'updateResume' }
       },
       {
