@@ -66,13 +66,6 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     }
   }
 
-  // test() {
-  //   let user = { "id": 1874253051, "first_name": ".", "username": "Nikit_5090", "auth_date": 1732884250, "hash": "fb6357f9797d5107a5c6723a780e6db992d5cef3d6b9c98047a2f054ed889d1a" }
-
-  //   this.onTelegramAuth(user)
-  // }
-
-
   removeTelegramWidget() {
     const script = document.getElementById('telegram-widget-script');
     if (script) {
@@ -83,19 +76,28 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   onTelegramAuth(user: any) {
+    console.log('Received Telegram user data:', user);
     if (user.username) {
       this.http.post(`${this.domain}/users/auth/byTelegram`, user, {
         headers: { 'Content-Type': 'application/json' }
-      }).subscribe((response: any) => {
-        this.tokenService.setToken(response.token);
-        this.userAuthenticated = true;
-        this.login_user()
-      });
-      this.closePopUp()
+      }).subscribe(
+        (response: any) => {
+          console.log('Auth response from backend:', response);
+          this.tokenService.setToken(response.token);
+          this.userAuthenticated = true;
+          this.login_user();
+        },
+        (error) => {
+          console.error('Error during Telegram auth request:', error);
+          this.errorMessage = 'Ошибка авторизации через Telegram';
+        }
+      );
+      this.closePopUp();
     } else {
       this.errorMessage = 'Пожалуйста, заполните имя пользователя в Telegram';
     }
   }
+  
 
 
   login_enter() {
