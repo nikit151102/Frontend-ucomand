@@ -94,10 +94,15 @@ export class FormComponent implements OnInit {
   }
   private routerEventsSubscription!: Subscription;
   ngOnInit(): void {
+    const navigation = this.router.getCurrentNavigation();
 
     if (this.typeForm == 'вакансии') {
       this.formSettingService.isheading = true;
       this.isPayment = true;
+      if (navigation?.extras.state) {
+        const routeName = navigation.extras.state['isProject'];
+        console.log("routeName",routeName)
+      }
     }
 
     forkJoin({

@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CardComponent } from './card/card.component';
+import { FormSettingService } from '../../../../form/form-setting.service';
+import { SettingHeaderService } from '../../../../setting-header.service';
 
 @Component({
   selector: 'app-vacancies',
@@ -826,7 +828,7 @@ export class VacanciesComponent implements OnInit {
     },
   ];
 
-  constructor(private router: Router){
+  constructor(private router: Router, private formSettingService:FormSettingService, private settingHeaderService:SettingHeaderService){
 
   }
   
@@ -861,6 +863,17 @@ export class VacanciesComponent implements OnInit {
     }
     event.preventDefault();
     this.router.navigate([`/${type}`, cardId]);
+  }
+
+
+  newVacancyProject(){
+    const userNickname = localStorage.getItem('userNickname')
+      this.formSettingService.isheading = false;
+      this.formSettingService.typeForm = 'вакансии';
+      this.settingHeaderService.post = false;
+      this.settingHeaderService.shared = false;
+      this.router.navigate([`/${userNickname}/account/newVacancy`], { state: { isProject: true } });
+
   }
 
 }

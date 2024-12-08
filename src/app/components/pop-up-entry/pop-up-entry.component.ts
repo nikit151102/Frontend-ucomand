@@ -48,31 +48,29 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   loadTelegramWidget() {
-    // if (!document.getElementById('telegram-widget-script')) {
-    //   const script = document.createElement('script');
-    //   script.id = 'telegram-widget-script';
-    //   script.async = true;
-    //   script.src = 'https://telegram.org/js/telegram-widget.js?22';
-    //   script.setAttribute('data-telegram-login', `${environment.userNameBot}`);
-    //   script.setAttribute('data-size', 'large');
-    //   script.setAttribute('data-onauth', 'onTelegramAuth(user)');
-    //   script.setAttribute('data-request-access', 'write');
+    if (!document.getElementById('telegram-widget-script')) {
+      const script = document.createElement('script');
+      script.id = 'telegram-widget-script';
+      script.async = true;
+      script.src = 'https://telegram.org/js/telegram-widget.js?22';
+      script.setAttribute('data-telegram-login', `${environment.userNameBot}`);
+      script.setAttribute('data-size', 'large');
+      script.setAttribute('data-onauth', 'onTelegramAuth(user)');
+      script.setAttribute('data-request-access', 'write');
 
-    //   document.getElementById('telegram-login')?.appendChild(script);
+      document.getElementById('telegram-login')?.appendChild(script);
 
-    //   // Ensure onTelegramAuth is available globally
-    //   (window as any).onTelegramAuth = this.onTelegramAuth.bind(this);
-    //   this.telegramWidgetLoaded = true;
-    // }
-    let user = { "id": 7675265441, "first_name": ".", "username": "NIKIT151121", "auth_date": 1732881967, "hash": "fda90f1af59e660ac0129a17f8d2dca0436ef5e143b791055f52d150c47fa38b" }
-    this.onTelegramAuth(user)
+      // Ensure onTelegramAuth is available globally
+      (window as any).onTelegramAuth = this.onTelegramAuth.bind(this);
+      this.telegramWidgetLoaded = true;
+    }
   }
 
-  test() {
-    let user = { "id": 1874253051, "first_name": ".", "username": "Nikit_5090", "auth_date": 1732884250, "hash": "fb6357f9797d5107a5c6723a780e6db992d5cef3d6b9c98047a2f054ed889d1a" }
+  // test() {
+  //   let user = { "id": 1874253051, "first_name": ".", "username": "Nikit_5090", "auth_date": 1732884250, "hash": "fb6357f9797d5107a5c6723a780e6db992d5cef3d6b9c98047a2f054ed889d1a" }
 
-    this.onTelegramAuth(user)
-  }
+  //   this.onTelegramAuth(user)
+  // }
 
 
   removeTelegramWidget() {
