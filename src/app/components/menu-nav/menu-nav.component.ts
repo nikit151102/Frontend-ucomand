@@ -42,7 +42,6 @@ export class MenuNavComponent implements OnInit {
 
     this.userAccess = localStorage.getItem('USaccess');
     
-    console.log("userAccess",this.userAccess)
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
@@ -62,6 +61,7 @@ export class MenuNavComponent implements OnInit {
         this.isAuthenticated = isAuthenticated;
         this.setButtons();
         this.cdr.detectChanges();
+        
       });
     });
   }

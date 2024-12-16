@@ -38,7 +38,7 @@ export class ProjectComponent implements OnInit {
     console.log('paramId', this.paramId)
     if (this.paramId)
       this.projectData = this.projectService.getCurrentProject(this.paramId).subscribe((dataProject: any) => {
-        this.projectService.setProjectData(dataProject);
+        this.projectService.setCurrentProjectData(dataProject);
         this.projectData = dataProject;
         this.detailsListProject = [
           {

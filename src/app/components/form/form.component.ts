@@ -93,17 +93,20 @@ export class FormComponent implements OnInit {
 
   }
   private routerEventsSubscription!: Subscription;
+  isProject: boolean = false;
+  idProject:number| null = null;
   ngOnInit(): void {
-    const navigation = this.router.getCurrentNavigation();
+    this.route.queryParams.subscribe((params) => {
+      const isProject = params['isProject']; // Convert to boolean if needed
+      const idProject = +params['idProject']; // Convert to number if needed
 
-    if (this.typeForm == 'вакансии') {
-      this.formSettingService.isheading = true;
-      this.isPayment = true;
-      if (navigation?.extras.state) {
-        const routeName = navigation.extras.state['isProject'];
-        console.log("routeName",routeName)
-      }
-    }
+      console.log('isProjectisProject:', isProject);
+      console.log('idProject:', idProject);
+
+      // Assign the values to component properties if needed
+      this.isProject = isProject;
+      this.idProject = idProject;
+  });
 
     forkJoin({
       motivations: this.formSettingService.getTags('MOTIVATION'),
@@ -297,7 +300,15 @@ export class FormComponent implements OnInit {
 
       this.formSettingService.setData(typeEndpoint, formData).subscribe(
         (response) => {
+          if(this.isProject && this.idProject){
+            this.formSettingService.addToProject(response.id, this.idProject).subscribe(
+              (response) => {
+                console.log('add to project',response);
+              })
+          }
+
           this.handleSuccess(response, typeEndpoint)
+
         },
         (error: any) => {
           this.saveFormDataToStorage();
@@ -395,4 +406,7 @@ export class FormComponent implements OnInit {
   handleBeforeUnload(event: any): void {
     this.saveFormDataToStorage();
   }
+
+
+ 
 }

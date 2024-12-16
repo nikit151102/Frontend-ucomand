@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../../environment';
 
 @Injectable({
@@ -13,21 +13,29 @@ export class ProjectService {
   activeTab: 'aboutProject' | 'tape' = 'aboutProject'
 
 
-  private currentProjectData: any = null;
+  private currentProjectDataSubject = new BehaviorSubject<any>(null);
+
+  // Observable for project data
+  public currentProjectData$: Observable<any> = this.currentProjectDataSubject.asObservable();
+
+  // Method to update the project data
+  setCurrentProjectData(data: any): void {
+      this.currentProjectDataSubject.next(data);
+  }
+
+  // Method to get the latest project data
+  getCurrentProjectData(): any {
+      return this.currentProjectDataSubject.getValue();
+  }
+  
+  clearCurrentProjectData(): void {
+    this.currentProjectDataSubject.next(null);
+  }
+
+
   isEditProject: boolean = false;
 
-  setProjectData(data: any): void {
-    this.currentProjectData = data;
-  }
-
-  getProjectData(): any {
-    return this.currentProjectData;
-  }
-
-  clearProjectData(): void {
-    this.currentProjectData = null;
-  }
-
+  
 
   getCurrentProject(nicknameProject: string): Observable<any> {
     const token = localStorage.getItem('authToken');
@@ -49,10 +57,7 @@ export class ProjectService {
     });
 
     const filters = {
-      "visibilities": [
-        "CREATOR_ONLY"
-      ],
-      "vacancyOwnerBanned": false
+   
     }
 
     return this.http.post<any>(`${environment.apiUrl}/projects/${idProject}/vacancies/getByFilter?page=0&size=100`, filters, { headers })

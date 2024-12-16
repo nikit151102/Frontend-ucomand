@@ -24,9 +24,11 @@ export class ScreensaverComponent {
   }
 
   getEditProject() {
-    const dataProject = this.projectService.getProjectData();
-    this.router.navigate(['editProject', dataProject.nickname]);
-    this.projectService.isEditProject = true;
+    this.projectService.currentProjectData$.subscribe((value: any) => {
+      this.router.navigate(['editProject', value.nickname]);
+      this.projectService.isEditProject = true;
+    })
+
   }
 
 }

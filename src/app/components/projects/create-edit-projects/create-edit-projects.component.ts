@@ -21,52 +21,54 @@ export class CreateEditProjectsComponent implements OnInit {
   isError: boolean = false;
   oldNickname: string = '';
   cancel_btn: boolean = false;
-
+  projectData: any = null;
   constructor(private fb: FormBuilder, private router: Router, private createEditProjectsService: CreateEditProjectsService, public projectService: ProjectService, private route: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
     this.initializeForm();
+    this.projectService.currentProjectData$.subscribe((value: any) => {
+      this.projectData = value;
+    })
     this.route.data.subscribe((data) => {
       const isEdit = data['edit'];
       if (isEdit) {
-        const currentProject = this.projectService.getProjectData();
-        if (currentProject && currentProject.nickname) {
-          this.ProjectData(currentProject.nickname);
+        if (this.projectData && this.projectData.nickname) {
+          this.ProjectData(this.projectData.nickname);
         } else {
           const paramNickName = this.route.snapshot.paramMap.get('nickname');
           if (paramNickName) {
-            this.projectService.getCurrentProject(paramNickName).subscribe(data=>{
-              this.projectService.setProjectData(data);
+            this.projectService.getCurrentProject(paramNickName).subscribe(data => {
+              this.projectService.setCurrentProjectData(data);
               this.ProjectData(data.nickname);
             });
-           
+
           }
         }
       }
     });
-   
+
 
   }
 
   initializeForm(): void {
     this.form = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(200),  forbiddenWordsValidator()]],
-      summary: ['', [Validators.required, Validators.maxLength(300),  forbiddenWordsValidator()]],
+      title: ['', [Validators.required, Validators.maxLength(200), forbiddenWordsValidator()]],
+      summary: ['', [Validators.required, Validators.maxLength(300), forbiddenWordsValidator()]],
       type: [, Validators.required],
       email: ['', Validators.required],
-      telegram: ['', [Validators.required,  forbiddenWordsValidator()]],
-      description: ['', [Validators.required, Validators.maxLength(1500),  forbiddenWordsValidator()]],
-      developmentStage: ['', [Validators.required, Validators.maxLength(1500),  forbiddenWordsValidator()]],
-      tasks: ['', [Validators.required, Validators.maxLength(1500),  forbiddenWordsValidator()]],
+      telegram: ['', [Validators.required, forbiddenWordsValidator()]],
+      description: ['', [Validators.required, Validators.maxLength(1500), forbiddenWordsValidator()]],
+      developmentStage: ['', [Validators.required, Validators.maxLength(1500), forbiddenWordsValidator()]],
+      tasks: ['', [Validators.required, Validators.maxLength(1500), forbiddenWordsValidator()]],
       nickname: ['', [Validators.required, forbiddenWordsValidator()]],
     });
   }
 
   @ViewChild('fileBackgroundInput') fileBackgroundInput!: ElementRef<HTMLInputElement>;
   @ViewChild('fileLogoInput') fileLogoInput!: ElementRef<HTMLInputElement>;
- 
+
 
   isBackgroundImageSelected = false;
   isLogoImageSelected = false;
@@ -112,7 +114,7 @@ export class CreateEditProjectsComponent implements OnInit {
   ProjectData(nicknameProject: string) {
     this.projectService.getCurrentProject(nicknameProject).subscribe(
       (user: any) => {
-        
+
         this.form.patchValue({
           title: user.title || '',
           summary: user.summary || '',
@@ -204,8 +206,7 @@ export class CreateEditProjectsComponent implements OnInit {
       };
 
       if (isEdit) {
-        const dataProject = this.projectService.getProjectData();
-        newData.id = dataProject.id;
+        newData.id = this.projectData.id;
         this.createEditProjectsService.setEditProject(newData).subscribe((data: any) => {
           this.router.navigate(['project', data.nickname]);
         })

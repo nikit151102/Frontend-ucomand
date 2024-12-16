@@ -33,7 +33,7 @@ export class FormSettingService {
   }
 
 
-  getDataById(type: string, id: string){
+  getDataById(type: string, id: string) {
     const token = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
@@ -42,12 +42,12 @@ export class FormSettingService {
   }
 
 
-  putDataById(type: string, data: any, id: string){
+  putDataById(type: string, data: any, id: string) {
     const token = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.put(`${this.domain}/${type}/${id}`,data, { headers });
+    return this.http.put(`${this.domain}/${type}/${id}`, data, { headers });
   }
 
   deleteData(type: string, id: any): Observable<any> {
@@ -57,4 +57,13 @@ export class FormSettingService {
     });
     return this.http.delete(`${this.domain}/${type}/${id}`, { headers });
   }
+
+  addToProject(idVacancy: number, idProject: number) {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put(`${this.domain}/projects/${idProject}/addVacancies`, [idVacancy], { headers });
+  }
+
 }

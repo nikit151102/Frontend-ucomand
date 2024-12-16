@@ -50,8 +50,8 @@ export class ActiveResumesComponent implements OnInit{
   }
 
 
-  viewCard(id: string) {
-    this.popUpResponseTeamService.selectResume(id);
+  viewCard(resume: any) {
+    this.popUpResponseTeamService.selectResume(this.cardItem);
   }
 
   
