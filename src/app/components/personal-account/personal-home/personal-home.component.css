@@ -244,7 +244,7 @@ p {
 
 
 .message-cards {
-    padding: 0 0 1rem 2.2rem;
+    padding: 0 1rem 2.2rem;
     font-family: var(--font-Monts);
     font-weight: 500;
     font-size: var(--text13);

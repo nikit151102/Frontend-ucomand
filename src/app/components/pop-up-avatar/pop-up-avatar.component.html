@@ -17,5 +17,9 @@
         <div class="btns">
             <a class="popup-btn-setAvatar" (click)="selectAvatar()">Выбрать</a>
         </div>
+
+        <a (click)="fileInput.click()">Выбрать свою</a>
+        <input #fileInput type="file" accept="image/png, image/jpeg" (change)="onFileSelected($event)" style="display: none;">
+        
     </div>
 </div>

@@ -4,6 +4,7 @@ import { PopUpAvatarService } from './pop-up-avatar.service';
 import { ItemAvatarComponent } from './item-avatar/item-avatar.component';
 import { CommonModule } from '@angular/common';
 import { AvatarSelectionService } from './avatar-selection.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-pop-up-avatar',
@@ -57,5 +58,49 @@ export class PopUpAvatarComponent {
     this.popUpAvatarService.hidePopup();
   }
 
+  file: File | null = null;
+ // Обработчик выбора файла
+ onFileSelected(event: any): void {
+  const file: File = event.target.files[0];
+  if (file) {
+    this.file = file;
+  }
+}
+
+setAvatar(): void {
+  if (this.file) {
+    const token = localStorage.getItem('authToken');
+    const userDataString = sessionStorage.getItem('userData');
+
+    if (userDataString && token) {
+      const retrievedData = JSON.parse(userDataString);
+      
+      // Создание заголовков с токеном
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+
+      // Формируем FormData для отправки файла
+      const formData = new FormData();
+      formData.append('avatar', this.file, this.file.name);
+
+      // Отправка запроса на сервер
+        this.avatarSelectionService.setAvatar(formData).subscribe({
+          next: (response) => {
+            console.log('Avatar updated successfully:', response);
+            this.avatarSelectionService.selectAvatar(response);  
+            this.avatarSelectionService.selectGender(response);
+          },
+          error: (error) => {
+            console.error('Error updating avatar:', error);
+          }
+        });
+    } else {
+      console.error('User data or token missing');
+    }
+  } else {
+    console.log('No file selected');
+  }
+}
 
 }
