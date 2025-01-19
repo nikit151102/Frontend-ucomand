@@ -1,1 +1,29 @@
-<p>personal-project works!</p>
+<div class="card">
+    <p class="title">
+        {{ item?.title }}
+    </p>
+    <div class="chapterCard">
+        <div class="lookingCard">
+            <p class="text13Caps" style="margin-top: 0.5rem; width: 90%; margin-bottom: 0; ">
+                {{ item?.profession?.name | uppercase }}
+            </p>
+        </div>
+    </div>
+    <div class="chapterCard">
+        <div class="lookingCard">
+            <p class="text13" style="margin-top: 0.5rem; width: 90%; margin-bottom: 0; ">
+                {{ item?.userProfession}}
+            </p>
+        </div>
+    </div>
+    <div class="profile">
+        <div class="rightProfileChapter">
+            <p class="dateVacancy dateTitle">
+                размещено
+            </p>
+            <p class="dateVacancy dateValue">
+                {{ item?.createdAt | date: 'dd.MM.yyyy' }} <!-- Форматирование даты -->
+            </p>
+        </div>
+    </div>
+</div>

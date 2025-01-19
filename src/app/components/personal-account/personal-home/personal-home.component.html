@@ -170,6 +170,60 @@
     </div>
     
     <div class="second-path">
+        <div class="container-cards" @fadeAnimation>
+            <div class="container-vacancy">
+                <div class="container-vacancy-header">
+                    <p class="title-cards titleActive ">
+                        Проекты:
+                    </p>
+                    <a class="container-vacancy-header-newCards" (click)="handlePostProject()" [ngStyle]="{'pointer-events': dataCurrentUser.banned ? 'none' : 'auto', 'opacity': dataCurrentUser.banned ? '0.5' : '1'}">
+                        + Добавить проект
+                    </a>
+                </div>
+                <div class="cards">
+                    <ng-container
+                        *ngFor="let itemProject of projectService.projectsList | slice:0:itemsToShowProjects">
+                        <a  class="app-card-vacancy-link"
+                            (click)="onProjecClick($event, itemProject.nickname)">
+                            <app-personal-project @fadeAnimation [item]="itemProject">
+                            </app-personal-project>
+                        </a>
+                    </ng-container>
+                    <!-- <ng-container
+                        *ngFor="let itemProject of vacancyService.filterVacancies('BAN') | slice: 0: itemsToShowResume">
+                        <app-ban-vacancy [item]="itemProject"></app-ban-vacancy>
+                    </ng-container> -->
+                    <div class="block-switchCards">
+                        <a (click)="toggleVacancies()" *ngIf="projectService.projectsList.length>3"
+                            class="switchCards">
+                            {{ showAllProjects ? 'Свернуть' : 'Показать все' }}
+                        </a>
+                    </div>
+                </div>
+                <div class="message-cards titleActive" *ngIf="projectService.projectsList.length==0">
+                    Пользователь не является владельцем или участником проектов
+                </div>
+            </div>
+            <!-- <div class="archive-vacancy">
+                <p class="title-cards">
+                    Архив вакансий:
+                </p>
+                <div class="cards">
+                    <app-archive-vacancy [cardItem]="itemVacancy" @fadeAnimation
+                        *ngFor="let itemVacancy of vacancyService.filterVacancies('EVERYBODY') | slice:0:itemsToShowArchiveVacancies"></app-archive-vacancy>
+                    <div class="block-switchCards">
+                        <a (click)="toggleArchiveVacancies()"
+                            *ngIf="vacancyService.filterVacancies('EVERYBODY').length>3" class="switchCards">
+                            {{ showAllArchiveVacancies ? 'Свернуть' : 'Показать все' }}
+                        </a>
+                    </div>
+                </div>
+                <div class="message-cards archiveMessage" *ngIf="vacancyService.filterVacancies('EVERYBODY').length==0">
+                    Архив пуст
+                </div>
+            </div> -->
+        </div>
+        
         <div class="container-cards">
             <div class="container-resume" @fadeAnimation>
                 <div class="container-resume-header">
@@ -225,6 +279,7 @@
                 </div>
             </div>
         </div>
+
         <div class="container-cards" @fadeAnimation>
             <div class="container-vacancy">
                 <div class="container-vacancy-header">
@@ -278,59 +333,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-cards" @fadeAnimation>
-            <div class="container-vacancy">
-                <div class="container-vacancy-header">
-                    <p class="title-cards titleActive ">
-                        Проекты:
-                    </p>
-                    <a class="container-vacancy-header-newCards" (click)="handlePostProject()" [ngStyle]="{'pointer-events': dataCurrentUser.banned ? 'none' : 'auto', 'opacity': dataCurrentUser.banned ? '0.5' : '1'}">
-                        + Добавить проект
-                    </a>
-                </div>
-                <div class="cards">
-                    <ng-container
-                        *ngFor="let itemVacancy of vacancyService.filterVacancies('CREATOR_ONLY') | slice:0:itemsToShowVacancies">
-                        <a [href]="getCardUrl(itemVacancy.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
-                            (click)="onCardClick($event, itemVacancy.id, 'vacancy')">
-                            <app-personal-vacancy @fadeAnimation [item]="itemVacancy">
-                            </app-personal-vacancy>
-                        </a>
-                    </ng-container>
-                    <ng-container
-                        *ngFor="let itemVacancy of vacancyService.filterVacancies('BAN') | slice: 0: itemsToShowResume">
-                        <app-ban-vacancy [item]="itemVacancy"></app-ban-vacancy>
-                    </ng-container>
-                    <div class="block-switchCards">
-                        <a (click)="toggleVacancies()" *ngIf="vacancyService.filterVacancies('CREATOR_ONLY').length>3"
-                            class="switchCards">
-                            {{ showAllVacancies ? 'Свернуть' : 'Показать все' }}
-                        </a>
-                    </div>
-                </div>
-                <div class="message-cards titleActive" *ngIf="vacancyService.filterVacancies('CREATOR_ONLY').length==0">
-                    Пользователь не является владельцем или участником проектов
-                </div>
-            </div>
-            <!-- <div class="archive-vacancy">
-                <p class="title-cards">
-                    Архив вакансий:
-                </p>
-                <div class="cards">
-                    <app-archive-vacancy [cardItem]="itemVacancy" @fadeAnimation
-                        *ngFor="let itemVacancy of vacancyService.filterVacancies('EVERYBODY') | slice:0:itemsToShowArchiveVacancies"></app-archive-vacancy>
-                    <div class="block-switchCards">
-                        <a (click)="toggleArchiveVacancies()"
-                            *ngIf="vacancyService.filterVacancies('EVERYBODY').length>3" class="switchCards">
-                            {{ showAllArchiveVacancies ? 'Свернуть' : 'Показать все' }}
-                        </a>
-                    </div>
-                </div>
-                <div class="message-cards archiveMessage" *ngIf="vacancyService.filterVacancies('EVERYBODY').length==0">
-                    Архив пуст
-                </div>
-            </div> -->
-        </div>
+
     </div>
 
     <div class="menuProfile">

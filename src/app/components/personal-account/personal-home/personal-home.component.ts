@@ -23,11 +23,13 @@ import { PopUpErrorCreateService } from '../../pop-up-error-create/pop-up-error-
 import { TokenService } from '../../token.service';
 import { BanResumeComponent } from '../ban-resume/ban-resume.component';
 import { BanVacancyComponent } from '../ban-vacancy/ban-vacancy.component';
+import { PersonalProjectComponent } from '../personal-project/personal-project.component';
+import { ProjectService } from '../services/project.service';
 
 @Component({
   selector: 'app-personal-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, PersonalVacancyComponent, PersonalResumeComponent, ArchiveResumeComponent, ArchiveVacancyComponent, PopUpDeleteComponent, PopUpExitComponent, BanResumeComponent, BanVacancyComponent],
+  imports: [CommonModule, RouterLink, PersonalVacancyComponent, PersonalResumeComponent, ArchiveResumeComponent, ArchiveVacancyComponent, PopUpDeleteComponent, PopUpExitComponent, BanResumeComponent, BanVacancyComponent, PersonalProjectComponent],
   templateUrl: './personal-home.component.html',
   styleUrl: './personal-home.component.css',
   animations: [
@@ -55,6 +57,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     private personalHomeService: PersonalHomeService, private popUpDeleteService: PopUpDeleteService, public popUpExitService: PopUpExitService,
     public resumeService: ResumeService, public vacancyService: VacancyService, public tokenService: TokenService,
     private formSettingService: FormSettingService,
+    public projectService: ProjectService,
     private popUpErrorCreateService: PopUpErrorCreateService) { }
 
   imagePath: string = '';
@@ -93,6 +96,20 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     this.itemsToShowArchiveVacancies = this.showAllArchiveVacancies ? Infinity : 3;
   }
 
+  showAllArchiveProjects: boolean = false;
+  itemsToShowArchiveProjects: number = 3;
+  toggleArchiveProjects() {
+    this.showAllArchiveProjects = !this.showAllArchiveProjects;
+    this.itemsToShowArchiveProjects = this.showAllArchiveProjects ? Infinity : 3;
+  }
+
+  showAllProjects: boolean = false;
+  itemsToShowProjects: number = 3;
+  toggleProjects() {
+    this.showAllProjects = !this.showAllProjects;
+    this.itemsToShowProjects = this.showAllProjects ? Infinity : 3;
+  }
+
   ngOnInit(): void {
     this.settingHeaderService.shared = false;
     this.settingHeaderService.post = false;
@@ -100,7 +117,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
 
     this.resumeService.subscribeToGetCardsData();
     this.vacancyService.subscribeToGetCardsData();
-
+    this.projectService.subscribeToGetCardsData();
     this.domainService.checkImageExists(this.domainName).then((path) => {
       this.imagePath = path;
 
@@ -217,6 +234,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     }
   }
 
+
   handlePostProject(): void {
     const fullAccess = localStorage.getItem('fullAccess')
     const userNickname = localStorage.getItem('userNickname')
@@ -230,9 +248,23 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     }
   }
 
+
+
   getCardUrl(cardValue: any, type: string, route: string): string {
     localStorage.setItem('routeTypeCard', type);
     return this.router.createUrlTree([route, cardValue]).toString();
+  }
+
+  getProjectUrl(cardValue: any): string {
+    return this.router.createUrlTree(['project', cardValue]).toString();
+  }
+
+  onProjecClick(event: MouseEvent, cardId: any): void {
+    if (event.button === 1 || event.ctrlKey || event.metaKey) {
+      return;
+    }
+    event.preventDefault();
+    this.router.navigate([`/project`, cardId]);
   }
 
 
