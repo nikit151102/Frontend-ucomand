@@ -33,7 +33,9 @@ export class AvatarSelectionService {
     }); 
     
     const userDataString = sessionStorage.getItem('userData'); 
+    console.log('userDataString')
     if (userDataString) {
+      console.log('userDataString true')
       const retrievedData = JSON.parse(userDataString);
       console.log(retrievedData);
   

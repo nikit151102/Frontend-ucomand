@@ -59,49 +59,37 @@ export class PopUpAvatarComponent {
   }
 
   file: File | null = null;
- // Обработчик выбора файла
- onFileSelected(event: any): void {
-  const file: File = event.target.files[0];
-  if (file) {
-    this.file = file;
-    this.setAvatar();
+  // Обработчик выбора файла
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.file = file;
+      this.setAvatar();
+      console.log('set file')
+    }
   }
-}
 
-setAvatar(): void {
-  if (this.file) {
-    const token = localStorage.getItem('authToken');
-    const userDataString = sessionStorage.getItem('userData');
-
-    if (userDataString && token) {
-      const retrievedData = JSON.parse(userDataString);
-      
-      // Создание заголовков с токеном
-      const headers = new HttpHeaders({
-        'Authorization': `Bearer ${token}`
-      });
-
+  setAvatar(): void {
+    console.log('setAvatar')
+    if (this.file) {
       // Формируем FormData для отправки файла
       const formData = new FormData();
-      formData.append('avatar', this.file, this.file.name);
+      formData.append('avatar', this.file);
 
       // Отправка запроса на сервер
-        this.avatarSelectionService.setAvatar(formData).subscribe({
-          next: (response) => {
-            console.log('Avatar updated successfully:', response);
-            this.avatarSelectionService.selectAvatar(response);  
-            this.avatarSelectionService.selectGender(response);
-          },
-          error: (error) => {
-            console.error('Error updating avatar:', error);
-          }
-        });
+      this.avatarSelectionService.setAvatar(formData).subscribe({
+        next: (response) => {
+          console.log('Avatar updated successfully:', response);
+          this.avatarSelectionService.selectAvatar(response);
+          this.avatarSelectionService.selectGender(response);
+        },
+        error: (error) => {
+          console.error('Error updating avatar:', error);
+        }
+      });
     } else {
       console.error('User data or token missing');
     }
-  } else {
-    console.log('No file selected');
   }
-}
 
 }
