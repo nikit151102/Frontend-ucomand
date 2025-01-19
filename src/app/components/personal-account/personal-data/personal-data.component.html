@@ -9,10 +9,10 @@
           <div class="icon">
             <ng-container *ngIf="setAvatar">
               <ng-container *ngIf="setAvatar.startsWith('https'); else localImage">
-                <img [src]="setAvatar" class="logoImg">
+                <img [src]="setAvatar" class="logoImg" style="width: 90px;">
               </ng-container>
               <ng-template #localImage>
-                <img [src]="'assets/avatars/' + setAvatar + '.png'" class="logoImg">
+                <img [src]="'assets/avatars/' + setAvatar + '.png'" class="logoImg" style="width: 90px;">
               </ng-template>
             </ng-container>
 
