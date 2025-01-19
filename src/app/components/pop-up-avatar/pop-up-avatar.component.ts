@@ -64,6 +64,7 @@ export class PopUpAvatarComponent {
   const file: File = event.target.files[0];
   if (file) {
     this.file = file;
+    this.setAvatar();
   }
 }
 
