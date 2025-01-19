@@ -8,8 +8,14 @@
         <div class="chapter-content avatar" (click)="getAvatar()">
           <div class="icon">
             <ng-container *ngIf="setAvatar">
-              <img [src]="'assets/avatars/'+ setAvatar + '.png'" alt="avatar">
+              <ng-container *ngIf="setAvatar.startsWith('https'); else localImage">
+                <img [src]="setAvatar" class="logoImg">
+              </ng-container>
+              <ng-template #localImage>
+                <img [src]="'assets/avatars/' + setAvatar + '.png'" class="logoImg">
+              </ng-template>
             </ng-container>
+
             <ng-container *ngIf="!setAvatar">
               <img [src]="'assets/avatars/default.png'" alt="avatar">
             </ng-container>
@@ -51,7 +57,8 @@
                 </div>
               </div>
               <div *ngIf="personalDataForm.get('surname')?.errors?.['forbiddenWords']" class="error-message">
-                Запрещённые слова: <span *ngFor="let word of personalDataForm.get('surname')?.errors?.['forbiddenWords']">{{ word }},
+                Запрещённые слова: <span
+                  *ngFor="let word of personalDataForm.get('surname')?.errors?.['forbiddenWords']">{{ word }},
                 </span>
               </div>
             </div>
@@ -111,7 +118,8 @@
 
               </div>
               <div *ngIf="personalDataForm.get('freeLink')?.errors?.['forbiddenWords']" class="error-message">
-                Запрещённые слова: <span *ngFor="let word of personalDataForm.get('freeLink')?.errors?.['forbiddenWords']">{{ word }},
+                Запрещённые слова: <span
+                  *ngFor="let word of personalDataForm.get('freeLink')?.errors?.['forbiddenWords']">{{ word }},
                 </span>
               </div>
             </div>
@@ -134,7 +142,8 @@
                 Не должно превышать 700 символов
               </div>
               <div *ngIf="personalDataForm.get('aboutMe')?.errors?.['forbiddenWords']" class="error-message">
-                Запрещённые слова: <span *ngFor="let word of personalDataForm.get('aboutMe')?.errors?.['forbiddenWords']">{{ word }},
+                Запрещённые слова: <span
+                  *ngFor="let word of personalDataForm.get('aboutMe')?.errors?.['forbiddenWords']">{{ word }},
                 </span>
               </div>
             </div>
@@ -167,7 +176,8 @@
                 </div>
               </div>
               <div *ngIf="personalDataForm.get('telegram')?.errors?.['forbiddenWords']" class="error-message">
-                Запрещённые слова: <span *ngFor="let word of personalDataForm.get('telegram')?.errors?.['forbiddenWords']">{{ word }},
+                Запрещённые слова: <span
+                  *ngFor="let word of personalDataForm.get('telegram')?.errors?.['forbiddenWords']">{{ word }},
                 </span>
               </div>
             </div>
@@ -193,7 +203,8 @@
             <p class="error-message">Данный логин занят.</p>
           </div>
           <div *ngIf="personalDataForm.get('domain')?.errors?.['forbiddenWords']" class="error-message">
-            Запрещённые слова: <span *ngFor="let word of personalDataForm.get('domain')?.errors?.['forbiddenWords']">{{ word }},
+            Запрещённые слова: <span *ngFor="let word of personalDataForm.get('domain')?.errors?.['forbiddenWords']">{{
+              word }},
             </span>
           </div>
         </div>
