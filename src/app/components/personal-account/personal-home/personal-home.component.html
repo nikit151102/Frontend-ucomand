@@ -194,7 +194,7 @@
                         <app-ban-vacancy [item]="itemProject"></app-ban-vacancy>
                     </ng-container> -->
                     <div class="block-switchCards">
-                        <a (click)="toggleVacancies()" *ngIf="projectService.projectsList.length>3"
+                        <a (click)="toggleProjects()" *ngIf="projectService.projectsList.length>3"
                             class="switchCards">
                             {{ showAllProjects ? 'Свернуть' : 'Показать все' }}
                         </a>
