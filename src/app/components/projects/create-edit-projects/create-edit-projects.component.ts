@@ -80,14 +80,23 @@ export class CreateEditProjectsComponent implements OnInit {
       this.fileLogoInput.nativeElement.click();
     }
   }
-
+  headerImg: any;
+  avatarImg: any;
   // Общая функция для изменения изображения
   onImageChange(event: Event, target: 'background' | 'logo'): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const file = input.files[0];
+      const allowedTypes = ['image/png', 'image/jpeg'];
+  
+      if (!allowedTypes.includes(file.type)) {
+        console.error('Unsupported file type:', file.type);
+        alert('Please upload a PNG or JPEG image.');
+        return;
+      }
+  
       const objectUrl = URL.createObjectURL(file);
-
+  
       if (target === 'background') {
         const backgroundContainer = document.querySelector('.background-container') as HTMLElement;
         if (backgroundContainer) {
@@ -95,7 +104,8 @@ export class CreateEditProjectsComponent implements OnInit {
           backgroundContainer.style.backgroundSize = 'cover';
           backgroundContainer.style.backgroundPosition = 'center';
         }
-        this.isBackgroundImageSelected = true;
+        this.headerImg = file;
+        this.isLogoImageSelected = true;
       } else if (target === 'logo') {
         const logoContainer = document.querySelector('.container-elements-left-iconBlock-img') as HTMLElement;
         if (logoContainer) {
@@ -104,11 +114,27 @@ export class CreateEditProjectsComponent implements OnInit {
           logoContainer.style.backgroundRepeat = 'no-repeat';
           logoContainer.style.backgroundPosition = 'center';
         }
+        this.avatarImg = file;
         this.isLogoImageSelected = true;
       }
-
+  
       setTimeout(() => URL.revokeObjectURL(objectUrl), 10000);
     }
+  }
+  
+
+  setAvatar(file: any, endpoint: string): void {
+    const formData = new FormData();
+    formData.append('avatar', file);
+
+    this.createEditProjectsService.setAvatar(formData, endpoint, this.projectData.id).subscribe({
+      next: (response) => {
+        console.log('Avatar updated successfully:', response);
+      },
+      error: (error) => {
+        console.error('Error updating avatar:', error);
+      }
+    });
   }
 
   ProjectData(nicknameProject: string) {
@@ -208,10 +234,24 @@ export class CreateEditProjectsComponent implements OnInit {
       if (isEdit) {
         newData.id = this.projectData.id;
         this.createEditProjectsService.setEditProject(newData).subscribe((data: any) => {
+          this.projectService.setCurrentProjectData(data);
+          if (this.headerImg) {
+            this.setAvatar(this.headerImg, 'header');
+          }
+          if (this.avatarImg) {
+            this.setAvatar(this.headerImg, 'avatar');
+          }
           this.router.navigate(['project', data.nickname]);
         })
       } else {
         this.createEditProjectsService.setNewProject(newData).subscribe((data: any) => {
+          this.projectService.setCurrentProjectData(data);
+          if (this.headerImg) {
+            this.setAvatar(this.headerImg, 'header');
+          }
+          if (this.avatarImg) {
+            this.setAvatar(this.headerImg, 'avatar');
+          }
           this.router.navigate(['project', data.nickname]);
         })
       }

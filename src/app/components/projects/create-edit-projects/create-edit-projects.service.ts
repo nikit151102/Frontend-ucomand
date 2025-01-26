@@ -33,5 +33,15 @@ export class CreateEditProjectsService {
 
   }
 
+  setAvatar(formData: any, endpoint: string, projectId: any): Observable<any> {
+    const token = localStorage.getItem('authToken');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put(`${environment.apiUrl}/projects/${projectId}/${endpoint}`, formData, { headers, responseType: 'text' });
+  }
+
 
 }

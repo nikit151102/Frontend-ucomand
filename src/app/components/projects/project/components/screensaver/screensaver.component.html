@@ -17,7 +17,16 @@
 
         <div class="header-content">
             <div class="logo">
-                <img [src]="'assets/avatars/default.png'" alt="avatar">
+
+
+                <ng-container *ngIf="avatarLink">
+                    <img [src]="avatarLink" alt="avatar" style="    width: 85px;
+                    height: 85px;
+                    border-radius: 50%;">
+                </ng-container>
+                <ng-container *ngIf="!avatarLink">
+                    <img [src]="'assets/avatars/default.png'" alt="avatar">
+                </ng-container>
             </div>
             <p class="header-name-project">
                 {{detailsList.title}}
