@@ -1,0 +1,30 @@
+<div class="team_value">
+    <div class="person">
+        <div class="person-avatar">
+            <img src="assets/avatars/default.png" alt="">
+        </div>
+        <div class="person-info">
+            <span class="name">
+                {{item.user.lastName}}<br>{{item.user.firstName}}
+            </span>
+            <span class="role">Владелец</span>
+        </div>
+    </div>
+    
+    <div class="action">
+        <div class="tag-selector" style="width: 100%;">
+            <label for="">Роль</label>
+            <input type="text" readonly (click)="toggleTagBlock(true)" (blur)="toggleTagBlock(false)" class="tag-input"
+                [placeholder]="getSelectedTagsText() || 'Выбрать'" />
+            <span class="date">назначен {{item.createdAt}}</span>
+            <ng-container *ngIf="showTagBlock && selectedTags.length < 1">
+                <div *ngIf="tags.length > 0;" class="tag-block">
+                    <div *ngFor="let tag of tags" (click)="selectTag(tag)">
+                        {{ tag.name }}
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <a class="edit-button">Изменить</a>
+    </div>
+</div>

@@ -1,0 +1,162 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.3rem;
+    width: 100%;
+    box-shadow: 1px 2px 4px #2828281a;
+    background: var(--background-card);
+    margin-bottom: 1rem;
+    break-inside: avoid;
+    transition: transform .3s ease-in-out;
+}
+
+.background {
+    background-size: cover;
+    background-position: center;
+    height: 140px;
+    display: flex;
+    align-items: flex-start;
+    border-radius: 1.3rem 1.3rem 0 0;
+    padding: 12px;
+    color: white;
+    position: relative;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+  }
+  
+  .type-badge {
+    border: 1px solid #fff;
+    border-radius: 30px;
+    padding: 6px 12px;
+    background: rgba(16, 16, 16, 0.6);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 129%;
+    color: #fff;
+    width: fit-content;
+    height: 34px;
+  }
+  
+  .like {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 5px;
+    border: 1px solid #fff;
+    border-radius: 30px;
+    padding: 6px 12px;
+    background: rgba(16, 16, 16, 0.6);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 129%;
+    color: #fff;
+    width: fit-content;
+    height: 34px;
+  }
+  
+  .background img {
+    display: none;
+  }
+
+  
+.body {
+    padding: 12px;
+
+    .title-container {
+        display: flex;
+        align-items: flex-start;
+        position: relative;
+
+        img {
+            position: absolute;
+            top: -55px;
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+        }
+
+        .title {
+            height: fit-content;
+            margin: 0;
+            margin-left: 93px;
+        }
+    }
+
+    .description {
+        width: 100%;
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+        margin-top: 20px;
+    }
+
+    .vacancies {
+
+        .vacanciesItem {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #e2e2e2;
+            border-radius: 12px;
+            padding: 8px;
+            width: 100%;
+            max-width: 100%;
+            height: 44px;
+            background: #fff;
+
+            .lookingCard-level {
+                margin: 0;
+                border: 2px solid #fad305;
+                padding: 4px 6px;
+                border-radius: 5px;
+                font-family: var(--font-Monts);
+                font-weight: 700;
+                font-size: 12px;
+                line-height: 100%;
+                color: var(--font-color);
+            }
+
+        }
+
+
+    }
+
+    .commands {
+
+        .team-container {
+            display: flex;
+            gap: -8px;
+
+            .team-member {
+                position: relative;
+
+                .avatar {
+                    width: 38px;
+                    height: 38px;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+    }
+
+    .date-container {
+        display: flex;
+        justify-content: flex-end;
+
+        .date {
+            white-space: nowrap;
+            margin: 5px 0 0;
+            font-weight: 400;
+            font-size: var(--text12);
+            color: #101010;
+        }
+    }
+
+}

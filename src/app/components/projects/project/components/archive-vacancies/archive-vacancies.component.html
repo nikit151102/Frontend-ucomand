@@ -2,7 +2,41 @@
     <p class="title text12">
         Архив вакансий:
     </p>
-    <div class="cards">
-        
+    <div class="container-cards">
+        <ng-container *ngIf="isTablet">
+          <div class="column">
+            <ng-container *ngFor="let item of vacancies; let i = index">
+              <ng-container *ngIf="i % 2 === 0"> <!-- First Column: 0, 2, 4, ... -->
+                <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
+                  (click)="onCardClick($event, item.id, 'vacancy')">
+                  <app-archive-item class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-archive-item>
+                </a>
+              </ng-container>
+            </ng-container>
+          </div>
+    
+          <div class="column">
+            <ng-container *ngFor="let item of vacancies; let i = index">
+              <ng-container *ngIf="i % 2 !== 0"> <!-- Second Column: 1, 3, 5, ... -->
+                <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
+                  (click)="onCardClick($event, item.id, 'vacancy')">
+                  <app-archive-item class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-archive-item>
+                </a>
+              </ng-container>
+            </ng-container>
+          </div>
+        </ng-container>
+    
+        <ng-container *ngIf="isMobile">
+          <div class="column">
+            <ng-container *ngFor="let item of vacancies">
+              <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
+                (click)="onCardClick($event, item.id, 'vacancy')">
+                <app-archive-item class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-archive-item>
+              </a>
+            </ng-container>
+          </div>
+        </ng-container>
+    
+      </div>
     </div>
-</div>

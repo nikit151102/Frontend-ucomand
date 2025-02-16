@@ -10,7 +10,7 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
-  activeTab: 'aboutProject' | 'tape' = 'aboutProject'
+  activeTab: 'aboutProject' | 'tape' | 'myTeam' = 'aboutProject'
 
 
   private currentProjectDataSubject = new BehaviorSubject<any>(null);
@@ -20,22 +20,52 @@ export class ProjectService {
 
   // Method to update the project data
   setCurrentProjectData(data: any): void {
-      this.currentProjectDataSubject.next(data);
+    this.currentProjectDataSubject.next(data);
   }
 
   // Method to get the latest project data
   getCurrentProjectData(): any {
-      return this.currentProjectDataSubject.getValue();
+    return this.currentProjectDataSubject.getValue();
   }
-  
+
   clearCurrentProjectData(): void {
     this.currentProjectDataSubject.next(null);
+  }
+
+  // Метод для изменения поля currentUserAppliedToProject на true
+  updateUserAppliedStatus(): void {
+    const currentData = this.getCurrentProjectData();
+
+    if (currentData && currentData.hasOwnProperty('currentUserAppliedToProject')) {
+      currentData.currentUserAppliedToProject = true;
+      this.setCurrentProjectData(currentData);
+    } else {
+      console.warn('Данные проекта или поле currentUserAppliedToProject не найдены');
+    }
+  }
+
+
+
+  private currentProjectVacanciesSubject = new BehaviorSubject<any>(null);
+
+  public currentProjectVacancies$: Observable<any> = this.currentProjectVacanciesSubject.asObservable();
+
+  setCurrentProjectVacancies(data: any): void {
+    this.currentProjectVacanciesSubject.next(data);
+  }
+
+  getCurrentProjectVacancies(): any {
+    return this.currentProjectVacanciesSubject.getValue();
+  }
+
+  clearCurrentProjectVacancies(): void {
+    this.currentProjectVacanciesSubject.next(null);
   }
 
 
   isEditProject: boolean = false;
 
-  
+
 
   getCurrentProject(nicknameProject: string): Observable<any> {
     const token = localStorage.getItem('authToken');
@@ -57,7 +87,7 @@ export class ProjectService {
     });
 
     const filters = {
-   
+
     }
 
     return this.http.post<any>(`${environment.apiUrl}/projects/${idProject}/vacancies/getByFilter?page=0&size=100`, filters, { headers })

@@ -108,6 +108,7 @@ export class ViewCardComponent implements OnInit {
         }
       );
     });
+
   }
 
   viewUser():string  {

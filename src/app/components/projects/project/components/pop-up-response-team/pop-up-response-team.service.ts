@@ -7,7 +7,7 @@ import { ProjectService } from '../../project.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PopUpResponseTeamService  implements OnInit{
+export class PopUpResponseTeamService {
 
   private visibleSubject = new BehaviorSubject<boolean>(false);
   visible$ = this.visibleSubject.asObservable();
@@ -15,13 +15,8 @@ export class PopUpResponseTeamService  implements OnInit{
   visibleResume = ''
   projectData: any;
 
-  constructor(private http: HttpClient, private projectService: ProjectService) { }
+  constructor(private http: HttpClient) { }
  
-  ngOnInit(): void {
-    this.projectService.currentProjectData$.subscribe((value: any) => {
-      this.projectData = value;
-    })
-  }
 
   showPopup() {
     this.visibleSubject.next(true);  // Устанавливаем значение true

@@ -1,5 +1,6 @@
 <div class="container">
     <app-screensaver [detailsList]="projectData"></app-screensaver>
+    <app-screensaver-phone [detailsList]="projectData"></app-screensaver-phone>
     <div class="container-elements">
         <div class="container-elements-left">
             <div class="container-elements-left-context">
@@ -13,8 +14,9 @@
                         Лента
                     </a>
                 </div>
-                <app-about-project *ngIf="projectService.activeTab == 'aboutProject'" [detailsList]="detailsListProject"></app-about-project>
-                <ng-container *ngIf="projectService.activeTab != 'aboutProject'">
+                <app-about-project *ngIf="projectService.activeTab == 'aboutProject'"
+                    [detailsList]="detailsListProject"></app-about-project>
+                <ng-container *ngIf="projectService.activeTab == 'tape'">
                     <app-tape></app-tape>
                 </ng-container>
             </div>
@@ -24,11 +26,17 @@
                 <app-reviews></app-reviews>
             </ng-container>
 
+            <ng-container *ngIf="projectService.activeTab == 'myTeam'">
+                <app-tab-team></app-tab-team>
+            </ng-container>
+
         </div>
-        <div class="container-elements-right">
+        <div class="container-elements-right" *ngIf="projectService.activeTab != 'myTeam'">
             <app-team></app-team>
         </div>
+
     </div>
+
 </div>
 
 <app-pop-up-response-team *ngIf="isPopupVisible"></app-pop-up-response-team>

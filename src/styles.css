@@ -93,6 +93,13 @@
     opacity: 0.5;
 }
 
+.text16 {
+    font-family: var(--font-Monts);
+    font-weight: 600;
+    font-size: var(--text16);
+    line-height: 117%;
+    color: var(--font-color);
+}
 .subtitle16caps{
     padding: 10px 10px 10px 10px;
     border-bottom: 1.4px solid #bdbdbd;

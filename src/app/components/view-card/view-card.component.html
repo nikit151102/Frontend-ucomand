@@ -13,8 +13,12 @@
             <div class="ProfileChapter">
                 <div class="logo">
                     <ng-container *ngIf="dataCard?.user?.imageLink">
-                        <img [src]="'assets/avatars/'+ dataCard?.user?.imageLink + '.png'" alt="avatar"
-                            style="width:92px; height:92px" class="logoImg">
+                        <ng-container *ngIf="dataCard?.user?.imageLink.startsWith('https'); else localImage">
+                            <img [src]="dataCard?.user?.imageLink" class="logoImg">
+                        </ng-container>
+                        <ng-template #localImage>
+                            <img [src]="'assets/avatars/' + dataCard?.imageLink + '.png'" class="logoImg">
+                        </ng-template>
                     </ng-container>
                     <ng-container *ngIf="!dataCard?.user?.imageLink">
                         <img [src]="'assets/avatars/default.png'" alt="avatar" style="width:92px; height:92px"
@@ -168,10 +172,7 @@
                         </a>
                     </div>
                 </ng-container>
-
-
             </ng-container>
-
         </div>
     </div>
 </div>

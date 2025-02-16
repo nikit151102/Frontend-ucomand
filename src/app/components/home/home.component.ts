@@ -11,11 +11,12 @@ import { OneSectionComponent } from './one-section/one-section.component';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { SearchInputPhoneComponent } from './search/search-input-phone/search-input-phone.component';
 import { ResumeLibraryComponent, VacancyLibraryComponent } from '../../../common-uteam-library';
+import { ProjectComponent } from './project/project.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, OneSectionComponent, BackgroundImgsComponent, SearchComponent, SortetdFilterComponent, SearchInputPhoneComponent, VacancyLibraryComponent, ResumeLibraryComponent],
+  imports: [CommonModule, OneSectionComponent, BackgroundImgsComponent, SearchComponent, SortetdFilterComponent, SearchInputPhoneComponent, VacancyLibraryComponent, ResumeLibraryComponent, ProjectComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   animations: [

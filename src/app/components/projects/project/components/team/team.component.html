@@ -7,10 +7,31 @@
         </div>
         <div class="container-card-users">
             <app-participant *ngFor="let item of itemsList " [itemData]="item"></app-participant>
-           
-        </div>
-    </div>
-   
 
-    <a class="container-users-btn" (click)="getPopUoP()">Хочу в команду</a>
+        </div>
+
+
+        <div class="container-card-users" style="margin-top: 15px;
+               margin-bottom: 15px;">
+            <app-job [item]="itemVacancy" *ngFor="let itemVacancy of vacancies"></app-job>
+        </div>
+
+        <a id="myTeam" (click)="setActiveTab()">Открыть список команды</a>
+    </div>
+
+
+    <a *ngIf="!currentProjectData.currentUserAppliedToProject" class="container-users-btn" (click)="getPopUoP()">Хочу в
+        команду</a>
+
+    <div *ngIf="currentProjectData.currentUserAppliedToProject" style="    display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 24px;">
+        <span class="disable-users-btn">Хочу в команду</span>
+        <span class="titleMessage text16">
+            Вы уже подали заявку в команду
+        </span>
+    </div>
+
+
 </div>

@@ -71,3 +71,20 @@ p {
     }
 
 }
+
+
+
+/* Скрываем app-screensaver-phone на экранах больше 768px */
+@media (min-width: 768px) {
+    app-screensaver-phone {
+      display: none;
+    }
+  }
+  
+  /* Скрываем app-screensaver на экранах меньше 768px */
+  @media (max-width: 767px) {
+    app-screensaver {
+      display: none;
+    }
+  }
+  

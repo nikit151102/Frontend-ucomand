@@ -79,6 +79,32 @@ export class HomeService {
     });
   }
 
+  projects:any;
+
+  getProject(){
+
+    this.getCardProjects().subscribe((data:any) => {
+      if (data) {
+        const filteredData = data.data.filter((project:any) => project.visibility !== "BAN");
+      if (filteredData.length === 30) {
+        this.visibleNextPage = true;
+      } else {
+        this.visibleNextPage = false;
+      }
+      
+      this.selectPage = this.selectPage + 1;
+      this.projects = [...this.projects, ...filteredData];
+      }
+      this.loading = false;
+    });
+  }
+
+  getCardProjects(){
+    const queryParams = `page=${this.selectPage}&size=30`;
+
+    return this.http.post(`${this.domain}/projects/getByFilter?${queryParams}`, {});
+
+  }
 
   nextPage() {
     if (this.typeToggle === 'vacancy') {
@@ -129,6 +155,7 @@ export class HomeService {
     this.selectPage = 0;
     this.resumes = [];
     this.vacancies = [];
+    this.projects = [];
     if (this.typeToggle === 'vacancy') {
       this.getVacancies();
     }
@@ -160,11 +187,15 @@ export class HomeService {
     this.selectPage = 0;
     this.resumes = [];
     this.vacancies = [];
+    this.projects = [];
     if (type === 'vacancy') {
       this.getVacancies();
     }
     if (type === 'resume') {
       this.getResumes();
+    }
+    if (type === 'project') {
+      this.getProject();
     }
   }
 

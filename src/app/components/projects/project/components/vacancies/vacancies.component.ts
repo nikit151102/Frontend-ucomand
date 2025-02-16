@@ -33,6 +33,7 @@ export class VacanciesComponent implements OnInit {
               (response: any) => {
                   console.log('vacancies', response);
                   this.vacancies = response?.data || []; 
+                  this.projectService.setCurrentProjectVacancies(response?.data)
               },
               (error) => {
                   console.error('Error fetching vacancies:', error);

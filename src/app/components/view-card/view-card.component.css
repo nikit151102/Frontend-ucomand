@@ -61,8 +61,10 @@
     margin-top: 1rem;
 }
 
-.logo {
-    width: 100px;
+.logoImg {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%
 }
 
 .fullName {

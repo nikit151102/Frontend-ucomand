@@ -1,0 +1,41 @@
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-team-value',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './team-value.component.html',
+  styleUrl: './team-value.component.css'
+})
+export class TeamValueComponent {
+  @Input() item: any;
+
+  tags: any[] = [
+    { id: 1, name: 'Стартап', nameEng: '', competenceLevel: null, type: 'STARTUP' },
+    { id: 2, name: 'Компания', nameEng: '', competenceLevel: null, type: 'COMPANY' },
+    { id: 3, name: 'Разовый проект', nameEng: '', competenceLevel: null, type: 'ONE_TIME_PROJECT' },
+  ];
+
+  showTagBlock = false;
+  selectedTags: any[] = [];
+  private onChange: (value: any) => void = () => { };
+
+  toggleTagBlock(show: boolean) {
+    setTimeout(() => {
+      this.showTagBlock = show;
+    }, 200);
+  }
+
+  value: any
+  selectTag(tag: any) {
+    if (!this.selectedTags.includes(tag) && this.selectedTags.length < 1) {
+      this.onChange(tag);
+      this.value = tag.name;
+    }
+  }
+
+  getSelectedTagsText(): string {
+    return this.selectedTags.map(tag => tag.name).join(', ');
+  }
+}

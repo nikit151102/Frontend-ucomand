@@ -13,11 +13,13 @@ import { ScreensaverComponent } from './components/screensaver/screensaver.compo
 import { CreateEditProjectsService } from '../create-edit-projects/create-edit-projects.service';
 import { ActivatedRoute } from '@angular/router';
 import { ArchiveVacanciesComponent } from './components/archive-vacancies/archive-vacancies.component';
+import { TabTeamComponent } from './components/tab-team/tab-team.component';
+import { ScreensaverPhoneComponent } from './components/screensaver-phone/screensaver-phone.component';
 
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [CommonModule, ToolsComponent, TeamComponent, AboutProjectComponent, VacanciesComponent, ReviewsComponent, PopUpResponseTeamComponent, TapeComponent, ScreensaverComponent, ArchiveVacanciesComponent],
+  imports: [CommonModule, ToolsComponent, ScreensaverPhoneComponent,  TabTeamComponent, TeamComponent, AboutProjectComponent, VacanciesComponent, ReviewsComponent, PopUpResponseTeamComponent, TapeComponent, ScreensaverComponent, ArchiveVacanciesComponent],
   templateUrl: './project.component.html',
   styleUrl: './project.component.css'
 })
@@ -76,4 +78,38 @@ export class ProjectComponent implements OnInit {
     this.projectService.activeTab = tab;
   }
 
+
+  cardItem: any = {
+    profession: 'Директор по информационным технологиям (CIO)'
+  }
+
+
+  tags: any[] = [
+    { id: 1, name: 'Стартап', nameEng: '', competenceLevel: null, type: 'STARTUP' },
+    { id: 2, name: 'Компания', nameEng: '', competenceLevel: null, type: 'COMPANY' },
+    { id: 3, name: 'Разовый проект', nameEng: '', competenceLevel: null, type: 'ONE_TIME_PROJECT' },
+  ];
+
+  showTagBlock = false;
+  selectedTags: any[] = [];
+  private onChange: (value: any) => void = () => { };
+  private onTouched: () => void = () => { };
+
+  toggleTagBlock(show: boolean) {
+    setTimeout(() => {
+      this.showTagBlock = show;
+    }, 200);
+  }
+
+  value: any
+  selectTag(tag: any) {
+    if (!this.selectedTags.includes(tag) && this.selectedTags.length < 1) {
+      this.onChange(tag);
+      this.value = tag.name;
+    }
+  }
+
+  getSelectedTagsText(): string {
+    return this.selectedTags.map(tag => tag.name).join(', ');
+  }
 }

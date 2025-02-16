@@ -1,0 +1,98 @@
+<div style="display: flex;     gap: 24px;" >
+    <div style="flex: 1;">
+        <div style="display: flex;
+            gap: 10px;
+            height: 75px;">
+            <div class="person-avatar">
+                <img src="assets/avatars/default.png" alt="">
+            </div>
+            <div class="person-info">
+                <span class="name">
+                    {{item.resume.user.lastName}}<br>{{item.resume.user.firstName}}
+                </span>
+                <span class="role"> {{ item.createdAt | date:'dd.MM.yyyy' }}</span>
+            </div>
+        </div>
+        <p style="font-weight: 400;
+        font-size: 14px;
+        line-height: 129%;
+        color: #000;">
+            {{item.coverLetter}}
+        </p>
+    </div>
+    <div style="flex: 1;">
+        <div class="card" style="box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
+background: #fff;">
+            <div class="Specialization">
+                <p class="title">
+                    Специальность:
+                </p>
+                <div class="value-container">
+                    <p class="text13Caps" style="font-weight: 500;  font-size: 0.8rem;">
+                        <!-- {{ cardItem?.profession | uppercase }} -->
+                        {{item.resume.profession.name | uppercase}}
+                    </p>
+
+                    <p [ngStyle]="{ 'border-color': getSkillsColor(item.resume.profession.competenceLevel) }" class="level" *ngIf="item.resume?.profession?.competenceLevel">
+                        {{ getSkills(item.resume.profession?.competenceLevel)  }}
+                      </p>
+                </div>
+            </div>
+            <div class="container-date">
+
+                <div class="rightProfileChapter">
+                    <p class="dateTitle">
+                        размещено
+                    </p>
+                    <p class="dateValue">
+                        {{ item.resume.creationDate | date:'dd.MM.yyyy' }}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div class="action">
+            <div class="tag-selector" style="width: 100%;">
+                <label for="">Назначьте роль </label>
+                    <app-tag-selector [type]="'PROFESSION'" [placeholderValue]="'Выберете специализацию'"
+                    (click)="scrollToSelectorProfessions()" [maxTags]="1"
+                    (tagsChanged)="onTagsChanged($event,'profession')"
+                    [service]="sortetdFilterService"></app-tag-selector>
+            </div>
+        </div>
+        <div style="  margin-top: 24px;  
+        display: flex
+        ;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 15px;">
+            <a style="border-radius: 30px;
+            padding: 12px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e2e2e2;
+            
+            font-weight: 500;
+font-size: 12px;
+line-height: 117%;
+color: #101010;" (click)="setDecline()" >Отклонить</a>
+            <a style="border-radius: 30px;
+            padding: 12px;
+            width: 206px;
+            height: 38px;
+            display: flex
+;
+align-items: center;
+justify-content: center;
+            background: #84dd2c;
+            font-weight: 500;
+font-size: 12px;
+line-height: 117%;
+color: #fff;" (click)="setApplication()">
+                + Добавить
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,16 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ParticipantComponent } from './participant/participant.component';
 import { PopUpResponseTeamService } from '../pop-up-response-team/pop-up-response-team.service';
+import { JobComponent } from './job/job.component';
+import { ProjectService } from '../../project.service';
 
 @Component({
   selector: 'app-team',
   standalone: true,
-  imports: [CommonModule, ParticipantComponent],
+  imports: [CommonModule, ParticipantComponent, JobComponent],
   templateUrl: './team.component.html',
   styleUrl: './team.component.css'
 })
-export class TeamComponent {
+export class TeamComponent implements OnInit {
 
 
   itemsList = [
@@ -37,11 +39,28 @@ export class TeamComponent {
     },
   ]
 
-  constructor(private popUpResponseTeamService: PopUpResponseTeamService) { }
+  vacancies: any;
+  currentProjectData: any;
 
-  getPopUoP(){
+  constructor(private popUpResponseTeamService: PopUpResponseTeamService, private projectService: ProjectService) { }
+
+  ngOnInit(): void {
+    this.projectService.currentProjectVacancies$.subscribe((data: any) => {
+      this.vacancies = data;
+    })
+    this.projectService.currentProjectData$.subscribe((data: any) => {
+      this.currentProjectData = data;
+    })
+    
+  }
+  getPopUoP() {
     this.popUpResponseTeamService.showPopup()
   }
+
+  setActiveTab() {
+    this.projectService.activeTab = 'myTeam';
+  }
+
   
 }
 
