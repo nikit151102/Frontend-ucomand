@@ -90,7 +90,7 @@ export class ItemNewPeopleComponent {
 
   setApplication(){
     let dataProject = this.projectService.getCurrentProjectData();
-    this.newPeopleService.setApplication(dataProject.id, this.value.id).subscribe((value: any) => {
+    this.newPeopleService.setApplication(dataProject.id, this.item.id).subscribe((value: any) => {
       console.log("value", value);
     })
   }  
