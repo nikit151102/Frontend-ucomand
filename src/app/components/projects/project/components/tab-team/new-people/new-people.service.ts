@@ -17,7 +17,7 @@ export class NewPeopleService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.post<any>(`${environment.apiUrl}/projects/${id}/applications/getByFilter?page=0&size=100`, {})
+    return this.http.post<any>(`${environment.apiUrl}/projects/${id}/applications/getByFilter?page=0&size=100`, {}, {headers})
 
   }
 
@@ -40,7 +40,7 @@ export class NewPeopleService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.post<any>(`${environment.apiUrl}/projects/${projectId}/teamMembers?applicationId=${applicationId}`, { })
+    return this.http.post<any>(`${environment.apiUrl}/projects/${projectId}/teamMembers?applicationId=${applicationId}`, { }, {headers})
 
   }
 
