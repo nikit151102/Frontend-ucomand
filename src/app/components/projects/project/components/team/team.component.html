@@ -20,10 +20,10 @@
     </div>
 
 
-    <a *ngIf="!currentProjectData.currentUserAppliedToProject" class="container-users-btn" (click)="getPopUoP()">Хочу в
+    <a *ngIf="!currentProjectData?.currentUserAppliedToProject" class="container-users-btn" (click)="getPopUoP()">Хочу в
         команду</a>
 
-    <div *ngIf="currentProjectData.currentUserAppliedToProject" style="    display: flex;
+    <div *ngIf="currentProjectData?.currentUserAppliedToProject" style="    display: flex;
         flex-direction: column;
         align-items: center;
         padding: 0 24px;">

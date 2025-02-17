@@ -1,6 +1,6 @@
 export const environment = {
     // apiUrl: 'https://uteam.top/api',
-    apiUrl: 'http://cdss13.fvds.ru:9090',
+    apiUrl: 'https://dev.uteam.top/api',
     //userNameBot: 'Uteam_top_bot'
     userNameBot: 'uteamtestbot'
 };
