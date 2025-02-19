@@ -10,6 +10,14 @@
     transition: transform .3s ease-in-out;
 }
 
+.card:hover {
+    -webkit-box-shadow: 4px 4px 20px -11px rgba(40, 40, 40, 0.35);
+    -moz-box-shadow: 4px 4px 20px -11px rgba(40, 40, 40, 0.35);
+    box-shadow: 4px 4px 20px -11px rgba(40, 40, 40, 0.35);
+    transform: scale(1.012);
+}
+
+
 .background {
     background-size: cover;
     background-position: center;
@@ -20,16 +28,16 @@
     padding: 12px;
     color: white;
     position: relative;
-  }
-  
-  .header-content {
+}
+
+.header-content {
     display: flex;
     justify-content: space-between;
     width: 100%;
     position: relative;
-  }
-  
-  .type-badge {
+}
+
+.type-badge {
     border: 1px solid #fff;
     border-radius: 30px;
     padding: 6px 12px;
@@ -40,9 +48,9 @@
     color: #fff;
     width: fit-content;
     height: 34px;
-  }
-  
-  .like {
+}
+
+.like {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -57,13 +65,13 @@
     color: #fff;
     width: fit-content;
     height: 34px;
-  }
-  
-  .background img {
-    display: none;
-  }
+}
 
-  
+.background img {
+    display: none;
+}
+
+
 .body {
     padding: 12px;
 
@@ -78,6 +86,7 @@
             width: 85px;
             height: 85px;
             border-radius: 50%;
+            box-shadow: 1px 2px 4px #2828281a;
         }
 
         .title {
@@ -88,15 +97,20 @@
     }
 
     .description {
-        width: 100%;
-        max-width: 100%;
-        overflow-wrap: break-word;
         word-wrap: break-word;
         word-break: break-word;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
         margin-top: 20px;
     }
 
     .vacancies {
+        height: 138px;
 
         .vacanciesItem {
             display: flex;
@@ -109,6 +123,11 @@
             max-width: 100%;
             height: 44px;
             background: #fff;
+
+            &:hover {
+                border: 1px solid #84DD2C;
+                color: #010101; 
+            }
 
             .lookingCard-level {
                 margin: 0;

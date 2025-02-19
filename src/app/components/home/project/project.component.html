@@ -42,7 +42,7 @@
                 <img [src]="'assets/avatars/default.png'" alt="avatar">
             </ng-container>
             <p class="title">
-                {{cardItem.title}}
+                {{cardItem.title  | uppercase }}
             </p>
         </div>
         <div class="description text12">
@@ -77,7 +77,8 @@
 
             <ng-container *ngIf="cardItem.vacancies.length == 0">
                 <p class="text12">Нет открытых вакансий.</p>
-                <span class="text12" style="font-weight: 600;">
+                <span class="text12" style="font-weight: 600; display: flex;
+                    margin-top: 50px;">
                     У проекта пока нет открытых вакансий, но вы можете написать админу, и удача вам улыбнется.
                 </span>
             </ng-container>

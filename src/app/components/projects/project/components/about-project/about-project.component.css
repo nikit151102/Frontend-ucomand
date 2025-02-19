@@ -22,15 +22,7 @@ p {
 
 .container-detals-item-title {
     font-family: var(--font-Monts);
-    font-weight: 600;
-    font-size: var(--text16);
-    line-height: 125%;
-    color: #000;
-}
-
-.container-detals-item-title {
-    font-family: var(--font-Monts);
-    font-weight: 600;
+    font-weight: 500;
     font-size: var(--text16);
     line-height: 125%;
     color: #000;

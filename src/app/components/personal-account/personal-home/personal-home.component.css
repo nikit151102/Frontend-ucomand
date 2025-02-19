@@ -280,7 +280,7 @@ p {
 
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 117%;
     color: #fff;
 }
@@ -414,19 +414,29 @@ p {
     gap: 3rem;
 }
 
-.app-card-vacancy-link{
+.app-card-vacancy-link {
     text-decoration: none;
 }
 
 @media (max-width: 1198px) {
 
-    .container-resume-header-newCards,
-    .container-vacancy-header-newCards {
-        display: none;
-    }
     .container {
         z-index: 1;
         margin-top: 120px;
+    }
+
+    .second-path {
+        flex-direction: column;
+    }
+
+    .cards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .cards .app-card-vacancy-link{
+        width: 49%;
     }
 }
 
@@ -467,6 +477,16 @@ p {
 
 /* Media queries for phones */
 @media (max-width: 768px) {
+
+    .container-resume-header-newCards,
+    .container-vacancy-header-newCards {
+        display: none;
+    }
+
+    .cards .app-card-vacancy-link{
+        width: 100%;
+    }
+
     .phone-btns {
         display: flex;
         flex-direction: column;

@@ -102,7 +102,7 @@
 }
 .subtitle16caps{
     padding: 10px 10px 10px 10px;
-    border-bottom: 1.4px solid #bdbdbd;
+    border-bottom: 1.6px solid #bdbdbd;
     font-family: var(--font-Monts);
     font-weight: 700;
     font-size: var(--text16);
@@ -112,7 +112,7 @@
     transition: border-bottom 0.3s ease, color 0.3s ease;
 
     &.active {
-        border-bottom: 1.4px solid #101010;
+        border-bottom: 1.6px solid #101010;
         color: #101010;
     }
 }

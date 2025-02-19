@@ -47,6 +47,23 @@ p {
 }
 
 
+#returnToProject span {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 114%;
+    text-transform: uppercase;
+    color: #101010;
+    cursor: pointer;
+}
+
+#returnToProject:hover span {
+    color: #a6eb20;
+}
+
+#returnToProject:hover svg path {
+    fill: #a6eb20 !important;
+}
+
 @media (max-width: 1199px) {
 
     .container {
@@ -77,14 +94,13 @@ p {
 /* Скрываем app-screensaver-phone на экранах больше 768px */
 @media (min-width: 768px) {
     app-screensaver-phone {
-      display: none;
+        display: none;
     }
-  }
-  
-  /* Скрываем app-screensaver на экранах меньше 768px */
-  @media (max-width: 767px) {
+}
+
+/* Скрываем app-screensaver на экранах меньше 768px */
+@media (max-width: 767px) {
     app-screensaver {
-      display: none;
+        display: none;
     }
-  }
-  
+}
