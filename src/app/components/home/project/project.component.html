@@ -42,7 +42,7 @@
                 <img [src]="'assets/avatars/default.png'" alt="avatar">
             </ng-container>
             <p class="title">
-                {{cardItem.title  | uppercase }}
+                {{cardItem.title | uppercase }}
             </p>
         </div>
         <div class="description text12">
@@ -51,10 +51,11 @@
 
         <div class="vacancies">
             <ng-container *ngIf="cardItem.vacancies.length > 0">
-                <p class="text12">{{cardItem.vacancies.length}} открытых вакансий:</p>
+                <p class="text12" style="margin-bottom: 8px; margin-top: 16px; padding-left: 8px;">
+                    {{cardItem.vacancies.length}} открытых вакансий:</p>
 
                 <ng-container *ngFor="let item of cardItem.vacancies.slice(0, 2)" (click)="viewJob($event, item.id)">
-                    <div class="vacanciesItem">
+                    <div class="vacanciesItem" style="margin-bottom: 8px;">
                         <span class="text12" style="font-weight: 600;">{{item.profession.name}}</span>
                         <p [ngStyle]="{ 'border-color': getSkillsColor(item.profession.competenceLevel) }"
                             class="lookingCard-level" *ngIf="item?.profession?.competenceLevel">
@@ -76,9 +77,12 @@
 
 
             <ng-container *ngIf="cardItem.vacancies.length == 0">
-                <p class="text12">Нет открытых вакансий.</p>
-                <span class="text12" style="font-weight: 600; display: flex;
-                    margin-top: 50px;">
+                <!-- <p class="text12">Нет открытых вакансий.</p> -->
+                <span class="text12" style="    font-weight: 600;
+                display: flex;
+                margin-top: 16px;
+                align-items: center;
+                height: 100%;">
                     У проекта пока нет открытых вакансий, но вы можете написать админу, и удача вам улыбнется.
                 </span>
             </ng-container>

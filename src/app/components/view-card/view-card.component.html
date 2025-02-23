@@ -141,10 +141,11 @@
         </div>
 
         <div>
+            
             <a [href]="viewUser()" 
             class="btnAccount_user"
             (click)="onUserClick($event)"
-                *ngIf="!currentUser || currentUser.id !== dataCard.user.id && dataCard">
+                *ngIf="(!currentUser || currentUser.id !== dataCard.user.id && dataCard) && (dataCard.projectDto == null)">
                 В аккаунт пользователя
                 <p style="margin: 0">
                     <svg width="39" height="12" viewBox="0 0 39 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -154,6 +155,20 @@
                     </svg>
                 </p>
             </a>
+            <a [href]="viewUser()" 
+            class="btnAccount_user"
+            (click)="onProjectClick($event)"
+                *ngIf="(!currentUser || currentUser.id !== dataCard.user.id && dataCard) && (dataCard.projectDto != null) ">
+                Перейти в проект
+                <p style="margin: 0">
+                    <svg width="39" height="12" viewBox="0 0 39 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M38.495 6.49497C38.7683 6.22161 38.7683 5.77839 38.495 5.50503L34.0402 1.05025C33.7668 0.776886 33.3236 0.776886 33.0503 1.05025C32.7769 1.32362 32.7769 1.76684 33.0503 2.0402L37.0101 6L33.0503 9.9598C32.7769 10.2332 32.7769 10.6764 33.0503 10.9497C33.3236 11.2231 33.7668 11.2231 34.0402 10.9497L38.495 6.49497ZM0 6.7H38V5.3H0L0 6.7Z"
+                            fill="white" />
+                    </svg>
+                </p>
+            </a>
+
             <ng-container *ngIf="tokenService.getToken()">
                 <ng-container *ngIf="currentUser && currentUser.id === dataCard.user.id">
                     <div class="menu_btn">

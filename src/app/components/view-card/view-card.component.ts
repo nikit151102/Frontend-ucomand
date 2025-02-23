@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewCardService } from './view-card.service';
 import { SettingHeaderService } from '../setting-header.service';
@@ -53,6 +53,7 @@ export class ViewCardComponent implements OnInit {
     private popUpEntryService: PopUpEntryService,
     private route: ActivatedRoute,
     private resumeService: ResumeService,
+    private cdr: ChangeDetectorRef
   ) {
     this.visibleError = true;
   }
@@ -81,6 +82,7 @@ export class ViewCardComponent implements OnInit {
           console.log("this.dataCard",this.dataCard)
           this.visibleCard = true;
           this.visibleError = false;
+          
           this.domainName = this.domainService.setDomain(this.dataCard.user.freeLink);
           this.domainService.checkImageExists(this.domainName).then((path) => {
             this.imagePath = path;
@@ -88,6 +90,7 @@ export class ViewCardComponent implements OnInit {
           });
           this.viewCardService.getCurrentUser().subscribe(user => {
             this.currentUser = user;
+            this.cdr.detectChanges();
             console.log("user", user)
           });
         },
@@ -123,6 +126,14 @@ export class ViewCardComponent implements OnInit {
     this.router.navigate([``, this.dataCard.user.nickname]);
   }
 
+
+  onProjectClick(event: MouseEvent): void {
+    if (event.button === 1 || event.ctrlKey || event.metaKey) {
+      return;
+    }
+    event.preventDefault();
+    this.router.navigate([`/project`, this.dataCard.projectDto.nickname]);
+  }
 
   enter() {
     this.popUpEntryService.showDialog();

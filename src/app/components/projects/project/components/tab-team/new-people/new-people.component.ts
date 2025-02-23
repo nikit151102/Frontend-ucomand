@@ -23,7 +23,6 @@ export class NewPeopleComponent implements OnInit {
     let projectData = this.projectService.getCurrentProjectData();
     this.newPeopleService.getNewPeopleService(projectData.id).subscribe((data: any) => {
       this.cardItems = data.data;
-      console.log('getNewPeopleService', data)
     })
 
 

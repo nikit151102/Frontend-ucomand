@@ -57,12 +57,9 @@ p {
 }
 
 #returnToProject:hover span {
-    color: #a6eb20;
+    text-decoration: underline;
 }
 
-#returnToProject:hover svg path {
-    fill: #a6eb20 !important;
-}
 
 @media (max-width: 1199px) {
 

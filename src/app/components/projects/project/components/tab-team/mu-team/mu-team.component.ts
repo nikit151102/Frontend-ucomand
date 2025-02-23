@@ -23,7 +23,7 @@ export class MuTeamComponent implements OnInit {
     let projectData = this.projectService.getCurrentProjectData();
     this.myTeamService.getTeamMembers(projectData.id).subscribe((data: any) => {
       this.teamMembers = data;
-      console.log('data', data)
+      console.log('itemitem', data)
     })
   }
 

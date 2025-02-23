@@ -19,12 +19,16 @@ export class VacanciesComponent implements OnInit {
   isMobile = false;
   projectData: any;
   vacancies: any = [];
-
+  isOwner: boolean = false;
   constructor(private router: Router, private formSettingService: FormSettingService, private settingHeaderService: SettingHeaderService, private projectService: ProjectService,) {
 
   }
 
   ngOnInit() {
+    this.projectService.currentProjectIsOwner$.subscribe((value: boolean) => {
+      this.isOwner = value;
+    });
+
     this.projectService.currentProjectData$.subscribe((value: any) => {
       this.projectData = value;
 

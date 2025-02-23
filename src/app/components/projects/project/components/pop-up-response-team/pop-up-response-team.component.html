@@ -7,7 +7,8 @@
             </svg>
         </div>
         <p class="popup-title">Отклик в команду проекта</p>
-        <div class="popup-groupInput">
+        <p class="popup-groupInput-title" *ngIf="isCurrect == true">Ваше сообщение/заявка отправленна</p>
+        <div class="popup-groupInput" *ngIf="isCurrect == false">
             <p class="popup-groupInput-title">
                 Текст сообщения:
             </p>
@@ -15,11 +16,11 @@
                 placeholder="Краткое описание (не более 300 символов)"></textarea>
 
         </div>
-        <p class="popup-subtitle">Прикрепите актуальное резюме</p>
-        <div class="popup-resumes">
+        <p class="popup-subtitle" *ngIf="isCurrect == false">Прикрепите актуальное резюме</p>
+        <div class="popup-resumes" *ngIf="isCurrect == false">
             <app-active-resumes [cardItem]="itemResume" *ngFor="let itemResume of popUpResponseTeamService.filterResumes('EVERYBODY', resumesList) " ></app-active-resumes>
         </div>
-        <div class="btns">
+        <div class="btns" *ngIf="isCurrect == false">
             <a class="popup-cancel" (click)="submit()">Отправить</a>
         </div>
     </div>

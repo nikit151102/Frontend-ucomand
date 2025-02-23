@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { PopUpResponseTeamService } from './pop-up-response-team.service';
 import { CommonModule } from '@angular/common';
 import { ActiveResumesComponent } from './active-resumes/active-resumes.component';
@@ -15,12 +15,15 @@ export class PopUpResponseTeamComponent {
 
 
   constructor(public popUpResponseTeamService: PopUpResponseTeamService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private cdr: ChangeDetectorRef
   ) { }
   resumesList: any[] = [];
   textarea: string = '';
+  isCurrect: boolean = false;
 
   ngOnInit(): void {
+    this.isCurrect = false;
     this.popUpResponseTeamService.selectResume('');
     this.popUpResponseTeamService.getCardsData().subscribe(
       (response: any) => {
@@ -39,14 +42,16 @@ export class PopUpResponseTeamComponent {
     
     this.popUpResponseTeamService.setTeamProject(this.textarea).subscribe(
       (response: any) => {
-        this.projectService.updateUserAppliedStatus()
+        this.projectService.updateUserAppliedStatus();
+        this.isCurrect = true;
+        this.cdr.detectChanges();
       },
       (error: any) => {
         console.error('Ошибка при загрузке данных резюме:', error);
       }
     );
 
-    this.popUpResponseTeamService.hidePopup();
+    //this.popUpResponseTeamService.hidePopup();
   }
 
   cancel(): void {

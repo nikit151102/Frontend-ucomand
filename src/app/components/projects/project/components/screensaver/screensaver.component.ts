@@ -14,12 +14,18 @@ export class ScreensaverComponent implements OnInit{
 
   @Input() detailsList: any;
   avatarLink: string = ''
+  isOwner: boolean = false;
   constructor(private router: Router, private projectService: ProjectService) { }
   
   ngOnInit(): void {
     this.projectService.currentProjectData$.subscribe((value: any) => {
-      this.setTargetAvata(value.headerLink, 'overlay')
-      this.avatarLink = value.avatarLink;
+      if (value && value.headerLink) { // Проверяем, что value не null/undefined
+        this.setTargetAvata(value.headerLink, 'overlay');
+        this.avatarLink = value.avatarLink || ''; // Защита от undefined
+      }
+    });
+    this.projectService.currentProjectIsOwner$.subscribe((value: boolean)=>{
+      this.isOwner = value;
     })
 
   }

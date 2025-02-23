@@ -3,9 +3,11 @@
         <p class="subtitle16caps">новые заявки</p>
     </div>
     <div class="team_people">
-        <app-item-new-people [item]="item" *ngFor="let item of cardItems">
-
-        </app-item-new-people>
-        
+        <ng-container *ngIf="cardItems.length > 0; else noItems">
+            <app-item-new-people [item]="item" *ngFor="let item of cardItems"></app-item-new-people>
+        </ng-container>
+        <ng-template #noItems>
+            <p class="no-requests" style="margin-left: 22px;">Нет новых заявок в команду</p>
+        </ng-template>
     </div>
 </div>

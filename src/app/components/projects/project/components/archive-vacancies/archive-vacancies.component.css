@@ -12,3 +12,7 @@
 .cards{
     padding: 0px 16px 16px 16px;
 }
+
+a{
+    text-decoration: none;
+}

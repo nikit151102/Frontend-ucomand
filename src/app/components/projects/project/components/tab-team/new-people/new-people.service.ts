@@ -22,6 +22,11 @@ export class NewPeopleService {
   }
 
 
+
+  
+
+
+
   setNewPeopleDecline(id: string): Observable<any> {
     const token = localStorage.getItem('authToken');
 

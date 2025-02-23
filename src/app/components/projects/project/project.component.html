@@ -40,11 +40,11 @@
 
             <ng-container *ngIf="projectService.activeTab == 'aboutProject'">
                 <app-vacancies></app-vacancies>
-                <app-archive-vacancies></app-archive-vacancies>
+                <app-archive-vacancies *ngIf="isOwner == true"></app-archive-vacancies>
                 <app-reviews></app-reviews>
             </ng-container>
 
-            <ng-container *ngIf="projectService.activeTab == 'myTeam'">
+            <ng-container *ngIf="projectService.activeTab == 'myTeam' && isOwner == true">
                 <app-tab-team></app-tab-team>
             </ng-container>
 

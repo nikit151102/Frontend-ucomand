@@ -4,7 +4,7 @@
       вакансии
     </p>
 
-    <a class="btn-new-vacancy text12" (click)="newVacancyProject()">
+    <a *ngIf="isOwner === true" class="btn-new-vacancy text12" (click)="newVacancyProject()">
       + Добавить вакансию
     </a>
   </div>

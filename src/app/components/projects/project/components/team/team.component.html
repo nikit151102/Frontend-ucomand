@@ -13,19 +13,23 @@
         <a id="myTeam" (click)="setActiveTab()">Открыть список команды</a>
     </div>
 
+    <ng-container *ngIf="isOwner != true">
 
-    <a *ngIf="!currentProjectData?.currentUserAppliedToProject" class="container-users-btn" (click)="getPopUoP()">Хочу в
-        команду</a>
+        <a *ngIf="!currentProjectData?.currentUserAppliedToProject" class="container-users-btn"
+            (click)="getPopUoP()">Хочу в
+            команду</a>
 
-    <div *ngIf="currentProjectData?.currentUserAppliedToProject" style="    display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0 24px;">
-        <span class="disable-users-btn">Хочу в команду</span>
-        <span class="titleMessage text16">
-            Вы уже подали заявку в команду
-        </span>
-    </div>
+        <div *ngIf="currentProjectData?.currentUserAppliedToProject" style="    display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 24px;">
+            <span class="disable-users-btn">Хочу в команду</span>
+            <span class="titleMessage text16">
+                Вы уже подали заявку в команду
+            </span>
+        </div>
+
+    </ng-container>
 
 
 </div>

@@ -63,9 +63,25 @@ export class ProjectService {
   }
 
 
+
+  private currentProjectIsOwnerSubject = new BehaviorSubject<boolean>(false);
+
+  public currentProjectIsOwner$: Observable<any> = this.currentProjectIsOwnerSubject.asObservable();
+
+
+  setCurrentProjectIsOwner(data: boolean): void {
+    this.currentProjectIsOwnerSubject.next(data);
+  }
+
+  getCurrentProjectIsOwner(): any {
+    return this.currentProjectIsOwnerSubject.getValue();
+  }
+
+
+
+
+
   isEditProject: boolean = false;
-
-
 
   getCurrentProject(nicknameProject: string): Observable<any> {
     const token = localStorage.getItem('authToken');

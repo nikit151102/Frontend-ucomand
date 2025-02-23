@@ -48,13 +48,14 @@ export class SortetdFilterComponent implements OnInit {
   motivations: any[] = [];
   professions: any[] = [];
   skills: any[] = [];
+  togleType: string = ''
 
   constructor(
     public sortetdFilterService: SortetdFilterService,
     public settingHeaderService: SettingHeaderService,
     private fb: FormBuilder,
     private homeService: HomeService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
   ) {
     this.form = this.fb.group({
       profession: [[]],
@@ -73,14 +74,14 @@ export class SortetdFilterComponent implements OnInit {
       setTimeout(() => {
         const dialogRect = this.dialog.nativeElement.getBoundingClientRect();
         const elementRect = element.nativeElement.getBoundingClientRect();
-        
+
         // Вычислите прокрутку внутри контейнера
         const scrollTop = elementRect.top - dialogRect.top + this.dialog.nativeElement.scrollTop - offset;
         this.dialog.nativeElement.scrollTo({ top: scrollTop, behavior: 'smooth' });
       }, 0);
     }
   }
-  
+
 
   scrollToSelectorProfessions() {
     this.scrollToView(this.selectorProfessions);
@@ -106,7 +107,7 @@ export class SortetdFilterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  
+
     forkJoin({
       motivations: this.sortetdFilterService.getTags('MOTIVATION'),
     }).subscribe({
@@ -116,6 +117,12 @@ export class SortetdFilterComponent implements OnInit {
       }
 
     });
+
+
+    this.homeService.activeTypeToggle$.subscribe((value: string) => {
+      this.togleType = value;
+      console.log("togleType", value)
+    })
   }
 
   parsedFilters: boolean = false;
@@ -125,10 +132,10 @@ export class SortetdFilterComponent implements OnInit {
     if (filters) {
       try {
         const parsedFilters = JSON.parse(filters);
-        if(parsedFilters.length>0){
+        if (parsedFilters.length > 0) {
           this.parsedFilters = true;
         }
-        
+
         if (parsedFilters.genders) {
           this.form.get('genders')?.setValue(parsedFilters.genders);
         }
@@ -189,10 +196,10 @@ export class SortetdFilterComponent implements OnInit {
     const skills = Array.isArray(formData.skills) ? formData.skills : [];
     const profession = Array.isArray(formData.profession) ? formData.profession : [];
     const motivation = Array.isArray(formData.motivation) ? formData.motivation : [];
-  
+
     const tags = [...skills, ...profession, ...motivation];
 
-  
+
     const dataToSubmit = {
       ...formData,
       tags: tags,
@@ -206,7 +213,7 @@ export class SortetdFilterComponent implements OnInit {
     delete dataToSubmit.motivation;
 
     console.log('dataToSubmit', dataToSubmit);
-this.homeService.selectPage = 0;
+    this.homeService.selectPage = 0;
     this.homeService.saveFilters(dataToSubmit);
     this.homeService.getVacancies();
     this.homeService.getResumes();

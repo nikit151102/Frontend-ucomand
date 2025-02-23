@@ -3,6 +3,11 @@
         <p class="subtitle16caps">команда</p>
     </div>
     <div class="team_people">
-        <app-team-value *ngFor="let item of teamMembers" [item]="item"></app-team-value>
+        <ng-container *ngIf="teamMembers.length > 0; else noItems">
+            <app-team-value *ngFor="let item of teamMembers" [item]="item"></app-team-value>
+        </ng-container>
+        <ng-template #noItems>
+            <p class="no-requests" style="margin-left: 22px;">На данный момент в команде нет участников</p>
+        </ng-template>
     </div>
 </div>

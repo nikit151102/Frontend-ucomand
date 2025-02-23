@@ -41,10 +41,17 @@ export class TeamComponent implements OnInit {
 
   vacancies: any;
   currentProjectData: any;
+  isOwner: boolean = false;
 
   constructor(private popUpResponseTeamService: PopUpResponseTeamService, private projectService: ProjectService) { }
 
   ngOnInit(): void {
+
+    this.projectService.currentProjectIsOwner$.subscribe((value: boolean)=>{
+      this.isOwner = value;
+      console.log('value', value)
+    })
+
     this.projectService.currentProjectVacancies$.subscribe((data: any) => {
       this.vacancies = data;
     })

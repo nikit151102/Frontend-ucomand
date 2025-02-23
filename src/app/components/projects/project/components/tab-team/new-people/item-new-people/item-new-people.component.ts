@@ -5,6 +5,8 @@ import { SortetdFilterService } from '../../../../../../home/sortetd-filter/sort
 import { FormsModule } from '@angular/forms';
 import { NewPeopleService } from '../new-people.service';
 import { ProjectService } from '../../../../project.service';
+import { PopUpComponent } from '../../pop-up/pop-up.component';
+import { PopUpService } from '../../pop-up/pop-up.service';
 
 @Component({
   selector: 'app-item-new-people',
@@ -21,7 +23,10 @@ export class ItemNewPeopleComponent {
   showTagBlock = false;
   selectedTags: any[] = [];
 
-  constructor(private projectService:ProjectService,  public sortetdFilterService: SortetdFilterService, private newPeopleService: NewPeopleService) { }
+  constructor(private projectService: ProjectService,
+    public sortetdFilterService: SortetdFilterService,
+    private newPeopleService: NewPeopleService,
+    private popUpService: PopUpService) { }
 
   toggleTagBlock(show: boolean) {
     setTimeout(() => {
@@ -82,17 +87,17 @@ export class ItemNewPeopleComponent {
     }
   }
 
-  setDecline() {
-    this.newPeopleService.setNewPeopleDecline(this.item.id).subscribe((value: any) => {
-      console.log("value", value);
-    })
+  setApplication(){
+    this.popUpService.setTitle('действительно хотите добавить пользователя в команду проекта?');
+    this.popUpService.setItem(this.item);
+    this.popUpService.showPopup();
   }
 
-  setApplication(){
-    let dataProject = this.projectService.getCurrentProjectData();
-    this.newPeopleService.setApplication(dataProject.id, this.item.id).subscribe((value: any) => {
-      console.log("value", value);
-    })
-  }  
+  setDecline(){
+    this.popUpService.setTitle('действительно хотите отклонить заявку?');
+    this.popUpService.setItem(this.item);
+    this.popUpService.showPopup();
+  }
+
 
 }

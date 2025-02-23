@@ -79,6 +79,7 @@
         display: flex;
         align-items: flex-start;
         position: relative;
+        height: 38px;
 
         img {
             position: absolute;
@@ -106,7 +107,8 @@
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
-        margin-top: 20px;
+        margin-top: 16px;
+        height: 28.09px;
     }
 
     .vacancies {
@@ -147,6 +149,7 @@
     }
 
     .commands {
+        height: 68.05px;
 
         .team-container {
             display: flex;

@@ -20,9 +20,11 @@ export class ScreensaverPhoneComponent  implements OnInit{
   
   ngOnInit(): void {
     this.projectService.currentProjectData$.subscribe((value: any) => {
-      this.setTargetAvata(value.headerLink, 'overlay')
-      this.avatarLink = value.avatarLink;
-    })
+      if (value && value.headerLink) { // Проверяем, что value не null/undefined
+        this.setTargetAvata(value.headerLink, 'overlay');
+        this.avatarLink = value.avatarLink || ''; // Защита от undefined
+      }
+    });
 
   }
 

@@ -20,6 +20,10 @@ export class HomeService {
   private themeSubject = new BehaviorSubject<string>(localStorage.getItem('theme') || 'light');
   activeTheme$ = this.themeSubject.asObservable();
 
+  private typeToggleSubject = new BehaviorSubject<string>('vacancy');
+  activeTypeToggle$ = this.typeToggleSubject.asObservable();
+  
+
   private domain = `${environment.apiUrl}`;
 
   changeTheme(theme: string) {
@@ -182,6 +186,7 @@ export class HomeService {
   }
 
   toggleType(type: any) {
+    this.typeToggleSubject.next(type);
     this.typeToggle = type;
     this.loading = true;
     this.selectPage = 0;
