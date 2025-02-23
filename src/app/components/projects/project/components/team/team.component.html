@@ -10,7 +10,7 @@
 
         </div>
 
-        <a id="myTeam" (click)="setActiveTab()">Открыть список команды</a>
+        <a id="myTeam" (click)="setActiveTab()" *ngIf="isOwner == true">Открыть список команды</a>
     </div>
 
     <ng-container *ngIf="isOwner != true">
