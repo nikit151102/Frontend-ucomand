@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { TagSelectorComponent } from '../../../../../../form-components/tag-selector/tag-selector.component';
+import { SortetdFilterService } from '../../../../../../home/sortetd-filter/sortetd-filter.service';
 
 @Component({
   selector: 'app-team-value',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TagSelectorComponent],
   templateUrl: './team-value.component.html',
   styleUrl: './team-value.component.css'
 })
@@ -20,6 +22,8 @@ export class TeamValueComponent {
   showTagBlock = false;
   selectedTags: any[] = [];
   private onChange: (value: any) => void = () => { };
+
+  constructor(public sortetdFilterService: SortetdFilterService,) { }
 
   toggleTagBlock(show: boolean) {
     setTimeout(() => {
@@ -38,4 +42,30 @@ export class TeamValueComponent {
   getSelectedTagsText(): string {
     return this.selectedTags.map(tag => tag.name).join(', ');
   }
+
+
+  scrollToSelectorProfessions() {
+    this.scrollToView(this.selectorProfessions);
+  }
+
+  onTagsChanged(tags: any[], formElement: string) {
+    this.value = tags[0];
+  }
+
+  @ViewChild('dialog') dialog!: ElementRef;
+  @ViewChild('selectorProfessions') selectorProfessions!: ElementRef;
+
+  scrollToView(element: ElementRef, offset: number = 0) {
+    if (element && this.dialog) {
+      setTimeout(() => {
+        const dialogRect = this.dialog.nativeElement.getBoundingClientRect();
+        const elementRect = element.nativeElement.getBoundingClientRect();
+
+        // Вычислите прокрутку внутри контейнера
+        const scrollTop = elementRect.top - dialogRect.top + this.dialog.nativeElement.scrollTop - offset;
+        this.dialog.nativeElement.scrollTo({ top: scrollTop, behavior: 'smooth' });
+      }, 0);
+    }
+  }
+
 }

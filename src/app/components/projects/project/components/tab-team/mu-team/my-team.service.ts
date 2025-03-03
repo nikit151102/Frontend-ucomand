@@ -8,16 +8,15 @@ import { environment } from '../../../../../../../environment';
 })
 export class MyTeamService {
 
- constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-   getTeamMembers(id: string): Observable<any> {
-     const token = localStorage.getItem('authToken');
- 
-     const headers = new HttpHeaders({
-       'Authorization': `Bearer ${token}`
-     });
- 
-     return this.http.get<any>(`${environment.apiUrl}/projects/${id}/teamMembers`, {})
-     
-   }
+  getTeamMembers(id: string): Observable<any> {
+    const token = localStorage.getItem('authToken');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<any>(`${environment.apiUrl}/projects/${id}/teamMembers`, {})
+  }
 }

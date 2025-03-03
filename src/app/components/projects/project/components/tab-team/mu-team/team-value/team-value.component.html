@@ -1,22 +1,36 @@
 <div class="team_value">
     <div class="person">
         <div class="person-avatar">
-            <img src="assets/avatars/default.png" alt="">
+            <ng-container *ngIf="item.user.imageLink">
+                <ng-container *ngIf="item.user.imageLink.startsWith('https'); else localImage">
+                  <img [src]="item.user.imageLink" class="logoImg">
+                </ng-container>
+                <ng-template #localImage>
+                  <img [src]="'assets/avatars/' + item.user.imageLink + '.png'" class="logoImg">
+                </ng-template>
+              </ng-container>
+  
+              <ng-container *ngIf="!item.user.imageLink">
+                <img [src]="'assets/avatars/default.png'" alt="avatar">
+              </ng-container>
         </div>
         <div class="person-info">
             <span class="name">
-                {{item.lastName}}<br>{{item.firstName}}
+                {{item.user.lastName}}<br>{{item.user.firstName}}
             </span>
-            <span class="role">Владелец</span>
+            <span class="role">{{item.profession}}</span>
         </div>
     </div>
     
     <div class="action">
         <div class="tag-selector" style="width: 100%;">
             <label for="">Роль</label>
-            <input type="text" readonly (click)="toggleTagBlock(true)" (blur)="toggleTagBlock(false)" class="tag-input"
-                [placeholder]="getSelectedTagsText() || 'Выбрать'" />
-            <span class="date">назначен {{item.createdAt}}</span>
+            <app-tag-selector [type]="'PROFESSION'" [placeholderValue]="'Выберете специализацию'"
+            (click)="scrollToSelectorProfessions()" [maxTags]="1"
+            (tagsChanged)="onTagsChanged($event,'profession')"
+            [service]="sortetdFilterService"></app-tag-selector>
+
+            <span class="date">назначен {{item.createdAt | date: 'dd-MM-yyyy' }}</span>
             <ng-container *ngIf="showTagBlock && selectedTags.length < 1">
                 <div *ngIf="tags.length > 0;" class="tag-block">
                     <div *ngFor="let tag of tags" (click)="selectTag(tag)">

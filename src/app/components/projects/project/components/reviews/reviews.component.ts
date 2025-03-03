@@ -1,40 +1,76 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ReviewCardComponent } from '../review-card/review-card.component';
 import { CommonModule } from '@angular/common';
+import { PersonalDataService } from '../../../../personal-account/personal-data/personal-data.service';
+import { ReviewsService } from './reviews.service';
+import { ProjectService } from '../../project.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-reviews',
   standalone: true,
-  imports: [CommonModule, ReviewCardComponent],
+  imports: [CommonModule, ReviewCardComponent, FormsModule],
   templateUrl: './reviews.component.html',
   styleUrl: './reviews.component.css'
 })
 
-export class ReviewsComponent {
+export class ReviewsComponent implements OnInit {
 
-  itemsLisat = [
-    {
-      user: {
-        lastName: 'Ивановский',
-        firstName: 'Иван',
-        imageLink: '',
-        dateOfRegistration: '2024-10-25T08:06:00.450Z',
-        nickname: '',
-      },
-      title: 'Подзаголовок если есть',
-      text: 'SmartFarm - это инновационная платформа для автоматизации и оптимизации процессов на ферме с использованием интернета вещей (IoT), машинного обучения и аналитики данных. Цель проекта - улучшить производительность сельскохозяйственных операций, уменьшить затраты и повысить устойчивость к изменяющимся погодным условиям и другим внешним факторам.'
-    },
-    {
-      user: {
-        lastName: 'Чаплыгин',
-        firstName: 'Роман',
-        imageLink: '',
-        dateOfRegistration: '2024-10-24T08:06:00.450Z',
-        nickname: '',
-      },
-      title: '',
-      text: 'SmartFarm - это инновационная платформа для автоматизации и оптимизации процессов на ферме с использованием интернета вещей (IoT), машинного обучения и аналитики данных. Цель проекта - улучшить производительность сельскохозяйственных операций, уменьшить затраты и повысить устойчивость к изменяющимся погодным условиям и другим внешним факторам. SmartFarm - это инновационная платформа для автоматизации и оптимизации процессов на ферме с использованием интернета вещей (IoT), машинного обучения и аналитики данных. Цель проекта - улучшить производительность сельскохозяйственных операций, уменьшить затраты и повысить устойчивость к изменяющимся погодным условиям и другим внешним факторам.'
+  constructor(private personalDataService: PersonalDataService, private projectService: ProjectService, private reviewsService: ReviewsService) { }
+  projectData: any;
+  commentText: any;
+  currentUser: any;
+  itemsLisat: any = []
+  isTextEntered: boolean = false;
+
+  ngOnInit(): void {
+    this.personalDataService.getCurrentUser().subscribe(
+      (user: any) => {
+        this.currentUser = user;
+      })
+
+    this.projectService.currentProjectData$.subscribe((value: any) => {
+      this.projectData = value;
+      console.log('this.projectData',this.projectData)
+      if (this.projectData?.id) {
+        this.reviewsService.getComments(this.projectData.id).subscribe(
+          (response: any) => {
+            this.itemsLisat = response.data;
+          },
+          (error) => {
+            console.error('Error fetching vacancies:', error);
+          }
+        );
+      }
+    });
+  }
+
+  autoExpand(textArea: HTMLTextAreaElement): void {
+    textArea.style.height = 'auto'; // Сбрасываем высоту
+    textArea.style.height = textArea.scrollHeight + 'px'; // Устанавливаем новую высоту
+  }
+
+  checkInput(value: string): void {
+    this.isTextEntered = value.trim().length > 0; // Если есть текст, показываем кнопки
+  }
+
+  sendMessage(): void {
+    this.reviewsService.addComment(this.projectData.id, '', this.commentText).subscribe(
+      (value: any) =>{
+        console.log('value', value)
+      }
+    )
+
+    this.clearText();
+  }
+
+  clearText(): void {
+    const textArea = document.querySelector("textarea") as HTMLTextAreaElement;
+    if (textArea) {
+      textArea.value = "";
+      textArea.style.height = "auto"; // Сброс высоты
     }
-  ]
+    this.isTextEntered = false; // Скрываем кнопки
+  }
 }
 

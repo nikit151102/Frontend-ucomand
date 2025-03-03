@@ -33,20 +33,20 @@ export class VacanciesComponent implements OnInit {
       this.projectData = value;
 
       if (this.projectData?.id) {
-          this.projectService.getVacanciesProject(this.projectData.id).subscribe(
-              (response: any) => {
-                  console.log('vacancies', response);
-                  this.vacancies = response?.data || []; 
-                  this.projectService.setCurrentProjectVacancies(response?.data)
-              },
-              (error) => {
-                  console.error('Error fetching vacancies:', error);
-              }
-          );
+        this.projectService.getVacanciesProject(this.projectData.id).subscribe(
+          (response: any) => {
+            console.log('vacancies', response);
+            this.vacancies = response?.data || [];
+            this.projectService.setCurrentProjectVacancies(response?.data)
+          },
+          (error) => {
+            console.error('Error fetching vacancies:', error);
+          }
+        );
       } else {
-          console.warn('Project data or ID is not defined:', this.projectData);
+        console.warn('Project data or ID is not defined:', this.projectData);
       }
-  });
+    });
 
     this.updateView(window.innerWidth);
   }

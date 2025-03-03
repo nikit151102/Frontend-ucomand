@@ -1,39 +1,110 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReviewCardComponent } from '../review-card/review-card.component';
+import { PersonalDataService } from '../../../../personal-account/personal-data/personal-data.service';
+import { ProjectService } from '../../project.service';
+import { FormsModule } from '@angular/forms';
+import { PhotoGridComponent } from '../review-card/photo-grid/photo-grid.component';
+import { TapeService } from './tape.service';
 
 @Component({
   selector: 'app-tape',
   standalone: true,
-  imports: [CommonModule, ReviewCardComponent],
+  imports: [CommonModule, ReviewCardComponent, FormsModule, PhotoGridComponent],
   templateUrl: './tape.component.html',
   styleUrl: './tape.component.css'
 })
 export class TapeComponent {
 
-  itemsLisat = [
-    {
-      user: {
-        lastName: 'Ивановский',
-        firstName: 'Иван',
-        imageLink: '',
-        dateOfRegistration: '2024-10-25T08:06:00.450Z',
-        nickname: '',
-      },
-      title: 'Подзаголовок если есть',
-      text: 'SmartFarm - это инновационная платформа для автоматизации и оптимизации процессов на ферме с использованием интернета вещей (IoT), машинного обучения и аналитики данных. Цель проекта - улучшить производительность сельскохозяйственных операций, уменьшить затраты и повысить устойчивость к изменяющимся погодным условиям и другим внешним факторам.'
-    },
-    {
-      user: {
-        lastName: 'Чаплыгин',
-        firstName: 'Роман',
-        imageLink: '',
-        dateOfRegistration: '2024-10-24T08:06:00.450Z',
-        nickname: '',
-      },
-      title: '',
-      text: 'SmartFarm - это инновационная платформа для автоматизации и оптимизации процессов на ферме с использованием интернета вещей (IoT), машинного обучения и аналитики данных. Цель проекта - улучшить производительность сельскохозяйственных операций, уменьшить затраты и повысить устойчивость к изменяющимся погодным условиям и другим внешним факторам. SmartFarm - это инновационная платформа для автоматизации и оптимизации процессов на ферме с использованием интернета вещей (IoT), машинного обучения и аналитики данных. Цель проекта - улучшить производительность сельскохозяйственных операций, уменьшить затраты и повысить устойчивость к изменяющимся погодным условиям и другим внешним факторам.'
+  currentUser: any;
+  isTextEntered: boolean = false;
+  commentText: any;
+  currentProjectData: any;
+  itemsList: any;
+
+  constructor(private personalDataService: PersonalDataService, private projectService: ProjectService, private tapeService: TapeService) { }
+
+  ngOnInit(): void {
+    this.tapeService.itemsList$.subscribe((values: any) => {
+      this.itemsList = values;
+    })
+
+    this.personalDataService.getCurrentUser().subscribe(
+      (user: any) => {
+        this.currentUser = user;
+      })
+
+    this.projectService.currentProjectData$.subscribe((data: any) => {
+      this.currentProjectData = data;
+      this.tapeService.projectId = data.id;
+      this.tapeService.getTapes(data.id).subscribe((data: any) => {
+        this.tapeService.setItemsList(data.data);
+      })
+    })
+
+
+  }
+
+
+  autoExpand(textArea: HTMLTextAreaElement): void {
+    textArea.style.height = 'auto'; // Сбрасываем высоту
+    textArea.style.height = textArea.scrollHeight + 'px'; // Устанавливаем новую высоту
+  }
+
+  checkInput(value: string): void {
+    this.isTextEntered = value.trim().length > 0; // Если есть текст, показываем кнопки
+  }
+
+  clearText(): void {
+    const textArea = document.querySelector("textarea") as HTMLTextAreaElement;
+    if (textArea) {
+      textArea.value = "";
+      textArea.style.height = "auto"; // Сброс высоты
     }
-  ]
-  
+    this.isTextEntered = false; // Скрываем кнопки
+  }
+
+  selectedImage: any = null;
+
+  photoArray: { url: string }[] = [];
+  uploadImage(event: Event): void {
+    this.photoArray = [];
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files && fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+      this.selectedImage = file;
+
+      // Создаём URL для отображения изображения
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.photoArray.push({ url: e.target?.result as string })
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  removeImage(): void {
+    this.selectedImage = null;
+    this.photoArray = [];
+  }
+
+
+  sendMessage(): void {
+    if (!this.commentText?.trim()) return; // Проверяем, что текст не пустой
+
+    this.tapeService.setPost(this.currentProjectData.id, '', this.commentText).subscribe((post: any) => {
+      if (this.selectedImage) {
+        this.tapeService.uploadPostImage(post.id, this.selectedImage).subscribe(() => {
+          console.log('Изображение успешно загружено');
+        }, error => {
+          console.error('Ошибка загрузки изображения:', error);
+        });
+      }
+      this.clearText(); // Очищаем поле после отправки
+    }, error => {
+      console.error('Ошибка публикации поста:', error);
+    });
+  }
+
+
 }

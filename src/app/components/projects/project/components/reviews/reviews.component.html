@@ -4,6 +4,34 @@
             Отзывы
         </p>
     </div>
+
+    <div class="form" *ngIf="currentUser">
+        <div class="cardContainer-userData-logo">
+            <ng-container *ngIf="currentUser?.imageLink">
+                <img [src]="currentUser.imageLink " alt="avatar"
+                    style="width:52px; height:100%" class="logoImg">
+            </ng-container>
+            <ng-container *ngIf="!currentUser?.imageLink">
+                <img [src]="'assets/avatars/default.png'" alt="avatar" style="width:52px; height:100%" class="logoImg">
+            </ng-container>
+        </div>
+        
+        <!-- Текстовое поле -->
+        <div class="input-container">
+            <textarea #textArea rows="1" placeholder="Введите текст..." class="text14"
+            [(ngModel)]="commentText"
+            (input)="autoExpand(textArea); checkInput(commentText)">
+        </textarea>
+
+            <!-- Кнопки появляются, если есть текст -->
+            <div class="button-container" *ngIf="isTextEntered">
+                <a class="btnSend" (click)="sendMessage()">Опубликовать</a>
+                <a class="btnCancel" (click)="clearText()">Отмена</a>
+            </div>
+        </div>
+    </div>
+
+    
     <div class="container-items">
         <app-review-card [Item]="itemCard" *ngFor="let itemCard of itemsLisat"></app-review-card>
     </div>

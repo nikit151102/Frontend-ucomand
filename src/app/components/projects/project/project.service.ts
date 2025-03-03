@@ -90,7 +90,7 @@ export class ProjectService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<any>(`${environment.apiUrl}/projects/byNickame/${nicknameProject}`, { headers })
+    return this.http.get<any>(`${environment.apiUrl}/projects/byNickname/${nicknameProject}`, { headers })
 
   }
 

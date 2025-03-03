@@ -1,21 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { PhotoGridComponent } from './photo-grid/photo-grid.component';
+import { ProjectService } from '../../project.service';
+import { TapeService } from '../tape/tape.service';
 
-interface itemCard {
-  user: userCard;
-  title: string;
-  text: string;
-}
-
-interface userCard {
-  lastName: string;
-  firstName: string;
-  imageLink: string;
-  dateOfRegistration: string;
-  nickname: string;
-}
 
 @Component({
   selector: 'app-review-card',
@@ -25,17 +14,36 @@ interface userCard {
   styleUrl: './review-card.component.css',
   providers: [DatePipe]
 })
-export class ReviewCardComponent {
+export class ReviewCardComponent implements OnInit {
 
-  @Input() Item!: itemCard
+  @Input() Item!: any
   @Input() visibleFoto: boolean = false;
-  constructor(private datePipe: DatePipe) { }
+  isOwner: boolean = false;
+  photoArray: { url: any; }[] = []
+
+  constructor(private projectService: ProjectService, private datePipe: DatePipe, private tapeService: TapeService) { }
+
+  ngOnInit(): void {
+
+    this.projectService.currentProjectIsOwner$.subscribe((value: boolean) => {
+      this.isOwner = value;
+      console.log('value', value)
+    })
+
+
+    this.photoArray.push({ url: this.Item.imageLink })
+  }
 
   getFormattedDate(dateString: string): string | null {
     return this.datePipe.transform(dateString, 'dd.MM.yyyy в HH.mm');
   }
 
-  photoArray = [
-    { url: 'https://avatars.mds.yandex.net/get-mpic/1985106/img_id2047960825122601198.jpeg/orig' },
-  ]
+  deletePost() {
+    this.tapeService.deletePost(this.Item.id).subscribe((value: boolean) => {
+      this.tapeService.getTapes(this.tapeService.projectId).subscribe((data: any) => {
+        this.tapeService.setItemsList(data.data);
+      })
+    })
+  }
+
 }

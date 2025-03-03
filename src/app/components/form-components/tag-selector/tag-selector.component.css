@@ -45,6 +45,8 @@
     margin-top: 0.5rem;
     max-height: calc(12 * 1.5rem + 12px + 12px); 
     overflow-y: auto;
+    position: absolute;
+    z-index: 2;
 }
 /* Стили для всего скроллбара */
 .tag-block::-webkit-scrollbar {

@@ -4,6 +4,7 @@ import { ParticipantComponent } from './participant/participant.component';
 import { PopUpResponseTeamService } from '../pop-up-response-team/pop-up-response-team.service';
 import { JobComponent } from './job/job.component';
 import { ProjectService } from '../../project.service';
+import { TeamService } from './team.service';
 
 @Component({
   selector: 'app-team',
@@ -15,35 +16,13 @@ import { ProjectService } from '../../project.service';
 export class TeamComponent implements OnInit {
 
 
-  itemsList = [
-    {
-      lastName: 'Чаплыгин',
-      firstName: 'Роман',
-      imageLink: 'image1_male',
-      nickname: 'us',
-      profession: 'Администратор'
-    },
-    {
-      lastName: 'Ивановский',
-      firstName: 'Иван',
-      imageLink: 'image4_male',
-      nickname: 'us',
-      profession: 'SMM менеджер'
-    },
-    {
-      lastName: 'Иванова',
-      firstName: 'Марина',
-      imageLink: 'image7_female',
-      nickname: 'us',
-      profession: 'Дизайнер'
-    },
-  ]
+  itemsList = []
 
   vacancies: any;
   currentProjectData: any;
   isOwner: boolean = false;
 
-  constructor(private popUpResponseTeamService: PopUpResponseTeamService, private projectService: ProjectService) { }
+  constructor(private popUpResponseTeamService: PopUpResponseTeamService, private projectService: ProjectService, private teamService:TeamService) { }
 
   ngOnInit(): void {
 
@@ -57,8 +36,13 @@ export class TeamComponent implements OnInit {
     })
     this.projectService.currentProjectData$.subscribe((data: any) => {
       this.currentProjectData = data;
+      this.teamService.getTeamProject(this.currentProjectData.id).subscribe((value: any)=>{
+        this.itemsList = value;
+      })
     })
     
+
+
   }
   getPopUoP() {
     this.popUpResponseTeamService.showPopup()
