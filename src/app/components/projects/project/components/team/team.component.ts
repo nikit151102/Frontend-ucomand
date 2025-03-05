@@ -36,7 +36,7 @@ export class TeamComponent implements OnInit {
     })
     this.projectService.currentProjectData$.subscribe((data: any) => {
       this.currentProjectData = data;
-      this.teamService.getTeamProject(this.currentProjectData.id).subscribe((value: any)=>{
+      this.teamService.getTeamProject(this.currentProjectData?.id).subscribe((value: any)=>{
         this.itemsList = value;
       })
     })

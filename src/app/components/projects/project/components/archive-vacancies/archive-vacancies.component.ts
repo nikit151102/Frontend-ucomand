@@ -32,7 +32,9 @@ export class ArchiveVacanciesComponent implements OnInit {
           this.projectService.getVacanciesProject(this.projectData.id).subscribe(
               (response: any) => {
                   console.log('vacancies', response);
-                  this.vacancies = response?.data || []; 
+                  this.vacancies = (response?.data || []).filter(
+                    (vacancy: any) => vacancy.visibility !== "EVERYBODY"
+                );
               },
               (error) => {
                   console.error('Error fetching vacancies:', error);

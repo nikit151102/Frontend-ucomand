@@ -13,11 +13,7 @@ import { SortetdFilterService } from '../../../../../../home/sortetd-filter/sort
 export class TeamValueComponent {
   @Input() item: any;
 
-  tags: any[] = [
-    { id: 1, name: 'Стартап', nameEng: '', competenceLevel: null, type: 'STARTUP' },
-    { id: 2, name: 'Компания', nameEng: '', competenceLevel: null, type: 'COMPANY' },
-    { id: 3, name: 'Разовый проект', nameEng: '', competenceLevel: null, type: 'ONE_TIME_PROJECT' },
-  ];
+  tags: any[] = [];
 
   showTagBlock = false;
   selectedTags: any[] = [];
@@ -68,4 +64,6 @@ export class TeamValueComponent {
     }
   }
 
+
+  
 }

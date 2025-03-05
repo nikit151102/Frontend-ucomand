@@ -56,13 +56,22 @@ export class ReviewsComponent implements OnInit {
 
   sendMessage(): void {
     this.reviewsService.addComment(this.projectData.id, '', this.commentText).subscribe(
-      (value: any) =>{
-        console.log('value', value)
+      (newComment: any) => {
+        console.log('Добавленный комментарий:', newComment);
+        
+        // Добавляем новый комментарий в начало массива
+        this.itemsLisat = [newComment, ...this.itemsLisat];
+  
+        // Принудительное обновление представления
+        this.commentText = ''; 
+        this.isTextEntered = false;
+      },
+      (error) => {
+        console.error('Ошибка при добавлении комментария:', error);
       }
-    )
-
-    this.clearText();
+    );
   }
+  
 
   clearText(): void {
     const textArea = document.querySelector("textarea") as HTMLTextAreaElement;

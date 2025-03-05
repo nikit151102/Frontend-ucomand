@@ -67,5 +67,16 @@ export class TapeService {
     return this.http.delete<any>(`${environment.apiUrl}/projects/${postId}/posts`, { headers });
   }
 
+  updatePost(postId: number, updatedPost: any) {
+    const token = localStorage.getItem('authToken');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put(`http://cdss13.fvds.ru:9090/posts/${postId}`, updatedPost, {headers});
+  }
+
+  
 
 }

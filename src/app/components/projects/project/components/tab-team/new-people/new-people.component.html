@@ -3,7 +3,7 @@
         <p class="subtitle16caps">новые заявки</p>
     </div>
     <div class="team_people">
-        <ng-container *ngIf="cardItems.length > 0; else noItems">
+        <ng-container *ngIf="cardItems?.length > 0; else noItems">
             <app-item-new-people [item]="item" *ngFor="let item of cardItems"></app-item-new-people>
         </ng-container>
         <ng-template #noItems>

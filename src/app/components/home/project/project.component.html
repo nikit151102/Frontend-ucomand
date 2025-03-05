@@ -4,7 +4,7 @@
         <div class="header-content">
             <span class="type-badge">{{ getTypeName(cardItem.type) }}</span>
             <a class="like" (click)="toggleLike($event)">
-                {{cardItem.likesCount}}
+                {{cardItem?.likesCount}}
 
                 <!-- Иконка лайка при нажатии -->
                 <svg *ngIf="isLiked" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -56,8 +56,8 @@
 
                 <ng-container *ngFor="let item of cardItem.vacancies.slice(0, 2)" (click)="viewJob($event, item.id)">
                     <div class="vacanciesItem" style="margin-bottom: 8px;">
-                        <span class="text12" style="font-weight: 600;">{{item.profession.name}}</span>
-                        <p [ngStyle]="{ 'border-color': getSkillsColor(item.profession.competenceLevel) }"
+                        <span class="text12" style="font-weight: 600;">{{item?.profession?.name}}</span>
+                        <p [ngStyle]="{ 'border-color': getSkillsColor(item.profession?.competenceLevel) }"
                             class="lookingCard-level" *ngIf="item?.profession?.competenceLevel">
                             {{ getSkills(item.profession?.competenceLevel) }}
                         </p>

@@ -4,34 +4,37 @@ import { DatePipe } from '@angular/common';
 import { PhotoGridComponent } from './photo-grid/photo-grid.component';
 import { ProjectService } from '../../project.service';
 import { TapeService } from '../tape/tape.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-review-card',
   standalone: true,
-  imports: [CommonModule, PhotoGridComponent],
+  imports: [CommonModule, PhotoGridComponent, FormsModule, ReactiveFormsModule],
   templateUrl: './review-card.component.html',
   styleUrl: './review-card.component.css',
   providers: [DatePipe]
 })
 export class ReviewCardComponent implements OnInit {
-
-  @Input() Item!: any
+  @Input() Item!: any;
   @Input() visibleFoto: boolean = false;
   isOwner: boolean = false;
-  photoArray: { url: any; }[] = []
+  photoArray: { url: any }[] = [];
+  isEditing: boolean = false;
+  editedContent: string = '';
 
-  constructor(private projectService: ProjectService, private datePipe: DatePipe, private tapeService: TapeService) { }
+  constructor(private projectService: ProjectService, private datePipe: DatePipe, private tapeService: TapeService) {}
 
   ngOnInit(): void {
-
     this.projectService.currentProjectIsOwner$.subscribe((value: boolean) => {
       this.isOwner = value;
-      console.log('value', value)
-    })
+    });
 
+    if (this.Item.imageLink) {
+      this.photoArray.push({ url: this.Item.imageLink });
+    }
 
-    this.photoArray.push({ url: this.Item.imageLink })
+    this.editedContent = this.Item.content; // Заполняем начальное значение
   }
 
   getFormattedDate(dateString: string): string | null {
@@ -39,11 +42,59 @@ export class ReviewCardComponent implements OnInit {
   }
 
   deletePost() {
-    this.tapeService.deletePost(this.Item.id).subscribe((value: boolean) => {
+    this.tapeService.deletePost(this.Item.id).subscribe(() => {
       this.tapeService.getTapes(this.tapeService.projectId).subscribe((data: any) => {
         this.tapeService.setItemsList(data.data);
-      })
-    })
+      });
+    });
   }
 
+    
+  toggleEdit() {
+    this.isEditing = !this.isEditing; // Переключаем режим редактирования
+  }
+
+  deletePhoto() {
+    this.photoArray = []; // Очищаем фото
+  }
+
+  sendMessage() {
+    if (this.editedContent.trim()) {
+      this.updatePost();
+      this.Item.content = this.editedContent; // Обновляем контент
+      this.isEditing = false; // Закрываем режим редактирования
+      console.log('Сообщение опубликовано:', this.editedContent);
+    } else {
+      console.log('Ошибка: нельзя отправить пустой текст');
+    }
+  }
+  
+  clearText() {
+    this.editedContent = this.Item.content; // Сбрасываем изменения
+    this.isEditing = false; // Закрываем режим редактирования
+    console.log('Редактирование отменено');
+  }
+ 
+  
+  updatePost() {
+    const updatedPost = {
+      id: this.Item.id,
+      title: this.Item.title,
+      imageLink: this.Item.imageLink,
+      content: this.editedContent,
+    };
+  
+    this.tapeService.updatePost(this.Item.id, updatedPost).subscribe(
+      (response) => {
+        console.log('Пост успешно обновлён:', response);
+        this.Item.content = this.editedContent; // Обновляем контент локально
+        this.isEditing = false; // Закрываем режим редактирования
+      },
+      (error) => {
+        console.error('Ошибка при обновлении поста:', error);
+      }
+    );
+  }
+
+  
 }

@@ -36,8 +36,10 @@ export class VacanciesComponent implements OnInit {
         this.projectService.getVacanciesProject(this.projectData.id).subscribe(
           (response: any) => {
             console.log('vacancies', response);
-            this.vacancies = response?.data || [];
-            this.projectService.setCurrentProjectVacancies(response?.data)
+            this.vacancies = (response?.data || []).filter(
+              (vacancy: any) => vacancy.visibility !== "CREATOR_ONLY"
+          );
+            this.projectService.setCurrentProjectVacancies(this.vacancies)
           },
           (error) => {
             console.error('Error fetching vacancies:', error);
