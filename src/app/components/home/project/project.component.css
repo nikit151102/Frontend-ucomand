@@ -158,6 +158,10 @@
             .team-member {
                 position: relative;
 
+                &:not(:first-child) { 
+                    margin-left: -20px; 
+                }
+                
                 .avatar {
                     width: 38px;
                     height: 38px;

@@ -52,6 +52,16 @@ export class CreateEditProjectsComponent implements OnInit {
 
   }
 
+  onInputChange(event: any) {
+    let value = event.target.value;
+    
+    // Если поле пустое или первый символ не @, добавляем его
+    if (!value.startsWith('@')) {
+      value = '@' + value.replace(/^@+/, ''); // Убираем лишние @ в начале
+      event.target.value = value; // Обновляем отображение в input
+    }
+  }
+
   initializeForm(): void {
     this.form = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(200), forbiddenWordsValidator()]],
@@ -146,7 +156,7 @@ export class CreateEditProjectsComponent implements OnInit {
           summary: user.summary || '',
           type: user.type || '',
           email: user.email || '',
-          telegram: user.telegram || '',
+          telegram: user.telegram ? '@' + user.telegram.replace(/^@+/, '') : '',
           description: user.description || '',
           developmentStage: user.developmentStage || '',
           tasks: user.tasks,
@@ -223,7 +233,7 @@ export class CreateEditProjectsComponent implements OnInit {
         'summary': data.summary,
         'type': data.type.type,
         'email': data.email,
-        'telegram': data.telegram,
+        'telegram': data.telegram.startsWith('@') ? data.telegram.slice(1) : data.telegram,
         'description': data.description.replace(/\r?\n/g, '\n'),
         'developmentStage': data.developmentStage.replace(/\r?\n/g, '\n'),
         'tasks': data.tasks.replace(/\r?\n/g, '\n'),

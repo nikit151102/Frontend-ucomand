@@ -4,7 +4,27 @@
     overflow: hidden;
     box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
     background: rgba(51, 51, 52, 0.3);
+    margin-left: -5rem;
 }
+
+@media (max-width: 1380px) {
+    .toggle-switch{
+        margin-left: -3rem;
+    }
+}
+
+@media (max-width: 1180px) {
+    .toggle-switch{
+        margin-left: -2rem;
+    }
+}
+
+@media (max-width: 778px) {
+    .toggle-switch{
+        margin-left: 0;
+    }
+}
+
 
 .toggle-btn {
     flex: 1;

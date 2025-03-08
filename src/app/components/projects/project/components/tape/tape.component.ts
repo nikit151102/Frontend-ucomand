@@ -29,20 +29,27 @@ export class TapeComponent {
       this.itemsList = values;
     })
 
-    this.personalDataService.getCurrentUser().subscribe(
-      (user: any) => {
-        this.currentUser = user;
-      })
+
 
     this.projectService.currentProjectData$.subscribe((data: any) => {
       this.currentProjectData = data;
       this.tapeService.projectId = data.id;
+      this.getDataUser();
       this.tapeService.getTapes(data.id).subscribe((data: any) => {
         this.tapeService.setItemsList(data.data);
       })
     })
 
 
+  }
+
+  getDataUser(){
+    this.personalDataService.getCurrentUser().subscribe(
+      (user: any) => {
+        if( this.currentProjectData.owner.nickname == user.nickname && user.nickname == localStorage.getItem('userNickname')){
+          this.currentUser = user;
+        }
+      })
   }
 
 

@@ -64,7 +64,7 @@ export class TapeService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.delete<any>(`${environment.apiUrl}/projects/${postId}/posts`, { headers });
+    return this.http.delete<any>(`${environment.apiUrl}/posts/${postId}`, { headers });
   }
 
   updatePost(postId: number, updatedPost: any) {

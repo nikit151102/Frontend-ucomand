@@ -5,6 +5,7 @@ import { PhotoGridComponent } from './photo-grid/photo-grid.component';
 import { ProjectService } from '../../project.service';
 import { TapeService } from '../tape/tape.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReviewsService } from '../reviews/reviews.service';
 
 
 @Component({
@@ -22,14 +23,19 @@ export class ReviewCardComponent implements OnInit {
   photoArray: { url: any }[] = [];
   isEditing: boolean = false;
   editedContent: string = '';
+  userNickname: any;
 
-  constructor(private projectService: ProjectService, private datePipe: DatePipe, private tapeService: TapeService) {}
+  constructor(private projectService: ProjectService,
+    private datePipe: DatePipe, private tapeService: TapeService,
+    private reviewsService: ReviewsService) { }
 
   ngOnInit(): void {
+
     this.projectService.currentProjectIsOwner$.subscribe((value: boolean) => {
       this.isOwner = value;
     });
 
+    this.userNickname = localStorage.getItem('userNickname')
     if (this.Item.imageLink) {
       this.photoArray.push({ url: this.Item.imageLink });
     }
@@ -49,7 +55,7 @@ export class ReviewCardComponent implements OnInit {
     });
   }
 
-    
+
   toggleEdit() {
     this.isEditing = !this.isEditing; // Переключаем режим редактирования
   }
@@ -60,7 +66,13 @@ export class ReviewCardComponent implements OnInit {
 
   sendMessage() {
     if (this.editedContent.trim()) {
-      this.updatePost();
+      if (!this.photoArray) {
+        this.reviewsService.editComment(this.Item.id, '', this.editedContent).subscribe((data: any) => {
+          this.reviewsService.updateItemById(this.Item.id, data);
+        })
+      } else {
+        this.updatePost();
+      }
       this.Item.content = this.editedContent; // Обновляем контент
       this.isEditing = false; // Закрываем режим редактирования
       console.log('Сообщение опубликовано:', this.editedContent);
@@ -68,14 +80,14 @@ export class ReviewCardComponent implements OnInit {
       console.log('Ошибка: нельзя отправить пустой текст');
     }
   }
-  
+
   clearText() {
     this.editedContent = this.Item.content; // Сбрасываем изменения
     this.isEditing = false; // Закрываем режим редактирования
     console.log('Редактирование отменено');
   }
- 
-  
+
+
   updatePost() {
     const updatedPost = {
       id: this.Item.id,
@@ -83,7 +95,7 @@ export class ReviewCardComponent implements OnInit {
       imageLink: this.Item.imageLink,
       content: this.editedContent,
     };
-  
+
     this.tapeService.updatePost(this.Item.id, updatedPost).subscribe(
       (response) => {
         console.log('Пост успешно обновлён:', response);
@@ -96,5 +108,10 @@ export class ReviewCardComponent implements OnInit {
     );
   }
 
-  
+
+  deleteComment() {
+    this.reviewsService.deleteComment(this.Item.id).subscribe((data: any) => {
+      this.reviewsService.removeItemById(this.Item.id);
+    })
+  }
 }

@@ -24,6 +24,10 @@ export class ReviewsComponent implements OnInit {
   isTextEntered: boolean = false;
 
   ngOnInit(): void {
+    this.reviewsService.itemsReviews$.subscribe((data: any) => {
+      this.itemsLisat = data;
+    })
+
     this.personalDataService.getCurrentUser().subscribe(
       (user: any) => {
         this.currentUser = user;
@@ -31,11 +35,11 @@ export class ReviewsComponent implements OnInit {
 
     this.projectService.currentProjectData$.subscribe((value: any) => {
       this.projectData = value;
-      console.log('this.projectData',this.projectData)
+      console.log('this.projectData', this.projectData)
       if (this.projectData?.id) {
         this.reviewsService.getComments(this.projectData.id).subscribe(
           (response: any) => {
-            this.itemsLisat = response.data;
+            this.reviewsService.setItemsList(response.data);
           },
           (error) => {
             console.error('Error fetching vacancies:', error);
@@ -58,12 +62,11 @@ export class ReviewsComponent implements OnInit {
     this.reviewsService.addComment(this.projectData.id, '', this.commentText).subscribe(
       (newComment: any) => {
         console.log('Добавленный комментарий:', newComment);
-        
-        // Добавляем новый комментарий в начало массива
-        this.itemsLisat = [newComment, ...this.itemsLisat];
-  
+
+       this.reviewsService.addItemToStart(newComment)
+
         // Принудительное обновление представления
-        this.commentText = ''; 
+        this.commentText = '';
         this.isTextEntered = false;
       },
       (error) => {
@@ -71,7 +74,7 @@ export class ReviewsComponent implements OnInit {
       }
     );
   }
-  
+
 
   clearText(): void {
     const textArea = document.querySelector("textarea") as HTMLTextAreaElement;

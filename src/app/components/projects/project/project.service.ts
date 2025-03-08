@@ -78,20 +78,18 @@ export class ProjectService {
   }
 
 
-
-
-
   isEditProject: boolean = false;
 
   getCurrentProject(nicknameProject: string): Observable<any> {
     const token = localStorage.getItem('authToken');
-
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
-    return this.http.get<any>(`${environment.apiUrl}/projects/byNickname/${nicknameProject}`, { headers })
-
+    if(token){
+      return this.http.get<any>(`${environment.apiUrl}/projects/byNickname/${nicknameProject}`, { headers })
+    }else{
+      return this.http.get<any>(`${environment.apiUrl}/projects/byNickname/${nicknameProject}`)
+    }
   }
 
 
