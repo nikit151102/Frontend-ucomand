@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { TagSelectorComponent } from '../../../../../../form-components/tag-selector/tag-selector.component';
 import { SortetdFilterService } from '../../../../../../home/sortetd-filter/sortetd-filter.service';
+import { TagSelectorComponent } from '../../../tag-selector/tag-selector.component';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../../../../../../environment';
+import { ProjectService } from '../../../../project.service';
 
 @Component({
   selector: 'app-team-value',
@@ -18,20 +21,34 @@ export class TeamValueComponent {
   showTagBlock = false;
   selectedTags: any[] = [];
   private onChange: (value: any) => void = () => { };
+  originalTag: any | null = null;
 
-  constructor(public sortetdFilterService: SortetdFilterService,) { }
+  constructor(public sortetdFilterService: SortetdFilterService,
+    public projectService: ProjectService,
+    private http: HttpClient
+  ) { }
 
+  ngOnInit() {
+    if (this.item && this.item.profession) {
+      this.originalTag = this.item.profession; // Сохраняем исходное значение
+      this.value = this.item.profession; // Устанавливаем текущий тег
+    }
+  }
+
+  
   toggleTagBlock(show: boolean) {
     setTimeout(() => {
       this.showTagBlock = show;
     }, 200);
   }
 
+  isEdit: boolean = false;
   value: any
   selectTag(tag: any) {
     if (!this.selectedTags.includes(tag) && this.selectedTags.length < 1) {
       this.onChange(tag);
       this.value = tag.name;
+      
     }
   }
 
@@ -45,8 +62,15 @@ export class TeamValueComponent {
   }
 
   onTagsChanged(tags: any[], formElement: string) {
-    this.value = tags[0];
+    if (tags.length > 0) {
+      this.value = tags[0]; // Устанавливаем новый тег
+    } else {
+      this.value = null; // Если тег сняли, обнуляем
+    }
+    
+    this.isEdit = this.originalTag !== this.value; // Проверяем изменение тега
   }
+  
 
   @ViewChild('dialog') dialog!: ElementRef;
   @ViewChild('selectorProfessions') selectorProfessions!: ElementRef;
@@ -66,4 +90,28 @@ export class TeamValueComponent {
 
 
   
+  updateProfession() {
+    if (!this.isEdit || !this.value) return; // Если изменений нет — не отправляем запрос
+    let projectData = this.projectService.getCurrentProjectData();
+    
+    const updatedData = {
+      id: this.item.id, 
+      profession: this.value.name,
+      user: this.item.user
+    };
+   const token = localStorage.getItem('authToken');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    this.http.put(`${environment.apiUrl}/teamMembers/${projectData.id}`, updatedData, {headers})
+      .subscribe(
+        () => {
+          this.originalTag = this.value; // Обновляем оригинальный тег
+          this.isEdit = false; // Скрываем кнопку "Изменить"
+        },
+        error => console.error('Ошибка обновления:', error)
+      );
+  }
+
 }

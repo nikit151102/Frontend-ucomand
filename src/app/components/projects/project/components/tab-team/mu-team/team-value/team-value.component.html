@@ -26,7 +26,7 @@
         <div class="tag-selector" style="width: 100%;">
             <label for="">Роль</label>
             <app-tag-selector [type]="'PROFESSION'" [placeholderValue]="'Выберете специализацию'"
-            (click)="scrollToSelectorProfessions()" [maxTags]="1"
+            (click)="scrollToSelectorProfessions()"
             (tagsChanged)="onTagsChanged($event,'profession')"
             [service]="sortetdFilterService"></app-tag-selector>
 
@@ -39,6 +39,7 @@
                 </div>
             </ng-container>
         </div>
-        <a class="edit-button">Изменить</a>
+        <a *ngIf="isEdit || (!isEdit && item.profession == 'Владелец')" class="edit-button" (click)="updateProfession()">Изменить</a>
+        <a *ngIf="!isEdit && item.profession != 'Владелец'" class="edit-button">Удалить</a>
     </div>
 </div>
