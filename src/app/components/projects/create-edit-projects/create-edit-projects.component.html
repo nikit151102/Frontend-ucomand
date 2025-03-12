@@ -59,7 +59,7 @@
                             <p class="container-elements-left-gruopInputs-items-block-title">
                                 Краткое описание (не более 300 символов)
                             </p>
-                            <textarea class="container-elements-left-gruopInputs-items-block-input textarea"
+                            <textarea  (input)="onTextAreaInput($event)" class="container-elements-left-gruopInputs-items-block-input textarea"
                                 placeholder="Поле ввода" formControlName="summary"></textarea>
                             <div *ngIf="form.get('summary')?.invalid && (form.get('summary')?.dirty || form.get('summary')?.touched)"
                                 class="error-message">
@@ -121,7 +121,7 @@
                     <div class="container-elements-left-gruopInputs-items">
                         <div class="container-elements-left-gruopInputs-items-block">
                             <p class="container-elements-left-gruopInputs-items-block-title">Описание:</p>
-                            <textarea class="container-elements-left-gruopInputs-items-block-input textarea"
+                            <textarea  (input)="onTextAreaInput($event)" class="container-elements-left-gruopInputs-items-block-input textarea"
                                 placeholder="Введите описание" formControlName="description"></textarea>
                             <div *ngIf="form.get('description')?.invalid && (form.get('description')?.dirty || form.get('description')?.touched)"
                                 class="error-message">
@@ -138,7 +138,7 @@
                         </div>
                         <div class="container-elements-left-gruopInputs-items-block">
                             <p class="container-elements-left-gruopInputs-items-block-title">Этап развития:</p>
-                            <textarea class="container-elements-left-gruopInputs-items-block-input textarea"
+                            <textarea  (input)="onTextAreaInput($event)" class="container-elements-left-gruopInputs-items-block-input textarea"
                                 placeholder="Введите этапы работы" formControlName="developmentStage"></textarea>
                             <div *ngIf="form.get('developmentStage')?.invalid && (form.get('developmentStage')?.dirty || form.get('developmentStage')?.touched)"
                                 class="error-message">
@@ -157,7 +157,7 @@
                         </div>
                         <div class="container-elements-left-gruopInputs-items-block">
                             <p class="container-elements-left-gruopInputs-items-block-title">Задачи:</p>
-                            <textarea class="container-elements-left-gruopInputs-items-block-input textarea"
+                            <textarea  (input)="onTextAreaInput($event)" class="container-elements-left-gruopInputs-items-block-input textarea"
                                 placeholder="Введите задачи" formControlName="tasks"></textarea>
                             <div *ngIf="form.get('tasks')?.invalid && (form.get('tasks')?.dirty || form.get('tasks')?.touched)"
                                 class="error-message">

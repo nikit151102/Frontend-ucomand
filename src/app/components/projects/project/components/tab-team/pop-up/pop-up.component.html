@@ -18,7 +18,7 @@
             <div class="logo">
                 <ng-container *ngIf="item?.resume?.user?.imageLink">
                     <ng-container *ngIf="item?.resume?.user?.imageLink.startsWith('https'); else localImage">
-                        <img [src]="item?.resume?.user?.imageLink" class="logoImg" style="width: 52px;">
+                        <img [src]="item?.resume?.user?.imageLink" class="logoImg" style="width: 52px; border-radius: 50%;">
                     </ng-container>
                     <ng-template #localImage>
                         <img [src]="'assets/avatars/' + item?.resume?.user?.imageLink + '.png'" class="logoImg" style="width: 52px;">

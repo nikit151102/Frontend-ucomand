@@ -14,16 +14,17 @@ import { MyTeamService } from './my-team.service';
   styleUrl: './mu-team.component.css'
 })
 export class MuTeamComponent implements OnInit {
-
   teamMembers: any;
 
   constructor(public projectService: ProjectService, private myTeamService: MyTeamService) { }
 
   ngOnInit(): void {
     let projectData = this.projectService.getCurrentProjectData();
-    this.myTeamService.getTeamMembers(projectData.id).subscribe((data: any) => {
-      this.teamMembers = data;
-      console.log('itemitem', data)
+    this.myTeamService.projectId = projectData.id;
+    this.myTeamService.loadData();
+
+    this.myTeamService.teamMembers$.subscribe((value: any) => {
+      this.teamMembers = value;
     })
   }
 

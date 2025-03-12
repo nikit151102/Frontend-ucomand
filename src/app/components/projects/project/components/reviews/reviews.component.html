@@ -9,7 +9,7 @@
         <div class="cardContainer-userData-logo">
             <ng-container *ngIf="currentUser?.imageLink">
                 <img [src]="currentUser.imageLink " alt="avatar"
-                    style="width:52px; height:100%" class="logoImg">
+                    style="width:52px; height:100%; border-radius: 50%;" class="logoImg">
             </ng-container>
             <ng-container *ngIf="!currentUser?.imageLink">
                 <img [src]="'assets/avatars/default.png'" alt="avatar" style="width:52px; height:100%" class="logoImg">

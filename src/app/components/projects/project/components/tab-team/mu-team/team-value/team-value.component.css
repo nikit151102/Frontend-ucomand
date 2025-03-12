@@ -7,6 +7,12 @@
     flex-direction: row;
 }
 
+@media (max-width: 878px) {
+.team_value {
+flex-direction: column;
+}
+}
+
 .team_value .person {
     display: flex;
     gap: 10px;

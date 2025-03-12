@@ -18,7 +18,11 @@ p {
     cursor: pointer;
     overflow: hidden;
 }
-
+textarea {
+    resize: none;
+    overflow: hidden;
+  }
+  
 .overlay {
     position: absolute;
     top: 0;

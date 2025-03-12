@@ -5,6 +5,7 @@ import { TagSelectorComponent } from '../../../tag-selector/tag-selector.compone
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../../../../../environment';
 import { ProjectService } from '../../../../project.service';
+import { MyTeamService } from '../my-team.service';
 
 @Component({
   selector: 'app-team-value',
@@ -25,7 +26,8 @@ export class TeamValueComponent {
 
   constructor(public sortetdFilterService: SortetdFilterService,
     public projectService: ProjectService,
-    private http: HttpClient
+    private http: HttpClient,
+    private myTeamService: MyTeamService
   ) { }
 
   ngOnInit() {
@@ -35,7 +37,7 @@ export class TeamValueComponent {
     }
   }
 
-  
+
   toggleTagBlock(show: boolean) {
     setTimeout(() => {
       this.showTagBlock = show;
@@ -48,7 +50,7 @@ export class TeamValueComponent {
     if (!this.selectedTags.includes(tag) && this.selectedTags.length < 1) {
       this.onChange(tag);
       this.value = tag.name;
-      
+
     }
   }
 
@@ -67,10 +69,10 @@ export class TeamValueComponent {
     } else {
       this.value = null; // Если тег сняли, обнуляем
     }
-    
+
     this.isEdit = this.originalTag !== this.value; // Проверяем изменение тега
   }
-  
+
 
   @ViewChild('dialog') dialog!: ElementRef;
   @ViewChild('selectorProfessions') selectorProfessions!: ElementRef;
@@ -89,22 +91,22 @@ export class TeamValueComponent {
   }
 
 
-  
+
   updateProfession() {
     if (!this.isEdit || !this.value) return; // Если изменений нет — не отправляем запрос
     let projectData = this.projectService.getCurrentProjectData();
-    
+
     const updatedData = {
-      id: this.item.id, 
+      id: this.item.id,
       profession: this.value.name,
       user: this.item.user
     };
-   const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem('authToken');
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    this.http.put(`${environment.apiUrl}/teamMembers/${projectData.id}`, updatedData, {headers})
+    this.http.put(`${environment.apiUrl}/teamMembers/${projectData.id}`, updatedData, { headers })
       .subscribe(
         () => {
           this.originalTag = this.value; // Обновляем оригинальный тег
@@ -113,5 +115,25 @@ export class TeamValueComponent {
         error => console.error('Ошибка обновления:', error)
       );
   }
+
+
+  deleteItem() {
+
+    const token = localStorage.getItem('authToken');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    this.http.delete(`${environment.apiUrl}/teamMembers/${this.item.id}`, { headers })
+      .subscribe(
+        () => {
+          this.originalTag = this.value; // Обновляем оригинальный тег
+          this.isEdit = false; // Скрываем кнопку "Изменить"
+          this.myTeamService.loadData();
+        },
+        error => console.error('Ошибка обновления:', error)
+      );
+  }
+
 
 }

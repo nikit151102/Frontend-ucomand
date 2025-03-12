@@ -199,5 +199,13 @@ textarea:active {
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
-    width: calc(75vw - 376px);
+    width: calc(70vw - 376px);
+}
+
+@media (max-width: 878px) {
+
+    .cardContainer-feedback-title,
+    .cardContainer-feedback-content {
+        width: 100%;
+    }
 }

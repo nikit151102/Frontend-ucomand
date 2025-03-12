@@ -1,5 +1,3 @@
-
-
 /* -----------------------------------------------------team */
 
 
@@ -27,14 +25,14 @@
     margin-top: 24px;
 }
 
-.team_value {
-    border-radius: 12px;
-    padding: 0px 8px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
+
+
+@media (max-width: 878px) {
+    .team_value {
+        flex-direction: column;
+    }
 }
+
 
 .team_value .person {
     display: flex;
@@ -269,7 +267,7 @@
 
 .card:hover {
     border: 4px solid #84DD2C;
-    color: #010101; 
+    color: #010101;
 }
 
 /* .card:hover .title,
@@ -297,7 +295,7 @@ p {
 .Specialization {
     display: flex;
     flex-direction: column;
-   
+
 }
 
 .title {

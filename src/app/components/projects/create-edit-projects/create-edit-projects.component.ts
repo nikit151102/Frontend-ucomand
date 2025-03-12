@@ -25,7 +25,19 @@ export class CreateEditProjectsComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private createEditProjectsService: CreateEditProjectsService, public projectService: ProjectService, private route: ActivatedRoute) {
 
   }
+  onTextAreaInput(event: Event, minHeight = 98) {
+    const textarea = event.target as HTMLTextAreaElement;
+    textarea.style.height = 'auto'; // Сбрасываем высоту, чтобы она могла адаптироваться
+  
 
+    // Используем scrollHeight, чтобы установить высоту в зависимости от содержимого
+    const newHeight = Math.max(textarea.scrollHeight, minHeight); 
+  
+    textarea.style.height = `${newHeight}px`; // Устанавливаем высоту в зависимости от содержимого
+  }
+  
+
+  
   ngOnInit(): void {
     this.initializeForm();
     this.projectService.currentProjectData$.subscribe((value: any) => {
