@@ -39,7 +39,7 @@
                 </div>
             </ng-container>
         </div>
-        <a *ngIf="isEdit || (!isEdit && item.profession == 'Владелец')" class="edit-button" (click)="updateProfession()">Изменить</a>
+        <a *ngIf="isEdit || (!isEdit && item.profession == 'Владелец')" class="edit-button" (click)="updateProfession()">Сохранить</a>
         <a *ngIf="!isEdit && item.profession != 'Владелец'" class="edit-button" (click)="deleteItem()">Удалить</a>
     </div>
 </div>
