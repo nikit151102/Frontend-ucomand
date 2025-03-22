@@ -19,7 +19,7 @@
             (click)="getPopUoP()">Хочу в
             команду</a>
 
-        <div *ngIf="currentProjectData?.currentUserAppliedToProject" style="    display: flex;
+        <div *ngIf="currentProjectData?.currentUserAppliedToProject && checkUserInTeam(itemsList) == false" style="    display: flex;
             flex-direction: column;
             align-items: center;
             padding: 0 24px;">
@@ -28,6 +28,16 @@
                 Вы уже подали заявку в команду
             </span>
         </div>
+
+        <div *ngIf="currentProjectData?.currentUserAppliedToProject && checkUserInTeam(itemsList) == true" style="    display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 24px;">
+        <span class="disable-users-btn">Хочу в команду</span>
+        <span class="titleMessage text16">
+            Вы в команде
+        </span>
+    </div>
 
     </ng-container>
 

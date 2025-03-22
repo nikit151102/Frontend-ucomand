@@ -44,6 +44,30 @@ export class TeamComponent implements OnInit {
 
 
   }
+
+  checkUserInTeam(itemsList: any[]): boolean {
+    // Получаем данные пользователя из sessionStorage
+    const userData = sessionStorage.getItem('userData');
+    if (!userData) {
+      console.warn('Пользователь не авторизован!');
+      return false;
+    }
+  
+    let userId: number;
+    try {
+      userId = JSON.parse(userData).id;
+      console.log('userId',userId)
+    } catch (error) {
+      console.error('Ошибка парсинга userData:', error);
+      return false;
+    }
+  
+    // Проверяем, есть ли userId в itemsList
+    return itemsList.some(item => item.user?.id === userId);
+  }
+  
+
+
   getPopUoP() {
     this.popUpResponseTeamService.showPopup()
   }
