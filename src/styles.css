@@ -154,3 +154,8 @@ h3,
 div {
     font-family: var(--font-Monts);
 }
+
+
+.work{
+    background: var(--tag-background) !important;
+}

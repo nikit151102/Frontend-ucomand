@@ -36,7 +36,7 @@ p {
     font-weight: 600;
     font-size: 12px;
     line-height: 117%;
-    color: #101010;
+    color: var(--font-color);
 }
 
 .cardContainer-userData-content-dateOfRegistration {
@@ -57,7 +57,7 @@ p {
     font-weight: 600;
     font-size: 16px;
     line-height: 125%;
-    color: #000;
+    color: var(--font-color);
 }
 
 .cardContainer-feedback-content {
@@ -65,7 +65,7 @@ p {
     font-weight: 400;
     font-size: 14px;
     line-height: 129%;
-    color: #000;
+    color: var(--font-color);
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;

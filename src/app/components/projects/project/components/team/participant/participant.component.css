@@ -26,7 +26,7 @@ p{
     font-weight: 600;
     font-size: 12px;
     line-height: 117%;
-    color: #101010;
+    color: var(--font-color);
 }
 
 .content-item-profession {
@@ -34,5 +34,5 @@ p{
     font-weight: 500;
     font-size: 12px;
     line-height: 117%;
-    color: #101010;
+    color: var(--font-color);
 }

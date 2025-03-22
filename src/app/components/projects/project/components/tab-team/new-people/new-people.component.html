@@ -1,13 +1,13 @@
 <div class="team">
     <div class="container-title">
-        <p class="subtitle16caps">новые заявки</p>
+        <p class="subtitle16caps" style="    color: var(--font-color);">новые заявки</p>
     </div>
     <div class="team_people">
         <ng-container *ngIf="cardItems?.length > 0; else noItems">
             <app-item-new-people [item]="item" *ngFor="let item of cardItems"></app-item-new-people>
         </ng-container>
         <ng-template #noItems>
-            <p class="no-requests" style="margin-left: 22px;">Нет новых заявок в команду</p>
+            <p class="no-requests" style="margin-left: 22px;     color: var(--font-color);">Нет новых заявок в команду</p>
         </ng-template>
     </div>
 </div>

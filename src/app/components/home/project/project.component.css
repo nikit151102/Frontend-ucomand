@@ -94,6 +94,7 @@
             height: fit-content;
             margin: 0;
             margin-left: 93px;
+            color: var(--font-color);
         }
     }
 
@@ -124,7 +125,7 @@
             width: 100%;
             max-width: 100%;
             height: 44px;
-            background: #fff;
+            background: var(--tag-background);
 
             &:hover {
                 border: 1px solid #84DD2C;
@@ -181,7 +182,7 @@
             margin: 5px 0 0;
             font-weight: 400;
             font-size: var(--text12);
-            color: #101010;
+            color: var(--font-color);
         }
     }
 

@@ -254,7 +254,9 @@ p {
 }
 
 .logoImg {
+    object-fit: cover;
     width: 6vw;
+    height: 6vw;
     border-radius: 50%
 }
 

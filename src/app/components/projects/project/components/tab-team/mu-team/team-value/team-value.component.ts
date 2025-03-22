@@ -95,12 +95,13 @@ export class TeamValueComponent {
   updateProfession() {
     if (!this.isEdit || !this.value) return; // Если изменений нет — не отправляем запрос
     let projectData = this.projectService.getCurrentProjectData();
-console.log('item',this.item)
+    console.log('item',this.item)
     const updatedData = {
       id: this.item.id,
       profession: this.value.name,
       user: this.item.user
     };
+    console.log('updatedData',updatedData)
     const token = localStorage.getItem('authToken');
 
     const headers = new HttpHeaders({

@@ -35,7 +35,7 @@ p {
 .container-elements-left-context {
     border-radius: 20px;
     padding: 24px;
-    background: #fff;
+    background: var(--background-card);
 }
 
 
