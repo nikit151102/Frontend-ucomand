@@ -94,12 +94,9 @@ export class TeamValueComponent {
 
   updateProfession() {
     if (!this.isEdit || !this.value) return; // Если изменений нет — не отправляем запрос
-    let projectData = this.projectService.getCurrentProjectData();
-    console.log('item',this.item)
     const updatedData = {
       id: this.item.id,
-      profession: this.value.name,
-      user: this.item.user
+      profession: this.value.name
     };
     console.log('updatedData',updatedData)
     const token = localStorage.getItem('authToken');
@@ -107,7 +104,7 @@ export class TeamValueComponent {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    this.http.put(`${environment.apiUrl}/teamMembers/${projectData.id}`, updatedData, { headers })
+    this.http.put(`${environment.apiUrl}/teamMembers/${this.item.id}`, updatedData, { headers })
       .subscribe(
         () => {
           this.originalTag = this.value; // Обновляем оригинальный тег
