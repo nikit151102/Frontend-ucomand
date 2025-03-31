@@ -31,6 +31,7 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges, On
   @Input() placeholderValue: string = '';
   @Input() type: string = 'SKILL';
   @Input() service: any;
+  @Input() selectedTag!: Tag;
 
   @Output() tagsChanged = new EventEmitter<Tag[]>();
 
@@ -46,7 +47,14 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges, On
     if (changes['tags']) {
       this.updateFilteredTags();
     }
+
+    if (changes['selectedTag'] && changes['selectedTag'].currentValue) {
+      this.selectedTags = [this.selectedTag]; // Устанавливаем переданный тег
+      this.searchQuery = this.selectedTag.nameEng || this.selectedTag.name;
+      this.updateFilteredTags();
+    }
   }
+  
 
   ngOnInit(): void {
     this.tags = [];
@@ -113,6 +121,7 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges, On
 
 
   writeValue(value: Tag[]): void {
+    console.log('value',value)
     if (value && Array.isArray(value)) {
       this.selectedTags = value;
     } else {
@@ -120,10 +129,10 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges, On
     }
     this.updateFilteredTags();
   }
-
-  registerOnChange(fn: (value: Tag[]) => void): void {
-    this.onChange = fn;
-  }
+registerOnChange(fn: (value: Tag[]) => void): void {
+  console.log('registerOnChange called');
+  this.onChange = fn;
+}
 
   registerOnTouched(fn: () => void): void {
     this.onTouched = fn;

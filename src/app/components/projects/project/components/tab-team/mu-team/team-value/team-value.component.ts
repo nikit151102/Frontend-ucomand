@@ -29,11 +29,19 @@ export class TeamValueComponent {
     private http: HttpClient,
     private myTeamService: MyTeamService
   ) { }
-
+  selectedProfession:any
   ngOnInit() {
     if (this.item && this.item.profession) {
       this.originalTag = this.item.profession; // Сохраняем исходное значение
-      this.value = this.item.profession; // Устанавливаем текущий тег
+      this.value = {
+        id: 0,
+        name: this.item.profession,
+        nameEng: this.item.profession,
+        competenceLevel: null,
+        type: 1
+      }
+      this.selectedProfession = this.value;
+      this.onChange(this.value);
     }
   }
 
@@ -63,9 +71,9 @@ export class TeamValueComponent {
     this.scrollToView(this.selectorProfessions);
   }
 
-  onTagsChanged(tags: any[], formElement: string) {
+  onTagsChanged(tags: any, formElement: string) {
     if (tags.length > 0) {
-      this.value = tags[0]; // Устанавливаем новый тег
+      this.value = tags; // Устанавливаем новый тег
     } else {
       this.value = null; // Если тег сняли, обнуляем
     }

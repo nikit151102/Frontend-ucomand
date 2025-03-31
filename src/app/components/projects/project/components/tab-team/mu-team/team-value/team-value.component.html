@@ -28,7 +28,9 @@
             <app-tag-selector [type]="'PROFESSION'" [placeholderValue]="'Выберете специализацию'"
             (click)="scrollToSelectorProfessions()"
             (tagsChanged)="onTagsChanged($event,'profession')"
-            [service]="sortetdFilterService"></app-tag-selector>
+            [service]="sortetdFilterService" 
+            [selectedTag]="selectedProfession"
+            ></app-tag-selector>
 
             <span class="date">назначен {{item.createdAt | date: 'dd-MM-yyyy' }}</span>
             <ng-container *ngIf="showTagBlock && selectedTags.length < 1">
