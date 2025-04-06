@@ -91,17 +91,23 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges, On
       }
     });
   }
-
   toggleTagBlock(show: boolean) {
     setTimeout(() => {
       this.showTagBlock = show;
-      if (show) {
-        // Очистка запроса перед открытием списка тегов
-        this.searchQuery = '';
-        this.updateFilteredTags();
-      }
+  
+        const virtualTag: Tag = {
+          id: -1, 
+          name: this.searchQuery,
+          nameEng: this.searchQuery,
+          competenceLevel: null,
+          type: this.type,
+        };
+  
+        this.selectTag(virtualTag)
+
     }, 200);
   }
+  
   
 
   selectTag(tag: Tag) {

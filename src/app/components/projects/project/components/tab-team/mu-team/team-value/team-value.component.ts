@@ -101,10 +101,11 @@ export class TeamValueComponent {
 
 
   updateProfession() {
+    console.log('this.value',this.value)
     if (!this.isEdit || !this.value) return; // Если изменений нет — не отправляем запрос
     const updatedData = {
       id: this.item.id,
-      profession: this.value.name
+      profession: this.value[0].name
     };
     console.log('updatedData',updatedData)
     const token = localStorage.getItem('authToken');
