@@ -63,8 +63,9 @@ export class ProjectComponent {
   toggleLike(event: Event) {
     event.stopPropagation();
     event.preventDefault();
-    let userData = sessionStorage.getItem('userData');
-    if (!userData) {
+    let userData = localStorage.getItem('authToken');
+    let userNickname = localStorage.getItem('autuserNicknamehToken');
+    if (!userData && !userNickname) {
       this.popUpEntryService.showDialog();
       return;
     }
