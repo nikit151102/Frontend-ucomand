@@ -5,7 +5,7 @@ services:
       context: ./
       dockerfile: Dockerfile-frontend
     ports:
-      - 9091:9091
+      - 8081:8081
     volumes:
       - /app
       - /app/node_modules
