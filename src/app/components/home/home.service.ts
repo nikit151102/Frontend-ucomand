@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -22,7 +22,7 @@ export class HomeService {
 
   private typeToggleSubject = new BehaviorSubject<string>('vacancy');
   activeTypeToggle$ = this.typeToggleSubject.asObservable();
-  
+
 
   private domain = `${environment.apiUrl}`;
 
@@ -52,15 +52,15 @@ export class HomeService {
   getVacancies() {
     this.getCardData('vacancies').subscribe(data => {
       if (data) {
-        const filteredData = data.filter((vacancy:any) => vacancy.visibility !== "BAN");
-      if (filteredData.length === 30) {
-        this.visibleNextPage = true;
-      } else {
-        this.visibleNextPage = false;
-      }
-      
-      this.selectPage = this.selectPage + 1;
-      this.vacancies = [...this.vacancies, ...filteredData];
+        const filteredData = data.filter((vacancy: any) => vacancy.visibility !== "BAN");
+        if (filteredData.length === 30) {
+          this.visibleNextPage = true;
+        } else {
+          this.visibleNextPage = false;
+        }
+
+        this.selectPage = this.selectPage + 1;
+        this.vacancies = [...this.vacancies, ...filteredData];
       }
       this.loading = false;
     })
@@ -69,44 +69,54 @@ export class HomeService {
   getResumes() {
     this.getCardData('resumes').subscribe(data => {
       if (data) {
-        const filteredData = data.filter((resume:any) => resume.visibility !== "BAN");
-      if (filteredData.length === 30) {
-        this.visibleNextPage = true;
-      } else {
-        this.visibleNextPage = false;
-      }
-      
-      this.selectPage = this.selectPage + 1;
-      this.resumes = [...this.resumes, ...filteredData];
+        const filteredData = data.filter((resume: any) => resume.visibility !== "BAN");
+        if (filteredData.length === 30) {
+          this.visibleNextPage = true;
+        } else {
+          this.visibleNextPage = false;
+        }
+
+        this.selectPage = this.selectPage + 1;
+        this.resumes = [...this.resumes, ...filteredData];
       }
       this.loading = false;
     });
   }
 
-  projects:any;
+  projects: any;
 
-  getProject(){
+  getProject() {
 
-    this.getCardProjects().subscribe((data:any) => {
+    this.getCardProjects().subscribe((data: any) => {
       if (data) {
-        const filteredData = data.data.filter((project:any) => project.visibility !== "BAN");
-      if (filteredData.length === 30) {
-        this.visibleNextPage = true;
-      } else {
-        this.visibleNextPage = false;
-      }
-      
-      this.selectPage = this.selectPage + 1;
-      this.projects = [...this.projects, ...filteredData];
+        const filteredData = data.data.filter((project: any) => project.visibility !== "BAN");
+        if (filteredData.length === 30) {
+          this.visibleNextPage = true;
+        } else {
+          this.visibleNextPage = false;
+        }
+
+        this.selectPage = this.selectPage + 1;
+        this.projects = [...this.projects, ...filteredData];
       }
       this.loading = false;
     });
   }
 
-  getCardProjects(){
+  getCardProjects() {
     const queryParams = `page=${this.selectPage}&size=30`;
 
-    return this.http.post(`${this.domain}/projects/getByFilter?${queryParams}`, {});
+    const token = localStorage.getItem('authToken');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    if(token){
+      return this.http.post(`${this.domain}/projects/getByFilter?${queryParams}`, {}, {headers});
+    }else{
+      return this.http.post(`${this.domain}/projects/getByFilter?${queryParams}`, {});
+    }
 
   }
 
@@ -166,7 +176,7 @@ export class HomeService {
     if (this.typeToggle === 'resume') {
       this.getResumes();
     }
-    
+
   }
 
   saveSort(sort: string): void {
