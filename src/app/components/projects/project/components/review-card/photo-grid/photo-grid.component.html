@@ -1,0 +1,8 @@
+<div class="photo-grid" [ngClass]="getPhotoGridClass()">
+    <ng-container *ngFor="let photo of photos; let i = index">
+      <div class="photo" *ngIf="i < maxPhotos">
+        <img [src]="photo.url" alt="Photo {{ i + 1 }}" />
+      </div>
+    </ng-container>
+  </div>
+  

@@ -1,0 +1,211 @@
+p {
+    margin: 0;
+}
+
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cardContainer-userData {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.cardContainer-userData-logo {
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+}
+
+.cardContainer-userData-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cardContainer-userData-content-fullName {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardContainer-userData-content-fullName p {
+    font-family: var(--font-Monts);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 117%;
+    color: var(--font-color);
+}
+
+.cardContainer-userData-content-dateOfRegistration {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #bdbdbd;
+}
+
+.cardContainer-feedback {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardContainer-feedback-title {
+    font-family: var(--font-Monts);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 125%;
+    color: var(--font-color);
+}
+
+.cardContainer-feedback-content {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 129%;
+    color: var(--font-color);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+
+
+
+.button-container {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-top: 16px;
+}
+
+.btnSend {
+    border-radius: 300px;
+    padding: 8px 12px;
+    background: #e2e2e2;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 129%;
+    color: #101010;
+}
+
+.btnSend:hover {
+    background: #806BFF;
+    color: #fff;
+}
+
+
+.btnCancel {
+    padding: 8px 12px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: #bdbdbd;
+    cursor: pointer;
+}
+
+textarea {
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    width: 100%;
+    min-height: 40px;
+    max-width: 100%;
+    resize: none;
+    overflow: hidden;
+    padding: 16px;
+
+    /* Отключаем стандартные стили */
+    outline: none;
+    /* Убираем рамку при фокусе */
+    box-shadow: none;
+    /* Убираем тень */
+    background: none;
+    /* Убираем фоновые эффекты */
+    appearance: none;
+    /* Убираем системные стили */
+}
+
+/* Отключаем стили при наведении */
+textarea:hover,
+textarea:focus,
+textarea:active {
+    border: 1px solid #e2e2e2;
+    /* Сохраняем стандартный стиль */
+    background: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.btnUpload {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnUpload img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.btnUpload:hover img {
+    opacity: 1;
+}
+
+
+.photo-container {
+    position: relative;
+    display: inline-block;
+}
+
+.delete-photo-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+.cardContainer-feedback-title,
+.cardContainer-feedback-content {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    width: calc(70vw - 376px);
+}
+
+@media (max-width: 878px) {
+
+    .cardContainer-feedback-title,
+    .cardContainer-feedback-content {
+        width: 100%;
+    }
+}

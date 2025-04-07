@@ -1,0 +1,13 @@
+<div class="card" (click)="viewJob($event, item.id)">
+    <p class="text12" style="margin: 0;">
+        Ищем в команду:
+    </p>
+    <div class="content">
+        <span class="text12" style="font-weight: 600;">{{item.profession.name}}</span>
+        <p [ngStyle]="{ 'border-color': getSkillsColor(item.profession.competenceLevel) }" class="lookingCard-level"
+            *ngIf="item?.profession?.competenceLevel">
+            {{ getSkills(item.profession?.competenceLevel) }}
+        </p>
+    </div>
+
+</div>

@@ -12,19 +12,23 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./page-error.component.css']
 })
 export class PageErrorComponent implements OnInit {
-  num!: number;
+  num!: number ;
 
   content: any = {};
 
   constructor(private route: ActivatedRoute, private settingHeaderService: SettingHeaderService) { }
+
 
   ngOnInit(): void {
     this.open()
     this.settingHeaderService.isheader = false;
     this.settingHeaderService.isFooter = false;
     this.route.paramMap.subscribe(params => {
-      this.num = +params.get('num')!;
+      if(params.get('id') ){
+        this.num =  +params.get('id')!;
+      }
       this.loadErrorContent();
+
     });
   }
 

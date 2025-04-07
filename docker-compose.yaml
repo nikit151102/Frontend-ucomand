@@ -5,13 +5,13 @@ services:
       context: ./
       dockerfile: Dockerfile-frontend
     ports:
-      - 8081:8081
+      - 9091:9091
     volumes:
       - /app
       - /app/node_modules
     networks:
-      - ucomand-network
+      - ucomand-network-test
 
 networks:
-  ucomand-network:
+  ucomand-network-test:
     external: true

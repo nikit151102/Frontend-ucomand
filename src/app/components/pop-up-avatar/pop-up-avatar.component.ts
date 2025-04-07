@@ -4,6 +4,7 @@ import { PopUpAvatarService } from './pop-up-avatar.service';
 import { ItemAvatarComponent } from './item-avatar/item-avatar.component';
 import { CommonModule } from '@angular/common';
 import { AvatarSelectionService } from './avatar-selection.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-pop-up-avatar',
@@ -57,5 +58,38 @@ export class PopUpAvatarComponent {
     this.popUpAvatarService.hidePopup();
   }
 
+  file: File | null = null;
+  // Обработчик выбора файла
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.file = file;
+      this.setAvatar();
+      console.log('set file')
+    }
+  }
+
+  setAvatar(): void {
+    console.log('setAvatar')
+    if (this.file) {
+      // Формируем FormData для отправки файла
+      const formData = new FormData();
+      formData.append('avatar', this.file);
+
+      // Отправка запроса на сервер
+      this.avatarSelectionService.setAvatar(formData).subscribe({
+        next: (response) => {
+          console.log('Avatar updated successfully:', response);
+          this.avatarSelectionService.selectAvatar(response);
+          this.avatarSelectionService.selectGender(response);
+        },
+        error: (error) => {
+          console.error('Error updating avatar:', error);
+        }
+      });
+    } else {
+      console.error('User data or token missing');
+    }
+  }
 
 }

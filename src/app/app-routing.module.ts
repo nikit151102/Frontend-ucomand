@@ -18,7 +18,13 @@ const routes: Routes = [
     path: 'aboutUs', loadChildren: () => import('./components/about-us/about-us.module').then(m => m.AboutUsModule)
   },
   {
+    path: 'tariffs', loadChildren: () => import('./components/page-tariffs/page-tariffs.module').then(m => m.PageTariffsModule)
+  },
+  {
     path: 'notifications', loadChildren: () => import('./components/notification/notification.module').then(m => m.NotificationModule)
+  },
+  {
+    path: 'editProject/:nickname', loadChildren: () => import('./components/projects/create-edit-projects/create-edit-projects.module').then(m => m.CreateEditProjectsModule), data: { edit: true }
   },
   {
     path: 'resume/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule), data: { routeName: 'resume' }
@@ -27,13 +33,19 @@ const routes: Routes = [
     path: 'vacancy/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule), data: { routeName: 'vacancy' }
   },
   {
+    path: 'project/:id', loadChildren: () => import('./components/projects/project/project.module').then(m => m.ProjectModule)
+  },
+  {
     path: ':id', loadChildren: () => import('./components/user-path/user-path.module').then(m => m.UserPathModule)
   },
   {
     path: 'myaccount/:id', loadChildren: () => import('./components/personal-account/personal-account.module').then(m => m.PersonalAccountModule), canActivate: [AuthGuard]
   },
   {
-    path: 'error', component: PageErrorComponent
+    path: 'error/', component: PageErrorComponent
+  },
+  {
+    path: 'error/:id', component: PageErrorComponent
   },
   { path: '**', redirectTo: '/error' }
 ];

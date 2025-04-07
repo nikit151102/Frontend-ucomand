@@ -13,6 +13,7 @@ import { SaveChangesPopupComponent } from './save-changes-popup/save-changes-pop
 import { SaveChangesPopupService } from './save-changes-popup/save-changes-popup.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { filter } from 'rxjs/operators';
+import { forbiddenWordsValidator } from '../../../validators/forbidden-words.validator';
 
 @Component({
   selector: 'app-form',
@@ -92,15 +93,23 @@ export class FormComponent implements OnInit {
 
   }
   private routerEventsSubscription!: Subscription;
+  isProject: boolean = false;
+  idProject:number| null = null;
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      const isProject = params['isProject']; // Convert to boolean if needed
+      const idProject = +params['idProject']; // Convert to number if needed
 
-    if (this.typeForm == 'вакансии') {
-      this.formSettingService.isheading = true;
-      this.isPayment = true;
-    }
+      console.log('isProjectisProject:', isProject);
+      console.log('idProject:', idProject);
+
+      // Assign the values to component properties if needed
+      this.isProject = isProject;
+      this.idProject = idProject;
+  });
 
     forkJoin({
-      motivations: this.formSettingService.getTags('MOTIVATION',-1),
+      motivations: this.formSettingService.getTags('MOTIVATION'),
       // professions: this.formSettingService.getTags('PROFESSION'),
       // skills: this.formSettingService.getTags('SKILL')
     }).subscribe({
@@ -134,12 +143,12 @@ export class FormComponent implements OnInit {
 
   initializeForm(): void {
     this.form = this.fb.group({
-      title: ['', [this.optionalValidator, Validators.maxLength(100)]],
+      title: ['', [this.optionalValidator, Validators.maxLength(100), forbiddenWordsValidator()]],
       profession: [null, Validators.required],
       skills: [[], Validators.required],
       motivations: [this.selectedTags, Validators.required],
       gender: [''],
-      details: ['', [Validators.required, Validators.maxLength(700)]],
+      details: ['', [Validators.required, Validators.maxLength(700), forbiddenWordsValidator()]],
       minPayment: [this.setPaymentAmount ],
     });
 
@@ -147,7 +156,7 @@ export class FormComponent implements OnInit {
       this.selectedTags = tags;
     });
   }
-
+  
   loadFormDataFromStorage(): void {
     const savedData = localStorage.getItem(this.FORM_STORAGE_KEY);
     if (savedData) {
@@ -291,7 +300,15 @@ export class FormComponent implements OnInit {
 
       this.formSettingService.setData(typeEndpoint, formData).subscribe(
         (response) => {
+          if(this.isProject && this.idProject){
+            this.formSettingService.addToProject(response.id, this.idProject).subscribe(
+              (response) => {
+                console.log('add to project',response);
+              })
+          }
+
           this.handleSuccess(response, typeEndpoint)
+
         },
         (error: any) => {
           this.saveFormDataToStorage();
@@ -336,7 +353,7 @@ export class FormComponent implements OnInit {
     formData.freeLink = formData.freeLink || "string";
     formData.ownLink = formData.ownLink || "string";
     formData.contacts = formData.contacts || "string";
-    formData.details = formData.details || "string";
+    formData.details = formData.details.replace(/\r?\n/g, '\n') || "string";
     formData.title = formData.title || "string";
     formData.minPayment = formData.minPayment || 0;
     delete formData.gender;
@@ -389,4 +406,7 @@ export class FormComponent implements OnInit {
   handleBeforeUnload(event: any): void {
     this.saveFormDataToStorage();
   }
+
+
+ 
 }

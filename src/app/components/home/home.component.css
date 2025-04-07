@@ -55,10 +55,12 @@
 
 .sticky-filter{
     position: fixed;
-    top: 77px;
+    padding-top: 5px;
+    top: 75px; 
     width: 100%;
     background: var(--background);
     left: 0;
+    z-index: 1;
 }
 
 .messageError{

@@ -1,0 +1,148 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1);
+    background: var(--background-card);
+}
+
+.card-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 16px 24px 16px;
+}
+
+.card-title-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #806bff;
+}
+
+.card-title-price {
+    margin: 0;
+    font-family: var(--font-Monts);
+    /* поменять шрифт */
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #b9aeff;
+}
+
+.card-title-price {
+    fill: #b9aeff;
+}
+
+.card-description {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 16px 12px 16px;
+}
+
+.card-description-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 9px 0;
+    border-top: 0.60px solid rgba(51, 51, 52, 0.3);
+}
+
+.card-description-item:last-of-type {
+    border-bottom: 0.60px solid rgba(51, 51, 52, 0.3);
+}
+
+.card-description-item-title {
+    margin: 0;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #bdbdbd;
+}
+
+.card-description-item-values {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+}
+
+
+.card-description-item-values-value {
+    margin: 0;
+    font-family: var(--font-Monts);
+    /* поменять шрифт */
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 100%;
+    color: var(--font-color);
+}
+
+.card-description-item-values-textItem {
+    margin: 0;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 143%;
+    color: var(--font-color);
+}
+
+.card-description-ul {
+    padding: 0px 16px 12px 16px;
+
+}
+
+.card-description-ul li {
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: var(--font-color);
+    padding-bottom: 9px;
+}
+
+.card-description-ul li::marker {
+    color: #d9d9d9;
+    ;
+}
+
+
+.btnPayment {
+    border: none;
+    border-radius: 30px;
+    padding: 16px;
+    background: #84dd2c;
+
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #101010;
+}
+
+.btnPayment:hover{
+    background: #806bff;
+    color: #fff;
+}
+
+@media (max-width: 1115px) {
+
+    .card-title{
+        flex-direction: column;
+        align-items: flex-start
+    }
+}
+
+@media (max-width: 875px) {
+    .card-title{
+        flex-direction: row;
+        align-items: center
+    }
+}

@@ -11,9 +11,9 @@ import { PopUpAvatarService } from '../../pop-up-avatar/pop-up-avatar.service';
 import { catchError, map, Observable, of, Subscription } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { AvatarSelectionService } from '../../pop-up-avatar/avatar-selection.service';
-import { forbiddenWordsValidator } from './errorNameList';
 import { SettingHeaderService } from '../../setting-header.service';
 import { MenuNavService } from '../../menu-nav/menu-nav.service';
+import { forbiddenWordsValidator } from '../../../../validators/forbidden-words.validator';
 
 @Component({
   selector: 'app-personal-data',
@@ -57,20 +57,23 @@ export class PersonalDataComponent implements OnInit {
     private router: Router, public popUpAvatarService: PopUpAvatarService,
     private avatarSelectionService: AvatarSelectionService, private settingHeaderService: SettingHeaderService, public menuNavService: MenuNavService) {
     this.personalDataForm = this.fb.group({
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
+      name: ['', [Validators.required, forbiddenWordsValidator()]],
+      surname: ['', [Validators.required, forbiddenWordsValidator()]],
       age: ['', Validators.required],
       gender: ['', Validators.required],
       city: ['', Validators.required],
-      freeLink: [''],
-      aboutMe: ['', [Validators.maxLength(700)]],
+      freeLink: ['' ],
+      aboutMe: ['', [Validators.maxLength(700), forbiddenWordsValidator()]],
       email: ['', [Validators.required, Validators.email]],
-      telegram: ['', [Validators.required]],
-      domain: ['', [Validators.required]],
+      telegram: [{ value: '', disabled: true }, [Validators.required,forbiddenWordsValidator()]],
+      domain: ['', [Validators.required, forbiddenWordsValidator()]],
     });
-
   }
 
+
+  get forbiddenWords() {
+    return this.personalDataForm.get('description')?.errors?.['forbiddenWords'] || [];
+  }
   formChanges() {
     this.personalDataForm.valueChanges.subscribe((changes) => {
       if (this.areAllFieldsEmpty() || this.isFormUnchanged()) {
@@ -161,38 +164,56 @@ export class PersonalDataComponent implements OnInit {
   userData() {
     this.personalDataService.getCurrentUser().subscribe(
       (user: User) => {
-        if (user.imageLink) {
-          this.menuNavService.setStorageValue(user.imageLink);
-        } this.personalDataForm.patchValue({
-          name: user.firstName || '',
-          surname: user.lastName || '',
-          age: user.age || '',
-          gender: user.gender || '',
-          city: user.cityOfResidence?.name || '',
-          freeLink: user.freeLink || '',
-          aboutMe: user.aboutMe || '',
-          email: user.email,
-          telegram: user.telegram,
-          domain: user.nickname || '',
-        });
-        this.dataCurrentUser = user;
-        this.cityOfResidence = user.cityOfResidence || {};
-        this.setAvatar = user.imageLink;
+        if (user && user.nickname && user.id) {
+          if (user.imageLink) {
+            this.menuNavService.setStorageValue(user.imageLink);
+          } this.personalDataForm.patchValue({
+            name: user.firstName || '',
+            surname: user.lastName || '',
+            age: user.age || '',
+            gender: user.gender || '',
+            city: user.cityOfResidence?.name || '',
+            freeLink: user.freeLink || '',
+            aboutMe: user.aboutMe || '',
+            email: user.email,
+            telegram: user.telegram,
+            domain: user.nickname || '',
+          });
+          this.dataCurrentUser = user;
+          this.cityOfResidence = user.cityOfResidence || {};
+          this.setAvatar = user.imageLink;
 
-        if (user.nickname) {
-          this.oldDomain = user.nickname;
-        }
-        this.personalDataForm.get('domain')?.valueChanges.subscribe(value => {
-          if (value !== this.oldDomain && value.length > 0) {
-            this.forbiddenWordsValidator(value)
+          if (user.nickname) {
+            this.oldDomain = user.nickname;
           }
-        });
-        this.setGender = user.gender;
-        this.initialFormState = this.personalDataForm.value;
-        this.formChanges();
+          this.personalDataForm.get('domain')?.valueChanges.subscribe(value => {
+            if (value !== this.oldDomain && value.length > 0) {
+              this.forbiddenWordsValidator(value)
+            }
+          });
+          this.setGender = user.gender;
+          this.initialFormState = this.personalDataForm.value;
+          this.formChanges();
+        }
+        else{
+          localStorage.removeItem('userNickname');
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('fullAccess');
+          this.router.navigate(['/']);
+        }
       },
       (error) => {
         console.error('Ошибка при загрузке данных пользователя:', error);
+        console.log('error.status', error)
+        localStorage.removeItem('userNickname');
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('fullAccess');
+        this.router.navigate(['/']);
+        if (error.status) {
+          this.router.navigate(['/error', error.status.toString()]);
+        } else {
+          this.router.navigate(['/error', { num: "500" }]);
+        }
       }
     );
   }
@@ -256,7 +277,7 @@ export class PersonalDataComponent implements OnInit {
       if (isMobileOrTablet && scrollfocus) {
         this.scrollToField(invalidField)
       }
-      
+
       this.setVisibleError();
     }
   }
@@ -295,7 +316,7 @@ export class PersonalDataComponent implements OnInit {
         age: Number(formValues.age),
         freeLink: formValues.freeLink,
         ownLink: '',
-        aboutMe: formValues.aboutMe,
+        aboutMe: formValues.aboutMe.replace(/\r?\n/g, '\n'),
         telegram: formValues.telegram,
         email: formValues.email,
         dateOfRegistration: this.dataCurrentUser.dateOfRegistration,
@@ -305,7 +326,7 @@ export class PersonalDataComponent implements OnInit {
         role: this.dataCurrentUser.role,
         banned: this.dataCurrentUser.banned
       };
-
+      console.log("User", user)
       this.personalDataService.updateUser(user).subscribe(
         response => {
           this.userData();

@@ -11,7 +11,6 @@ import { PopUpEntryComponent } from './components/pop-up-entry/pop-up-entry.comp
 import { FooterComponent } from './components/footer/footer.component';
 import { PopUpErrorCreateComponent } from './components/pop-up-error-create/pop-up-error-create.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +25,7 @@ import { PopUpErrorCreateComponent } from './components/pop-up-error-create/pop-
     MenuNavComponent,
     PopUpEntryComponent,
     FooterComponent,
-    PopUpErrorCreateComponent
+    PopUpErrorCreateComponent,
   ],
   bootstrap: [AppComponent],
 })

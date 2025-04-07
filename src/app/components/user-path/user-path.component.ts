@@ -47,10 +47,12 @@ export class UserPathComponent {
             if (this.userNick === this.userCurrentNick && token && nick) {
               if (!this.router.url.startsWith(`/${this.userNick}/account`)) {
                 this.router.navigateByUrl(`/${this.userNick}/account`);
+                console.log("account")
               }
             } else {
               if (!this.router.url.startsWith(`/${this.userNick}/profile`)) {
                 this.router.navigateByUrl(`/${this.userNick}/profile`);
+                console.log("profile")
               }
             }
           },

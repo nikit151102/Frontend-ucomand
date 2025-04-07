@@ -4,7 +4,7 @@
             Специальность:
         </p>
         <div class="lookingCard">
-            <p class="title" style="margin-top: 0.5rem; width: 90%; font-weight: 500;">
+            <p class="text13Caps" style="margin-top: 0.5rem; width: 90%; font-weight: 500;">
                 {{ cardItem?.profession?.name | uppercase }} <!-- Исправлено на profession.name -->
             </p>
             <p [ngStyle]="{ 'border-color': getSkillsColor(cardItem?.profession?.competenceLevel) }" class="lookingCard-level" *ngIf="cardItem?.profession?.competenceLevel">

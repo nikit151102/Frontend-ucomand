@@ -1,0 +1,13 @@
+<div class="team">
+    <div class="container-title">
+        <p class="subtitle16caps" style="    color: var(--font-color);">команда</p>
+    </div>
+    <div class="team_people">
+        <ng-container *ngIf="teamMembers.length > 0; else noItems">
+            <app-team-value *ngFor="let item of teamMembers" [item]="item"></app-team-value>
+        </ng-container>
+        <ng-template #noItems>
+            <p class="no-requests" style="margin-left: 22px;     color: var(--font-color);">На данный момент в команде нет участников</p>
+        </ng-template>
+    </div>
+</div>

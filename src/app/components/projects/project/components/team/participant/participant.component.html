@@ -1,0 +1,25 @@
+<div class="content">
+    <div class="content-logo">
+        <ng-container *ngIf="itemData?.user?.imageLink">
+            <img [src]="itemData.user.imageLink " alt="avatar"
+                style="width:100%; height:100%;  border-radius: 50%;" class="logoImg">
+        </ng-container>
+        <ng-container *ngIf="!itemData?.user?.imageLink">
+            <img [src]="'assets/avatars/default.png'" alt="avatar" style="width:52px; height:52px;    border-radius: 50%;"
+                class="logoImg">
+        </ng-container>
+    </div>
+    <div class="content-item-personal">
+        <div>
+            <p class="content-item-personal-lastName">
+                {{itemData.user.lastName}}
+            </p>
+            <p class="content-item-personal-firstName">
+                {{itemData.user.firstName}}
+            </p>
+        </div>
+        <p class="content-item-profession">
+            {{itemData.profession}}
+        </p>
+    </div>
+</div>

@@ -8,7 +8,7 @@
       Ищу:
     </p>
     <div class="lookingCard">
-      <p class="chapterCard_value" style="margin-top: 0.5rem; width: 90%; margin-bottom: 0;     font-weight: 500;">
+      <p class="text13Caps" style="margin-top: 0.5rem; width: 90%; margin-bottom: 0; ">
         {{ item?.profession?.name | uppercase }}
       </p>
       <p [ngStyle]="{ 'border-color': getSkillsColor(item?.profession?.competenceLevel) }" class="lookingCard_level" *ngIf="item?.profession?.competenceLevel">
@@ -22,7 +22,7 @@
   </div>
   </div>
   <div class="chapterCard">
-    <p class="chapterCard_title" style="margin-bottom: 0.5rem;">
+    <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
       Навыки:
     </p>
     <div class="tags">
@@ -39,7 +39,7 @@
     </div>
   </div>
   <div class="chapterCard">
-    <p class="chapterCard_title" style="margin-bottom: 0.5rem;">
+    <p class="chapterCard-title" style="margin-bottom: 0.5rem;">
       Мотивация:
     </p>
     <div class="motivations">

@@ -1,0 +1,45 @@
+<div class="container">
+
+    <div class="form" *ngIf="currentUser">
+        <!-- Текстовое поле -->
+        <div class="input-container">
+            <textarea #textArea rows="1" placeholder="Введите текст..." class="text14" [(ngModel)]="commentText"
+                (input)="autoExpand(textArea); checkInput(commentText)">
+            </textarea>
+
+            <!-- Кнопка загрузки изображения -->
+            <label for="imageUpload" class="btnUpload">
+                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M15.5 8H15.51M13 21H6.5C5.70435 21 4.94129 20.6839 4.37868 20.1213C3.81607 19.5587 3.5 18.7956 3.5 18V6C3.5 5.20435 3.81607 4.44129 4.37868 3.87868C4.94129 3.31607 5.70435 3 6.5 3H18.5C19.2956 3 20.0587 3.31607 20.6213 3.87868C21.1839 4.44129 21.5 5.20435 21.5 6V12.5"
+                        stroke="#333334" stroke-opacity="0.4" stroke-width="1.4" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M3.5 15.9998L8.5 10.9998C9.428 10.1068 10.572 10.1068 11.5 10.9998L15 14.4998"
+                        stroke="#333334" stroke-opacity="0.4" stroke-width="1.4" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path
+                        d="M14.5 13.9999L15.5 12.9999C16.179 12.3469 16.973 12.1709 17.714 12.4739M19.5 21.9999V15.9999M19.5 15.9999L22.5 18.9999M19.5 15.9999L16.5 18.9999"
+                        stroke="#333334" stroke-opacity="0.4" stroke-width="1.4" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </label>
+            <input type="file" id="imageUpload" (change)="uploadImage($event)" accept="image/*" hidden>
+
+
+        </div>
+
+        <!-- Предпросмотр изображения -->
+        <ng-container *ngIf="selectedImage">
+            <app-photo-grid [photos]="photoArray"></app-photo-grid>
+        </ng-container>
+
+        <!-- Кнопки отправки и отмены -->
+        <div class="button-container" *ngIf="isTextEntered">
+            <a class="btnSend" (click)="sendMessage()">Опубликовать</a>
+            <a class="btnCancel" (click)="clearText()">Отмена</a>
+        </div>
+    </div>
+
+
+    <app-review-card [visibleFoto]="true" [Item]="itemCard" *ngFor="let itemCard of itemsList"></app-review-card>
+</div>

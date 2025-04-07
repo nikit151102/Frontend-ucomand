@@ -1,0 +1,261 @@
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup {
+    background: #fff25f;
+    padding: 60px;
+    border-radius: 8px;
+    width: 850px;
+    max-height: 85vh;
+    position: relative;
+    border: 1px solid #fff25f;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    z-index: 1000;
+}
+
+.close-button:hover svg path {
+    stroke: #402abb;
+    stroke-opacity: 0.6;
+}
+
+p {
+    margin: 0;
+}
+
+.popup-title {
+    width: 100%;
+    font-family: var(--font-Monts);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    text-transform: uppercase;
+    color: #101010;
+}
+
+.popup-subtitle {
+    width: 100%;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 114%;
+    text-align: left;
+    color: #101010;
+    margin-top: 10px;
+}
+
+.popup-groupInput {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.popup-groupInput-title {
+    padding-left: 15px;
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.65rem;
+    line-height: 140%;
+    color: #101010;
+}
+
+.popup-groupInput-input{
+    width: 100%;
+    height: 46px;
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    padding: 16px;
+    background: #fff;
+}
+
+.textarea{
+    height: 100px;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 140%;
+    outline: none;
+    box-sizing: border-box;
+    overflow: hidden;
+    resize: none;
+}
+
+textarea::placeholder {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 140%;
+}
+
+.popup-resumes {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    overflow-y: auto; 
+}
+app-active-resumes{
+    width: 48%;
+}
+
+.popup-resumes::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent; 
+}
+
+.popup-resumes::-webkit-scrollbar-thumb {
+    background: #806bff;
+    border-radius: 4px; 
+}
+
+.popup-resumes::-webkit-scrollbar-thumb:hover {
+    background: #806bff;
+}
+
+.popup-cancel {
+    flex: 1;
+    border-radius: 30px;
+    padding: 16px;
+    background: #84dd2c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 117%;
+    color: #fff;
+}
+
+.popup-cancel:hover {
+    background: #5A4BB8;
+}
+
+
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+}
+
+.popup-btn-exit {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    padding: 8px 12px;
+    background: #e2e2e2;
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 117%;
+}
+
+.popup-btn-exit:hover {
+    background: #b9aeff;
+}
+
+/* Адаптивность для планшетов */
+@media (max-width: 987px) {
+    .popup {
+        padding: 40px;
+    }
+
+    .popup-title {
+        font-size: 0.875rem;
+        margin-bottom: 24px;
+    }
+
+    .popup-subtitle {
+        font-size: 0.75rem;
+        margin-bottom: 24px;
+    }
+}
+
+/* Адаптивность для смартфонов */
+@media (max-width: 768px) {
+    .popup {
+        width: 80vw;
+        padding: 20px;
+    }
+
+    .popup-title {
+        font-size: 0.875rem;
+    }
+
+    .popup-subtitle {
+        font-size: 0.75rem;
+        line-height: 1.25rem;
+    }
+
+    .btns {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .popup-cancel,
+    .popup-btn-exit {
+        font-size: 0.75rem;
+        padding: 12px;
+        width: 100%;
+    }
+
+    app-active-resumes{
+        width: 100%;
+    }
+    
+}
+
+/* Адаптивность для очень маленьких экранов, например, смартфонов */
+@media (max-width: 480px) {
+    .popup {
+        width: 90vw;
+        padding: 15px;
+    }
+
+    .popup-title {
+        font-size: 0.75rem;
+    }
+
+    .popup-subtitle {
+        font-size: 0.7rem;
+        line-height: 1.25rem;
+    }
+
+    .popup-cancel,
+    .popup-btn-exit {
+        font-size: 0.7rem;
+        padding: 10px;
+    }
+}

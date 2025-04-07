@@ -1,0 +1,225 @@
+<div class="container">
+    <form [formGroup]="form">
+        <div class="background-container" id="backgroundContainer" (click)="onSelectImage('background')">
+            <div class="overlay"></div>
+            <div class="content" [class.hidden]="isBackgroundImageSelected">
+
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3V21M3 12H21" stroke="#806BFF" stroke-width="1.4" stroke-linecap="round" />
+                </svg>
+                <span>
+                    Добавьте баннер вашей компании/проекта (jpg, png не более 10 мб отношением сторон 16:9 )
+                </span>
+            </div>
+            <input type="file" #fileBackgroundInput id="imageInput" accept="image/*"
+                (change)="onImageChange($event, 'background')" style="display: none;" />
+        </div>
+        <div class="container-elements">
+            <div class="container-elements-left">
+                <div class="container-elements-left-iconBlock">
+                    <div class="container-elements-left-iconBlock-img" (click)="onSelectImage('logo')">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            [class.hidden]="isLogoImageSelected">
+                            <path d="M12 3V21M3 12H21" stroke="#806BFF" stroke-width="1.4" stroke-linecap="round" />
+                        </svg>
+                        <input type="file" #fileLogoInput id="imageInput" accept="image/*"
+                            (change)="onImageChange($event, 'logo')" style="display: none;" />
+                    </div>
+                    <p class="container-elements-left-text">
+                        Добавьте логотип вашей компании/проекта (jpg, png не более 10 мб)
+                    </p>
+                </div>
+                <div class="container-elements-left-gruopInputs">
+                    <p class="container-elements-left-gruopInputs-title">
+                        Профиль вашего проекта:
+                    </p>
+                    <div class="container-elements-left-gruopInputs-items">
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">
+                                Название проекта
+                            </p>
+                            <input class="container-elements-left-gruopInputs-items-block-input" type="text"
+                                placeholder="Введите название" formControlName="title" />
+                            <div *ngIf="form.get('title')?.invalid && (form.get('title')?.dirty || form.get('title')?.touched)"
+                                class="error-message">
+                                <div *ngIf="form.get('title')?.errors?.['required']">Название проекта обязательно.</div>
+                                <div *ngIf="form.get('title')?.errors?.['maxlength']">
+                                    Название не должно превышать 200 символов.
+                                </div>
+                            </div>
+                            <div *ngIf="form.get('title')?.errors?.['forbiddenWords']" class="error-message">
+                                Запрещённые слова: <span
+                                    *ngFor="let word of form.get('title')?.errors?.['forbiddenWords']">{{ word }},
+                                </span>
+                            </div>
+
+
+                        </div>
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">
+                                Краткое описание (не более 300 символов)
+                            </p>
+                            <textarea  (input)="onTextAreaInput($event)" class="container-elements-left-gruopInputs-items-block-input textarea"
+                                placeholder="Поле ввода" formControlName="summary"></textarea>
+                            <div *ngIf="form.get('summary')?.invalid && (form.get('summary')?.dirty || form.get('summary')?.touched)"
+                                class="error-message">
+                                <div *ngIf="form.get('summary')?.errors?.['required']">Описание обязательно.</div>
+                                <div *ngIf="form.get('summary')?.errors?.['maxlength']">
+                                    Описание не должно превышать 300 символов.
+                                </div>
+                                <div *ngIf="form.get('summary')?.errors?.['forbiddenWords']" class="error-message">
+                                    Запрещённые слова: <span
+                                        *ngFor="let word of form.get('summary')?.errors?.['forbiddenWords']">{{ word }},
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">Тип проекта:</p>
+                            <app-type-project formControlName="type"
+                                (tagsChanged)="onTagsChanged($event, 'type')"></app-type-project>
+                            <div *ngIf="form.get('type')?.invalid && (form.get('type')?.dirty || form.get('type')?.touched)"
+                                class="error-message">
+                                <div *ngIf="form.get('type')?.errors?.['required']">Тип проекта обязателен.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-elements-left-gruopInputs">
+                    <p class="container-elements-left-gruopInputs-title">Контактные данные:</p>
+                    <div class="container-elements-left-gruopInputs-items">
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">Email:</p>
+                            <input class="container-elements-left-gruopInputs-items-block-input" type="text"
+                                placeholder="Введите email" formControlName="email" />
+                            <div *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)"
+                                class="error-message">
+                                <div *ngIf="form.get('email')?.errors?.['required']">Email обязателен.</div>
+                            </div>
+                        </div>
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">Telegram:</p>
+                            <input class="container-elements-left-gruopInputs-items-block-input" type="text"
+                                placeholder="Введите telegram" formControlName="telegram"
+                                (input)="onInputChange($event)" />
+
+                            <div *ngIf="form.get('telegram')?.invalid && (form.get('telegram')?.dirty || form.get('telegram')?.touched)"
+                                class="error-message">
+                                <div *ngIf="form.get('telegram')?.errors?.['required']">Telegram обязателен.</div>
+                            </div>
+                            <div *ngIf="form.get('telegram')?.errors?.['forbiddenWords']" class="error-message">
+                                Запрещённые слова: <span
+                                    *ngFor="let word of form.get('telegram')?.errors?.['forbiddenWords']">{{ word }},
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-elements-right">
+                <div class="container-elements-left-gruopInputs">
+                    <div class="container-elements-left-gruopInputs-items">
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">Описание:</p>
+                            <textarea  (input)="onTextAreaInput($event)" class="container-elements-left-gruopInputs-items-block-input textarea"
+                                placeholder="Введите описание" formControlName="description"></textarea>
+                            <div *ngIf="form.get('description')?.invalid && (form.get('description')?.dirty || form.get('description')?.touched)"
+                                class="error-message">
+                                <div *ngIf="form.get('description')?.errors?.['required']">Описание обязательно.</div>
+                                <div *ngIf="form.get('description')?.errors?.['maxlength']">
+                                    Описание не должно превышать 1500 символов.
+                                </div>
+                            </div>
+                            <div *ngIf="form.get('description')?.errors?.['forbiddenWords']" class="error-message">
+                                Запрещённые слова: <span
+                                    *ngFor="let word of form.get('description')?.errors?.['forbiddenWords']">{{ word }},
+                                </span>
+                            </div>
+                        </div>
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">Этап развития:</p>
+                            <textarea  (input)="onTextAreaInput($event)" class="container-elements-left-gruopInputs-items-block-input textarea"
+                                placeholder="Введите этапы работы" formControlName="developmentStage"></textarea>
+                            <div *ngIf="form.get('developmentStage')?.invalid && (form.get('developmentStage')?.dirty || form.get('developmentStage')?.touched)"
+                                class="error-message">
+                                <div *ngIf="form.get('developmentStage')?.errors?.['required']">Этап развития
+                                    обязателен.</div>
+                                <div *ngIf="form.get('developmentStage')?.errors?.['maxlength']">
+                                    Этапы развития не должны превышать 1500 символов.
+                                </div>
+                                <div *ngIf="form.get('developmentStage')?.errors?.['forbiddenWords']"
+                                    class="error-message">
+                                    Запрещённые слова: <span
+                                        *ngFor="let word of form.get('developmentStage')?.errors?.['forbiddenWords']">{{
+                                        word }}, </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <p class="container-elements-left-gruopInputs-items-block-title">Задачи:</p>
+                            <textarea  (input)="onTextAreaInput($event)" class="container-elements-left-gruopInputs-items-block-input textarea"
+                                placeholder="Введите задачи" formControlName="tasks"></textarea>
+                            <div *ngIf="form.get('tasks')?.invalid && (form.get('tasks')?.dirty || form.get('tasks')?.touched)"
+                                class="error-message">
+                                <div *ngIf="form.get('tasks')?.errors?.['required']">Задачи обязательны.</div>
+                                <div *ngIf="form.get('tasks')?.errors?.['maxlength']">
+                                    Задачи не должны превышать 1500 символов.
+                                </div>
+                                <div *ngIf="form.get('tasks')?.errors?.['forbiddenWords']" class="error-message">
+                                    Запрещённые слова: <span
+                                        *ngFor="let word of form.get('tasks')?.errors?.['forbiddenWords']">{{ word }},
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-elements-left-gruopInputs-items" style="margin-top: 16px;">
+                        <div class="container-elements-left-gruopInputs-items-block">
+                            <div class="chapter-content chapter-domain"
+                                style="display: flex; align-items: center; justify-content: flex-end">
+                                <p class="container-elements-left-gruopInputs-items-block-title">uteam.top/</p>
+                                <input #formField type="text" id="nickname" formControlName="nickname"
+                                    style="width: 200px;" class="container-elements-left-gruopInputs-items-block-input"
+                                    placeholder="Поле ввода"
+                                    [ngClass]="{'invalid': form.get('nickname')?.hasError('forbiddenWords') && isError}">
+                                <!-- [disabled]="isDisabled" -->
+                                <!-- <a (click)="toggleDisable()" >
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M11 5H6C5.46957 5 4.96086 5.21072 4.58579 5.58579C4.21071 5.96086 4 6.46957 4 7V18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20H17C17.5304 20 18.0391 19.7893 18.4142 19.4142C18.7893 19.0391 19 18.5304 19 18V13M17.586 3.586C17.7705 3.39498 17.9912 3.24262 18.2352 3.1378C18.4792 3.03298 18.7416 2.97781 19.0072 2.9755C19.2728 2.97319 19.5361 3.0238 19.7819 3.12436C20.0277 3.22492 20.251 3.37343 20.4388 3.56121C20.6266 3.749 20.7751 3.9723 20.8756 4.21809C20.9762 4.46389 21.0268 4.72725 21.0245 4.9928C21.0222 5.25836 20.967 5.5208 20.8622 5.76481C20.7574 6.00882 20.605 6.22951 20.414 6.414L11.828 15H9V12.172L17.586 3.586Z"
+                                stroke="#806BFF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                          </a> -->
+
+                            </div>
+                            <div *ngIf="form.get('nickname')?.hasError('forbiddenWords')">
+                                <p class="error-message">Данный логин занят.</p>
+                            </div>
+                            <div *ngIf="form.get('nickname')?.errors?.['forbiddenWords']" class="error-message">
+                                Запрещённые слова: <span
+                                    *ngFor="let word of form.get('nickname')?.errors?.['forbiddenWords']">{{ word }},
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <p class="container-elements-right-confirmationText">
+                    Нажимая на кнопку «Опубликовать», я даю свое согласие на обработку моих персональных данных, в
+                    соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных», на условиях и
+                    для целей, определенных в Согласии на обработку персональных данных
+                </p>
+                <div class="container-elements-right-btnBlock">
+                    <button *ngIf="!projectService.isEditProject" class="container-elements-right-btnBlock-btn"
+                        (click)="submitForm(false)">
+                        Опубликовать
+                    </button>
+                    <button *ngIf="projectService.isEditProject" class="container-elements-right-btnBlock-btn"
+                        (click)="submitForm(true)">
+                        Изменить
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

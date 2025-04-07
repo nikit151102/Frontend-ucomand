@@ -1,1 +1,11 @@
-<p>page-tariffs works!</p>
+<div class="container">
+    <app-card-default-tariffs></app-card-default-tariffs>
+    <p class="container-description">
+        Для публикации большего кол-ва вакансий и резюме воспользуйтесь платными тарифами:
+    </p>
+    <div class="container-cards">
+        <ng-container *ngFor="let item of cardsTariffs">
+            <app-card-tariffs [cardItem]="item"></app-card-tariffs>
+        </ng-container>
+    </div>
+</div>

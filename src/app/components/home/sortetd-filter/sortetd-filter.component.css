@@ -4,7 +4,22 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-end
-    /* justify-content: space-between; */
+        /* justify-content: space-between; */
+}
+
+.btnClosedFilter {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 114%;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: var(--btnClosedFilter-color);
+    margin-right: 30px;
+}
+
+.btnClosedFilter:hover {
+    color: var(--btnClosedFilter-hover)
 }
 
 .sorting,
@@ -226,7 +241,7 @@
 :host ::ng-deep .p-checkbox .p-checkbox-box {
     border-radius: 50% !important;
     border: 2px solid #806BFF !important;
-    position: relative; 
+    position: relative;
 }
 
 :host ::ng-deep .p-checkbox .p-checkbox-box .p-icon {
@@ -237,20 +252,20 @@
     content: "";
     display: block;
     border-radius: 50%;
-    width: 12px; 
-    height: 12px; 
-    background-color: transparent; 
+    width: 12px;
+    height: 12px;
+    background-color: transparent;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: background-color 0.3s; 
-    border: 2px solid #ffffff; 
+    transition: background-color 0.3s;
+    border: 2px solid #ffffff;
 }
 
 :host ::ng-deep .p-checkbox.p-checkbox-checked .p-checkbox-box::after {
-    background-color: #806BFF; 
-    border: 2px solid #ffffff; 
+    background-color: #806BFF;
+    border: 2px solid #ffffff;
 }
 
 
@@ -261,26 +276,26 @@
 
 @media (max-width: 789.98px) {
 
-    .dialog{
+    .dialog {
         width: 90vw;
         height: 80vh;
         position: relative;
         overflow-y: auto;
     }
-    
+
     .dialog::-webkit-scrollbar {
         width: 0;
-        background: transparent; 
+        background: transparent;
     }
-    
+
     .dialog::-webkit-scrollbar-thumb {
-        background: transparent; 
+        background: transparent;
     }
-    
+
     .dialog::-webkit-scrollbar-track {
         background: transparent;
     }
-    
+
     .content-filter {
         flex-direction: column;
     }

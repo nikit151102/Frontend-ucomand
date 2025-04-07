@@ -42,7 +42,6 @@ export class MenuNavComponent implements OnInit {
 
     this.userAccess = localStorage.getItem('USaccess');
     
-    console.log("userAccess",this.userAccess)
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
@@ -62,6 +61,7 @@ export class MenuNavComponent implements OnInit {
         this.isAuthenticated = isAuthenticated;
         this.setButtons();
         this.cdr.detectChanges();
+        
       });
     });
   }
@@ -176,6 +176,9 @@ export class MenuNavComponent implements OnInit {
       document.documentElement.style.setProperty('--font-profession-eng', 'rgba(255, 255, 255, 0.3)');
       document.documentElement.style.setProperty('--screensaver-color', '#a6eb20');
       document.documentElement.style.setProperty('--screensaver-background', '#474748');
+      document.documentElement.style.setProperty('--tag-background', 'rgba(243, 243, 243, 0.1)');
+      document.documentElement.style.setProperty('--btnClosedFilter-color', 'rgba(227, 227, 230, 0.3)');
+      document.documentElement.style.setProperty('--btnClosedFilter-hover', 'rgba(227, 227, 230, 1)');
     } else {
       document.documentElement.style.setProperty('--background', '#f2f2f2');
       document.documentElement.style.setProperty('--background-card', '#fff');
@@ -191,6 +194,9 @@ export class MenuNavComponent implements OnInit {
       document.documentElement.style.setProperty('--font-profession-eng', 'rgba(0, 0, 0, 0.3)');
       document.documentElement.style.setProperty('--screensaver-color', '#101010');
       document.documentElement.style.setProperty('--screensaver-background', '#a6eb20');
+      document.documentElement.style.setProperty('--tag-background', '#F3F3F3');
+      document.documentElement.style.setProperty('--btnClosedFilter-color', 'rgba(51, 51, 52, 0.3)');
+      document.documentElement.style.setProperty('--btnClosedFilter-hover', 'rgba(51, 51, 52, 1)');
     }
   }
 

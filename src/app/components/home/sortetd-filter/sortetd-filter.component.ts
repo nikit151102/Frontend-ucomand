@@ -48,13 +48,14 @@ export class SortetdFilterComponent implements OnInit {
   motivations: any[] = [];
   professions: any[] = [];
   skills: any[] = [];
+  togleType: string = ''
 
   constructor(
     public sortetdFilterService: SortetdFilterService,
     public settingHeaderService: SettingHeaderService,
     private fb: FormBuilder,
     private homeService: HomeService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
   ) {
     this.form = this.fb.group({
       profession: [[]],
@@ -73,14 +74,14 @@ export class SortetdFilterComponent implements OnInit {
       setTimeout(() => {
         const dialogRect = this.dialog.nativeElement.getBoundingClientRect();
         const elementRect = element.nativeElement.getBoundingClientRect();
-        
+
         // Вычислите прокрутку внутри контейнера
         const scrollTop = elementRect.top - dialogRect.top + this.dialog.nativeElement.scrollTop - offset;
         this.dialog.nativeElement.scrollTo({ top: scrollTop, behavior: 'smooth' });
       }, 0);
     }
   }
-  
+
 
   scrollToSelectorProfessions() {
     this.scrollToView(this.selectorProfessions);
@@ -106,9 +107,9 @@ export class SortetdFilterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  
+
     forkJoin({
-      motivations: this.sortetdFilterService.getTags('MOTIVATION',0,10),
+      motivations: this.sortetdFilterService.getTags('MOTIVATION'),
     }).subscribe({
       next: (results) => {
         this.motivations = results.motivations;
@@ -116,14 +117,24 @@ export class SortetdFilterComponent implements OnInit {
       }
 
     });
+
+
+    this.homeService.activeTypeToggle$.subscribe((value: string) => {
+      this.togleType = value;
+      console.log("togleType", value)
+    })
   }
+
+  parsedFilters: boolean = false;
 
   private loadFiltersFromLocalStorage(): void {
     const filters = sessionStorage.getItem('bodyFilters');
-
     if (filters) {
       try {
         const parsedFilters = JSON.parse(filters);
+        if (parsedFilters.length > 0) {
+          this.parsedFilters = true;
+        }
 
         if (parsedFilters.genders) {
           this.form.get('genders')?.setValue(parsedFilters.genders);
@@ -151,14 +162,14 @@ export class SortetdFilterComponent implements OnInit {
     this.visible = true;
     this.openFilterDialog()
     this.cdRef.detectChanges();
-    console.log("visiblevisible", this.visible)
+    // console.log("visiblevisible", this.visible)
   }
 
   closeDialog() {
     this.visible = false;
     this.closeFilterDialog()
     this.cdRef.detectChanges();
-    console.log("visiblevisible", this.visible)
+    // console.log("visiblevisible", this.visible)
   }
 
   onTagsChanged(tags: any[], formElement: string) {
@@ -175,13 +186,19 @@ export class SortetdFilterComponent implements OnInit {
     this.homeService.getVacancies();
     this.homeService.getResumes();
     this.visible = false;
+    this.parsedFilters = false;
   }
 
 
   submit() {
     const formData = { ...this.form.value };
 
-    const tags = [...formData.skills, ...formData.profession, ...formData.motivation];
+    const skills = Array.isArray(formData.skills) ? formData.skills : [];
+    const profession = Array.isArray(formData.profession) ? formData.profession : [];
+    const motivation = Array.isArray(formData.motivation) ? formData.motivation : [];
+
+    const tags = [...skills, ...profession, ...motivation];
+
 
     const dataToSubmit = {
       ...formData,
@@ -196,10 +213,11 @@ export class SortetdFilterComponent implements OnInit {
     delete dataToSubmit.motivation;
 
     console.log('dataToSubmit', dataToSubmit);
-this.homeService.selectPage = 0;
+    this.homeService.selectPage = 0;
     this.homeService.saveFilters(dataToSubmit);
     this.homeService.getVacancies();
     this.homeService.getResumes();
+    this.parsedFilters = true;
     this.closeDialog();
   }
 

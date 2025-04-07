@@ -134,3 +134,10 @@
         font-size: 0.7rem;
     }
 }
+
+
+.error-message {
+    color: #d9534f;
+    font-size: 12px;
+    margin-top: 10px;
+  }

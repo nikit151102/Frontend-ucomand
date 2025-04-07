@@ -1,0 +1,18 @@
+.container {
+    width: 100%;
+    border-radius: 20px;
+    background: var(--background-card);
+}
+
+.title{
+    width: 100%;
+    padding: 24px 32px;
+}
+
+.cards{
+    padding: 0px 16px 16px 16px;
+}
+
+a{
+    text-decoration: none;
+}

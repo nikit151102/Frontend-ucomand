@@ -27,7 +27,6 @@ interface Tag {
 export class TagSelectorComponent implements ControlValueAccessor, OnChanges, OnInit {
 
   tags: Tag[] = [];
-  page: number = 0;
   @Input() maxTags: number = 3;
   @Input() placeholderValue: string = '';
   @Input() type: string = 'SKILL';
@@ -51,7 +50,6 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges, On
 
   ngOnInit(): void {
     this.tags = [];
-    this.page = 0;
     this.loadMoreTags();
   }
 
@@ -76,17 +74,12 @@ export class TagSelectorComponent implements ControlValueAccessor, OnChanges, On
   // }
   
   loadMoreTags(): void {
-    this.service.getTags(this.type, this.page, 1000).subscribe((results: any) => {
+    this.service.getTags(this.type).subscribe((results: any) => {
       if (results.length > 0) {
-        this.page += 1;
-  
         const newTags = results.filter((newTag: any) => !this.tags.some(tag => tag.id === newTag.id));
         this.tags = [...this.tags, ...newTags];
         
         this.updateFilteredTags();
-  
-        // Рекурсивный вызов для подгрузки следующих данных
-        this.loadMoreTags();
       }
     });
   }

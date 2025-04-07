@@ -1,0 +1,100 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.container-card {
+    border-radius: 20px;
+    padding: 24px;
+    background: var(--background-card);
+}
+
+.container-card-title {
+    width: 100%;
+    padding: 10px 0px 0px 0px;
+    border-bottom: 1.40px solid #bdbdbd;
+}
+
+.container-card-title-text {
+    font-family: var(--font-Monts);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    text-transform: uppercase;
+    color: var(--font-color);
+}
+
+.container-card-users {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 32px;
+    padding-bottom: 15px;
+}
+
+.container-users-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    border-radius: 30px;
+    padding: 14px 16px;
+    background: #84dd2c;
+
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 114%;
+    color: #fff;
+}
+
+.container-users-btn:hover {
+    background: #5A4BB8;
+}
+
+.disable-users-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    border-radius: 30px;
+    padding: 14px 16px;
+
+    background: #bdbdbd;
+
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 114%;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.titleMessage {
+    padding-top: 15px;
+    display: flex;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+#myTeam {
+    text-align: center;
+    border-radius: 30px;
+    padding: 14px 16px;
+    background: #84dd2c;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 129%;
+    color: #fff;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#myTeam:hover {
+    background: #5A4BB8;
+}

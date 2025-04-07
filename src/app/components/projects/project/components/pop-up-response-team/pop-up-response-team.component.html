@@ -1,0 +1,27 @@
+<div class="popup-overlay">
+    <div class="popup" (click)="$event.stopPropagation()">
+        <div class="close-button" (click)="cancel()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 5L18 18M5.0002 18L18 5" stroke="#333334" stroke-opacity="0.3" stroke-width="1.4"
+                    stroke-linecap="round" />
+            </svg>
+        </div>
+        <p class="popup-title">Отклик в команду проекта</p>
+        <p class="popup-groupInput-title" *ngIf="isCurrect == true">Ваше сообщение/заявка отправленна</p>
+        <div class="popup-groupInput" *ngIf="isCurrect == false">
+            <p class="popup-groupInput-title">
+                Текст сообщения:
+            </p>
+            <textarea class="popup-groupInput-input textarea" type="text" [(ngModel)]="textarea"
+                placeholder="Краткое описание (не более 300 символов)"></textarea>
+
+        </div>
+        <p class="popup-subtitle" *ngIf="isCurrect == false">Прикрепите актуальное резюме</p>
+        <div class="popup-resumes" *ngIf="isCurrect == false">
+            <app-active-resumes [cardItem]="itemResume" *ngFor="let itemResume of popUpResponseTeamService.filterResumes('EVERYBODY', resumesList) " ></app-active-resumes>
+        </div>
+        <div class="btns" *ngIf="isCurrect == false">
+            <a class="popup-cancel" (click)="submit()">Отправить</a>
+        </div>
+    </div>
+</div>

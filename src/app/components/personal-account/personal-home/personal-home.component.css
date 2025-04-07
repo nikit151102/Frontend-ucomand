@@ -37,7 +37,7 @@
 .title {
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: var(--text12);
     line-height: 140%;
     color: var(--font-color);
 }
@@ -67,7 +67,7 @@
 .fullName {
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 1rem;
+    font-size: var(--text16);
     line-height: 117%;
     color: var(--font-color);
 }
@@ -117,7 +117,7 @@ p {
     margin-bottom: 0.5rem;
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: var(--text12);
     line-height: 117%;
     color: var(--font-color);
 }
@@ -161,7 +161,7 @@ p {
     flex-wrap: wrap;
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: var(--text12);
     line-height: 117%;
     color: var(--font-color);
     margin-right: 25px;
@@ -170,7 +170,7 @@ p {
 .date_registration .title {
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: var(--text12);
     line-height: 117%;
     color: var(--font-color);
 }
@@ -221,7 +221,7 @@ p {
 .title-cards {
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 1rem;
+    font-size: var(--text14);
     line-height: 117%;
     color: var(--font-color);
     padding: 2rem 0 2rem 2.2rem;
@@ -244,17 +244,19 @@ p {
 
 
 .message-cards {
-    padding: 0 0 1rem 2.2rem;
+    padding: 0 1rem 2.2rem;
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: var(--text13);
     line-height: 117%;
     text-transform: uppercase;
     color: var(--font-color);
 }
 
 .logoImg {
+    object-fit: cover;
     width: 6vw;
+    height: 6vw;
     border-radius: 50%
 }
 
@@ -280,7 +282,7 @@ p {
 
     font-family: var(--font-Monts);
     font-weight: 500;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 117%;
     color: #fff;
 }
@@ -414,19 +416,29 @@ p {
     gap: 3rem;
 }
 
-.app-card-vacancy-link{
+.app-card-vacancy-link {
     text-decoration: none;
 }
 
 @media (max-width: 1198px) {
 
-    .container-resume-header-newCards,
-    .container-vacancy-header-newCards {
-        display: none;
-    }
     .container {
         z-index: 1;
         margin-top: 120px;
+    }
+
+    .second-path {
+        flex-direction: column;
+    }
+
+    .cards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .cards .app-card-vacancy-link{
+        width: 49%;
     }
 }
 
@@ -440,16 +452,8 @@ p {
         width: 100%;
     }
 
-    .title {
-        font-size: 0.8rem;
-    }
-
     .ProfileChapter {
         padding: 1rem 1.5rem 0px 1.5rem;
-    }
-
-    .fullName {
-        font-size: 1rem;
     }
 
     .information-user {
@@ -458,7 +462,6 @@ p {
     }
 
     .title-cards {
-        font-size: 0.9rem;
         padding: 1.5rem 1.8rem;
     }
 
@@ -476,6 +479,16 @@ p {
 
 /* Media queries for phones */
 @media (max-width: 768px) {
+
+    .container-resume-header-newCards,
+    .container-vacancy-header-newCards {
+        display: none;
+    }
+
+    .cards .app-card-vacancy-link{
+        width: 100%;
+    }
+
     .phone-btns {
         display: flex;
         flex-direction: column;
@@ -545,7 +558,7 @@ p {
     }
 
     .fullName {
-        font-size: 1rem;
+        font-size: var(--text14);
     }
 
     .information-user {
@@ -567,21 +580,12 @@ p {
         text-align: center;
     }
 
-    .title {
-        font-size: 0.7rem;
-    }
-
     .date_registration span {
         font-size: 0.7rem;
     }
 
     .menuProfile {
         flex-direction: column;
-    }
-
-    .chapterCard-title {
-        font-size: 0.7rem;
-        font-weight: 500;
     }
 
     .information-user,
@@ -595,7 +599,7 @@ p {
     }
 
     .title-cards {
-        font-size: 0.7rem;
+        font-size: var(--text12);
         padding: 0.8rem 1rem;
         width: 95%;
         margin: 0 auto;
@@ -609,15 +613,6 @@ p {
         width: 100%;
     }
 
-    .title {
-        font-size: 0.7rem;
-    }
-
-    .chapterCard-title {
-        font-size: 0.7rem;
-        font-weight: 500;
-    }
-
     .ProfileChapter {
         padding: 0.5rem 0.5rem 0px 0;
     }
@@ -625,11 +620,6 @@ p {
     .information-user,
     .location-value {
         font-size: 0.9rem;
-    }
-
-    .fullName {
-        font-size: 1rem;
-        ;
     }
 }
 

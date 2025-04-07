@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="tag-selector">
+    <ng-container>
+      <input type="text" 
+             (focus)="toggleTagBlock(true)" 
+             (blur)="toggleTagBlock(false)" 
+             class="tag-input" 
+             [placeholder]="placeholderValue" 
+             [(ngModel)]="searchQuery" 
+             (ngModelChange)="filterTags()" />
+    </ng-container>
+    
+    <ng-container *ngIf="showTagBlock ">
+      <div *ngIf="filteredTags.length > 0; else noTags" 
+           class="tag-block" (scroll)="onScroll($event)">
+        <div *ngFor="let tag of filteredTags" 
+             (click)="selectTag(tag)">
+             <ng-container *ngIf="languagesEng">
+              {{ tag.nameEng }}
+            </ng-container>
+            <ng-container *ngIf="!languagesEng">
+              {{ tag.name }}
+            </ng-container>
+        </div>
+      
+      </div>
+      <ng-template #noTags>
+        <div  class="tag-block" >
+          <p class="no-tags-message">
+            Нет тегов, соответствующих вашему запросу
+          </p>
+        </div>
+      </ng-template>
+    </ng-container>
+  </div>
+</div>
