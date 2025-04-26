@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,6 +13,13 @@ import { Component, Input } from '@angular/core';
 export class ParticipantComponent {
 
   @Input() itemData: any;
+
+  constructor(private router: Router){}
+
+  onUserClick(event: MouseEvent): void {
+    event.preventDefault();
+    this.router.navigate([``, this.itemData.user.nickname]);
+  }
 
 }
 

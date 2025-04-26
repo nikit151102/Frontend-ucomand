@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" (click)="onUserClick($event)">
     <div class="content-logo">
         <ng-container *ngIf="itemData?.user?.imageLink">
             <img [src]="itemData.user.imageLink " alt="avatar"
