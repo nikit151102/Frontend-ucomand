@@ -142,6 +142,11 @@
                     <a (click)="handlePostVacancy()" class="additionalBtn additional"
                         [ngStyle]="{'pointer-events': dataCurrentUser.banned ? 'none' : 'auto', 'opacity': dataCurrentUser.banned ? '0.5' : '1'}">
                         Разместить вакансию </a>
+                    <a (click)="handlePostProject()" class="additionalBtn additional"
+                        [ngStyle]="{'pointer-events': dataCurrentUser.banned ? 'none' : 'auto', 'opacity': dataCurrentUser.banned ? '0.5' : '1'}">
+                        Разместить проект </a>
+
+
                 </div>
             </div>
 
@@ -263,7 +268,7 @@
                         <app-ban-vacancy [item]="itemProject"></app-ban-vacancy>
                     </ng-container> -->
                     <div class="block-switchCards">
-<!-- 
+                        <!-- 
                         <a (click)="toggleVacancies()" *ngIf="vacancyService.filterVacancies('EVERYBODY').length>3"
                             class="switchCards">
                             {{ showAllVacancies ? 'Свернуть' : 'Показать все' }}
