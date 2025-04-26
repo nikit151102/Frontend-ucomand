@@ -1,0 +1,39 @@
+.container {
+    border-radius: 8px;
+    padding: 6px;
+}
+
+.avatar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.name {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 117%;
+    color: #101010;
+}
+
+.profession {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #101010;
+}
+
+.container:hover {
+    box-shadow: 2px 4px 8px 0 rgba(40, 40, 40, 0.1); 
+}
+
+.container:hover .avatar {
+    transform: scale(1.1); 
+}

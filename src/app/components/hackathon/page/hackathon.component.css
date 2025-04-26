@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    /* gap: 24px; */
+    margin: 0 auto;
+    width: 75%;
+    margin-top: 0.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.people {
+    display: flex;
+    gap: 32px;
+}
+
+.people app-commandsHack,
+.people app-party {
+    flex: 1;
+}
+
+
+@media (max-width: 1199px) {
+
+    .container {
+        width: 95%;
+        margin-top: 85px;
+        z-index: 1;
+    }
+
+}
+
+@media (max-width: 868px) {
+
+    .people {
+        flex-direction: column;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .container {
+        width: 100%;
+        margin-top: 65px;
+    }
+
+
+}

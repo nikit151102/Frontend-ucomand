@@ -27,6 +27,13 @@ const routes: Routes = [
     path: 'editProject/:nickname', loadChildren: () => import('./components/projects/create-edit-projects/create-edit-projects.module').then(m => m.CreateEditProjectsModule), data: { edit: true }
   },
   {
+    path: 'editHackathon/:nickname', loadChildren: () => import('./components/hackathon/create-edit-hackathon/create-edit-projects.module').then(m => m.CreateEditHackathonModule), data: { edit: true }
+  },
+  {
+    path: 'hackathon/:id', loadChildren: () => import('./components/hackathon/page/hackathon.module').then(m => m.HackathonModule)
+  },
+  
+  {
     path: 'resume/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule), data: { routeName: 'resume' }
   },
   {
@@ -35,6 +42,7 @@ const routes: Routes = [
   {
     path: 'project/:id', loadChildren: () => import('./components/projects/project/project.module').then(m => m.ProjectModule)
   },
+
   {
     path: ':id', loadChildren: () => import('./components/user-path/user-path.module').then(m => m.UserPathModule)
   },

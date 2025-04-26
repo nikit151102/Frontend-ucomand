@@ -1,0 +1,62 @@
+.container {
+    padding: 6px;
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    width: 100px;
+}
+
+
+.checkbox-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+.image-container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 16px
+}
+
+img {
+    max-width: 52px;
+    height: auto;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+
+
+.approval {
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    accent-color: #E2E2E2;
+}
+
+.custom-checkbox {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.approval label {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 0.7rem;
+    line-height: 117%;
+    color: var(--font-color);
+}
+
+.name {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 117%;
+    color: #101010;
+    text-align: start;
+}

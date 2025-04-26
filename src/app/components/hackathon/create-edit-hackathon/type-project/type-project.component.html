@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="tag-selector">
+
+    <input
+      type="text"
+      readonly
+      (click)="toggleTagBlock(true)"
+      (blur)="toggleTagBlock(false)"
+      class="tag-input"
+      [placeholder]="getSelectedTagsText() || 'Выбрать'"
+      [ngModel]="value"
+    />
+
+    <ng-container *ngIf="showTagBlock && selectedTags.length < maxTags">
+      <div *ngIf="tags.length > 0;" class="tag-block" >
+        <div *ngFor="let tag of tags" (click)="selectTag(tag)">
+          {{ tag.name }}
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

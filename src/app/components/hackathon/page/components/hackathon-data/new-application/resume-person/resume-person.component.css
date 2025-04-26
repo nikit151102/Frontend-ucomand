@@ -1,0 +1,50 @@
+.level {
+    margin: 0;
+    border: 2px solid #fad305;
+    padding: 4px 6px;
+    border-radius: 5px;
+    font-family: var(--font-Monts);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 100%;
+    color: var(--font-color);
+}
+
+.title {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #101010;
+    margin: 0;
+}
+
+.value {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 114%;
+    text-transform: uppercase;
+    color: #101010;
+}
+
+.value-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+input[type="checkbox"] {
+    accent-color: #E2E2E2;
+}
+
+.custom-checkbox {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}

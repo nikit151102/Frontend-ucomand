@@ -1,0 +1,82 @@
+<a id="btn" (click)="openPopup()">
+    Заявка на участие
+</a>
+
+<div *ngIf="isPopupOpen" class="popup">
+    <div class="popup-content">
+        <span class="close" (click)="closePopup()">&times;</span>
+        <p id="title">
+            Участие в хакатоне возможно следующими вариантами:
+        </p>
+        <div id="typesApplication">
+            <div class="typeItem">
+                <span class="title">
+                    Участвую своей командой
+                </span>
+                <span class="subtitle">
+                    (Я администратор команды и мы всей командой подаем заявку на участие)
+                </span>
+
+                <div class="items">
+                    <app-project></app-project>
+                </div>
+            </div>
+            <div class="typeItem" (click)="handlePostProject()">
+                <span class="title">
+                    Cоздать команду для участия в хакатоне
+                </span>
+                <span class="subtitle">
+                    (Я сам создам команду и буду приглашать в команду участников)
+                </span>
+            </div>
+            <div class="typeItem">
+                <span class="title">
+                    Индивидуальное участие
+                </span>
+                <span class="subtitle">
+                    (Я хочу участвовать и готов присоединиться к любой команде)
+                </span>
+                <div class="items">
+                    <app-resume-person></app-resume-person>
+                </div>
+            </div>
+        </div>
+        <div class="btns">
+            <a class="cancel" (click)="closePopup()">
+                Отмена
+            </a>
+            <a class="access" (click)="openPopupSuccess()">
+                Отправить
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div *ngIf="isPopupsSuccessOpen" class="popup">
+    <div style="    border: 1px solid #fff25f;
+    border-radius: 20px;
+    max-width: 486px;
+    height: 370px;
+    padding: 40px;
+    width: 100%;
+    background: #fff25f;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;">
+        <span class="close" (click)="closePopupSuccess()">&times;</span>
+        <p id="title" style="    height: 100%;
+        display: flex
+    ;
+        align-items: center;">
+            Заявка отравлена!
+        </p>
+        <!-- <span class="title">
+            Участвую своей командой
+        </span> -->
+    </div>
+</div>

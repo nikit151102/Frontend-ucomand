@@ -1,0 +1,28 @@
+<div class="container" (click)="onAvatarClick($event, item)">
+    <div class="checkbox-container">
+        <input type="checkbox" [checked]="isSelected" class="custom-checkbox" />
+      </div>
+    <div class="card" style="box-shadow: 1px 2px 4px 0 rgba(40, 40, 40, 0.1); padding: 12px;
+    background: #fff;    width: 100%;">
+        <div class="Specialization">
+            <p class="title">
+                Специальность:
+            </p>
+            <div class="value-container">
+                <p class="value">
+                    {{ item?.profession | uppercase }}
+                    <!-- {{item.resume.profession.name | uppercase}} -->
+                </p>
+
+                <!-- <p [ngStyle]="{ 'border-color': getSkillsColor(item.resume.profession.competenceLevel) }" class="level"
+                    *ngIf="item.resume?.profession?.competenceLevel">
+                    {{ getSkills(item.resume.profession?.competenceLevel) }}
+                </p> -->
+                <p [ngStyle]="{ 'border-color': getSkillsColor(item.competenceLevel) }" class="level"
+                    *ngIf="item?.competenceLevel">
+                    {{ getSkills(item?.competenceLevel) }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
