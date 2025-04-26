@@ -37,6 +37,11 @@ p {
     height: 52px;
 }
 
+.logoImg{
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    width: 52px;
+}
 
 .input-container {
     width: 100%;

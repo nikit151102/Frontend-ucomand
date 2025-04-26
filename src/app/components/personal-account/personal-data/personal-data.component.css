@@ -26,6 +26,11 @@
     color: var(--font-color);
 }
 
+.logoImg{
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+}
+
 .content {
     display: flex;
     flex-direction: row;

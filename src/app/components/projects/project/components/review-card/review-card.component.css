@@ -71,7 +71,11 @@ p {
     white-space: normal;
 }
 
-
+.logoImg{
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    width: 52px;
+}
 
 
 .button-container {
