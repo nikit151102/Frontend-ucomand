@@ -10,23 +10,23 @@ import { HackathonService } from '../../hackathon.service';
   templateUrl: './screensaver.component.html',
   styleUrl: './screensaver.component.css'
 })
-export class ScreensaverHackComponent implements OnInit{
+export class ScreensaverHackComponent implements OnInit {
 
-  @Input() detailsList: any;
+  detailsList: any;
   avatarLink: string = ''
   isOwner: boolean = false;
   constructor(private router: Router, private hackathonService: HackathonService) { }
-  
+
   ngOnInit(): void {
-    this.setTargetAvata('https://avatars.mds.yandex.net/i?id=f53805ab42a551a591544fa2a4c3e54e_l-4600590-images-thumbs&n=13', 'overlay');
+
     this.hackathonService.currentProjectData$.subscribe((value: any) => {
-      if (value && value.headerLink) { // Проверяем, что value не null/undefined
-        // this.setTargetAvata(value.headerLink, 'overlay');
-        
+      if (value && value.imageLink) { // Проверяем, что value не null/undefined
+        this.setTargetAvata(value.imageLink, 'overlay');
+        this.detailsList = value;
         this.avatarLink = value.avatarLink || ''; // Защита от undefined
       }
     });
-    this.hackathonService.currentProjectIsOwner$.subscribe((value: boolean)=>{
+    this.hackathonService.currentProjectIsOwner$.subscribe((value: boolean) => {
       this.isOwner = value;
     })
 
@@ -47,12 +47,36 @@ export class ScreensaverHackComponent implements OnInit{
 
   }
 
-  setTargetAvata(objectUrl: string, block:string) {
+  setTargetAvata(objectUrl: string, block: string) {
     const backgroundContainer = document.querySelector(`.${block}`) as HTMLElement;
     if (backgroundContainer) {
       backgroundContainer.style.backgroundImage = `url(${objectUrl})`;
       backgroundContainer.style.backgroundSize = 'cover';
       backgroundContainer.style.backgroundPosition = 'center';
+    }
+  }
+
+  formatRussianDate(date: Date | string): string {
+    const months = [
+      'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+    ];
+
+    const d = new Date(date);
+    const day = d.getDate();
+    const month = months[d.getMonth()];
+    const year = d.getFullYear();
+
+    return `${day} ${month}`;
+  }
+
+  getRegistrationStatusText(status: string): string {
+    console.log('status',status)
+    switch (status) {
+      case 'OPEN': return 'Регистрация открыта';
+      case 'CLOSED': return 'Регистрация закончена';
+      case 'PENDING': return `Регистрация с ${this.formatRussianDate(this.detailsList.endDate)}`;
+      default: return '';
     }
   }
 

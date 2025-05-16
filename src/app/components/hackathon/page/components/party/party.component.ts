@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PartyItemComponent } from './party-item/party-item.component';
 import { CommonModule } from '@angular/common';
+import { PartyService } from './party.service';
+import { HackathonService } from '../../hackathon.service';
 
 @Component({
   selector: 'app-party',
@@ -9,58 +11,17 @@ import { CommonModule } from '@angular/common';
   templateUrl: './party.component.html',
   styleUrl: './party.component.css'
 })
-export class PartyComponent {
+export class PartyComponent implements OnInit{
 
+  dataHackathon: any;
   
-  data = [
-    {
-      name: 'команда',
-      img: 'https://avatars.mds.yandex.net/i?id=f50af55a565357c56455f2fddb178d9b43935b26-5232815-images-thumbs&n=13'
-    },
-    {
-      name: 'команда2',
-      img: 'https://avatars.mds.yandex.net/i?id=f50af55a565357c56455f2fddb178d9b43935b26-5232815-images-thumbs&n=13'
-    },
-    {
-      name: 'команда3',
-      img: 'https://avatars.mds.yandex.net/i?id=f50af55a565357c56455f2fddb178d9b43935b26-5232815-images-thumbs&n=13'
-    },
-    {
-      name: 'команда4',
-      img: 'https://avatars.mds.yandex.net/i?id=f50af55a565357c56455f2fddb178d9b43935b26-5232815-images-thumbs&n=13'
-    },
-    {
-      name: 'команда5',
-      img: 'https://avatars.mds.yandex.net/i?id=f50af55a565357c56455f2fddb178d9b43935b26-5232815-images-thumbs&n=13'
-    },
-    {
-      name: 'команда6',
-      img: 'https://avatars.mds.yandex.net/i?id=f50af55a565357c56455f2fddb178d9b43935b26-5232815-images-thumbs&n=13'
-    },
-    {
-      name: 'команда7',
-      img: 'https://avatars.mds.yandex.net/i?id=f50af55a565357c56455f2fddb178d9b43935b26-5232815-images-thumbs&n=13'
-    },
-    {
-      name: 'команда8',
-      img: 'https://avatars.mds.yandex.net/i?id=f50af55a565357c56455f2fddb178d9b43935b26-5232815-images-thumbs&n=13'
-    },
-    {
-      name: 'команда9',
-      img: 'https://avatars.mds.yandex.net/i?id=f50af55a565357c56455f2fddb178d9b43935b26-5232815-images-thumbs&n=13'
-    },
-    {
-      name: 'команда10',
-      img: 'https://avatars.mds.yandex.net/i?id=f50af55a565357c56455f2fddb178d9b43935b26-5232815-images-thumbs&n=13'
-    },
-    {
-      name: 'команда11',
-      img: 'https://avatars.mds.yandex.net/i?id=f50af55a565357c56455f2fddb178d9b43935b26-5232815-images-thumbs&n=13'
-    },
-    {
-      name: 'команда12',
-      img: 'https://avatars.mds.yandex.net/i?id=f50af55a565357c56455f2fddb178d9b43935b26-5232815-images-thumbs&n=13'
-    }
-  ]
-  
+  constructor(private partyService:PartyService, private hackathonService:HackathonService){}
+
+  ngOnInit(): void {
+    this.hackathonService.currentProjectData$.subscribe((data: any)=>{
+      this.dataHackathon = data;
+    })
+  }
+
+
 }

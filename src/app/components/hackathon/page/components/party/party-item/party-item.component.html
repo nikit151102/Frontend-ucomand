@@ -7,7 +7,15 @@
             gap: 5px;
             justify-content: space-between;
             height: 45px;">
-            <span class="name">{{item.name}}</span>
+            <div
+                style="display: flex; flex-wrap: wrap; flex-direction: column; justify-content: flex-end; margin-bottom: 2px;">
+                <p class="fullName" style="margin: 0;">
+                    {{item?.user?.lastName}}
+                </p>
+                <p class="fullName" style="margin: 0;">
+                    {{item?.user?.firstName}}
+                </p>
+            </div>
             <span class="profession">Администратор</span>
         </div>
     </div>
