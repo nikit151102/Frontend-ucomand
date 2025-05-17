@@ -18,7 +18,7 @@ export class CreateEditProjectsService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.post<any>(`${environment.apiUrl}/projects`, dataProject, { headers })
+    return this.http.post<any>(`${environment.apiUrl}/hackathons`, dataProject, { headers })
 
   }
 
@@ -29,7 +29,7 @@ export class CreateEditProjectsService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.put<any>(`${environment.apiUrl}/projects/${dataProject.id}`, dataProject, { headers })
+    return this.http.put<any>(`${environment.apiUrl}/hackathons/${dataProject.id}`, dataProject, { headers })
 
   }
 
@@ -40,7 +40,7 @@ export class CreateEditProjectsService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.put(`${environment.apiUrl}/projects/${projectId}/${endpoint}`, formData, { headers, responseType: 'text' });
+    return this.http.put(`${environment.apiUrl}/hackathons/${projectId}/${endpoint}`, formData, { headers, responseType: 'text' });
   }
 
 

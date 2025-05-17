@@ -1,0 +1,45 @@
+<div class="content">
+    <span class="title">{{data.title}}</span>
+    <div class="closed">
+        <a (click)="closeMenage()">
+            <svg width="32" height="12" viewBox="0 0 32 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M0.505025 5.50503C0.231658 5.77839 0.231658 6.22161 0.505025 6.49497L4.9598 10.9497C5.23316 11.2231 5.67638 11.2231 5.94975 10.9497C6.22311 10.6764 6.22311 10.2332 5.94975 9.9598L1.98995 6L5.94975 2.0402C6.22311 1.76684 6.22311 1.32362 5.94975 1.05025C5.67638 0.776886 5.23316 0.776886 4.9598 1.05025L0.505025 5.50503ZM31 6.7C31.3866 6.7 31.7 6.3866 31.7 6C31.7 5.6134 31.3866 5.3 31 5.3V6.7ZM1 6V6.7H31V6V5.3H1V6Z"
+                    fill="#101010" />
+            </svg>
+            вернуться
+        </a>
+    </div>
+
+    <div class="block-title">
+        новые заявки от команд
+    </div>
+    <div class="new-commands">
+        <app-new-command [data]="item"
+            *ngFor="let item of manageListParticipantsService.getCurrentNewTeamRequests()"></app-new-command>
+    </div>
+
+    <div class="block-title">
+        новые заявки от участников
+    </div>
+    <div class="new-commands">
+        <app-new-command [data]="item"
+            *ngFor="let item of manageListParticipantsService.getCurrentNewTeamRequests()"></app-new-command>
+    </div>
+
+      <div class="block-title">
+       список команд
+    </div>
+    <div class="new-commands">
+        <app-new-command [data]="item"
+            *ngFor="let item of manageListParticipantsService.getCurrentNewTeamRequests()"></app-new-command>
+    </div>
+
+      <div class="block-title">
+        список участников
+    </div>
+    <div class="new-commands">
+        <app-new-command [data]="item"
+            *ngFor="let item of manageListParticipantsService.getCurrentNewTeamRequests()"></app-new-command>
+    </div>
+</div>

@@ -79,6 +79,7 @@ export class HackathonService {
 
 
   isEditProject: boolean = false;
+  page: any = 'home';
 
   getCurrentHackathon(nicknameProject: string): Observable<any> {
     const token = localStorage.getItem('authToken');

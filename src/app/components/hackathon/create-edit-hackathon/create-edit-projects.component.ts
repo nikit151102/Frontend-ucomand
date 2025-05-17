@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CreateEditProjectsService } from './create-edit-projects.service';
 import { forbiddenWordsValidator } from '../../../../validators/forbidden-words.validator';
+import { HackathonService } from '../page/hackathon.service';
 
 @Component({
   selector: 'app-create-edit-projects',
@@ -21,51 +22,39 @@ export class CreateEditProjectsComponent implements OnInit {
   oldNickname: string = '';
   cancel_btn: boolean = false;
   projectData: any = null;
-  constructor(private fb: FormBuilder, private router: Router, private createEditProjectsService: CreateEditProjectsService, private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private router: Router,
+    private createEditProjectsService: CreateEditProjectsService,
+    private route: ActivatedRoute, private hackathonService: HackathonService) {
 
   }
   onTextAreaInput(event: Event, minHeight = 98) {
     const textarea = event.target as HTMLTextAreaElement;
     textarea.style.height = 'auto'; // Сбрасываем высоту, чтобы она могла адаптироваться
-  
+
 
     // Используем scrollHeight, чтобы установить высоту в зависимости от содержимого
-    const newHeight = Math.max(textarea.scrollHeight, minHeight); 
-  
+    const newHeight = Math.max(textarea.scrollHeight, minHeight);
+
     textarea.style.height = `${newHeight}px`; // Устанавливаем высоту в зависимости от содержимого
   }
-  
 
-  
+
+
   ngOnInit(): void {
     this.initializeForm();
     // this.projectService.currentProjectData$.subscribe((value: any) => {
     //   this.projectData = value;
     // })
-    this.route.data.subscribe((data) => {
-      const isEdit = data['edit'];
-      if (isEdit) {
-        if (this.projectData && this.projectData.nickname) {
-          this.ProjectData(this.projectData.nickname);
-        } else {
-          const paramNickName = this.route.snapshot.paramMap.get('nickname');
-          if (paramNickName) {
-            // this.projectService.getCurrentProject(paramNickName).subscribe(data => {
-            //   this.projectService.setCurrentProjectData(data);
-            //   this.ProjectData(data.nickname);
-            // });
+    let paramId = this.route.snapshot.paramMap.get('nickname');
+    console.log('paramId', paramId)
 
-          }
-        }
-      }
-    });
-
+    if (paramId) this.ProjectData(paramId);
 
   }
 
   onInputChange(event: any) {
     let value = event.target.value;
-    
+
     // Если поле пустое или первый символ не @, добавляем его
     if (!value.startsWith('@')) {
       value = '@' + value.replace(/^@+/, ''); // Убираем лишние @ в начале
@@ -76,14 +65,22 @@ export class CreateEditProjectsComponent implements OnInit {
   initializeForm(): void {
     this.form = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(200), forbiddenWordsValidator()]],
-      summary: ['', [Validators.required, Validators.maxLength(300), forbiddenWordsValidator()]],
-      type: [, Validators.required],
-      email: ['', Validators.required],
-      telegram: ['', [Validators.required, forbiddenWordsValidator()]],
-      description: ['', [Validators.required, Validators.maxLength(1500), forbiddenWordsValidator()]],
-      developmentStage: ['', [Validators.required, Validators.maxLength(1500), forbiddenWordsValidator()]],
-      tasks: ['', [Validators.required, Validators.maxLength(1500), forbiddenWordsValidator()]],
       nickname: ['', [Validators.required, forbiddenWordsValidator()]],
+      customLink: ['', [Validators.required]],
+      endDate: ['', [Validators.required]],
+      focus: ['', [Validators.required]],
+      format: ['', [Validators.required]],
+      hackathonLink: ['', [Validators.required]],
+      imageLink: ['', [Validators.required]],
+      location: ['', [Validators.required]],
+      organizer: ['', [Validators.required]],
+      participationConditions: ['', [Validators.required]],
+      prizePool: ['', [Validators.required]],
+      registrationDeadline: ['', [Validators.required]],
+      registrationStatus: ['', [Validators.required]],
+      shortDescription: ['', [Validators.required]],
+      startDate: ['', [Validators.required]],
+      telegram: ['', [Validators.required]],
     });
   }
 
@@ -109,15 +106,15 @@ export class CreateEditProjectsComponent implements OnInit {
     if (input.files && input.files[0]) {
       const file = input.files[0];
       const allowedTypes = ['image/png', 'image/jpeg'];
-  
+
       if (!allowedTypes.includes(file.type)) {
         console.error('Unsupported file type:', file.type);
         alert('Please upload a PNG or JPEG image.');
         return;
       }
-  
+
       const objectUrl = URL.createObjectURL(file);
-  
+
       if (target === 'background') {
         const backgroundContainer = document.querySelector('.background-container') as HTMLElement;
         if (backgroundContainer) {
@@ -138,11 +135,11 @@ export class CreateEditProjectsComponent implements OnInit {
         this.avatarImg = file;
         this.isLogoImageSelected = true;
       }
-  
+
       setTimeout(() => URL.revokeObjectURL(objectUrl), 10000);
     }
   }
-  
+
 
   setAvatar(file: any, endpoint: string): void {
     const formData = new FormData();
@@ -159,41 +156,51 @@ export class CreateEditProjectsComponent implements OnInit {
   }
 
   ProjectData(nicknameProject: string) {
-    // this.projectService.getCurrentProject(nicknameProject).subscribe(
-    //   (user: any) => {
+    this.hackathonService.getCurrentHackathon(nicknameProject).subscribe(
+      (user: any) => {
+        console.log('data data', user)
+        this.projectData = user;
+        console.log('projectDataprojectData',this.projectData)
+        this.form.patchValue({
+          title: user.title || '',
+          customLink: user.customLink || '',
+          endDate: user.endDate || '',
+          focus: user.focus || '',
+          telegram: user.telegram ? '@' + user.telegram.replace(/^@+/, '') : '',
+          format: user.format || '',
+          hackathonLink: user.hackathonLink || '',
+          imageLink: user.imageLink,
+          nickname: user.nickname,
+          location: user.location,
+          organizer: user.organizer,
+          participationConditions: user.participationConditions,
+          prizePool: user.prizePool,
+          registrationDeadline: user.registrationDeadline,
+          registrationStatus: user.registrationStatus,
+          shortDescription: user.shortDescription,
+          startDate: user.startDate,
+        });
 
-    //     this.form.patchValue({
-    //       title: user.title || '',
-    //       summary: user.summary || '',
-    //       type: user.type || '',
-    //       email: user.email || '',
-    //       telegram: user.telegram ? '@' + user.telegram.replace(/^@+/, '') : '',
-    //       description: user.description || '',
-    //       developmentStage: user.developmentStage || '',
-    //       tasks: user.tasks,
-    //       nickname: user.nickname,
-    //     });
-
-    //     if (user.nickname) {
-    //       this.oldNickname = user.nickname;
-    //     }
-    //     this.form.get('nickname')?.valueChanges.subscribe(value => {
-    //       if (value !== this.oldNickname && value.length > 0) {
-    //         this.forbiddenWordsValidator(value)
-    //       }
-    //     });
-    //     this.formChanges();
-    //   },
-    //   (error: any) => {
-    //     console.error('Ошибка при загрузке данных пользователя:', error);
-    //     console.log('error.status', error)
-    //     if (error.status) {
-    //       this.router.navigate(['/error', error.status.toString()]);
-    //     } else {
-    //       this.router.navigate(['/error', { num: "500" }]);
-    //     }
-    //   }
-    // );
+        if (user.nickname) {
+          this.oldNickname = user.nickname;
+        }
+        this.form.get('nickname')?.valueChanges.subscribe(value => {
+          if (value !== this.oldNickname && value.length > 0) {
+            this.forbiddenWordsValidator(value)
+          }
+        });
+        this.formChanges();
+      },
+      (error: any) => {
+        console.error('Ошибка при загрузке данных пользователя:', error);
+        console.log('error.status', error)
+        if (error.status) {
+          this.router.navigate(['/error', error.status.toString()]);
+        } else {
+          this.router.navigate(['/error', { num: "500" }]);
+        }
+      }
+    );
   }
 
   formChanges() {
@@ -240,18 +247,16 @@ export class CreateEditProjectsComponent implements OnInit {
         tasks: any;
         nickname: any;
       } = {
-        'title': data.title,
-        'summary': data.summary,
-        'type': data.type.type,
-        'email': data.email,
-        'telegram': data.telegram.startsWith('@') ? data.telegram.slice(1) : data.telegram,
-        'description': data.description.replace(/\r?\n/g, '\n'),
-        'developmentStage': data.developmentStage.replace(/\r?\n/g, '\n'),
-        'tasks': data.tasks.replace(/\r?\n/g, '\n'),
-        'nickname': data.nickname,
-
+        title: data.title || '',
+        summary: data.summary || '',
+        type: data.type?.type || '',
+        email: data.email || '',
+        telegram: data.telegram ? data.telegram.startsWith('@') ? data.telegram.slice(1) : data.telegram : '',
+        description: data.description ? data.description.replace(/\r?\n/g, '\n') : '',
+        developmentStage: data.developmentStage ? data.developmentStage.replace(/\r?\n/g, '\n') : '',
+        tasks: data.tasks ? data.tasks.replace(/\r?\n/g, '\n') : '',
+        nickname: data.nickname || '',
       };
-
       if (isEdit) {
         newData.id = this.projectData.id;
         this.createEditProjectsService.setEditProject(newData).subscribe((data: any) => {

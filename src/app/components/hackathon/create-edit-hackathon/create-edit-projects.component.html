@@ -20,7 +20,7 @@
                     <div class="container-elements-left-gruopInputs-items">
                         <div class="container-elements-left-gruopInputs-items-block">
                             <p class="container-elements-left-gruopInputs-items-block-title">
-                                Название 
+                                Название
                             </p>
                             <input class="container-elements-left-gruopInputs-items-block-input" type="text"
                                 placeholder="Введите название" formControlName="title" />
@@ -44,7 +44,7 @@
                                 Организатор:
                             </p>
                             <input class="container-elements-left-gruopInputs-items-block-input" type="text"
-                                placeholder="Введите название" formControlName="title" />
+                                placeholder="Введите организатора" formControlName="organizer" />
                             <!-- <div *ngIf="form.get('title')?.invalid && (form.get('title')?.dirty || form.get('title')?.touched)"
                                 class="error-message">
                                 <div *ngIf="form.get('title')?.errors?.['required']">Название проекта обязательно.</div>
@@ -62,10 +62,10 @@
                         </div>
                         <div class="container-elements-left-gruopInputs-items-block">
                             <p class="container-elements-left-gruopInputs-items-block-title">
-                                Для кого: 
+                                Для кого:
                             </p>
                             <input class="container-elements-left-gruopInputs-items-block-input" type="text"
-                                placeholder="Введите название" formControlName="title" />
+                                placeholder="Введите для кого хакатон" formControlName="targetAudience" />
                             <!-- <div *ngIf="form.get('title')?.invalid && (form.get('title')?.dirty || form.get('title')?.touched)"
                                 class="error-message">
                                 <div *ngIf="form.get('title')?.errors?.['required']">Название проекта обязательно.</div>
@@ -87,7 +87,7 @@
                                 Условия участия:
                             </p>
                             <input class="container-elements-left-gruopInputs-items-block-input" type="text"
-                                placeholder="Введите название" formControlName="title" />
+                                placeholder="Введите условия участия" formControlName="participationConditions" />
                             <!-- <div *ngIf="form.get('title')?.invalid && (form.get('title')?.dirty || form.get('title')?.touched)"
                                 class="error-message">
                                 <div *ngIf="form.get('title')?.errors?.['required']">Название проекта обязательно.</div>
@@ -109,7 +109,7 @@
                                 Мотивация для участников (сумма денежного вознаграждения/Опыт/иные варианты):
                             </p>
                             <input class="container-elements-left-gruopInputs-items-block-input" type="text"
-                                placeholder="Введите название" formControlName="title" />
+                                placeholder="Введите мотивациии" formControlName="prizePool" />
                             <!-- <div *ngIf="form.get('title')?.invalid && (form.get('title')?.dirty || form.get('title')?.touched)"
                                 class="error-message">
                                 <div *ngIf="form.get('title')?.errors?.['required']">Название проекта обязательно.</div>
@@ -132,15 +132,6 @@
                     <p class="container-elements-left-gruopInputs-title">Контактные данные:</p>
                     <div class="container-elements-left-gruopInputs-items">
                         <div class="container-elements-left-gruopInputs-items-block">
-                            <p class="container-elements-left-gruopInputs-items-block-title">Email:</p>
-                            <input class="container-elements-left-gruopInputs-items-block-input" type="text"
-                                placeholder="Введите email" formControlName="email" />
-                            <div *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)"
-                                class="error-message">
-                                <div *ngIf="form.get('email')?.errors?.['required']">Email обязателен.</div>
-                            </div>
-                        </div>
-                        <div class="container-elements-left-gruopInputs-items-block">
                             <p class="container-elements-left-gruopInputs-items-block-title">Telegram:</p>
                             <input class="container-elements-left-gruopInputs-items-block-input" type="text"
                                 placeholder="Введите telegram" formControlName="telegram"
@@ -159,12 +150,12 @@
                         <div class="container-elements-left-gruopInputs-items-block">
                             <p class="container-elements-left-gruopInputs-items-block-title">Website:</p>
                             <input class="container-elements-left-gruopInputs-items-block-input" type="text"
-                                placeholder="Введите telegram" formControlName="telegram"
+                                placeholder="Введите Website" formControlName="customLink"
                                 (input)="onInputChange($event)" />
 
-                            <div *ngIf="form.get('telegram')?.invalid && (form.get('telegram')?.dirty || form.get('telegram')?.touched)"
+                            <div *ngIf="form.get('customLink')?.invalid && (form.get('customLink')?.dirty || form.get('telegram')?.touched)"
                                 class="error-message">
-                                <div *ngIf="form.get('telegram')?.errors?.['required']">Website обязателен.</div>
+                                <div *ngIf="form.get('customLink')?.errors?.['required']">Website обязателен.</div>
                             </div>
                         </div>
 
@@ -176,50 +167,60 @@
                     <div class="container-elements-left-gruopInputs-items">
                         <div class="container-elements-left-gruopInputs-items-block">
                             <p class="container-elements-left-gruopInputs-items-block-title">Даты проведения:</p>
-                            <input type="date" (input)="onTextAreaInput($event)" class="container-elements-left-gruopInputs-items-block-input"
-                                placeholder="Введите описание" formControlName="description">
+                            <input type="date" (input)="onTextAreaInput($event)"
+                                class="container-elements-left-gruopInputs-items-block-input"
+                                placeholder="Введите описание" formControlName="startDate">
+                            <input type="date" (input)="onTextAreaInput($event)"
+                                class="container-elements-left-gruopInputs-items-block-input"
+                                placeholder="Введите описание" formControlName="endDate">
                         </div>
                         <div class="container-elements-left-gruopInputs-items-block">
                             <p class="container-elements-left-gruopInputs-items-block-title">Начало регистрации:</p>
-                            <input type="date" (input)="onTextAreaInput($event)" class="container-elements-left-gruopInputs-items-block-input"
-                                placeholder="Введите описание" formControlName="description">
+                            <input type="date" (input)="onTextAreaInput($event)"
+                                class="container-elements-left-gruopInputs-items-block-input" placeholder="Введите дату"
+                                formControlName="startDate">
                         </div>
                         <div class="container-elements-left-gruopInputs-items-block">
                             <p class="container-elements-left-gruopInputs-items-block-title">Конец регистрации:</p>
-                            <input type="date" (input)="onTextAreaInput($event)" class="container-elements-left-gruopInputs-items-block-input"
-                                placeholder="Введите описание" formControlName="description">
+                            <input type="date" (input)="onTextAreaInput($event)"
+                                class="container-elements-left-gruopInputs-items-block-input" placeholder="Введите дату"
+                                formControlName="endDate">
                         </div>
-                       
+
                         <div class="container-elements-left-gruopInputs-items-block">
                             <p class="container-elements-left-gruopInputs-items-block-title">Формат:</p>
-                            <app-type-project formControlName="type"
-                                (tagsChanged)="onTagsChanged($event, 'type')"></app-type-project>
-                            <div *ngIf="form.get('type')?.invalid && (form.get('type')?.dirty || form.get('type')?.touched)"
+                            <app-type-project formControlName="format"
+                                (tagsChanged)="onTagsChanged($event, 'format')"></app-type-project>
+                            <div *ngIf="form.get('format')?.invalid && (form.get('format')?.dirty || form.get('format')?.touched)"
                                 class="error-message">
-                                <div *ngIf="form.get('type')?.errors?.['required']">Тип проекта обязателен.</div>
+                                <div *ngIf="form.get('format')?.errors?.['required']">Формат обязателен.</div>
                             </div>
                         </div>
                         <div class="container-elements-left-gruopInputs-items-block">
                             <p class="container-elements-left-gruopInputs-items-block-title">Адрес проведения:</p>
                             <input class="container-elements-left-gruopInputs-items-block-input" type="text"
-                                placeholder="Введите telegram" formControlName="telegram"
+                                placeholder="Введите адрес" formControlName="location"
                                 (input)="onInputChange($event)" />
                         </div>
                         <div class="container-elements-left-gruopInputs-items-block">
                             <p class="container-elements-left-gruopInputs-items-block-title">
-                                 Описание (не более 300 символов)
+                                Описание (не более 300 символов)
                             </p>
-                            <textarea  (input)="onTextAreaInput($event)" class="container-elements-left-gruopInputs-items-block-input textarea"
-                                placeholder="Поле ввода" formControlName="summary"></textarea>
-                            <div *ngIf="form.get('summary')?.invalid && (form.get('summary')?.dirty || form.get('summary')?.touched)"
+                            <textarea (input)="onTextAreaInput($event)"
+                                class="container-elements-left-gruopInputs-items-block-input textarea"
+                                placeholder="Поле ввода" formControlName="shortDescription"></textarea>
+                            <div *ngIf="form.get('shortDescription')?.invalid && (form.get('shortDescription')?.dirty || form.get('summary')?.touched)"
                                 class="error-message">
-                                <div *ngIf="form.get('summary')?.errors?.['required']">Описание обязательно.</div>
-                                <div *ngIf="form.get('summary')?.errors?.['maxlength']">
+                                <div *ngIf="form.get('shortDescription')?.errors?.['shortDescription']">Описание
+                                    обязательно.</div>
+                                <div *ngIf="form.get('shortDescription')?.errors?.['maxlength']">
                                     Описание не должно превышать 300 символов.
                                 </div>
-                                <div *ngIf="form.get('summary')?.errors?.['forbiddenWords']" class="error-message">
+                                <div *ngIf="form.get('shortDescription')?.errors?.['forbiddenWords']"
+                                    class="error-message">
                                     Запрещённые слова: <span
-                                        *ngFor="let word of form.get('summary')?.errors?.['forbiddenWords']">{{ word }},
+                                        *ngFor="let word of form.get('shortDescription')?.errors?.['forbiddenWords']">{{
+                                        word }},
                                     </span>
                                 </div>
                             </div>
@@ -229,7 +230,8 @@
                         <div class="container-elements-left-gruopInputs-items-block">
                             <div class="chapter-content chapter-domain"
                                 style="display: flex; align-items: center; justify-content: flex-end">
-                                <p class="container-elements-left-gruopInputs-items-block-title">Ваш аккаунт на Uteam</p>
+                                <p class="container-elements-left-gruopInputs-items-block-title">Ваш аккаунт на Uteam
+                                </p>
                                 <input #formField type="text" id="nickname" formControlName="nickname"
                                     style="width: 200px;" class="container-elements-left-gruopInputs-items-block-input"
                                     placeholder="Поле ввода"
@@ -262,8 +264,7 @@
                     для целей, определенных в Согласии на обработку персональных данных
                 </p>
                 <div class="container-elements-right-btnBlock">
-                    <button class="container-elements-right-btnBlock-btn"
-                        (click)="submitForm(true)">
+                    <button class="container-elements-right-btnBlock-btn" (click)="submitForm(true)">
                         Изменить
                     </button>
                 </div>

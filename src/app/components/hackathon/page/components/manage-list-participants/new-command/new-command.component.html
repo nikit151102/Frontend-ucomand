@@ -1,0 +1,23 @@
+<div class="item">
+    <div class="date">
+        {{ formatDate(data) }}
+    </div>
+    <div class="content">
+        <div class="avatar-wrapper">
+            <img [src]="data.avatarLink" alt="Avatar" class="avatar" />
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+                <span class="name">Команда</span>
+                <span class="name">{{data.nickname}}</span>
+            </div>
+        </div>
+        <div class="countPerson">
+            {{data.participantCount}}
+            <br>
+            участников
+        </div>
+        <div class="btns">
+            <a (click)="rejectCommand(data.id)" id="reject">Отклонить</a>
+            <a (click)="addCommand(data)" id="add">+ Добавить </a>
+        </div>
+    </div>
+</div>

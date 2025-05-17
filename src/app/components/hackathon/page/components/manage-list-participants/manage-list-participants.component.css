@@ -1,0 +1,40 @@
+.content {
+    padding-top: 20px;
+}
+
+.title {
+    padding: 12px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #101010;
+}
+
+.closed {
+    padding: 16px 11px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 114%;
+    text-transform: uppercase;
+    color: #101010;
+}
+
+.block-title {
+    width: 100%;
+    padding: 10px 10px 0px 10px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    text-transform: uppercase;
+    color: #101010;
+    border-bottom: #646464 solid 1px;
+}
+
+
+.new-commands {
+    width: 100%;
+    background: #fff;
+    border-radius: 20px;
+    padding: 24px;
+}

@@ -1,0 +1,66 @@
+.item {}
+
+.date {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #bdbdbd;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+}
+
+.avatar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.name {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 117%;
+    color: #101010;
+}
+
+.countPerson {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 117%;
+    color: #101010;
+}
+
+.btns{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+#reject {
+    border-radius: 30px;
+    padding: 12px;
+    background: #e2e2e2;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #101010;
+}
+
+#add {
+    border-radius: 30px;
+    padding: 12px;
+    background: #84dd2c;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    color: #fff;
+}

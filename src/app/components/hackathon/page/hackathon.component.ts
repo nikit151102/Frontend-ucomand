@@ -7,11 +7,12 @@ import { PartyComponent } from './components/party/party.component';
 import { SettingsAdminComponent } from './components/settings-admin/settings-admin.component';
 import { HackathonService } from './hackathon.service';
 import { ActivatedRoute } from '@angular/router';
+import { ManageListParticipantsComponent } from './components/manage-list-participants/manage-list-participants.component';
 
 @Component({
   selector: 'app-hackathon',
   standalone: true,
-  imports: [CommonModule, ScreensaverHackComponent, HackathonDataComponent, CommandsHackComponent, PartyComponent, SettingsAdminComponent],
+  imports: [CommonModule, ScreensaverHackComponent, HackathonDataComponent, CommandsHackComponent, PartyComponent, SettingsAdminComponent, ManageListParticipantsComponent],
   templateUrl: './hackathon.component.html',
   styleUrl: './hackathon.component.css'
 })
@@ -21,7 +22,7 @@ export class HackathonComponent implements OnInit{
   projectData: any;
   isOwner: any;
 
-  constructor(private hackathonService:HackathonService, private route: ActivatedRoute){}
+  constructor(public hackathonService:HackathonService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
     this.paramId = this.route.snapshot.paramMap.get('id');
