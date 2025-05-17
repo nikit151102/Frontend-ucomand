@@ -10,12 +10,90 @@
 
 
     <div class="card-container">
+
+
+
+      <ng-container *ngIf="homeService.typeToggle === 'hackathon'">
+        <ng-container *ngIf="isDesktop">
+          <div class="column">
+            <ng-container *ngFor="let item of homeService.hackathons; let i = index">
+              <ng-container *ngIf="i % 3 === 0"> <!-- First Column: 0, 3, 6, ... -->
+                <a [href]="getCardUrl(item.id, 'hackathon', 'hackathon')" class="app-card-vacancy-link"
+                  (click)="onCardClick($event, item.nickname, 'hackathon')">
+                  <app-hackathon-card class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-hackathon-card>
+                </a>
+              </ng-container>
+            </ng-container>
+          </div>
+
+          <div class="column">
+            <ng-container *ngFor="let item of homeService.hackathons; let i = index">
+              <ng-container *ngIf="i % 3 === 1"> <!-- Second Column: 1, 4, 7, ... -->
+                <a [href]="getCardUrl(item.id, 'hackathon', 'hackathon')" class="app-card-vacancy-link"
+                  (click)="onCardClick($event, item.nickname, 'hackathon')">
+                  <app-hackathon-card class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-hackathon-card>
+                </a>
+              </ng-container>
+            </ng-container>
+          </div>
+
+          <div class="column">
+            <ng-container *ngFor="let item of homeService.hackathons; let i = index">
+              <ng-container *ngIf="i % 3 === 2"> <!-- Third Column: 2, 5, 8, ... -->
+                <a [href]="getCardUrl(item.id, 'hackathon', 'hackathon')" class="app-card-vacancy-link"
+                  (click)="onCardClick($event, item.nickname, 'hackathon')">
+                  <app-hackathon-card class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-hackathon-card>
+                </a>
+              </ng-container>
+            </ng-container>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="isTablet">
+          <div class="column">
+            <ng-container *ngFor="let item of homeService.hackathons; let i = index">
+              <ng-container *ngIf="i % 2 === 0"> <!-- First Column: 0, 2, 4, ... -->
+                <a [href]="getCardUrl(item.id, 'hackathon', 'hackathon')" class="app-card-vacancy-link"
+                  (click)="onCardClick($event, item.nickname, 'hackathon')">
+                  <app-hackathon-card class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-hackathon-card>
+                </a>
+              </ng-container>
+            </ng-container>
+          </div>
+
+          <div class="column">
+            <ng-container *ngFor="let item of homeService.hackathons; let i = index">
+              <ng-container *ngIf="i % 2 === 1"> <!-- Second Column: 1, 3, 5, ... -->
+                <a [href]="getCardUrl(item.id, 'hackathon', 'hackathon')" class="app-card-vacancy-link"
+                  (click)="onCardClick($event, item.nickname, 'hackathon')">
+                  <app-hackathon-card class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-hackathon-card>
+                </a>
+              </ng-container>
+            </ng-container>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="isMobile">
+          <ng-container *ngFor="let item of homeService.hackathons">
+            <a [href]="getCardUrl(item.id, 'hackathon', 'hackathon')" class="app-card-vacancy-link"
+              (click)="onCardClick($event, item.nickname, 'hackathon')">
+              <app-hackathon-card class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-hackathon-card>
+            </a>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+
+
+
+
+
+
       <ng-container *ngIf="homeService.typeToggle === 'project'">
         <ng-container *ngIf="isDesktop">
           <div class="column">
             <ng-container *ngFor="let item of homeService.projects; let i = index">
               <ng-container *ngIf="i % 3 === 0"> <!-- First Column: 0, 3, 6, ... -->
-                <a [href]="getCardUrl(item.id, 'project', 'project')"  class="app-card-vacancy-link"
+                <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
                   (click)="onCardClick($event, item.nickname, 'project')">
                   <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
                 </a>
@@ -26,8 +104,8 @@
           <div class="column">
             <ng-container *ngFor="let item of homeService.projects; let i = index">
               <ng-container *ngIf="i % 3 === 1"> <!-- Second Column: 1, 4, 7, ... -->
-                <a [href]="getCardUrl(item.id, 'project', 'project')"  class="app-card-vacancy-link"
-                (click)="onCardClick($event, item.nickname, 'project')">
+                <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
+                  (click)="onCardClick($event, item.nickname, 'project')">
                   <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
                 </a>
               </ng-container>
@@ -38,7 +116,7 @@
             <ng-container *ngFor="let item of homeService.projects; let i = index">
               <ng-container *ngIf="i % 3 === 2"> <!-- Third Column: 2, 5, 8, ... -->
                 <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
-                (click)="onCardClick($event, item.nickname, 'project')">
+                  (click)="onCardClick($event, item.nickname, 'project')">
                   <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
                 </a>
               </ng-container>
@@ -51,7 +129,7 @@
             <ng-container *ngFor="let item of homeService.projects; let i = index">
               <ng-container *ngIf="i % 2 === 0"> <!-- First Column: 0, 2, 4, ... -->
                 <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
-                (click)="onCardClick($event, item.nickname, 'project')">
+                  (click)="onCardClick($event, item.nickname, 'project')">
                   <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
                 </a>
               </ng-container>
@@ -62,7 +140,7 @@
             <ng-container *ngFor="let item of homeService.projects; let i = index">
               <ng-container *ngIf="i % 2 === 1"> <!-- Second Column: 1, 3, 5, ... -->
                 <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
-                (click)="onCardClick($event, item.nickname, 'project')">
+                  (click)="onCardClick($event, item.nickname, 'project')">
                   <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
                 </a>
               </ng-container>
@@ -73,7 +151,7 @@
         <ng-container *ngIf="isMobile">
           <ng-container *ngFor="let item of homeService.projects">
             <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
-            (click)="onCardClick($event, item.nickname, 'project')">
+              (click)="onCardClick($event, item.nickname, 'project')">
               <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
             </a>
           </ng-container>

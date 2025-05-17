@@ -1,4 +1,7 @@
 <div class="toggle-switch">
+        <button class="toggle-btn" [class.active]="homeService.typeToggle === 'hackathon'" (click)="toggle('hackathon')">
+        Хакатоны
+    </button>
     <button class="toggle-btn" [class.active]="homeService.typeToggle === 'project'" (click)="toggle('project')">
         Проекты
     </button>

@@ -103,6 +103,27 @@ export class HomeService {
     });
   }
 
+
+  hackathons: any = [];
+
+  gethackathons() {
+    this.getCardHackathons().subscribe((data: any) => {
+      if (data) {
+        // const filteredData = data.data.filter((project: any) => project.visibility !== "BAN");
+        if (data.data.length === 30) {
+          this.visibleNextPage = true;
+        } else {
+          this.visibleNextPage = false;
+        }
+
+        this.selectPage = this.selectPage + 1;
+        this.hackathons = [...this.hackathons, ...data.data];
+      }
+      this.loading = false;
+    });
+  }
+
+
   getCardProjects() {
     const queryParams = `page=${this.selectPage}&size=30`;
 
@@ -112,14 +133,32 @@ export class HomeService {
       'Authorization': `Bearer ${token}`
     });
 
-    if(token){
-      return this.http.post(`${this.domain}/projects/getByFilter?${queryParams}`, {}, {headers});
-    }else{
+    if (token) {
+      return this.http.post(`${this.domain}/projects/getByFilter?${queryParams}`, {}, { headers });
+    } else {
       return this.http.post(`${this.domain}/projects/getByFilter?${queryParams}`, {});
     }
 
   }
 
+    getCardHackathons() {
+    const queryParams = `page=${this.selectPage}&size=30`;
+
+    const token = localStorage.getItem('authToken');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    if (token) {
+      return this.http.get(`${this.domain}/hackathons?${queryParams}`, { headers });
+    } else {
+      return this.http.get(`${this.domain}/hackathons?${queryParams}`,);
+    }
+
+  }
+
+  
   nextPage() {
     if (this.typeToggle === 'vacancy') {
       this.getVacancies();
@@ -211,6 +250,9 @@ export class HomeService {
     }
     if (type === 'project') {
       this.getProject();
+    }
+    if (type === 'hackathon') {
+      this.gethackathons();
     }
   }
 

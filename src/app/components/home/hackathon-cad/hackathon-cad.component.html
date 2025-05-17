@@ -1,0 +1,53 @@
+<div class="card">
+    <div class="background"
+        [ngStyle]="{'background-image': 'linear-gradient(rgba(16, 16, 16, 0.6), rgba(16, 16, 16, 0.6)), url(' + cardItem.headerLink + ')'}">
+    </div>
+
+
+    <div class="body">
+        <p class="title-content">
+            {{cardItem.title}}
+        </p>
+
+        <div id="detailsAdrress">
+            <span id="typeHack">
+                {{getFormatText(cardItem.format)}}
+            </span>
+
+            <span id="address">
+                {{cardItem.location}}
+            </span>
+
+        </div>
+         <p class="label">
+            {{ formatRussianDate(cardItem.startDate) }} - {{ formatRussianDate(cardItem.endDate) }}
+        </p>
+         <span class="info-item">
+            <span class="label">
+                Регистрация до:
+            </span>
+            <span class="value">
+                {{ formatRussianDate(cardItem.endDate) }}
+            </span>
+        </span>
+        <div class="info-item">
+            <span class="label">Организатор:</span>
+            <span class="value">{{cardItem.organizer}}</span>
+        </div>
+        <div class="info-item">
+            <span class="label">Фокус:</span>
+            <span class="value">{{cardItem.focus}}</span>
+        </div>
+        <div class="info-item">
+            <span class="label">Для кого:</span>
+            <span class="value">{{cardItem.targetAudience}}</span>
+        </div>
+        <div class="info-item">
+            <span class="label">Мотивация:</span>
+            <span class="value">{{cardItem.prizePool}}</span>
+        </div>
+       
+
+       
+    </div>
+</div>
