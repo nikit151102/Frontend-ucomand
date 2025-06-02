@@ -41,7 +41,7 @@ export class MenuNavComponent implements OnInit {
   ngOnInit(): void {
 
     this.userAccess = localStorage.getItem('USaccess');
-    
+
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
@@ -61,7 +61,7 @@ export class MenuNavComponent implements OnInit {
         this.isAuthenticated = isAuthenticated;
         this.setButtons();
         this.cdr.detectChanges();
-        
+
       });
     });
   }
@@ -124,11 +124,13 @@ export class MenuNavComponent implements OnInit {
 
   handleLogin(): void {
     this.sidebarVisible = false;
+    this.popUpEntryService.isAuth = true;
     this.popUpEntryService.showDialog();
   }
 
   handleRegistration(): void {
     this.sidebarVisible = false;
+    this.popUpEntryService.isAuth = false;
     this.popUpEntryService.showDialog();
   }
 

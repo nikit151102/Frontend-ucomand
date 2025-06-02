@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProjectComponent } from './project/project.component';
 import { FormSettingService } from '../../../../../form/form-setting.service';
 import { SettingHeaderService } from '../../../../../setting-header.service';
 import { Router } from '@angular/router';
 import { PopUpErrorCreateService } from '../../../../../pop-up-error-create/pop-up-error-create.service';
 import { ResumePersonComponent } from './resume-person/resume-person.component';
+import { NewApplicationService } from './new-application.service';
 
 @Component({
   selector: 'app-new-application',
@@ -14,16 +15,29 @@ import { ResumePersonComponent } from './resume-person/resume-person.component';
   templateUrl: './new-application.component.html',
   styleUrl: './new-application.component.css'
 })
-export class NewApplicationComponent {
+export class NewApplicationComponent implements OnInit {
 
   isPopupOpen = false;
   isPopupsSuccessOpen = false;
 
+  resumes: any;
+  projects: any;
   constructor(private formSettingService: FormSettingService,
     private settingHeaderService: SettingHeaderService,
     private router: Router,
     private popUpErrorCreateService: PopUpErrorCreateService,
+    private newApplicationService: NewApplicationService
   ) { }
+
+  ngOnInit(): void {
+    this.newApplicationService.getCurrentUser().subscribe((data: any) => {
+      this.resumes = data;
+    })
+
+    this.newApplicationService.getCurrentProjects().subscribe((data: any) => {
+      this.projects = data;
+    })
+  }
 
   openPopup() {
     this.isPopupOpen = true;

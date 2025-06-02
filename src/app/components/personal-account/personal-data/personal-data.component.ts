@@ -317,7 +317,7 @@ export class PersonalDataComponent implements OnInit {
         freeLink: formValues.freeLink,
         ownLink: '',
         aboutMe: formValues.aboutMe.replace(/\r?\n/g, '\n'),
-        telegram: formValues.telegram,
+        telegram: this.dataCurrentUser.telegram,
         email: formValues.email,
         dateOfRegistration: this.dataCurrentUser.dateOfRegistration,
         cityOfResidence: this.cityOfResidence,

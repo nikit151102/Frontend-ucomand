@@ -16,7 +16,7 @@
     padding: 20px;
     border-radius: 8px;
     width: 42vw;
-    height: 38vh;
+    /* height: 38vh; */
     position: relative;
     border: 1px solid #fff25f;
     border-radius: 20px;
@@ -41,7 +41,7 @@
 }
 
 .close-button:hover svg path {
-    stroke: #402abb; 
+    stroke: #402abb;
     stroke-opacity: 0.6;
 }
 
@@ -80,12 +80,12 @@
     color: #fff;
 }
 
-.popup-login-link:hover{
+.popup-login-link:hover {
     background: #5A4BB8;
 }
 
 @media (max-width: 987px) {
-    .popup-login-link{
+    .popup-login-link {
         width: 90%;
     }
 }
@@ -140,4 +140,37 @@
     color: #d9534f;
     font-size: 12px;
     margin-top: 10px;
-  }
+}
+
+
+
+
+
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.input-group input {
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    padding: 1rem;
+    width: 100%;
+    outline: none;
+
+    font-family: var(--font-Monts);
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 140%;
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder,
+#domain::placeholder {
+    font-family: var(--font-Monts);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 140%;
+}

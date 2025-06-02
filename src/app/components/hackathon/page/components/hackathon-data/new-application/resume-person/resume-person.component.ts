@@ -10,10 +10,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ResumePersonComponent {
 
-  @Input() item: any = {
-    profession: "Менеджер",
-    competenceLevel: 2
-  };
+  @Input() item: any;
   isSelected: boolean = false;
   onAvatarClick(event: Event, project: string): void {
     if (this.isSelected) {

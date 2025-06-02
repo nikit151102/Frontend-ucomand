@@ -12,6 +12,8 @@ export class PopUpEntryService {
 
   visible: boolean = false;
   userVisible: boolean = false;
+  isAuth: boolean = false;
+
   private domain = `${environment.apiUrl}`;
 
   getUser(): Observable<any> {
@@ -29,6 +31,17 @@ export class PopUpEntryService {
 
   showDialog() {
     this.visible = true;
+  }
+
+
+
+  authUesr(data: any): Observable<any> {
+    return this.http.post(`${this.domain}/users/auth/byEmail`, data);
+  }
+
+
+  signUpUesr(data: any): Observable<any> {
+    return this.http.post(`${this.domain}/users/signup/byEmail`, data);
   }
 
 }

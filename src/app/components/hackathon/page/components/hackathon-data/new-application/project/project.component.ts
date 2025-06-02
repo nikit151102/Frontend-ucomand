@@ -10,10 +10,7 @@ import { ProjectService } from './project.service';
 })
 export class ProjectComponent implements OnInit {
 
-  @Input() item: any = {
-    img: 'https://image.winudf.com/v2/image/bW9iaS5hbmRyb2FwcC5wcm9zcGVyaXR5YXBwcy5jNTExMV9zY3JlZW5fN18xNTI0MDQxMDUwXzAyMQ/screen-7.jpg?fakeurl=1&type=.jpg',
-    name: 'Ютим',
-  };
+  @Input() item: any
   isSelected: boolean = false;
 
   constructor(private projectService: ProjectService) { }

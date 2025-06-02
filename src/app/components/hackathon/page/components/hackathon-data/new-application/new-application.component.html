@@ -18,7 +18,7 @@
                 </span>
 
                 <div class="items">
-                    <app-project></app-project>
+                    <app-project *ngFor="let item of projects" [item]="item"></app-project>
                 </div>
             </div>
             <div class="typeItem" (click)="handlePostProject()">
@@ -37,7 +37,7 @@
                     (Я хочу участвовать и готов присоединиться к любой команде)
                 </span>
                 <div class="items">
-                    <app-resume-person></app-resume-person>
+                    <app-resume-person *ngFor="let item of resumes" [item]="item"></app-resume-person>
                 </div>
             </div>
         </div>

@@ -9,23 +9,73 @@ import { InputTextModule } from 'primeng/inputtext';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environment';
+import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { forbiddenWordsValidator } from '../personal-account/personal-data/errorNameList';
 
 @Component({
   selector: 'app-pop-up-entry',
   standalone: true,
-  imports: [CommonModule, DialogModule, ButtonModule, InputTextModule],
+  imports: [CommonModule, DialogModule, ButtonModule, InputTextModule, FormsModule, ReactiveFormsModule],
   templateUrl: './pop-up-entry.component.html',
   styleUrls: ['./pop-up-entry.component.css']
 })
 export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
+  authForm: FormGroup;
+  isError: boolean = false;
+
+
   constructor(
     public popUpEntryService: PopUpEntryService,
     private tokenService: TokenService,
     private http: HttpClient,
-    private router: Router
-  ) { }
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    this.authForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      telegram: ['', [Validators.required, forbiddenWordsValidator()]],
+      nickname: ['', [Validators.required, forbiddenWordsValidator()]],
+      password: ['', [Validators.required, forbiddenWordsValidator()]],
+    });
+  }
 
+  setVisibleError() {
+    this.isError = true;
+    setTimeout(() => {
+      this.isError = false;
+    }, 1000);
+  }
+
+
+
+  authUser() {
+
+    const formData = this.authForm.value;
+    console.log('formData', formData)
+    const data = { ...formData };
+
+    console.log('this.popUpEntryService.isAuth',this.popUpEntryService.isAuth)
+    if (this.popUpEntryService.isAuth   === true) {
+      delete data.telegram;
+    }
+
+    if (this.popUpEntryService.isAuth  === true) {
+      this.popUpEntryService.authUesr(data).subscribe((response: any) => {
+        console.log('Auth response from backend:', response);
+        this.tokenService.setToken(response.token);
+        this.userAuthenticated = true;
+        this.login_user();
+      })
+    } else {
+      this.popUpEntryService.signUpUesr(data).subscribe((response: any) => {
+        console.log('Auth response from backend:', response);
+        this.tokenService.setToken(response.token);
+        this.userAuthenticated = true;
+        this.login_user();
+      })
+    }
+  }
 
 
   private domain = `${environment.apiUrl}`;
@@ -98,7 +148,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       this.errorMessage = 'Пожалуйста, заполните имя пользователя в Telegram';
     }
   }
-  
+
 
 
   login_enter() {
