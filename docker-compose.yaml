@@ -10,7 +10,7 @@ services:
       - /app
       - /app/node_modules
     networks:
-      - ucomand-network-test
+      - ucomand-network
 
 networks:
   ucomand-network-test:
