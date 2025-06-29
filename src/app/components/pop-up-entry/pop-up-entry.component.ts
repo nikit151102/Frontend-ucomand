@@ -55,12 +55,12 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     console.log('formData', formData)
     const data = { ...formData };
 
-    console.log('this.popUpEntryService.isAuth',this.popUpEntryService.isAuth)
-    if (this.popUpEntryService.isAuth   === true) {
+    console.log('this.popUpEntryService.isAuth', this.popUpEntryService.isAuth)
+    if (this.popUpEntryService.isAuth === true) {
       delete data.telegram;
     }
 
-    if (this.popUpEntryService.isAuth  === true) {
+    if (this.popUpEntryService.isAuth === true) {
       this.popUpEntryService.authUesr(data).subscribe((response: any) => {
         console.log('Auth response from backend:', response);
         this.tokenService.setToken(response.token);
@@ -105,13 +105,18 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       script.src = 'https://telegram.org/js/telegram-widget.js?22';
       script.setAttribute('data-telegram-login', `${environment.userNameBot}`);
       script.setAttribute('data-size', 'large');
-      script.setAttribute('data-onauth', 'onTelegramAuth(user)');
+      // script.setAttribute('data-onauth', 'onTelegramAuth(user)');
+      script.setAttribute('data-auth-url', `${this.domain}/users/auth/byTelegram`);
       script.setAttribute('data-request-access', 'write');
+      script.onload = () => {
+        // Этот код сработает после загрузки виджета
+        console.log('Telegram Widget loaded');
 
+      }
       document.getElementById('telegram-login')?.appendChild(script);
 
       // Ensure onTelegramAuth is available globally
-      (window as any).onTelegramAuth = this.onTelegramAuth.bind(this);
+      // (window as any).onTelegramAuth = this.onTelegramAuth.bind(this);
       this.telegramWidgetLoaded = true;
     }
   }
