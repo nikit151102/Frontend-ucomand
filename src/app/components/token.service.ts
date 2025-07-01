@@ -4,30 +4,34 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-
 export class TokenService {
   private authTokenSubject = new BehaviorSubject<boolean>(this.hasToken());
   isAuthenticated$ = this.authTokenSubject.asObservable();
 
-  constructor() { }
+  constructor() {}
 
   private hasToken(): boolean {
-    return !!localStorage.getItem('authToken');
+    if (typeof localStorage !== 'undefined') {
+      return !!localStorage.getItem('authToken');
+    }
+    return false; // Fallback if localStorage is unavailable
   }
 
   getToken(): boolean {
     return this.authTokenSubject.value;
   }
 
-  setToken(token:string): void {
-    localStorage.setItem('authToken', token);
+  setToken(token: string): void {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('authToken', token);
+    }
     this.authTokenSubject.next(true);
   }
 
   clearToken(): void {
-    localStorage.removeItem('authToken');
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem('authToken');
+    }
     this.authTokenSubject.next(false);
   }
-  
-
 }
