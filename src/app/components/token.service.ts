@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class TokenService {
-  private authTokenSubject = new BehaviorSubject<boolean>(this.hasToken());
+  private authTokenSubject = new BehaviorSubject<boolean>(false);
   isAuthenticated$ = this.authTokenSubject.asObservable();
 
   constructor() {}
