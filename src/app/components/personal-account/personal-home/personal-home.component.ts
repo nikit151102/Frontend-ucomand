@@ -25,11 +25,13 @@ import { BanResumeComponent } from '../ban-resume/ban-resume.component';
 import { BanVacancyComponent } from '../ban-vacancy/ban-vacancy.component';
 import { PersonalProjectComponent } from '../personal-project/personal-project.component';
 import { ProjectService } from '../services/project.service';
+import { PopUpChangePasswordComponent } from '../../pop-up-change-password/pop-up-change-password.component';
+import { PopUpChangePasswordService } from '../../pop-up-change-password/pop-up-change-password.service';
 
 @Component({
   selector: 'app-personal-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, PersonalVacancyComponent, PersonalResumeComponent, ArchiveResumeComponent, ArchiveVacancyComponent, PopUpDeleteComponent, PopUpExitComponent, BanResumeComponent, BanVacancyComponent, PersonalProjectComponent],
+  imports: [CommonModule, RouterLink, PersonalVacancyComponent, PersonalResumeComponent, ArchiveResumeComponent, ArchiveVacancyComponent, PopUpDeleteComponent, PopUpExitComponent, BanResumeComponent, BanVacancyComponent, PopUpChangePasswordComponent, PersonalProjectComponent],
   templateUrl: './personal-home.component.html',
   styleUrl: './personal-home.component.css',
   animations: [
@@ -50,7 +52,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
   private subscriptionExit: Subscription = new Subscription();
   isPopupVisible: boolean = false;
   isExitPopupVisible: boolean = false;
-
+  isChangePasswordPopupVisible: boolean = false;
   constructor(private settingHeaderService: SettingHeaderService, private router: Router,
     private route: ActivatedRoute, public domainService: DomainService,
     public viewCardService: ViewCardService, private personalDataService: PersonalDataService,
@@ -58,7 +60,8 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     public resumeService: ResumeService, public vacancyService: VacancyService, public tokenService: TokenService,
     private formSettingService: FormSettingService,
     public projectService: ProjectService,
-    private popUpErrorCreateService: PopUpErrorCreateService) { }
+    private popUpErrorCreateService: PopUpErrorCreateService, 
+  private popUpChangePasswordService:PopUpChangePasswordService) { }
 
   imagePath: string = '';
   domainName: string = '';
@@ -132,6 +135,12 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
         this.isExitPopupVisible = visible;
       })
     );
+    this.subscriptionExit.add(
+      this.popUpChangePasswordService.visible$.subscribe(visible => {
+        this.isChangePasswordPopupVisible = visible;
+      })
+    );
+    
 
     forkJoin({
       user: this.personalDataService.getCurrentUser().pipe(
@@ -209,6 +218,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.isExitPopupVisible = false;
     this.isPopupVisible = false;
+    this.isChangePasswordPopupVisible = false;
     this.popUpDeleteService.hidePopup();
     this.popUpExitService.hidePopup();
     this.resumeService.unsubscribeFromGetCardsData();
@@ -248,7 +258,9 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  changePassword() {}
+  changePassword() { 
+    this.popUpChangePasswordService.showPopup();
+  }
 
   getCardUrl(cardValue: any, type: string, route: string): string {
     localStorage.setItem('routeTypeCard', type);

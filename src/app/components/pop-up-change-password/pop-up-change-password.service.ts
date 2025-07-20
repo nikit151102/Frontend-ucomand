@@ -33,7 +33,7 @@ export class PopUpChangePasswordService {
       "oldPassword": currentPassword,
       "newPassword": newPassword
     };
-    return this.http.post(`${this.domain}/secured/users/change-password-authorized-users`, { headers });
+    return this.http.post(`${this.domain}/secured/users/change-password-authorized-users`, payload, { headers });
   }
 
 

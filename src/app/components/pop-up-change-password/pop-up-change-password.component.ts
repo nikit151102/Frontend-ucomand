@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TokenService } from '../token.service';
 import { PopUpChangePasswordService } from './pop-up-change-password.service';
@@ -8,7 +8,7 @@ import { PopUpChangePasswordService } from './pop-up-change-password.service';
 @Component({
   selector: 'app-pop-up-change-password',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './pop-up-change-password.component.html',
   styleUrl: './pop-up-change-password.component.css'
 })
@@ -40,22 +40,32 @@ export class PopUpChangePasswordComponent {
   }
 
   changePassword() {
-    this.isError = true;
-
+    // Проверяем валидность формы
     if (this.authForm.invalid) {
+      this.isError = true;
+      this.authForm.markAllAsTouched();
+      console.error('Форма невалидна', this.authForm.errors);
+      return;
+    }
+
+    // Проверяем совпадение паролей
+    if (this.authForm.hasError('passwordMismatch')) {
+      console.error('Пароли не совпадают');
       return;
     }
 
     const { currentPassword, newPassword } = this.authForm.value;
+    console.log('Form values:', { currentPassword, newPassword });
 
     this.popUpChangePasswordService.changePassword(currentPassword, newPassword).subscribe(
-      response => {
+      (response) => {  // Упрощенный синтаксис без next:
         this.popUpChangePasswordService.hidePopup();
         this.tokenService.clearToken();
         localStorage.removeItem('Linkken');
         this.router.navigate(['/']);
       },
-      error => {
+      (error) => {  // Обработка ошибки
+        this.isError = true;
         console.error('Ошибка при изменении пароля:', error);
       }
     );
