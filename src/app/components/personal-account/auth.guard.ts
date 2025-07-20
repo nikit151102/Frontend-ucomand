@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<any>(`${this.domain}/users/currentUser`, { headers }).pipe(
+    return this.http.get<any>(`${this.domain}/secured/users/currentUser`, { headers }).pipe(
       map(() => true),  // Если данные возвращены успешно, возвращаем true
       catchError(() => {
         this.tokenService.clearToken()

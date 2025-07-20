@@ -71,7 +71,7 @@ export class ViewCardService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<any>(`${this.domain}/users/currentUser`, { headers }).pipe(
+    return this.http.get<any>(`${this.domain}/secured/users/currentUser`, { headers }).pipe(
       catchError(() => {
         this.tokenService.clearToken()
         return of(null); 

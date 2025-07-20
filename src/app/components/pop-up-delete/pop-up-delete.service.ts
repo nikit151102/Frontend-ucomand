@@ -27,7 +27,7 @@ export class PopUpDeleteService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get(`${this.domain}/users/currentUser`, { headers });
+    return this.http.get(`${this.domain}/secured/users/currentUser`, { headers });
   }
 
 
@@ -36,7 +36,7 @@ export class PopUpDeleteService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.delete(`${this.domain}/users/${id}`, { headers });
+    return this.http.delete(`${this.domain}/secured/users/${id}`, { headers });
   }
 
   getCurrentUserAndDelete(): Observable<any> {

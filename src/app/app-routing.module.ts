@@ -23,6 +23,9 @@ const routes: Routes = [
   {
     path: 'notifications', loadChildren: () => import('./components/notification/notification.module').then(m => m.NotificationModule)
   },
+    {
+    path: 'verification/profile/:idUser', loadChildren: () => import('./components/home/home.module').then(m => m.HomeModule)
+  },
   {
     path: 'editProject/:nickname', loadChildren: () => import('./components/projects/create-edit-projects/create-edit-projects.module').then(m => m.CreateEditProjectsModule), data: { edit: true }
   },

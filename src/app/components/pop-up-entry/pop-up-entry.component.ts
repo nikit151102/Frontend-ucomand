@@ -23,8 +23,6 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
   authForm: FormGroup;
   isError: boolean = false;
-
-
   constructor(
     public popUpEntryService: PopUpEntryService,
     private tokenService: TokenService,
@@ -49,6 +47,12 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
 
 
+  getLoginForm() {
+    this.popUpEntryService.confirmAuth = false;
+    this.popUpEntryService.accessVerification = true;
+    this.popUpEntryService.isAuth == false;
+  }
+
   authUser() {
 
     const formData = this.authForm.value;
@@ -69,10 +73,11 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       })
     } else {
       this.popUpEntryService.signUpUesr(data).subscribe((response: any) => {
-        console.log('Auth response from backend:', response);
-        this.tokenService.setToken(response.token);
-        this.userAuthenticated = true;
-        this.login_user();
+        this.popUpEntryService.confirmAuth = true;
+        // console.log('Auth response from backend:', response);
+        // this.tokenService.setToken(response.token);
+        // this.userAuthenticated = true;
+        // this.login_user();
       })
     }
   }
@@ -87,6 +92,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     if (this.popUpEntryService.visible) {
       this.loadTelegramWidget();
     }
+    this.popUpEntryService.confirmAuth = false;
   }
   ngOnInit() {
     // this.loadTelegramWidget()
@@ -106,7 +112,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       script.setAttribute('data-telegram-login', `${environment.userNameBot}`);
       script.setAttribute('data-size', 'large');
       // script.setAttribute('data-onauth', 'onTelegramAuth(user)');
-      script.setAttribute('data-auth-url', `${this.domain}/users/auth/byTelegram`);
+      script.setAttribute('data-auth-url', `${this.domain}/secured/users/auth/byTelegram`);
       script.setAttribute('data-request-access', 'write');
       script.onload = () => {
         // Этот код сработает после загрузки виджета
@@ -133,7 +139,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
   onTelegramAuth(user: any) {
     console.log('Received Telegram user data:', user);
     if (user.username) {
-      this.http.post(`${this.domain}/users/auth/byTelegram`, user, {
+      this.http.post(`${this.domain}/secured/users/auth/byTelegram`, user, {
         headers: { 'Content-Type': 'application/json' }
       }).subscribe(
         (response: any) => {

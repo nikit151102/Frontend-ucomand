@@ -29,7 +29,7 @@ export class PersonalDataService {
     });
 
     // Выполнение запроса с заголовками
-    return this.http.get(`${this.domain}/users/currentUser`, { headers });
+    return this.http.get(`${this.domain}/secured/users/currentUser`, { headers });
   }
 
   updateUser(user: User): Observable<any> {
@@ -39,11 +39,11 @@ export class PersonalDataService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.put(`${this.domain}/users/currentUser`, user,  { headers }); // Обновите URL в соответствии с вашим API
+    return this.http.put(`${this.domain}/secured/users/currentUser`, user,  { headers }); // Обновите URL в соответствии с вашим API
   }
 
   validatorDomain(name:string){
-    return this.http.get<{ isAvailable: boolean }>(`${this.domain}/users/nicknames/${name}/isAvailable`);
+    return this.http.get<{ isAvailable: boolean }>(`${this.domain}/secured/users/nicknames/${name}/isAvailable`);
   }
 
 }

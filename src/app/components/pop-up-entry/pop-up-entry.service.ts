@@ -13,7 +13,9 @@ export class PopUpEntryService {
   visible: boolean = false;
   userVisible: boolean = false;
   isAuth: boolean = false;
-
+  accessVerification: boolean = false;
+  accessVerificationMessage: string = 'Почта успешно подтверждена';
+  confirmAuth: boolean = false;
   private domain = `${environment.apiUrl}`;
 
   getUser(): Observable<any> {
@@ -22,7 +24,7 @@ export class PopUpEntryService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get(`${this.domain}/users/currentUser`, { headers });
+    return this.http.get(`${this.domain}/secured/users/currentUser`, { headers });
   }
 
   getRoot(): Observable<any> {
@@ -33,15 +35,13 @@ export class PopUpEntryService {
     this.visible = true;
   }
 
-
-
   authUesr(data: any): Observable<any> {
-    return this.http.post(`${this.domain}/users/auth/byEmail`, data);
+    return this.http.post(`${this.domain}/auth/authorization-email`, data);
   }
 
 
   signUpUesr(data: any): Observable<any> {
-    return this.http.post(`${this.domain}/users/signup/byEmail`, data);
+    return this.http.post(`${this.domain}/auth/reg-email`, data);
   }
 
 }

@@ -248,7 +248,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     }
   }
 
-
+  changePassword() {}
 
   getCardUrl(cardValue: any, type: string, route: string): string {
     localStorage.setItem('routeTypeCard', type);

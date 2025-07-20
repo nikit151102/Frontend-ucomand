@@ -6,7 +6,7 @@
           stroke-linecap="round" />
       </svg>
     </div>
-    <ng-content>
+    <!-- <ng-content>
       <p class="popup-login-title">Войти в аккаунт</p>
       <p class="popup-telegram-auth">Авторизация через Telegram</p>
       <a *ngIf="!telegramWidgetLoaded" class="popup-login-link" (click)="loadTelegramWidget()">Войти</a>
@@ -14,14 +14,12 @@
       <div id="telegram-login"></div>
       <a *ngIf="userAuthenticated" (click)="clearCookies()">войти с другого аккаунта</a>
        <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-    </ng-content>
+    </ng-content> -->
 
     <ng-content>
       <div style="display: flex;
-      flex-direction: column;">
+      flex-direction: column;" *ngIf="!popUpEntryService.confirmAuth && !popUpEntryService.accessVerification">
         <form [formGroup]="authForm" autocomplete="off">
-
-
           <div class="input-group">
             <label for="email" class="text10opac05">Почта:</label>
             <input #formField type="text" id="email" formControlName="email" placeholder="Введите почту"
@@ -88,6 +86,20 @@
           </div>
           <a *ngIf="!telegramWidgetLoaded" class="popup-login-link" (click)="authUser()">Войти</a>
         </form>
+      </div>
+
+      <div style="display: flex;
+      flex-direction: column; gap: 3rem;"
+        *ngIf="popUpEntryService.confirmAuth && !popUpEntryService.accessVerification">
+        Успешно прошла регистрация, проверьте почту
+        <a class="popup-login-link" (click)="closePopUp()">Закрыть</a>
+      </div>
+
+      <div style="display: flex;
+      flex-direction: column; gap: 3rem;"
+        *ngIf="popUpEntryService.confirmAuth && popUpEntryService.accessVerification">
+        {{popUpEntryService.accessVerificationMessage}}
+        <a class="popup-login-link" (click)="getLoginForm()">Войти</a>
       </div>
     </ng-content>
   </div>
