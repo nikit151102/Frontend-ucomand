@@ -15,6 +15,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'lending',
+    loadChildren: () => import('./pages/public-lending/public-lending.module').then(m => m.PublicLendingModule)
+  },
+  {
     path: 'aboutUs', loadChildren: () => import('./components/about-us/about-us.module').then(m => m.AboutUsModule)
   },
   {
@@ -23,7 +27,7 @@ const routes: Routes = [
   {
     path: 'notifications', loadChildren: () => import('./components/notification/notification.module').then(m => m.NotificationModule)
   },
-    {
+  {
     path: 'verification/profile/:idUser', loadChildren: () => import('./components/home/home.module').then(m => m.HomeModule)
   },
   {
@@ -35,7 +39,7 @@ const routes: Routes = [
   {
     path: 'hackathon/:id', loadChildren: () => import('./components/hackathon/page/hackathon.module').then(m => m.HackathonModule)
   },
-  
+
   {
     path: 'resume/:id', loadChildren: () => import('./components/view-card/view-card.module').then(m => m.ViewCardModule), data: { routeName: 'resume' }
   },

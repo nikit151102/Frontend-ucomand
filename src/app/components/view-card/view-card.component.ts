@@ -64,11 +64,11 @@ export class ViewCardComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.routeName = data['routeName'];
       if(data['routeName'] == 'resume'){
-        this.typeCard = 'resumes';
+        this.typeCard = 'resume';
 
       }
       if(data['routeName'] == 'vacancy'){
-        this.typeCard = 'vacancies';
+        this.typeCard = 'vacancy';
       }
     });
     this.settingHeaderService.shared = true;

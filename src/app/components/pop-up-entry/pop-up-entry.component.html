@@ -84,7 +84,7 @@
               </span>
             </div>
           </div>
-          <a *ngIf="!telegramWidgetLoaded" class="popup-login-link" (click)="authUser()">Войти</a>
+          <a *ngIf="!telegramWidgetLoaded" class="popup-login-link" style="margin-top: 16px;" (click)="authUser()">Войти</a>
         </form>
       </div>
 
@@ -95,12 +95,12 @@
         <a class="popup-login-link" (click)="closePopUp()">Закрыть</a>
       </div>
 
-      <div style="display: flex;
-      flex-direction: column; gap: 3rem;"
+      <!-- <div style="display: flex;
+      flex-direction: column; gap: 3rem;     margin-top: 16px;"
         *ngIf="popUpEntryService.confirmAuth && popUpEntryService.accessVerification">
         {{popUpEntryService.accessVerificationMessage}}
-        <a class="popup-login-link" (click)="getLoginForm()">Войти</a>
-      </div>
+        <a class="popup-login-link"  (click)="getLoginForm()">Войти</a>
+      </div> -->
     </ng-content>
   </div>
 </div>

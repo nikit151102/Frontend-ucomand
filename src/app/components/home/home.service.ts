@@ -46,11 +46,11 @@ export class HomeService {
     const typeSort = localStorage.getItem('typeSort');
     const queryParams = `page=${this.selectPage}&size=30&sorts=creationDate_desc`;
 
-    return this.http.post(`${this.domain}/${type}/getAll?${queryParams}`, savedFilters);
+    return this.http.post(`${this.domain}/main/${type}/getAll?${queryParams}`, savedFilters);
   }
 
   getVacancies() {
-    this.getCardData('vacancies').subscribe(data => {
+    this.getCardData('vacancy').subscribe(data => {
       if (data) {
         const filteredData = data.filter((vacancy: any) => vacancy.visibility !== "BAN");
         if (filteredData.length === 30) {
@@ -67,7 +67,7 @@ export class HomeService {
   }
 
   getResumes() {
-    this.getCardData('resumes').subscribe(data => {
+    this.getCardData('resume').subscribe(data => {
       if (data) {
         const filteredData = data.filter((resume: any) => resume.visibility !== "BAN");
         if (filteredData.length === 30) {

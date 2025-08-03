@@ -27,7 +27,8 @@ export class PopUpChangePasswordService {
   changePassword(currentPassword: string, newPassword: string): Observable<any> {
     const token = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json, text/plain, */*'
     });
     const payload = {
       "oldPassword": currentPassword,

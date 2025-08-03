@@ -58,7 +58,7 @@ export class ViewCardService {
   private domain = `${environment.apiUrl}`;
 
   getCardData(id: number, typeCard:string): Observable<any> {
-    return this.http.get(`${this.domain}/${typeCard}/${id}`);
+    return this.http.get(`${this.domain}/main/${typeCard}/${id}`);
   }
 
   getCurrentUser(): Observable<any> {
