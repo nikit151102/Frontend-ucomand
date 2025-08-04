@@ -91,8 +91,8 @@ export class HomeComponent implements OnInit {
           this.popUpEntryService.confirmAuth = true;
           this.popUpEntryService.accessVerificationMessage = "Аккаунт успешно подтвержден"
           this.popUpEntryService.showDialog();
-          this.tokenService.setToken(response.token);
-          localStorage.setItem('userNickname', response.nickname);
+          // this.tokenService.setToken(response.token);
+          // localStorage.setItem('userNickname', response.nickname);
           this.popUpEntryComponent.login_user();
         },
         error: (error) => {

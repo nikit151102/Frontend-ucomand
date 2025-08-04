@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,9 +8,15 @@ import { CommonModule } from '@angular/common';
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.css']
 })
-export class ResumeComponent {
-
+export class ResumeComponent  implements OnChanges {
+  
   @Input() data: any;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['data']) {
+      console.log('New data received:', changes['data'].currentValue);
+    }
+  }
 
   getSpecialization(): string {
     return this.data.profession && this.data.profession.name

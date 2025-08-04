@@ -69,7 +69,7 @@ export class ProjectComponent {
       this.popUpEntryService.showDialog();
       return;
     }
-    const url = `${environment.apiUrl}/projects/${this.cardItem.id}/like`;
+    const url = `${environment.apiUrl}${this.cardItem.id}/like`;
     const method = 'PUT';
     const token = localStorage.getItem('authToken');
 

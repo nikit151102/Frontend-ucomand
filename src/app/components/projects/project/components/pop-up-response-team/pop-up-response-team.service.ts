@@ -41,7 +41,7 @@ export class PopUpResponseTeamService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get(`${environment.apiUrl}/resumes/ofCurrentUser`, { headers });
+    return this.http.get(`${environment.apiUrl}/secured/resumes/ofCurrentUser`, { headers });
   }
 
   filterResumes(type: string, list: any[]): any[] {

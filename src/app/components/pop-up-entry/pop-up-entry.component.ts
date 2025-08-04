@@ -68,6 +68,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       this.popUpEntryService.authUesr(data).subscribe((response: any) => {
         console.log('Auth response from backend:', response);
         this.tokenService.setToken(response.token);
+        localStorage.setItem('userNickname', response.nickname);
         this.userAuthenticated = true;
         this.login_user();
       })

@@ -1,10 +1,10 @@
 <div class="container" *ngIf="visibleCard && !visibleError" @fadeAnimation>
     <div class="left-part">
 
-        <ng-container *ngIf="typeCard == 'vacancies'" >
+        <ng-container *ngIf="typeCard == 'vacancy'" >
             <app-vacancy [data]="dataCard"></app-vacancy>
         </ng-container>
-        <ng-container *ngIf="typeCard == 'resumes'" >
+        <ng-container *ngIf="typeCard == 'resume'" >
             <app-resume [data]="dataCard"></app-resume>
         </ng-container>
     </div>

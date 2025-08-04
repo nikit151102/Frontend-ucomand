@@ -17,7 +17,7 @@ export class PersonalDataService {
   private domain = `${environment.apiUrl}`;
    
   getCities(): Observable<any> {
-    return this.http.get(`${this.domain}/cities`);
+    return this.http.get(`${this.domain}/main/cities`);
   }
 
   getCurrentUser(): Observable<any> {

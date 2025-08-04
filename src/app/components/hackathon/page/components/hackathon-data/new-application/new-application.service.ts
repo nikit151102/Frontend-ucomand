@@ -18,7 +18,7 @@ export class NewApplicationService {
     });
 
 
-    return this.http.get<any>(`${environment.apiUrl}/resumes/ofCurrentUser`, { headers })
+    return this.http.get<any>(`${environment.apiUrl}/secured/resumes/ofCurrentUser`, { headers })
 
   }
 
@@ -30,7 +30,7 @@ export class NewApplicationService {
     });
 
 
-    return this.http.get<any>(`${environment.apiUrl}/resumes/ofCurrentUser`, { headers })
+    return this.http.get<any>(`${environment.apiUrl}ofCurrentUser`, { headers })
 
   }
 }

@@ -39,7 +39,7 @@ export class AvatarSelectionService {
       const retrievedData = JSON.parse(userDataString);
       console.log(retrievedData);
   
-      return this.http.put(`${environment.apiUrl}/secured/users/${retrievedData.id}/avatar`, formData, { headers , responseType: 'text' });
+      return this.http.post(`${environment.apiUrl}/secured/users/${retrievedData.id}/avatar`, formData, { headers , responseType: 'text' });
     } else {
       console.log('No user data found in sessionStorage.');
   

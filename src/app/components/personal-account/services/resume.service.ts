@@ -24,7 +24,7 @@ export class ResumeService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get(`${this.domain}/resumes/ofCurrentUser`, { headers });
+    return this.http.get(`${this.domain}/secured/resumes/ofCurrentUser`, { headers });
   }
 
   // Метод для создания подписки
@@ -56,7 +56,7 @@ export class ResumeService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.put(`${this.domain}/resumes/ofCurrentUser/${id}`, body, { headers });
+    return this.http.put(`${this.domain}/secured/resumes/ofCurrentUser/${id}`, body, { headers });
   }
 
 
@@ -67,7 +67,7 @@ export class ResumeService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.delete(`${this.domain}/resumes/${id}`, { headers });
+    return this.http.delete(`${this.domain}/secured/resumes/${id}`, { headers });
   }
 
 
