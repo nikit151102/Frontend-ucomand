@@ -22,11 +22,11 @@ export class TeamComponent implements OnInit {
   currentProjectData: any;
   isOwner: boolean = false;
 
-  constructor(private popUpResponseTeamService: PopUpResponseTeamService, private projectService: ProjectService, private teamService:TeamService) { }
+  constructor(private popUpResponseTeamService: PopUpResponseTeamService, private projectService: ProjectService, private teamService: TeamService) { }
 
   ngOnInit(): void {
 
-    this.projectService.currentProjectIsOwner$.subscribe((value: boolean)=>{
+    this.projectService.currentProjectIsOwner$.subscribe((value: boolean) => {
       this.isOwner = value;
       console.log('value', value)
     })
@@ -36,11 +36,14 @@ export class TeamComponent implements OnInit {
     })
     this.projectService.currentProjectData$.subscribe((data: any) => {
       this.currentProjectData = data;
-      this.teamService.getTeamProject(this.currentProjectData?.id).subscribe((value: any)=>{
-        this.itemsList = value;
-      })
+      if (data != null) {
+        this.teamService.getTeamProject(this.currentProjectData?.id).subscribe((value: any) => {
+          this.itemsList = value;
+        })
+      }
+
     })
-    
+
 
 
   }
@@ -52,20 +55,20 @@ export class TeamComponent implements OnInit {
       console.warn('Пользователь не авторизован!');
       return false;
     }
-  
+
     let userId: number;
     try {
       userId = JSON.parse(userData).id;
-      console.log('userId',userId)
+      console.log('userId', userId)
     } catch (error) {
       console.error('Ошибка парсинга userData:', error);
       return false;
     }
-  
+
     // Проверяем, есть ли userId в itemsList
     return itemsList.some(item => item.user?.id === userId);
   }
-  
+
 
 
   getPopUoP() {
@@ -76,6 +79,6 @@ export class TeamComponent implements OnInit {
     this.projectService.activeTab = 'myTeam';
   }
 
-  
+
 }
 

@@ -105,7 +105,7 @@ export class HackathonService {
 
     }
 
-    return this.http.post<any>(`${environment.apiUrl}/projects/${idProject}/vacancies/getByFilter?page=0&size=100`, filters, { headers })
+    return this.http.post<any>(`${environment.apiUrl}/main/project/${idProject}/vacancies/get-by-filter?page=0&size=100`, filters, { headers })
 
   }
 

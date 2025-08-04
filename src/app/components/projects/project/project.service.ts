@@ -86,9 +86,9 @@ export class ProjectService {
       'Authorization': `Bearer ${token}`
     });
     if(token){
-      return this.http.get<any>(`${environment.apiUrl}/projects/byNickname/${nicknameProject}`, { headers })
+      return this.http.get<any>(`${environment.apiUrl}/main/project/by-nickname/${nicknameProject}`, { headers })
     }else{
-      return this.http.get<any>(`${environment.apiUrl}/projects/byNickname/${nicknameProject}`)
+      return this.http.get<any>(`${environment.apiUrl}/main/project/by-nickname/${nicknameProject}`)
     }
   }
 
@@ -104,7 +104,7 @@ export class ProjectService {
 
     }
 
-    return this.http.post<any>(`${environment.apiUrl}/projects/${idProject}/vacancies/getByFilter?page=0&size=100`, filters, { headers })
+    return this.http.post<any>(`${environment.apiUrl}/main/project/${idProject}/vacancies/get-by-filter?page=0&size=100`, filters, { headers })
 
   }
 

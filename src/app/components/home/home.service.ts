@@ -134,9 +134,9 @@ export class HomeService {
     });
 
     if (token) {
-      return this.http.post(`${this.domain}/projects/getByFilter?${queryParams}`, {}, { headers });
+      return this.http.post(`${this.domain}/main/project/get-by-filter?${queryParams}`, {}, { headers });
     } else {
-      return this.http.post(`${this.domain}/projects/getByFilter?${queryParams}`, {});
+      return this.http.post(`${this.domain}/main/project/get-by-filter?${queryParams}`, {});
     }
 
   }
