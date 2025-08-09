@@ -329,6 +329,7 @@ export class PersonalDataComponent implements OnInit {
       console.log("User", user)
       this.personalDataService.updateUser(user).subscribe(
         response => {
+          console.log('response ------ -----',response)
           this.userData();
           localStorage.setItem('userId', formValues.domain);
           localStorage.setItem('userNickname', formValues.domain);

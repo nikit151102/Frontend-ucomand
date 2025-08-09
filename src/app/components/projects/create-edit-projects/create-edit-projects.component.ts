@@ -28,16 +28,16 @@ export class CreateEditProjectsComponent implements OnInit {
   onTextAreaInput(event: Event, minHeight = 98) {
     const textarea = event.target as HTMLTextAreaElement;
     textarea.style.height = 'auto'; // Сбрасываем высоту, чтобы она могла адаптироваться
-  
+
 
     // Используем scrollHeight, чтобы установить высоту в зависимости от содержимого
-    const newHeight = Math.max(textarea.scrollHeight, minHeight); 
-  
+    const newHeight = Math.max(textarea.scrollHeight, minHeight);
+
     textarea.style.height = `${newHeight}px`; // Устанавливаем высоту в зависимости от содержимого
   }
-  
 
-  
+
+
   ngOnInit(): void {
     this.initializeForm();
     this.projectService.currentProjectData$.subscribe((value: any) => {
@@ -66,7 +66,7 @@ export class CreateEditProjectsComponent implements OnInit {
 
   onInputChange(event: any) {
     let value = event.target.value;
-    
+
     // Если поле пустое или первый символ не @, добавляем его
     if (!value.startsWith('@')) {
       value = '@' + value.replace(/^@+/, ''); // Убираем лишние @ в начале
@@ -104,21 +104,22 @@ export class CreateEditProjectsComponent implements OnInit {
   }
   headerImg: any;
   avatarImg: any;
+
   // Общая функция для изменения изображения
   onImageChange(event: Event, target: 'background' | 'logo'): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const file = input.files[0];
       const allowedTypes = ['image/png', 'image/jpeg'];
-  
+
       if (!allowedTypes.includes(file.type)) {
         console.error('Unsupported file type:', file.type);
         alert('Please upload a PNG or JPEG image.');
         return;
       }
-  
+
       const objectUrl = URL.createObjectURL(file);
-  
+
       if (target === 'background') {
         const backgroundContainer = document.querySelector('.background-container') as HTMLElement;
         if (backgroundContainer) {
@@ -126,6 +127,7 @@ export class CreateEditProjectsComponent implements OnInit {
           backgroundContainer.style.backgroundSize = 'cover';
           backgroundContainer.style.backgroundPosition = 'center';
         }
+        console.log('file', file)
         this.headerImg = file;
         this.isLogoImageSelected = true;
       } else if (target === 'logo') {
@@ -139,11 +141,11 @@ export class CreateEditProjectsComponent implements OnInit {
         this.avatarImg = file;
         this.isLogoImageSelected = true;
       }
-  
+
       setTimeout(() => URL.revokeObjectURL(objectUrl), 10000);
     }
   }
-  
+
 
   setAvatar(file: any, endpoint: string): void {
     const formData = new FormData();
@@ -256,24 +258,26 @@ export class CreateEditProjectsComponent implements OnInit {
       if (isEdit) {
         newData.id = this.projectData.id;
         this.createEditProjectsService.setEditProject(newData).subscribe((data: any) => {
-          this.projectService.setCurrentProjectData(data);
+
           if (this.headerImg) {
             this.setAvatar(this.headerImg, 'header');
           }
           if (this.avatarImg) {
             this.setAvatar(this.headerImg, 'avatar');
           }
-          this.router.navigate(['project', data.nickname]);
+          this.projectService.setCurrentProjectData(data);
+          // this.router.navigate(['project', data.nickname]);
         })
       } else {
         this.createEditProjectsService.setNewProject(newData).subscribe((data: any) => {
-          this.projectService.setCurrentProjectData(data);
+
           if (this.headerImg) {
             this.setAvatar(this.headerImg, 'header');
           }
           if (this.avatarImg) {
             this.setAvatar(this.headerImg, 'avatar');
           }
+          this.projectService.setCurrentProjectData(data);
           this.router.navigate(['project', data.nickname]);
         })
       }
