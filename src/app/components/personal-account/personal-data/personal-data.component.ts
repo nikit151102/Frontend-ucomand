@@ -163,7 +163,7 @@ export class PersonalDataComponent implements OnInit {
 
   userData() {
     this.personalDataService.getCurrentUser().subscribe(
-      (user: User) => {
+      (user: any) => {
         if (user && user.nickname && user.id) {
           if (user.imageLink) {
             this.menuNavService.setStorageValue(user.imageLink);
@@ -172,7 +172,7 @@ export class PersonalDataComponent implements OnInit {
             surname: user.lastName || '',
             age: user.age || '',
             gender: user.gender || '',
-            city: user.cityOfResidence?.name || '',
+            city: user.cityEntityOfResidence?.name || '',
             freeLink: user.freeLink || '',
             aboutMe: user.aboutMe || '',
             email: user.email,
@@ -180,7 +180,7 @@ export class PersonalDataComponent implements OnInit {
             domain: user.nickname || '',
           });
           this.dataCurrentUser = user;
-          this.cityOfResidence = user.cityOfResidence || {};
+          this.cityOfResidence = user.cityEntityOfResidence || {};
           this.setAvatar = user.imageLink;
 
           if (user.nickname) {
@@ -287,7 +287,7 @@ export class PersonalDataComponent implements OnInit {
   onSubmit() {
     const selectedCity = this.personalDataForm.get('city')?.value;
     const selectedCityControl = this.personalDataForm.get('city');
-
+  
     if (!this.isCityValid(selectedCity)) {
       this.getInputInval(false);
       selectedCityControl?.setErrors({ invalidCity: true });
@@ -308,7 +308,7 @@ export class PersonalDataComponent implements OnInit {
     } else {
       const formValues = this.personalDataForm.value;
 
-      const user: User = {
+      const user: any = {
         id: 0,
         firstName: formValues.name,
         lastName: formValues.surname,
@@ -320,7 +320,7 @@ export class PersonalDataComponent implements OnInit {
         telegram: this.dataCurrentUser.telegram,
         email: formValues.email,
         dateOfRegistration: this.dataCurrentUser.dateOfRegistration,
-        cityOfResidence: this.cityOfResidence,
+        cityEntityOfResidence: {id: this.cityOfResidence.id} ,
         imageLink: this.setAvatar,
         nickname: formValues.domain,
         role: this.dataCurrentUser.role,

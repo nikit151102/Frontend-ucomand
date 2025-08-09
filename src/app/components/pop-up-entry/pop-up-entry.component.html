@@ -52,7 +52,7 @@
               </span>
             </div>
           </div>
-          <div class="input-group" *ngIf="popUpEntryService.isAuth == false">
+          <!-- <div class="input-group" *ngIf="popUpEntryService.isAuth == false">
             <label for="nickname" class="text10opac05">Никнейм:</label>
             <input #formField type="text" id="nickname" formControlName="nickname" placeholder="Введите никнейм"
               autocomplete="off"
@@ -67,8 +67,8 @@
                 word }},
               </span>
             </div>
-          </div>
-          <div class="input-group">
+          </div> -->
+          <!-- <div class="input-group">
             <label for="password" class="text10opac05">Пароль:</label>
             <input #formField type="text" id="password" formControlName="password" placeholder="Введите почту"
               autocomplete="off"
@@ -83,15 +83,32 @@
                 word }},
               </span>
             </div>
-          </div>
-          <a *ngIf="!telegramWidgetLoaded" class="popup-login-link" style="margin-top: 16px;" (click)="authUser()">Войти</a>
+          </div> -->
+          <a *ngIf="!telegramWidgetLoaded" class="popup-login-link" style="margin-top: 16px;"
+            (click)="authUser()">Войти</a>
         </form>
       </div>
 
-      <div style="display: flex;
-      flex-direction: column; gap: 3rem;"
+      <div style="display: flex; flex-direction: column; gap: 3rem;"
         *ngIf="popUpEntryService.confirmAuth && !popUpEntryService.accessVerification">
-        Успешно прошла регистрация, проверьте почту
+        <div style="text-align: center;">Введите 6-значный код из письма</div>
+
+        <div style="display: flex; justify-content: center; gap: 1rem;">
+          <input type="text" maxlength="1" class="code" style="width: 40px; text-align: center;" (input)="moveFocus($event, 1)"
+            #digit1>
+          <input type="text" maxlength="1" class="code" style="width: 40px; text-align: center;" (input)="moveFocus($event, 2)"
+            #digit2>
+          <input type="text" maxlength="1" class="code" style="width: 40px; text-align: center;" (input)="moveFocus($event, 3)"
+            #digit3>
+          <input type="text" maxlength="1" class="code" style="width: 40px; text-align: center;" (input)="moveFocus($event, 4)"
+            #digit4>
+          <input type="text" maxlength="1" class="code" style="width: 40px; text-align: center;" (input)="moveFocus($event, 5)"
+            #digit5>
+          <input type="text" maxlength="1" class="code" style="width: 40px; text-align: center;" (input)="moveFocus($event, 6)"
+            #digit6>
+        </div>
+
+        <button class="popup-login-link" (click)="verifyCode()">Подтвердить</button>
         <a class="popup-login-link" (click)="closePopUp()">Закрыть</a>
       </div>
 
