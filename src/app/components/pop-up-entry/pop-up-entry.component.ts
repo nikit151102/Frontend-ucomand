@@ -280,23 +280,24 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     const code = this.digit1.nativeElement.value +
       this.digit2.nativeElement.value +
       this.digit3.nativeElement.value +
-      this.digit4.nativeElement.value; +
-      this.digit5.nativeElement.value; +
-      this.digit6.nativeElement.value;
+      this.digit4.nativeElement.value +
+      this.digit5.nativeElement.value +
+      this.digit6.nativeElement.value
 
     const formData = this.authForm.value;
     formData.password = code;
     const data = { ...formData };
-    console.log('data',data)
+    console.log('data', data)
     this.popUpEntryService.authUesr(data).subscribe((response: any) => {
       console.log('Auth response from backend:', response);
       this.tokenService.setToken(response.token);
       localStorage.setItem('userNickname', response.nickname);
       this.userAuthenticated = true;
-         //     this.tokenService.setToken(response.token);
-    //     localStorage.setItem('userNickname', response.nickname);
-    //     this.userAuthenticated = true;
-    //     this.login_user();
+      this.popUpEntryService.visible = false;
+      //     this.tokenService.setToken(response.token);
+      //     localStorage.setItem('userNickname', response.nickname);
+      //     this.userAuthenticated = true;
+      //     this.login_user();
     })
 
     // Здесь добавьте логику проверки кода
