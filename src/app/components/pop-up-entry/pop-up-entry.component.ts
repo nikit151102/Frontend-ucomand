@@ -56,6 +56,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
   authUser() {
 
     const formData = this.authForm.value;
+    formData.email = formData.email.trim();
     console.log('formData', formData)
     const data = { ...formData };
 
