@@ -55,25 +55,58 @@
 }
 
 /* Логотип */
+.block_left {
+    /* display: flex;
+    justify-content: center; */
+}
 .logo-overlay {
     position: absolute;
-    width: 30vw;
-    max-width: 400px;
-    height: auto;
     left: 36%;
     top: 43%;
+
+    max-width: 500px;
+    height: auto;
     transform: translate(-50%, -50%);
     z-index: 10;
     pointer-events: none;
 }
 
+
+
+
+.block_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.block_right {
+    height: 100vh;
+    display: grid;
+    align-content: space-between;
+    justify-content: center;
+    justify-items: center;
+    padding: 150px 0;
+    z-index: 20;
+}
+.block_titles {
+    display: flex;
+    width: 70%;
+    justify-content: end;
+    flex-wrap: wrap;
+    font-size: clamp(12px, 2vw, 1rem);
+    gap:10px
+}
+.tests {
+    padding: 10px 10px;
+    background: #A6EB20;
+    border-radius: 30px;
+}
+
 /* Текст слоган */
 .slogan {
-    position: absolute;
-    right: 5%;
-    bottom: 5%;
+    display: flex;
     z-index: 20;
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: clamp(36px, 5vw, 72px);
     text-align: left;
     font-weight: 600;
     line-height: 103%;
@@ -88,10 +121,18 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
+
+
+
+
+
+
+
+
 /* Медиазапросы для адаптации */
 
 /* Планшеты (768px - 1024px) */
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
     .background-container::before {
         width: 70vw;
         height: 70vw;
@@ -113,15 +154,15 @@
         font-size: 2rem;
         right: 7%;
     }
-}
+} */
 
 /* Мобильные (480px - 768px) */
 @media (max-width: 768px) {
     .background-container::before {
-          width: 100vw;
+        width: 100vw;
         height: 100vw;
         left: -20vw;
-                top: 35%;
+        top: 35%;
     }
     
     .background-container .center-image {
@@ -137,22 +178,35 @@
         right: -20%;
         bottom: -30%;
     }
-    
     .logo-overlay {
-        width: 45vw;
-        left: 40%;
-        top: 35%;
+        width: calc(100vw - 100px);
+        left: 55%;
+        top: 36%;
     }
-    
-    .slogan {
-        font-size: 1.8rem;
-        right: 10%;
-        bottom: 8%;
+
+    .block_container {
+        display: grid;
+        grid-template-columns: 1fr;   
+    }
+    .block_left {
+        display: flex;
+        justify-content: center;
+    }
+    .block_right {
+        align-content: center;
+        margin-top: 150px;
+        gap:50px;
+    }
+    .block_titles {
+        width: 94%;
+    }
+    .tests {
+        padding: 5px 5px;
     }
 }
 
 /* Маленькие мобильные (до 480px) */
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
     .background-container::before {
            width: 100vw;
         height: 100vw;
@@ -184,10 +238,10 @@
         right: 15%;
         bottom: 10%;
     }
-}
+} */
 
 /* Горизонтальная ориентация на мобильных */
-@media (max-height: 500px) {
+/* @media (max-height: 500px) {
     .background-container {
         height: 150vh;
     }
@@ -203,4 +257,4 @@
     .slogan {
         bottom: 15%;
     }
-}
+} */

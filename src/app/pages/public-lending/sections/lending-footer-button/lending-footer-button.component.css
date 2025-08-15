@@ -1,0 +1,28 @@
+.btn-footer-container {
+    background-color: #806BFF;
+    padding: 5px 0;
+     position: absolute;
+     bottom: 0;
+     z-index: 15;
+     width: 100%;
+
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 18px;
+     font-weight: 700;
+     color: white;
+     font-family: var(--second-family), sans-serif;
+     gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .btn-footer-container {
+        font-size: clamp(12px, 2vw, 18px);
+        
+    }
+    .for_mobile {
+        width: 27px;
+    }
+
+}
