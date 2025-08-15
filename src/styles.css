@@ -130,7 +130,7 @@
 body {
     margin: 0;
     background: var(--background);
-
+    box-sizing: border-box;
 
 }
 

@@ -30,7 +30,7 @@
 
 /* Правое изображение */
 .background-container::after {
-    background-image: url(/assets/publicleinding/image3.png);
+    background-image: url('/assets/publicleinding/image3.png');
     width: 100vw;
     height: 100vw;
     max-width: 1400px;
@@ -40,122 +40,214 @@
     z-index: 5;
 }
 
-
-
-.articles-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    height: 100%;
-    z-index: 6;
-    position: sticky;
+.background-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #5a4bb8;
 }
 
-.article {
-    display: flex;
-    flex-direction: row;
-    gap: 100px;
+.background-container::after,
+.background-container .center-image {
+    content: "";
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+/* Центральное изображение */
+.background-container .center-image {
+    background-image: url('/assets/publicleinding/image2.png');
+    width: 60vw;
+    height: 60vw;
+    max-width: 1500px;
+    max-height: 1500px;
+    left: 54%;
+    top: 75%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 4;
+}
+
+/* Правое изображение */
+.background-container::after {
+    background-image: url('/assets/publicleinding/image3.png');
+    width: 100vw;
+    height: 100vw;
+    max-width: 1400px;
+    max-height: 1400px;
+    right: -40%;
+    top: -36%;
+    z-index: 5;
+}
+
+.articles-container {
+    display: grid;
+    grid-template-areas: "article--first . article-first-tex" 
+                         "article--second . article-second-text"  
+                         "article--third  . btn_registration" ;
+
+    justify-content: center;
+    align-content: center;  
+    align-items: center; 
+    height: 100vh;   
+    z-index: 30;        
+}
+img {
+    padding:10px 5px;
+    width:100%;
 }
 
 .article--first {
-    margin-left: 15%;
-}
-
-.article--second {
-    margin-left: 10%;
-}
-
-.article--third {
-    margin-left: 20%;
-}
-
-.article-images {
+    grid-area: article--first;
     display: flex;
-    gap: 20px;
+    width:100%;
+    z-index: 30;    
 }
+.article--second {
+    grid-area: article--second;
+    display: flex;
+    width:100%;
+    margin-left: -80px;
+    z-index: 30;    
+}
+.article--third {
+    grid-area:  article--third;
+    display: flex;
+    width:100%;
+    z-index: 30;
+    margin-left: 140px;
+}
+
+
+
+
+
+
 
 .article-first-text {
-    display: flex;
-    align-items: center;
+    grid-area: article-first-tex;
+    z-index: 30;   
     max-width: 500px;
     width: 100%;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 120%;
+    font-size: clamp(14px, 2vw, 20px);
     color: #fff;
 }
-
 .article-second-text {
-    display: flex;
-    align-items: center;
+    grid-area: article-second-text;
+    z-index: 30;   
+    margin-left: -150px;
     max-width: 600px;
     width: 100%;
     font-weight: 600;
-    font-size: 34px;
-    line-height: 120%;
+    font-size: clamp(20px, 2vw, 34px);
     color: #fff;
 }
+.btn_registration {
+    display: flex;
+    justify-self: center;
+    grid-area: btn_registration;
+    z-index: 30; 
+    width: max-content; 
+    text-align: center; 
+    padding: 16px 80px;
+    background: #84DD2C;
+    color: #fff;
+    border-radius: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Медиазапросы для адаптации */
 
-/* Планшеты (768px - 1024px) */
-@media (max-width: 1024px) {
-    .background-container .center-image {
-        width: 65vw;
-        height: 65vw;
-        top: 70%;
-    }
-
-}
-
-/* Мобильные (480px - 768px) */
+/* Мобильные (768px) */
 @media (max-width: 768px) {
 
-    .background-container .center-image {
-        width: 80vw;
-        height: 80vw;
-        left: 50%;
-        top: 65%;
+    .articles-container {
+        display: grid;
+        grid-template-areas: "article--first"  
+                             "article--second"  
+                             "article--third"
+                             "article-second-text"  
+                             "article-first-tex"
+                             "btn_registration" ;
+    
+        z-index: 30;   
+        align-content: start;
+        margin-top: 80px;  
+        padding: 0 20px;
     }
 
-    .background-container::after {
-        width: 70vw;
-        height: 65vw;
-        right: -20%;
-        bottom: -30%;
+    .article--first {
+        grid-area: article--first;
+        display: flex;
+        width:100%;
+        z-index: 30; 
+        padding-left: 80px;  
     }
-
-}
-
-/* Маленькие мобильные (до 480px) */
-@media (max-width: 480px) {
-
-    .background-container .center-image {
-        width: 100vw;
-        height: 100vw;
-        top: 60%;
-        display: none;
-
+    .article--second {
+        grid-area: article--second;
+        display: flex;
+        width:100%;
+        margin-left: 0;
+        z-index: 30;    
     }
-
-    .background-container::after {
-        width: 105vw;
-        height: 109vw;
-        right: -30%;
-        bottom: -40%;
+    .article--third {
+        grid-area:  article--third;
+        display: flex;
+        width:100%;
+        z-index: 30;
+        margin-left: 0; 
+        padding-left: 80px;  
     }
-
-}
-
-/* Горизонтальная ориентация на мобильных */
-@media (max-height: 500px) {
-    .background-container {
-        height: 150vh;
+    
+    .article-first-text {
+        grid-area: article-first-tex;
+        z-index: 30;   
+        max-width: 500px;
+        width: 100%;
+        font-weight: 400;
+        font-size: clamp(14px, 2vw, 20px);
+        color: #fff;
+        padding: 20px 50px;
     }
-
-    .background-container .center-image {
-        top: 60%;
+    .article-second-text {
+        grid-area: article-second-text;
+        z-index: 30;   
+        margin-left: 0;
+        max-width: 600px;
+        width: 100%;
+        font-weight: 600;
+        font-size: clamp(20px, 2vw, 34px);
+        color: #fff;
+        padding: 20px 50px;
     }
+    .btn_registration {
+        display: flex;
+        justify-self: center;
 
+        grid-area: btn_registration;
+        z-index: 30; 
+        text-align: center; 
+        padding: 16px 80px;
+        background: #84DD2C;
+        color: #fff;
+        border-radius: 100px;
+        margin-top: 10px;
+    }
+    
 }
