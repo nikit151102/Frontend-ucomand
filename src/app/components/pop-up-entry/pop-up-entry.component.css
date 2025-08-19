@@ -175,3 +175,12 @@
     font-size: 12px;
     line-height: 140%;
 }
+
+
+.code{
+    width: 40px;
+    text-align: center;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+}

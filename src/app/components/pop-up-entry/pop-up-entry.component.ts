@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { PopUpEntryService } from './pop-up-entry.service';
 import { TokenService } from '../token.service';
 import { HttpClient } from '@angular/common/http';
@@ -33,8 +33,8 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     this.authForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       telegram: ['', [Validators.required, forbiddenWordsValidator()]],
-      nickname: ['', [Validators.required, forbiddenWordsValidator()]],
-      password: ['', [Validators.required, forbiddenWordsValidator()]],
+      // nickname: ['', [Validators.required, forbiddenWordsValidator()]],
+      // password: ['', [Validators.required, forbiddenWordsValidator()]],
     });
   }
 
@@ -56,6 +56,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
   authUser() {
 
     const formData = this.authForm.value;
+    formData.email = formData.email.trim();
     console.log('formData', formData)
     const data = { ...formData };
 
@@ -64,23 +65,23 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       delete data.telegram;
     }
 
-    if (this.popUpEntryService.isAuth === true) {
-      this.popUpEntryService.authUesr(data).subscribe((response: any) => {
-        console.log('Auth response from backend:', response);
-        this.tokenService.setToken(response.token);
-        localStorage.setItem('userNickname', response.nickname);
-        this.userAuthenticated = true;
-        this.login_user();
-      })
-    } else {
-      this.popUpEntryService.signUpUesr(data).subscribe((response: any) => {
-        this.popUpEntryService.confirmAuth = true;
-        // console.log('Auth response from backend:', response);
-        // this.tokenService.setToken(response.token);
-        // this.userAuthenticated = true;
-        // this.login_user();
-      })
-    }
+    // if (this.popUpEntryService.isAuth === true) {
+    //   this.popUpEntryService.authUesr(data).subscribe((response: any) => {
+    //     console.log('Auth response from backend:', response);
+    //     this.tokenService.setToken(response.token);
+    //     localStorage.setItem('userNickname', response.nickname);
+    //     this.userAuthenticated = true;
+    //     this.login_user();
+    //   })
+    // } else {
+    this.popUpEntryService.signUpUesr(data).subscribe((response: any) => {
+      this.popUpEntryService.confirmAuth = true;
+      // console.log('Auth response from backend:', response);
+      // this.tokenService.setToken(response.token);
+      // this.userAuthenticated = true;
+      // this.login_user();
+    })
+    // }
   }
 
 
@@ -252,6 +253,56 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       // Setting the cookie expiration date to the past will delete it
       document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
     }
+  }
+
+
+  @ViewChild('digit1') digit1!: ElementRef;
+  @ViewChild('digit2') digit2!: ElementRef;
+  @ViewChild('digit3') digit3!: ElementRef;
+  @ViewChild('digit4') digit4!: ElementRef;
+  @ViewChild('digit5') digit5!: ElementRef;
+  @ViewChild('digit6') digit6!: ElementRef;
+
+  moveFocus(event: any, nextField: number) {
+    const input = event.target;
+    if (input.value.length === 1) {
+      switch (nextField) {
+        case 1: this.digit2.nativeElement.focus(); break;
+        case 2: this.digit3.nativeElement.focus(); break;
+        case 3: this.digit4.nativeElement.focus(); break;
+        case 4: this.digit5.nativeElement.focus(); break;
+        case 5: this.digit6.nativeElement.focus(); break;
+        case 6: this.verifyCode(); break;
+      }
+    }
+  }
+
+  verifyCode() {
+    const code = this.digit1.nativeElement.value +
+      this.digit2.nativeElement.value +
+      this.digit3.nativeElement.value +
+      this.digit4.nativeElement.value +
+      this.digit5.nativeElement.value +
+      this.digit6.nativeElement.value
+
+    const formData = this.authForm.value;
+    formData.password = code;
+    const data = { ...formData };
+    console.log('data', data)
+    this.popUpEntryService.authUesr(data).subscribe((response: any) => {
+      console.log('Auth response from backend:', response);
+      this.tokenService.setToken(response.token);
+      localStorage.setItem('userNickname', response.nickname);
+      this.userAuthenticated = true;
+      this.popUpEntryService.visible = false;
+      //     this.tokenService.setToken(response.token);
+      //     localStorage.setItem('userNickname', response.nickname);
+      //     this.userAuthenticated = true;
+      //     this.login_user();
+    })
+
+    // Здесь добавьте логику проверки кода
+    console.log('Введенный код:', code);
   }
 
 }

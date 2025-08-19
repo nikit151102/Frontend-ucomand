@@ -63,11 +63,11 @@ export class ViewCardComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe(data => {
       this.routeName = data['routeName'];
-      if(data['routeName'] == 'resume'){
+      if (data['routeName'] == 'resume') {
         this.typeCard = 'resume';
 
       }
-      if(data['routeName'] == 'vacancy'){
+      if (data['routeName'] == 'vacancy') {
         this.typeCard = 'vacancy';
       }
     });
@@ -79,14 +79,14 @@ export class ViewCardComponent implements OnInit {
       this.viewCardService.getCardData(id, this.typeCard).subscribe(
         (data) => {
           this.dataCard = data;
-          console.log("this.dataCard",this.dataCard)
+          console.log("this.dataCard", this.dataCard)
           this.visibleCard = true;
           this.visibleError = false;
-          
+
           this.domainName = this.domainService.setDomain(this.dataCard.user.freeLink);
           this.domainService.checkImageExists(this.domainName).then((path) => {
             this.imagePath = path;
-            
+
           });
           this.viewCardService.getCurrentUser().subscribe(user => {
             this.currentUser = user;
@@ -114,7 +114,7 @@ export class ViewCardComponent implements OnInit {
 
   }
 
-  viewUser():string  {
+  viewUser(): string {
     return this.router.createUrlTree([``, this.dataCard.user.nickname]).toString();
   }
 
@@ -136,6 +136,9 @@ export class ViewCardComponent implements OnInit {
   }
 
   enter() {
+    this.popUpEntryService.isAuth = true;
+    this.popUpEntryService.accessVerification = false;
+    this.popUpEntryService.confirmAuth = false;
     this.popUpEntryService.showDialog();
   }
 
@@ -148,13 +151,13 @@ export class ViewCardComponent implements OnInit {
   update(event: Event, id: number) {
     event.stopPropagation();
     const userId = localStorage.getItem('userId')
-    
-    if( this.typeCard =='vacancies'){
+
+    if (this.typeCard == 'vacancies') {
       this.router.navigate([`/myaccount/${userId}/updateVacancy/${id}`]);
-    }else{
+    } else {
       this.router.navigate([`/myaccount/${userId}/updateResume/${id}`]);
     }
-   
+
   }
 
 }

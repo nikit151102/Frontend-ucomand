@@ -180,7 +180,7 @@ export class SortetdFilterComponent implements OnInit {
     this.form.reset();
     this.homeService.saveFilters({
       "visibilities": [
-        "CREATOR_ONLY"
+        "EVERYBODY"
       ]
     });
     this.homeService.getVacancies();
@@ -204,7 +204,7 @@ export class SortetdFilterComponent implements OnInit {
       ...formData,
       tags: tags,
       "visibilities": [
-        "CREATOR_ONLY"
+        "EVERYBODY"
       ]
     };
 
