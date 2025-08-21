@@ -350,9 +350,9 @@ export class FormComponent implements OnInit {
     };
     console.log("formData.minPayment",formData.minPayment)
     formData.visibility = "EVERYBODY";
-    formData.freeLink = formData.freeLink || "string";
-    formData.ownLink = formData.ownLink || "string";
-    formData.contacts = formData.contacts || "string";
+    // formData.freeLink = formData.freeLink || "string";
+    // formData.ownLink = formData.ownLink || "string";
+    // formData.contacts = formData.contacts || "string";
     formData.details = formData.details.replace(/\r?\n/g, '\n') || "string";
     formData.title = formData.title || "string";
     formData.minPayment = formData.minPayment || 0;
