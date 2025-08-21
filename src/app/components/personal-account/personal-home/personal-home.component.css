@@ -441,7 +441,8 @@ p {
         flex-wrap: wrap;
         justify-content: space-between;
     }
-    .cards .app-card-vacancy-link{
+
+    .cards .app-card-vacancy-link {
         width: 49%;
     }
 }
@@ -489,7 +490,7 @@ p {
         display: none;
     }
 
-    .cards .app-card-vacancy-link{
+    .cards .app-card-vacancy-link {
         width: 100%;
     }
 
@@ -533,6 +534,7 @@ p {
 
     .logoImg {
         width: 100% !important;
+        height: auto;
     }
 
     .container {
