@@ -94,7 +94,7 @@
               <label class="text10opac05" for="city">Город:</label>
               <p-autoComplete #cityField id="city" formControlName="city" [suggestions]="filteredCities"
                 (completeMethod)="filterCities($event)" (onSelect)="onCitySelect($event)" field="name"
-                placeholder="Введите город" [emptyMessage]="'Города не найдены'" autocomplete="off"
+                placeholder="Введите город" [emptyMessage]="'Города не найдены'" 
                 [ngClass]="{'invalid': personalDataForm.get('city')?.invalid && (personalDataForm.get('city')?.dirty && isError || personalDataForm.get('city')?.touched && isError)}" />
               <div
                 *ngIf="personalDataForm.get('city')?.invalid && (personalDataForm.get('city')?.dirty || personalDataForm.get('city')?.touched)"

@@ -151,9 +151,9 @@ export class HomeService {
     });
 
     if (token) {
-      return this.http.get(`${this.domain}/hackathons?${queryParams}`, { headers });
+      return this.http.get(`${this.domain}/main/hackathons?${queryParams}`, { headers });
     } else {
-      return this.http.get(`${this.domain}/hackathons?${queryParams}`,);
+      return this.http.get(`${this.domain}/main/hackathons?${queryParams}`,);
     }
 
   }
@@ -242,6 +242,7 @@ export class HomeService {
     this.resumes = [];
     this.vacancies = [];
     this.projects = [];
+    this.hackathons = [];
     if (type === 'vacancy') {
       this.getVacancies();
     }

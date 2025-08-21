@@ -287,6 +287,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
 
     const formData = this.authForm.value;
     formData.password = code;
+    delete formData.telegram;
     const data = { ...formData };
     console.log('data', data)
     this.popUpEntryService.authUesr(data).subscribe((response: any) => {
