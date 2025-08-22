@@ -12,6 +12,8 @@
 
         <div class="avatar-container">
             <app-item-avatar *ngFor="let item of filteredAvatars" [avatarSrc]="item"></app-item-avatar>
+            <app-item-avatar *ngIf="file" [avatarSrc]="fileUrl" [default]="false"></app-item-avatar>
+
         </div>
 
 

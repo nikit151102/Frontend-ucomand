@@ -55,19 +55,21 @@ export class PopUpAvatarComponent {
   }
 
   selectAvatar(): void {
+    this.setAvatar();
     this.popUpAvatarService.hidePopup();
   }
 
   file: File | null = null;
-  // Обработчик выбора файла
+  fileUrl: string = '';
+
   onFileSelected(event: any): void {
     const file: File = event.target.files[0];
     if (file) {
       this.file = file;
-      this.setAvatar();
-      console.log('set file')
+      this.fileUrl = URL.createObjectURL(file);
     }
   }
+
 
   setAvatar(): void {
     console.log('setAvatar')
@@ -77,16 +79,11 @@ export class PopUpAvatarComponent {
       formData.append('avatar', this.file);
 
       // Отправка запроса на сервер
-      this.avatarSelectionService.setAvatar(formData).subscribe({
-        next: (response) => {
-          console.log('Avatar updated successfully:', response);
-          this.avatarSelectionService.selectAvatar(response);
-          this.avatarSelectionService.selectGender(response);
-        },
-        error: (error) => {
-          console.error('Error updating avatar:', error);
-        }
-      });
+      this.avatarSelectionService.setAvatar(formData).subscribe((response) => {
+        console.log('Avatar updated successfully:', response);
+        this.avatarSelectionService.selectAvatar(response);
+        this.avatarSelectionService.selectGender(response);
+      })
     } else {
       console.error('User data or token missing');
     }

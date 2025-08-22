@@ -132,7 +132,7 @@ export class MenuNavComponent implements OnInit {
 
   handleRegistration(): void {
     this.sidebarVisible = false;
-    this.popUpEntryService.isAuth = false;
+    this.popUpEntryService.isAuth = true;
     this.popUpEntryService.accessVerification = false;
     this.popUpEntryService.confirmAuth = false;
     this.popUpEntryService.showDialog();

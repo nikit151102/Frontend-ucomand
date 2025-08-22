@@ -29,6 +29,7 @@ export class HackathonComponent implements OnInit{
     console.log('paramId', this.paramId);
 
     this.hackathonService.currentProjectIsOwner$.subscribe((value: boolean) => {
+      
       this.isOwner = value;
     });
 

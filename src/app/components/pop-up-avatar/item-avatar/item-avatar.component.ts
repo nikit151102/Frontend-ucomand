@@ -1,15 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AvatarSelectionService } from '../avatar-selection.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-item-avatar',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './item-avatar.component.html',
   styleUrl: './item-avatar.component.css'
 })
 export class ItemAvatarComponent implements OnInit {
   @Input() avatarSrc: string = '';
+  @Input() default: boolean = true;
   isSelected: boolean = false;
 
   constructor(private avatarSelectionService: AvatarSelectionService) { }
@@ -24,13 +26,16 @@ export class ItemAvatarComponent implements OnInit {
   }
 
   onAvatarClick(event: Event, avatar: string): void {
-    if (this.isSelected) {
+    if(this.default){
+if (this.isSelected ) {
       this.avatarSelectionService.selectAvatar('');
       this.avatarSelectionService.selectGender('');
     } else {
       this.avatarSelectionService.selectAvatar(avatar);
       this.avatarSelectionService.selectGender(this.avatarSrc.split('_')[1]);
     }
+    }
+    
     event.stopPropagation();
   }
 

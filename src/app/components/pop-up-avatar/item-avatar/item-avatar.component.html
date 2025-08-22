@@ -3,6 +3,11 @@
     <input type="checkbox" [checked]="isSelected" class="custom-checkbox" />
   </div>
   <div class="image-container">
-    <img [src]="'assets/avatars/'+ avatarSrc + '.png'" alt="avatar">
+    <ng-container *ngIf="default">
+      <img [src]="'assets/avatars/'+ avatarSrc + '.png'" alt="avatar">
+    </ng-container>
+    <ng-container *ngIf="!default">
+      <img [src]="avatarSrc" alt="avatar">
+    </ng-container>
   </div>
 </div>

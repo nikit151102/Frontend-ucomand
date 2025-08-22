@@ -221,6 +221,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
         } else {
           localStorage.setItem('fullAccess', 'b326b5062b2f0e69046810717534cb09');
         }
+        console.log('----------data ',data )
         localStorage.setItem('Linkken', data.imageLink);
         localStorage.setItem('userNickname', data.nickname);
         sessionStorage.setItem('userData', JSON.stringify(data));
@@ -289,21 +290,18 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     formData.password = code;
     delete formData.telegram;
     const data = { ...formData };
-    console.log('data', data)
     this.popUpEntryService.authUesr(data).subscribe((response: any) => {
-      console.log('Auth response from backend:', response);
       this.tokenService.setToken(response.token);
       localStorage.setItem('userNickname', response.nickname);
       this.userAuthenticated = true;
       this.popUpEntryService.visible = false;
+      this.login_user();
       //     this.tokenService.setToken(response.token);
       //     localStorage.setItem('userNickname', response.nickname);
       //     this.userAuthenticated = true;
       //     this.login_user();
     })
 
-    // Здесь добавьте логику проверки кода
-    console.log('Введенный код:', code);
   }
 
 }
