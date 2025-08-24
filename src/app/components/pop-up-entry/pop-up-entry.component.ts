@@ -301,9 +301,11 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       this.digit5.nativeElement.value +
       this.digit6.nativeElement.value
 
+    const savedEmail = localStorage.getItem('authEmail');
     const formData = this.authForm.value;
     formData.password = code;
     delete formData.telegram;
+    formData.email = savedEmail;
     const data = { ...formData };
     this.popUpEntryService.authUesr(data).subscribe((response: any) => {
       this.tokenService.setToken(response.token);
