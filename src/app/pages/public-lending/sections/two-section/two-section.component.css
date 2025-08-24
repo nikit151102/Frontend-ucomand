@@ -90,9 +90,9 @@
 
     justify-content: center;
     align-content: center;  
-    align-items: center; 
+    align-items: center;
     height: 100vh;   
-    z-index: 30;        
+    z-index: 19;        
 }
 img {
     padding:10px 5px;
@@ -103,20 +103,20 @@ img {
     grid-area: article--first;
     display: flex;
     width:100%;
-    z-index: 30;    
+    z-index:19;    
 }
 .article--second {
     grid-area: article--second;
     display: flex;
     width:100%;
     margin-left: -80px;
-    z-index: 30;    
+    z-index:19;    
 }
 .article--third {
     grid-area:  article--third;
     display: flex;
     width:100%;
-    z-index: 30;
+    z-index:19;
     margin-left: 140px;
 }
 
@@ -128,7 +128,7 @@ img {
 
 .article-first-text {
     grid-area: article-first-tex;
-    z-index: 30;   
+    z-index:19;   
     max-width: 500px;
     width: 100%;
     font-weight: 400;
@@ -137,7 +137,7 @@ img {
 }
 .article-second-text {
     grid-area: article-second-text;
-    z-index: 30;   
+    z-index:19;   
     margin-left: -150px;
     max-width: 600px;
     width: 100%;
@@ -149,16 +149,15 @@ img {
     display: flex;
     justify-self: center;
     grid-area: btn_registration;
-    z-index: 30; 
+    z-index:19; 
     width: max-content; 
     text-align: center; 
     padding: 16px 80px;
+    max-height: 50px;
     background: #84DD2C;
     color: #fff;
     border-radius: 100px;
 }
-
-
 
 
 
@@ -179,75 +178,43 @@ img {
 
     .articles-container {
         display: grid;
+        height: 90vh;
         grid-template-areas: "article--first"  
                              "article--second"  
                              "article--third"
                              "article-second-text"  
                              "article-first-tex"
-                             "btn_registration" ;
-    
-        z-index: 30;   
-        align-content: start;
-        margin-top: 80px;  
-        padding: 0 20px;
+                             "btn_registration";      
+                             align-content: space-between;
+        z-index:19;   
+        padding: 0 5px;
     }
 
     .article--first {
-        grid-area: article--first;
-        display: flex;
-        width:100%;
-        z-index: 30; 
         padding-left: 80px;  
     }
     .article--second {
-        grid-area: article--second;
-        display: flex;
-        width:100%;
         margin-left: 0;
-        z-index: 30;    
     }
     .article--third {
-        grid-area:  article--third;
-        display: flex;
-        width:100%;
-        z-index: 30;
         margin-left: 0; 
         padding-left: 80px;  
     }
     
     .article-first-text {
-        grid-area: article-first-tex;
-        z-index: 30;   
-        max-width: 500px;
-        width: 100%;
-        font-weight: 400;
-        font-size: clamp(14px, 2vw, 20px);
-        color: #fff;
-        padding: 20px 50px;
+        display: grid;
+        padding: 5px 30px;
     }
     .article-second-text {
-        grid-area: article-second-text;
-        z-index: 30;   
+        display: grid;
         margin-left: 0;
-        max-width: 600px;
-        width: 100%;
-        font-weight: 600;
-        font-size: clamp(20px, 2vw, 34px);
-        color: #fff;
-        padding: 20px 50px;
+        padding: 10px 30px;
     }
     .btn_registration {
-        display: flex;
+        display: grid;
+        justify-content: center;
         justify-self: center;
-
-        grid-area: btn_registration;
-        z-index: 30; 
-        text-align: center; 
-        padding: 16px 80px;
-        background: #84DD2C;
-        color: #fff;
-        border-radius: 100px;
-        margin-top: 10px;
+        align-content: center;
     }
-    
+
 }
