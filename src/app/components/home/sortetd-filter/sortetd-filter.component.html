@@ -1,6 +1,6 @@
-<div class="container" [ngClass]="{'sticky-filter': settingHeaderService.isSticky}">
+<div class="container" [ngClass]="{'sticky-filter': settingHeaderService.isSticky}" style="padding-top: 15px;">
     <!-- <app-sorting></app-sorting> -->
-    <div class="filter">
+    <!-- <div class="filter">
         <a (click)="clearFilters()" class="btnClosedFilter" *ngIf="parsedFilters">
             Сбросить фильтры
         </a>
@@ -14,7 +14,7 @@
                     stroke="#806BFF" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" />
             </svg>
         </a>
-    </div>
+    </div> -->
 </div>
 
 <ng-container *ngIf="visible">
