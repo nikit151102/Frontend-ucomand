@@ -50,9 +50,6 @@
     justify-content: space-evenly;
     position: relative; /* чтобы absolute внутри работал */
 }
-/* .midl {
-    border: 1px solid red;
-} */
 .seconde-title {
     font-size: clamp(20px, 3vw, 46px);
     /* font-size: 46px; */
@@ -165,44 +162,50 @@
     .articles-container {
         display: grid;
         grid-template-columns: 1fr;
-        justify-content: center;
     }
-
     .article-images-left {
         display: none;
     }
+
     .article-text-right {
-        display: flex;
-        justify-self: center;
-        width: 100vw;
+        display: grid;
+        justify-content: center;
+    }
+
+    .first-title {
+        font-size: clamp(24px, 3vw, 30px);
+        width: 100%;
+        padding-right:20px;
         padding-left: 20px;
     }
-    .first-title {
-        display: flex;
-        width: 100%;
-    }
     .three-title {
+        margin-top: 140px;
+        font-size: clamp(16px, 2vw, 20px);
         width: 100%;
-    }
+        padding-right:20px;
+        padding-left: 20px;
+    } 
     .three-title div {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
     }
 
 
     .seconde-title {
         position: absolute;
         left:5%;
-        top:150px;
+        top:140px;
         width: 90%;
         font-size: clamp(15px, 3vw, 46px);
-        font-weight: 700;
-        background-color: #806BFF;
-        border-radius: 100px;
         padding: 20px 24px;
     } 
 
-
-
+    .fourth-title-in {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 24px;
+    }
 
 
 }
