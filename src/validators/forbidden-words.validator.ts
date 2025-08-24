@@ -39,9 +39,13 @@ function createRegExpForWord(word: string): RegExp {
 }
 
 
-function normalizeInput(input: string): string[] {
+function normalizeInput(input: any): string[] {
+    if (typeof input !== 'string') {
+        input = String(input); // приводим к строке на всякий случай
+    }
+
     return input
-        .replace(/[.,!?;:()\[\]{}"']/g, '') // Убираем знаки препинания
-        .split(/[\s-]+/) // Разделяем по пробелам и дефисам
-        .map((word: string) => word.toLowerCase()); // Приводим к нижнему регистру
+        .replace(/[.,!?;:()\[\]{}"']/g, '') // убираем знаки препинания
+        .split(/[\s-]+/) // разделяем по пробелам и дефисам
+        .map((word: string) => word.toLowerCase());
 }
