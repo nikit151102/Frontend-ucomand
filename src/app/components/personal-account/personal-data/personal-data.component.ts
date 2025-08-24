@@ -65,7 +65,7 @@ export class PersonalDataComponent implements OnInit {
       freeLink: ['' ],
       aboutMe: ['', [Validators.maxLength(700), forbiddenWordsValidator()]],
       email: ['', [Validators.required, Validators.email]],
-      telegram: [{ value: '', disabled: true }, [Validators.required,forbiddenWordsValidator()]],
+      telegram: [{ value: ''}, [Validators.required,forbiddenWordsValidator()]],
       domain: ['', [Validators.required, forbiddenWordsValidator()]],
     }, { updateOn: 'blur' });
   }
