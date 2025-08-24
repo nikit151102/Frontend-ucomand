@@ -127,6 +127,8 @@ export class MenuNavComponent implements OnInit {
     this.popUpEntryService.isAuth = true;
     this.popUpEntryService.accessVerification = false;
     this.popUpEntryService.confirmAuth = false;
+    localStorage.removeItem('confirmAuth');
+    localStorage.removeItem('authEmail');
     this.popUpEntryService.showDialog();
   }
 
@@ -135,6 +137,8 @@ export class MenuNavComponent implements OnInit {
     this.popUpEntryService.isAuth = true;
     this.popUpEntryService.accessVerification = false;
     this.popUpEntryService.confirmAuth = false;
+    localStorage.removeItem('confirmAuth');
+    localStorage.removeItem('authEmail');
     this.popUpEntryService.showDialog();
   }
 

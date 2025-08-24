@@ -184,3 +184,14 @@
     border: none;
     border-radius: 10px;
 }
+
+
+input.code::-webkit-inner-spin-button,
+input.code::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input.code {
+  -moz-appearance: textfield; /* для Firefox */
+}

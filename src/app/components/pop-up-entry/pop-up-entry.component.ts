@@ -76,6 +76,9 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     // } else {
     this.popUpEntryService.signUpUesr(data).subscribe((response: any) => {
       this.popUpEntryService.confirmAuth = true;
+
+      localStorage.setItem('confirmAuth', 'true');
+      localStorage.setItem('authEmail', formData.email);
       // console.log('Auth response from backend:', response);
       // this.tokenService.setToken(response.token);
       // this.userAuthenticated = true;
@@ -94,10 +97,20 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     if (this.popUpEntryService.visible) {
       this.loadTelegramWidget();
     }
-    this.popUpEntryService.confirmAuth = false;
+    // this.popUpEntryService.confirmAuth = false;
   }
   ngOnInit() {
-    // this.loadTelegramWidget()
+    const confirmAuth = localStorage.getItem('confirmAuth');
+    const savedEmail = localStorage.getItem('authEmail');
+
+    if (confirmAuth === 'true') {
+      this.popUpEntryService.confirmAuth = true;
+      this.popUpEntryService.accessVerification = false;
+    }
+
+    if (savedEmail) {
+      this.authForm.patchValue({ email: savedEmail });
+    }
   }
 
   ngOnDestroy() {
@@ -221,7 +234,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
         } else {
           localStorage.setItem('fullAccess', 'b326b5062b2f0e69046810717534cb09');
         }
-        console.log('----------data ',data )
+        console.log('----------data ', data)
         localStorage.setItem('Linkken', data.imageLink);
         localStorage.setItem('userNickname', data.nickname);
         sessionStorage.setItem('userData', JSON.stringify(data));
@@ -242,6 +255,8 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     this.telegramWidgetLoaded = false;
     this.removeTelegramWidget();
     this.errorMessage = '';
+    localStorage.removeItem('confirmAuth');
+    localStorage.removeItem('authEmail');
   }
 
   clearCookies() {
@@ -295,6 +310,8 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
       localStorage.setItem('userNickname', response.nickname);
       this.userAuthenticated = true;
       this.popUpEntryService.visible = false;
+      localStorage.removeItem('confirmAuth');
+      localStorage.removeItem('authEmail');
       this.login_user();
       //     this.tokenService.setToken(response.token);
       //     localStorage.setItem('userNickname', response.nickname);
