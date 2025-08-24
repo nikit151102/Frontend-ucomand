@@ -20,7 +20,7 @@ export class TapeService {
   }
 
   getTapes(id: string): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrl}/projects/${id}/posts?page=0&size=10`, {})
+    return this.http.get<any>(`${environment.apiUrl}/main/projects/${id}/posts?page=0&size=10`, {})
   }
 
 

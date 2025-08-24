@@ -14,27 +14,26 @@
             <app-item-avatar *ngFor="let item of filteredAvatars" [avatarSrc]="item"></app-item-avatar>
         </div>
 
-        <div class="btns">
-            <a class="popup-btn-setAvatar" (click)="selectAvatar()">Выбрать</a>
-        </div>
 
         <a (click)="fileInput.click()" style="
-    border: 1px solid #e2e2e2;
-    border-radius: 5px;
-    padding: 48px 10px;
-    background: #f3f3f3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 112%;
-    text-transform: uppercase;
-    color: #101010;
-">
+            border: 1px solid #e2e2e2;
+            border-radius: 5px;
+            padding: 48px 10px;
+            background: #f3f3f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 112%;
+            text-transform: uppercase;
+            color: #101010;
+                width: 100%;
+                margin-top: 40px;
+        ">
             <span style="display: flex;
-    flex-direction: column;
-    align-items: center;">
+                flex-direction: column;
+                align-items: center;">
                 <span>
                     Или загрузите свое фото
                 </span>
@@ -44,6 +43,14 @@
             </span></a>
         <input #fileInput type="file" accept="image/png, image/jpeg" (change)="onFileSelected($event)"
             style="display: none;">
+
+
+
+        <div class="btns">
+            <a class="popup-btn-setAvatar" (click)="selectAvatar()">Выбрать</a>
+        </div>
+
+
 
     </div>
 </div>
