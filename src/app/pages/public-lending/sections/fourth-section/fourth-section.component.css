@@ -170,17 +170,18 @@
     .articles-container {
         display: grid;
         grid-template-columns: 1fr;
+        align-content: space-between;
+        height: 93vh;
        }
 
     .stairs-img-parent {
         display: none;
     }
-    
     .article-text-right {
         display: flex;
         justify-self: center;
         width: 100vw;
-        height: 80vh;
+        padding-top: 70px;
         padding-left: 20px;
         padding-right: 20px;
     }
@@ -190,6 +191,8 @@
     }
     .three-title {
         width: 100%;
+        margin-top: 140px;
+
     }
     .three-title div {
         margin-bottom: 10px;
@@ -199,12 +202,11 @@
     .seconde-title {
         position: absolute;
         left:15%;
-        top:300px;
+        top:280px;
     } 
 
     .block-btn {
-        display: grid;
-        height: max-content;
+        margin-top: 50px;
     }
 
 
