@@ -167,7 +167,7 @@
             <div class="input-group">
               <label class="text10opac05" for="telegram">Telegram:</label>
               <input #formField type="text" id="telegram" formControlName="telegram" placeholder="Введите telegram"
-                autocomplete="off"
+                autocomplete="off" (blur)="normalizeTelegram()"
                 [ngClass]="{'invalid': personalDataForm.get('telegram')?.invalid && (personalDataForm.get('telegram')?.dirty && isError || personalDataForm.get('telegram')?.touched && isError)}">
               <div
                 *ngIf="personalDataForm.get('telegram')?.invalid && (personalDataForm.get('telegram')?.dirty || personalDataForm.get('telegram')?.touched )"

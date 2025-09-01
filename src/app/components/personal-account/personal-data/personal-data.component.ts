@@ -93,6 +93,31 @@ export class PersonalDataComponent implements OnInit {
     return JSON.stringify(this.personalDataForm.value) === JSON.stringify(this.initialFormState);
   }
 
+  normalizeTelegram(): void {
+  const control = this.personalDataForm.get('telegram');
+  if (!control) return;
+
+  let value = control.value?.trim();
+
+  if (!value) return;
+
+  // Если ссылка
+  const telegramLinkPattern = /^(?:https?:\/\/)?(?:t\.me|telegram\.me)\/([a-zA-Z0-9_]+)/i;
+  const match = value.match(telegramLinkPattern);
+
+  if (match && match[1]) {
+    value = '@' + match[1]; // сохраняем как @nickname
+  } else if (value.startsWith('t.me/')) {
+    value = '@' + value.replace('t.me/', '');
+  } else if (!value.startsWith('@')) {
+    // если ввели ник без @
+    value = '@' + value;
+  }
+
+  control.setValue(value, { emitEvent: true });
+}
+
+
   onCancel() {
     if (this.initialFormState) {
       this.personalDataForm.patchValue(this.initialFormState);

@@ -24,7 +24,7 @@ export class ResumeService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get(`${this.domain}/secured/resumes/ofCurrentUser`, { headers });
+    return this.http.get(`${this.domain}/resumes/ofCurrentUser`, { headers });
   }
 
   // Метод для создания подписки
