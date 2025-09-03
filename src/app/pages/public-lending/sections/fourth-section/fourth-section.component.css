@@ -176,6 +176,7 @@
                 ;
         padding: 5px 20px;
         gap: 15px;
+        z-index:7;
     }
 
     .first-title {
@@ -225,6 +226,7 @@
                 "block-btn"
                 ;
         gap: 10px;
+        z-index:7;
     }
     .stairs-img-parent {
         display: none;
