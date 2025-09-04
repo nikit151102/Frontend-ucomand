@@ -82,139 +82,208 @@
     z-index: 5;
 }
 
-.articles-container {
-    display: grid;
-    grid-template-areas: "article--first . article-first-tex" 
-                         "article--second . article-second-text"  
-                         "article--third  . btn_registration" ;
-
-    justify-content: center;
-    align-content: center;  
-    align-items: center;
-    height: 100vh;   
-    z-index: 19;        
-}
-img {
-    padding:10px 5px;
-    width:100%;
-}
-
-.article--first {
-    grid-area: article--first;
-    display: flex;
-    width:100%;
-    z-index:19;    
-}
-.article--second {
-    grid-area: article--second;
-    display: flex;
-    width:100%;
-    margin-left: -80px;
-    z-index:19;    
-}
-.article--third {
-    grid-area:  article--third;
-    display: flex;
-    width:100%;
-    z-index:19;
-    margin-left: 140px;
-}
 
 
 
-
-
-
-
-.article-first-text {
-    grid-area: article-first-tex;
-    z-index:19;   
-    max-width: 500px;
-    width: 100%;
-    font-weight: 400;
-    font-size: clamp(14px, 2vw, 20px);
-    color: #fff;
-}
-.article-second-text {
-    grid-area: article-second-text;
-    z-index:19;   
-    margin-left: -150px;
-    max-width: 600px;
-    width: 100%;
-    font-weight: 600;
-    font-size: clamp(20px, 2vw, 34px);
-    color: #fff;
-}
-.btn_registration {
-    display: flex;
-    justify-self: center;
-    grid-area: btn_registration;
-    z-index:19; 
-    width: max-content; 
-    text-align: center; 
-    padding: 16px 80px;
-    max-height: 50px;
-    background: #84DD2C;
-    color: #fff;
-    border-radius: 100px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Медиазапросы для адаптации */
-
-/* Мобильные (768px) */
-@media (max-width: 768px) {
-
+@media (min-width: 768px) {
     .articles-container {
+        margin-top: 70px;
         display: grid;
-        height: 90vh;
-        grid-template-areas: "article--first"  
-                             "article--second"  
-                             "article--third"
-                             "article-second-text"  
-                             "article-first-tex"
-                             "btn_registration";      
-                             align-content: space-between;
-        z-index:19;   
-        padding: 0 5px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "block_left block_right"
+                            "app-lending-footer-button app-lending-footer-button";
+        height: 100vh;
+        z-index: 20;
+    }
+
+    .block_left {
+        grid-area: block_left;
+        display: grid;
+        grid-template-areas: "article--first " 
+                            "article--second"  
+                            "article--third" ;
+        z-index:19;
+        padding: 5px;
+        justify-content: end;
+        align-content: center;
+    }
+    img {
+        padding: 5px;
+        width:100%;
     }
 
     .article--first {
-        padding-left: 80px;  
+        grid-area: article--first;
+        display: flex;
+        width:100%;
+        z-index:19;    
     }
     .article--second {
-        margin-left: 0;
+        grid-area: article--second;
+        display: flex;
+        width:100%;
+        margin-left: -80px;
+        z-index:19;    
     }
     .article--third {
-        margin-left: 0; 
-        padding-left: 80px;  
+        grid-area:  article--third;
+        display: flex;
+        width:100%;
+        z-index:19;
+        margin-left: 140px;
     }
-    
+
+
+    /* ///////////////////// */
+    .block_right {
+        grid-area: block_right;
+        display: grid; 
+        grid-template-areas: 
+                "article-first-text"
+                "article-second-text"
+                "btn_registration";
+        z-index:19;
+        justify-content: center;
+        align-content: space-evenly;
+    }
     .article-first-text {
-        display: grid;
-        padding: 5px 30px;
+        grid-area: article-first-text;
+        z-index:19;   
+        max-width: 500px;
+        width: 100%;
+        font-weight: 400;
+        font-size: clamp(14px, 4vw, 20px);
+        color: #fff;
+        margin-top: -30px;
     }
     .article-second-text {
-        display: grid;
-        margin-left: 0;
-        padding: 10px 30px;
+        grid-area: article-second-text;
+        z-index:19;   
+        margin-left: -150px;
+        margin-top: -70px;
+        max-width: 800px;
+        width: 100%;
+        font-weight: 600;
+        font-size: clamp(20px, 5vw, 34px);
+        color: #fff;
     }
     .btn_registration {
-        display: grid;
-        justify-content: center;
+        display: flex;
         justify-self: center;
-        align-content: center;
+        align-self: flex-start;
+        grid-area: btn_registration;
+        z-index:19; 
+        text-align: center; 
+        padding: 16px 80px;
+        max-height: 50px;
+        background: #84DD2C;
+        color: #fff;
+        border-radius: 100px;
+        margin-top: -60px;
+    }
+
+
+}
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .articles-container {
+        margin-top: 70px;
+        display: grid;
+        grid-template-rows: 1fr 1fr 120px;
+        grid-template-areas: "block_left"
+                             "block_right"
+                             "app-lending-footer-button"
+                             ;
+        height: 100vh;
+        z-index: 20;
+
+    }
+    
+    .block_left {
+        grid-area: block_left;
+        display: grid;
+        grid-template-areas: 
+                "article--first"  
+                "article--second"  
+                "article--third";
+        z-index:19;
+        padding: 5px 10px; 
+    }
+    img {
+        padding:2px;
+        width:100%;
+    }
+    
+    .article--first {
+        grid-area: article--first;
+        display: flex;
+        width:100%;
+        padding-left: 80px;
+        justify-content: end;
+    }
+    .article--second {
+        grid-area: article--second;
+        display: flex;
+        width:100%;
+    }
+    .article--third {
+        grid-area:  article--third;
+        display: flex;
+        width:100%;
+        padding-left: 80px;
+        justify-content: end;
+    }
+
+
+
+
+
+    .block_right {
+        grid-area: block_right;
+        display: grid;
+        grid-template-areas: 
+                "article-second-text"
+                "article-first-text"
+                "btn_registration";
+        z-index:19;
+        padding: 5px 15px;
+        justify-content: center;
+        align-content: space-around;
+
+    }
+    .article-first-text {
+        grid-area: article-first-text;  
+        max-width: 100%;
+        font-weight: 400;
+        font-size: clamp(12px, 4vw, 18px);
+        color: #fff;
+    }
+    .article-second-text {
+        grid-area: article-second-text;
+        max-width: 100%;
+        font-weight: 600;
+        font-size: clamp(18px, 4vw, 24px);
+        color: #fff;
+    }
+    .btn_registration {
+        grid-area: btn_registration;
+        display: flex;
+        justify-self: center;
+        width: max-content; 
+        text-align: center; 
+        padding: 16px 50px;
+        max-height: 50px;
+        background: #84DD2C;
+        color: #fff;
+        border-radius: 100px;
+    }
+
+    .app-lending-footer-button {
     }
 
 }

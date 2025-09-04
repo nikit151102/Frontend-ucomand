@@ -42,91 +42,93 @@
 
 
 
-
-.articles-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-top: 70px;
-    justify-content: space-evenly;
-    position: relative; /* чтобы absolute внутри работал */
-}
-
-
-.article-images-left {
+@media (min-width: 768px) { 
+    .articles-container {
         display: grid;
-        justify-content: center;
-        z-index: 12; 
-}   
-
-.stairs-img-parent  {
-    display: flex;
-}
-.stairs-img-parent img {
-    width: 95%;
-    height: 95%;
-  }
+        grid-template-columns: 1fr 1fr;
+        margin-top: 70px;
+        justify-content: space-evenly;
+    }
 
 
+    .article-images-left {
+            display: grid;
+            justify-content: center;
+            z-index: 12; 
+    }   
+
+    .stairs-img-parent  {
+        display: flex;
+    }
+    .stairs-img-parent img {
+        width: 95%;
+        height: 95%;
+    }
 
 
 
-.article-text-right {
-    display: grid;
-    align-content: space-between;
-    margin-top: 40px;
-    height: 80vh;
-    z-index: 20;
-
-}
-.first-title {
-    font-size: clamp(24px, 3vw, 30px);
-    font-weight: 600;
-    color: #fff;
-    width: 600px;
-    padding: 5px 0;
-}
-.three-title {
-    margin-top: 70px;
-    font-size: clamp(16px, 2vw, 20px);
-    font-weight: 400;
-    width: 500px;
-    color: #fff;
-}
 
 
-.fourth-title {
-    display: flex;
-    justify-content: end;
-}
-.fourth-title-in {
-    width: 270px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff2f;
-    padding: 10px 24px;
-    border-top-left-radius: 100px;
-    border-bottom-left-radius: 100px; 
-    color: #fff; 
-}
-.fifth-title-in {
-    margin-top: 20px;
-    width: 270px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff2f;
-    padding: 10px 24px;
-    border-top-left-radius: 100px;
-    border-bottom-left-radius: 100px;  
-    color: #fff;
-}
-.yellow_block {
-    background: #FFF25F;
-    padding: 24px 24px;
-    border-radius: 30px;
-    width: 70%;
-}  
+    .article-text-right {
+        display: grid;
+        align-content: space-between;
+        margin-top: 40px;
+        height: 80vh;
+        z-index: 20;
+
+    }
+    .first-title {
+        font-size: clamp(24px, 3vw, 30px);
+        font-weight: 600;
+        color: #fff;
+        width: 600px;
+        padding: 5px 0;
+    }
+    .three-title {
+        margin-top: 70px;
+        font-size: clamp(16px, 2vw, 20px);
+        font-weight: 400;
+        width: 500px;
+        color: #fff;
+    }
+
+
+    .fourth-title {
+        display: flex;
+        justify-content: end;
+    }
+    .fourth-title-in {
+        width: 270px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ffffff2f;
+        padding: 10px 24px;
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px; 
+        color: #fff; 
+    }
+    .fifth-title-in {
+        margin-top: 20px;
+        width: 270px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ffffff2f;
+        padding: 10px 24px;
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;  
+        color: #fff;
+    }
+    .yellow_block {
+        background: #FFF25F;
+        padding: 24px 24px;
+        border-radius: 30px;
+        width: 70%;
+        margin-top: 50px;
+    }  
+
+} 
 
 
 
@@ -135,43 +137,105 @@
 /* Мобильные (360px - 768px) */
 @media (max-width: 768px) {
 
-    .articles-container {
-        display: grid;
-        grid-template-columns: 1fr;
-        justify-content: center;
-    }
 
+    .articles-container {
+        margin-top: 70px;
+        display: grid;
+        grid-template-rows: 1fr 120px;
+        grid-template-areas: "article-text-right"
+                             "app-lending-footer-button"
+                             ;
+        height: 100vh;
+        z-index: 20;
+    }
+    
     .article-images-left {
         display: none;
-    }
+    }   
+    
     .article-text-right {
-        margin-top: 0;
-        height: 83vh;
-        width: 100vw;
-        padding-left: 20px;
+        grid-area: article-text-right;
+        display: grid;
+        grid-template-areas: 
+                "block-text"
+                "block-text"
+                "block-btn";
+        z-index:7;
+        align-content: space-around
     }
+    .block-text {
+        grid-area: block-text;
+        display: grid;
+        grid-template-areas: 
+                "first-title"
+                "three-title"
+                "yellow_block"
+                ;
+        padding: 5px 20px;
+        gap: 10px;
+        z-index:7;
+    }
+
     .first-title {
-        display: flex;
-        width: 100%;
-        padding: 5px 5px 5px 0;
+        grid-area: first-title;
+        font-size: clamp(20px, 6vw, 30px);
+        font-weight: 600;
+        color: #fff;
+        padding: 5px 10px;
     }
     .three-title {
-        margin-top: 40px;
-        width: 90%;
-    }
-    .three-title div {
-        margin-bottom: 10px;
+        grid-area: three-title ;
+        font-size: clamp(12px, 4vw, 20px);
+        font-weight: 400;
+        color: #fff;
+        margin: 10px 0;
     }
     .yellow_block {
-        display: grid;
-        justify-content: center;
+        grid-area: yellow_block;
         background: #FFF25F;
-        padding: 24px 24px;
+        padding: 5px 15px;
         border-radius: 30px;
-        width: 90%;
-        margin-top: -80px;
+        align-content: center;
+        font-size: 16px;
     }  
+    .yellow_block--link {
+        padding: 10px 0;
+    } 
 
+    
+    /* ////// */
+    .block-btn {
+        grid-area: block-btn;
+        display: grid;
+        padding: 10px 0;
+        z-index:7;
+    }
+    .fourth-title {
+        display: flex;
+        justify-content: end;
+    }
+    .fourth-title-in {
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #A6EB20;
+        padding: 10px 24px;
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;  
+    }
+    .fifth-title-in {
+        margin-top: 10px;
+        width: 60%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ffffff2f;
+        padding: 10px 24px;
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;  
+        color: #fff;
+    }
 
 
 
