@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TwoSectionComponent } from './two-section.component';
+import { SixthSectionComponent } from './sixth-section.component';
 
-describe('TwoSectionComponent', () => {
-  let component: TwoSectionComponent;
-  let fixture: ComponentFixture<TwoSectionComponent>;
+describe('SixthSectionComponent', () => {
+  let component: SixthSectionComponent;
+  let fixture: ComponentFixture<SixthSectionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TwoSectionComponent]
+      imports: [SixthSectionComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TwoSectionComponent);
+    fixture = TestBed.createComponent(SixthSectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
