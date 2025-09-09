@@ -39,6 +39,16 @@ export class NewApplicationComponent implements OnInit {
     })
   }
 
+  onItemSelected(selectedItem: any): void {
+    if (selectedItem) {
+      console.log('Выбран элемент:', selectedItem);
+      // Обработка выбранного элемента
+    } else {
+      console.log('Выбор снят');
+      // Обработка снятия выбора
+    }
+  }
+
   openPopup() {
     this.isPopupOpen = true;
   }

@@ -1,13 +1,41 @@
-<div class="container" (click)="onAvatarClick($event, avatarSrc)">
+<div class="container">
   <div class="checkbox-container">
     <input type="checkbox" [checked]="isSelected" class="custom-checkbox" />
   </div>
+  
   <div class="image-container">
+    <!-- Стандартный аватар -->
     <ng-container *ngIf="default">
-      <img [src]="'assets/avatars/'+ avatarSrc + '.png'" alt="avatar">
+      <div (click)="onDefaultAvatarClick($event, avatarSrc)">
+        <img [src]="'assets/avatars/' + avatarSrc + '.png'" alt="avatar" class="avatar-image">
+      </div>
     </ng-container>
+    
+    <!-- Кастомный аватар -->
     <ng-container *ngIf="!default">
-      <img [src]="avatarSrc" alt="avatar">
+      <!-- Input для загрузки файла -->
+      <input 
+        type="file" 
+        id="custom-avatar-input"
+        accept="image/*" 
+        (change)="onFileSelected($event)" 
+        style="display: none;"
+      >
+      
+      <div (click)="onCustomAvatarClick($event)">
+        <div class="custom-avatar-container">
+          <ng-container *ngIf="fileUrl && !default; else placeholder">
+            <img [src]="fileUrl" alt="custom avatar" class="avatar-image">
+          </ng-container>
+          
+          <ng-template #placeholder>
+            <div class="avatar-placeholder">
+              <span>+</span>
+              <small>Загрузить фото</small>
+            </div>
+          </ng-template>
+        </div>
+      </div>
     </ng-container>
   </div>
 </div>

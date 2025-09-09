@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-resume-person',
@@ -11,14 +11,17 @@ import { Component, Input } from '@angular/core';
 export class ResumePersonComponent {
 
   @Input() item: any;
+  @Output() itemSelected = new EventEmitter<any>();
+  
   isSelected: boolean = false;
+  
   onAvatarClick(event: Event, project: string): void {
     if (this.isSelected) {
-      // this.projectService.selectProject('');
       this.isSelected = false;
+      this.itemSelected.emit(null); // Отправляем null при снятии выбора
     } else {
-      // this.projectService.selectProject(project);
       this.isSelected = true;
+      this.itemSelected.emit(this.item); // Отправляем item при выборе
     }
     event.stopPropagation();
   }

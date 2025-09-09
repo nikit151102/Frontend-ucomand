@@ -292,7 +292,7 @@ export class PersonalHomeComponent implements OnInit, OnDestroy {
     const fullAccess = localStorage.getItem('fullAccess')
     const userNickname = localStorage.getItem('userNickname')
     if (fullAccess == 'b326b5062b2f0e69046810717534cb09') {
-      this.formSettingService.isheading = false;
+      this.formSettingService.isheading = true;
       this.formSettingService.typeForm = 'вакансии';
       this.settingHeaderService.post = false;
       this.settingHeaderService.shared = false;

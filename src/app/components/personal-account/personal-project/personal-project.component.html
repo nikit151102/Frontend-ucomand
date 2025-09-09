@@ -12,7 +12,12 @@
     <div class="chapterCard">
         <div class="lookingCard">
             <p class="text13" style="margin-top: 0.5rem; width: 90%; margin-bottom: 0; ">
-                {{ item?.userProfession}}
+                <ng-container *ngIf="item.userProfession != null">
+                    {{ item?.userProfession}}
+                </ng-container>
+                 <ng-container *ngIf="item.userProfession == null && item.owner == true">
+                    Владелец
+                </ng-container>
             </p>
         </div>
     </div>
