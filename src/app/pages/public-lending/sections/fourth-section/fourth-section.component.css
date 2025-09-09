@@ -175,8 +175,8 @@
                 "three-title"
                 ;
         padding: 5px 20px;
-        gap: 15px;
         z-index:7;
+        align-content: space-between;
     }
 
     .first-title {
@@ -198,18 +198,20 @@
         background-color: #806BFF;
         border-radius: 100px;
         padding: 15px 30px;
-
+        margin-top: 5%;
         font-family: var(--second-family), sans-serif;
         color: #A6EB20;
         text-align: center;
         white-space: nowrap;
+
     }
     .three-title {
         grid-area: three-title ;
         font-size: clamp(12px, 4vw, 20px);
         font-weight: 400;
         color: #fff;
-        margin: 10px 0;
+        margin-top: 5%;
+
     }
     .three-title  div{
         padding: 10px 0;
