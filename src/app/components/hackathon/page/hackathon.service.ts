@@ -20,6 +20,10 @@ export class HackathonService {
 
   // Method to update the project data
   setCurrentProjectData(data: any): void {
+    const nicknameUser = localStorage.getItem('userNickname')
+    if(nicknameUser == data.creator.nickname){
+      this.setCurrentProjectIsOwner(true);
+    }
     this.currentProjectDataSubject.next(data);
   }
 

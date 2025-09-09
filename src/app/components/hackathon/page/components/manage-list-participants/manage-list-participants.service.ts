@@ -150,7 +150,7 @@ export class ManageListParticipantsService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.delete<any>(`${environment.apiUrl}/hackathons/${id}/teams?page=0&size=1000`, { headers })
+    return this.http.get<any>(`${environment.apiUrl}/hackathons/${id}/teams?page=0&size=1000`, { headers })
 
   }
 
@@ -161,7 +161,7 @@ export class ManageListParticipantsService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.delete<any>(`${environment.apiUrl}/hackathons/${id}/participants?page=0&size=1000`, { headers })
+    return this.http.get<any>(`${environment.apiUrl}/hackathons/${id}/participants?page=0&size=1000`, { headers })
 
   }
 

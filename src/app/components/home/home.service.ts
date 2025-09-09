@@ -89,7 +89,7 @@ export class HomeService {
 
     this.getCardProjects().subscribe((data: any) => {
       if (data) {
-        const filteredData = data.data.filter((project: any) => project.visibility !== "BAN");
+        const filteredData = data.filter((project: any) => project.visibility !== "BAN");
         if (filteredData.length === 30) {
           this.visibleNextPage = true;
         } else {
@@ -110,14 +110,14 @@ export class HomeService {
     this.getCardHackathons().subscribe((data: any) => {
       if (data) {
         // const filteredData = data.data.filter((project: any) => project.visibility !== "BAN");
-        if (data.data.length === 30) {
+        if (data.length === 30) {
           this.visibleNextPage = true;
         } else {
           this.visibleNextPage = false;
         }
 
         this.selectPage = this.selectPage + 1;
-        this.hackathons = [...this.hackathons, ...data.data];
+        this.hackathons = [...this.hackathons, ...data];
       }
       this.loading = false;
     });
