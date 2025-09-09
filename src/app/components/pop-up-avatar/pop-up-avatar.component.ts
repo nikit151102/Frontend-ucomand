@@ -44,9 +44,11 @@ export class PopUpAvatarComponent {
   }
 
   ngOnInit(): void {
+    console.log('serverSelectedAvatar',this.serverSelectedAvatar)
     if (this.serverSelectedAvatar) {
       this.selectedAvatar = this.serverSelectedAvatar;
       this.avatarSelectionService.selectAvatar(this.selectedAvatar);
+      this.fileUrl = this.serverSelectedAvatar
     }
   }
 
@@ -55,38 +57,31 @@ export class PopUpAvatarComponent {
   }
 
   selectAvatar(): void {
-    this.setAvatar();
+    // this.setAvatar();
     this.popUpAvatarService.hidePopup();
   }
 
   file: File | null = null;
   fileUrl: string = '';
 
-  onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
-    if (file) {
-      this.file = file;
-      this.fileUrl = URL.createObjectURL(file);
-    }
+
+onSetAvatar(file: File): void {
+  console.log('File received:', file);
+  this.file = file;
+  
+  // Можно сразу отправить или сохранить файл
+  if (this.file) {
+    const formData = new FormData();
+    formData.append('avatar', this.file);
+
+    this.avatarSelectionService.setAvatar(formData).subscribe((response) => {
+      console.log('Avatar updated successfully:', response);
+      this.avatarSelectionService.selectAvatar(response.avatarUrl);
+      this.avatarSelectionService.selectGender('custom');
+    }, (error) => {
+      console.error('Error uploading avatar:', error);
+    });
   }
-
-
-  setAvatar(): void {
-    console.log('setAvatar')
-    if (this.file) {
-      // Формируем FormData для отправки файла
-      const formData = new FormData();
-      formData.append('avatar', this.file);
-
-      // Отправка запроса на сервер
-      this.avatarSelectionService.setAvatar(formData).subscribe((response) => {
-        console.log('Avatar updated successfully:', response);
-        this.avatarSelectionService.selectAvatar(response);
-        this.avatarSelectionService.selectGender(response);
-      })
-    } else {
-      console.error('User data or token missing');
-    }
-  }
+}
 
 }
