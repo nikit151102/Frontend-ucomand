@@ -176,7 +176,6 @@
                 "three-title"
                 ;
         padding: 5px 20px;
-        gap: 10px;
         z-index:7;
     }
 
@@ -187,6 +186,7 @@
         font-weight: 600;
         color: #fff;
         padding: 5px 20px;
+      
     }
     .seconde-title {
         grid-area: seconde-title;
