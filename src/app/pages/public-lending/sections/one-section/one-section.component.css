@@ -194,9 +194,10 @@
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr 70px;
-        margin-top: 70px;
+        /* margin-top: 70px; */
         padding: 5px 10px;
         height: 100vh;
+        z-index: 20;
     }
     /* Логотип */
     .block_left {
