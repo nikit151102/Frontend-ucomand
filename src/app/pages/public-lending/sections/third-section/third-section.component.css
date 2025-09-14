@@ -177,7 +177,6 @@
                 ;
         padding: 5px 20px;
         z-index:7;
-        border: 1px solid red;
     }
 
 
@@ -215,7 +214,6 @@
         font-weight: 400;
         color: #fff;
         margin: 5% 0;
-        border: 1px solid red;
     }
     .three-title  div{
         padding-top: 10px;
