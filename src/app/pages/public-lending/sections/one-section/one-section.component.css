@@ -54,75 +54,74 @@
     z-index: 5;
 }
 
-/* Логотип */
-.block_left {
-    /* display: flex;
-    justify-content: center; */
+
+@media (min-width: 768px) {
+    .block_container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Логотип */
+    .block_left {
+        /* display: flex;
+        justify-content: center; */
+    }
+    .logo-overlay {
+        position: absolute;
+        left: 36%;
+        top: 43%;
+        transform: translate(-50%, -50%);
+
+        max-width: 500px;
+        z-index: 10;
+        pointer-events: none;
+    }
+
+
+    .block_right {
+        height: 90vh;
+        display: grid;
+        align-content: space-between;
+        justify-content: center;
+        justify-items: center;
+        padding: 150px 0;
+        z-index: 20;
+    }
+    .block_titles {
+        display: flex;
+        width: 70%;
+        justify-content: end;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2vw, 1rem);
+        gap:10px
+    }
+    .tests {
+        padding: 10px 10px;
+        background: #A6EB20;
+        border-radius: 30px;
+    }
+
+    /* Текст слоган */
+    .slogan {
+        display: flex;
+        z-index: 20;
+        font-size: clamp(36px, 5vw, 72px);
+        text-align: left;
+        font-weight: 600;
+        line-height: 103%;
+        letter-spacing: 0em;
+        color: #fff;
+        animation: fadeIn 1.5s ease-out;
+    }
+
+    /* Анимация */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+
 }
-.logo-overlay {
-    position: absolute;
-    left: 36%;
-    top: 43%;
-
-    max-width: 500px;
-    height: auto;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    pointer-events: none;
-}
-
-
-
-
-.block_container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.block_right {
-    height: 100vh;
-    display: grid;
-    align-content: space-between;
-    justify-content: center;
-    justify-items: center;
-    padding: 150px 0;
-    z-index: 20;
-}
-.block_titles {
-    display: flex;
-    width: 70%;
-    justify-content: end;
-    flex-wrap: wrap;
-    font-size: clamp(12px, 2vw, 1rem);
-    gap:10px
-}
-.tests {
-    padding: 10px 10px;
-    background: #A6EB20;
-    border-radius: 30px;
-}
-
-/* Текст слоган */
-.slogan {
-    display: flex;
-    z-index: 20;
-    font-size: clamp(36px, 5vw, 72px);
-    text-align: left;
-    font-weight: 600;
-    line-height: 103%;
-    letter-spacing: 0em;
-    color: #fff;
-    animation: fadeIn 1.5s ease-out;
-}
-
-/* Анимация */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-
-
 
 
 
@@ -156,105 +155,100 @@
     }
 } */
 
-/* Мобильные (480px - 768px) */
-@media (max-width: 768px) {
+/* Медиазапросы для адаптации */
+
+/* Планшеты (768px - 1024px) */
+/* @media (max-width: 1024px) {
     .background-container::before {
-        width: 100vw;
-        height: 100vw;
-        left: -20vw;
-        top: 35%;
+        width: 70vw;
+        height: 70vw;
+        left: -8vw;
     }
     
     .background-container .center-image {
-        width: 80vw;
-        height: 80vw;
-        left: 50%;
-        top: 65%;
+        width: 65vw;
+        height: 65vw;
+        top: 70%;
     }
     
-    .background-container::after {
-        width: 70vw;
-        height: 65vw;
-        right: -20%;
-        bottom: -30%;
-    }
     .logo-overlay {
-        width: calc(100vw - 100px);
-        left: 55%;
-        top: 36%;
+        width: 35vw;
+        left: 38%;
+    }
+    
+    .slogan {
+        font-size: 2rem;
+        right: 7%;
+    }
+} */
+
+/* Медиазапросы для адаптации */
+/* --------------------  mobile ---------------------------- */
+@media (max-width: 768px) {
+
+    .background-container::before {
+        display: none;
     }
 
     .block_container {
         display: grid;
-        grid-template-columns: 1fr;   
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 70px;
+        /* margin-top: 70px; */
+        padding: 5px 10px;
+        height: 100vh;
+        z-index: 20;
     }
+    /* Логотип */
     .block_left {
-        display: flex;
-        justify-content: center;
+        display: grid;
+        align-items: center;
+        justify-items: center;
     }
+    .logo-overlay {
+        width: 80%;
+        z-index: 10;
+        pointer-events: none;
+    }
+
     .block_right {
-        align-content: center;
-        margin-top: 150px;
-        gap:50px;
+        display: grid;
+        padding: 10px 0;
     }
+
     .block_titles {
-        width: 94%;
+        display: flex;
+        width: 100%;
+        justify-content: end;
+        align-self: center;
+        flex-wrap: wrap;
+        gap:5px;
     }
     .tests {
-        padding: 5px 5px;
+        padding: 5px;
+        background: #A6EB20;
+        border-radius: 30px;
+        font-size: clamp(12px, 4vw, 18px);
     }
+
+    /* Текст слоган */
+    .slogan {
+        display: flex;
+        justify-content: center;
+        z-index: 20;
+        font-size: clamp(36px, 5vw, 72px);
+        font-weight: 600;
+        line-height: 103%;
+        letter-spacing: 0em;
+        color: #fff;
+        animation: fadeIn 1.5s ease-out;
+    }
+
+    /* Анимация */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+
 }
-
-/* Маленькие мобильные (до 480px) */
-/* @media (max-width: 480px) {
-    .background-container::before {
-           width: 100vw;
-        height: 100vw;
-        left: -20vw;
-    }
-    
-    .background-container .center-image {
-        width: 100vw;
-        height: 100vw;
-        top: 60%;
-        display: none;
-
-    }
-    
-    .background-container::after {
-        width: 105vw;
-        height: 109vw;
-        right: -30%;
-        bottom: -40%;
-    }
-    
-    .logo-overlay {
-        width: 55vw;
-        left: 50%;
-    }
-    
-    .slogan {
-        font-size: 1.5rem;
-        right: 15%;
-        bottom: 10%;
-    }
-} */
-
-/* Горизонтальная ориентация на мобильных */
-/* @media (max-height: 500px) {
-    .background-container {
-        height: 150vh;
-    }
-    
-    .background-container::before {
-        top: 40%;
-    }
-    
-    .background-container .center-image {
-        top: 60%;
-    }
-    
-    .slogan {
-        bottom: 15%;
-    }
-} */
