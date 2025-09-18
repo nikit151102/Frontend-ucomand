@@ -26,11 +26,7 @@ export class ItemAvatarComponent implements OnInit {
         if (this.fileUrl) {
           // Если есть загруженное изображение, сравниваем с fileUrl
           this.isSelected = selectedAvatar === this.fileUrl;
-        } else {
-          // Если нет загруженного изображения, проверяем другие условия
-          this.isSelected = !!(selectedAvatar && selectedAvatar !== '' && 
-                              !selectedAvatar.includes('assets/avatars/'));
-        }
+        } 
       }
     });
   }

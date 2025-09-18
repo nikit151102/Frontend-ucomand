@@ -57,8 +57,22 @@ export class PopUpAvatarComponent {
   }
 
   selectAvatar(): void {
-    // this.setAvatar();
+    this.avatarSelectionService.selectedAvatar$.subscribe((value:any)=>{
+  const formData = new FormData();
+  
+    formData.append('avatar', value);
+
+    this.avatarSelectionService.setAvatar(formData).subscribe((response) => {
+      console.log('Avatar updated successfully:', response);
+      this.avatarSelectionService.selectAvatar(response.avatarUrl);
+      this.avatarSelectionService.selectGender('custom');
+    }, (error) => {
+      console.error('Error uploading avatar:', error);
+    });
+  
     this.popUpAvatarService.hidePopup();
+    })
+  
   }
 
   file: File | null = null;
