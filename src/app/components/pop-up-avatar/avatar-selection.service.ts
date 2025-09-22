@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { environment } from '../../../environment';
 
 @Injectable({
@@ -25,29 +25,40 @@ export class AvatarSelectionService {
     this.selectedTypeAvatarSubject.next(typeAvatar);
   }
 
-  setAvatar(formData: any): Observable<any> {
+setAvatar(formData: FormData): Observable<any> {
     const token = localStorage.getItem('authToken');
 
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    }); 
-    
-    const userDataString = sessionStorage.getItem('userData'); 
-    console.log('userDataString')
-    if (userDataString) {
-      console.log('userDataString true')
-      const retrievedData = JSON.parse(userDataString);
-      console.log(retrievedData);
-  
-      return this.http.post(`${environment.apiUrl}/secured/users/${retrievedData.id}/avatar`, formData, { headers , responseType: 'text' });
-    } else {
-      console.log('No user data found in sessionStorage.');
-  
-      return new Observable(observer => {
-        observer.error('No user data found in sessionStorage.');
-      });
+    if (!token) {
+        return throwError(() => new Error('No authentication token found'));
     }
-  }
+
+    const userDataString = sessionStorage.getItem('userData');
+
+    if (!userDataString) {
+        return throwError(() => new Error('No user data found in sessionStorage'));
+    }
+
+    try {
+        const retrievedData = JSON.parse(userDataString);
+        console.log('Uploading avatar for user ID:', retrievedData.id);
+
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`
+            // Не устанавливаем Content-Type - браузер сделает это автоматически для FormData
+        });
+
+        return this.http.post(
+            `${environment.apiUrl}/secured/users/${retrievedData.id}/avatar`,
+            formData,
+            { 
+                headers,
+                responseType: 'text'  // Добавляем responseType в тот же объект
+            }
+        );
+    } catch (error) {
+        return throwError(() => new Error('Error parsing user data'));
+    }
+}
 
 }
 

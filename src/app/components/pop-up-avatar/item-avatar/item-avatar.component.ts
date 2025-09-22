@@ -14,27 +14,39 @@ export class ItemAvatarComponent implements OnInit {
   @Input() default: boolean = true;
   isSelected: boolean = false;
   @Output() setAvatar = new EventEmitter<File>();
+selectedAvatar:any
 
   constructor(private avatarSelectionService: AvatarSelectionService) { }
 
   ngOnInit(): void {
+    console.log('fileUrl',this.fileUrl)
     this.avatarSelectionService.selectedAvatar$.subscribe(selectedAvatar => {
       if (this.default) {
         // Для стандартных аватаров сравниваем с avatarSrc
         this.isSelected = selectedAvatar === this.avatarSrc;
+        this.selectedAvatar = selectedAvatar
       } else {
-        if (this.fileUrl) {
-          // Если есть загруженное изображение, сравниваем с fileUrl
-          this.isSelected = selectedAvatar === this.fileUrl;
-        } 
+   if (this.fileUrl) {
+  console.log('this.fileUrl ', this.fileUrl);
+  
+  // Получаем базовое имя файла без _male и _female
+  const baseFileName = this.fileUrl
+    .replace(/_male$/, '')  // Удаляем _male в конце
+    .replace(/_female$/, ''); // Удаляем _female в конце
+  
+  // Если есть загруженное изображение, сравниваем с базовым именем
+  this.isSelected = selectedAvatar === baseFileName &&
+                   selectedAvatar !== `${baseFileName}_male` &&
+                   selectedAvatar !== `${baseFileName}_female`;
+}
       }
     });
   }
 
-  
+
 
   file: File | null = null;
-  @Input()  fileUrl: string = '';
+  @Input() fileUrl: string = '';
 
   onDefaultAvatarClick(event: Event, avatar: string): void {
     if (this.isSelected) {
@@ -52,7 +64,7 @@ export class ItemAvatarComponent implements OnInit {
     // Триггерим клик по скрытому input file
     const fileInput = document.getElementById('custom-avatar-input');
     if (fileInput) {
-           this.isSelected = true;
+      this.isSelected = true;
       fileInput.click();
     }
     event.stopPropagation();

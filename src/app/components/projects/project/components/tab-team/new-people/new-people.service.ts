@@ -17,7 +17,8 @@ export class NewPeopleService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.post<any>(`${environment.apiUrl}/projects/${id}/applications/getByFilter?page=0&size=100`, {}, {headers})
+
+    return this.http.post<any>(`${environment.apiUrl}/main/project/${id}/applications/getByFilter?page=0&size=100`, {}, {headers})
 
   }
 

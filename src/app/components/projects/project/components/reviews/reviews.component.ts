@@ -39,7 +39,7 @@ export class ReviewsComponent implements OnInit {
       if (this.projectData?.id) {
         this.reviewsService.getComments(this.projectData.id).subscribe(
           (response: any) => {
-            this.reviewsService.setItemsList(response.data);
+            this.reviewsService.setItemsList(response);
           },
           (error) => {
             console.error('Error fetching vacancies:', error);

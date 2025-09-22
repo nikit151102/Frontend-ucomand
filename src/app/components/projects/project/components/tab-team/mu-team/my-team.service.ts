@@ -30,7 +30,7 @@ export class MyTeamService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<any>(`${environment.apiUrl}/projects/${id}/teamMembers`, {})
+    return this.http.get<any>(`${environment.apiUrl}/main/project/${id}/teamMembers`, {})
   }
 
   projectId:any;

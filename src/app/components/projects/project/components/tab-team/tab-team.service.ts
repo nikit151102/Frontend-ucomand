@@ -17,7 +17,7 @@ export class TabTeamService {
        'Authorization': `Bearer ${token}`
      });
  
-     return this.http.get<any>(`${environment.apiUrl}/projects/${id}/teamMembers`, {headers})
+     return this.http.get<any>(`${environment.apiUrl}/main/project/${id}/teamMembers`, {headers})
      
    }
 }

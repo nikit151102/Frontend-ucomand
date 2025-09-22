@@ -12,7 +12,7 @@ export class TeamService {
 
     getTeamProject(idProject: any): Observable<any> {
   
-      return this.http.get<any>(`${environment.apiUrl}/projects/${idProject}/teamMembers`,)
+      return this.http.get<any>(`${environment.apiUrl}/main/project/${idProject}/teamMembers`,)
   
     }
 }

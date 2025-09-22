@@ -92,12 +92,13 @@
             <p class="text12">Команда:</p>
             <ng-container *ngIf="cardItem.team.length > 0">
                 <div class="team-container">
-                    <div *ngFor="let item of cardItem.team" (click)="viewUser($event, item?.nickname)"
+                    <div *ngFor="let item of cardItem.team" (click)="viewUser($event, item.user?.nickname)"
                         class="team-member">
-                        <ng-container *ngIf="item.imageLink">
-                            <img [src]="item.imageLink" alt="avatar" class="avatar">
+                        
+                        <ng-container *ngIf="item.user.imageLink">
+                            <img [src]="item.user.imageLink" alt="avatar" class="avatar">
                         </ng-container>
-                        <ng-container *ngIf="!item.imageLink">
+                        <ng-container *ngIf="!item.user.imageLink">
                             <img [src]="'assets/avatars/default.png'" alt="avatar" class="avatar">
                         </ng-container>
                     </div>
