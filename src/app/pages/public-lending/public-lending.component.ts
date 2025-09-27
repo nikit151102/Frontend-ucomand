@@ -5,13 +5,15 @@ import { FourthSectionComponent } from "./sections/fourth-section/fourth-section
 import { FifthSectionComponent } from "./sections/fifth-section/fifth-section.component";
 import { TwoSectionComponent } from './sections/two-section/two-section.component';
 import { SixthSectionComponent } from "./sections/sixth-section/sixth-section.component";
+import { SeventhSectionComponent } from "./sections/seventh-section/seventh-section.component";
+import { LendingFooterButtonComponent } from "./sections/lending-footer-button/lending-footer-button.component";
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-public-lending',
   standalone: true,
   imports: [OneSectionComponent, TwoSectionComponent, ThirdSectionComponent, 
-    FourthSectionComponent, FifthSectionComponent, SixthSectionComponent, CommonModule],
+    FourthSectionComponent, FifthSectionComponent, SixthSectionComponent, CommonModule, SeventhSectionComponent],
   templateUrl: './public-lending.component.html',
   styleUrl: './public-lending.component.css'
 })
