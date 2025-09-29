@@ -14,32 +14,8 @@
     gap: 1rem;
 }
 
-/* .column{
-    flex: 1;
-} */
 
-.container {
-    display: flex;
-    /* overflow-x: scroll; /* Добавляем полосу прокрутки */
-    width: 90%;
-}
 
-.column {
-    display: flex;
-    gap:20px;
-    width: 100vw;
-}
-
-.card {
-    text-decoration: none;
-    width: 100%;
-    display: flex;
-    min-height: 100px;
-    height: auto;
-    box-sizing: border-box;
-    flex: 0 0 auto;         /* фиксируем ширину, чтобы не сжимались */
-    margin: 10px 0;
-}
 
 
 
@@ -100,56 +76,70 @@
     color: #A6EB20;
 }
 
-@media (max-width: 1199.98px) {
-    .card-container {
-        columns: 2;
-    }
- 
+
+
+
+@media (min-width: 768px) { 
+
+
+        .column {
+            display: flex;
+            width: 100vw;
+            justify-content: flex-end;
+            margin-left: 10%;
+        }
+        swiper-container {
+            width: 100%;
+            display: flex; 
+        }
+        swiper-slide {
+            margin: 0 15px;
+            max-width: 100%;
+        }
+
+        .card {
+            text-decoration: none;
+            width: 100%;
+            display: flex;
+            min-height: 100px;
+            height: auto;
+            box-sizing: border-box;
+            flex: 0 0 auto;         /* фиксируем ширину, чтобы не сжимались */
+            margin: 10px 0;
+        } 
+
 }
 
-
-@media (min-width: 789.99px) and (max-width: 1199px) {
-    .sticky-filter{
-        top: 120px;
-    }
-}
-
-@media (max-width: 789.98px) {
-    .search-container {
-        width: 95%;
-    }
-
-    .card-container {
-        columns: 1;
-    }
-
-    .container {
-        width: 95%;
-    }
-    .sticky-filter{
-        top: 115px;
-        z-index: 1;
-    }
-}
-
-
-/* For desktop */
-@media (min-width: 1024px) {
-    .app-card-vacancy-link {
-      width: 33.33%; /* 3 divs per row */
-    }
-  }
-  
-  /* For tablets */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .app-card-vacancy-link {
-      width: 50%; /* 2 divs per row */
-    }
-  }
-  
   /* For mobile phones */
   @media (max-width: 767px) {
+
+    .column {
+        width: 100%;
+        
+    }
+    swiper-container {
+        width: 100vw;
+    }
+    swiper-slide a {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .card {
+        text-decoration: none;
+        width: 90%;
+        display: flex;
+        box-sizing: border-box;
+    }
+
     .app-card-vacancy-link {
+        width: 100%; 
+      }
+
+
+
+
+    /* .app-card-vacancy-link {
       width: 100%; 
     }
     .card-container{
@@ -165,6 +155,25 @@
     min-height: 100px;
     height: auto;
     box-sizing: border-box;
-    }
+    } */
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+

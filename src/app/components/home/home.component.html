@@ -2,7 +2,8 @@
   <app-one-section [ngClass]="{
     'zIndexDialog': (isVisibleFilter)
   }"></app-one-section>
-  <div class="container">
+  <!-- <div class="container"> -->
+  <div>
     <app-sortetd-filter [ngClass]="{
       'sticky-filter': settingHeaderService.isSticky, 
     }">
@@ -161,7 +162,27 @@
 <!-- ***************************** vacancy ********************************** -->
       <ng-container *ngIf="homeService.typeToggle === 'vacancy'">
 
-        <ng-container *ngIf="isDesktop">
+      <ng-container *ngIf="isDesktop"> 
+        <div class="column">
+            <swiper-container
+            [slidesPerView]="4"
+            [spaceBetween]="20"
+            [loop]="false"
+            [allowTouchMove]="true"
+            [navigation]="true"
+            [pagination]="{ clickable: true }">
+                <swiper-slide  *ngFor="let item of homeService.vacancies; let i = index"> 
+                      <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
+                      (click)="onCardClick($event, item.id, 'vacancy')">
+                        <lib-vacancy class="card"  [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy> 
+                      </a>
+                </swiper-slide>
+            </swiper-container>
+        </div>
+      </ng-container>
+
+
+        <!-- <ng-container *ngIf="isDesktop">
           <div class="column">
             <ng-container *ngFor="let item of homeService.vacancies; let i = index"> 
                   <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
@@ -170,9 +191,27 @@
                   </a>
             </ng-container>
           </div>
-        </ng-container>
+        </ng-container> -->
 
         <ng-container *ngIf="isMobile">
+          <div class="column">
+            <swiper-container
+              [slidesPerView]="1"
+              [loop]="false"
+              [allowTouchMove]="true"
+              [navigation]="true"
+            >
+                <swiper-slide  *ngFor="let item of homeService.vacancies; let i = index"> 
+                      <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
+                      (click)="onCardClick($event, item.id, 'vacancy')">
+                        <lib-vacancy class="card"  [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy> 
+                      </a>
+                </swiper-slide>
+            </swiper-container>
+        </div>
+        </ng-container>
+
+        <!-- <ng-container *ngIf="isMobile">
           <div class="column">
             <ng-container *ngFor="let item of homeService.vacancies">
               <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
@@ -181,7 +220,7 @@
               </a>
             </ng-container>
         </div>
-        </ng-container>
+        </ng-container> -->
 
 
       </ng-container>
