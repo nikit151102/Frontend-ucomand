@@ -22,14 +22,15 @@
     "@fontsource/comfortaa": "^5.0.20",
     "cropperjs": "^1.6.2",
     "lodash": "^4.17.21",
+    "my-shared-library": "file:../common-uteam-library",
     "ngx-image-cropper": "^8.1.0",
     "primeicons": "^7.0.0",
     "primeng": "^17.18.2",
     "rxjs": "~7.8.0",
+    "swiper": "^12.0.2",
     "tslib": "^2.3.0",
     "xlsx": "^0.18.5",
-    "zone.js": "~0.14.3",
-      "my-shared-library": "file:../common-uteam-library"
+    "zone.js": "~0.14.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.0.2",
