@@ -13,7 +13,7 @@ export class UserAccountService {
   constructor(private http: HttpClient) { }
 
   getUserData(nickname: string): Observable<any> {
-    return this.http.get(`${this.domain}/secured/users/byNickname/${nickname}`);
+    return this.http.get(`${this.domain}/main/user/byNickname/${nickname}`);
   }
 
   getVacanciesData(id: string): Observable<any> {

@@ -38,7 +38,7 @@ export class FormSettingService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get(`${this.domain}/${type}/${id}`, { headers });
+    return this.http.get(`${this.domain}/main/${type}/${id}`, { headers });
   }
 
 
@@ -47,7 +47,7 @@ export class FormSettingService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.put(`${this.domain}/${type}/${id}`, data, { headers });
+    return this.http.put(`${this.domain}/${type}/ofCurrentUser/${id}`, data, { headers });
   }
 
   deleteData(type: string, id: any): Observable<any> {

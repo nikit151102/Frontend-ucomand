@@ -181,7 +181,7 @@ export class FormComponent implements OnInit {
   loadExistingData(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      const typeEndpoint = this.typeForm === 'резюме' ? ['resumes', id] : ['vacancies', id];
+      const typeEndpoint = this.typeForm === 'резюме' ? ['resume', id] : ['vacancy', id];
       this.formSettingService.getDataById(typeEndpoint[0], typeEndpoint[1]).subscribe((data: any) => {
 
         this.form.patchValue({

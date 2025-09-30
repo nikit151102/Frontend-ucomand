@@ -26,6 +26,12 @@
     justify-content: center;
     align-items: center;
 }
+@media (max-height: 680px) {
+    .popup {
+        height: 100%;
+    }
+}
+
 
 .close-button {
     position: absolute;

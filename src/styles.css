@@ -159,3 +159,8 @@ div {
 .work{
     background: var(--tag-background) !important;
 }
+
+
+.chapterCard:has(.work) {
+    display: none !important;
+}
