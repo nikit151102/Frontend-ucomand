@@ -9,7 +9,6 @@ import { HomeRoutingModule } from './home-routing.module';
     CommonModule,
     HomeRoutingModule,
     HomeComponent,
-    
   ]
 })
 

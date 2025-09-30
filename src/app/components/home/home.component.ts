@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BackgroundImgsComponent } from '../background-imgs/background-imgs.component';
 import { SearchComponent } from './search/search.component';
@@ -26,6 +26,7 @@ import { PopUpEntryComponent } from '../pop-up-entry/pop-up-entry.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   providers:[PopUpEntryComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   animations: [
     trigger('fadeAnimation', [
       transition(':enter', [
