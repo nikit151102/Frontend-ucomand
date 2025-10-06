@@ -25,8 +25,12 @@
         </a>
         <div class="rightContent">
             <ng-container *ngIf="settingHeaderService.post">
-                <a (click)="handlePostResume()" class="additionalBtn additional"  [ngStyle]="{'pointer-events': userAccess == 'we26b502b2fe32e69046810717534b32d' ? 'none' : 'auto', 'opacity': userAccess == 'we26b502b2fe32e69046810717534b32d' ? '0.5' : '1'}"> Разместить резюме </a>
-                <a (click)="handlePostVacancy()" class="additionalBtn additional" [ngStyle]="{'pointer-events': userAccess == 'we26b502b2fe32e69046810717534b32d' ? 'none' : 'auto', 'opacity': userAccess == 'we26b502b2fe32e69046810717534b32d' ? '0.5' : '1'}"> Разместить вакансию </a>
+                <a (click)="handlePostResume()" class="additionalBtn additional"
+                    [ngStyle]="{'pointer-events': userAccess == 'we26b502b2fe32e69046810717534b32d' ? 'none' : 'auto', 'opacity': userAccess == 'we26b502b2fe32e69046810717534b32d' ? '0.5' : '1'}">
+                    Разместить резюме </a>
+                <a (click)="handlePostVacancy()" class="additionalBtn additional"
+                    [ngStyle]="{'pointer-events': userAccess == 'we26b502b2fe32e69046810717534b32d' ? 'none' : 'auto', 'opacity': userAccess == 'we26b502b2fe32e69046810717534b32d' ? '0.5' : '1'}">
+                    Разместить вакансию </a>
             </ng-container>
             <ng-container *ngIf="false">
                 <a href="" class="additionalBtn additional"> Поделиться
@@ -39,30 +43,37 @@
             </ng-container>
             <div class="menu-right">
                 <ng-container *ngIf="this.tokenService.getToken()">
-                    <ng-container *ngIf="currentUserLogo && currentUserLogo !== 'default' && currentUserLogo.trim() !== ''; else default">
-                        <ng-container *ngIf="currentUserLogo && currentUserLogo !== 'default' && currentUserLogo.trim() !== '' && isImageAvatar(currentUserLogo); else default">
-                            <img [src]="'assets/avatars/' + currentUserLogo + '.png'" class="logoImg"
-                                 style="width: 44px; height: 44px;" (click)="viewUser()">
-                          </ng-container>                          
+                    <ng-container
+                        *ngIf="currentUserLogo && currentUserLogo !== 'default' && currentUserLogo !== ''; else default">
+                        <ng-container *ngIf="isImageAvatar(currentUserLogo); else default">
+                            <img *ngIf="currentUserLogo.startsWith('http')" [src]="currentUserLogo" class="logoImg"
+                                style="width: 44px; height: 44px;" (click)="viewUser()">
+
+                            <!-- Если это локальное имя файла, добавляем путь -->
+                            <img *ngIf="!currentUserLogo.startsWith('http')"
+                                [src]="'assets/avatars/' + currentUserLogo + '.png'" class="logoImg"
+                                style="width: 44px; height: 44px;" (click)="viewUser()">
+                        </ng-container>
                     </ng-container>
                     <ng-template #default>
-                      <a (click)="viewUser()" class="navBTN">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="24" cy="24" r="22" fill="#84DD2C" class="nav-circle" />
-                          <g clip-path="url(#clip0_1326_3370)">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                  d="M34.7898 32.28C36.5522 29.9868 37.6 27.1158 37.6 24C37.6 16.4889 31.5111 10.4 24 10.4C16.4889 10.4 10.4 16.4889 10.4 24C10.4 27.1259 11.4546 30.0056 13.2275 32.3025C15.6665 28.77 19.9043 26.9821 24.0612 26.9492C28.2152 26.9164 32.4245 28.6371 34.7898 32.28ZM33.8336 33.3948C31.8324 30.0018 28.0029 28.3182 24.0722 28.3492C20.1469 28.3802 16.2662 30.122 14.1761 33.4049C16.6518 35.9901 20.1379 37.6 24 37.6C27.8671 37.6 31.3573 35.986 33.8336 33.3948ZM24 39C32.2843 39 39 32.2843 39 24C39 15.7157 32.2843 9 24 9C15.7157 9 9 15.7157 9 24C9 32.2843 15.7157 39 24 39ZM24 25.1C26.6786 25.1 28.85 22.9286 28.85 20.25C28.85 17.5714 26.6786 15.4 24 15.4C21.3214 15.4 19.15 17.5714 19.15 20.25C19.15 22.9286 21.3214 25.1 24 25.1ZM24 26.5C27.4518 26.5 30.25 23.7018 30.25 20.25C30.25 16.7982 27.4518 14 24 14C20.5482 14 17.75 16.7982 17.75 20.25C17.75 23.7018 20.5482 26.5 24 26.5Z"
-                                  fill="white" />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_1326_3370">
-                              <rect width="30" height="30" fill="white" transform="translate(9 9)" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                      </a>
+                        <a (click)="viewUser()" class="navBTN">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="22" fill="#84DD2C" class="nav-circle" />
+                                <g clip-path="url(#clip0_1326_3370)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M34.7898 32.28C36.5522 29.9868 37.6 27.1158 37.6 24C37.6 16.4889 31.5111 10.4 24 10.4C16.4889 10.4 10.4 16.4889 10.4 24C10.4 27.1259 11.4546 30.0056 13.2275 32.3025C15.6665 28.77 19.9043 26.9821 24.0612 26.9492C28.2152 26.9164 32.4245 28.6371 34.7898 32.28ZM33.8336 33.3948C31.8324 30.0018 28.0029 28.3182 24.0722 28.3492C20.1469 28.3802 16.2662 30.122 14.1761 33.4049C16.6518 35.9901 20.1379 37.6 24 37.6C27.8671 37.6 31.3573 35.986 33.8336 33.3948ZM24 39C32.2843 39 39 32.2843 39 24C39 15.7157 32.2843 9 24 9C15.7157 9 9 15.7157 9 24C9 32.2843 15.7157 39 24 39ZM24 25.1C26.6786 25.1 28.85 22.9286 28.85 20.25C28.85 17.5714 26.6786 15.4 24 15.4C21.3214 15.4 19.15 17.5714 19.15 20.25C19.15 22.9286 21.3214 25.1 24 25.1ZM24 26.5C27.4518 26.5 30.25 23.7018 30.25 20.25C30.25 16.7982 27.4518 14 24 14C20.5482 14 17.75 16.7982 17.75 20.25C17.75 23.7018 20.5482 26.5 24 26.5Z"
+                                        fill="white" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_1326_3370">
+                                        <rect width="30" height="30" fill="white" transform="translate(9 9)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </a>
                     </ng-template>
-                  </ng-container>                  
+                </ng-container>
                 <a (click)="sidebarVisible = true" class="navBTN">
                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="24" cy="24" r="22" class="nav-circle" />
@@ -176,9 +187,9 @@
             <li>
                 <div class="btns">
                     <ng-container *ngFor="let btn of buttonsConfig">
-                        <button [class]="btn.class" (click)="btn.action()" [innerHTML]="btn.label" 
-                        [ngStyle]="{'pointer-events': (userAccess == 'b326b5062b2f0e69046810717534cb09' && (btn.label == 'Разместить резюме' || btn.label == 'Разместить вакансию')) ? 'none' : 'auto', 'opacity': (userAccess == 'b326b5062b2f0e69046810717534cb09' && (btn.label == 'Разместить резюме' || btn.label == 'Разместить вакансию')) ? '0.5' : '1'}">
-         
+                        <button [class]="btn.class" (click)="btn.action()" [innerHTML]="btn.label"
+                            [ngStyle]="{'pointer-events': (userAccess == 'b326b5062b2f0e69046810717534cb09' && (btn.label == 'Разместить резюме' || btn.label == 'Разместить вакансию')) ? 'none' : 'auto', 'opacity': (userAccess == 'b326b5062b2f0e69046810717534cb09' && (btn.label == 'Разместить резюме' || btn.label == 'Разместить вакансию')) ? '0.5' : '1'}">
+
                         </button>
                     </ng-container>
                 </div>

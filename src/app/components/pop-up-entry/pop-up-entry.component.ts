@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environment';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { forbiddenWordsValidator } from '../personal-account/personal-data/errorNameList';
+import { AvatarSelectionService } from '../pop-up-avatar/avatar-selection.service';
 
 @Component({
   selector: 'app-pop-up-entry',
@@ -28,7 +29,8 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
     private tokenService: TokenService,
     private http: HttpClient,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private avatarSelectionService:AvatarSelectionService
   ) {
     this.authForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -240,6 +242,7 @@ export class PopUpEntryComponent implements AfterViewInit, OnDestroy, OnInit {
         sessionStorage.setItem('userData', JSON.stringify(data));
         this.popUpEntryService.userVisible = true;
         this.popUpEntryService.visible = false;
+        this.avatarSelectionService.selectAvatar(data.imageLink)
         this.closePopUp()
       },
       (error) => {
