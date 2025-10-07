@@ -10,14 +10,15 @@ import { CommonModule } from '@angular/common';
   templateUrl: './screensaver-phone.component.html',
   styleUrl: './screensaver-phone.component.css'
 })
-export class ScreensaverPhoneComponent  implements OnInit{
+export class ScreensaverPhoneComponent implements OnInit {
 
   @Input() detailsList: any;
   avatarLink: string = ''
   isLiked = false;
+  isOwner: boolean = false;
   constructor(private router: Router, private projectService: ProjectService,
-     private cdr: ChangeDetectorRef) { }
-  
+    private cdr: ChangeDetectorRef) { }
+
   ngOnInit(): void {
     this.projectService.currentProjectData$.subscribe((value: any) => {
       if (value && value.headerLink) { // Проверяем, что value не null/undefined
@@ -25,6 +26,9 @@ export class ScreensaverPhoneComponent  implements OnInit{
         this.avatarLink = value.avatarLink || ''; // Защита от undefined
       }
     });
+    this.projectService.currentProjectIsOwner$.subscribe((value: boolean) => {
+      this.isOwner = value;
+    })
 
   }
 
@@ -43,7 +47,7 @@ export class ScreensaverPhoneComponent  implements OnInit{
 
   }
 
-  setTargetAvata(objectUrl: string, block:string) {
+  setTargetAvata(objectUrl: string, block: string) {
     const backgroundContainer = document.querySelector(`.${block}`) as HTMLElement;
     if (backgroundContainer) {
       backgroundContainer.style.backgroundImage = `url(${objectUrl})`;

@@ -6,7 +6,7 @@
     margin-bottom: 1rem;
     break-inside: avoid;
     transition: transform .3s ease-in-out;
-    
+
 }
 
 .background {
@@ -174,4 +174,25 @@
     text-decoration: underline;
     text-decoration-skip-ink: none;
     color: #101010;
+}
+
+
+
+.edit-profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 300px;
+    padding: 8px 12px;
+    background: #e2e2e2;
+    text-decoration: none;
+
+
+
+    .edit-profile-text {
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 120%;
+        color: #101010;
+    }
 }
