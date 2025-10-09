@@ -1,4 +1,4 @@
-p{
+p {
     margin: 0;
 }
 
@@ -40,9 +40,9 @@ p{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .tags {
+}
+
+.tags {
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -52,7 +52,7 @@ p{
         border-radius: 30px;
         padding: 8px 12px;
         background: rgba(16, 16, 16, 0.685);
-    
+
         font-family: var(--font-Monts);
         font-weight: 500;
         font-size: 14px;
@@ -62,8 +62,8 @@ p{
 }
 
 
-  
-  .edit-profile-btn {
+
+.edit-profile-btn {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -71,17 +71,17 @@ p{
     padding: 8px 12px;
     background: #e2e2e2;
     text-decoration: none;
-  
 
-  
+
+
     .edit-profile-text {
-      font-weight: 400;
-      font-size: 10px;
-      line-height: 120%;
-      color: #101010;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 120%;
+        color: #101010;
     }
-  }
-  
+}
+
 
 .header-content {
     display: flex;
@@ -205,6 +205,7 @@ p{
 
 
 @media (max-width: 1199px) {
+
     .background-container,
     .overlay,
     .content {

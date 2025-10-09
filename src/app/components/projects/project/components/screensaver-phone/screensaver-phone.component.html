@@ -1,7 +1,7 @@
 <div class="card">
     <div class="background"
         [ngStyle]="{'background-image': 'linear-gradient(rgba(16, 16, 16, 0.6), rgba(16, 16, 16, 0.6)), url(' + detailsList?.headerLink + ')'}">
-        <div class="header-content">
+        <div class="header-content" [ngClass]="{'with-padding': settingHeaderService.backbtn, 'without-padding': !settingHeaderService.backbtn}">
             <span class="type-badge">{{ getTagName(detailsList?.type) }}</span>
             
             <a class="edit-profile-btn" (click)="getEditProject()" *ngIf="isOwner == true">

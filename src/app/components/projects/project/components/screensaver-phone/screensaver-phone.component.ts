@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjectService } from '../../project.service';
 import { CommonModule } from '@angular/common';
+import { SettingHeaderService } from '../../../../setting-header.service';
 
 @Component({
   selector: 'app-screensaver-phone',
@@ -17,7 +18,7 @@ export class ScreensaverPhoneComponent implements OnInit {
   isLiked = false;
   isOwner: boolean = false;
   constructor(private router: Router, private projectService: ProjectService,
-    private cdr: ChangeDetectorRef) { }
+    private cdr: ChangeDetectorRef, public settingHeaderService:SettingHeaderService) { }
 
   ngOnInit(): void {
     this.projectService.currentProjectData$.subscribe((value: any) => {

@@ -29,6 +29,15 @@
     justify-content: space-between;
     width: 100%;
     position: relative;
+        /* padding-top: 30px; */
+}
+
+.header-content.with-padding {
+  padding-top: 30px;
+}
+
+.header-content.without-padding {
+  padding-top: 0px;
 }
 
 .type-badge {
