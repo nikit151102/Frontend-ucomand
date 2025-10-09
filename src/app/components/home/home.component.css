@@ -80,8 +80,6 @@
 
 
 @media (min-width: 768px) { 
-
-
         .column {
             display: flex;
             width: 100vw;
@@ -107,6 +105,10 @@
             flex: 0 0 auto;         /* фиксируем ширину, чтобы не сжимались */
             margin: 10px 0;
         } 
+
+        .bottom {
+            margin-top: 70px;
+        }
 
 }
 

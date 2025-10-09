@@ -12,185 +12,28 @@
     <div class="card-container">
 
 
-
-      <ng-container *ngIf="homeService.typeToggle === 'hackathon'">
-        <ng-container *ngIf="isDesktop">
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.hackathons; let i = index">
-              <ng-container *ngIf="i % 3 === 0"> <!-- First Column: 0, 3, 6, ... -->
-                <a [href]="getCardUrl(item.id, 'hackathon', 'hackathon')" class="app-card-vacancy-link"
-                  (click)="onCardClick($event, item.nickname, 'hackathon')">
-                  <app-hackathon-card class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-hackathon-card>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div>
-
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.hackathons; let i = index">
-              <ng-container *ngIf="i % 3 === 1"> <!-- Second Column: 1, 4, 7, ... -->
-                <a [href]="getCardUrl(item.id, 'hackathon', 'hackathon')" class="app-card-vacancy-link"
-                  (click)="onCardClick($event, item.nickname, 'hackathon')">
-                  <app-hackathon-card class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-hackathon-card>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div>
-
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.hackathons; let i = index">
-              <ng-container *ngIf="i % 3 === 2"> <!-- Third Column: 2, 5, 8, ... -->
-                <a [href]="getCardUrl(item.id, 'hackathon', 'hackathon')" class="app-card-vacancy-link"
-                  (click)="onCardClick($event, item.nickname, 'hackathon')">
-                  <app-hackathon-card class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-hackathon-card>
-                </a>
-              </ng-container>
-            </ng-container>
+<!-- ***************************** hackathon ********************************** -->
+    <ng-container *ngIf="homeService.typeToggle === 'hackathon'">
+        <ng-container *ngIf="isDesktop"> 
+          <div class="container">
+              <div class="column">
+                  <swiper-container
+                  [slidesPerView]="4"
+                  [spaceBetween]="20"
+                  [loop]="false"
+                  [allowTouchMove]="true"
+                  [navigation]="true"
+                  [pagination]="{ clickable: true }">
+                      <swiper-slide  *ngFor="let item of homeService.hackathons; let i = index"> 
+                        <a [href]="getCardUrl(item.id, 'hackathon', 'hackathon')" class="app-card-vacancy-link"
+                          (click)="onCardClick($event, item.nickname, 'hackathon')">
+                          <app-hackathon-card class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-hackathon-card>
+                        </a>
+                      </swiper-slide>
+                  </swiper-container>
+              </div>
           </div>
         </ng-container>
-
-        <ng-container *ngIf="isTablet">
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.hackathons; let i = index">
-              <ng-container *ngIf="i % 2 === 0"> <!-- First Column: 0, 2, 4, ... -->
-                <a [href]="getCardUrl(item.id, 'hackathon', 'hackathon')" class="app-card-vacancy-link"
-                  (click)="onCardClick($event, item.nickname, 'hackathon')">
-                  <app-hackathon-card class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-hackathon-card>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div>
-
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.hackathons; let i = index">
-              <ng-container *ngIf="i % 2 === 1"> <!-- Second Column: 1, 3, 5, ... -->
-                <a [href]="getCardUrl(item.id, 'hackathon', 'hackathon')" class="app-card-vacancy-link"
-                  (click)="onCardClick($event, item.nickname, 'hackathon')">
-                  <app-hackathon-card class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-hackathon-card>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div>
-        </ng-container>
-
-        <ng-container *ngIf="isMobile">
-          <ng-container *ngFor="let item of homeService.hackathons">
-            <a [href]="getCardUrl(item.id, 'hackathon', 'hackathon')" class="app-card-vacancy-link"
-              (click)="onCardClick($event, item.nickname, 'hackathon')">
-              <app-hackathon-card class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-hackathon-card>
-            </a>
-          </ng-container>
-        </ng-container>
-      </ng-container>
-
-
-      <ng-container *ngIf="homeService.typeToggle === 'project'">
-        <ng-container *ngIf="isDesktop">
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.projects; let i = index">
-              <ng-container *ngIf="i % 3 === 0"> <!-- First Column: 0, 3, 6, ... -->
-                <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
-                  (click)="onCardClick($event, item.nickname, 'project')">
-                  <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div>
-
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.projects; let i = index">
-              <ng-container *ngIf="i % 3 === 1"> <!-- Second Column: 1, 4, 7, ... -->
-                <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
-                  (click)="onCardClick($event, item.nickname, 'project')">
-                  <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div>
-
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.projects; let i = index">
-              <ng-container *ngIf="i % 3 === 2"> <!-- Third Column: 2, 5, 8, ... -->
-                <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
-                  (click)="onCardClick($event, item.nickname, 'project')">
-                  <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div>
-        </ng-container>
-
-        <ng-container *ngIf="isTablet">
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.projects; let i = index">
-              <ng-container *ngIf="i % 2 === 0"> <!-- First Column: 0, 2, 4, ... -->
-                <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
-                  (click)="onCardClick($event, item.nickname, 'project')">
-                  <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div>
-
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.projects; let i = index">
-              <ng-container *ngIf="i % 2 === 1"> <!-- Second Column: 1, 3, 5, ... -->
-                <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
-                  (click)="onCardClick($event, item.nickname, 'project')">
-                  <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div>
-        </ng-container>
-
-        <ng-container *ngIf="isMobile">
-          <ng-container *ngFor="let item of homeService.projects">
-            <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
-              (click)="onCardClick($event, item.nickname, 'project')">
-              <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
-            </a>
-          </ng-container>
-        </ng-container>
-      </ng-container>
-
-
-
-
-
-<!-- ***************************** vacancy ********************************** -->
-      <ng-container *ngIf="homeService.typeToggle === 'vacancy'">
-
-      <ng-container *ngIf="isDesktop"> 
-        <div class="column">
-            <swiper-container
-            [slidesPerView]="4"
-            [spaceBetween]="20"
-            [loop]="false"
-            [allowTouchMove]="true"
-            [navigation]="true"
-            [pagination]="{ clickable: true }">
-                <swiper-slide  *ngFor="let item of homeService.vacancies; let i = index"> 
-                      <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
-                      (click)="onCardClick($event, item.id, 'vacancy')">
-                        <lib-vacancy class="card"  [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy> 
-                      </a>
-                </swiper-slide>
-            </swiper-container>
-        </div>
-      </ng-container>
-
-
-        <!-- <ng-container *ngIf="isDesktop">
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.vacancies; let i = index"> 
-                  <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
-                      (click)="onCardClick($event, item.id, 'vacancy')">
-                  <lib-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy>
-                  </a>
-            </ng-container>
-          </div>
-        </ng-container> -->
 
         <ng-container *ngIf="isMobile">
           <div class="column">
@@ -200,193 +43,225 @@
               [allowTouchMove]="true"
               [navigation]="true"
             >
-                <swiper-slide  *ngFor="let item of homeService.vacancies; let i = index"> 
-                      <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
-                      (click)="onCardClick($event, item.id, 'vacancy')">
-                        <lib-vacancy class="card"  [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy> 
-                      </a>
+                <swiper-slide  *ngFor="let item of homeService.hackathons; let i = index"> 
+                  <a [href]="getCardUrl(item.id, 'hackathon', 'hackathon')" class="app-card-vacancy-link"
+                    (click)="onCardClick($event, item.nickname, 'hackathon')">
+                    <app-hackathon-card class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-hackathon-card>
+                  </a>
                 </swiper-slide>
             </swiper-container>
         </div>
-        </ng-container>
+        </ng-container>  
+    </ng-container>
+<!-- ***************************** close hackathon ********************************** -->
 
-        <!-- <ng-container *ngIf="isMobile">
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.vacancies">
-              <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
-                (click)="onCardClick($event, item.id, 'vacancy')">
-                <lib-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy>
-              </a>
-            </ng-container>
-        </div>
-        </ng-container> -->
-
-
-      </ng-container>
-
-<!-- ***************************** vacancy ********************************** -->
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- First Column: 0, 3, 6, ... -->
-      <!-- <ng-container *ngIf="homeService.typeToggle === 'vacancy'">
-        <ng-container *ngIf="isDesktop">
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.vacancies; let i = index">
-              <ng-container *ngIf="i % 3 === 0">
-                <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
-                  (click)="onCardClick($event, item.id, 'vacancy')">
-                  <lib-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div> -->
-
-          <!-- Second Column: 1, 4, 7, ... -->
-          <!-- <div class="column">
-            <ng-container *ngFor="let item of homeService.vacancies; let i = index">
-              <ng-container *ngIf="i % 3 === 1"> 
-                <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
-                  (click)="onCardClick($event, item.id, 'vacancy')">
-                  <lib-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div> -->
- 
-          <!-- Third Column: 2, 5, 8, ... -->
-          <!-- <div class="column">
-            <ng-container *ngFor="let item of homeService.vacancies; let i = index">
-              <ng-container *ngIf="i % 3 === 2">
-                <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
-                  (click)="onCardClick($event, item.id, 'vacancy')">
-                  <lib-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy>
-                </a>
-              </ng-container>
-            </ng-container>
+<!-- *****************************  project ********************************** -->
+    <ng-container *ngIf="homeService.typeToggle === 'project'">
+        <ng-container *ngIf="isDesktop"> 
+          <div class="container">
+              <div class="column">
+                  <swiper-container
+                  [slidesPerView]="4"
+                  [spaceBetween]="20"
+                  [loop]="false"
+                  [allowTouchMove]="true"
+                  [navigation]="true"
+                  [pagination]="{ clickable: true }">
+                      <swiper-slide  *ngFor="let item of homeService.projects; let i = index">
+                        <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
+                           (click)="onCardClick($event, item.nickname, 'project')">
+                        <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
+                        </a>
+                      </swiper-slide>
+                  </swiper-container>
+              </div>
           </div>
-        </ng-container> -->
-
+        </ng-container>
+    
         <!-- <ng-container *ngIf="isTablet">
           <div class="column">
-            <ng-container *ngFor="let item of homeService.vacancies; let i = index">
-              <ng-container *ngIf="i % 2 === 0"> 
-                <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
-                  (click)="onCardClick($event, item.id, 'vacancy')">
-                  <lib-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy>
+            <ng-container *ngFor="let item of homeService.projects; let i = index">
+              <ng-container *ngIf="i % 2 === 0">
+                <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
+                  (click)="onCardClick($event, item.nickname, 'project')">
+                  <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
                 </a>
               </ng-container>
             </ng-container>
           </div>
 
           <div class="column">
-            <ng-container *ngFor="let item of homeService.vacancies; let i = index">
+            <ng-container *ngFor="let item of homeService.projects; let i = index">
               <ng-container *ngIf="i % 2 === 1">
-                <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
-                  (click)="onCardClick($event, item.id, 'vacancy')">
-                  <lib-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy>
+                <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
+                  (click)="onCardClick($event, item.nickname, 'project')">
+                  <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
                 </a>
               </ng-container>
             </ng-container>
           </div>
+        </ng-container> -->
+        
+        <ng-container *ngIf="isMobile">
+          <div class="column">
+            <swiper-container
+              [slidesPerView]="1"
+              [loop]="false"
+              [allowTouchMove]="true"
+              [navigation]="true"
+            >
+            <swiper-slide  *ngFor="let item of homeService.projects; let i = index">
+                <a [href]="getCardUrl(item.id, 'project', 'project')" class="app-card-vacancy-link"
+                   (click)="onCardClick($event, item.nickname, 'project')">
+                <app-project class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></app-project>
+                </a>
+            </swiper-slide>
+            </swiper-container>
+        </div>
+        </ng-container>  
+    </ng-container>
+<!-- ***************************** close project ********************************** -->
+
+
+<!-- ***************************** vacancy ********************************** -->
+    <ng-container *ngIf="homeService.typeToggle === 'vacancy'">
+
+        <ng-container *ngIf="isDesktop"> 
+          <div class="container">
+              <div class="column">
+                  <swiper-container
+                  [slidesPerView]="4"
+                  [spaceBetween]="20"
+                  [loop]="false"
+                  [allowTouchMove]="true"
+                  [navigation]="true"
+                  [pagination]="{ clickable: true }">
+                      <swiper-slide  *ngFor="let item of homeService.vacancies; let i = index"> 
+                            <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
+                            (click)="onCardClick($event, item.id, 'vacancy')">
+                              <lib-vacancy class="card"  [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy> 
+                            </a>
+                      </swiper-slide>
+                  </swiper-container>
+              </div>
+
+              <div class="column bottom">
+                <swiper-container
+                [slidesPerView]="4"
+                [spaceBetween]="20"
+                [loop]="false"
+                [allowTouchMove]="true"
+                [navigation]="true"
+                [pagination]="{ clickable: false }">
+                    <swiper-slide  *ngFor="let item of homeService.vacancies; let i = index"> 
+                          <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
+                          (click)="onCardClick($event, item.id, 'vacancy')">
+                            <lib-vacancy class="card"  [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy> 
+                          </a>
+                    </swiper-slide>
+                </swiper-container>
+              </div>
+          </div>
         </ng-container>
 
         <ng-container *ngIf="isMobile">
-          <ng-container *ngFor="let item of homeService.vacancies">
-            <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
-              (click)="onCardClick($event, item.id, 'vacancy')">
-              <lib-vacancy class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy>
-            </a>
-          </ng-container>
+            <div class="column">
+              <swiper-container
+                [slidesPerView]="1"
+                [loop]="false"
+                [allowTouchMove]="true"
+                [navigation]="true"
+              >
+                  <swiper-slide  *ngFor="let item of homeService.vacancies; let i = index"> 
+                        <a [href]="getCardUrl(item.id, 'vacancies', 'vacancy')" class="app-card-vacancy-link"
+                        (click)="onCardClick($event, item.id, 'vacancy')">
+                          <lib-vacancy class="card"  [cardItem]="item" *ngIf="item.visibility != 'BAN'"></lib-vacancy> 
+                        </a>
+                  </swiper-slide>
+              </swiper-container>
+          </div>
+        </ng-container>   
+
+    </ng-container>
+<!-- ***************************** close vacancy ********************************** -->
+
+
+<!-- ***************************** resume ********************************** -->
+    <ng-container *ngIf="homeService.typeToggle === 'resume'">
+        <ng-container *ngIf="isDesktop"> 
+            <div class="container">
+                <div class="column">
+                    <swiper-container
+                    [slidesPerView]="4"
+                    [spaceBetween]="20"
+                    [loop]="false"
+                    [allowTouchMove]="true"
+                    [navigation]="true"
+                    [pagination]="{ clickable: true }">
+                        <swiper-slide  *ngFor="let item of homeService.resumes; let i = index">
+                          <a [href]="getCardUrl(item.id, 'resumes', 'resume')" class="app-card-resume-link"
+                              (click)="onCardClick($event, item.id, 'resume')">
+                          <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'" [visibleSections]="resumeVisibleSections"> </lib-resume>
+                          </a>
+                        </swiper-slide>
+                    </swiper-container>
+                </div>
+            </div>
         </ng-container>
+      
+        <ng-container *ngIf="isMobile">
+            <div class="column">
+              <swiper-container
+                [slidesPerView]="1"
+                [loop]="false"
+                [allowTouchMove]="true"
+                [navigation]="true"
+              >
+                  <swiper-slide *ngFor="let item of homeService.resumes; let i = index">
+                      <a [href]="getCardUrl(item.id, 'resumes', 'resume')" class="app-card-resume-link"
+                        (click)="onCardClick($event, item.id, 'resume')">
+                      <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"
+                        [visibleSections]="resumeVisibleSections"> </lib-resume>
+                      </a>
+                  </swiper-slide>
+              </swiper-container>
+          </div>
+        </ng-container>  
+    </ng-container>
+
+      <!-- <ng-container *ngIf="isTablet">
+        <div class="column">
+          <ng-container *ngFor="let item of homeService.resumes; let i = index">
+            <ng-container *ngIf="i % 2 === 0">
+              <a [href]="getCardUrl(item.id, 'resumes', 'resume')" class="app-card-resume-link"
+                (click)="onCardClick($event, item.id, 'resume')">
+                <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"
+                  [visibleSections]="resumeVisibleSections"> </lib-resume>
+              </a>
+            </ng-container>
+          </ng-container>
+        </div>
+
+        <div class="column">
+          <ng-container *ngFor="let item of homeService.resumes; let i = index">
+            <ng-container *ngIf="i % 2 === 1"> 
+              <a [href]="getCardUrl(item.id, 'resumes', 'resume')" class="app-card-resume-link"
+                (click)="onCardClick($event, item.id, 'resume')">
+                <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"
+                  [visibleSections]="resumeVisibleSections"></lib-resume>
+              </a>
+            </ng-container>
+          </ng-container>
+        </div>
       </ng-container> -->
 
-      <ng-container *ngIf="homeService.typeToggle === 'resume'">
-        <ng-container *ngIf="isDesktop">
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.resumes; let i = index">
-              <ng-container *ngIf="i % 3 === 0"> <!-- First Column: 0, 3, 6, ... -->
-                <a [href]="getCardUrl(item.id, 'resumes', 'resume')" class="app-card-resume-link"
-                  (click)="onCardClick($event, item.id, 'resume')">
-                  <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"
-                    [visibleSections]="resumeVisibleSections"></lib-resume>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div>
-
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.resumes; let i = index">
-              <ng-container *ngIf="i % 3 === 1"> <!-- Second Column: 1, 4, 7, ... -->
-                <a [href]="getCardUrl(item.id, 'resumes', 'resume')" class="app-card-resume-link"
-                  (click)="onCardClick($event, item.id, 'resume')">
-                  <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"
-                    [visibleSections]="resumeVisibleSections"></lib-resume>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div>
-
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.resumes; let i = index">
-              <ng-container *ngIf="i % 3 === 2"> <!-- Third Column: 2, 5, 8, ... -->
-                <a [href]="getCardUrl(item.id, 'resumes', 'resume')" class="app-card-resume-link"
-                  (click)="onCardClick($event, item.id, 'resume')">
-                  <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"
-                    [visibleSections]="resumeVisibleSections"></lib-resume>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div>
-        </ng-container>
-
-        <ng-container *ngIf="isTablet">
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.resumes; let i = index">
-              <ng-container *ngIf="i % 2 === 0"> <!-- First Column: 0, 2, 4, ... -->
-                <a [href]="getCardUrl(item.id, 'resumes', 'resume')" class="app-card-resume-link"
-                  (click)="onCardClick($event, item.id, 'resume')">
-                  <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"
-                    [visibleSections]="resumeVisibleSections"> </lib-resume>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div>
-
-          <div class="column">
-            <ng-container *ngFor="let item of homeService.resumes; let i = index">
-              <ng-container *ngIf="i % 2 === 1"> <!-- Second Column: 1, 3, 5, ... -->
-                <a [href]="getCardUrl(item.id, 'resumes', 'resume')" class="app-card-resume-link"
-                  (click)="onCardClick($event, item.id, 'resume')">
-                  <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"
-                    [visibleSections]="resumeVisibleSections"></lib-resume>
-                </a>
-              </ng-container>
-            </ng-container>
-          </div>
-        </ng-container>
-
-        <ng-container *ngIf="isMobile">
-          <ng-container *ngFor="let item of homeService.resumes">
-            <a [href]="getCardUrl(item.id, 'resumes', 'resume')" class="app-card-resume-link"
-              (click)="onCardClick($event, item.id, 'resume')">
-              <lib-resume class="card" [cardItem]="item" *ngIf="item.visibility != 'BAN'"
-                [visibleSections]="resumeVisibleSections"></lib-resume>
-            </a>
-          </ng-container>
-        </ng-container>
-      </ng-container>
-
+<!-- ***************************** close resume ********************************** -->
     </div>
+
+
+
+
+
 
     <div class="nextPage">
       <a *ngIf="homeService.visibleNextPage" (click)="nextPage()">
